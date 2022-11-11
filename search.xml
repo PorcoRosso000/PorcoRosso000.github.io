@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>hexo指令</title>
+      <link href="/2022/11/11/hexo%E6%8C%87%E4%BB%A4/"/>
+      <url>/2022/11/11/hexo%E6%8C%87%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<p>hexo new post “文章名” :创建文章<br>hexo clean ：删除之前生成的文件，若未生成过静态文件，可忽略此命令。<br>hexo generate ：生成静态文章，可以用hexo g缩写<br>hexo deploy ：部署文章，可以用hexo d缩写<br>hexo s -p 8000 : 搜索启动</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2022/11/06/hello-world/"/>
       <url>/2022/11/06/hello-world/</url>
