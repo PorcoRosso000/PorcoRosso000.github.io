@@ -31,9 +31,9 @@ git push –set-upstream origin hexo
 
 执行
 
-npm install hexo、
+npm install hexo
 
-npm install、
+npm install
 
 npm install hexo-deployer-git
 
@@ -42,5 +42,20 @@ npm install hexo-deployer-git
 然后创建文章
 
 ^\s*(?=\r?$)\n  :在vscode中替换空行的正则
+
+
+
+更新giuhub仓库hexo分支
+
+git status  :查看修改的文件
+git add .  :放入缓存区
+git commit -m “本次提交的备注”  :本次提交的文字说明
+git push -u origin hexo    :将项目上传到远程仓库的hexo分支
+
+
+
+
+
+
 
 
