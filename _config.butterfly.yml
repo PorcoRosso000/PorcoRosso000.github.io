@@ -70,7 +70,6 @@ algolia_search:
   enable: true
   hits:
     per_page: 8
- 
   labels:
     input_placeholder: Search for Posts
     hits_empty: "我们没有找到任何搜索结果: ${query}"
