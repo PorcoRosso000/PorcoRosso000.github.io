@@ -1,6 +1,7 @@
 ---
 title: mysql
 typora-root-url: mysql
+abbrlink: 9520183a
 date: 2022-11-26 16:14:49
 tags:
 permalink:
