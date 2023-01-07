@@ -1,6 +1,7 @@
 ---
 title: java基础
 typora-root-url: java基础
+abbrlink: b8b0eacd
 date: 2022-11-26 14:38:26
 tags:
 permalink:

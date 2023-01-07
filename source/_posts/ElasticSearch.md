@@ -1,6 +1,7 @@
 ---
 title: ElasticSearch
 typora-root-url: ElasticSearch
+abbrlink: d48132d3
 date: 2022-11-26 16:54:03
 tags:
 permalink:

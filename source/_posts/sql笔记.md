@@ -1,6 +1,7 @@
 ---
 title: sql笔记
 typora-root-url: sql笔记
+abbrlink: d36bd08c
 date: 2023-01-07 14:34:51
 tags:
 permalink:

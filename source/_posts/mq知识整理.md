@@ -1,5 +1,6 @@
 ---
 title: mq知识整理
+abbrlink: 3ff4e7d7
 date: 2022-11-25 11:30:34
 tags:
 ---

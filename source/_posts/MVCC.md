@@ -1,6 +1,7 @@
 ---
 title: MVCC
 typora-root-url: MVCC
+abbrlink: 148a0112
 date: 2022-11-26 17:03:25
 tags:
 permalink:

@@ -1,6 +1,7 @@
 ---
 title: CPU飙高
 typora-root-url: CPU飙高
+abbrlink: f64d8ae3
 date: 2022-11-26 16:45:15
 tags:
 permalink:

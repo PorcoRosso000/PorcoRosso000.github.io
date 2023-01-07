@@ -1,6 +1,7 @@
 ---
 title: 关于JVM
 typora-root-url: 关于JVM
+abbrlink: df4b4949
 date: 2022-11-26 14:43:05
 tags:
 permalink:

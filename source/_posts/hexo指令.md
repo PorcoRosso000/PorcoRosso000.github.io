@@ -1,7 +1,7 @@
 ---
 title: hexo指令
+abbrlink: 89e11d40
 date: 2022-11-11 22:30:29
-
 ---
 
 hexo new post "文章名" :创建文章

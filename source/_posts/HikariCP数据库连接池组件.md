@@ -1,6 +1,7 @@
 ---
 title: HikariCP数据库连接池组件
 typora-root-url: HikariCP数据库连接池组件
+abbrlink: 9435ccf8
 date: 2022-12-03 17:00:50
 tags:
 permalink:

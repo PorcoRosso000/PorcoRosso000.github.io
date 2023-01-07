@@ -1,6 +1,7 @@
 ---
 title: redis
 typora-root-url: redis
+abbrlink: 7b25d017
 date: 2022-11-26 16:34:04
 tags:
 permalink:

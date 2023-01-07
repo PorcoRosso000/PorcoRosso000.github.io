@@ -1,6 +1,7 @@
 ---
 title: AQS
 typora-root-url: AQS
+abbrlink: dfdb52be
 date: 2022-11-26 17:02:38
 tags:
 permalink:

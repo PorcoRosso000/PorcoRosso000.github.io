@@ -1,6 +1,7 @@
 ---
 title: Mongodb
 typora-root-url: Mongodb
+abbrlink: '20475214'
 date: 2022-11-26 16:55:05
 tags:
 permalink:

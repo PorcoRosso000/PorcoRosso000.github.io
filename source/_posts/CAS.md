@@ -1,6 +1,7 @@
 ---
 title: CAS
 typora-root-url: CAS
+abbrlink: 969d9481
 date: 2022-11-26 17:01:46
 tags:
 permalink:
