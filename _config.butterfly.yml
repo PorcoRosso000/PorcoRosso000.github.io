@@ -300,12 +300,13 @@ comments:
   use:
   # - Valine
   # - Disqus
+    - Twikoo
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: false
-  count: false # Display comment count in post's top_img
-  card_post_count: false # Display comment count in Home Page
+  lazyload: true
+  count: true # Display comment count in post's top_img
+  card_post_count: true # Display comment count in Home Page
 
 # disqus
 # https://disqus.com/
@@ -395,9 +396,9 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId:
+  envId: https://porco-rosso000-github-io.vercel.app/ 
   region:
-  visitor: false
+  visitor: true
   option:
 
 # Chat Services
@@ -942,9 +943,11 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
-    - <link rel="stylesheet" href="/xxx.css">
+    # 自定义css
+    - <link rel="stylesheet" href="/css/custom.css">
   bottom:
-    - <script src="xxxx"></script>
+    # 自定义js
+    - <script src="/js/custom.js"></script>
 
 # CDN
 # Don't modify the following settings unless you know how they work
