@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HashMap | 红猪的博客</title><meta name="author" content="Porco Rosso"><meta name="copyright" content="Porco Rosso"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="HashMaphashmap怎么保证有序   LinkedHashMap是插入有序的Map，遍历LinkedHashMap时key-value的顺序与插入顺序相同。  LinkedHashMap继承自HashMap，实现了Map接口。  节点类型为Entry，是LinkedHashMap的静态内部类，继承自HashMap.Node。Entry除了继承了Node的next、hash、key、valu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap">
+<meta property="og:url" content="http://porcorosso.top/posts/3d614825.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="HashMaphashmap怎么保证有序   LinkedHashMap是插入有序的Map，遍历LinkedHashMap时key-value的顺序与插入顺序相同。  LinkedHashMap继承自HashMap，实现了Map接口。  节点类型为Entry，是LinkedHashMap的静态内部类，继承自HashMap.Node。Entry除了继承了Node的next、hash、key、valu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.qinglvbizhi.com/uploads/202201/28/220128045251729.jpg">
+<meta property="article:published_time" content="2022-11-26T06:22:54.000Z">
+<meta property="article:modified_time" content="2023-01-08T10:25:21.628Z">
+<meta property="article:author" content="Porco Rosso">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.qinglvbizhi.com/uploads/202201/28/220128045251729.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://porcorosso.top/posts/3d614825"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"7PZLOEQWZ0","apiKey":"09b62775f116ef72b0ccf883bb5d9727","indexName":"porco_rosso","hits":{"per_page":8},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Porco Rosso","link":"链接: ","source":"来源: 红猪的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-01-08 18:25:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://tupian.qqw21.com/article/UploadPic/2019-8/201982923213827546.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.qinglvbizhi.com/uploads/202201/28/220128045251729.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">红猪的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">HashMap</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-26T06:22:54.000Z" title="发表于 2022-11-26 14:22:54">2022-11-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-08T10:25:21.628Z" title="更新于 2023-01-08 18:25:21">2023-01-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HashMap"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>hashmap怎么保证有序  </p>
+<p>LinkedHashMap是插入有序的Map，遍历LinkedHashMap时key-value的顺序与插入顺序相同。</p>
+<p> LinkedHashMap继承自HashMap，实现了Map接口。</p>
+<p> 节点类型为Entry，是LinkedHashMap的静态内部类，继承自HashMap.Node。Entry除了继承了Node的next、hash、key、value等属性外，还有Entry类型的before、after，分别指向前一个插入的节点和后一个插入的节点，用于保证插入顺序。</p>
+<p>HashMap怎么保证线程安全？</p>
+<p>实现Collections 的 synchronizedMap 方法（底层使用了sychronizedMap的方法） 或直接使用 ConcurrentHashMap</p>
+<h3 id="回顾一下HashMap的底层数据结构"><a href="#回顾一下HashMap的底层数据结构" class="headerlink" title="回顾一下HashMap的底层数据结构"></a>回顾一下HashMap的底层数据结构</h3><p> HashMap底层实现JDK&lt;=1.7数组+链表，JDK&gt;=1.8数组+链表+红黑树；</p>
+<p> HashMap这一个类型底层涉及到3中数据类型，数组、链表、红黑树，其中查询速度最快的是数组，时间复杂度是O(1),链表数据量少的时候还行，数据量过大性能就一般了，它的时间复杂度是O(N)，红黑树在数据量大的时候性能会比链表要好，他的时间复杂度是O(logn),这里在链表和红黑树这里性能对比其实在HashMap的扩容时，已经体现出来了，Hash值产生碰撞后，链表长度&gt;8，数组长度大于64 时会由链表转换为红黑树，而当红黑树的节点&lt;6时，会由红黑树转换为链表，这就是二者的性能临界点。</p>
+<h4 id="为什么设置链表长度大于8转红黑树？"><a href="#为什么设置链表长度大于8转红黑树？" class="headerlink" title="为什么设置链表长度大于8转红黑树？"></a>为什么设置链表长度大于8转红黑树？</h4><p>如果 hashCode 分布良好，也就是 hash 计算的结果离散好的话，那么红黑树这种形式是很少会被用到的，因为各个值都均匀分布，很少出现链表很长的情况。在理想情况下，链表长度符合泊松分布，各个长度的命中概率依次递减，当长度为 8 的时候，概率仅为 0.00000006  </p>
+<p> 链表长度超过 8 就转为红黑树的设计，更多的是为了防止用户自己实现了不好的哈希算法时导致链表过长，从而导致查询效率低，而此时转为红黑树更多的是一种保底策略，用来保证极端情况下查询的效率。  </p>
+<h4 id="为什么小于6的时候就转化成链表？"><a href="#为什么小于6的时候就转化成链表？" class="headerlink" title="为什么小于6的时候就转化成链表？"></a>为什么小于6的时候就转化成链表？</h4><p> 可以防止链表和树之间频繁的转换  </p>
+<h4 id="为什么使用数组"><a href="#为什么使用数组" class="headerlink" title="为什么使用数组?"></a>为什么使用数组?</h4><p> 速度:读、写，最快的是数组， 数组快是快，需要知道读、写的索引，时间复杂度是O(1),对于一般的插入、删除操作，但是涉及到数组元素的移动，平均时间复杂度这变为O(N),HashMap中数组的下标是通过KEY.hashCode()%数组长度得到的，但是这种方法会造成哈希碰撞，那么就有了链表这个玩意！</p>
+<h4 id="为什么使用链表？"><a href="#为什么使用链表？" class="headerlink" title="为什么使用链表？"></a>为什么使用链表？</h4><p> 这里就不过多解释了，简单说就是为了解决数据的KEY产生哈希碰撞后将原有的数组下标对应的值直接替换，那么这个时候为了解决这个问题就在产生哈希碰撞后，下标相同的KEY就会被串成链表结构，插是从头插，不是从尾，从头插时间复杂度为O(1),从尾插为O(N),这个链表是单向列表， 链表的新增，删除操作在查找到操作位置后，只需要处理节点间的引用即可，时间复杂度为O(1),但是查找操作则需要遍历链表中所有节点逐一比对，时间复杂度为O(N),这里的查询的时间复杂度为O(N)且遍历所有元素是原因数组变成链表是因为哈希碰撞的hashCode值都是一样的，那么对应的索引也是一样的，所有还要一个KEY取出来对比，所以也就有了遍历这么一说；这样的话链表过长性能会比较低，那么为了解决性能问题，JDK1.8后就引用了红黑树；</p>
+<h4 id="为什么使用红黑树？"><a href="#为什么使用红黑树？" class="headerlink" title="为什么使用红黑树？"></a>为什么使用红黑树？</h4><p> 这里也不过多解释了，简单说就是为了解决链表过长性能低的问题，红黑树是一种接近于平衡二叉树，但不是绝对平衡，逻辑上是个树形结构，是一个有序的结构，在每个节点上增加一个存储位，表示节点的颜色，可以是Red或者Black，通过对任何一条从根到叶子的路径上各个节点着色方式的限制，红黑树确保没有一条路径会比其他路径长出两倍，而是接近平衡的，支持查找，插入，删除，其平均时间复杂度最坏为O(logn)；这里解释一下(红黑树确保没有任何一条路径会比其他路径长出两倍)<img src="/posts/3d614825/lu152441l02jn_tmp_aa78b1aae4f96ff2.png" alt="img"><br> 这里比如13–&gt;17–&gt;25–&gt;27这条链路不会比13–&gt;8–&gt;1、13–&gt;8–&gt;11、13–&gt;8–&gt;1–&gt;6、13–&gt;17–&gt;15、13–&gt;17–&gt;25–&gt;22这些链路的路径长出两倍，因为他会自动平衡，也就是当任何一条链路的路径高出其他链路2倍是，这条链路就会自动平衡，但是如果put比较频繁，且会经常打破平衡的话，那么这条链路就会自动平衡，这时的性能就会很低，低于链表；这里平衡有两种方式，左旋、右旋<br> 左旋：<br> <img src="/posts/3d614825/lu152441l02jn_tmp_b49e48306e0a0a9e.png" alt="img"><br> 以这个为模拟数据，现在我们来添加一个数据来打破平衡(红黑树确保没有任何一条路径会比其他路径长出两倍)，现在最短的链路是50–&gt;60,最长的是50–&gt;40–&gt;45–&gt;47,现在这条最长的刚好是最短的两倍，那么这时要是再来一个49，这里49比50小，比40大，比45大，比47大，那么会挂在50–&gt;40–&gt;45–&gt;47这条链路上，刚挂上去的结构是这样的，</p>
+<p> <img src="/posts/3d614825/lu152441l02jn_tmp_a175be2b7814d863.png" alt="img"><br> 嘿嘿，这个平衡就打破了，那么就会自动平衡，那么这种数据模型位移叫做左旋，左旋后的红黑树结构！<br> <img src="/posts/3d614825/lu152441l02jn_tmp_f43f76db76b301d2.png" alt="img"><br> 右旋则刚好相反！！！<br> 这是一个可视化HashMap操作的工具</p>
+<h5 id="红黑-树有6个性质；"><a href="#红黑-树有6个性质；" class="headerlink" title="红黑 树有6个性质；"></a>红黑 树有6个性质；</h5><ol>
+<li>每个节点要么是红的要么是黑的</li>
+<li>根节点是黑的</li>
+<li>每个叶节点（叶节点指树尾端NL指针或NULL节点）都是黑的</li>
+<li>如果一个节点是红的，那么他的两个子节点都是黑的</li>
+<li>对于任何而言，其到节点树尾端NL指针的每条路径都包含相同数目的黑节点</li>
+<li>所有的左节点都&lt;=父节点，所有的右节点都&gt;父节点</li>
+</ol>
+<h3 id="为什么不使用二叉树？"><a href="#为什么不使用二叉树？" class="headerlink" title="为什么不使用二叉树？"></a>为什么不使用二叉树？</h3><p>1.二叉排序树</p>
+<p>由于二叉排序树左子树所有节点的值均小于根节点的特点，如果我们添加的元素都比根节点小，会导致左子树线性增长，这样就失去了用树型结构替换链表的初衷，导致查询时间增长。所以这是不用二叉排序树的原因。  </p>
+<p>2.平衡二叉树  </p>
+<p>①红黑树不追求”完全平衡”，即不像AVL那样要求节点的 |balFact| &lt;= 1，它只要求部分达到平衡，但是提出了为节点增加颜色，红黑是用非严格的平衡来换取增删节点时候旋转次数的降低，任何不平衡都会在三次旋转之内解决，而AVL是严格平衡树，因此在增加或者删除节点的时候，根据不同情况，旋转的次数比红黑树要多。  </p>
+<p>② AVL更平衡，结构上更加直观，时间效能针对读取而言更高；维护稍慢，空间开销较大。 ③ 红黑树，读取略逊于AVL，维护强于AVL，空间开销与AVL类似，内容极多时略优于AVL，维护优于AVL。  </p>
+<h3 id="hashMap1-7不安全的原因："><a href="#hashMap1-7不安全的原因：" class="headerlink" title="hashMap1.7不安全的原因："></a>hashMap1.7不安全的原因：</h3><p>环形链表数据丢失</p>
+<h4 id="hashmap1-7下的导致的循环链表的原因"><a href="#hashmap1-7下的导致的循环链表的原因" class="headerlink" title="hashmap1.7下的导致的循环链表的原因?"></a>hashmap1.7下的导致的循环链表的原因?</h4><p> 这个是hashmap扩容时使用的transfer方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/</span><br><span class="line">  Transfers all entries from current table to newTable.</span><br><span class="line"> /</span><br><span class="line">void transfer(Entry[] newTable, boolean rehash) &#123;</span><br><span class="line">  int newCapacity = newTable.length;</span><br><span class="line">  for (Entry&lt;K,V&gt; e : table) &#123;//遍历同桶数组中的每一个桶</span><br><span class="line">    while(null != e) &#123;//顺序遍历某个桶的外挂链表</span><br><span class="line">      Entry&lt;K,V&gt; next = e.next;//引用next</span><br><span class="line">      if (rehash) &#123;</span><br><span class="line">        e.hash = null == e.key ? 0 : hash(e.key);</span><br><span class="line">       &#125;</span><br><span class="line">      int i = indexFor(e.hash, newCapacity);//找到新表的桶位置;原桶数组中的某个桶上的同一链表中的Entry此刻可能被分散到不同的桶中去了，有效的缓解了哈希冲突。</span><br><span class="line">      e.next = newTable[i];//头插法插入新表中</span><br><span class="line">      newTable[i] = e;</span><br><span class="line">      e = next;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 头插法单线程情况下扩容没有任何问题</p>
+<p> 多线程情况下如果使用了头插法,两个线程第一个线程完成了插入 e–&gt;3 next–&gt;2 所以从3开始形成链表后从2–&gt;3 2的next现在是3 但是线程2醒来后他睡之前的e2–&gt;3 next2–&gt;2 这样就有问题了 再进行扩容 3先插入 3 变成newTable[i] 2变成e e.next就是3 把e就是2变成newTable[i] next也就是3 变成e 这个时候 e.next-(指向)-&gt;newTable[i]这个元素 也就是3–&gt;newTable[i]的2 这个时候链表循环问题就产生了</p>
+<h3 id="HashMap1-7和1-8头插入与尾插入的原因"><a href="#HashMap1-7和1-8头插入与尾插入的原因" class="headerlink" title="HashMap1.7和1.8头插入与尾插入的原因"></a>HashMap1.7和1.8头插入与尾插入的原因</h3><p>头插法是操作速度最快的，找到数组位置就直接找到插入位置了<br> jdk8之前hashmap这种插入方法在并发场景下如果多个线程同时扩容会出现循环列表（死链）。<br> jdk8开始hashmap链表在节点长度达到8之后会变成红黑树，这样一来在数组上节点长度不断增加时，遍历一次的次数就会少很多很多（否则每次要遍历所有），相比头插法<br> 而言，尾插法操作额外的遍历消耗已经小很多了，也可以避免之前的循环列表问题。<br> （同时如果变成红黑树，也不可能做头插法了）</p>
+<h3 id="浅析HashMap的put-方法执行流程"><a href="#浅析HashMap的put-方法执行流程" class="headerlink" title="浅析HashMap的put()方法执行流程"></a>浅析HashMap的put()方法执行流程</h3><p> <img src="/posts/3d614825/lu152441l02jn_tmp_9e4559e12065df5a.png" alt="img"> </p>
+<p> HashMap的数据结构在jdk1.8之前是数组+链表，为了解决数据量过大、链表过长是查询效率会降低的问题变成了数组+链表+红黑树的结构，利用的是红黑树自平衡的特点。</p>
+<p> 链表的平均查找时间复杂度是O(n)，红黑树是O(log(n))。</p>
+<h3 id="hashmap的get方法"><a href="#hashmap的get方法" class="headerlink" title="hashmap的get方法"></a>hashmap的get方法</h3><p> 1.首先根据 hash 方法获取到 key 的 hash 值(hashcode是怎么来的 他的内存地址是16进制的，转化成10进制你会发现值刚好等于hashcode )<br> 2.然后通过 hash &amp; (length - 1) 的方式获取到 key 所对应的Node数组下标 ( length对应数组长度 )<br> 3.首先判断此结点是否为空，是否就是要找的值，是则返回空，否则进入第二个结点。<br> 4.接着判断第二个结点是否为空，是则返回空，不是则判断此时数据结构是链表还是红黑树<br> 5.链表结构进行顺序遍历查找操作，每次用 == 符号 和 equals( ) 方法来判断 key 是否相同，满足条件则直接返回该结点。链表遍历完都没有找到则返回空。<br> 6.红黑树结构执行相应的 getTreeNode( ) 查找操作。</p>
+<h3 id="HashMap中的put方法执行过程大体如下："><a href="#HashMap中的put方法执行过程大体如下：" class="headerlink" title="HashMap中的put方法执行过程大体如下："></a>HashMap中的put方法执行过程大体如下：</h3><p> 1、判断键值对数组table[i]是否为空（null）或者length=0，或者&gt;阈值 的话就执行resize()方法进行扩容。</p>
+<p> 2、不是就根据键值key计算hash值得到插入的数组索引i。</p>
+<p> 3、判断table[i]==null，如果是true，直接新建节点进行添加，如果是false，判断table[i]的首个元素是否和key一样，一样就直接覆盖。</p>
+<p> 4、判断table[i]是否为treenode，即判断是否是红黑树，如果是红黑树，直接在树中插入键值对。</p>
+<p> 5、如果不是treenode，开始遍历链表，判断链表长度是否大于8，数组长度大于64。 如果是就转成红黑树，在树中执行插入操作，如果不是大于8，就在链表中执行插入；在遍历过程中判断key是否存在，存在就直接覆盖对应的value值。</p>
+<p> 6、插入成功后，就需要判断实际存在的键值对数量size是否超过了最大容量threshold，如果超过了，执行resize方法进行扩容。</p>
+<p>头插法是操作速度最快的，找到数组位置就直接找到插入位置了，但是课程里演示过，jdk8之前hashmap这种插入方法在并发场景下如果多个线程同时扩容会出现循环列表。jdk8开始hashmap链表在节点长度达到8之后会变成红黑树，这样一来在数组后节点长度不断增加时，遍历一次的次数就会少很多很多（否则每次要遍历所有），相比头插法而言，尾插法操作额外的遍历消耗已经小很多了，也可以避免之前的循环列表问题。（同时如果变成红黑树，也不可能做头插法了）</p>
+<h3 id="Hashmap扩容机制"><a href="#Hashmap扩容机制" class="headerlink" title="Hashmap扩容机制"></a>Hashmap扩容机制</h3><ul>
+<li>capacity     即容量，默认16。</li>
+<li>loadFactor     加载因子，默认是0.75</li>
+<li>threshold     阈值。阈值=容量加载因子。默认12。当元素数量超过阈值时便会触发扩容。</li>
+</ul>
+<p> <img src="/posts/3d614825/lu152441l02jn_tmp_968091efce50ef84.jpg" alt="img"> </p>
+<h4 id="hashmap为什么选择0-75"><a href="#hashmap为什么选择0-75" class="headerlink" title="hashmap为什么选择0.75"></a>hashmap为什么选择0.75</h4><p> 如果负载因子过高，比如1的情况下，虽然空间开销减少了，提高了空间利用率但是时间成本增加了</p>
+<p> 如果负载因子过低，例如0.5虽然可以减少时间的成本，但是空间利率用低</p>
+<h4 id="hashmap什么时候触发扩容？"><a href="#hashmap什么时候触发扩容？" class="headerlink" title="hashmap什么时候触发扩容？"></a>hashmap什么时候触发扩容？</h4><p> 一般情况下，当元素数量超过阈值时便会触发扩容。每次扩容的容量都是之前容量的2倍。</p>
+<p> HashMap的容量是有上限的，必须小于1&lt;&lt;30，即1073741824。如果容量超出了这个数，则不再增长，且阈值会被设置为Integer.MAX_VALUE（””，即永远不会超出阈值了）。</p>
+<p>JDK1.7 是先扩容,在添加。具体put是否扩容需要两个条件：</p>
+<p> 1、 存放新值的时候当前已有元素的个数必须大于等于阈值<br> 2、 存放新值的时候当前存放数据发生hash碰撞（当前key计算的hash值换算出来的数组下标位置已经存在值）</p>
+<p>Java1.8是先添加,在扩容  扩容只需要满足一个条件：</p>
+<p>当前存放新值（注意不是替换已有元素位置时）的时候已有元素的个数大于等于阈值（已有元素等于阈值，下一个存放后必然触发扩容机制）</p>
+<h3 id="研究ConcurrentHashMap"><a href="#研究ConcurrentHashMap" class="headerlink" title="研究ConcurrentHashMap"></a>研究ConcurrentHashMap</h3><p>jdk7 中主要采用 <code>Segment</code> 分段锁的思想，<code>Segment</code> 继承自<code>ReentrantLock</code> 类，依次来保证线程安全。  </p>
+<p>jdk8 中的 ConcurrentHashMap 数据结构同 jdk8 中的 HashMap 数据结构一样，都是 数组+链表+红黑树。摒弃了 jdk7 中的分段锁设计，使用了 <code>Node</code> + <code>CAS</code> + <code>Synchronized</code> 来保证线程安全。  </p>
+<p> 我们都知道HashMap是线程不安全的。Hashtable是线程安全的。看过Hashtable源码的我们都知道Hashtable的线程安全是采用在每个方法来添加了synchronized关键字来修饰，即Hashtable是针对整个table的锁定，这样就导致HashTable容器在竞争激烈的并发环境下表现出效率低下。</p>
+<p> 效率低下的原因说的更详细点：是因为所有访问HashTable的线程都必须竞争同一把锁。当一个线程访问HashTable的同步方法时，其他线程访问HashTable的同步方法时，可能会进入阻塞或轮询状态。如线程1使用put进行添加元素，线程2不但不能使用put方法添加元素，并且也不能使用get方法来获取元素，所以竞争越激烈效率越低。</p>
+<p> 基于Hashtable的缺点，人们就开始思考，假如容器里有多把锁，每一把锁用于锁容器其中一部分数据，那么当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效的提高并发访问效率呢？？这就是我们的“锁分离”技术，这也是ConcurrentHashMap实现的基础。</p>
+<p> ConcurrentHashMap使用的就是锁分段技术，ConcurrentHashMap由多个Segment组成(Segment下包含很多Node，也就是我们的键值对了)，每个Segment都有把锁来实现线程安全，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<p> 1、JDK1.8的ConcurrentHashMap中Segment虽保留，但已经简化属性，仅仅是为了兼容旧版本。</p>
+<p> 2、ConcurrentHashMap的底层与Java1.8的HashMap有相通之处，底层依然由“数组”+链表+红黑树来实现的，底层结构存放的是TreeBin对象，而不是TreeNode对象；   </p>
+<p> TreeBin 包装TreeNode（存放键值对）继承自node</p>
+<p> 3、ConcurrentHashMap实现中借用了较多的CAS算法，unsafe.compareAndSwapInt(this, valueOffset, expect, update); CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，则更新valueOffset位置的值为update，并返回true，否则不更新，返回false。</p>
+<p> ConcurrentHashMap既然借助了CAS来实现非阻塞的无锁实现线程安全，那么是不是就没有用锁了呢？？答案：还是使用了synchronized关键字进行同步了的，在哪里使用了呢？在操作hash值相同的链表的头结点还是会synchronized上锁，这样才能保证线程安全。</p>
+<p> 看完ConcurrentHashMap整个类的源码,  有修改操作时借助了synchronized来对table[i]进行锁定保证了线程安全以及使用了CAS来保证原子性操作，其它的基本一致，例如：</p>
+<h4 id="ConcurrentHashMap的get-int-key-方法的实现思路为："><a href="#ConcurrentHashMap的get-int-key-方法的实现思路为：" class="headerlink" title="ConcurrentHashMap的get(int key)方法的实现思路为："></a>ConcurrentHashMap的get(int key)方法的实现思路为：</h4><p> 1.通过key计算hash值<br> 2.如果通过hash值判断key对应的节点是否在Node数组中，如果在则返回对应的值。此处分为3种情况：<br>     1.如果恰好是数组元素，也只有一个节点，返回改节点的值；<br>     2.如果是红黑树，则通过树的遍历方式去获取，然后返回值；<br>     3.如果是普通链表，则通过链表的方式去获取。<br> 3.如果通过hash值计算定位到的桶位置上没有元素，则返回null。</p>
+<h4 id="ConcurrentHashMap的put方法的实现思路为："><a href="#ConcurrentHashMap的put方法的实现思路为：" class="headerlink" title="ConcurrentHashMap的put方法的实现思路为："></a>ConcurrentHashMap的put方法的实现思路为：</h4><p> ConCurrentHashMap的put操作主要由putVal()方法实现，该方法中对value的插入，采用了CAS操作和synchronized的操作，从而保证了并发环境下的安全性。  </p>
+<p>1.判断key和value是否为null，如果是的话抛出NullPointerException并结束（ConCurrentHashMap不允许存放null型的key和value，这点和HashMap也不同）<br> 2.通过key计算得到hashcode<br> 3.判断是否需要进行初始化（初始化的时候没有插入key和value，而是在CAS第2次自旋的时候插入的）（采用了延迟初始化的策略Lazy table initialization minimizes footprint until first use）<br> 4.利用hash值定位Node，如果当前位置没有Node，则依据CAS机制尝试插入。如果插入失败，则通过自旋保证插入成功<br> 5.判断是否正在进行扩容，如果需要进行扩容，则执行helpTransfer方法（如果头节点是ForwardingNode类型，则表明正在扩容）<br> 6.如果是在无需进行初始化，hash值计算得到的位置存在Node，并且无需扩容的情况下，则利用synchronized锁来写入数据（这个过程又会分为在普通链表中put和在红黑树中put）<br> 6.上述操作后，如果当前数量超过了TREEIFY_THRESHOLD（8，跟HashMap中的值大小相同），则转化为红黑树结构。</p>
+<h3 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现:"></a>底层实现:</h3><p>和HashMap相比，这里的TreeNode相当简洁；ConcurrentHashMap链表转树时，并不会直接转，<br> 正如注释（Nodes for use in TreeBins）所说，只是把这些节点包装成TreeNode放到TreeBin中，<br> 再由TreeBin来转化红黑树。</p>
+<p>TreeBin用于封装维护TreeNode，包含putTreeVal、lookRoot、UNlookRoot、remove、balanceInsetion、balanceDeletion等方法，当链表转树时，用于封装TreeNode，也就是说，ConcurrentHashMap的红黑树存放的时TreeBin，而不是treeNode。</p>
+<p> 1、第一步根据给定的key的hash值找到其在table中的位置index。</p>
+<p> 2、找到位置index后，存储进行就好了。</p>
+<p> 只是这里的存储有三种情况罢了，第一种：table[index]中没有任何其他元素，即此元素没有发生碰撞，这种情况直接存储就好了哈。第二种，table[i]存储的是一个链表，如果链表不存在key则直接加入到链表尾部即可，如果存在key则更新其对应的value。第三种，table[i]存储的是一个树，则按照树添加节点的方法添加就好。</p>
+<h3 id="解决hash冲突的方法"><a href="#解决hash冲突的方法" class="headerlink" title="解决hash冲突的方法:"></a>解决hash冲突的方法:</h3><h4 id="1-再hash法"><a href="#1-再hash法" class="headerlink" title="1.再hash法"></a>1.再hash法</h4><p>​    Hi=RH1（key） i=1，2，…，k</p>
+<p> 当哈希地址Hi=RH1（key）发生冲突时，再计算Hi=RH2（key）……，直到冲突不再产生。这种方法不易产生聚集，但增加了计算时间。</p>
+<h4 id="2-开放定址法"><a href="#2-开放定址法" class="headerlink" title="2.开放定址法"></a>2.开放定址法</h4><p>​    当关键字key的哈希地址p=H（key………………）出现冲突时，以p为基础，产生另一个哈希地址p1，如果p1仍然冲突，再以p为基础，产生另一个哈希地址p2，…，直到找出一个不冲突的哈希地址pi ，将相应元素存入其中。         </p>
+<h4 id="3-链地址法"><a href="#3-链地址法" class="headerlink" title="3.链地址法"></a>3.链地址法</h4><p>​    将所有哈希地址为i的元素构成一个称为同义词链的单链表，并将单链表的头指针存在哈希表的第i个单元中，因而查找、插入和删除主要在同义词链中进行。链地址法适用于经常进行插入和删除的情况。  </p>
+<h4 id="4-建立公共溢出区"><a href="#4-建立公共溢出区" class="headerlink" title="4.建立公共溢出区"></a>4.建立公共溢出区</h4><p>​    将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表。  </p>
+<h3 id="ConcurrentHashMap-和Hashtable的区别"><a href="#ConcurrentHashMap-和Hashtable的区别" class="headerlink" title="ConcurrentHashMap 和Hashtable的区别?"></a>ConcurrentHashMap 和Hashtable的区别?</h3><p>1.底层数据结构</p>
+<p>​    jdk1.7的ConcurrentHashMap底层采用:Segments数组+hashEntry数组 +链表</p>
+<p>​    jdk1.8的ConcurrentHashMap底层采用:Node数据+链表+红黑树</p>
+<p>​    Hashtable底层数据结构采用:数组+链表</p>
+<p>2.实现线程安全的方式</p>
+<p>​    在JDK1.7中ConcurrentHashMap采用的是分段锁实现线程安全</p>
+<p>​    在JDK1.8中ConcurrentHashMap采用syschronized和CAS来实现线程安全</p>
+<p>​    Hashtable采用syschronized来实现线程安全,方法上加syschronized同步锁</p>
+<p>ConcurrentHashMap 1.7的底层的数据结构  Segments数组+HashEntry数组(使用CAS机制)+链表，采用分段锁保证安全性  </p>
+<p>ConcurrentHashMap 1.8 Synchronized + CAS +Node +红黑树  </p>
+<p><img src="/posts/3d614825/lu152441l02jn_tmp_ecdbd35aa2d749dd.jpg" alt="img"> </p>
+<p>上图是我们在使用CAS的一个基本操作流程。</p>
+<ol>
+<li>CPU开销过大</li>
+</ol>
+<p>在我们使用CAS时，如果并发量过大，我们的程序有可能会一直自旋，长时间占用CPU资源。</p>
+<ol start="2">
+<li>ABA问题</li>
+</ol>
+<p>假设有个共享变量J，原始值为1。</p>
+<ol>
+<li>线程A读取变量J，值为1</li>
+<li>线程B读取变量J，值为1</li>
+<li>线程A变量J+1，CAS成功从1修改为2</li>
+<li>线程C读取变量J，值为2</li>
+<li>线程C将变量J-1，CAS成功从2修改为1</li>
+<li>线程A通过CAS比较和替换，依然可以改为自己想修改的值</li>
+</ol>
+<p>上述过程，线程B和C已经将变量J的值已经改变了，但是线程A无法发现，依然可以修改共享变量，这就产生了ABA问题。</p>
+<p>3.共享变量单一</p>
+<p>CAS操作单个共享变量的时候可以保证原子的操作，无法操作多个变量。但是在JDK5之后，AtomicReference可以用来保证对象之间的原子性，我们可以把多个对象放入CAS中操作。</p>
+<p>如何防止CAS的ABA</p>
+<p>四个字：加标志位（version）。</p>
+<p> 至于标志位可以是自增的数字，也可以是时间戳。通过标志位我们可以精确的知道每次修改。</p>
+<h2 id="Collection和Collections区别？"><a href="#Collection和Collections区别？" class="headerlink" title="Collection和Collections区别？"></a>Collection和Collections区别？</h2><p> java.util.Collection 是一个集合接口。它提供了对集合对象进行基本操作的通用接口方法。Collection接口在Java 类库中有很多具体的实现。Collection接口的意义是为各种具体的集合提供了最大化的统一操作方式。</p>
+<p>Collections则是集合类的一个工具类/帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作</p>
+<h2 id="HashMap和HashTable的区别？"><a href="#HashMap和HashTable的区别？" class="headerlink" title="HashMap和HashTable的区别？"></a>HashMap和HashTable的区别？</h2><p> (1) HashMap是非线程安全的，并且可以储存NULL。HashTbale是线程安全(即synchronized)，但不能存储NULL。    (2) HashMap利用HashCode重新计算Hash值，HashTbale直接使用key的HashCode()，再取模算下标。    (3) 内部实现使用的数组初始化和扩容方式不同。HashTable在不指定容量的情况下的默认容量为11，而HashMap为16，Hashtable不要求底层数组的容量一定要为2的整数次幂，而HashMap则要求一定为2的整数次幂。Hashtable扩容时，将容量变为原来的2倍加1，而HashMap扩容时，将容量变为原来的2倍。</p>
+<h2 id="hashmap源码"><a href="#hashmap源码" class="headerlink" title="hashmap源码:"></a>hashmap源码:</h2><p> 在插入数据的时候 计算存储位置 : (n-1) &amp; hash  使用这种位运算 的底层二进制运算执行效率很高   100000 的数据 循环执行  位运算是1700ms 模运算 25000ms</p>
+<h2 id="HashMap插入时，使用头插法还是尾插法？"><a href="#HashMap插入时，使用头插法还是尾插法？" class="headerlink" title="HashMap插入时，使用头插法还是尾插法？"></a>HashMap插入时，使用头插法还是尾插法？</h2><p> 答：在插入时采用尾插法（1.7是头插法），在并发场景下导致链表成环的问题。而在jdk1.8中采用尾插入法，在扩容时会保持链表元素原本的顺序，就不会出现链表成环的问题了。</p>
+<h2 id="hashmap怎么保证安全？"><a href="#hashmap怎么保证安全？" class="headerlink" title="hashmap怎么保证安全？"></a>hashmap怎么保证安全？</h2><p>可以用 Collections 的 synchronizedMap 方法使 HashMap 具有线程安全的能力，或者使用 ConcurrentHashMap。我们用下面这张图来介绍 HashMap 的结构  </p>
+<h2 id="hashMap键一样值不一样怎么获取值"><a href="#hashMap键一样值不一样怎么获取值" class="headerlink" title="hashMap键一样值不一样怎么获取值"></a>hashMap键一样值不一样怎么获取值</h2><p>可以重写hashcode 的方法 这样就可以获取</p>
+<h2 id="hashset如何实现去重"><a href="#hashset如何实现去重" class="headerlink" title="hashset如何实现去重"></a>hashset如何实现去重</h2><p> 1.Java中HashSet是用散列表实现的，散列表的大小默认为16，加载因子为0.75.</p>
+<p> 2.去重原理：当hashset add一个元素A的时候，首先获取这个元素的散列码（hashcode的方法），即获取元素的哈希值。</p>
+<p> 情况一：如果计算出的元素的存储位置目前没有任何元素存储，那么该元素可以直接存储在该位置上。</p>
+<p> 情况二：如果算出该元素的存储位置目前已经存在有其他元素了，那么会调用该元素的equals方法与该位置的元素再比较一次，如果equals返回的值是true，那么该元素与这个位置上的元素就视为重复元素，不允许添加，如果equals方法返回的是false，那么该元素允许添加.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Porco Rosso</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://porcorosso.top/posts/3d614825.html">http://porcorosso.top/posts/3d614825.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://porcorosso.top" target="_blank">红猪的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://www.qinglvbizhi.com/uploads/202201/28/220128045251729.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://tupian.qqw21.com/article/UploadPic/2019-8/201982923213827546.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Porco Rosso</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap"><span class="toc-number">1.</span> <span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%E4%B8%80%E4%B8%8BHashMap%E7%9A%84%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">回顾一下HashMap的底层数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AE%BE%E7%BD%AE%E9%93%BE%E8%A1%A8%E9%95%BF%E5%BA%A6%E5%A4%A7%E4%BA%8E8%E8%BD%AC%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="toc-number">1.1.1.</span> <span class="toc-text">为什么设置链表长度大于8转红黑树？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B0%8F%E4%BA%8E6%E7%9A%84%E6%97%B6%E5%80%99%E5%B0%B1%E8%BD%AC%E5%8C%96%E6%88%90%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">为什么小于6的时候就转化成链表？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">为什么使用数组?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="toc-number">1.1.4.</span> <span class="toc-text">为什么使用链表？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="toc-number">1.1.5.</span> <span class="toc-text">为什么使用红黑树？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91-%E6%A0%91%E6%9C%896%E4%B8%AA%E6%80%A7%E8%B4%A8%EF%BC%9B"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">红黑 树有6个性质；</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">为什么不使用二叉树？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashMap1-7%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">hashMap1.7不安全的原因：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap1-7%E4%B8%8B%E7%9A%84%E5%AF%BC%E8%87%B4%E7%9A%84%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.3.1.</span> <span class="toc-text">hashmap1.7下的导致的循环链表的原因?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap1-7%E5%92%8C1-8%E5%A4%B4%E6%8F%92%E5%85%A5%E4%B8%8E%E5%B0%BE%E6%8F%92%E5%85%A5%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.4.</span> <span class="toc-text">HashMap1.7和1.8头插入与尾插入的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%85%E6%9E%90HashMap%E7%9A%84put-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">浅析HashMap的put()方法执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashmap%E7%9A%84get%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">hashmap的get方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap%E4%B8%AD%E7%9A%84put%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%A4%A7%E4%BD%93%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.7.</span> <span class="toc-text">HashMap中的put方法执行过程大体如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hashmap%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="toc-number">1.8.</span> <span class="toc-text">Hashmap扩容机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A90-75"><span class="toc-number">1.8.1.</span> <span class="toc-text">hashmap为什么选择0.75</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%A7%A6%E5%8F%91%E6%89%A9%E5%AE%B9%EF%BC%9F"><span class="toc-number">1.8.2.</span> <span class="toc-text">hashmap什么时候触发扩容？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6ConcurrentHashMap"><span class="toc-number">1.9.</span> <span class="toc-text">研究ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ConcurrentHashMap%E7%9A%84get-int-key-%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF%E4%B8%BA%EF%BC%9A"><span class="toc-number">1.9.1.</span> <span class="toc-text">ConcurrentHashMap的get(int key)方法的实现思路为：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ConcurrentHashMap%E7%9A%84put%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF%E4%B8%BA%EF%BC%9A"><span class="toc-number">1.9.2.</span> <span class="toc-text">ConcurrentHashMap的put方法的实现思路为：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.10.</span> <span class="toc-text">底层实现:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3hash%E5%86%B2%E7%AA%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.11.</span> <span class="toc-text">解决hash冲突的方法:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%86%8Dhash%E6%B3%95"><span class="toc-number">1.11.1.</span> <span class="toc-text">1.再hash法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E6%94%BE%E5%AE%9A%E5%9D%80%E6%B3%95"><span class="toc-number">1.11.2.</span> <span class="toc-text">2.开放定址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-number">1.11.3.</span> <span class="toc-text">3.链地址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%BB%BA%E7%AB%8B%E5%85%AC%E5%85%B1%E6%BA%A2%E5%87%BA%E5%8C%BA"><span class="toc-number">1.11.4.</span> <span class="toc-text">4.建立公共溢出区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap-%E5%92%8CHashtable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.12.</span> <span class="toc-text">ConcurrentHashMap 和Hashtable的区别?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Collection%E5%92%8CCollections%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">Collection和Collections区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap%E5%92%8CHashTable%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">HashMap和HashTable的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap%E6%BA%90%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">hashmap源码:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap%E6%8F%92%E5%85%A5%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%A4%B4%E6%8F%92%E6%B3%95%E8%BF%98%E6%98%AF%E5%B0%BE%E6%8F%92%E6%B3%95%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">HashMap插入时，使用头插法还是尾插法？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">hashmap怎么保证安全？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashMap%E9%94%AE%E4%B8%80%E6%A0%B7%E5%80%BC%E4%B8%8D%E4%B8%80%E6%A0%B7%E6%80%8E%E4%B9%88%E8%8E%B7%E5%8F%96%E5%80%BC"><span class="toc-number">7.</span> <span class="toc-text">hashMap键一样值不一样怎么获取值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashset%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8E%BB%E9%87%8D"><span class="toc-number">8.</span> <span class="toc-text">hashset如何实现去重</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4a17b156.html" title="Hello World"><img src="https://www.qinglvbizhi.com/uploads/202206/23/220623054505130.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/posts/4a17b156.html" title="Hello World">Hello World</a><time datetime="2023-01-08T10:25:21.636Z" title="发表于 2023-01-08 18:25:21">2023-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d36bd08c.html" title="sql笔记"><img src="https://www.qinglvbizhi.com/uploads/202201/28/220128020852501.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sql笔记"/></a><div class="content"><a class="title" href="/posts/d36bd08c.html" title="sql笔记">sql笔记</a><time datetime="2023-01-07T06:34:51.000Z" title="发表于 2023-01-07 14:34:51">2023-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/458d0a8.html" title="代码笔记"><img src="https://www.qinglvbizhi.com/uploads/202206/23/220623054505130.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="代码笔记"/></a><div class="content"><a class="title" href="/posts/458d0a8.html" title="代码笔记">代码笔记</a><time datetime="2023-01-07T06:32:04.000Z" title="发表于 2023-01-07 14:32:04">2023-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/271ebaf8.html" title="注解笔记"><img src="https://www.qinglvbizhi.com/uploads/202201/28/220128045251729.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="注解笔记"/></a><div class="content"><a class="title" href="/posts/271ebaf8.html" title="注解笔记">注解笔记</a><time datetime="2023-01-07T06:28:42.000Z" title="发表于 2023-01-07 14:28:42">2023-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/bc43b3c8.html" title="NavicatPremium16无限试用脚本"><img src="https://www.qinglvbizhi.com/uploads/202206/23/220623054505130.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NavicatPremium16无限试用脚本"/></a><div class="content"><a class="title" href="/posts/bc43b3c8.html" title="NavicatPremium16无限试用脚本">NavicatPremium16无限试用脚本</a><time datetime="2023-01-07T06:26:53.000Z" title="发表于 2023-01-07 14:26:53">2023-01-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://www.qinglvbizhi.com/uploads/202201/28/220128045251729.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Porco Rosso</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/algolia.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://porco-rosso000-github-io.vercel.app/',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://porco-rosso000-github-io.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="/js/custom.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>java基础 | 红猪的博客</title><meta name="author" content="Porco Rosso"><meta name="copyright" content="Porco Rosso"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="java基础NIO和BIO的主要区别Java BIO和NIO之间的主要区别：   BIO NIO    面向流 面向缓冲   阻塞IO 非阻塞IO   无 选择器   BIO：同步阻塞IO。服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器需要启动一个线程进行处理，如果这个链接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。  NIO：同步非阻塞IO，服务器实现模式为一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础">
+<meta property="og:url" content="http://porcorosso.top/posts/b8b0eacd.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="java基础NIO和BIO的主要区别Java BIO和NIO之间的主要区别：   BIO NIO    面向流 面向缓冲   阻塞IO 非阻塞IO   无 选择器   BIO：同步阻塞IO。服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器需要启动一个线程进行处理，如果这个链接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。  NIO：同步非阻塞IO，服务器实现模式为一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.qinglvbizhi.com/uploads/202201/28/220128020852501.jpg">
+<meta property="article:published_time" content="2022-11-26T06:38:26.000Z">
+<meta property="article:modified_time" content="2023-01-08T10:25:21.644Z">
+<meta property="article:author" content="Porco Rosso">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.qinglvbizhi.com/uploads/202201/28/220128020852501.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://porcorosso.top/posts/b8b0eacd"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"7PZLOEQWZ0","apiKey":"09b62775f116ef72b0ccf883bb5d9727","indexName":"porco_rosso","hits":{"per_page":8},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Porco Rosso","link":"链接: ","source":"来源: 红猪的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-01-08 18:25:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://tupian.qqw21.com/article/UploadPic/2019-8/201982923213827546.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.qinglvbizhi.com/uploads/202201/28/220128020852501.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">红猪的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">java基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-26T06:38:26.000Z" title="发表于 2022-11-26 14:38:26">2022-11-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-08T10:25:21.644Z" title="更新于 2023-01-08 18:25:21">2023-01-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="java基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h3 id="NIO和BIO的主要区别"><a href="#NIO和BIO的主要区别" class="headerlink" title="NIO和BIO的主要区别"></a>NIO和BIO的主要区别</h3><h3 id="Java-BIO和NIO之间的主要区别："><a href="#Java-BIO和NIO之间的主要区别：" class="headerlink" title="Java BIO和NIO之间的主要区别："></a>Java BIO和NIO之间的主要区别：</h3><table>
+<thead>
+<tr>
+<th>BIO</th>
+<th>NIO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>面向流</td>
+<td>面向缓冲</td>
+</tr>
+<tr>
+<td>阻塞IO</td>
+<td>非阻塞IO</td>
+</tr>
+<tr>
+<td>无</td>
+<td>选择器</td>
+</tr>
+</tbody></table>
+<p>BIO：同步阻塞IO。服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器需要启动一个线程进行处理，如果这个链接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。</p>
+<p> NIO：同步非阻塞IO，服务器实现模式为一个请求一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有IO请求时才启动一个线程进行处理。用户进程也需要时不时的询问IO操作是否就绪，这需要用户进行不停的去询问。NIO的包括三个核心概念:缓冲区(Buffer)、通道(Channel)、选择器(Selector)。</p>
+<p> AIO：Asynchronous IO，异步非阻塞AIO。最大的特性时具有异步能力，这种能力对socket与文件I/O都起作用。AIO其实是一种在读写操作结束之前允许进行其他操作的I/O处理。</p>
+<h3 id="类加载机制-原理-："><a href="#类加载机制-原理-：" class="headerlink" title="类加载机制(原理)："></a>类加载机制(原理)：</h3><p>加载，验证，准备，解析，初始化</p>
+<p>加载:这个阶段会在内存中生成一个代表这个类的 java.lang.Class 对象，作为方法区这个类的各种数据的入口 </p>
+<p>验证：确保 Class 文件的字节流中包含的信息是否符合当前虚拟机的要求 </p>
+<p>准备：即在方法区中分配这些变量所使用的内存空间 </p>
+<p>解析：虚拟机将常量池中的符号引用替换为直接引用的过程 </p>
+<p>初始化：初始化阶段是执行类构造器<client>方法的过程 如果一个类中没有对静态变量赋值也没有静态语句块，那么编译 器可以不为这个类生成<client>()方法  </client></client></p>
+<h3 id="docker-常用命令"><a href="#docker-常用命令" class="headerlink" title="docker 常用命令"></a>docker 常用命令</h3><p>Docker ps  查看正在运行的容器</p>
+<p>docker ps -a 查看全部容器</p>
+<p>–name 指定容器名字</p>
+<p>-p 指定容器暴露的端口</p>
+<p>docker stop ID关闭正在运行的容器</p>
+<p>docker start ID启动一个容器</p>
+<p>docker restart ID 重启一个容器</p>
+<p>docker images 查看本地镜像</p>
+<p>docker exet 进入一个容器</p>
+<p>docker cp ID全称:容器文件路径 本地路径   拷贝文件到本地</p>
+<p>git 常用命令，</p>
+<p>如：clone ，checkout，add,commit，push ，pull，merge ，冲突解决，误删除历史找回 （客户端操作和idea插件操作）</p>
+<h3 id="http和https区别"><a href="#http和https区别" class="headerlink" title="http和https区别"></a>http和https区别</h3><p>http攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息  </p>
+<p>https为了解决HTTP协议的这一缺陷，需要使用另一种协议：安全套接字层超文本传输协议HTTPS，为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL/TLS协议，SSL/TLS依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。  </p>
+<p>为什么需要 HTTPS ? 因为HTTP是明文传输数据的, 不安全, 而 HTTPS 是会对内容加密的<br> HTTPS 的加密策略是什么 ?(SSL/TLS依靠证书来验证服务器的身份)<br> 先用 非对称加密, 传递对称加密的密钥 (保证了密钥传输的安全)<br> 后续 使用对称加密, 进行交流 (保证了传输数据安全)<br> 问题: 就算是第一次交流用非对称加密, 公钥也是要在网络中传输的!<br> 如何证明公钥是可靠的? 如何证明网站是可靠的 ? (CA机构认证, 网站需要申请 数字证书 )<br> 请求时, 网站就会将数字证书给到浏览器, 浏览器默认就会检测证书的可靠性!<br> (1) 是否是权威机构发布的!<br> (2) 看证书中记录的地址 和 当前访问的网站的地址, 是否一致, 只有一致, 才可靠!<br> (3) 看证书是否过期<br> …<br> 如何保证证书不被篡改 =&gt; 数字签名, 可以根据证书的所有的内容, 生成一个唯一标识!!! (Hash加密算法)<br> 一旦内容如果被修改了, 再次生成唯一标识时, 和之前生成的唯一标识就不一样! 检测是否被修改!</p>
+<p>Https是传输过程加密</p>
+<p>https是传输过程加密，而并非是数据加密传输，使用https对其他国家来说是安全的，但对美国而言，依然是不安全的 因为美国开发的</p>
+<p>SSL/TLS原理</p>
+<p>服务器a用服务器b生成的公钥来加密对称加密的秘钥，这样服务器b可以用对应私钥解开密文，拿到服务器a的对称加密的秘钥。<br> 后续服务器a就用对称加密的秘钥，进行加密数据，发到服务器b，服务器b也可以正常解密麻烦数据了。<br> 理论上看起来很完美，但是这里仍然可能存在中间人攻击，中间人可以监听获取到服务器b发给服务器a的公钥，然后加以伪装篡改后再转发给服务器a。<br> 然后中间人也可以监听获取到服务器a用伪造的公钥加密秘钥的数据，这样秘钥也被中间人拿到了，后面通信数据也就被窃取了。<br> 那怎么办?引入第三方认证机构，CA。<br> 服务器a拿到公钥后，用公钥去ca求证下，与他通信的服务器b是不是真正的在ca认证的服务器b，而不是中间人伪装的。</p>
+<h3 id="Java中创建对象的5种方式"><a href="#Java中创建对象的5种方式" class="headerlink" title="Java中创建对象的5种方式"></a>Java中创建对象的5种方式</h3><p>​    使用new 关键字</p>
+<p>​    使用Class类的newInstance的方法</p>
+<p>​    使用Constructor 的newInstance的方法</p>
+<p>​    使用clone方法</p>
+<p>​    使用反序列化</p>
+<h3 id="Object方法"><a href="#Object方法" class="headerlink" title="Object方法"></a>Object方法</h3><p> 1、hashcode 2、equals 3、wait()(三个) 4、object 5、tostring 6、getclass 7、notify 8、notifyAll  9、clone 10、finalize  </p>
+<h3 id="equals和-的区别"><a href="#equals和-的区别" class="headerlink" title="equals和==的区别"></a>equals和==的区别</h3><p> 1、==：比较的是值是否相等</p>
+<ul>
+<li>基本数据类型，比较的是值</li>
+<li>引用数据类型     ，比较的是对象的的地址</li>
+</ul>
+<p> 2、equals：一般为比较内容是否相同</p>
+<ul>
+<li>如果没有对equals方法进行重写，比较的是引用类型的变量所指向的对象的地址</li>
+<li>如果对equals进行了重写，比较的就是对象的内容</li>
+</ul>
+<h3 id="和-的区别"><a href="#和-的区别" class="headerlink" title="#{}和${}的区别"></a>#{}和${}的区别</h3><p> #{}是预编译处理 是一个占位符 默认会加上单引号，${}字符串的替换 不会加上单引号</p>
+<p> #{}是防止sql注入</p>
+<p> 能少用${}就尽量少使用，但是表名作参数，或者order by 排序时用 ${}</p>
+<p> 在mybatis中 #{}默认值是age0，age1 ${}默认值是param1、param2</p>
+<p> sql注入就是说传过来的参数2改变了原本的意思就是sql注入  </p>
+<p> 比如说传一个 name=”富贵 or name = 狗蛋”  </p>
+<p> 如果使用${}那么就改变了意思，查询的就是名字是富贵或者狗蛋的，如果是#{}的话就没有改变意思，因为#{}是一个占位符</p>
+<h3 id="String、StringBuilder和StringBuffer的区别"><a href="#String、StringBuilder和StringBuffer的区别" class="headerlink" title="String、StringBuilder和StringBuffer的区别"></a>String、StringBuilder和StringBuffer的区别</h3><p> String是不可变的，由String创建的对象需要更改的时候要重新在堆内存中进行分配，所以说消耗资源大，String是由final修饰的，不能被重写。</p>
+<p> StringBuilder和StringBuffer是可变的</p>
+<p> StringBuilder和StringBuffer的区别：StringBuilder的效率高，所以说是线程不安全的，而StringBuffer的效率低，因此是安全的，在一般情况下我们会去使用StringBuilder因为效率较高，但是如果要求要线程安全的话要使用StringBuffer。StringBuffer底层是通过锁来保证安全的（synchronized）。</p>
+<h4 id="StringBuilder为什么是线程不安全的"><a href="#StringBuilder为什么是线程不安全的" class="headerlink" title="StringBuilder为什么是线程不安全的"></a>StringBuilder为什么是线程不安全的</h4><p> 继承了AbstractStringBuilder，如果创建的话变量是存在AbstractStringBuilder中的，有一个char和count，第一个不安全就是，他底层的append方法是没有加锁的，没有保证了原子性，如果说创建线程同时去执行的话，谁先获取到就谁先执行，很有可能出现两个人同时获取到，那么同时进行操作，就会出现所得结果小于真实结果，第二个就是在添加的时候会出现数组下标越界，每次添加的时候都回去判断下标和数组长度，如果长度够就可以添加，在这里又没有保证原子性，如果两个线程同时进来操作，因为cpu差一个满了，第一个添加进去了，那么就会出现第二个添加的时候已经达到最大长度了，这时候就会出现下标越界</p>
+<h3 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h3><ul>
+<li>抽象类要被子类继承，接口要被类实现。</li>
+<li>接口只能做方法声明，抽象类中可以作方法声明，也可以做方法实现。</li>
+<li>接口里定义的变量只能是公共的静态的常量，抽象类中的变量是普通变量。</li>
+<li>抽象类和接口都是用来抽象具体对象的，但是接口的抽象级别最高</li>
+<li>抽象类可以有具体的方法和属性，接口只能有抽象方法和不可变常量。</li>
+<li>抽象类主要用来抽象类别，接口主要用来抽象功能。</li>
+</ul>
+<h3 id="栈和堆的区别"><a href="#栈和堆的区别" class="headerlink" title="栈和堆的区别"></a>栈和堆的区别</h3><p> 1、内存分配方式不同：</p>
+<ul>
+<li>栈是由系统自动分配的，主要存储的是局部变量和函数的参数</li>
+<li>堆是由程序员自己分配的，如果说有没有释放的程序     ，系统会自动在一定时间内通过OS进行回收</li>
+</ul>
+<p> 2、申请方式不同：</p>
+<ul>
+<li>栈是系统     自动分配的</li>
+<li>堆是程序员自己分配的</li>
+</ul>
+<p> 3、申请后系统响应不同：</p>
+<ul>
+<li>栈要保证剩余空间比申请空间大，将内存分配给程序，否则会造成栈溢出</li>
+<li>堆系统自动是由链表的形式去分配内存的，当程序提交申请的时候，会循环链表，为了找出链表的内存大于申请空间，将程序分配在此节点上，使用的结点要从空闲链表中移除，正常情况下是没有办法保证链表内存刚好能分配申请空间的，所以说，要把使用链表的空闲内存，分布在空闲链表中</li>
+</ul>
+<p> 4、申请的效率不同：</p>
+<ul>
+<li>栈是由系统分配的，所以说栈的效率高</li>
+<li>堆是由程序员自己分配的，效率低</li>
+</ul>
+<p> 5、申请的大小限制不同:</p>
+<ul>
+<li>栈是由低地址扩张的，有一片连续的内存，但是是由系统分配到的所以说分配空间较小。</li>
+<li>堆是由高地址扩张的，因为是链表，所以没有连续的内存，分配的空间较大</li>
+</ul>
+<p> 6、存储的内容不同：</p>
+<ul>
+<li>栈保证的是先进后出的理念，先去存放的是局部变量，随后存放是的是函数参数</li>
+<li>堆是由程序员自己决定存放内容的。</li>
+</ul>
+<h3 id="equals和hashcode的区别"><a href="#equals和hashcode的区别" class="headerlink" title="equals和hashcode的区别"></a>equals和hashcode的区别</h3><p> 在添加数据的时候，通常会采用对比equals和hashcode的方式去添加到链表中</p>
+<ul>
+<li>equals相同那么hashcode一定相同</li>
+<li>hashcode相同equals不一定相同</li>
+</ul>
+<h3 id="jdk-1-7-1-8-区别"><a href="#jdk-1-7-1-8-区别" class="headerlink" title="jdk 1.7 1.8 区别"></a>jdk 1.7 1.8 区别</h3><p> 1.8中新增了</p>
+<p>1.接口的默认方法<br> 2.lambda表达式<br> 3.函数式接口<br> 4.方法与构造函数引用<br> 5.访问局部变量</p>
+<p>6.Stream的使用  例如 allList.stream().filter</p>
+<h3 id="class文件的生成和加载过程"><a href="#class文件的生成和加载过程" class="headerlink" title=".class文件的生成和加载过程"></a>.class文件的生成和加载过程</h3><p> 生成：使用javac命令可以编译该文件—–生成.class文件</p>
+<p> 加载过程：当运行Java程序时，首先运行JVM（Java虚拟机），然后再把class文件加载到JVM的方法区里，然后在堆区创建一个java.lang.Class对象，用来封装类在方法区内的数据结构，并向程序员提供访问方法区内的数据结构的接口。</p>
+<p> 在加载class文件的时候，JVM会先加载类中的所有静态成员( 方法，变量，静态代码块 )都加载到方法区class文件的所处静态区中<br> 当把所有的静态成员加载完成之后，开始给类中的所有静态成员变量进行默认初始化<br> 当类中的所有静态成员变量默认初始化之后，接着开始给所有静态成员变量显示赋值。<br> 当类中所有的静态成员变量显示赋值结束之后，静态代码块才会运行。<br> 当静态代码块执行结束之后，才表示class文件加载完成</p>
+<h3 id="mybatis分页实现"><a href="#mybatis分页实现" class="headerlink" title="mybatis分页实现"></a>mybatis分页实现</h3><p>我们使用pagehelper来实现分页的<br> public Pager<User> findByPager(int page,int size){<br>     Pager<User> pager = new Pager<User>();<br>     Page<User> res = PageHelper.startPage(page,size);<br>     userDao.findAll();<br>     pager.setRows(res.getResult());<br>     pager.setTotal(res.getTotal());<br>     return pager;<br> }</User></User></User></User></p>
+<p>在 startPage 中将我们传入的page，size交给new Page处理生成page  然后将page传入setLocalPage中 setlocalPage又将参数传递给ThreadLocal<page>  (在ThreadLocal中线程之间不互相影响 ) 最后通过excutor.query查询数据 进入Plugin类的invoke 唤醒拦截器，通过传入page参数进行拦截，返回  当前页，每页条数，总页数，总记录数  给业务代码</page></p>
+<p>MD5是一种加密方式不能解密</p>
+<h3 id="对称加密和非对称加密"><a href="#对称加密和非对称加密" class="headerlink" title="对称加密和非对称加密"></a>对称加密和非对称加密</h3><p> 大数据量进行加密时候使用对称加密 小数据量的时候非对称加密  进行加密  </p>
+<p>使用AES完成对称加密  密钥默认长度128</p>
+<p>实现方式 1.使用盐值去生成密钥 2. 然后通过原始数据和密钥通过加密方法进行加密 使用加密后的数据和密钥通过解密方法对数据进行解密</p>
+<p>使用RSA完成非对称加密  密钥默认长度是1024</p>
+<p>实现方式1.先获取根据盐值获取密匙对 2.根据密匙对获取公钥和密钥 3.根据公钥和加密的字符串进行加密  4.使用密文和私钥进行解密</p>
+<h3 id="jwt-参数设置"><a href="#jwt-参数设置" class="headerlink" title="jwt  参数设置"></a>jwt  参数设置</h3><p> 盐值 过期时间  还有键，值，角色名称</p>
+<p>跨域</p>
+<p>@CrossOrigin 注解原理</p>
+<p>利用spring的拦截器实现往response里添加 Access-Control-Allow-Origin等响应头信息</p>
+<p>spring 在记录mapper映射时会记录对应跨域请求映射 将结果返回到了AbstractHandlerMethodMapping#register  </p>
+<p>当一个跨域请求过来时，spring在获取handler时会判断这个请求是否是一个跨域请求，如果是，则会返回一个可以处理跨域的handler</p>
+<p>gateway网关跨域原理</p>
+<p>后端配置一个支持的域名集合，或者支持域名的正则表达式集合，如果前端请求的header里面的origin的值和后端的配置相匹配，那么就在repsonse里面添加 Access-Control-Allow-Origin 为request重的origin的值</p>
+<h2 id="object方法"><a href="#object方法" class="headerlink" title="object方法"></a>object方法</h2><p>1、hashcode 2、equals 3、wait()(三个) 4、object 5、tostring 6、getclass 7、notify 8、notifyAll 9、registernative 10、clone 11、finalize  </p>
+<h2 id="equals和-的区别-1"><a href="#equals和-的区别-1" class="headerlink" title="equals和==的区别"></a>equals和==的区别</h2><p> 1、==：比较的是值是否相等</p>
+<ul>
+<li>基本数据类型，比较的是值</li>
+<li>引用数据类型     ，比较的是对象的的地址</li>
+</ul>
+<p> 2、equals：一般为比较内容是否相同</p>
+<ul>
+<li>如果没有equals方法进行重写，比较的是引用     类型的变量所指向的对象的地址</li>
+<li>比如string     date对equals进行了重写，比较的就是对象的内容</li>
+</ul>
+<h2 id="和-的区别-1"><a href="#和-的区别-1" class="headerlink" title="#{}和${}的区别"></a>#{}和${}的区别</h2><p> #{}是预编译处理 是一个占位符 默认会加上单引号，${}字符串的替换 不会加上单引号</p>
+<p> #{}是防止sql注入</p>
+<p> 能少用${}就尽量少使用，但是表名作参数，或者order by 排序时用 ${}</p>
+<p> 在mybatis中 #{}默认值是age0，age1 ${}默认值是param1、param2</p>
+<p> sql注入就是说传过来的参数2改变了原本的意思就是sql注入  </p>
+<p> 比如说传一个 name=”富贵 or name = 狗蛋”  </p>
+<p> 如果使用${}那么就改变了意思，查询的就是名字是富贵或者狗蛋的，如果是#{}的话就没有改变意思，因为#{}是一个占位符</p>
+<h2 id="String、StringBuilder和StringBuffer的区别-1"><a href="#String、StringBuilder和StringBuffer的区别-1" class="headerlink" title="String、StringBuilder和StringBuffer的区别"></a>String、StringBuilder和StringBuffer的区别</h2><p> String是不可变的，由String创建的对象需要更改的时候要重新在堆内存中进行分配，所以说消耗资源大，String是由final修饰的，不能被重写。</p>
+<p> StringBuilder和StringBuffer是可变的</p>
+<p> StringBuilder和StringBuffer的区别：StringBuilder的效率高，所以说是线程不安全的，而StringBuffer的效率低，因此是安全的，在一般情况下我们会去使用StringBuilder因为效率较高，但是如果要求要线程的话要使用StringBuffer。StringBuffer底层是通过锁来保证安全的。</p>
+<h3 id="StringBuilder为什么是线程不安全的-1"><a href="#StringBuilder为什么是线程不安全的-1" class="headerlink" title="StringBuilder为什么是线程不安全的"></a>StringBuilder为什么是线程不安全的</h3><p> 首先两个全部都继承了AbstractStringBuilder，如果创.0建的话变量是存在AbstractStringBuilder中的，有一个char和count，第一个不安全就是，他底层的append方法是没有加锁的，没有保证了原子性，如果说创建线程同时去执行的话，谁先获取到就谁先执行，很有可能出现两个人同时获取到，那么同时进行操作，就会出现所得结果小于真实结果，第二个就是在添加的时候会出现数组下标越界，每次添加的时候都回去判断下标和数组长度，如果长度够就可以添加，在这里又没有保证原子性，如果两个线程同时进来操作，其中一个因为cpu满了，有一个添加进去了，那么就会出现第二个添加的时候已经达到最大长度了，这时候就会出现下标越界</p>
+<h2 id="抽象类和接口的区别-1"><a href="#抽象类和接口的区别-1" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h2><ul>
+<li>抽象类要被子类继承，接口要被类实现。</li>
+<li>接口只能做方法声明，抽象类中可以作方法声明，也可以做方法实现。</li>
+<li>接口里定义的变量只能是公共的静态的常量，抽象类中的变量是普通变量。</li>
+<li>抽象类和接口都是用来抽象具体对象的，但是接口的抽象级别最高</li>
+<li>抽象类可以有具体的方法和属性，接口只能有抽象方法和不可变常量。</li>
+<li>抽象类主要用来抽象类别，接口主要用来抽象功能。</li>
+</ul>
+<h2 id="栈和堆的区别-1"><a href="#栈和堆的区别-1" class="headerlink" title="栈和堆的区别"></a>栈和堆的区别</h2><p> 1、内存分配方式不同：</p>
+<ul>
+<li>栈是由系统自动分配的，主要存储的是局部变量和函数的参数</li>
+<li>堆是由程序员自己分配的，如果说有没有释放的程序     ，系统会自动在一定时间内通过OS进行回收</li>
+</ul>
+<p> 2、申请方式不同：</p>
+<ul>
+<li>栈是系统     自动分配的</li>
+<li>堆是程序员自己分配的</li>
+</ul>
+<p> 3、申请后系统响应不同：</p>
+<ul>
+<li>栈要保证剩余空间比申请空间大，将内存分配给程序，否则会造成栈溢出</li>
+<li>堆系统自动是由链表的形式去分配内存的，当程序提交申请的时候，会循环链表，为了找出链表的内存大于申请空间，将程序分配在此节点上，使用的结点要从空闲链表中移除，正常情况下是没有办法保证链表内存刚好能分配申请空间的，所以说，要把使用链表的空闲内存，分布在空闲链表中</li>
+</ul>
+<p> 4、申请的效率不同：</p>
+<ul>
+<li>栈是由系统分配的，所以说栈的效率高</li>
+<li>堆是由程序员自己分配的，效率低</li>
+</ul>
+<p> 5、申请的大小限制不同:</p>
+<ul>
+<li>栈是由低地址扩张的，有一片连续的内存，但是是由系统分配到的所以说分配空间较小。</li>
+<li>堆是由高地址扩张的，因为是链表，所以没有连续的内存，分配的空间较大</li>
+</ul>
+<p> 6、存储的内容不同：</p>
+<ul>
+<li>栈保证的是先进后出的理念，先去存放的是局部变量，随后存放是的是函数参数</li>
+<li>堆是由程序员自己决定存放内容的。</li>
+</ul>
+<h2 id="equals和hashcode的区别-1"><a href="#equals和hashcode的区别-1" class="headerlink" title="equals和hashcode的区别"></a>equals和hashcode的区别</h2><p> 在添加数据的时候，通常会采用对比equals和hashcode的方式去添加到链表中</p>
+<ul>
+<li>equals相同那么hashcode一定相同</li>
+<li>hashcode相同equals不一定相同</li>
+</ul>
+<p>相同点</p>
+<p> equals和hashcode方法都是用来判断两个对象的值是否相同的，在这里仅仅判断的是两个对象的值并不是引用。</p>
+<p>区别</p>
+<ul>
+<li>他们判断对象相同的方式不一样<ul>
+<li>equals判断的是如果字符完全相同，那么值就相同了</li>
+<li>hashcode是根据hash来计算对象实例的，返回值是一个hashcode，通过比较hashcode是否相等来判断两个对象是否相同的         -         jvm每创建一个object对象，都会将这个对象放入hash表中去，方便下次做对象比较或者取对象的时候使用，只要用就可以从hash表中拿出来，提高了对象的效率         -         jvm创建对象的时候，会根据hashcode放到对应的key上去，如果不同的对象产生了相同的hash值那么就产生了冲突，解决此冲突的方法是链地址法，此时就要在hash         key上会产生单链表的形式，会将值放在单链表上         -         比较两个对象是否相同，首先要去做的是根据hashcode去hash表中查询他们的对象，如果相同则说名他们在hash表中的同一个key中，此时就需要用equals去做比较了。</li>
+<li>判断对象是否相同的准确率不一样</li>
+</ul>
+</li>
+</ul>
+<h2 id="cookie-和session的区别"><a href="#cookie-和session的区别" class="headerlink" title="cookie 和session的区别:"></a>cookie 和session的区别:</h2><p>1.存储位置：cookie数据存放在客户的浏览器上，session数据放在服务器上。</p>
+<p>2.安全性：cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗,   考虑到安全应当使用session。  </p>
+<p>3.性能：session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能考虑到减轻服务器性能方面，应当使用COOKIE。</p>
+<p>4.限制：单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。  (超过  拆出一部分数据,把数据存在LocalStorage )</p>
+<p>5.过期时间:</p>
+<p> cookie</p>
+<p>​    cookie是没有过期的。</p>
+<p>只是它的保存时间是一个会话周期(session), 临时性Cookie，不会被持久化，也就是当你关闭你的浏览器后，这个cookie就会消失。</p>
+<p> Session:</p>
+<p>​    30分钟</p>
+<h2 id="cookie-和localStorage-区别"><a href="#cookie-和localStorage-区别" class="headerlink" title="cookie 和localStorage 区别"></a>cookie 和localStorage 区别</h2><p> 作用不同:</p>
+<p> localStorage是用于本地大容量存储数据(web storage的存储量大到5MB);   </p>
+<p> cookie是用于客户端和服务端间的信息传递；  </p>
+<p> 过期时间:</p>
+<p> localStorage是持久化的本地存储，除非是通过js删除，或者清除浏览器缓存，否则数据是永远不会过期的。  </p>
+<p> Cookie 会话结束后就会过期</p>
+<h2 id="常用的设计模式"><a href="#常用的设计模式" class="headerlink" title="常用的设计模式:"></a>常用的设计模式:</h2><p> 单例模式   观察者模式   装饰者模式   适配器模式  工厂模式   代理模式（proxy）</p>
+<h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>简单点说，就是一个应用程序中，某个类的实例对象只有一个，你没有办法去new，因为构造器是被private修饰的，一般通过getInstance()的方法来获取它们的实例。</p>
+<p>getInstance()的返回值是一个对象的引用，并不是一个新的实例</p>
+<p> 几种单例模式的写法  </p>
+<p> 懒汉式（线程安全）  饿汉式   静态内部类  枚举</p>
+<h4 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h4><p> 对象间一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。</p>
+<h4 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h4><p>对已有的业务逻辑进一步的封装，使其增加额外的功能，如Java中的IO流就使用了装饰者模式，用户在使用的时候，可以任意组装，达到自己想要的效果。</p>
+<h4 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h4><p> 将两种完全不同的事物联系到一起，就像现实生活中的变压器。</p>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p> 简单工厂模式：一个抽象的接口，多个抽象接口的实现类，一个工厂类，用来实例化抽象的接口</p>
+<p>工厂方法模式：有四个角色，抽象工厂模式，具体工厂模式，抽象产品模式，具体产品模式。不再是由一个工厂类去实例化具体的产品，而是由抽象工厂的子类去实例化产品<br> 抽象工厂模式：与工厂方法模式不同的是，工厂方法模式中的工厂只生产单一的产品，而抽象工厂模式中的工厂生产多个产品  </p>
+<h4 id="代理模式（proxy）"><a href="#代理模式（proxy）" class="headerlink" title="代理模式（proxy）"></a>代理模式（proxy）</h4><p> 有两种，静态代理和动态代理</p>
+<table>
+<thead>
+<tr>
+<th>java代码三大作用域</th>
+<th>jsp的四大作用域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>request</td>
+<td>page(pageContext)</td>
+</tr>
+<tr>
+<td>session</td>
+<td>Request                    session</td>
+</tr>
+<tr>
+<td>ServletContext(上下文)(占用tomcat内存,一般使用redis代替)</td>
+<td>application</td>
+</tr>
+</tbody></table>
+<p>​        </p>
+<h2 id="Git回退历史"><a href="#Git回退历史" class="headerlink" title="Git回退历史"></a>Git回退历史</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用git log命令，查看分支提交历史，确认需要回退的版本</span><br><span class="line">使用git reset --hard commit_id命令，进行版本回退</span><br><span class="line">使用git push origin命令，推送至远程分支</span><br></pre></td></tr></table></figure>
+
+<p> 快捷命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回退上个版本：git reset --hard HEAD^ </span><br></pre></td></tr></table></figure>
+
+<p> 【注：HEAD是指向当前版本的指针，HEAD^表示上个版本,HEAD^^表示上上个版本】</p>
+<p> 如果修改到的文件比较少，我们可以不通过命令回滚的方式，手动删除之前的修改，再进行提交。</p>
+<p>撤销修改</p>
+<p> 一些时候，为了验证Bug，我们可能会直接在测试服务器上打断点调试。如果忘记去掉调试内容，在执行git pull更新时，Git会提示你提交修改。</p>
+<p> 此时，你可能已经不记得修改什么了，这个时候，我们可以用git checkout – file命令，来清空工作区的修改。是的，git checkout命令不仅可以用来切换分支，还能撤销文件修改。</p>
+<p> 如果想要撤销提交到暂存区后的文件内容怎么办呢(即执行git add之后)，我们可以使用git reset HEAD file命令撤销提交到暂存区的内容,再使用git checkout – file命令来撤销工作区的修改，需要分两步进行操作。</p>
+<p>reset还是revert?</p>
+<p> 针对评论区提出的，回滚是使用reset还是revert的疑问，这边做下补充说明。</p>
+<p> reset和revert都可以用来回滚代码。但他们是有区别的，准确来说，reset是用来”回退”版本，而revert是用来”还原”某次或者某几次提交。</p>
+<p> 听起来有点绕，怎么去理解他们呢？</p>
+<p> 举个例子，比如在master分支，有以下提交历史:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">42eae13 (HEAD -&gt; master) 第四次修改</span><br><span class="line">97ea0f9 第三次修改</span><br><span class="line">e50b7c2 第二次修改</span><br><span class="line">3a52650 第一次修改</span><br></pre></td></tr></table></figure>
+
+<p> 可以看到，master最新版本为第四次修改。</p>
+<p> 如果发现，在第四次修改有错误，需要回滚到第三次修改，就可以用reset命令来回退。</p>
+<p> 执行 git reset –hard 97ea0f9,这个时候，git的提交历史变为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">97ea0f9 (HEAD -&gt; master) 第三次修改</span><br><span class="line">e50b7c2 第二次修改</span><br><span class="line">3a52650 第一次修改</span><br></pre></td></tr></table></figure>
+
+<p> 可以看到master当前指向97ea0f9这个版本，我们回到了第三次修改。</p>
+<p> 使用reset命令，Git会把要回退版本之后提交的修改都删除掉。要从第四次修改回退到第一次修改，那么会删除第二、三、四次的修改。【注：这里并不是真正的物理删除】</p>
+<p> 那如果发现第三次修改有错误，想要恢复第三次修改，却要保留第四次修改呢？</p>
+<p> 这个时候就可以用revert命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git revert -n 97ea0f9</span><br><span class="line">git commit -m &quot;恢复第三次修改&quot;</span><br></pre></td></tr></table></figure>
+
+<p> Git提交历史会变成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">33b8b30 (HEAD -&gt; master) Revert &quot;恢复第三次修改&quot;</span><br><span class="line">42eae13 第四次修改</span><br><span class="line">97ea0f9 第三次修改</span><br><span class="line">e50b7c2 第二次修改</span><br><span class="line">3a52650 第一次修改</span><br></pre></td></tr></table></figure>
+
+<p> 实际上，Git把第三次修改从提交中剔除(还原)了，还保留了第四次修改，并且产生了新的commit_id。</p>
+<p> 在实际生产环境中，代码是基于master分支发布到线上的，会有多人进行提交。可能会碰到自己或团队其他成员开发的某个功能在上线之后有Bug,需要及时做代码回滚的操作。</p>
+<p> 在确认要回滚的版本之后，如果别人没有最新提交，那么就可以直接用reset命令进行版本回退，否则，就可以考虑使用revert命令进行还原修改，不能影响到别人的提交。</p>
+<p> 使用reset还是revert，需要考虑实际的适用场景，没有绝对化。</p>
+<p> 上面提的并不是真正的物理删除，是因为Git会把分支的每次修改记录都会保留下来，比如有某次的commit,某次的reset等。而使用git reflog show命令,可以查看完整的提交历史，</p>
+<p> 只要有commit_id，我们就能恢复任意版本的代码，在各版本之间来回穿梭。    </p>
+<h2 id="Java-8种排序方式："><a href="#Java-8种排序方式：" class="headerlink" title="Java 8种排序方式："></a>Java 8种排序方式：</h2><p>直接插入排序</p>
+<p>希尔排序</p>
+<p>简单选择排序</p>
+<p>堆排序</p>
+<p>冒泡排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// int a[] = &#123;12, 23, 34, 45, 12, 23, 43, 56&#125;;</span></span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> a.length;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; length - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">if</span> (a[j] &gt; a[j+<span class="number">1</span>]) &#123;        <span class="comment">// 相邻元素两两对比</span></span><br><span class="line"></span><br><span class="line">                   <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a[j+<span class="number">1</span>];        <span class="comment">// 元素交换</span></span><br><span class="line"></span><br><span class="line">                   a[j+<span class="number">1</span>] = a[j];</span><br><span class="line"></span><br><span class="line">                   a[j] = temp;</span><br><span class="line"></span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;a.length ; i++) &#123;</span><br><span class="line"></span><br><span class="line">           System.out.println(<span class="string">&quot;-----&quot;</span>+a[i]);</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>快速排序</p>
+<p>归还排序</p>
+<p>基数排序</p>
+<h2 id="http请求是长连接还是短连接？"><a href="#http请求是长连接还是短连接？" class="headerlink" title="http请求是长连接还是短连接？"></a>http请求是长连接还是短连接？</h2><p> 在HTTP/1.0中，默认使用的是短连接。也就是说，浏览器和服务器每进行一次HTTP操作，就建立一次连接，但任务结束就<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%B8%AD%E6%96%AD&spm=1001.2101.3001.7020">中断</a>连接。如果客户端浏览器访问的某个HTML或其他类型的 Web页中包含有其他的Web资源，如<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/javascript">JavaScript</a>文件、图像文件、CSS文件等；当浏览器每遇到这样一个Web资源，就会建立一个HTTP会话。</p>
+<p> 但从 HTTP/1.1起，默认使用长连接，用以保持连接特性。</p>
+<p> HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。  </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Porco Rosso</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://porcorosso.top/posts/b8b0eacd.html">http://porcorosso.top/posts/b8b0eacd.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://porcorosso.top" target="_blank">红猪的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://www.qinglvbizhi.com/uploads/202201/28/220128020852501.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://tupian.qqw21.com/article/UploadPic/2019-8/201982923213827546.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Porco Rosso</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">java基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NIO%E5%92%8CBIO%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.1.</span> <span class="toc-text">NIO和BIO的主要区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-BIO%E5%92%8CNIO%E4%B9%8B%E9%97%B4%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">Java BIO和NIO之间的主要区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6-%E5%8E%9F%E7%90%86-%EF%BC%9A"><span class="toc-number">1.0.3.</span> <span class="toc-text">类加载机制(原理)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.0.4.</span> <span class="toc-text">docker 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http%E5%92%8Chttps%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.5.</span> <span class="toc-text">http和https区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%845%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.6.</span> <span class="toc-text">Java中创建对象的5种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.7.</span> <span class="toc-text">Object方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.8.</span> <span class="toc-text">equals和&#x3D;&#x3D;的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.9.</span> <span class="toc-text">#{}和${}的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E3%80%81StringBuilder%E5%92%8CStringBuffer%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.10.</span> <span class="toc-text">String、StringBuilder和StringBuffer的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#StringBuilder%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84"><span class="toc-number">1.0.10.1.</span> <span class="toc-text">StringBuilder为什么是线程不安全的</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.11.</span> <span class="toc-text">抽象类和接口的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.12.</span> <span class="toc-text">栈和堆的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E5%92%8Chashcode%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.13.</span> <span class="toc-text">equals和hashcode的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk-1-7-1-8-%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.14.</span> <span class="toc-text">jdk 1.7 1.8 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#class%E6%96%87%E4%BB%B6%E7%9A%84%E7%94%9F%E6%88%90%E5%92%8C%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.15.</span> <span class="toc-text">.class文件的生成和加载过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis%E5%88%86%E9%A1%B5%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.0.16.</span> <span class="toc-text">mybatis分页实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-number">1.0.17.</span> <span class="toc-text">对称加密和非对称加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jwt-%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.0.18.</span> <span class="toc-text">jwt  参数设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#object%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">object方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equals%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.2.</span> <span class="toc-text">equals和&#x3D;&#x3D;的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.3.</span> <span class="toc-text">#{}和${}的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String%E3%80%81StringBuilder%E5%92%8CStringBuffer%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.4.</span> <span class="toc-text">String、StringBuilder和StringBuffer的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StringBuilder%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">StringBuilder为什么是线程不安全的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.5.</span> <span class="toc-text">抽象类和接口的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.6.</span> <span class="toc-text">栈和堆的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equals%E5%92%8Chashcode%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.7.</span> <span class="toc-text">equals和hashcode的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie-%E5%92%8Csession%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.8.</span> <span class="toc-text">cookie 和session的区别:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie-%E5%92%8ClocalStorage-%E5%8C%BA%E5%88%AB"><span class="toc-number">1.9.</span> <span class="toc-text">cookie 和localStorage 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.10.</span> <span class="toc-text">常用的设计模式:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.10.0.1.</span> <span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.10.0.2.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.10.0.3.</span> <span class="toc-text">装饰者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.10.0.4.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.10.0.5.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%EF%BC%88proxy%EF%BC%89"><span class="toc-number">1.10.0.6.</span> <span class="toc-text">代理模式（proxy）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%9B%9E%E9%80%80%E5%8E%86%E5%8F%B2"><span class="toc-number">1.11.</span> <span class="toc-text">Git回退历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-8%E7%A7%8D%E6%8E%92%E5%BA%8F%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.12.</span> <span class="toc-text">Java 8种排序方式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E8%AF%B7%E6%B1%82%E6%98%AF%E9%95%BF%E8%BF%9E%E6%8E%A5%E8%BF%98%E6%98%AF%E7%9F%AD%E8%BF%9E%E6%8E%A5%EF%BC%9F"><span class="toc-number">1.13.</span> <span class="toc-text">http请求是长连接还是短连接？</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4a17b156.html" title="Hello World"><img src="https://www.qinglvbizhi.com/uploads/202206/23/220623054505130.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/posts/4a17b156.html" title="Hello World">Hello World</a><time datetime="2023-01-08T10:25:21.636Z" title="发表于 2023-01-08 18:25:21">2023-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d36bd08c.html" title="sql笔记"><img src="https://www.qinglvbizhi.com/uploads/202201/28/220128020852501.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sql笔记"/></a><div class="content"><a class="title" href="/posts/d36bd08c.html" title="sql笔记">sql笔记</a><time datetime="2023-01-07T06:34:51.000Z" title="发表于 2023-01-07 14:34:51">2023-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/458d0a8.html" title="代码笔记"><img src="https://www.qinglvbizhi.com/uploads/202206/23/220623054505130.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="代码笔记"/></a><div class="content"><a class="title" href="/posts/458d0a8.html" title="代码笔记">代码笔记</a><time datetime="2023-01-07T06:32:04.000Z" title="发表于 2023-01-07 14:32:04">2023-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/271ebaf8.html" title="注解笔记"><img src="https://www.qinglvbizhi.com/uploads/202201/28/220128045251729.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="注解笔记"/></a><div class="content"><a class="title" href="/posts/271ebaf8.html" title="注解笔记">注解笔记</a><time datetime="2023-01-07T06:28:42.000Z" title="发表于 2023-01-07 14:28:42">2023-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/bc43b3c8.html" title="NavicatPremium16无限试用脚本"><img src="https://www.qinglvbizhi.com/uploads/202206/23/220623054505130.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NavicatPremium16无限试用脚本"/></a><div class="content"><a class="title" href="/posts/bc43b3c8.html" title="NavicatPremium16无限试用脚本">NavicatPremium16无限试用脚本</a><time datetime="2023-01-07T06:26:53.000Z" title="发表于 2023-01-07 14:26:53">2023-01-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://www.qinglvbizhi.com/uploads/202201/28/220128020852501.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Porco Rosso</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/algolia.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://porco-rosso000-github-io.vercel.app/',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://porco-rosso000-github-io.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="/js/custom.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
