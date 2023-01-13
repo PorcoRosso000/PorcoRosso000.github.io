@@ -396,7 +396,7 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId: https://porco-rosso000-github-io.vercel.app/ 
+  envId: https://www.porcorosso.top/ 
   region:
   visitor: true
   option:
