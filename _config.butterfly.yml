@@ -22,10 +22,10 @@ menu:
   时间轴: /archives/||fas fa-archive
   标签: /tags/||fas fa-tags
   分类: /categories/||fas fa-folder-open
-  清单||fa fa-heartbeat:
-    音乐: /music/||fas fa-music
-    照片: /Gallery/||fas fa-images
-    电影: /movies/||fas fa-video
+  # 清单||fa fa-heartbeat:
+  #   音乐: /music/||fas fa-music
+  #   照片: /Gallery/||fas fa-images
+  #   电影: /movies/||fas fa-video
   友链: /link/||fas fa-link
   关于: /about/||fas fa-heart
 
@@ -43,7 +43,7 @@ hide_sidebar_menu_child: false
 highlight_theme: light #  darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
-highlight_shrink: true # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
+highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
 highlight_height_limit: false # unit: px
 code_word_wrap: true
 
@@ -96,12 +96,68 @@ katex:
   enable: false
   per_page: false
   hide_scrollbar: true
+#首页分页磁铁
+categoryBar:
+  enable: true # 开关
+  priority: 5 #过滤器优先权
+  enable_page: / # 应用页面
+  layout: # 挂载容器类型
+    type: id
+    name: recent-posts
+    index: 0
+  column: odd # odd：3列 | even：4列
+  row: 1 #显示行数，默认两行，超过行数切换为滚动显示
+  message:
+    - descr: Ubuntu指南
+      cover: https://assets.akilar.top/image/cover1.webp
+    - descr: 玩转Win10
+      cover: https://assets.akilar.top/image/cover2.webp
+    - descr: 长篇小说连载
+      cover: https://assets.akilar.top/image/cover3.webp
+    - descr: 个人日记
+      cover: https://assets.akilar.top/image/cover4.webp
+    - descr: 诗词歌赋
+      cover: https://assets.akilar.top/image/cover5.webp
+    - descr: 杂谈教程
+      cover: https://assets.akilar.top/image/cover6.webp
+  custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
+#侧边栏电子时钟
+electric_clock:
+  enable: true # 开关
+  priority: 5 #过滤器优先权
+  enable_page: all # 应用页面
+  exclude:
+    # - /posts/
+    # - /about/
+  layout: # 挂载容器类型
+    type: class
+    name: sticky_layout
+    index: 0
+  loading: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif #加载动画自定义
+  clock_css: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css
+  clock_js: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js
+  ip_api: https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0
+  # 和风天气key 默认是 b16a1fa0e63c46a4b8f28abfb06ae3fe
+  qweather_key: # 你的key
+  # 高得地图web服务key 默认为 e2b04289e870b005374ee030148d64fd&s=rsv3
+  gaud_map_key: # 你的key
+  default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
+  rectangle: 112.982279,28.19409 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
+
 
 # Image (圖片設置)
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/favicon.png
+#favicon: /img/favicon.png
+favicon:
+  small: /images/favicon.ico
+  #medium: /images/favicon-32x32-next.png
+  medium: /images/favicon.ico
+  #apple_touch_icon: /images/apple-touch-icon-next.png
+  #safari_pinned_tab: /images/logo.svg
+  #android_manifest: /manifest.json
+
 
 # Avatar (頭像)
 avatar:
@@ -141,9 +197,9 @@ category_per_img:
 
 cover:
   # display the cover or not (是否顯示文章封面)
-  index_enable: true
-  aside_enable: true
-  archives_enable: true
+  index_enable: false
+  aside_enable: false
+  archives_enable: false
   # the position of cover in home page (封面顯示的位置)
   # left/right/both
   position: both
@@ -396,7 +452,7 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId: https://www.porcorosso.top/ 
+  envId: https://twikoo.porcorosso.top/ 
   region:
   visitor: true
   option:
