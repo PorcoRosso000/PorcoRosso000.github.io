@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>hexo新建文章</title>
+      <link href="/posts/997cac32.html"/>
+      <url>/posts/997cac32.html</url>
+      
+        <content type="html"><![CDATA[<p>新建文章:  hexo new post xxx</p><p>Front-matter<br>Front-matter 是 markdown 文件最上方以—分隔的区域，用于指定个别档案的变数。</p><p>Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br>如果标注可选的参数，可根据自己需要添加，不用全部都写在markdown里</p><h2 id="Page-Front-matter"><a href="#Page-Front-matter" class="headerlink" title="Page Front-matter"></a>Page Front-matter</h2><p>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top_img:<br>mathjax:<br>katex:<br>aside:<br>aplayer:<br>highlight_shrink:</p><hr><p>写法    解释<br>title    【必需】页面标题<br>date    【必需】页面创建日期<br>type    【必需】标籤、分类和友情链接三个页面需要配置<br>updated    【可选】页面更新日期<br>description    【可选】页面描述<br>keywords    【可选】页面关键字<br>comments    【可选】显示页面评论模块(默认 true)<br>top_img    【可选】页面顶部图片<br>mathjax    【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)<br>katex    【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)<br>aside    【可选】显示侧边栏 (默认 true)<br>aplayer    【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置<br>highlight_shrink    【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)</p><hr><h2 id="Post-Front-matter"><a href="#Post-Front-matter" class="headerlink" title="Post Front-matter"></a>Post Front-matter</h2><hr><p>title:<br>date:<br>updated:<br>tags:<br>categories:<br>keywords:<br>description:<br>top_img:<br>comments:<br>cover:<br>toc:<br>toc_number:<br>toc_style_simple:<br>copyright:<br>copyright_author:<br>copyright_author_href:<br>copyright_url:<br>copyright_info:<br>mathjax:<br>katex:<br>aplayer:<br>highlight_shrink:<br>aside:</p><hr><p>写法    解释<br>title    【必需】文章标题<br>date    【必需】文章创建日期<br>updated    【可选】文章更新日期<br>tags    【可选】文章标籤<br>categories    【可选】文章分类<br>keywords    【可选】文章关键字<br>description    【可选】文章描述<br>top_img    【可选】文章顶部图片<br>cover    【可选】文章缩略图(如果没有设置top_img,文章页顶部将显示缩略图，可设为false/图片地址/留空)<br>comments    【可选】显示文章评论模块(默认 true)<br>toc    【可选】显示文章TOC(默认为设置中toc的enable配置)<br>toc_number    【可选】显示toc_number(默认为设置中toc的number配置)<br>toc_style_simple    【可选】显示 toc 简洁模式<br>copyright    【可选】显示文章版权模块(默认为设置中post_copyright的enable配置)<br>copyright_author    【可选】文章版权模块的文章作者<br>copyright_author_href    【可选】文章版权模块的文章作者链接<br>copyright_url    【可选】文章版权模块的文章连结链接<br>copyright_info    【可选】文章版权模块的版权声明文字<br>mathjax    【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)<br>katex    【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)<br>aplayer    【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置<br>highlight_shrink    【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)<br>aside    【可选】显示侧边栏 (默认 true)</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/posts/4a17b156.html"/>
       <url>/posts/4a17b156.html</url>
