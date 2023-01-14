@@ -5,7 +5,9 @@
 # Site
 title: 红猪的博客
 subtitle: ''
-description: ''
+  # - '人必有所执,方能有所成'
+  # - '每临大事有静气，不信今时无古贤!'
+description: '人必有所执,方能有所成'
 keywords:
 author: Porco Rosso
 language: zh-CN
