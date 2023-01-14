@@ -25,10 +25,10 @@
 
 
 
-- class_name: 网站
+- class_name: 工具网站
   class_desc: 值得推荐的网站
   link_list:
-    - name: Twitter
-      link: https://twitter.com/
+    - name: 比特虫-图片转ico
+      link: https://www.bitbug.net/
       avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
-      descr: 社交分享平台
+      descr: 工具网站
