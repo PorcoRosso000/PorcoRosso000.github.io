@@ -354,3 +354,196 @@ Collections则是集合类的一个工具类/帮助类，其中提供了一系�
  情况一：如果计算出的元素的存储位置目前没有任何元素存储，那么该元素可以直接存储在该位置上。
 
  情况二：如果算出该元素的存储位置目前已经存在有其他元素了，那么会调用该元素的equals方法与该位置的元素再比较一次，如果equals返回的值是true，那么该元素与这个位置上的元素就视为重复元素，不允许添加，如果equals方法返回的是false，那么该元素允许添加.
+
+## 使用单链表插入数据
+
+单链表的两种建立方式
+单链表的建立有头插法、尾插法两种方法。
+
+单链表是用户不断申请存储单元和改变链接关系而得到的一种特殊数据结构，将链表的左边称为链头，右边称为链尾。
+
+头插法：右端固定，向左延伸，最先得到的是尾结点
+
+尾插法：左端固定，向右延伸，最先得到的是头结点
+
+画个图简单示意下两个的区别
+
+实现思路分析单链表的两种建立方式
+
+- 单链表的建立有头插法、尾插法两种方法。
+- 单链表是用户不断申请存储单元和改变链接关系而得到的一种特殊数据结构，将链表的左边称为链头，右边称为链尾。
+- **头插法**：右端固定，向左延伸，最先得到的是尾结点
+- **尾插法**：左端固定，向右延伸，最先得到的是头结点
+- 画个图简单示意下两个的区别
+  ![20200914143526670](20200914143526670.png)
+- 实现思路分析
+
+头插法
+
+![2020091414594076](2020091414594076.png)
+
+尾插法
+
+![20200914151350888](20200914151350888.png)
+
+代码实现
+
+```java
+public class SingleLinkedListDemo {
+    public static void main(String[] args) {
+        PersonNode person1 = new PersonNode(1, "Mary", "董事长");
+        PersonNode person2 = new PersonNode(2, "Bob", "总经理");
+        PersonNode person3 = new PersonNode(3, "Tom", "架构师");
+        PersonNode person4 = new PersonNode(4, "Jenny", "工程师");
+        SingleLinkedList singleLinkedList = new SingleLinkedList();
+//        System.out.println("头插法测试");
+//        singleLinkedList.headInsert(person1);
+//        singleLinkedList.headInsert(person2);
+//        singleLinkedList.headInsert(person3);
+//        singleLinkedList.headInsert(person4);
+//        singleLinkedList.list();
+        System.out.println("尾插法测试");
+        singleLinkedList.tailInsert(person1);
+        singleLinkedList.tailInsert(person2);
+        singleLinkedList.tailInsert(person3);
+        singleLinkedList.tailInsert(person4);
+        singleLinkedList.list();
+    }
+}
+
+/**
+ * 链表
+ */
+class SingleLinkedList {
+    // 定义一个头结点，不存储结点数据，只是用来指向链表的第一个元素
+    private PersonNode head = new PersonNode(0, "", "");
+
+    /**
+     * 头插法
+     *
+     * @param node 待插入结点
+     */
+    public void headInsert(PersonNode node) {
+        // 判断链表是否为空，如果为空，则将head.next指向node
+        if (head.next == null) {
+            head.next = node;
+            return;
+        }
+        // 如果链表不为空，找到head.next，将node插入head和head.next之间
+        PersonNode temp = head.next;
+        head.next = node;  // head.next指向node
+        node.next = temp;  // node.next指向之前的head.next
+    }
+
+    /**
+     * 尾插法
+     *
+     * @param node 待插入结点
+     */
+    public void tailInsert(PersonNode node) {
+        // 如果链表为空，直接head.next = node
+        if (head.next == null) {
+            head.next = node;
+            return;
+        }
+        // 如果链表不为空，遍历查找最后一个结点
+        PersonNode temp = head.next;
+        while (true) {
+            // 这里的条件注意下，使用temp.next==null，不要用temp==null, 两者的区别体会一下，我自己在写的时候就写成后者了
+            if (temp.next == null) {
+                break;
+            }
+            temp = temp.next;
+        }
+        // 跳出循环后，temp即为我们要找的链表的最后一个结点，直接temp.next=node
+        temp.next = node;
+    }
+
+    /**
+     * 遍历打印链表结点数据
+     */
+    public void list() {
+        // 如果链表为空，返回
+        if (head.next == null) {
+            System.out.println("链表为空。");
+            return;
+        }
+        // 如果链表不为空，遍历
+        // head标识链表的头部，不要动，定义一个临时引用，用来遍历链表
+        PersonNode temp = head.next;
+        while (true) {
+            // 如果temp为空，说明链表已经到达尾部，跳出循环
+            if (temp == null) {
+                // 此时temp表示last.next = temp，即最后一个结点指向它
+                break;
+            }
+            // 如果temp不为空，打印temp
+            System.out.println(temp);
+            // temp后移，继续遍历
+            temp = temp.next;
+        }
+    }
+}
+
+/**
+ * 结点
+ */
+class PersonNode {
+    int no;
+    String name;
+    String job;
+    PersonNode next;
+
+    public PersonNode(int no, String name, String job) {
+        this.no = no;
+        this.name = name;
+        this.job = job;
+    }
+
+    public PersonNode() {
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public PersonNode getNext() {
+        return next;
+    }
+
+    public void setNext(PersonNode next) {
+        this.next = next;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonNode{" +
+                "no=" + no +
+                ", name='" + name + '\'' +
+                ", job='" + job +
+                '}';
+    }
+}
+
+```
+

@@ -3,9 +3,11 @@ title: String相关
 typora-root-url: String相关
 abbrlink: 39230a67
 date: 2022-11-30 16:04:14
-tags:
+tags: 字符串
 permalink:
 ---
+
+
 
 ### 子串:
 
@@ -139,3 +141,242 @@ class Solution {
     }
 }
 ```
+
+## 如何判断一个字符串中某个字符出现的次数？
+
+```
+//1.使用循环
+public static void main(String[] args) {
+    String str = "ABC123ABC";
+    char searchChar = 'B';
+
+    int count = 0;
+    char[] charArray = str.toCharArray();
+    for (char item : charArray) {
+        if (item == searchChar) {
+            count++;
+        }
+    }
+
+    System.out.println("字符" + searchChar + "出现的次数为：" + count);
+}
+//2.不使用循环
+public static void main(String[] args) {
+    String str = "ABC123ABC";
+    String searchChar = "B";
+    int count = 0;
+
+    int origialLength = str.length();
+    str = str.replace(searchChar, "");
+    int newLength = str.length();
+
+    count = origialLength - newLength;
+
+    System.out.println("字符" + searchChar + "出现的次数为：" + count);
+}
+```
+
+## 如何反转一个字符串？
+
+```
+//1.使用 stringBuilder的reverse()方法
+public static void main(String[] args) {
+    String str = "ABC123ABC";
+
+    StringBuilder stringBuilder = new StringBuilder(str);
+    stringBuilder.reverse();
+
+    String newStr = stringBuilder.toString();
+
+    System.out.println("反转前：" + str);
+    System.out.println("反转后：" + newStr);
+}
+//2.利用入栈出站,先进后出的特性 即入栈顺序是：A B C 1 2 3 A B C  而出栈顺序是：C B A 3 2 1 C B A
+public static void main(String[] args) {
+    String str = "ABC123ABC";
+
+    char[] charArray = str.toCharArray();
+    Stack<Character> stack = new Stack<>();
+    StringBuilder newStr = new StringBuilder();
+
+    for (char item : charArray) {
+        stack.push(item);
+    }
+
+    for (int i = 0; i < charArray.length; i++) {
+        newStr.append(stack.pop());
+    }
+
+    System.out.println("反转前：" + str);
+    System.out.println("反转后：" + newStr.toString());
+}
+```
+
+## 一串[字符串](https://so.csdn.net/so/search?q=字符串&spm=1001.2101.3001.7020)中出现次数最多的字符以及出现的次数?
+
+通过Map 类实现，通过键值对的方式，可以将输入的字符串的每一个字符，作为键，每个字符出现的次数作为值，如下：
+
+```
+
+    public static void main(String[] args) {
+        System.out.println("请输入字符串：");
+        //获取键盘上输入的字符串；
+        String scan = new Scanner(System.in).nextLine();
+        //新建一个HashMap对象；
+        Map<Character, Integer> map = new HashMap<>();
+        //通过for循环，把String的键值存放到map
+        for (int i = 0; i < scan.length(); i++) {
+            //通过循环，找到字符串的每一位字符并存入到temp中；
+            char temp = scan.charAt(i);
+            //如果map里面有temp这个字符,把temp的值加1
+            if (map.containsKey(temp)) {
+                map.put(temp, map.get(temp) + 1);
+            } else {
+                //如果map里面没有temp这个字符，把temp的值设为1
+                map.put(temp, 1);
+            }
+        }
+
+        //调用Collections类的max方法，获取map的值的集合；并找出最大的那个值；
+        int maxNum = Collections.max(map.values());
+        //建立一个set对象
+        Set<Character> set = new HashSet<>();
+        //通过集合的循环，把map的值放到entry1里，通过entry1找到值最大的maxNum的key;
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == maxNum) {
+                set.add(entry.getKey());
+            }
+        }
+        System.out.println("出现次数最多的字母为：" + set + " 最多出现次数为" + maxNum);
+    }
+
+```
+
+## Java求[字符串](https://so.csdn.net/so/search?q=字符串&spm=1001.2101.3001.7020)中出现次数最多的字符?
+
+Java求字符串中出现次数最多的字符，如String Str = "aaabbcddddee";那么输出：d 4 ;若String Str = "aaabbcddddeexxxxxx";那么输出：x 6
+    【 思路 】：首先将字符串拆分为字符数组，然后转存到HashMap集合中，该集合的key为字符串中出现的字符，value对应该字符出现的次数。最后只需要在HashMap集合中找到Value值最大的key即可。
+
+```
+//1.
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+ 
+public class JavaTest {
+	public static void main(String[] args) throws Exception {
+		String Str = "AAbbcccaaaa";
+		char[] StrArr = Str.toCharArray();// 把字符串转为字符数组toCharArray
+ 
+		Map<Character, Integer> map = MapFunction(StrArr);
+		char ch = FindMapMaxValue(map);
+	}
+ 
+	/**
+	 * MapFunction:实现将字符数组转存到Map中， 其中，Map中的key为出现的字符，value对应该字符出现的次数
+	 * @param StrArr  StrArr字符数组，输入前必须先将字符串转为字符数组
+	 * @return map 集合中，key为出现的字符（Character），value对应该字符出现的次数（Integer）
+	 */
+	public static Map<Character, Integer> MapFunction(char[] StrArr) {
+		Map<Character, Integer> map = new HashMap<Character, Integer>();
+		if (!(StrArr == null || StrArr.length == 0))// 先判断字符数组是否为空
+			for (int i = 0; i < StrArr.length; i++)
+				if (null != map.get(StrArr[i]))
+					// 若不为空，说明已经存在相同字符，则Value值在原来的基础上加1
+					map.put(StrArr[i], map.get(StrArr[i]) + 1);
+				else
+					map.put(StrArr[i], 1);
+ 
+		return map;
+	}
+ 
+	/**
+	 * FindMapMaxValue 差找map中Value的最大值maxValue，类似于选择排序寻找最大值的过程：
+	 * 先任取一个Value值定义为最大值，然后与之比较
+	 * @param map 输入Map集合，该集合key为出现的字符（Character），value对应该字符出现的次数（Integer）
+	 * @return maxKey 返回出现次数最多的字符
+	 */
+	public static Character FindMapMaxValue(Map<Character, Integer> map) {
+		Set<Character> keys = map.keySet();// 获得所有key值
+		Iterator keys_Itera = keys.iterator();// 实例化Iterator
+		// keys_Itera.next():依次获得key值
+		// map.get(key):获得对应的value值
+		Character maxKey = (Character) keys_Itera.next();// 定义第一个为最大value和对应的key
+		int maxValue = map.get(maxKey);
+ 
+		while (keys_Itera.hasNext()) {
+			Character temp = (Character) keys_Itera.next();
+			if (maxValue < map.get(temp)) {
+				maxKey = temp;
+				maxValue = map.get(temp);
+			}
+		}
+		System.out.println("出现次数最多的字符：" + maxKey + " 出现次数：" + maxValue);
+		return maxKey;
+	}
+}
+```
+
+上面的FindMapMaxValue方法，还可以使用Map.Entry提高效率，进一步优化为：
+
+```
+	public static char FindMapMaxValue(Map<Character, Integer> map) {
+ 
+		Iterator iter = map.entrySet().iterator();
+		Map.Entry entry = (Map.Entry) iter.next();// 将第一个entry定义为最大次数的
+		char maxKey = (char) entry.getKey();// 获得K
+		int maxValue = (int) entry.getValue();// 获得V
+		while (iter.hasNext()) {
+			entry = (Map.Entry) iter.next();// 第二个entry
+			char tempK = (char) entry.getKey();
+			int tempV = (int) entry.getValue();
+			if (maxValue < tempV) {
+				maxKey = tempK;
+				maxValue = tempV;
+			}
+		}
+ 
+		System.out.println("出现次数最多的字符：" + maxKey + " 出现次数：" + maxValue);
+		return maxKey;
+	}
+```
+
+
+
+```
+//2.
+import java.util.HashMap;
+import java.util.Map;
+public class JavaTest {
+	public static void main(String[] args) throws Exception {
+		String Str = "aaabbcddddee";
+		char[] StrArr = Str.toCharArray();// 把字符串转为字符数组toCharArray
+ 
+		Map<Character, Integer> map = new HashMap<Character, Integer>();
+		if (!(StrArr == null || StrArr.length == 0))// 先判断字符数组是否为空
+			for (int i = 0; i < StrArr.length; i++) 
+				if (null != map.get(StrArr[i]))
+		// 若不为空，说明已经存在相同字符，则Value值在原来的基础上加1
+					map.put(StrArr[i], map.get(StrArr[i]) + 1);
+				else
+					map.put(StrArr[i], 1);
+ 
+		// 找map中Value的最大值maxValue，类似于选择排序，寻找最大值的过程：
+		// 先任取一个Value值定义为最大值，然后与之比较
+		int maxValue = map.get(StrArr[0]);
+		char ch = ' ';
+		for (int j = 0; j < StrArr.length; j++)
+			if (maxValue < map.get(StrArr[j])) {
+				maxValue = map.get(StrArr[j]);
+				ch = StrArr[j];
+			}
+ 
+		System.out.println("现次数最多的字符：" + ch + " 出现次数：" + maxValue);
+	}
+}
+```
+
+————————————————
+版权声明：本文为CSDN博主「AI吃大瓜」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/guyuealian/article/details/51933611
