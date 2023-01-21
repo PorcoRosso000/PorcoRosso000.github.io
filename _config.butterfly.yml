@@ -197,17 +197,23 @@ category_per_img:
 
 cover:
   # display the cover or not (是否顯示文章封面)
-  index_enable: false
-  aside_enable: false
-  archives_enable: false
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
   # the position of cover in home page (封面顯示的位置)
   # left/right/both
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    - https://www.qinglvbizhi.com/uploads/202206/23/220623054505130.png
-    - https://www.qinglvbizhi.com/uploads/202201/28/220128020852501.jpg 
-    - https://www.qinglvbizhi.com/uploads/202201/28/220128045251729.jpg
+    - https://pic.netbian.com/uploads/allimg/160706/170004-14677956041474.jpg
+    - https://pic.netbian.com/uploads/allimg/230111/232231-16734505513e05.jpg
+    - https://pic.netbian.com/uploads/allimg/221221/003602-16715541621923.jpg
+    - https://pic.netbian.com/uploads/allimg/220716/222533-1657981533ff59.jpg
+    - https://pic.netbian.com/uploads/allimg/230119/002207-167405892793f1.jpg
+    - https://pic.netbian.com/uploads/allimg/211108/000010-16363008100c25.jpg
+    - https://pic.netbian.com/uploads/allimg/220919/215721-1663595841c532.jpg
+    - https://pic.netbian.com/uploads/allimg/220920/233353-1663688033e782.jpg
+    - https://pic.netbian.com/uploads/allimg/170609/123945-14969831856c4d.jpg
 
 
 
@@ -277,10 +283,10 @@ post_copyright:
 reward:
   enable: true
   QR_code:
-    - img: /img/wechat.jpg
+    - img: /images/wechat.jpg
       link:
       text: wechat
-    - img: /img/alipay.jpg
+    - img: /images/alipay.jpg
       link:
       text: alipay
 
@@ -1000,12 +1006,16 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
-    # 自定义css
-    - <link rel="stylesheet" href="/css/custom.css">
+   # 自定义css
+   - <link rel="stylesheet" href="/css/custom.css">
+   # 星空背景
+  #  - <link rel="stylesheet" href="/css/universe.css">
   bottom:
-    # 自定义js
-    - <script src="/js/custom.js"></script>
-
+   # 自定义js
+   - <script src="/js/custom.js"></script>
+   # 星空背景
+  #  - <canvas id="universe"></canvas>
+  #  - <script defer src="/js/universe.js"></script>
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改

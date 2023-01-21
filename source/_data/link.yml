@@ -21,6 +21,14 @@
       link: https://zhangshier.vip
       avatar: https://zhangshier.vip/Hexo_img/avatar.jpg
       descr: 环转码，爱敲代码的小张！
+    - name: 小康博客
+      link: https://www.antmoe.com/
+      avatar: https://cdn.jsdelivr.net/npm/kang-static@latest/avatar.jpg
+      descr: 一个收藏回忆与分享技术的地方！
+    - name: MoYu # 昵称
+      desc: 何德何能、何其荣幸 # 介绍
+      avatar: https://gitee.com/MoYu-zc/picgo/raw/master/img/20210222192816.png # 头像
+      link: https://www.moyuzc.cn/  # 链接
 
 
 
