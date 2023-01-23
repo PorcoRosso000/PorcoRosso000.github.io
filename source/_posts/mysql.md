@@ -956,3 +956,9 @@ Mysql使用limit分页
 Oracle使用rownum分页
 
  	rownum只能比较小于，不能比较大于，因为rownum是先查询后排序的
+
+## 数据库行锁表锁怎么解决?
+
+加存储过程 执行错误就回滚
+
+使用cas

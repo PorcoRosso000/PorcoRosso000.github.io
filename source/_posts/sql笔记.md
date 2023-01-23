@@ -16,7 +16,7 @@ permalink:
 ```java
 <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
 SELECT LAST_INSERT_ID()
-</selectKey>` 
+</selectKey>
 ```
 
 
@@ -40,7 +40,107 @@ where id = #{id,jdbcType=BIGINT}
 </select>` 
 ```
 
+## sql中使用in/not in关键字后集合参数遍历方式
+
+```java
+<select id="getIdsByOrgNums" resultType="java.lang.Long">
+select id
+from user_organization where org_num in
+<foreach collection="orgNums" index="index" item="orgNum" open="(" separator="," close=")">
+#{orgNum}
+</foreach>
+</select> 
+```
+
+## 集合方式批量添加
+
+```java
+<insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+<!--@mbg.generated-->
+insert into user_organization
+(org_name, company_flag, org_type, parent_id, ent_name, ent_short_name, social_credit_code,
+contact_person, billing_telephone, billing_address, opening_bank, bank_account,
+introduction, org_num, org_path, outer_org_id, org_source, creator_user_id, creation_time,
+update_user_id, update_time, delete_flag, gehr_org_id, sort_order, is_virtual_dept,
+department_name_en, department_level, app_code, gdc_org_id)
+values
+<foreach collection="list" item="item" separator=",">
+(#{item.orgName}, #{item.companyFlag}, #{item.orgType}, #{item.parentId}, #{item.entName},
+#{item.entShortName}, #{item.socialCreditCode}, #{item.contactPerson}, #{item.billingTelephone},
+#{item.billingAddress}, #{item.openingBank}, #{item.bankAccount}, #{item.introduction},
+#{item.orgNum}, #{item.orgPath}, #{item.outerOrgId}, #{item.orgSource}, #{item.creatorUserId},
+#{item.creationTime}, #{item.updateUserId}, #{item.updateTime}, #{item.deleteFlag},
+#{item.gehrOrgId}, #{item.sortOrder}, #{item.isVirtualDept}, #{item.departmentNameEn},
+#{item.departmentLevel}, #{item.appCode}, #{item.gdcOrgId})
+</foreach>
+</insert> 
+```
+
+## Unknown collation: ‘utf8mb4_0900_ai_ci‘ 的解决方案高版本的数据库数据导入时报错解决方案
+
+将MySQL8.0导出的sql文件中，所有的utf8mb4_0900_ai_ci替换为utf8_general_ci   
+
+## jpa在mapper层上通过注解的方式写sql 
+
+```
+@Query(      value = "SELECT id,report_type,report_id,project_id,project_no,report_name,change_type,change_user,change_date,change_content,status,process_version,process_description,compound_id,production_type,report_section FROM notification WHERE CASE WHEN :no = true THEN project_no in (:projects) ELSE 1=1 END AND CASE WHEN :changeType = true THEN change_type in (:changeTypes) ELSE 1=1 END AND CASE WHEN :reportType = true THEN report_type in (:reportTypes) ELSE 1=1 END order by change_date desc limit :size offset :page",      nativeQuery = true) 
+```
 
 
 
+## jpa多条件多表联合查询
 
+通过实体类映射实现多表关联条件查询
+jpa对于多表关联可以在实体类中进行关联映射，一对一用@OneToOne，一对多用@OneToMany，多对多用@ManyToMany，多对一用@ManyToOne，具体实体类配置就不多说了，然后对于条件查询采用Specification对象进行封装，如下
+
+```
+Specification<A> specification = new Specification<A>() {
+        @Override
+        public Predicate toPredicate(Root<A> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+            //创建查询条件集合
+            List<Predicate> orlist = new ArrayList<Predicate>();
+            //判断是否模糊查询
+            if (StringUtils.isNotBlank(key)){
+                //添加查询条件  cb.like：模糊查询   root.get("查询字段").as(类型.class)
+                orlist.add(cb.like(root.get("name").as(String.class),"%"+  key + "%"));
+                orlist.add(cb.like(root.get("phone").as(String.class), "%"+  key + "%"));
+                orlist.add(cb.like(root.get("role").as(String.class),"%"+  key + "%"));
+                //创建左外连接  Join<左，右>     root.join("副表实体在主表主体中的属性名"，连接方式)
+                Join<A,B> join = root.join("b", JoinType.LEFT);
+                //将连接表需要查询的字段写入
+                orlist.add(cb.like(join.get("post").as(String.class),"%"+key+"%"));
+            }
+            return  cb.or(orlist.toArray(new Predicate[orlist.size()]));
+        }
+    };
+
+```
+
+通过@Query(value=“sql语句”)方式实现表关联查询
+创建ARepository接口然后继承JpaRepository和JpaSpecificationExecutor，然后在repository接口中编写查询方法，如下
+
+	public interface ARepository extends JpaRepository<A,String> , JpaSpecificationExecutor<A> {
+	@Query(value="SELECT * " +
+	        "FROM A_table a " +
+	        "LEFT JOIN B_table b ON a.b_unid = b.unid " +
+	        "LEFT JOIN C_table c ON a.c_unid = c.unid " +
+	        "WHERE a.delete_flag = 0 " +
+	        "AND (?1 is null or ?1='' or a.b_unid = ?1 )" +
+	        "AND (?2 is null or ?2='' or a.c_unid = ?2 ) " +
+	        "AND (?3 is null or ?3='' or a.created_time >= ?3 ) " +
+	        "ORDER BY fqcm.created_time DESC",nativeQuery = true)
+	List<Map> selectABC(String bUnid, String cUnid, String createdTimeStart);
+	 }
+
+@Query中?!,?2,?3代表传递的参数，应和下边方法中的参数顺序保持一致，其中条件
+
+```
+AND (?1 is null or ?1='' or a.b_unid = ?1 )
+```
+
+表示参数如果为空字符串或者null时条件不生效，不为空字符串和null时条件生效。
+nativeQuery = true 表示可以执行原生的sql语句。
+
+本文借鉴：
+
+CSDN博主「生活压力大」 原文链接：https://blog.csdn.net/weixin_37783650/article/details/111588665
