@@ -55,7 +55,7 @@ http://www.oracle.com/technetwork/database/features/instant-client/index-097480.
 
 1.双击plsqldev，点击 “cancel”或 叉叉，进入到主界面，依次点击 Tools --> Preferences…
 
-![20180827212925130](/../../../../../../%E6%A1%8C%E9%9D%A2/%E6%96%B0%E5%BB%BA%20Markdown%20(2)/20180827212925130.png)
+![20180827212925130](./20180827212925130.png)
 
 找到Oracle Home 和 OCI library选项，其中 Oracle Home填写的是你的instantclient的安装 根 目录， 而OCI library填的是你instantclient下的oci.dll路径。选好后Apply， 关闭，重启plsql，这时你就会发现，登录界面中 有了 normal的选项了。
 
@@ -63,14 +63,14 @@ http://www.oracle.com/technetwork/database/features/instant-client/index-097480.
 
 使用   select userenv('language') from dual;  查询当前oracle的字符集,查出的字符集作为变量值配置环境变量
 
-![这里写图片描述](/../../../../../../%E6%A1%8C%E9%9D%A2/%E6%96%B0%E5%BB%BA%20Markdown%20(2)/20170221150403956.png)
+![这里写图片描述](./20170221150403956.png)
 
 ```undefined
 NLS_LONG
 NLS_LANGAMERICAN_AMERICA.AL32UTF8或 SIMPLIFIED CHINESE_CHINA.ZHS16GBK
 ```
 
-![这里写图片描述](/../../../../../../%E6%A1%8C%E9%9D%A2/%E6%96%B0%E5%BB%BA%20Markdown%20(2)/20170221150419847.png)
+![这里写图片描述](./20170221150419847.png)
 
 ```vbnet
 TNS_ADMIN
@@ -108,7 +108,7 @@ SERVICE_NAME ：是数据库名（对应jdbc:oracle:thin:@10...**:1521:corcl）�
 数据库：我的是TEST，你的可能是ORCL，根据你安装数据库时创建的实例名。
 连接为：以超级管理员（SYSDBA）的身份连接，sys用户连接时规定是这样的，不要问为什么。
 
-![20180827215803490](/../../../../../../%E6%A1%8C%E9%9D%A2/%E6%96%B0%E5%BB%BA%20Markdown%20(2)/20180827215803490.png)
+![20180827215803490](./20180827215803490.png)
 
 ## 六、注意事项
 
@@ -118,20 +118,20 @@ SERVICE_NAME ：是数据库名（对应jdbc:oracle:thin:@10...**:1521:corcl）�
 
 切换菜单到下拉选的方式(Windows 的经典模式)
 
-![20201120104730880](/../../../../../../%E6%A1%8C%E9%9D%A2/%E6%96%B0%E5%BB%BA%20Markdown%20(2)/20201120104730880.png)
+![20201120104730880](./20201120104730880.png)
 
 开启表名和字段名的提示
 
-![20210120153449338](/../../../../../../%E6%A1%8C%E9%9D%A2/%E6%96%B0%E5%BB%BA%20Markdown%20(2)/20210120153449338.png)
+![20210120153449338](./20210120153449338.png)
 
 开启密码存储
 第一步
 
-![20210213144814873](/../../../../../../%E6%A1%8C%E9%9D%A2/%E6%96%B0%E5%BB%BA%20Markdown%20(2)/20210213144814873.jpg)
+![20210213144814873](./20210213144814873.jpg)
 
 第二步
 
-![20210213144822218](/../../../../../../%E6%A1%8C%E9%9D%A2/%E6%96%B0%E5%BB%BA%20Markdown%20(2)/20210213144822218.jpg)
+![20210213144822218](./20210213144822218.jpg)
 
 
 
