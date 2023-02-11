@@ -613,3 +613,15 @@ public static void sort(int[] a) {
  但从 HTTP/1.1起，默认使用长连接，用以保持连接特性。
 
  HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。  
+
+## 类之间转换
+
+BeanUtils.copyProperties("转换前的类", "转换后的类");  
+有几点我们需要注意： 
+BeanUtils.copyProperties(a, b); 
+b中的存在的属性，a中一定要有，但是a中可以有多余的属性；
+a中与b中相同的属性都会被替换，不管是否有值；
+a、 b中的属性要名字相同，才能被赋值，不然的话需要手动赋值；
+Spring的BeanUtils的CopyProperties方法需要对应的属性有getter和setter方法；
+如果存在属性完全相同的内部类，但是不是同一个内部类，即分别属于各自的内部类，则spring会认为属性不同，不会copy；
+spring和apache的copy属性的方法源和目的参数的位置正好相反，所以导包和调用的时候都要注意一下。
