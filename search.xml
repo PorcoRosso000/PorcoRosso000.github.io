@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Onedrive实现与本地文件同步</title>
+      <link href="/posts/644d29f9.html"/>
+      <url>/posts/644d29f9.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="具体操作方法"><a href="#具体操作方法" class="headerlink" title="具体操作方法"></a>具体操作方法</h2><p>打开Onedrive，在右下角系统托盘上点击右键，选择设置。<br>选择“自动保存”选项卡，在“保护重要文件夹”中勾选文档。这一步的操作是为了保证文档文件夹中的内容电脑时刻与云端保持同步。注意：选择之后本地的文档将成为指向Onedrive文件夹的目录，因此保存在其中的虚拟机或VS工程文件等有可能出现无法读取的现象，请注意在操作后进行调整。</p><p>假设我要同步的本地文件夹是E:\工作，而Onedrive在本地的保存目录为C:\Users\用户名\OneDrive。</p><p>以管理员模式打开命令提示符（Win10用户可直接搜索cmd，然后右键命令提示符搜索结果的程序，选择以管理员权限运行）。在打开的窗口中输入命令：mklink /d C:\Users\用户名\OneDrive\工作 E:\工作。注意：执行本操作时请确保C:\Users\用户名\OneDrive下没有名为“工作”的目录，否则将会报错。</p><p>回车键执行后，命令提示符返回“……创建的文件链接”字样的文字，即说明建立连接成功。</p><p><strong>注意</strong>：如果文件目录中包含空格，则在输入命令的时候应使用英文双引号将该完整目录括起来。</p><h2 id="windows-软链接的建立及删除"><a href="#windows-软链接的建立及删除" class="headerlink" title="windows 软链接的建立及删除"></a>windows 软链接的建立及删除</h2><h3 id="1-建立举例"><a href="#1-建立举例" class="headerlink" title="1.建立举例"></a>1.建立举例</h3><ol><li>##建立d:develop链接目录，指向远程的目标服务器上的e盘的对应目录。</li><li>mklink /d d:\develop \138.20.1.141\e$\develop</li><li></li><li>##建立d:develop链接目录，指向远程的目标服务器上的e盘的对应目录。</li><li>mklink /d d:\recivefiles \138.20.1.141\e$\recivefiles<br>mklink/d d：\recivefiles \138.20.1.141\e$\recivefiles</li></ol><h3 id="2-删除举例"><a href="#2-删除举例" class="headerlink" title="2.删除举例"></a>2.删除举例</h3><ol><li>#删除虚拟的链接目录，并不会删除远程文件夹真实文件，注意千万不能用del，del会删除远程的真实文件。</li><li>rmdir d:\recivefiles rmdir d：\recivefiles</li><li>rmdir d:\develop rmdir d：\development</li></ol><h3 id="3-补充mklink用法"><a href="#3-补充mklink用法" class="headerlink" title="3.补充mklink用法"></a>3.补充mklink用法</h3><ol><li>C:\Users\joshua&gt;mklink C：\Users\joshua&gt;mklink</li><li>Creates a symbolic link. 创建符号链接。</li><li>MKLINK [[/D] | [/H] | [/J]] Link Target</li><li>MKLINK[[/D] |[/H] |[/J]]链接目标</li><li> /D Creates a directory symbolic link. Default is a file symbolic link.</li><li> /D Createsadirectory symbolic link.默认为文件符号链接。</li><li>/H Creates a hard link instead of a symbolic link.<br>/HCreatesahardlink而不是asymboliclink。</li><li>/J Creates a Directory Junction. /j CreatesaDirectory Junction.   </li><li>Link specifies the new symbolic link name.<br>链接指定新的符号链接名称。</li><li>Target specifies the path (relative or absolute) that the new link refers to.<br>目标指定新链接引用的路径（相对或绝对）。</li></ol><p>命令格式：mklink /d(定义参数) \MyDocs(链接文件) \Users\User1\Documents(原文件)</p><p>/d：建立目录的符号链接符号链接(symbolic link)<br>/j：建立目录的软链接（联接）(junction)</p><p>/h：建立文件的硬链接(hard link)</p><h2 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h2><p>1.CSDN博主「Caleb_Sung」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_41933331/article/details/86761373">https://blog.csdn.net/qq_41933331/article/details/86761373</a></p><p>2.CSDN博主「<a href="https://blog.csdn.net/qq_37861937">zhe哲</a>」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_37861937/article/details/79064841">https://blog.csdn.net/qq_37861937/article/details/79064841</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Onedrive </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>正则表达式</title>
       <link href="/posts/2f57a694.html"/>
       <url>/posts/2f57a694.html</url>
