@@ -53,7 +53,11 @@ iptables -I INPUT -p 协议 --dport 端口号 -j ACCEPT
 
  
 
+## 7.Tomcat下载地址
 
+官网:https://archive.apache.org/dist/tomcat/
+
+国内快速镜像:https://mirrors.cnnic.cn/apache/tomcat/
 
  
 
