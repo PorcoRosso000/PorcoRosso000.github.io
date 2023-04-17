@@ -1,9 +1,9 @@
 ---
-title: sql笔记
-typora-root-url: sql笔记
+title: mysql数据语法
+typora-root-url: mysql数据语法
 abbrlink: d36bd08c
 date: 2023-01-07 14:34:51
-tags:
+tags: mysql
 permalink:
 ---
 
@@ -12,6 +12,15 @@ permalink:
 ##  SELECT LAST_INSERT_ID()：
 
 得到刚 insert 进去记录的主键值，只适用与自增主键；
+
+mysql一个表中唯一ID生成就需要这个函数
+
+Last_insert_id()是MYSQL提供的返回当前客户端最后一个insert或update查询中设置为AUTO_INCREMENT列的值
+
+Last_insert_id()不受其他客户端影响，所以是线程安全的，当前客户端只能拿到当前客户端的最新值，不需加锁处理
+
+比如fileid是主键，并且设置成自动增加，那么在插入的时候不指定fileid，插入后通过LAST_INSERT_ID()就能得到插入最后一条记录的id
+ ，并且是当前线程执行的，并不需要事务控制
 
 ```java
 <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">

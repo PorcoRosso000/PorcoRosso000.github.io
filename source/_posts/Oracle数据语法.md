@@ -143,3 +143,11 @@ CREATE SEQUENCE SEQ_WH_SL_INVENTORY_ITEM_AREA INCREMENT BY 1 START WITH 1 MAXVAL
 select distinct (t.SHORT_NAME)  SHORT_NAME   from WH_SL_INVENTORY_ITEM t
 ```
 
+
+
+oracle经多行拼接成一行
+
+```
+select DISTINCT  LISTAGG (a.ATTR_CODE || ':'|| a.ATTR_VALUE,';') within group(order by a.attr_code) over(partition by i.id) attrMapStr          ,LISTAGG (a.ATTR_CODE || ':'|| a.ATTR_TEXT,';') within group(order by a.attr_code) over(partition by i.id) attrTextMapStr          ,i.id as otherId        from WH_VARIETY_MATERIEL_ATTR a        join WH_SL_INVENTORY_ITEM i        on a.OTHER_ID = i.STOCK_ITEMS_ID
+```
+
