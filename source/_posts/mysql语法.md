@@ -1,6 +1,6 @@
 ---
-title: mysql数据语法
-typora-root-url: mysql数据语法
+title: mysql语法
+typora-root-url: mysql语法
 abbrlink: d36bd08c
 date: 2023-01-07 14:34:51
 tags: mysql
@@ -8,6 +8,8 @@ permalink:
 ---
 
 
+
+# java代码
 
 ##  SELECT LAST_INSERT_ID()：
 
@@ -149,6 +151,128 @@ AND (?1 is null or ?1='' or a.b_unid = ?1 )
 
 表示参数如果为空字符串或者null时条件不生效，不为空字符串和null时条件生效。
 nativeQuery = true 表示可以执行原生的sql语句。
+
+
+
+# sql语句
+
+## CASE WHEN ELSE END 
+
+```
+1. 
+CASE 
+        WHEN table1.st_licence_location = 'CUSTOMER' THEN '客户'
+        WHEN table1.st_licence_location = 'AGENT' THEN '经销商'
+        WHEN table1.st_licence_location = 'CUSTOMERMANAGER' THEN '客户经理'
+        WHEN table1.st_licence_location = 'DMV' THEN '车管所'
+        WHEN table1.st_licence_location = 'OTHER' THEN '其他'
+    END  AS st_licence_location, -- 登记证当前位置
+2.
+ case when salary <= 500 then '1'
+         when salary > 500 and salary <= 600  then '2'
+         when salary > 600 and salary <= 800  then '3'
+         when salary > 800 and salary <= 1000 then '4'
+         else null end salary_class
+3.
+case country
+        when '中国'     then'亚洲'
+        when '印度'     then'亚洲'
+        when '日本'     then'亚洲'
+        when '美国'     then'北美洲'
+        when '加拿大'  then'北美洲'
+        when '墨西哥'  then'北美洲'
+        else '其他' end 
+        
+4.when 后有多个条件的时候可以使用and 或者or连接
+```
+
+
+
+
+
+## union all
+
+UNION 操作符用于合并两个或多个 SELECT 语句的结果集。
+
+请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。
+
+默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL。
+
+```
+SELECT 
+    st_cust_name AS st_lessee_name,
+    st_cust_no
+    FROM
+    ods_cust_info_df  
+    UNION ALL
+    SELECT 
+    st_enterprise_name AS st_lessee_name,
+    st_cust_no
+    FROM
+    ods_enterprise_customer_df  
+```
+
+
+
+
+
+
+
+## INSERT INTO SELECT 语法
+
+### 将一个表的所有列复制到另一个表：
+
+INSERT INTO *table2*
+SELECT * FROM *table1*WHERE *condition*;
+
+### 仅将一个表中的一些列复制到另一个表中：
+
+INSERT INTO *table2* (*column1*, *column2*, *column3*, ...)
+SELECT *column1*, *column2*, *column3*, ...
+FROM *table1*
+WHERE *condition*;
+
+
+
+也可以将几个表联查的数据复制到另一个表中
+
+INSERT INTO *table2* (*column1*, *column2*, *column3*, ...)
+SELECT 
+
+*column1*, *column2*, *column3*, ...
+FROM 
+(
+
+select
+id,
+
+*column1*
+from
+table1
+
+)
+left join
+
+(
+select
+id,
+
+*column2*
+from
+table2
+
+)
+on table1.id =  table2.id
+
+left join  .......
+
+列的值也可以直接赋值  例如  '三山' as *column3*
+
+
+
+
+
+
 
 本文借鉴：
 

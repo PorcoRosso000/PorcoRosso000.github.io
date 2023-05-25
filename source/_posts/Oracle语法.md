@@ -1,6 +1,6 @@
 ---
-title: Oracle数据语法
-typora-root-url: Oracle数据语法
+title: Oracle语法
+typora-root-url: Oracle语法
 tags: Oracle
 abbrlink: a8e4d798
 date: 2023-03-01 07:39:47
