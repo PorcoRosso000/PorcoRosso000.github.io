@@ -4,6 +4,8 @@ abbrlink: 89e11d40
 date: 2022-11-11 22:30:29
 ---
 
+## hexo基础命令
+
 hexo new post "文章名" :创建文章
 hexo clean ：删除之前生成的文件，若未生成过静态文件，可忽略此命令。
 hexo generate ：生成静态文章，可以用hexo g缩写
@@ -12,7 +14,8 @@ hexo s -p 8000 : 搜索启动
 hexo server :运行服务
 hexo algolia ：搜集更新博文数据
 
-多台电脑都可以使用个人博客
+## 多台电脑都可以使用个人博客
+
 除了master分支再建立一个hexo分支(设为默认)
 
 创建一个叫hexo（或者blog，名字随意）的分支，并切换到这个分支
@@ -33,11 +36,13 @@ git push –set-upstream origin hexo
 
 npm install hexo
 
+npm install hexo-cli -g
+
 npm install
 
 npm install hexo-deployer-git
 
-这三条命令
+这四条命令
 
 然后创建文章
 
@@ -45,13 +50,12 @@ npm install hexo-deployer-git
 
 
 
-更新giuhub仓库hexo分支
+## 更新giuhub仓库hexo分支
 
 git status  :查看修改的文件
 git add .  :放入缓存区
 git commit -m “本次提交的备注”  :本次提交的文字说明
 git push -u origin hexo    :将项目上传到远程仓库的hexo分支
-
 
 
 

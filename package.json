@@ -33,7 +33,6 @@
     "hexo-theme-landscape": "^0.0.3"
   },
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PorcoRosso000/PorcoRosso000.github.io.git"
