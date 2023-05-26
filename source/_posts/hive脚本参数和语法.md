@@ -223,6 +223,12 @@ from_unixtime(unix_timestamp(V_CPM_ACCOUNT.OPEN_DATE,'yyyy-MM-dd'),'yyyyMMdd')
 select    from_unixtime(unix_timestamp(date_add(from_unixtime(unix_timestamp('${beforeDate}','yyyyMMdd'),'yyyy-MM-dd'),-1),'yyyy-MM-dd'),'yyyyMMdd') 
 ```
 
+### hive获取本月的上月
+
+```
+date_format(xxx_time,'yyyy-MM') = substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP(),'yyyy-MM-dd HH:mm:ss'), -1 ) ,1, 7)
+```
+
 
 
 ## 版权声明: 
