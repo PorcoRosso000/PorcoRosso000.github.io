@@ -9,9 +9,9 @@ permalink:
 
 
 
-# java代码
+### java代码
 
-##  SELECT LAST_INSERT_ID()：
+####  SELECT LAST_INSERT_ID()：
 
 得到刚 insert 进去记录的主键值，只适用与自增主键；
 
@@ -32,7 +32,7 @@ SELECT LAST_INSERT_ID()
 
 
 
-## <include refid="Base_Column_List"
+#### <include refid="Base_Column_List"
 
 这个在[MyBatis](https://so.csdn.net/so/search?q=MyBatis&spm=1001.2101.3001.7020)查询数据库的sql中经常会出现。它的在上面已经定义，作用相当于 ，Base_Column_List是固定的几个字段，而用*号的话会降低查询效率，因为后期数据库的字段会不断增加。
 
@@ -51,7 +51,7 @@ where id = #{id,jdbcType=BIGINT}
 </select>` 
 ```
 
-## sql中使用in/not in关键字后集合参数遍历方式
+#### sql中使用in/not in关键字后集合参数遍历方式
 
 ```java
 <select id="getIdsByOrgNums" resultType="java.lang.Long">
@@ -63,7 +63,7 @@ from user_organization where org_num in
 </select> 
 ```
 
-## 集合方式批量添加
+#### 集合方式批量添加
 
 ```java
 <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
@@ -87,11 +87,11 @@ values
 </insert> 
 ```
 
-## Unknown collation: ‘utf8mb4_0900_ai_ci‘ 的解决方案高版本的数据库数据导入时报错解决方案
+#### Unknown collation: ‘utf8mb4_0900_ai_ci‘ 的解决方案高版本的数据库数据导入时报错解决方案
 
 将MySQL8.0导出的sql文件中，所有的utf8mb4_0900_ai_ci替换为utf8_general_ci   
 
-## jpa在mapper层上通过注解的方式写sql 
+#### jpa在mapper层上通过注解的方式写sql 
 
 ```
 @Query(      value = "SELECT id,report_type,report_id,project_id,project_no,report_name,change_type,change_user,change_date,change_content,status,process_version,process_description,compound_id,production_type,report_section FROM notification WHERE CASE WHEN :no = true THEN project_no in (:projects) ELSE 1=1 END AND CASE WHEN :changeType = true THEN change_type in (:changeTypes) ELSE 1=1 END AND CASE WHEN :reportType = true THEN report_type in (:reportTypes) ELSE 1=1 END order by change_date desc limit :size offset :page",      nativeQuery = true) 
@@ -99,7 +99,7 @@ values
 
 
 
-## jpa多条件多表联合查询
+#### jpa多条件多表联合查询
 
 通过实体类映射实现多表关联条件查询
 jpa对于多表关联可以在实体类中进行关联映射，一对一用@OneToOne，一对多用@OneToMany，多对多用@ManyToMany，多对一用@ManyToOne，具体实体类配置就不多说了，然后对于条件查询采用Specification对象进行封装，如下
@@ -154,9 +154,9 @@ nativeQuery = true 表示可以执行原生的sql语句。
 
 
 
-# sql语句
+### sql语句
 
-## CASE WHEN ELSE END 
+#### CASE WHEN ELSE END 
 
 ```
 1. 
@@ -190,7 +190,7 @@ case country
 
 
 
-## union all
+#### union all
 
 UNION 操作符用于合并两个或多个 SELECT 语句的结果集。
 
@@ -218,14 +218,14 @@ SELECT
 
 
 
-## INSERT INTO SELECT 语法
+#### INSERT INTO SELECT 语法
 
-### 将一个表的所有列复制到另一个表：
+#### 将一个表的所有列复制到另一个表：
 
 INSERT INTO *table2*
 SELECT * FROM *table1*WHERE *condition*;
 
-### 仅将一个表中的一些列复制到另一个表中：
+#### 仅将一个表中的一些列复制到另一个表中：
 
 INSERT INTO *table2* (*column1*, *column2*, *column3*, ...)
 SELECT *column1*, *column2*, *column3*, ...
@@ -234,7 +234,7 @@ WHERE *condition*;
 
 
 
-也可以将几个表联查的数据复制到另一个表中
+#### 也可以将几个表联查的数据复制到另一个表中
 
 INSERT INTO *table2* (*column1*, *column2*, *column3*, ...)
 SELECT 
@@ -270,10 +270,56 @@ left join  .......
 
 
 
+#### with as 用法
 
+**with as 定义**
 
+with A as (select * from class)
 
+也就是将重复用到的大批量 的SQL语句，放到with as 中，加一个别名，在后面用到的时候就可以直接用。对于大批量的SQL数据，起到优化的作用。
 
-本文借鉴：
+**注意点：**
+
+1、with子句只能被select查询块引用
+
+2.with子句的返回结果存到用户的临时表空间中，只做一次查询，反复使用,提高效率。
+
+3.在同级select前有多个查询定义的时候，第1个用with，后面的不用with，并且用逗号隔开。
+
+4.最后一个with 子句与下面的查询之间不能有逗号，只通过右括号分割,with 子句的查询必须用括号括起来
+
+**用法：**
+
+**–针对一个别名**
+
+with tmp as (select * from tb_name)
+
+**–针对多个别名**
+
+with
+
+tmp as (select * from tb_name),
+
+tmp2 as (select * from tb_name2),
+
+tmp3 as (select * from tb_name3),
+
+**–相当于建了个e临时表**
+
+with e as (select * from scott.emp e where e.empno=7499)
+
+select * from e;
+
+**–相当于建了e、d临时表**
+
+with
+
+e as (select * from scott.emp),
+
+d as (select * from scott.dept)
+
+select * from e, d where e.deptno = d.deptno;
+
+### 版权声明: 
 
 CSDN博主「生活压力大」 原文链接：https://blog.csdn.net/weixin_37783650/article/details/111588665

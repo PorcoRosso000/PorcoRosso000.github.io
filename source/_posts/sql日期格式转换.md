@@ -133,8 +133,14 @@ SELECT
 
 ### 3.数据判空并进行日期转换
 
+xxxx年xx月xx日 格式或者其他格式转换成  xxxx-xx-xx
+
 SELECT IF('2019年01月17日' = 'NULL',NULL
 ,IF('2019年01月17日' like '%日%',STR_TO_DATE('2019年01月17日','%Y年%m月%d日'),DATE_FORMAT('2019年01月17日','%Y-%m-%d')))
+
+xxxx年xx月xx日 xx时xx分xx秒 格式或者其他格式转换成  xxxx-xx-xx xx:xx:xx
+
+IF ( st_approve_start_time = 'NULL', NULL,IF(st_approve_start_time like '%日%',STR_TO_DATE(st_approve_start_time,'%Y年%m月%d日 %H时%i分%s秒'),DATE_FORMAT(st_approve_start_time,'%Y-%m-%d %H:%i:%s'))) as st_approve_start_time
 
 
 
