@@ -4,7 +4,7 @@ abbrlink: 89e11d40
 date: 2022-11-11 22:30:29
 ---
 
-## hexo基础命令
+### hexo基础命令
 
 hexo new post "文章名" :创建文章
 hexo clean ：删除之前生成的文件，若未生成过静态文件，可忽略此命令。
@@ -14,7 +14,7 @@ hexo s -p 8000 : 搜索启动
 hexo server :运行服务
 hexo algolia ：搜集更新博文数据
 
-## 多台电脑都可以使用个人博客
+### 多台电脑都可以使用个人博客
 
 除了master分支再建立一个hexo分支(设为默认)
 
@@ -50,7 +50,7 @@ npm install hexo-deployer-git
 
 
 
-## 更新giuhub仓库hexo分支
+### 更新giuhub仓库hexo分支
 
 git status  :查看修改的文件
 git add .  :放入缓存区
@@ -59,12 +59,28 @@ git push -u origin hexo    :将项目上传到远程仓库的hexo分支
 
 
 
-##  报错 :
+###  报错 :
 
-failed to push some refs to 'github.com:PorcoRosso000/PorcoRosso000.github.io.git' 
+#### failed to push some refs to 'github.com:PorcoRosso000/PorcoRosso000.github.io.git' 
 
 远程库和本地库不一致 
-解决方案: 拉取远程库数据同步到本地库      git pull --rebase origin hexo 
+解决方案: 拉取远程库数据同步到本地库      
+
+git pull --rebase origin hexo 
 
 
 
+### error: cannot pull with rebase: Your index contains uncommitted changes.
+
+error: cannot pull with rebase: Your index contains uncommitted changes.
+error: please commit or stash them.
+
+解决方案：修复冲突
+
+git stash
+
+git pull --rebase
+
+git stash pop
+
+之后就可以继续提交
