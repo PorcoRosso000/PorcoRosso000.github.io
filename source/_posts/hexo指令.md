@@ -70,7 +70,7 @@ git pull --rebase origin hexo
 
 
 
-### error: cannot pull with rebase: Your index contains uncommitted changes.
+#### error: cannot pull with rebase: Your index contains uncommitted changes.
 
 error: cannot pull with rebase: Your index contains uncommitted changes.
 error: please commit or stash them.
