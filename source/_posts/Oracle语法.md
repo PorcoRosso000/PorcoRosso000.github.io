@@ -124,6 +124,9 @@ SELECT t1.PLT_FROZEN_WEIGHT FROM (
 	WHERE t1.ID = t.INVENTORY_ITEM_ID 
 	) 
     where t.AREA_CODE ='0' ;
+
+oracle使用自己表中的数据修改自己的其他数据
+UPDATE WH_SL_WHITE_BLACK t  set ACTUAL_WEIGHT =t.FROZEN_WEIGHT
 ```
 
 
@@ -315,8 +318,53 @@ select t1.*
                   and t2.name is not null);
 ```
 
+### 把数据以键值对的形式查出来
+
+```
+select DISTINCT
+        LISTAGG (a.ATTR_CODE || ':'|| a.ATTR_VALUE,';') within group(order by a.attr_code) over(partition by i.id) attrMapStr
+        ,LISTAGG (a.ATTR_CODE || ':'|| a.ATTR_TEXT,';') within group(order by a.attr_code) over(partition by i.id) attrTextMapStr
+        ,i.id as otherId
+        from WH_VARIETY_MATERIEL_ATTR a
+        join WH_SL_INVENTORY_ITEM i
+        on a.OTHER_ID = i.STOCK_ITEMS_ID and a.type = decode(i.SOURCE_TYPE,'01','5','6','6','3')
+```
+
+### Oracle查询距当前时间N天、N小时或者N分钟内的数据
+
+假设我们需要查询五分钟内的数据。
+Oracle数据库查询系统时间的函数sysdate，可以编辑SQL“select sysdate from dual” 测试查询下当前时间。
+查询五分钟内数据的SQL为
+
+```
+select * from table_name where create_time >= sysdate - 5/(24*60)
+```
+
+或者可以使用between and
+
+```
+select * from table_name where create_time between sysdate - 5/(24*60) and sysdate
+```
+
+下面列举下天、时、分、秒的写法
+
+SQL	含义
+sysdate+1	加一天
+sysdate+1/24	加1小时
+sysdate+1/(24*60)	加1分钟
+sysdate+1/(24*60*60)	加1秒钟
+sysdate-1	减一天
+sysdate-1/24	减1小时
+sysdate-1/(24*60)	减1分钟
+sysdate-1/(24*60*60)	减1秒钟
+其他关系型数据库的写法大致相同，需要把时间函数 sysdate修改为使用的关系型数据库的函数。例如MySQL使用 now() 获取时间，神通使用 CURRENT_DATE 获取时间等。
+
+### 存储过程
 
 
-### 版权声明：
 
-「鱼丸丶粗面」原创文章：https://blog.csdn.net/qq_34745941/article/details/85085866
+### 参考文献：
+
+CSDN博主「鱼丸丶粗面」：https://blog.csdn.net/qq_34745941/article/details/85085866
+
+CSDN博主「Kerwin Ma」: https://blog.csdn.net/MCJ_2017/article/details/114822608

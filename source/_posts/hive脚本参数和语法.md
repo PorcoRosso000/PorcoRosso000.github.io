@@ -41,7 +41,8 @@ SET MAPREDUCE.REDUCE.JAVA.OPTS=-XMX2048M;
 ### 窗口函数
 
 ```
---获取分组后的第一位
+ROW_NUMBER() 开窗函数
+--获取分组后的第一位  
 --根据  PARTITION BY 之后的值经行分组  根据ORDER BY 之后的值进行排序 根据NEWINDEX的值进行筛选数据
 SELECT 
             ACCOUNT_ID
@@ -59,6 +60,12 @@ SELECT
                     WHERE thedate='${beforeDate}' 
             )table1
             WHERE table1.NEWINDEX =1
+
+sum()开窗函数
+CPM_BALANCE.BOOK_BALANCE + SUM( CASE 
+        WHEN CPM_VOUCHER.DIR_FLAG = '1' THEN CPM_VOUCHER.AMOUNT 
+        WHEN CPM_VOUCHER.DIR_FLAG = '2' THEN -CPM_VOUCHER.AMOUNT 
+        END) OVER(partition by CPM_VOUCHER.ACCOUNT_ID ,CPM_VOUCHER.BOOK_TIME  order by  CPM_VOUCHER.ACCOUNT_ID,CPM_VOUCHER.BOOK_TIME DESC )   AS CURR_BAL-- 账户余额
 ```
 
 ### hive  REGEXP_REPLACE 正则表达式
@@ -924,6 +931,52 @@ gfdecba
 set mapreduce.map.memory.mb=4096;
 
 如果设置成4096还是报return code 2 。那么可以加大这个值。设置这个值就是1024的整数倍
+
+
+
+#### hive拉链表思路
+
+```
+拉链表
+
+
+    SELECT s1.st_cust_name
+      ,s1.st_certificate_no
+        -- 如果手机号为，空则取上一条手机号补上（前提是同一个证件号下的），如果不为空则不变
+      ,IF(s1.st_phone is null ,LAG(s1.st_phone,1) OVER(PARTITION BY s1.st_certificate_no order by s1.st_create_time asc),s1.st_phone) as st_phone
+        -- 如果地址为空，则取上一条地址不上（前提是同一个证件号下的），如果不为空则不变
+      ,IF(s1.st_present_residential_address is null,LAG(s1.st_present_residential_address,1) OVER(PARTITION BY s1.st_certificate_no order by s1.st_create_time asc)
+            ,s1.st_present_residential_address
+         ) as st_present_residential_address
+        -- 如果起始时间为空，则设为最小时间，否则不变
+      ,IF(s1.st_create_time is null ,'1970-01-01 00:00:00',s1.st_create_time) as st_create_time
+        -- 取下一条起始日期作为当前的终止日期（前提是同一个证件号下的），如果取到后为空则设为无穷大时间
+      ,case when LEAD(s1.st_create_time,1) OVER(PARTITION BY s1.st_certificate_no order by s1.st_create_time asc) is null then '9999-99-99 99:99:99'
+            else LEAD(s1.st_create_time,1) OVER(PARTITION BY s1.st_certificate_no order by s1.st_create_time asc) end end_time
+    --   ,ROW_NUMBER() OVER(PARTITION BY s1.st_phone,s1.st_present_residential_address order by s1.st_create_time asc) as cat
+    --   ,LAG(s1.st_present_residential_address,1) OVER(PARTITION BY s1.st_certificate_no order by s1.st_create_time asc) as lag_address
+    --   ,ty
+    from (
+        SELECT a.st_cust_name
+              ,a.st_certificate_no
+              ,a.st_phone
+              ,a.st_present_residential_address
+              ,a.st_create_time
+            --   ,"客户" as ty
+        from ods_cust_info_df a where a.thedate = '20230428' and a.st_certificate_type = 'ID_CARD'
+        union all
+        SELECT b.name 
+              ,b.certificate_no 
+              ,b.mobile 
+              ,b.residence_address 
+              ,b.create_time 
+            --   ,"订单" as ty
+        from stg_zh_orders_order_lessee_df b where b.thedate = '20230428' and b.certificate_type = 'ID_CARD' 
+        ) s1 
+        where length(s1.st_certificate_no) = 18 order by s1.st_certificate_no ,st_create_time  ASC
+```
+
+
 
 ## 版权声明: 
 

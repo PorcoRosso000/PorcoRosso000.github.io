@@ -152,6 +152,40 @@ AND (?1 is null or ?1='' or a.b_unid = ?1 )
 表示参数如果为空字符串或者null时条件不生效，不为空字符串和null时条件生效。
 nativeQuery = true 表示可以执行原生的sql语句。
 
+#### 代码中map文件 配置一对多
+
+```
+
+<resultMap id="BaseResultMap" type="com.hundsun.exchange.iwms.domain.query.inventory.WhSlInventoryIAreaQuery" >
+    <id column="ID" property="id" jdbcType="NUMERIC" />
+    <collection property="areaList" ofType="com.hundsun.exchange.iwms.domain.dto.inventory.WhSlInventoryItemArea">
+        <id column="ID" property="id" jdbcType="NUMERIC" />
+        <result column="INVENTORY_ITEM_ID" property="inventoryItemId" jdbcType="NUMERIC" />
+        <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+        <result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="BIGINT" />
+        <result column="UNABSORBED_AMOUNT" property="unabsorbedAmount" jdbcType="BIGINT" />
+        <result column="PUBLIC_AMOUNT" property="publicAmount" jdbcType="BIGINT" />
+        <result column="PUBLIC_AVAILABLE_AMOUNT" property="publicAvailableAmount" jdbcType="BIGINT" />
+        <result column="PUBLIC_FROZEN_AMOUNT" property="publicFrozenAmount" jdbcType="BIGINT" />
+        <result column="RESERVE_AMOUNT" property="reserveAmount" jdbcType="BIGINT" />
+        <result column="RESERVE_AVAILABLE_AMOUNT" property="reserveAvailableAmount" jdbcType="BIGINT" />
+        <result column="RESERVE_FROZEN_AMOUNT" property="reserveFrozenAmount" jdbcType="BIGINT" />
+        <result column="GMT_CREATE" property="gmtCreate" jdbcType="DATE" />
+        <result column="GMT_MODIFY" property="gmtModify" jdbcType="DATE" />
+        <result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+        <result column="IS_DELETED" property="isDeleted" jdbcType="VARCHAR" />
+    </collection>
+</resultMap>
+<!-- 统计货位库存的重量等  -->
+<select id="getAllInventoryAreaList" resultClass="BaseResultMap" >
+    SELECT i.ID,a.AREA_CODE,a.PUBLIC_AMOUNT,a.PUBLIC_AVAILABLE_AMOUNT,a.PUBLIC_FROZEN_AMOUNT,a.RESERVE_AMOUNT,a.RESERVE_AVAILABLE_AMOUNT,a.RESERVE_FROZEN_AMOUNT,a.TOTAL_AMOUNT,a.UNABSORBED_AMOUNT
+    from
+         WH_SL_INVENTORY_ITEM i
+             LEFT JOIN  WH_SL_INVENTORY_ITEM_AREA a
+                 ON i.ID=a.INVENTORY_ITEM_ID
+</select>
+```
+
 
 
 ### sql语句
@@ -211,12 +245,6 @@ SELECT
     FROM
     ods_enterprise_customer_df  
 ```
-
-
-
-
-
-
 
 #### INSERT INTO SELECT 语法
 
@@ -320,6 +348,181 @@ d as (select * from scott.dept)
 
 select * from e, d where e.deptno = d.deptno;
 
-### 版权声明: 
+#### Oracle  数据库sql主键自增
 
-CSDN博主「生活压力大」 原文链接：https://blog.csdn.net/weixin_37783650/article/details/111588665
+1.准备工作
+
+```
+创建oracle数据库表，用户表 SYS_USERS 其中user_id为主键
+
+-- Create table
+create table SYS_USERS
+(
+  user_id     NUMBER(9) not null,
+  user_name   VARCHAR2(20) not null,
+  user_pwd    VARCHAR2(20) not null,
+  full_name   VARCHAR2(20),
+  sex         VARCHAR2(1)
+)
+```
+
+##### 方法一:使用Sequence方式自增
+
+```
+设置ID的增长策略是sequence，同时指定sequence的名字，最好每个表建一个sequence，此种做法就如同MS-SQL,MY-SQL中的自动增长一样，不需要创建触发器：
+
+第一步：创建序列sequence
+
+create sequence seq_t_dept
+minvalue 1
+maxvalue 99999999
+start with 1
+increment by 1
+cache 50
+
+第二步：建立触发器
+
+create or replace trigger "dept_trig"
+    before insert on dept_p
+    referencing old as old new as new for each row
+declare
+begin
+    select seq_t_dept.nextval into :new.dept_sort from dual;
+end dept_trig;
+
+第三步：插入数据测试看dept_sort是否自增
+
+insert into dept_p values('001', '安保部', '000', 1);
+select * from dept_p;
+```
+
+  
+
+##### 方式二：序列化+显示调用
+
+```
+在真实情况下，用方法一，可以做到免插入自增长
+
+第一步：创建序列sequence
+
+//创建sequence
+create sequence seq_on_dept
+increment by 1
+start with 1
+nomaxvalue
+nocycle
+nocache;
+
+第二步：显示调用序列
+
+insert into dept_p values('001', '安保部', '000', 1, seq_on_test.nextval);insert into dept_p values('001', '安保部', '000', 1, seq_on_test.nextval);
+
+第三步：查询进行查看
+
+select * from dept_p
+```
+
+   
+
+注：
+
+--查看序列当前值和下一个值的查看方式
+select seq_on_dept.currval from dual;
+select seq_on_dept.nextval from dual;
+
+#### 数据库删除某条数据死锁怎么就解决?
+
+今天想删掉一个表里所有的数据，直接删总是卡住，  最后一点点删，删到最后一条，发现是那条有问题。
+
+不管是改表名，delete，还是truncate，还是drop都不行，就卡在那里。
+
+最后用了navicat里面的修复功能。就好了。 
+
+##### 1.方法一  mysql命令行修复
+
+（1）登录数据库：mysql -u root -p密码
+
+（2）使用数据库：use  dataName；(dataName要修复的数据库名)
+
+（3）检查表：check table tableName；(tableName检查的表名)
+
+（4）分析表：analyze table tableName;(tableName要分析的表名)
+
+（5）修复表：repair table tableName;(tableName要修复的表名)
+
+（6）优化表：optimize table tableName;(tableName要优化的表)
+
+##### 2.方法二    使用navicat修复
+
+ （1）右键要修复的表；
+
+  （2）点击维护；
+
+  （3）选择修复。
+
+
+
+#### SQL TRUNCATE TABLE：清空表
+
+SQL TRUNCATE TABLE 语句用来删除表中的所有记录，也即清空表，它类似于不带 WHERE 子句的 DELETE FROM 语句。
+
+##### TRUNCATE TABLE 和 DROP TABLE
+
+DROP TABLE 用来删除表，包括删除该表的数据、结构、索引、触发器、约束等所有信息。一旦使用 DROP TABLE 删除了表，则该表的所有信息都将丢失，该表再也无法使用了。如果您希望存储一些数据，就只能重新创建该表。
+TRUNCATE TABLE 仅仅删除表的所有记录，表的结构、索引、触发器、约束等将被保留，后续仍然可以使用该表。不带 WHERE 子句的 DELETE FROM 语句同样可以达到清空表的效果，但是 TRUNCATE TABLE 使用的系统资源和日志资源更少，因此比 DELETE FROM 更加快速。
+
+此外，TRUNCATE TABLE 还能重置具有自动递增（AUTO_INCREMENT）属性的字段，而 DELETE FROM 却不具备该功能。
+
+- 当您不再需要该表时，使用 DROP TABLE；
+- 当您仍要保留该表，只是想删除所有记录时，使用 TRUNCATE TABLE；
+- 当你要删除部分记录时，使用带有 WHERE 子句的 DELETE FROM。
+
+##### 语法
+
+TRUNCATE TABLE 命令的基本语法如下：
+
+TRUNCATE TABLE  table_name;
+
+table_name 为表名。
+
+##### 示例
+
+有包含如下记录的 CUSTOMERS 表：
+
+```
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+```
+
+使用 TRUNCATE TABLE 命令清空数据表：
+
+```
+SQL > TRUNCATE TABLE CUSTOMERS;
+```
+
+现在 CUSTOMERS 表已被清空，使用 SELECT 语句的输出结果如下：
+
+```
+SQL> SELECT * FROM CUSTOMERS;
+Empty set (0.00 sec)
+```
+
+
+### 参考文献: 
+
+CSDN博主「生活压力大」：https://blog.csdn.net/weixin_37783650/article/details/111588665
+
+CSDN博主「shaoduo」 ：https://blog.csdn.net/shaoduo/article/details/70888855
+
+CSDN博主「好__好」: https://blog.csdn.net/qq_32067151/article/details/105186355
+
+c语言中文网 「站长严长生」:http://c.biancheng.net/sql/truncate-table.html

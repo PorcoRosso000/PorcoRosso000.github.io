@@ -77,10 +77,10 @@ error: please commit or stash them.
 
 解决方案：修复冲突
 
-git stash
+git stash     :储藏dev分支下的修改
 
-git pull --rebase
+git pull --rebase    : 想要更好的提交树，使用rebase操作会更好一点。这样可以线性的看到每一次提交，并且没有增加提交节点。merge 操作遇到冲突的时候，当前merge不能继续进行下去。手动修改冲突内容后，add 修改，commit 就可以了。而rebase 操作的话，会中断rebase,同时会提示去解决冲突。解决冲突后,将修改add后执行git rebase –continue继续操作，或者git rebase –skip忽略冲突。
 
-git stash pop
+git stash pop     :取出之前储藏的修改
 
 之后就可以继续提交
