@@ -52,6 +52,7 @@ npm install hexo-deployer-git
 
 ### 更新giuhub仓库hexo分支
 
+git pull origin hexo  :远程更新本地没更新先更新远程脚本到本地
 git status  :查看修改的文件
 git add .  :放入缓存区
 git commit -m “本次提交的备注”  :本次提交的文字说明

@@ -920,6 +920,9 @@ hive> select length('abcedfg') from dual;
 说明：返回字符串A的反转结果999999举例：
 hive> select reverse(abcedfg’) from dual;
 gfdecba
+例: 
+查询列表字符串长度
+select distinct length(TX_ID) from CPM_VOUCHER WHERE TX_ID is not null;
 ```
 
 
