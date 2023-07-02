@@ -14,27 +14,43 @@ permalink:
 
 SET HIVE.EXEC.DYNAMIC.PARTITION=TRUE;
 SET HIVE.EXEC.DYNAMIC.PARTITION.MODE=NONSTRICT; 
+
 ------ 让 UNION ALL 同步执行 ----START
 SET HIVE.EXEC.PARALLEL=TRUE;SET HIVE.EXEC.PARALLEL.THREAD.NUMBER=8;
------- 让 UNION ALL 同步执行 ----END
+
+--------HIVE UNION ALL 部分数据丢失------
+set hive.optimize.index.filter=false; --关闭元数据检查
+
  -------矢量化查询-----------
 STARTSET HIVE.EXECUTION.ENGINE=TEZ;
 SET HIVE.VECTORIZED.EXECUTION.ENABLED=TRUE;
 SET HIVE.VECTORIZED.EXECUTION.REDUCE.ENABLED=TRUE;
---------矢量化查询----------END
---------优化GROUP BY------------------START
+
+--------优化GROUP BY------------------
 SET HIVE.MAP.AGGR = TRUE
 SET HIVE.GROUPBY.MAPAGGR.CHECKINTERVAL = 100000
 SET HIVE.GROUPBY.SKEWINDATA = TRUE
---------优化GROUP BY------------------END 
----------------MAP 任务内存总大小--------START
+
+---------------MAP 任务内存总大小--------
 SET MAPREDUCE.MAP.MEMORY.MB=2048 MAP
----------------MAP 任务内存总大小--------END 
---------------------堆大小--------START
+
+--------------------堆大小--------
 SET MAPREDUCE.MAP.JAVA.OPTS=-XMX1024M; 
 SET MAPREDUCE.REDUCE.MEMORY.MB=2500; 
 SET MAPREDUCE.REDUCE.JAVA.OPTS=-XMX2048M;
---------------------堆大小--------END 
+
+--hive的mapjoin在头上加上这两句，小表left join会自动转换成mapjoin---- 适合于left join 较多的情况
+
+SET hive.auto.convert.join=true;
+SET hive.mapjoin.smalltable.filesize=25000000;
+
+--hive查询或者插入数据报return code 2的错误
+
+set mapreduce.map.memory.mb=4096;
+
+如果设置成4096还是报return code 2 。那么可以加大这个值。设置这个值就是1024的整数倍
+
+SET hive.mapjoin.smalltable.filesize=25000000;
 
 ## hive函数
 
@@ -67,6 +83,32 @@ CPM_BALANCE.BOOK_BALANCE + SUM( CASE
         WHEN CPM_VOUCHER.DIR_FLAG = '2' THEN -CPM_VOUCHER.AMOUNT 
         END) OVER(partition by CPM_VOUCHER.ACCOUNT_ID ,CPM_VOUCHER.BOOK_TIME  order by  CPM_VOUCHER.ACCOUNT_ID,CPM_VOUCHER.BOOK_TIME DESC )   AS CURR_BAL-- 账户余额
 ```
+
+
+
+### hive中取最大值最小值的函数
+
+```
+max()和min()函数
+select a,max(b) from t group by a
+ 
+select a,min(b) from t group by a
+max和min函数是取某一列中的最大或者最小值
+
+greatest()和least()函数
+select greatest(-1, 0, 5, 8) --8
+ 
+select least(-1, 0, 5, 8) --  -1
+greatest和least函数是取某一行中的最大或者最小值，但一定是比较相同类型的数据，如果数据类型不同，返回null
+
+max()  over()和min() over()函数
+select   a
+        ,b
+        ,max(b) over(partition by a)  as  max_val
+        ,min(b) over(partition by a)  as  min_val
+```
+
+
 
 ### hive  REGEXP_REPLACE 正则表达式
 
@@ -218,6 +260,31 @@ hive> Select case 100 when 50 then 'tom' when 100 then 'mary' else 'tim' end fro
 mary
 ```
 
+
+
+### in/not in 函数
+
+hive在where函数之后不能加子查询
+
+**HIVE 多值not in**
+
+```
+select a, b
+  from table1 t1
+ where not exists (select 1
+          from table2 t2
+         where t1.a = t2.a
+           and t1.b = t2.b)
+
+select t1.a, t2.b
+from table1 t1
+left join table2 t2on (t1.a = t2.a and t1.b = t2.b)
+where t2.a is null
+
+```
+
+
+
 ### 日期转字符串
 
 ```
@@ -236,13 +303,53 @@ select    from_unixtime(unix_timestamp(date_add(from_unixtime(unix_timestamp('${
 date_format(xxx_time,'yyyy-MM') = substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP(),'yyyy-MM-dd HH:mm:ss'), -1 ) ,1, 7)
 ```
 
+### hive周月季年初末获取方式
+
+```
+获取当月月份  >>>    select substr(current_date , 1 ,7 );
+获取本月月初第一天   >>>     select date_sub(current_date,dayofmonth(current_date)-1);
+获取本月月末     >>>    select last_day(current_date) ;
+查询下个月的第一天     >>>    select add_months(date_sub(current_date,dayofmonth(current_date)-1),1);
+查询上个月 月份   >>>  select substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP(),'yyyy-MM-dd HH:mm:ss'), -1 ) ,1, 7);  
+注：如果想查询前6个月等 将 -1 改成 -6 即可，查询 后半年的  将-1 改成 6 即可 
+获取上个月的今天    >>>     select add_months(FROM_UNIXTIME(UNIX_TIMESTAMP(),'yyyy-MM-dd HH:mm:ss'), -1 );
+注 要是想获取前两个月 就将-1改成 -2 ， 
+获取上个月的最后一天  >>>   select last_day(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP(),'yyyy-MM-dd HH:mm:ss'), -1 ) )
+注：想获取得上上个月的月末  可以将 -1 改成 -2 ，可根据你的需要时间进行修改
+获取下下个月的 将  -1  改成 2  即可  可根据你的需要时间进行修改
+获取某月的天数  >>>   select  datediff (last_day("2020-08-22") ,  date_sub("2020-08-22",dayofmonth("2020-08-22")-1)  ) ;
+时间差 datediff  >>>  select datediff('2020-12-04','2020-12-03');
+获取上月的今天时间 时间环比同比计算  >>>  select add_months(from_unixtime(unix_timestamp('2020-10-31', 'yyyy-MM-dd'), 'yyyy-MM-dd HH:mm:ss'), -1)
+上周一    >>>  select date_sub('2020-12-12',pmod(datediff(cast('2020-12-12' as string),'2000-01-03'),7)+7)
+上周日   >>>  select date_sub('2020-12-12',pmod(datediff(cast('2020-12-12' as string),'2000-01-03'),7)+1)
+上月月初   >>>  select CONCAT(date_format(add_months(from_unixtime(unix_timestamp(), 'yyyy-MM-dd'),-1),'yyyyMM'),'01');
+上月月末   >>>  select date_format(date_sub(from_unixtime(unix_timestamp(CONCAT(from_unixtime(unix_timestamp(), 'yyyyMM'),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1),'yyyyMMdd');
+季初     >>>    SELECT
+                    CASE
+                        WHEN month('2020-12-12') BETWEEN 1 AND 3 THEN concat(year('2020-12-12'),'0101')
+                        WHEN month('2020-12-12') BETWEEN 4 AND 6 THEN concat(year('2020-12-12'),'0401')
+                        WHEN month('2020-12-12') BETWEEN 7 AND 9 THEN concat(year('2020-12-12'),'0701')
+                        ELSE concat(year('2020-12-12'),'1001')
+                    END AS first_day_of_current_quarter
+季末    >>>     SELECT
+                    CASE
+                        WHEN month('2020-12-12') BETWEEN 1 AND 3 THEN concat(year('2020-12-12'),'0331')
+                        WHEN month('2020-12-12') BETWEEN 4 AND 6 THEN concat(year('2020-12-12'),'0630')
+                        WHEN month('2020-12-12') BETWEEN 7 AND 9 THEN concat(year('2020-12-12'),'0930')
+                        ELSE concat(year('2020-12-12'),'1231')
+                    END AS first_day_of_current_quarter
+
+```
+
+
+
 ### hive字段转换数据类型
 
 CAST来显式的将一个类型的数据转换成另一个数据类型
 基础语法：
 CAST(value AS TYPE)
 
-![cast数据转换图](./hive脚本参数和语法/cast数据转换图.png)
+![cast数据转换图](./cast数据转换图.png)
 
 ### hive 常用运算
 
@@ -923,17 +1030,9 @@ gfdecba
 例: 
 查询列表字符串长度
 select distinct length(TX_ID) from CPM_VOUCHER WHERE TX_ID is not null;
+字符串截取
+SUBSTR('20211030',0,6) = '202110'
 ```
-
-
-
-### hive的脚本报错
-
-#### hive查询或者插入数据报return code 2的错误
-
-set mapreduce.map.memory.mb=4096;
-
-如果设置成4096还是报return code 2 。那么可以加大这个值。设置这个值就是1024的整数倍
 
 
 
@@ -993,4 +1092,8 @@ set mapreduce.map.memory.mb=4096;
 
 「小甜瓜Melon」原创文章：https://www.jianshu.com/p/ceed17d93c70
 
-  [夜空最亮的9星]  原创文章: https://www.jianshu.com/p/4a0b4cba6c6c
+ [夜空最亮的9星]  原创文章: https://www.jianshu.com/p/4a0b4cba6c6c
+
+「爱庄哥哥」  原创文章:https://blog.csdn.net/weixin_45592182/article/details/108583050
+
+「大大大大肉包」原创文章：https://blog.csdn.net/qq_42456324/article/details/120369629
