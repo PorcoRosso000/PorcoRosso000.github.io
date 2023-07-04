@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Canal</title>
+      <link href="/posts/2040d45d.html"/>
+      <url>/posts/2040d45d.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="什么是Canal？"><a href="#什么是Canal？" class="headerlink" title="什么是Canal？"></a>什么是Canal？</h3><p>canal是阿里开源的中间件，主要用于同步mysql数据库变更；</p><h3 id="Canal数据库监听的原理是什么？"><a href="#Canal数据库监听的原理是什么？" class="headerlink" title="Canal数据库监听的原理是什么？"></a>Canal数据库监听的原理是什么？</h3><p>canal可以用来监听数据库的变化，从而获得新增数据，或者修改的数据；<br>Canal的同步机制：</p><p><img src="/posts/2040d45d/20200210163638624.png" alt="20200210163638624"></p><h3 id="为什么使用Canal？"><a href="#为什么使用Canal？" class="headerlink" title="为什么使用Canal？"></a>为什么使用Canal？</h3><p>(1). 更灵活的架构，多机房同步比较简单。<br>(2). 异构表之间也可以同步，同时可以控制不同步DDL以免出现数据丢失和不一致。<br>(3). Canal可以实现一个表一线程，多个表多线程的同步，速度更快。同时会压缩简化要传输的binlog，减少网络压力。<br>(4). 双A机房同步. 目前mysql的M-M部署结构，不支持解决数据的一致性问题，基于canal的双向复制+一致性算法，可一定程度上解决这个问题，实现双A机房；</p><h3 id="同步原理："><a href="#同步原理：" class="headerlink" title="同步原理："></a>同步原理：</h3><p>1.canal模拟mysql sllave的交互协议，伪装自己为mysql salve；<br>2.mysql master收到dump请求，开始推送binary log给 slave（也就是canal）；<br>3.canal解析binary log 对象（原始byte流）；</p><h3 id="canal在项目中主要做什么事情？"><a href="#canal在项目中主要做什么事情？" class="headerlink" title="canal在项目中主要做什么事情？"></a>canal在项目中主要做什么事情？</h3><p>主要用于数据增量同步操作，可以将数据同步到Redis，其他Mysql，ES等；<br>可以首页广告缓存，网站公布，商品数据，击穿缓存更新，商品数据缓存更新，ES（索引库数据增量更新）；</p><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><p>「d  nn y@1」原文链接：<a href="https://blog.csdn.net/mrDyang/article/details/104250049">https://blog.csdn.net/mrDyang/article/details/104250049</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Canal </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Canal </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JavaScript语法笔记</title>
       <link href="/posts/50c89042.html"/>
       <url>/posts/50c89042.html</url>
