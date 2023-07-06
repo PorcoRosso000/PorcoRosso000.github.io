@@ -67,7 +67,7 @@ git push -u origin hexo    :将项目上传到远程仓库的hexo分支
 远程库和本地库不一致 
 解决方案: 拉取远程库数据同步到本地库      
 
-git pull --rebase origin hexo 
+git pull - - rebase origin hexo 
 
 
 
