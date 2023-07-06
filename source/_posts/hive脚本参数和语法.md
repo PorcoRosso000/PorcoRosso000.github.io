@@ -307,7 +307,8 @@ date_format(xxx_time,'yyyy-MM') = substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP
 
 ```
 获取当月月份  >>>    select substr(current_date , 1 ,7 );
-获取本月月初第一天   >>>     select date_sub(current_date,dayofmonth(current_date)-1);
+获取本月月初第一天   >>>    select date_sub(current_date,dayofmonth(current_date)-1);
+获取本月月初第一天   >>>    select from_unixtime(unix_timestamp(date_sub(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'),dayofmonth(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'))-1),'yyyy-MM-dd'),'yyyyMMdd') 
 获取本月月末     >>>    select last_day(current_date) ;
 查询下个月的第一天     >>>    select add_months(date_sub(current_date,dayofmonth(current_date)-1),1);
 查询上个月 月份   >>>  select substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP(),'yyyy-MM-dd HH:mm:ss'), -1 ) ,1, 7);  
@@ -338,7 +339,10 @@ date_format(xxx_time,'yyyy-MM') = substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP
                         WHEN month('2020-12-12') BETWEEN 7 AND 9 THEN concat(year('2020-12-12'),'0930')
                         ELSE concat(year('2020-12-12'),'1231')
                     END AS first_day_of_current_quarter
-
+--同比上年本月月初
+-- SELECT from_unixtime(unix_timestamp(trunc(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12), 'MM'),'yyyy-MM-dd'),'yyyyMMdd') 
+--同步上年本月月末
+-- SELECT from_unixtime(unix_timestamp(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12),'yyyy-MM-dd'),'yyyyMMdd') 
 ```
 
 
