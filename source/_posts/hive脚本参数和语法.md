@@ -82,6 +82,72 @@ CPM_BALANCE.BOOK_BALANCE + SUM( CASE
         WHEN CPM_VOUCHER.DIR_FLAG = '1' THEN CPM_VOUCHER.AMOUNT 
         WHEN CPM_VOUCHER.DIR_FLAG = '2' THEN -CPM_VOUCHER.AMOUNT 
         END) OVER(partition by CPM_VOUCHER.ACCOUNT_ID ,CPM_VOUCHER.BOOK_TIME  order by  CPM_VOUCHER.ACCOUNT_ID,CPM_VOUCHER.BOOK_TIME DESC )   AS CURR_BAL-- 账户余额
+
+排序后，显示排名
+
+涉及排序的问题，我们需要考虑到遇到“相同值“的情况，如何显示排名
+例如，遇到并列第1的情况
+工具：
+
+row_number()，不管是否相同，顺序排序。
+
+例如输出名次: 1，2，3，4
+rank()，相同的排序是一样的，但下一个不同值是跳着排序的。
+
+例如输出名次，1，1，3，4
+dense_rank()，相同的排序是一样的，且名次是连续的
+
+例如输出名次，1，1，2，3
+语句都类似，
+
+select * ,row_number() over (ORDER BY col1) as index0 from table1
+select * ,rank() over (ORDER BY col1) as index0 from table1
+select * ,dense_rank() over (ORDER BY col1) as index0 from table1
+
+偏移函数
+	向后偏移  lead()
+    获取当前记录的id，以及下一条记录的id 
+    select id ,
+           lead(id, 1, null) over (order by id)  next_id
+    from table1
+    order by id
+
+    lead（字段，N，默认）
+    用lead函数指定要偏移的【字段】，并指定向后偏移【N】行
+    若没有符合条件的数据，则输出【默认】值。
+    计算不同消费者的复购间隔。
+
+    问题解析：难点在于如何锁定同一个消费者相邻的两个订单。
+    下面给出一个实例，计算不同类目下，消费者复购的时间间隔。
+
+    select categoryname,users,diff_day
+    from
+    (
+        select categoryname,users
+        ,dt
+        -- 下一次的购买行为时间
+        ,lead(dt,1,'1970-01-01') over(partition by categoryname,users order by dt) as next_buy_time   
+        -- 下一次的购买行为和当前购买行为的时间间隔
+        ,datediff(lead(dt,1,'1970-01-01') over(partition by categoryname,users order by dt),dt) as diff_day   
+        from Table1
+    ) a1
+    where a1.diff_day > 0 
+
+	向前偏移 lag()函数，二者语法都是相同
+
+
+     count() over(partition by ... order by ...)：求分组后的总数。
+     max() over(partition by ... order by ...)：求分组后的最大值。
+     min() over(partition by ... order by ...)：求分组后的最小值。
+     avg() over(partition by ... order by ...)：求分组后的平均值。
+     lag() over(partition by ... order by ...)：取出前n行数据。　　
+     lead() over(partition by ... order by ...)：取出后n行数据。
+
+      ratio_to_report() over(partition by ... order by ...)：Ratio_to_report() 括号中就是分子，over() 括号中就是分母。
+
+      percent_rank() over(partition by ... order by ...)：
+
+
 ```
 
 
@@ -354,6 +420,12 @@ CAST来显式的将一个类型的数据转换成另一个数据类型
 CAST(value AS TYPE)
 
 ![cast数据转换图](./cast数据转换图.png)
+
+### hive自增列
+
+```sql
+row_number() over (ORDER BY 1) AS NEWINDEX
+```
 
 ### hive 常用运算
 
@@ -1036,6 +1108,57 @@ gfdecba
 select distinct length(TX_ID) from CPM_VOUCHER WHERE TX_ID is not null;
 字符串截取
 SUBSTR('20211030',0,6) = '202110'
+
+多行变一列（字符串拼接）
+hive中的concat，concat_ws，collect_set用法
+
+    表
+    user	order_type	order_number
+    user1	delivered	10
+    user2	returned	1
+    user1	returned	3
+    user2	delivered	20\
+    
+    目标：
+    user	order
+    user1	delivered(10),returned(3)
+    user2	delivered(20),returned(1)
+    
+    1.使用concat（）函数将order_type和order_number连接起来
+    concat（order_type,'(',order_number,')'）
+    结果
+    user	order
+    user1	delivered(10)
+    user2	returned(1)
+    user1	returned(3)
+    user2	delivered(20)
+    2.使用concat_ws（）和collect_set（）进行合并行
+    将上面列表中一个user可能会占用多行转换为每个user占一行的目标表格式，实际是“列转行”
+
+    select user,concat_ws(',',collect_set(concat（order_type,'(',order_number,')'）))  order  from table group by user
+
+    order是别名
+    collect_set的作用：
+    （1）去重，对group by后面的user进行去重
+    （2）对group by以后属于同一user的形成一个集合，结合concat_ws对集合中元素使用，进行分隔形成字符串
+    
+一列变多行
+
+	使用 : lateral view explode（）
+    每个功效之间用逗号连接，例如 ”美白，补水，抗衰老“
+    由于我们需要对功效进行统计，因此需要对keyword字段拆分，拆分到多行。
+
+    select col1,effect from table1 a 
+    lateral view explode(split(a.keyword,',')) t as effect where 1=1
+    其中，
+
+    explode(split(a.keyword,',')) ，将keyword字段，按照逗号切分
+    lateral view explode(split(a.keyword,',')) t as effect  切分后的列取一个别名effect
+
+
+    具体原理（过于难，不解释了）：
+
+    lateral view首先为原始表的每行调用UDTF，UDTF会把一行拆分成一行或者多行，lateral view在把结果组合，产生一个支持别名表的虚拟表。
 ```
 
 
@@ -1084,7 +1207,7 @@ SUBSTR('20211030',0,6) = '202110'
 
 
 
-## 版权声明: 
+## 参考文献: 
 
 本文借鉴的原文作者和链接
 
@@ -1101,3 +1224,7 @@ SUBSTR('20211030',0,6) = '202110'
 「爱庄哥哥」  原创文章:https://blog.csdn.net/weixin_45592182/article/details/108583050
 
 「大大大大肉包」原创文章：https://blog.csdn.net/qq_42456324/article/details/120369629
+
+「waiwai3」原创文章：https://blog.csdn.net/waiwai3/article/details/79071544
+
+ [Loss Dragon](https://www.zhihu.com/people/loss-dragon)  原创文章：   https://zhuanlan.zhihu.com/p/183800056
