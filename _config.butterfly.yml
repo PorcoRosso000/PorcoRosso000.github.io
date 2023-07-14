@@ -161,15 +161,14 @@ favicon:
 
 # Avatar (頭像)
 avatar:
-  img:  https://tupian.qqw21.com/article/UploadPic/2019-8/201982923213827546.jpeg
+  img:  http://5b0988e595225.cdn.sohucs.com/images/20200331/a1faa45ada5248808020448b178883e3.jpeg
   effect: false
 
 # Disable all banner image
 disable_top_img: false
 
 # The banner image of home page
-index_img: https://pic.3gbizhi.com/2020/0823/thumb_1680_0_20200823090334569.jpg
-
+index_img: https://c.53326.com/d/file/lan20210602/k1hxorkfqzh.jpg
 
 # If the banner of page not setting, it will show the top_img
 default_top_img:
@@ -223,7 +222,21 @@ cover:
     - https://c.53326.com/d/file/20210602/nvnyvod2wsi.jpg
     - https://c.53326.com/d/file/pc20200519/1al0quodg14.jpg
     - https://c.53326.com/d/file/pc20200519/fg5znixcvkf.jpg
-    - https://c.53326.com/d/file/20180607/douhvmn1tf5.jpg
+    - https://c.53326.com/d/file/newpc202302/b0ci1sfofpz.jpg
+    - https://c.53326.com/d/file/newpc202302/nxumx4iuqgn.jpg
+    - https://c.53326.com/d/file/newpc202302/21ae33to1de.jpg
+    - https://c.53326.com/d/file/newpc202302/4gslbicyqsp.jpg
+    - https://c.53326.com/d/file/newpc202302/ajfhc1rjenk.jpg
+    - https://c.53326.com/d/file/newpc202302/eazn5xyhrv3.jpg
+    - https://c.53326.com/d/file/newpc202302/4gslbicyqsp.jpg
+    - https://c.53326.com/d/file/newpc202302/yffnmyq14iy.jpg
+    - https://c.53326.com/d/file/newpc202302/pn2y4d0sksy.jpg
+    - https://c.53326.com/d/file/newpc202302/to1qwx215wt.jpg
+    - https://c.53326.com/d/file/newpc202302/xbobb2m1tsg.jpg
+    - https://c.53326.com/d/file/newpc202302/r0jlaclhomm.jpg
+    - https://c.53326.com/d/file/newpc202302/jsciyfhk21i.jpg
+
+
 
 
 

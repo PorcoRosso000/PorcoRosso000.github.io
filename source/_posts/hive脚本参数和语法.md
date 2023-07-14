@@ -374,7 +374,9 @@ date_format(xxx_time,'yyyy-MM') = substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP
 ```
 获取当月月份  >>>    select substr(current_date , 1 ,7 );
 获取本月月初第一天   >>>    select date_sub(current_date,dayofmonth(current_date)-1);
-获取本月月初第一天   >>>    select from_unixtime(unix_timestamp(date_sub(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'),dayofmonth(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'))-1),'yyyy-MM-dd'),'yyyyMMdd') 
+获取本月月初第一天   >>>    
+1.select from_unixtime(unix_timestamp(date_sub(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'),dayofmonth(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'))-1),'yyyy-MM-dd'),'yyyyMMdd') 
+2.from_unixtime(unix_timestamp(trunc(from_unixtime(unix_timestamp('20230228','yyyyMMdd'),'yyyy-MM-dd'),'MM'),'yyyy-MM-dd'),'yyyyMMdd')
 获取本月月末     >>>    select last_day(current_date) ;
 查询下个月的第一天     >>>    select add_months(date_sub(current_date,dayofmonth(current_date)-1),1);
 查询上个月 月份   >>>  select substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP(),'yyyy-MM-dd HH:mm:ss'), -1 ) ,1, 7);  
@@ -384,31 +386,49 @@ date_format(xxx_time,'yyyy-MM') = substr(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP
 获取上个月的最后一天  >>>   select last_day(add_months(FROM_UNIXTIME(UNIX_TIMESTAMP(),'yyyy-MM-dd HH:mm:ss'), -1 ) )
 注：想获取得上上个月的月末  可以将 -1 改成 -2 ，可根据你的需要时间进行修改
 获取下下个月的 将  -1  改成 2  即可  可根据你的需要时间进行修改
-获取某月的天数  >>>   select  datediff (last_day("2020-08-22") ,  date_sub("2020-08-22",dayofmonth("2020-08-22")-1)  ) ;
+获取某月的天数  >>>   
+select  datediff (last_day("2020-08-22") ,  date_sub("2020-08-22",dayofmonth("2020-08-22")-1)  ) ;
+获取当前时间到月初的天数   >>>
+datediff(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),date_sub(from_unixtime(unix_timestamp(CONCAT(SUBSTR('20230331',1,6),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1))
 时间差 datediff  >>>  select datediff('2020-12-04','2020-12-03');
 获取上月的今天时间 时间环比同比计算  >>>  select add_months(from_unixtime(unix_timestamp('2020-10-31', 'yyyy-MM-dd'), 'yyyy-MM-dd HH:mm:ss'), -1)
 上周一    >>>  select date_sub('2020-12-12',pmod(datediff(cast('2020-12-12' as string),'2000-01-03'),7)+7)
 上周日   >>>  select date_sub('2020-12-12',pmod(datediff(cast('2020-12-12' as string),'2000-01-03'),7)+1)
 上月月初   >>>  select CONCAT(date_format(add_months(from_unixtime(unix_timestamp(), 'yyyy-MM-dd'),-1),'yyyyMM'),'01');
-上月月末   >>>  select date_format(date_sub(from_unixtime(unix_timestamp(CONCAT(from_unixtime(unix_timestamp(), 'yyyyMM'),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1),'yyyyMMdd');
-季初     >>>    SELECT
+上月月末   >>>  
+1.select date_format(date_sub(from_unixtime(unix_timestamp(CONCAT(from_unixtime(unix_timestamp(), 'yyyyMM'),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1),'yyyyMMdd');
+2.date_sub(from_unixtime(unix_timestamp(CONCAT(SUBSTR('20230331',1,6),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1)
+季初     >>> 
+1.   SELECT
                     CASE
                         WHEN month('2020-12-12') BETWEEN 1 AND 3 THEN concat(year('2020-12-12'),'0101')
                         WHEN month('2020-12-12') BETWEEN 4 AND 6 THEN concat(year('2020-12-12'),'0401')
                         WHEN month('2020-12-12') BETWEEN 7 AND 9 THEN concat(year('2020-12-12'),'0701')
                         ELSE concat(year('2020-12-12'),'1001')
                     END AS first_day_of_current_quarter
-季末    >>>     SELECT
+                    
+2.select   concat(year(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd')),
+          case when (floor(substr(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),6,2)/3.1)*3)+1<10 then concat(0,(floor(substr(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),6,2)/3.1)*3)+1)
+          else (floor(substr(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),6,2)/3.1)*3)+1 end,'01')
+
+3.select date_format(concat(  year(from_unixtime(unix_timestamp('20230531','yyyyMMdd'),'yyyy-MM-dd')),'-',quarter(from_unixtime(unix_timestamp('20230531','yyyyMMdd'),'yyyy-MM-dd'))  * 3-2,'-01'),'yyyy-MM-dd')
+          
+季末    >>>  
+1.   SELECT
                     CASE
                         WHEN month('2020-12-12') BETWEEN 1 AND 3 THEN concat(year('2020-12-12'),'0331')
                         WHEN month('2020-12-12') BETWEEN 4 AND 6 THEN concat(year('2020-12-12'),'0630')
                         WHEN month('2020-12-12') BETWEEN 7 AND 9 THEN concat(year('2020-12-12'),'0930')
                         ELSE concat(year('2020-12-12'),'1231')
                     END AS first_day_of_current_quarter
+2.  select last_day(concat(
+            year(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd')),'-',quarter(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'))  * 3,'-01'))    
 --同比上年本月月初
 -- SELECT from_unixtime(unix_timestamp(trunc(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12), 'MM'),'yyyy-MM-dd'),'yyyyMMdd') 
 --同步上年本月月末
 -- SELECT from_unixtime(unix_timestamp(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12),'yyyy-MM-dd'),'yyyyMMdd') 
+
+
 ```
 
 
