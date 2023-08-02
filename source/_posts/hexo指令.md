@@ -93,9 +93,13 @@ git reset HEAD~1
 远程库和本地库不一致 
 解决方案: 拉取远程库数据同步到本地库      
 
+<<<<<<< HEAD
 ```
 git pull --rebase origin hexo 
 ```
+=======
+git pull --rebase origin hexo 
+>>>>>>> 9b9505721bc19f819d6f556cbc56af7075d9d6fc
 
 
 

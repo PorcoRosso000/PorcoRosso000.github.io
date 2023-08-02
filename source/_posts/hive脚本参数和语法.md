@@ -442,10 +442,29 @@ datediff(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),date_
             year(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd')),'-',quarter(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'))  * 3,'-01'))    
 --同比上年本月月初
 -- SELECT from_unixtime(unix_timestamp(trunc(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12), 'MM'),'yyyy-MM-dd'),'yyyyMMdd') 
---同步上年本月月末
+--同比上年本月月末
 -- SELECT from_unixtime(unix_timestamp(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12),'yyyy-MM-dd'),'yyyyMMdd') 
+<<<<<<< HEAD
 
 
+=======
+-- 上周一：
+select date_sub(current_date(),pmod(datediff(cast(current_date() as string),'2000-01-03'),7)+7)
+-- 上周日：
+select date_sub(current_date(),pmod(datediff(cast(current_date() as string),'2000-01-03'),7)+1)
+-- 上月第一天：
+select  add_months(trunc(current_date(),'MM'),-1)
+-- 上月最后一天：
+select  date_add(trunc(current_date(),'MM'),-1)
+-- 上季度第一天 ：
+select to_date(concat(date_format(current_date(),'y'),'-',floor((cast(date_format(add_months(current_date(),-3),'M') as int)+2)/3)*3-2,'-',date_format(trunc(current_date(),'MM'),'dd')))
+-- 上季度最后一天 ：
+select last_day(to_date(concat(date_format(current_date(),'y'),'-',floor((cast(date_format(add_months(current_date(),-3),'M') as int)+2)/3)*3,'-','01')))
+-- 去年第一天 ：
+select  add_months(trunc(current_date(),'YY'),-12)
+-- 去年最后一天 ：
+select date_add(trunc(current_date(),'YY'),-1)
+>>>>>>> 9b9505721bc19f819d6f556cbc56af7075d9d6fc
 ```
 
 
