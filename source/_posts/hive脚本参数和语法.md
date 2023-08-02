@@ -52,6 +52,23 @@ set mapreduce.map.memory.mb=4096;
 
 SET hive.mapjoin.smalltable.filesize=25000000;
 
+-- 处理数据倾斜
+
+-- MAP端的COMBINER,默认为TURE
+SET HIVE.MAP.AGGR=TRUE
+-- 开启负载均衡
+SET HIVE.GROUPBY.SKEWINDATA=TRUE
+
+-- 自动开启MAPJOIN优化，默认值为TRUE，
+SET HIVE.AUTO.CONVERT.JOIN=TRUE
+-- 通过配置该属性来确定使用该优化的表的大小，如果表的大小小于此值就会被加载进内存中，默认值为2500000(25M)，
+SET HIVE.MAPJOIN.SMALLTABLE.FILESIZE=2500000
+
+-- 关闭自动MAPJOIN转换操作
+SET HIVE.AUTO.CONVERT.JOIN=FALSE
+-- 不忽略MAPJOIN标记
+SET HIVE.IGNORE.MAPJOIN.HINT=FALSE
+
 ## hive函数
 
 ### 窗口函数
