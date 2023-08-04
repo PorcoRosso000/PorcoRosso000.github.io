@@ -364,6 +364,62 @@ from table1 t1
 left join table2 t2on (t1.a = t2.a and t1.b = t2.b)
 where t2.a is null
 
+in 后括号之中的是一个集合
+```
+
+### hive模糊匹配
+
+```
+据说locate 要比 like 效率高一点，以后遇到字符串模糊匹配的sql 记得优化一下
+
+local
+
+HIVE不支持非等值连接，但可以通过locate()函数进行功能转换。
+
+locate(string substr, string str[, int pos])
+查找字符串str中的pos位置后字符串substr第一次出现的位置，若为找到，则返回0。
+
+hive> select locate('a','abcd'), locate('b', 'abcd'), locate('f', 'abcd')
+结果:  1  2  0
+
+join模糊匹配
+left join , right join , full join
+
+hive> select * from a left join b on 1=1 where locate(a.col,b.col)>0
+hive> select * from a   right join b on 1=1 where locate(a.col,b.col)>0
+hive> select * from a full join b  where locate(a.col,b.col)>0
+
+除了将locate()直接写在where条件里，也可以使用row_number()来搭配使用。
+select col
+from(
+    select 
+        if(locate(a.col, b.col)>0, b.col, a.col) as col, 
+        row_number() over(partition by a.col order by locate(a.col, b.col) desc) as rn
+    from a 
+    left join b on 1=1
+) as a
+where rn=1
+
+————————————————
+
+模糊匹配单个关键字
+like
+select * from table_1 where 字段 like concat('%','关键字','%')
+
+————————————————
+
+模糊匹配多个关键字
+语法关键字…
+select * from table where 字段 regexp 'key1|key2';
+
+select 
+    distinct 
+    cell_key
+    from dwd_db.dwd_lbs_4g_anal_real
+    where day_id = 20211229
+    and province_code = 130000
+    and cell_key regexp				   
+    				'164151|576651|164294|577086|164929|164093|576599'
 ```
 
 
@@ -1263,7 +1319,9 @@ hive中的concat，concat_ws，collect_set用法
 
 
 
-## 参考文献: 
+## 原文链接: 
+
+版权声明：本文遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 
 本文借鉴的原文作者和链接
 
@@ -1284,3 +1342,7 @@ hive中的concat，concat_ws，collect_set用法
 「waiwai3」原创文章：https://blog.csdn.net/waiwai3/article/details/79071544
 
  [Loss Dragon](https://www.zhihu.com/people/loss-dragon)  原创文章：   https://zhuanlan.zhihu.com/p/183800056
+
+「喜东东cc」原创文章：https://blog.csdn.net/qq_34105362/article/details/80540164
+
+「技匠三石弟弟」的原创文章:  https://blog.csdn.net/xiaoleilei666/article/details/122238988
