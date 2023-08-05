@@ -179,23 +179,13 @@ git rebase -i 073ea5e //第三次提交ID
 git rebase -i HEAD~3
 ```
 
-### 提交规范
+在交互界面使用下面命令对提交进行操作
 
-- feat: 新功能
-- fix: 修复问题
-- docs: 修改文档
-- style: 修改代码格式，不影响代码逻辑
-- refactor: 重构代码，理论上不影响现有功能
-- perf: 提升性能
-- test: 增加修改测试用例
-- chore: 修改工具相关（包括但不限于文档、代码生成等）
-- deps: 升级依赖
+![20230805141202](./20230805141202.png)
 
-**例如**
-
-```bash
-git commit -m 'fix:修复xxxbug'
-```
+比如要合并那三次提交,
+第一次提交使用pick 后面的都改成 squash ,
+这样三次提交就可以合并
 
 ### 命令说明
 
@@ -214,7 +204,43 @@ git show commit_id | grep diff | cut -d" " -f 3
 例如 :
 a/README.md
 
+### 提交规范
 
+- feat: 新功能
+- fix: 修复问题
+- docs: 修改文档
+- style: 修改代码格式，不影响代码逻辑
+- refactor: 重构代码，理论上不影响现有功能
+- perf: 提升性能
+- test: 增加修改测试用例
+- chore: 修改工具相关（包括但不限于文档、代码生成等）
+- deps: 升级依赖
+
+**例如**
+
+```bash
+git commit -m 'fix:修复xxxbug'
+```
+
+-----------------------------------------------------------------------------
+
+抛弃本地的 commit，采用远程的 commit。慎用：因为你本地的修改都会失去。
+
+```
+git rebase --skip
+```
+
+终止这次 rebase 操作
+
+```
+git rebase --abort
+```
+
+手动处理冲突的文件：执行git add .，再 git rebase --continue，反复操作直到解决完所有冲突，并合并到分支上。
+
+```
+git rebase --continue
+```
 
 ### git回退版本
 
@@ -260,7 +286,7 @@ git reset --hard HEAD~10 #回退到往上10个版本
 
 #### git revert 回退
 
-​	既可以回退代码，又可以保存错误的提交
+优点: 既可以回退代码，又可以保存错误的提交
 
 git revert的作用通过反做创建一个新的版本，这个版本的内容与我们要回退到的目标版本一样，但是HEAD指针是指向这个新生成的版本，而不是目标版本。
 
@@ -516,3 +542,8 @@ $ git cherry-pick <commitHash>
 作者：指尖跳动链接：https://www.jianshu.com/p/dca42de8aed7来源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 作者（阮一峰）[http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html](https://links.jianshu.com/go?to=http%3A%2F%2Fwww.ruanyifeng.com%2Fblog%2F2020%2F04%2Fgit-cherry-pick.html)
+
+作者：猫大顾
+链接：https://www.jianshu.com/p/31a74fec358e
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
