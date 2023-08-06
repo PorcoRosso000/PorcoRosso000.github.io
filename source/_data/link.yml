@@ -35,7 +35,11 @@
       desc: 个人博客，IT技术，技术共享，SpringBoot，SpringCloud，Java，Python，爬虫知识
       avatar: https://www.xmaven.cn/logo # 头像
       link: https://www.xmaven.cn  # 链接
-
+      
+      - name: 奇想派 # 昵称
+      desc: Java技术分享。资源村
+      avatar: https://www.beierblog.com/upload/2023/01/toux.jpg # 头像
+      link: https://www.beierblog.com  # 链接
 
 
 
