@@ -1,10 +1,6 @@
 - class_name: 友情链接
   class_desc: 那些人，那些事
   link_list:
-    - name: 唐志远の博客
-      link: https://tzy1997.com/
-      avatar: https://bu.dusays.com/2022/01/14/cd5ffd485f867.jpg
-      descr: 古今之成大事者，不惟有超世之才，亦必有坚忍不拔之志。
       
     - name: Black Flies
       link: https://www.yyyzyyyz.cn/
@@ -21,20 +17,10 @@
       avatar: https://blog.panghai.top/img/avatar.png
       descr: 保持谨慎，保持乐观
 
-    - name: 张时贰
-      link: https://zhangshier.vip
-      avatar: https://zhangshier.vip/Hexo_img/avatar.jpg
-      descr: 环转码，爱敲代码的小张！
-
     - name: 小康博客
       link: https://www.antmoe.com/
       avatar: https://cdn.jsdelivr.net/npm/kang-static@latest/avatar.jpg
       descr: 一个收藏回忆与分享技术的地方！
-      
-    - name: 小楼昨夜又东风 # 昵称
-      desc: 个人博客，IT技术，技术共享，SpringBoot，SpringCloud，Java，Python，爬虫知识
-      avatar: https://www.xmaven.cn/logo # 头像
-      link: https://www.xmaven.cn  # 链接
       
     - name: 奇想派 # 昵称
       desc: Java技术分享。资源村
