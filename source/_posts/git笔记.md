@@ -52,22 +52,23 @@ permalink:
 
 #### 分支
 
-| 命令                                                         | 说明                                         |
-| ------------------------------------------------------------ | -------------------------------------------- |
-| git branch                                                   | 列出所有本地分支                             |
-| git branch -r                                                | 列出所有远程分支                             |
-| git branch -a                                                | 列出所有本地分支和远程分支                   |
-| git branch [branch-name]                                     | 新建一个分支，但依然停留在当前分支           |
-| git checkout -b [branch]                                     | 新建一个分支，并切换到该分支                 |
-| git branch [branch] [commit]                                 | 新建一个分支，指向指定commit                 |
-| git branch --track [branch] [remote-branch]                  | 新建一个分支，与指定的远程分支建立追踪关系   |
-| git checkout [branch-name]                                   | 切换到指定分支，并更新工作区                 |
-| git checkout -                                               | 切换到上一个分支                             |
-| git branch --set-upstream [branch] [remote-branch]           | 建立追踪关系，在现有分支与指定的远程分支之间 |
-| git merge [branch]                                           | 合并指定分支到当前分支                       |
-| git cherry-pick [commit]                                     | 选择一个commit，合并进当前分支               |
-| git branch -d [branch-name]                                  | 删除分支                                     |
-| git push origin --delete [branch-name] 或 git branch -dr [remote/branch] | 删除远程分支                                 |
+| 命令                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| git branch                                                   | 列出所有本地分支                                             |
+| git branch -r                                                | 列出所有远程分支                                             |
+| git branch -a                                                | 列出所有本地分支和远程分支                                   |
+| git branch [branch-name]                                     | 新建一个分支，但依然停留在当前分支                           |
+| git checkout -b [branch]                                     | 新建一个分支，并切换到该分支                                 |
+| git branch [branch] [commit]                                 | 新建一个分支，指向指定commit                                 |
+| git branch --track [branch] [remote-branch]                  | 新建一个分支，与指定的远程分支建立追踪关系                   |
+| git push -u origin [branch]                                  | 一旦分支已经被创建并有一些提交，可以将该分支推送到远程存储库中。-u 参数告诉 Git 在远程存储库中设置上游（默认）分支。第一次推送分支时，它会自动创建同名远程分支 |
+| git checkout [branch-name]                                   | 切换到指定分支，并更新工作区                                 |
+| git checkout -                                               | 切换到上一个分支                                             |
+| git branch --set-upstream [branch] [remote-branch]           | 建立追踪关系，在现有分支与指定的远程分支之间                 |
+| git merge [branch]                                           | 合并指定分支到当前分支                                       |
+| git cherry-pick [commit]                                     | 选择一个commit，合并进当前分支                               |
+| git branch -d [branch-name]                                  | 删除分支                                                     |
+| git push origin --delete [branch-name] 或 git branch -dr [remote/branch] | 删除远程分支                                                 |
 
 #### 标签
 
@@ -110,17 +111,18 @@ permalink:
 
 #### 远程同步
 
-| 命令                                                         | 说明                                                 |
-| ------------------------------------------------------------ | ---------------------------------------------------- |
-| git fetch [remote]                                           | 下载远程仓库的所有变动（远程新增或删除分支都能显示） |
-| git remote -v                                                | 显示所有远程仓库                                     |
-| git config [--global] user.name "[name]" git config [--global] user.email "[email address]" | 设置提交代码时的用户信息                             |
-| git remote show [remote]                                     | 显示某个远程仓库的信息                               |
-| git remote add [shortname] [url]                             | 增加一个新的远程仓库，并命名                         |
-| git pull [remote] [branch]                                   | 取回远程仓库的变化，并与本地分支合并                 |
-| git push [remote] [branch]                                   | 上传本地指定分支到远程仓库                           |
-| git push [remote] --force                                    | 强行推送当前分支到远程仓库，即使有冲突               |
-| git push [remote] --all                                      | 推送所有分支到远程仓库                               |
+| 命令                                                         | 说明                                                        |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| git fetch [remote]                                           | 下载远程仓库的所有变动（远程新增或删除分支都能显示）        |
+| git remote -v                                                | 显示所有远程仓库                                            |
+| git config [--global] user.name "[name]" git config [--global] user.email "[email address]" | 设置提交代码时的用户信息                                    |
+| git remote show [remote]                                     | 显示某个远程仓库的信息                                      |
+| git remote add [shortname] [url]                             | 增加一个新的远程仓库，并命名                                |
+| git pull  origin [remote-branch]                             | 取回远程仓库的变化，并与本地分支合并                        |
+| git pull --rebase origin  [remote-branch] [branch]           | 使用rebase的方式 , 取回远程仓库的变化，并与指定本地分支合并 |
+| git push [remote] [branch]                                   | 上传本地指定分支到远程仓库                                  |
+| git push [remote] --force                                    | 强行推送当前分支到远程仓库，即使有冲突                      |
+| git push [remote] --all                                      | 推送所有分支到远程仓库                                      |
 
 #### 撤销
 
@@ -137,6 +139,23 @@ permalink:
 | git revert [commit]          | 新建一个commit，用来撤销指定commit 后者的所有变化都将被前者抵消，并且应用到当前分支 |
 | git stash                    | 暂时将未提交的变化移除，稍后再移入                           |
 | git stash pop                | 暂时将未提交的变化移除，稍后再移入                           |
+
+#### 贮藏
+
+| 命令                          | 说明                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| git stash save "save message" | 执行存储时，添加备注，方便查找，只有git stash 也要可以的，但查找时不方便识别。 |
+| git stash list                | 查看stash了哪些存储                                          |
+| git stash show                | 显示做了哪些改动，默认show第一个存储,如果要显示其他存贮，后面加stash@{$num}，比如第二个 git stash show stash@{1} |
+| git stash show -p             | 显示第一个存储的改动，如果想显示其他存存储，命令：git stash show  stash@{$num}  -p ，比如第二个：git stash show  stash@{1}  -p |
+| git stash apply               | 应用某个存储,但不会把存储从存储列表中删除，默认使用第一个存储,即stash@{0}，如果要使用其他个，git stash apply stash@{$num} ， 比如第二个：git stash apply stash@{1} |
+| git stash pop                 | 命令恢复之前缓存的工作目录，将缓存堆栈中的对应stash删除，并将对应修改应用到当前的工作目录下,默认为第一个stash,即stash@{0}，如果要应用并删除其他stash，命令：git stash pop stash@{$num} ，比如应用并删除第二个：git stash pop stash@{1} |
+| git stash drop stash@{$num}   | 丢弃stash@{$num}存储，从列表中删除这个存储                   |
+| git stash clear               | 删除所有缓存的stash                                          |
+
+```
+有时也可通过这种方法实现避免或解决冲突，当你修改的内容是最新的，但是你需要pull下来的代码是需要被替换的，你pull的时候还是会冲突，可以先把你的修改stash临时保存，pull完代码以后在恢复stash的保存，即可替换pull下来的需要被替换的代码，当然不保存直接对比解决冲突也是可以的
+```
 
 #### 其他
 
@@ -358,7 +377,7 @@ $ git pull origin <branch-name>
 # 之前如果push时使用过-u，那么就可以省略为git pull
 ```
 
-- 本地有修改，能不能先git pull
+- 本地有修改，不能先git pull
 
 ```text
 $ git stash # 工作区修改暂存
@@ -1040,7 +1059,21 @@ $ git log target/master
 $ git cherry-pick <commitHash>
 ```
 
+### 16、合并分支
 
+```
+// 合并分支（多人开发中，经常一人一个分支，各自在自己分支开发，开发完成以后合并到某一个指定分支，没有问题后最后合并到master主分支，我们的流程是各自在自己的develop开发，开发完成以后合并到lastest分支，没有问题后提交合并申请到master分支，由leader审批是否统一合并到master，因为很多新人不太清楚代码的具体用途，所以讲的稍微详细点，明白命令的实现目的能更好的掌握使用，后面会有具体的操作流程）
+1.本地代码依次
+git status
+git add .
+git commit -m ""
+git pull 
+git push （develop-author分支，即自己的开发分支）
+以后（把本地代码推送到远程对应分支）
+2.git checkout lastest （切换到lastest分支）
+3.git pull origin lastest  （先把远程lastest分支修改内容拉取，多人开发，需要把远程lastest上的代码pull下来）
+4.git  merge develop-author   （合并自己的分支到lastest）
+```
 
 ### 参考文章:
 
@@ -1053,4 +1086,6 @@ $ git cherry-pick <commitHash>
 来源：简书
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-作者: 程序员奇奇https://zhuanlan.zhihu.com/p/555637985
+作者: 程序员奇奇  https://zhuanlan.zhihu.com/p/555637985
+
+作者: [霖深雾起不见你](https://www.jianshu.com/u/94fed1d4e9d3)   https://www.jianshu.com/p/78246673c545
