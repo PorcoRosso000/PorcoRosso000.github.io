@@ -193,23 +193,23 @@
     
     
     <entry>
-      <title>LINUX命令</title>
+      <title>Linux命令</title>
       <link href="/posts/f340ee61.html"/>
       <url>/posts/f340ee61.html</url>
       
-        <content type="html"><![CDATA[<h2 id="Linux-查看端口使用情况"><a href="#Linux-查看端口使用情况" class="headerlink" title="Linux  查看端口使用情况"></a>Linux  查看端口使用情况</h2><p>netstat -tunlp | grep 8030 </p><h2 id="Linux-解压war包"><a href="#Linux-解压war包" class="headerlink" title="Linux  解压war包"></a>Linux  解压war包</h2><p>可以用unzip命令</p><p>unzip project.war -d project </p><h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>rz 上传文件</p><h2 id="虚拟机查看内存"><a href="#虚拟机查看内存" class="headerlink" title="虚拟机查看内存"></a>虚拟机查看内存</h2><p>free -m  </p><h2 id="查看tomcat运行情况"><a href="#查看tomcat运行情况" class="headerlink" title="查看tomcat运行情况"></a>查看tomcat运行情况</h2><p>ps -ef|grep tomcat   </p><h2 id="查看所有服务"><a href="#查看所有服务" class="headerlink" title="查看所有服务"></a>查看所有服务</h2><p>ps x   </p><h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><p>tail -f logs /日志    </p><h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>kill -9 pid    </p><h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><p>sh tomcats/tomcat-ywh-ms-8010/bin/startup.sh  </p>]]></content>
+        <content type="html"><![CDATA[<h3 id="Linux-查看端口使用情况"><a href="#Linux-查看端口使用情况" class="headerlink" title="Linux  查看端口使用情况"></a>Linux  查看端口使用情况</h3><p>netstat -tunlp | grep 8030 </p><h3 id="Linux-解压war包"><a href="#Linux-解压war包" class="headerlink" title="Linux  解压war包"></a>Linux  解压war包</h3><p>可以用unzip命令</p><p>unzip project.war -d project </p><h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p>rz 上传文件</p><h3 id="虚拟机查看内存"><a href="#虚拟机查看内存" class="headerlink" title="虚拟机查看内存"></a>虚拟机查看内存</h3><p>free -m  </p><h3 id="查看tomcat运行情况"><a href="#查看tomcat运行情况" class="headerlink" title="查看tomcat运行情况"></a>查看tomcat运行情况</h3><p>ps -ef|grep tomcat   </p><h3 id="查看所有服务"><a href="#查看所有服务" class="headerlink" title="查看所有服务"></a>查看所有服务</h3><p>ps x   </p><h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><p>tail -f logs /日志   </p><h4 id="docker-查看日志"><a href="#docker-查看日志" class="headerlink" title="docker 查看日志"></a>docker 查看日志</h4><p>实时查看docker容器日志<br>sudo docker logs -f -t –tail 行数 容器名</p><h3 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h3><p>kill -9 pid    </p><h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>sh tomcats/tomcat-ywh-ms-8010/bin/startup.sh  </p><h3 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h3><p>1.执行 <strong>docker stop $(docker ps -a -q)</strong> 用来中止中止全部的container</p><p>2.<strong>docker images</strong> 查看镜像列表</p><p>3.<strong>docker rmi 147051a21fd9</strong> 删除IMAGE_ID = 147051a21fd9 的镜像<br>4.<strong>docker images</strong>再次查看镜像列表，发现被删除</p><p>5.查看一下全部的镜像文件，<strong>docker images -a</strong></p><p>6.删除失败的情况下执行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">报错: Error response fro daemon: conflict: unable to delete c218b729bf73 (must be forced) - image is being used by stoped container 945acebbca0f</span><br><span class="line"></span><br><span class="line">docker ps -a | grep &quot;Exited&quot; | awk &#x27;&#123;print $1 &#125;&#x27;|xargs docker stop</span><br><span class="line">docker ps -a | grep &quot;Exited&quot; | awk &#x27;&#123;print $1 &#125;&#x27;|xargs docker rm</span><br><span class="line">docker images|grep none|awk &#x27;&#123;print $3 &#125;&#x27;|xargs docker rmi</span><br><span class="line"></span><br><span class="line">上述命令 还解决了我在删除镜像文件时的一个报错：Error response from daemon: conflict: unable to delete 0138793f7e1f (cannot be forced) - image has dependent child images</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
           
-          <category> LINUX </category>
+          <category> Linux </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> LINUX </tag>
+            <tag> Linux </tag>
             
         </tags>
       
