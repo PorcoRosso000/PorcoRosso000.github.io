@@ -27,6 +27,11 @@
       avatar: https://www.beierblog.com/upload/2023/01/toux.jpg # 头像
       link: https://www.beierblog.com  # 链接
 
+    - name: Siax's Blog
+      link: https://siax.cn
+      avatar: https://jsd.siax.cn/npm/picture-sianx@1.0.0/Blog/logo.png
+      descr: 总之岁月漫长, 然而值得等待。
+
 
 
 - class_name: 网站
