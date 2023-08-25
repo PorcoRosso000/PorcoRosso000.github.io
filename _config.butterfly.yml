@@ -98,7 +98,7 @@ katex:
   hide_scrollbar: true
 #首页分页磁铁
 categoryBar:
-  enable: true # 开关
+  enable: false # 开关
   priority: 5 #过滤器优先权
   enable_page: / # 应用页面
   layout: # 挂载容器类型
@@ -161,8 +161,7 @@ favicon:
 
 # Avatar (頭像)
 avatar:
-  img:  
-      - http://5b0988e595225.cdn.sohucs.com/images/20200331/a1faa45ada5248808020448b178883e3.jpeg
+  img: http://5b0988e595225.cdn.sohucs.com/images/20200331/a1faa45ada5248808020448b178883e3.jpeg
 
   effect: false
 
@@ -170,12 +169,7 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: 
-   - https://c.53326.com/d/file/newpc202302/5fah3itc1si.jpg
-   - https://c.53326.com/d/file/newpc202302/cghcagspdgx.jpg
-   - https://c.53326.com/d/file/newpc202302/zgyklxii1j0.jpg
-   - https://c.53326.com/d/file/newpc202302/k2sngowct2f.jpg
-   - https://c.53326.com/d/file/pcbigpic/20200519/pw0jjgmsiys.jpg
+index_img: https://c.53326.com/d/file/newpc202302/cghcagspdgx.jpg
 
 # If the banner of page not setting, it will show the top_img
 default_top_img:
@@ -260,6 +254,9 @@ cover:
     - https://c.53326.com/d/file/newpc202302/vdwuktkff3b.jpg
     - https://c.53326.com/d/file/newpc202302/ctf1crnhavb.jpg
     - https://c.53326.com/d/file/newpc202302/ujbiq5pezcl.jpg
+    - https://c.53326.com/d/file/newpc202302/zgyklxii1j0.jpg
+    - https://c.53326.com/d/file/newpc202302/k2sngowct2f.jpg
+    - https://c.53326.com/d/file/pcbigpic/20200519/pw0jjgmsiys.jpg
 
 
 
