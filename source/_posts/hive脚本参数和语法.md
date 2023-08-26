@@ -475,7 +475,8 @@ datediff(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),date_
 上月月初   >>>  select CONCAT(date_format(add_months(from_unixtime(unix_timestamp(), 'yyyy-MM-dd'),-1),'yyyyMM'),'01');
 上月月末   >>>  
 1.select date_format(date_sub(from_unixtime(unix_timestamp(CONCAT(from_unixtime(unix_timestamp(), 'yyyyMM'),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1),'yyyyMMdd');
-2.date_sub(from_unixtime(unix_timestamp(CONCAT(SUBSTR('20230331',1,6),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1)
+2.date_sub(from_unixtime(unix_timestamp(CONCAT(SUBSTR('20230331',1,6),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1) ;
+3.from_unixtime(unix_timestamp(last_day(add_months(from_unixtime(unix_timestamp('20230902','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyy-MM-dd'),'yyyyMMdd') ;
 季初     >>> 
 1.   SELECT
                     CASE
