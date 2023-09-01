@@ -70,6 +70,10 @@ SET HIVE.MAPJOIN.SMALLTABLE.FILESIZE=2500000
 SET HIVE.AUTO.CONVERT.JOIN=FALSE
 -- 不忽略MAPJOIN标记
 SET HIVE.IGNORE.MAPJOIN.HINT=FALSE
+
+-- mr 执行 不报错 spark执行报错  加下面两行参数
+set hive.vectorized.execution.enabled=false;
+set hive.vectorized.execution.reduce.enabled=false;
 ```
 
 
