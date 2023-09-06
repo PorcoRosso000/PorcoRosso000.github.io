@@ -415,6 +415,7 @@ where rn=1
 like
 select * from table_1 where 字段 like concat('%','关键字','%')
 
+select * from table_1 WHERE thedate ='xx' AND chinesename like 'xx省电力建设有限公司%'
 ————————————————
 
 模糊匹配多个关键字
@@ -481,6 +482,7 @@ datediff(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),date_
 1.select date_format(date_sub(from_unixtime(unix_timestamp(CONCAT(from_unixtime(unix_timestamp(), 'yyyyMM'),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1),'yyyyMMdd');
 2.date_sub(from_unixtime(unix_timestamp(CONCAT(SUBSTR('20230331',1,6),'01'), 'yyyyMMdd'), 'yyyy-MM-dd'),1) ;
 3.from_unixtime(unix_timestamp(last_day(add_months(from_unixtime(unix_timestamp('20230902','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyy-MM-dd'),'yyyyMMdd') ;
+
 季初     >>> 
 1.   SELECT
                     CASE
@@ -495,6 +497,8 @@ datediff(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),date_
           else (floor(substr(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),6,2)/3.1)*3)+1 end,'01')
 
 3.select date_format(concat(  year(from_unixtime(unix_timestamp('20230531','yyyyMMdd'),'yyyy-MM-dd')),'-',quarter(from_unixtime(unix_timestamp('20230531','yyyyMMdd'),'yyyy-MM-dd'))  * 3-2,'-01'),'yyyy-MM-dd')
+
+4.date_format(concat(  year(from_unixtime(unix_timestamp(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyyMMdd'),'yyyyMMdd'),'yyyy-MM-dd')),'-',quarter(from_unixtime(unix_timestamp(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyyMMdd'),'yyyyMMdd'),'yyyy-MM-dd'))  * 3-2,'-01'),'yyyyMMdd')
           
 季末    >>>  
 1.   SELECT
@@ -506,6 +510,9 @@ datediff(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),date_
                     END AS first_day_of_current_quarter
 2.  select last_day(concat(
             year(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd')),'-',quarter(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'))  * 3,'-01'))    
+
+3.date_format(last_day(concat(year(from_unixtime(unix_timestamp(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyyMMdd'),'yyyyMMdd'),'yyyy-MM-dd')),'-',quarter(from_unixtime(unix_timestamp(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyyMMdd'),'yyyyMMdd'),'yyyy-MM-dd'))  * 3,'-01')),'yyyyMMdd')
+
 --同比上年本月月初
 -- SELECT from_unixtime(unix_timestamp(trunc(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12), 'MM'),'yyyy-MM-dd'),'yyyyMMdd') 
 --同比上年本月月末
@@ -531,6 +538,14 @@ select  add_months(trunc(current_date(),'YY'),-12)
 -- 去年最后一天 ：
 select date_add(trunc(current_date(),'YY'),-1)
 >>>>>>> 9b9505721bc19f819d6f556cbc56af7075d9d6fc
+-- 根据当前日期拿到 0630或者 1231 半年报
+case 
+	when month(from_unixtime(unix_timestamp(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyyMMdd'),'yyyyMMdd'),'yyyy-MM-dd'))  between 1 and 5
+    THEN concat(substr(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyy') -1,0,4),'1231') 
+   when month(from_unixtime(unix_timestamp(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyyMMdd'),'yyyyMMdd'),'yyyy-MM-dd')) between 6 and 11
+   THEN concat(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyy'),'0630') 
+   ELSE concat(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyy'),'1231') 
+   END
 ```
 
 
