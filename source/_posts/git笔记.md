@@ -1075,6 +1075,19 @@ git push （develop-author分支，即自己的开发分支）
 4.git  merge develop-author   （合并自己的分支到lastest）
 ```
 
+
+
+### 17.git获取SSH公钥
+
+运行Git Bash
+输入git  没报错表示安装成功
+输入：
+git config --global user.name "用户名"
+git config --global user.email "邮箱"
+ssh-keygen -t rsa -C "邮箱"
+连续3回 回车键
+cd到 ~/.ssh  ls ,这回会出现 id_dsa或者id_rsa两个文件，.pub文件是我们的公钥，另一个是私钥 
+
 ### 参考文章:
 
 作者：指尖跳动链接：https://www.jianshu.com/p/dca42de8aed7来源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

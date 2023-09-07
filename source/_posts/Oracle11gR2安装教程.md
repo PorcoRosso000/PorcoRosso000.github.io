@@ -167,3 +167,14 @@ order by sid, s.serial#;
 4、解锁方法：alter system kill session ’146′; –146为锁住的进程号，即spid。
 
 5、查看被锁的表： select p.spid,c.object_name,b.session_id,b.oracle_username,b.os_user_name from v$process p,v$session a, v$locked_object b,all_objects c where p.addr=a.paddr and a.process=b.process and c.object_id=b.object_id
+
+
+
+
+
+### 【oracle注册码】
+
+oracle注册框中分别填入下载的信息
+product code： 4vkjwhfeh3ufnqnmpr9brvcuyujrx3n3le
+serial Number：226959
+password： xs374ca
