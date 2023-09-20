@@ -564,6 +564,25 @@ CAST(value AS TYPE)
 row_number() over (ORDER BY 1) AS NEWINDEX
 ```
 
+
+
+### 用炸裂函数 获取到开始日期到结束日期的每一天
+
+```
+select
+    date_add(start_date, pos) as mid_date
+from(
+        select
+            '1' as uid,
+            from_unixtime(unix_timestamp('20230101','yyyyMMdd'),'yyyy-MM-dd') as start_date,
+            from_unixtime(unix_timestamp('20230911','yyyyMMdd'),'yyyy-MM-dd') as end_date
+    ) tmp lateral view posexplode(
+        split(space(datediff(end_date, start_date)), '')
+    ) t as pos,val 
+```
+
+
+
 ### hive 常用运算
 
 #### 第一部分：关系运算
