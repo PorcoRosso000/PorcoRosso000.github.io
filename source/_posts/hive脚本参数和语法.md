@@ -517,8 +517,21 @@ datediff(from_unixtime(unix_timestamp('20230331','yyyyMMdd'),'yyyy-MM-dd'),date_
 -- SELECT from_unixtime(unix_timestamp(trunc(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12), 'MM'),'yyyy-MM-dd'),'yyyyMMdd') 
 --同比上年本月月末
 -- SELECT from_unixtime(unix_timestamp(add_months(from_unixtime(unix_timestamp('20231231','yyyyMMdd'),'yyyy-MM-dd'), -12),'yyyy-MM-dd'),'yyyyMMdd') 
-<<<<<<< HEAD
 
+
+--上年年末:
+date_format(date_add(concat(substr(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),0,4),'-01-01'),-1) ,'yyyyMMdd')
+
+--半年 :
+SELECT 
+    case 
+        when 
+        month(from_unixtime(unix_timestamp(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyyMMdd'),'yyyyMMdd'),'yyyy-MM-dd'))  between 1 and 5
+        THEN concat(substr(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyy') -1,0,4),'1231') 
+        when month(from_unixtime(unix_timestamp(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyyMMdd'),'yyyyMMdd'),'yyyy-MM-dd')) between 6 and 11
+        THEN concat(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyy'),'0630') 
+        ELSE concat(date_format(last_day(add_months(from_unixtime(unix_timestamp('${currentDate}','yyyyMMdd'),'yyyy-MM-dd'),-1 )),'yyyy'),'1231') 
+        END  AS AA
 
 =======
 -- 上周一：

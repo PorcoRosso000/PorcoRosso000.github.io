@@ -348,6 +348,7 @@ select * from table_name where create_time between sysdate - 5/(24*60) and sysda
 
 下面列举下天、时、分、秒的写法
 
+```
 SQL	含义
 sysdate+1	加一天
 sysdate+1/24	加1小时
@@ -357,9 +358,140 @@ sysdate-1	减一天
 sysdate-1/24	减1小时
 sysdate-1/(24*60)	减1分钟
 sysdate-1/(24*60*60)	减1秒钟
+```
+
+
 其他关系型数据库的写法大致相同，需要把时间函数 sysdate修改为使用的关系型数据库的函数。例如MySQL使用 now() 获取时间，神通使用 CURRENT_DATE 获取时间等。
 
 ### 存储过程
+
+### ORACLE decode函数
+
+DECODE是Oracle公司独家提供的功，该函数功能强大，下文对DECODE函数的语法作了详尽的阐述，供您参考学习。
+含义解释：
+decode(条件,值1,返回值1,值2,返回值2,...值n,返回值n,缺省值)
+
+该函数的含义如下：
+IF 条件=值1 THEN
+　　　　RETURN(翻译值1)
+ELSIF 条件=值2 THEN
+　　　　RETURN(翻译值2)
+　　　　......
+ELSIF 条件=值n THEN
+　　　　RETURN(翻译值n)
+ELSE
+　　　　RETURN(缺省值)
+END IF
+decode(字段或字段的运算，值1，值2，值3）
+
+       这个函数运行的结果是，当字段或字段的运算的值等于值1时，该函数返回值2，否则返回值3
+当然值1，值2，值3也可以是表达式，这个函数使得某些sql语句简单了许多
+
+使用方法：
+1、比较大小
+select decode(sign(变量1-变量2),-1,变量1,变量2) from dual; --取较小值
+sign()函数根据某个值是0、正数还是负数，分别返回0、1、-1
+例如：
+变量1=10，变量2=20
+则sign(变量1-变量2)返回-1，decode解码结果为“变量1”，达到了取较小值的目的。
+
+2、此函数用在SQL语句中，功能介绍如下：
+
+Decode 函数与一系列嵌套的 IF-THEN-ELSE语句相似。base_exp与compare1,compare2等等依次进行比较。如果base_exp和 第i 个compare项匹配，就返回第i 个对应的value 。如果base_exp与任何的compare值都不匹配，则返回default。每个compare值顺次求值，如果发现一个匹配，则剩下的 compare值（如果还有的话）就都不再求值。一个为NULL的base_exp被认为和NULL compare值等价。如果需要的话，每一个compare值都被转换成和第一个compare 值相同的数据类型，这个数据类型也是返回值的类型。
+
+Decode函数在实际开发中非常的有用
+
+结合Lpad函数，如何使主键的值自动加1并在前面补0
+select LPAD(decode(count(记录编号),0,1,max(to_number(记录编号)+1)),14,'0') 记录编号 from tetdmis
+
+eg:
+
+select decode(dir,1,0,1) from a1_interval
+
+dir 的值是1变为0，是0则变为1
+
+比如我要查询某班男生和女生的数量分别是多少?
+
+通常我们这么写:
+
+select count(*) from 表 where 性别 ＝ 男；
+
+select count(*) from 表 where 性别 ＝ 女；
+
+要想显示到一起还要union一下，太麻烦了
+
+用decode呢，只需要一句话
+
+select decode(性别，男，1，0），decode(性别，女，1，0） from 表
+
+ 
+
+ 
+
+3，order by对字符列进行特定的排序
+
+大家还可以在Order by中使用Decode。
+
+例：表table_subject，有subject_name列。要求按照：语、数、外的顺序进行排序。这时，就可以非常轻松的使用Decode完成要求了。
+
+select * from table_subject order by decode(subject_name, '语文', 1, '数学', 2, , '外语',3)
+
+ 
+
+4、DECODE实现表的转置
+数据库中的表是由列和行构成的一个二维表。一般列在任何数据库中都是有限的数量，而行的变化较大，如果表很大，行的数量可能大上千万行。同一列的不同行可能有不同的值，而且不是预先定义的。
+例:住房公积金报表置换实例：
+1.各个单位在本地经办行进行开户，开户就是将单位的基本信息和职工信息的进行登记；
+2.每月各个单位的会计到经办行交缴本单位的所有职工的住房公积金，系统记录有每个职工的交缴明细并在每条记录上记录有经办行的代码；
+3.每月、季、半年及年终都要求将经办行 变为“列”给出个月的明细报表：
+经办行：城西区 城东区
+月份：
+2001.01 xxxx1.xx xxxxx2.xx
+2001.02 xxxx3.xx xxxxx4.xx
+。 。 。 。 。 。
+原来的数据顺序是：
+城西区2001.01 xxxxx1.xx
+城东区2001.01 xxxxx2.xx
+城西区2001.02 xxxxx3.xx
+城东区2001.02 xxxxx4.xx
+住房公积金系统记录职工的每月交缴名细的pay_lst表结构是：
+bank_code varchar2(6)NOT NULL, -- 经办行代码
+acc_no varchar2(15) not null, -- 单位代码(单位帐号)
+emp_acc_no varchar2(20) not null, -- 职工帐号
+tran_date date not null, -- 交缴日期
+tran_val Number(7,2) not null, -- 交缴额
+sys_date date default sysdate, --系统日期
+oper_id varchar2(10) --操作员代码
+这样的表结构，一般按照将经办行作为行(row)进行统计是很容易的，但是如果希望将经办行变为列(column)这样的格式来输出就有困难。如果用DECODE函数来处理则变得很简单：
+我们创建一个视图来对目前的pay_lst表进行查询。将经办行代码变为一些具体的经办行名称即可：
+CREATE OR REPLACE VIEW bank_date_lst AS
+Select to_char(tran_date,’yyyy.mm’),
+SUM( DECODE ( bank_code,’001’, tran_val,0 )) 城西区，
+SUM( DECODE ( bank_code,’002’, tran_val,0 )) 城南区，
+SUM( DECODE ( bank_code,’003’, tran_val,0 )) 城东区
+FROM pay_lst
+GROUP BY to_char(tran_date,’yyyy.mm’);
+建立视图后，可直接对该视图进行查询就可按照列显示出结果。
+
+### Round(exp1,exp2)函数
+
+Round(exp1,exp2)函数具有四舍五入的功能，分为以下两种情况：
+
+1.exp2数为非负
+
+四舍五入的位数从小数点后开始计数,小数点后|exp2|位,看後一位，进本位，后面舍去
+
+select Round(125.455,0) from dual   ---125
+select Round(125.455,1) from dual   ---125.5
+select Round(125.455,4) from dual   ---125.455  大于小数位数，其余的位数补0将不显示
+2.exp2数为负
+
+四舍五入的位数从小数点前开始计数,小数点前|exp2|位，看本位，进前一位，本位以及后面取0
+
+select Round(125.455,-1) from dual   ---130
+select Round(125.455,-2) from dual   ---100
+select Round(125.455,-3) from dual   ---0
+select Round(125.455,-4) from dual   ---0
 
 
 
