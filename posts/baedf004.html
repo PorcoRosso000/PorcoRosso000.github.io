@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机体系结构-总线接口 | 红猪的博客</title><meta name="keywords" content="计算机体系结构-总线接口"><meta name="author" content="Porco Rosso"><meta name="copyright" content="Porco Rosso"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="冯.诺依曼体系结构 从Linux 服务器开发视角来看计算机，都是符合冯.诺依曼体系结构的。  CPU位数怎么确定？ 内部寄存器到运算单元之间总线位数来确定 如何确定设备位宽？ 根据数据总线 总线频率 与 CPU自身频率？ 这是2个不同的概念。总线频率一般指FSB频率，相当于CPU向外部存取数据时的数据传输速率 CPU自身频率则表示CPU运算时电路产生的频率 计算机总线 对比 OSI模型 计算机总线">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机体系结构-总线接口">
+<meta property="og:url" content="http://porcorosso.top/posts/baedf004.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="冯.诺依曼体系结构 从Linux 服务器开发视角来看计算机，都是符合冯.诺依曼体系结构的。  CPU位数怎么确定？ 内部寄存器到运算单元之间总线位数来确定 如何确定设备位宽？ 根据数据总线 总线频率 与 CPU自身频率？ 这是2个不同的概念。总线频率一般指FSB频率，相当于CPU向外部存取数据时的数据传输速率 CPU自身频率则表示CPU运算时电路产生的频率 计算机总线 对比 OSI模型 计算机总线">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://c.53326.com/d/file/newpc202302/ayphi1v41bp.jpg">
+<meta property="article:published_time" content="2023-09-23T07:02:52.000Z">
+<meta property="article:modified_time" content="2023-09-23T07:12:00.647Z">
+<meta property="article:author" content="Porco Rosso">
+<meta property="article:tag" content="计算机体系结构-总线接口">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://c.53326.com/d/file/newpc202302/ayphi1v41bp.jpg"><link rel="shortcut icon" href="/%5Bobject%20Object%5D"><link rel="canonical" href="http://porcorosso.top/posts/baedf004"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"7PZLOEQWZ0","apiKey":"09b62775f116ef72b0ccf883bb5d9727","indexName":"porco_rosso","hits":{"per_page":8},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Porco Rosso","link":"链接: ","source":"来源: 红猪的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-09-23 15:12:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="http://5b0988e595225.cdn.sohucs.com/images/20200331/a1faa45ada5248808020448b178883e3.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://c.53326.com/d/file/newpc202302/ayphi1v41bp.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">红猪的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机体系结构-总线接口</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-23T07:02:52.000Z" title="发表于 2023-09-23 15:02:52">2023-09-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-23T07:12:00.647Z" title="更新于 2023-09-23 15:12:00">2023-09-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E6%80%BB%E7%BA%BF%E6%8E%A5%E5%8F%A3/">计算机体系结构-总线接口</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机体系结构-总线接口"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>冯.诺依曼体系结构</strong></p>
+<p>从Linux 服务器开发视角来看计算机，都是符合冯.诺依曼体系结构的。</p>
+<p><img src="/posts/baedf004/%E5%86%AF.%E8%AF%BA%E4%BE%9D%E6%9B%BC%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.jpg" alt="冯.诺依曼体系结构"></p>
+<p><strong>CPU位数怎么确定？</strong></p>
+<p>内部寄存器到运算单元之间总线位数来确定</p>
+<p><strong>如何确定设备位宽？</strong></p>
+<p>根据数据总线</p>
+<p><strong>总线频率 与 CPU自身频率？</strong></p>
+<p>这是2个不同的概念。总线频率一般指FSB频率，相当于CPU向外部存取数据时的数据传输速率</p>
+<p>CPU自身频率则表示CPU运算时电路产生的频率</p>
+<p><strong>计算机总线 对比 OSI模型</strong></p>
+<p>计算机总线是一个只有物理层、网络层和上三成的网络</p>
+<p><strong>主机 如何 寻找设备？</strong></p>
+<p>每个IO设备在启动时都要向内存中映射一个或者多个地址，这个地址有8bit长，又称作IO端口。针对这个地址的数据，统统被北桥芯片重定向到IO总线上实际的设备上。</p>
+<p><strong>计算机详细体系结构</strong></p>
+<p><img src="/posts/baedf004/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%A6%E7%BB%86%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" alt="计算机详细体系结构"></p>
+<p><strong>三大总线（并行通信）：</strong></p>
+<p>地址总线：传输地址信号，通过地址信号找到要操作的寄存器、内存单元等</p>
+<p>控制总线：传输控制信号，比如通过地址总线找到内存的某位置了，接下来到底是进行读还是写，就由控制总线发控制信号决定</p>
+<p>数据总线：传输数据信号，比如通过地址找到内存的某个位置了，控制总线发出写的控制信号，希望对其写数据，那么写数据时，数据信号就是在数据总线上传输的</p>
+<p><strong>IO总线</strong></p>
+<p><img src="/posts/baedf004/IO%E6%80%BB%E7%BA%BF.png" alt="IO总线"></p>
+<p><strong>什么是接口？</strong></p>
+<p>接口的概念有点抽象，因为它最准确地指的是一个标准（一组数据交换规则/协议）</p>
+<p><strong>IO桥这里指南桥 北桥</strong></p>
+<p>​    <strong>北桥芯片作用</strong></p>
+<p>　　北桥芯片负责与CPU的联系并控制内存AGP数据在北桥内部传输，提供对CPU的类型和主频、系统的前端总线频率、内存的类型和最大容量、AGP插槽、ECC纠错等支持，整合型芯片组的北桥芯片还集成了显示核心。北桥起到的作用非常明显，在电脑中起着主导的作用，所以人们习惯的称为主桥（Host Bridge）。</p>
+<p>​    <strong>北桥芯片特点</strong></p>
+<p>　　北桥芯片就是主板上离CPU最近的芯片，这主要是考虑到北桥芯片与处理器之间的通信最密切，为了提高通信性能而缩短传输距离。因为北桥芯片的数据处理量非常大，发热量也越来越大，所以现在的北桥芯片都覆盖着散热片用来加强北桥芯片的散热，有些主板的北桥芯片还会配合风扇进行散热。</p>
+<p>​    <strong>南桥芯片作用</strong></p>
+<p>　　南桥芯片负责I/O总线之间的通信，如PCI总线、USB、LAN、ATA、SATA、音频控制器、键盘控制器、实时时钟控制器、高级电源管理等，这些技术一般相对来说比较稳定，所以不同芯片组中可能南桥芯片是一样的，不同的只是北桥芯片。所以现在主板芯片组中北桥芯片的数量要远远多于南桥芯片。</p>
+<p><strong>可以不用IO桥吗</strong></p>
+<p>可以，如果没有IO桥，所有的“外设IO接口”都是直接挂接在三大高速总线上的，但是随着发展，挂接的外部设备越来越多，直接挂接在总线上，太多了，管理是一个麻烦，慢慢的才有了IO桥这个管理者。</p>
+<p><strong>IO桥的好处</strong></p>
+<p>设备的IO接口直接挂接在IO桥上，IO桥有效的管理着众多的外设IO接口，IO桥里面会有相应的控制芯片，控制IO桥的工作。</p>
+<p><strong>并不是计算机都需要IO桥</strong></p>
+<p>IO桥是PC机特有的，并不是所有的计算机都有的，比如我们后面讲的ARM的开发板，就没有明显的IO桥这个东西。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Porco Rosso</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://porcorosso.top/posts/baedf004.html">http://porcorosso.top/posts/baedf004.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://porcorosso.top" target="_blank">红猪的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E6%80%BB%E7%BA%BF%E6%8E%A5%E5%8F%A3/">计算机体系结构-总线接口</a></div><div class="post_share"><div class="social-share" data-image="https://c.53326.com/d/file/newpc202302/ayphi1v41bp.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/images/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/images/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="http://5b0988e595225.cdn.sohucs.com/images/20200331/a1faa45ada5248808020448b178883e3.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Porco Rosso</div><div class="author-info__description">人必有所执,方能有所成</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">76</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/PorcoRosso000"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎大家来访我的博客</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/baedf004.html" title="计算机体系结构-总线接口"><img src="https://c.53326.com/d/file/newpc202302/ayphi1v41bp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机体系结构-总线接口"/></a><div class="content"><a class="title" href="/posts/baedf004.html" title="计算机体系结构-总线接口">计算机体系结构-总线接口</a><time datetime="2023-09-23T07:02:52.000Z" title="发表于 2023-09-23 15:02:52">2023-09-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/64502b93.html" title="摩斯密码"><img src="https://c.53326.com/d/file/newpc202302/eazn5xyhrv3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="摩斯密码"/></a><div class="content"><a class="title" href="/posts/64502b93.html" title="摩斯密码">摩斯密码</a><time datetime="2023-09-22T22:34:05.000Z" title="发表于 2023-09-23 06:34:05">2023-09-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/5646c163.html" title="idea操作文档"><img src="https://c.53326.com/d/file/newpc202302/aw0er2swwms.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea操作文档"/></a><div class="content"><a class="title" href="/posts/5646c163.html" title="idea操作文档">idea操作文档</a><time datetime="2023-09-20T23:08:07.000Z" title="发表于 2023-09-21 07:08:07">2023-09-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/a383a8c0.html" title="http学习"><img src="https://c.53326.com/d/file/newpc202302/w5erjvrrefv.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="http学习"/></a><div class="content"><a class="title" href="/posts/a383a8c0.html" title="http学习">http学习</a><time datetime="2023-08-28T23:48:22.000Z" title="发表于 2023-08-29 07:48:22">2023-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/364ea8cc.html" title="设计模式"><img src="https://c.53326.com/d/file/20220101/lvdmlansrf1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式"/></a><div class="content"><a class="title" href="/posts/364ea8cc.html" title="设计模式">设计模式</a><time datetime="2023-08-15T13:20:02.000Z" title="发表于 2023-08-15 21:20:02">2023-08-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://c.53326.com/d/file/newpc202302/ayphi1v41bp.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Porco Rosso</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/algolia.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.porcorosso.top/',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.porcorosso.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="/js/custom.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
