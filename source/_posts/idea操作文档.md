@@ -251,6 +251,63 @@ https://www.exception.site
 
 
 
+### idea SpringBoot热部署
+
+#### 开启IDEA的热部署策略（非常重要）
+
+菜单Run -> EditConfiguration , 然后配置指定服务器下，右侧server标签下on frame deactivation = Update classes and resource。
+
+#### 开启IDEA的自动编译（静态）
+
+IDEA开启项目自动编译，进入设置，Build,Execut, Deployment -> Compiler 勾选中左侧的Build Project automatically
+
+#### 开启IDEA的自动编译（动态）
+
+IDEA开启项目运行时自动make, ctrl + shift + alt + / 命令：registry 
+
+-> 勾选
+
+compiler.automake.allow.when.app.running-> 自动编译
+
+compile.document.save.trigger.delay -> 自动更新文件
+
+没有的话 `File`—>`Settings`—>`Advanced Settings`, 找到右侧的`Compiler`选项 勾选 Allow auto-make to start even if developed application is currently running
+
+#### 在项目添加热部署插件（可选）
+
+> 温馨提示：
+>  如果因为旧项目十分臃肿，导致每次都自动热重启很慢而影响开发效率，笔者建议直接在POM移除`spring-boot-devtools`依赖，然后使用Control+Shift+F9进行手工免启动快速更新！！
+
+具体步骤：在POM文件添加热部署插件
+
+
+
+```xml
+       <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+```
+
+#### 关闭浏览器缓存（重要）
+
+打开谷歌浏览器，打开F12的Network选项栏，然后勾选【✅】Disable cache 。
+
+
+
+### 解决控制台乱码 
+
+File--> Settings--> Editor--> File Encodings 
+
+​									--> Glabal Encoding --> UTF-8
+​									--> Project Encoding --> UTF-8
+​									--> Default Encoding for properties files --> UTF-8
+
+Help-->Edit Custom VM options -->  -Dfile.encoding=UTF-8
+
+VM options:  -Dfile.encoding=UTF-8
+
 ### 参考文献:
 
 作者：happy
