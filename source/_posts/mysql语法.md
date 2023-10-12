@@ -11,7 +11,7 @@ permalink:
 
 ### java代码
 
-####  SELECT LAST_INSERT_ID()：
+#### SELECT LAST_INSERT_ID()：
 
 得到刚 insert 进去记录的主键值，只适用与自增主键；
 
@@ -130,18 +130,20 @@ Specification<A> specification = new Specification<A>() {
 通过@Query(value=“sql语句”)方式实现表关联查询
 创建ARepository接口然后继承JpaRepository和JpaSpecificationExecutor，然后在repository接口中编写查询方法，如下
 
-	public interface ARepository extends JpaRepository<A,String> , JpaSpecificationExecutor<A> {
-	@Query(value="SELECT * " +
-	        "FROM A_table a " +
-	        "LEFT JOIN B_table b ON a.b_unid = b.unid " +
-	        "LEFT JOIN C_table c ON a.c_unid = c.unid " +
-	        "WHERE a.delete_flag = 0 " +
-	        "AND (?1 is null or ?1='' or a.b_unid = ?1 )" +
-	        "AND (?2 is null or ?2='' or a.c_unid = ?2 ) " +
-	        "AND (?3 is null or ?3='' or a.created_time >= ?3 ) " +
-	        "ORDER BY fqcm.created_time DESC",nativeQuery = true)
-	List<Map> selectABC(String bUnid, String cUnid, String createdTimeStart);
-	 }
+```
+public interface ARepository extends JpaRepository<A,String> , JpaSpecificationExecutor<A> {
+@Query(value="SELECT * " +
+        "FROM A_table a " +
+        "LEFT JOIN B_table b ON a.b_unid = b.unid " +
+        "LEFT JOIN C_table c ON a.c_unid = c.unid " +
+        "WHERE a.delete_flag = 0 " +
+        "AND (?1 is null or ?1='' or a.b_unid = ?1 )" +
+        "AND (?2 is null or ?2='' or a.c_unid = ?2 ) " +
+        "AND (?3 is null or ?3='' or a.created_time >= ?3 ) " +
+        "ORDER BY fqcm.created_time DESC",nativeQuery = true)
+List<Map> selectABC(String bUnid, String cUnid, String createdTimeStart);
+ }
+```
 
 @Query中?!,?2,?3代表传递的参数，应和下边方法中的参数顺序保持一致，其中条件
 
@@ -155,7 +157,6 @@ nativeQuery = true 表示可以执行原生的sql语句。
 #### 代码中map文件 配置一对多
 
 ```
-
 <resultMap id="BaseResultMap" type="com.hundsun.exchange.iwms.domain.query.inventory.WhSlInventoryIAreaQuery" >
     <id column="ID" property="id" jdbcType="NUMERIC" />
     <collection property="areaList" ofType="com.hundsun.exchange.iwms.domain.dto.inventory.WhSlInventoryItemArea">
@@ -348,87 +349,7 @@ d as (select * from scott.dept)
 
 select * from e, d where e.deptno = d.deptno;
 
-#### Oracle  数据库sql主键自增
 
-1.准备工作
-
-```
-创建oracle数据库表，用户表 SYS_USERS 其中user_id为主键
-
--- Create table
-create table SYS_USERS
-(
-  user_id     NUMBER(9) not null,
-  user_name   VARCHAR2(20) not null,
-  user_pwd    VARCHAR2(20) not null,
-  full_name   VARCHAR2(20),
-  sex         VARCHAR2(1)
-)
-```
-
-##### 方法一:使用Sequence方式自增
-
-```
-设置ID的增长策略是sequence，同时指定sequence的名字，最好每个表建一个sequence，此种做法就如同MS-SQL,MY-SQL中的自动增长一样，不需要创建触发器：
-
-第一步：创建序列sequence
-
-create sequence seq_t_dept
-minvalue 1
-maxvalue 99999999
-start with 1
-increment by 1
-cache 50
-
-第二步：建立触发器
-
-create or replace trigger "dept_trig"
-    before insert on dept_p
-    referencing old as old new as new for each row
-declare
-begin
-    select seq_t_dept.nextval into :new.dept_sort from dual;
-end dept_trig;
-
-第三步：插入数据测试看dept_sort是否自增
-
-insert into dept_p values('001', '安保部', '000', 1);
-select * from dept_p;
-```
-
-  
-
-##### 方式二：序列化+显示调用
-
-```
-在真实情况下，用方法一，可以做到免插入自增长
-
-第一步：创建序列sequence
-
-//创建sequence
-create sequence seq_on_dept
-increment by 1
-start with 1
-nomaxvalue
-nocycle
-nocache;
-
-第二步：显示调用序列
-
-insert into dept_p values('001', '安保部', '000', 1, seq_on_test.nextval);insert into dept_p values('001', '安保部', '000', 1, seq_on_test.nextval);
-
-第三步：查询进行查看
-
-select * from dept_p
-```
-
-   
-
-注：
-
---查看序列当前值和下一个值的查看方式
-select seq_on_dept.currval from dual;
-select seq_on_dept.nextval from dual;
 
 #### 数据库删除某条数据死锁怎么就解决?
 
@@ -516,6 +437,26 @@ SQL> SELECT * FROM CUSTOMERS;
 Empty set (0.00 sec)
 ```
 
+
+
+### AND 和 OR 运算符
+
+**AND 和 OR 运算符用于基于一个以上的条件对记录进行过滤。**
+
+AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。
+
+如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。
+
+如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。
+
+#### 结合 AND 和 OR 运算符
+
+我们也可以把 AND 和 OR 结合起来（使用圆括号来组成复杂的表达式）:
+
+```mysql
+SELECT * FROM Persons WHERE (FirstName='Thomas' OR FirstName='William')
+AND LastName='Carter'
+```
 
 ### 参考文献: 
 

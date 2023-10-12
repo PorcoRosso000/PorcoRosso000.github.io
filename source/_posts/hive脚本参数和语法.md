@@ -198,9 +198,68 @@ select   a
         ,b
         ,max(b) over(partition by a)  as  max_val
         ,min(b) over(partition by a)  as  min_val
+        
+```
+
+#### hive求多个字段的最大最小值
+
+
+
+1. 准备数据表test2
+
+```
+create table test2(
+a int,
+b int,
+c int,
+d int,
+e int);
 ```
 
 
+
+2. 准备2条数据
+
+```
+insert into table test2 values(5,1,3,8,6);
+insert into table test2 values(6,2,5,11,9);
+```
+
+查询显示如下：
+
+![img](./367203-20190425094328471-1694608256.png)
+
+3. 现在要求出a,b,c,d,e 5个字段中每行的最大值和最小值。
+
+  虽然hive中有min和max，但是那是求某列字段的最小值和最大值，在这里行不通。接下来使用hive中的数组排序方法来求解。
+
+  思路： 先将字段合并到数组里面，然后使用数组排序函数。
+
+```
+select sort_array(array(a,b,c,d,e)) from test2;
+```
+
+结果显示如下：
+
+![img](./367203-20190425094823089-2071774223.png)
+
+这样，第一个就是最小值，最后一个就是最大值。完整代码如下：
+
+```
+select arr[0] as min_val, arr[4] as max_val 
+from(
+     select sort_array(array(a,b,c,d,e)) arr 
+     from test2
+)a;
+```
+
+ 最终结果如下：
+
+![img](./367203-20190425095629777-531376693.png)
+
+ 
+
+本文来自博客园，作者：[硅谷工具人](https://www.cnblogs.com/30go/)，转载请注明原文链接：https://www.cnblogs.com/30go/p/10765280.html
 
 ### hive  REGEXP_REPLACE 正则表达式
 
@@ -375,6 +434,304 @@ where t2.a is null
 
 in 后括号之中的是一个集合
 ```
+
+### cross join
+
+#### MySQL CROSS JOIN子句简介
+
+`CROSS JOIN`子句从连接的表返回行的笛卡儿乘积。
+
+假设使用`CROSS JOIN`连接两个表。 结果集将包括两个表中的所有行，其中结果集中的每一行都是第一个表中的行与第二个表中的行的组合。 当连接的表之间没有关系时，会使用这种情况。
+
+要特别注意的是，如果每个表有`1000`行，那么结果集中就有`1000 x 1000 = 1,000,000`行，那么数据量是非常巨大的。
+
+下面说明连接两个表：`T1`和`T2`的`CROSS JOIN`子句的语法：
+
+```sql
+SELECT 
+    *
+FROM
+    T1
+        CROSS JOIN
+    T2;
+SQL
+```
+
+请注意，与[INNER JOIN](http://www.yiibai.com/mysql/inner-join.html)或[LEFT JOIN](http://www.yiibai.com/mysql/left-join.html)子句不同，`CROSS JOIN`子句不具有连接条件。
+
+如果添加了`WHERE`子句，如果`T1`和`T2`有关系，则`CROSS JOIN`的工作方式与`INNER JOIN`子句类似，如以下查询所示：
+
+```sql
+SELECT 
+    *
+FROM
+    T1
+        CROSS JOIN
+    T2
+WHERE
+    T1.id = T2.id;
+SQL
+```
+
+#### MySQL CROSS JOIN子句示例
+
+下面我们将使用以下几个表来演示`CROSS JOIN`的工作原理。
+
+```sql
+CREATE DATABASE IF NOT EXISTS testdb;
+USE testdb;
+
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    product_name VARCHAR(100),
+    price DECIMAL(13 , 2 )
+);
+
+DROP TABLE IF EXISTS sales;
+
+CREATE TABLE stores (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    store_name VARCHAR(100)
+);
+
+DROP TABLE IF EXISTS sales;
+
+CREATE TABLE sales (
+    product_id INT,
+    store_id INT,
+    quantity DECIMAL(13 , 2 ) NOT NULL,
+    sales_date DATE NOT NULL,
+    PRIMARY KEY (product_id , store_id),
+    FOREIGN KEY (product_id)
+        REFERENCES products (id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (store_id)
+        REFERENCES stores (id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+SQL
+```
+
+上面语句中，创建了三个表：
+
+- 产品(`products`)表包含产品编号，产品名称和销售价格等产品主要数据。
+- 商店(`stores`)表包含销售产品的商店信息。
+- 销售(`sales`)表包含在特定商店按数量和日期销售的产品。
+
+假设有三个产品：`iPhone`，`iPad`和`Macbook Pro`，在北部(`North`)和南部(`South`)的这两个商店中出售。
+
+```sql
+INSERT INTO products(product_name, price)
+VALUES('iPhone', 699),
+      ('iPad',599),
+      ('Macbook Pro',1299);
+
+INSERT INTO stores(store_name)
+VALUES('North'),
+      ('South');
+
+INSERT INTO sales(store_id,product_id,quantity,sales_date)
+VALUES(1,1,20,'2017-01-02'),
+      (1,2,15,'2017-01-05'),
+      (1,3,25,'2017-01-05'),
+      (2,1,30,'2017-01-02'),
+      (2,2,35,'2017-01-05');
+SQL
+```
+
+要获得每个商店和每个产品的总销售额，您可以计算销售额，并按商店和产品分组如下：
+
+```sql
+SELECT 
+    store_name,
+    product_name,
+    SUM(quantity * price) AS revenue
+FROM
+    sales
+        INNER JOIN
+    products ON products.id = sales.product_id
+        INNER JOIN
+    stores ON stores.id = sales.store_id
+GROUP BY store_name , product_name;
+SQL
+```
+
+执行上面查询，得到以下结果 - 
+
+```shell
+mysql> SELECT 
+    store_name,
+    product_name,
+    SUM(quantity * price) AS revenue
+FROM
+    sales
+        INNER JOIN
+    products ON products.id = sales.product_id
+        INNER JOIN
+    stores ON stores.id = sales.store_id
+GROUP BY store_name , product_name; 
++------------+--------------+------------+
+| store_name | product_name | revenue    |
++------------+--------------+------------+
+| North      | iPad         | 8985.0000  |
+| North      | iPhone       | 13980.0000 |
+| North      | Macbook Pro  | 32475.0000 |
+| South      | iPad         | 20965.0000 |
+| South      | iPhone       | 20970.0000 |
++------------+--------------+------------+
+5 rows in set
+Shell
+```
+
+现在，如果你想知道哪个商店中的哪些产品的没有销售怎么办？ 上面的查询无法回答这个问题。
+
+要解决这个问题，可以使用`CROSS JOIN`子句。
+
+首先，使用`CROSS JOIN`子句来获取所有商店和产品的组合：
+
+```sql
+SELECT 
+    store_name, product_name
+FROM
+    stores AS a
+        CROSS JOIN
+    products AS b;
+SQL
+```
+
+执行上面查询语句，得到以下结果 - 
+
+```shell
+mysql> SELECT 
+    store_name, product_name
+FROM
+    stores AS a
+        CROSS JOIN
+    products AS b;
++------------+--------------+
+| store_name | product_name |
++------------+--------------+
+| North      | iPhone       |
+| South      | iPhone       |
+| North      | iPad         |
+| South      | iPad         |
+| North      | Macbook Pro  |
+| South      | Macbook Pro  |
++------------+--------------+
+6 rows in set
+Shell
+```
+
+接下来，将上述查询的结果与按商店和产品返回总销售额的查询相结合。以下查询说明了这个想法：
+
+```sql
+SELECT 
+    b.store_name,
+    a.product_name,
+    IFNULL(c.revenue, 0) AS revenue
+FROM
+    products AS a
+        CROSS JOIN
+    stores AS b
+        LEFT JOIN
+    (SELECT 
+        stores.id AS store_id,
+        products.id AS product_id,
+        store_name,
+            product_name,
+            ROUND(SUM(quantity * price), 0) AS revenue
+    FROM
+        sales
+    INNER JOIN products ON products.id = sales.product_id
+    INNER JOIN stores ON stores.id = sales.store_id
+    GROUP BY store_name , product_name) AS c ON c.store_id = b.id
+        AND c.product_id= a.id
+ORDER BY b.store_name;
+SQL
+```
+
+请注意，如果收入为`NULL`(表示商店没有销售的产品)，则查询使用[IFNULL](http://www.yiibai.com/mysql/ifnull.html)函数返回`0`。
+
+通过这样使用`CROSS JOIN`子句，可以解决类似这样的问题，例如销售人员按月查找销售收入，即使推销员在特定月份没有销售产品。
+
+
+
+### hive中实现group_concat
+
+
+mysql中的group_concat分组连接功能相当强大，可以先分组再连接成字符串，还可以进行排序连接。但是hive中并没有这个函数，那么hive中怎么实现这个功能呢？
+
+这里要用到：concat_ws函数和collect_list、collect_set 函数。
+
+建立测试表（无分区表）：
+
+```
+create table if not exists db_name.test_tb(
+	id string,
+	content string,
+	comment string
+) row format delimited 
+fields terminated by '\1' 
+stored as textfile;
+```
+
+插入几条数据：
+
+```
+insert into db_name.test_tb values('1','Tom','测试1');
+insert into db_name.test_tb values('1','Bob','测试2');
+insert into db_name.test_tb values('1','Wendy','测试3');
+insert into db_name.test_tb values('2','Bob','测试22');
+insert into db_name.test_tb values('2','Tom','测试11');
+
+concat_ws + collect_set + group by：
+select
+    id,
+    concat_ws(',',collect_set(content)) as con_con,
+    concat_ws(',',collect_set(comment)) as con_com
+from db_name.test_tb
+group by id;
+```
+
+结果：无序且不对应（con_con与con_com的位置） —— 但是注意 collect_set会将重复的数据删除，因为集合的性质。
+每次运行连接的结果顺序都可能不一样。
+
+```
+concat_ws + collect_list + group by：
+select
+    id,
+    concat_ws(',',collect_list(content)) as con_con,
+    concat_ws(',',collect_list(comment)) as con_com
+from db_name.test_tb
+group by id;
+
+```
+
+
+结果：对应（con_con与con_com的位置）但无序。
+
+```
+concat_ws + collect_list + group by + row_number()：
+select
+    id,
+    concat_ws(',',collect_list(content)) as con_con,
+    concat_ws(',',collect_list(comment)) as con_com,
+    concat_ws(',',collect_list(cast(rn as string))) as con_rn
+from 
+(
+select
+    id,
+    content,
+    comment,
+    row_number() over(partition by id order by content asc) as rn
+from db_name.test_tb
+)
+group by id;
+```
+
+结果：对应（con_con与con_com的位置）且有序。
 
 ### hive模糊匹配
 
@@ -1376,6 +1733,12 @@ hive中的concat，concat_ws，collect_set用法
 
 
 
+### 附录:
+
+#### excel  相关
+
+数据求和计算公式= SUMPRODUCT(VALUE(F2:F248))
+
 ## 原文链接: 
 
 版权声明：本文遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
@@ -1403,3 +1766,5 @@ hive中的concat，concat_ws，collect_set用法
 「喜东东cc」原创文章：https://blog.csdn.net/qq_34105362/article/details/80540164
 
 「技匠三石弟弟」的原创文章:  https://blog.csdn.net/xiaoleilei666/article/details/122238988
+
+「雾岛与鲸」的原创文章：https://blog.csdn.net/qq_36039236/article/details/115629639

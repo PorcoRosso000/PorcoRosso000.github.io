@@ -251,6 +251,10 @@ https://www.exception.site
 
 
 
+#### JetBrains 系列软件-激活码教程
+
+https://www.yuque.com/strive-rd6n1/mpd5f0/evctz34d87o5yo7k?singleDoc=
+
 ### idea SpringBoot热部署
 
 #### 开启IDEA的热部署策略（非常重要）
@@ -310,12 +314,6 @@ VM options:  -Dfile.encoding=UTF-8
 
 ### 参考文献:
 
-作者：happy
-链接：http://testingpai.com/article/1599809695935
-来源：测试派
-协议：CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
+happy 链接：http://testingpai.com/article/1599809695935
 
-
-
-CSDN博主「Winn~」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/GoGleTech/article/details/106229338
+CSDN博主「Winn~」 链接：https://blog.csdn.net/GoGleTech/article/details/106229338
