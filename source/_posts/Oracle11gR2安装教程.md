@@ -1,8 +1,8 @@
 ---
 title: Oracle11gR2安装教程
 typora-root-url: Oracle11gR2安装教程
-tags: oracle
-categories: oracle
+tags: Oracle
+categories: Oracle
 abbrlink: 16e89da7
 date: 2023-01-23 16:39:38
 permalink:
@@ -125,6 +125,76 @@ oracle下载64位破解版怎么卸载？
 ![img](201904161058544466.jpg)
 ![img](20190416105858552.jpg)
 
+### 【oracle本地数据库安装报错指南】
+
+#### 安装ORACLE服务出现Oracle Net Configuration Assistant 失败问题
+
+**解决方法：**
+以管理员身份运行 ORACLE_HOME 下 BIN 目录中的 netca.bat，通过这种方式配置监听，就会配置成功。
+
+右击netca.bat以管理员身份运行,选第一个 监听程序配置——添加 不成功，提示已经运行，那么选择 监听程序配置——**重新配置**，配置成功，然后在oracle安装页面跳过刚才的错误，继续安装即可。
+
+安装完成之后启动OracleOraDb11g_home1TNSListener服务,再连接数据库
+
+#### 本地计算机上的OracleOraDb11g_home1TNSListener服务启动后停止。某些服务在未由其它服务或程序使用时将自动停止。
+
+安装好Oracle服务器之后，接着安装客户端PL/SQL Developer，可以使用，但是重启计算机之后，再次使用PL/SQL Developer连接Oracle时，提示说
+
+没有开启监听，于是到服务里查看，确实没有开启Oracle的监听项目OracleOraDb11g_home1TNSListener，于是开启，好了，报错了：
+
+　　本地计算机上的OracleOraDb11g_home1TNSListener服务启动后停止。某些服务在未由其它服务或程序使用时将自动停止。
+
+怀疑是Oracle的ORACLE_HOME出现问题，打开环境变量，找到系统变量中的ORACLE_HOME，把值改为ORACLE的安装目录，如下路径：
+
+E:\app\Administrator\product\11.2.0\dbhome_1
+
+-----------------------------（之前在安装配置PL/SQL Developer的时候可能配置错了）
+
+重新启动OracleOraDb11g_home1TNSListener，发现可以成功启动了，再次启动连接PL/SQL Developer，发现又有报错：
+
+　　ORA-12541: TNS: 无监听程序
+
+解决方法：
+
+　　开始--所有程序--Oracle OraDb11g_home1--配置和移植工具--Net Configuration Assistant，重新配置  
+
+配置两部分
+
+监听程序配置 和上一个错误的配置方式一样
+
+本地网络服务名配置 一直下一步配置到主机名的时候换成127.0.0.1，顺便说一下，E:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora，
+
+E:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora，
+
+D:\PLSQLDeveloper\instantclient_11_2\tnsnames.ora
+
+这三个文件中的HOST统一换成127.0.0.1【一定要统一！】
+
+到这一步，如果出现错误以上错误，“无监听程序”，打开PL/SQL Developer连接，报错：
+
+　　　　ORA-12514: TNS:监听程序当前无法识别连接描述符中请求的服务
+
+解决方法：
+
+**保证下面两项服务启动**
+
+OracleServiceORCL
+OracleOra...TNSLIistener
+
+　　1、更改登录，输入用户名和口令
+
+　　2、如果步骤1也没能解决， 就打开下面三个文件，
+
+E:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora，
+
+E:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora，
+
+D:\PLSQLDeveloper\instantclient_11_2\tnsnames.ora
+
+**不做任何修改，保存，退出即可！**
+
+重新连接PL/SQL Developer，连接成功！
+
 ### 【使用技巧】
 
 oracle如何like多个值？
@@ -167,10 +237,6 @@ order by sid, s.serial#;
 4、解锁方法：alter system kill session ’146′; –146为锁住的进程号，即spid。
 
 5、查看被锁的表： select p.spid,c.object_name,b.session_id,b.oracle_username,b.os_user_name from v$process p,v$session a, v$locked_object b,all_objects c where p.addr=a.paddr and a.process=b.process and c.object_id=b.object_id
-
-
-
-
 
 ### 【oracle注册码】
 
