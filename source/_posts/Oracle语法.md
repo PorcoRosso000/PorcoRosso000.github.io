@@ -669,10 +669,11 @@ Dual伪列
 
 
 
-### [Oracle中的PLsql的符号解释大全](http://www.blogjava.net/tbwshc/articles/379730.html)
+### Oracle中的PLsql的符号解释大全
 
-PL/SQL基础
-一、字符[tb](http://www.tbwshc.com/)集
+#### PL/SQL基础
+
+##### 一、字符[tb](http://www.tbwshc.com/)集
 
 在PL/SQL程序中，允许出现的字符集包括：
 
@@ -682,7 +683,7 @@ PL/SQL基础
 制表符、空格和回车符
 PL/SQL对大小写不敏感，所以，除了在字符串和字符中，小写字母和它对应的大写字母是等价的。
 
-二、词法单元
+##### 二、词法单元
 
 PL/SQL包含很多词法单元(lexical unit)，大致可以分为以下几类：
 
@@ -706,7 +707,7 @@ ELSE
   MAX     := y;
 END  IF ; 
 
-1、分隔符
+###### 1、分隔符
 
 分隔符是对PL/SQL有着特殊意义的简单或复合的符号。例如，我们使用加号和减号这样的分隔符来表现数学运算。简单分隔符只有一个字符。
 
@@ -749,7 +750,7 @@ END  IF ;
 \>= 关系操作符
 -- 单行注释提示符
 
-2、标识符
+###### 2、标识符
 
 我们可以使用标识符来为PL/SQL程序中的常量、变量、异常、游标、游标变量、子程序和包命名。下面是一些标识符的例子：
 
@@ -777,7 +778,8 @@ LastName -- 与lastname相同
 LASTNAME -- 与lastname和Lastname相同
 标识符的长度不能超过30。对于标识符的命名尽可能代表某种含义，避免使用像cpm这样的命名，而是使用cost_per_tdousand这样意义明确的命名方式。
 
-保留关键字
+**保留关键字**
+
 对于某些标识符，我们称它们为保留关键字(reserved word)，因为对于PL/SQL来说，它们有着特殊含义，不可以被重新定义。例如BEGIN和END，它们代表块或子程序的起始和结束而被PL/SQL 保留下来。在下面的例子中，我们可以看到，如果重定义一个关键字的话，就会产生一个编译错误：
 
 DECLARE
@@ -790,10 +792,12 @@ DECLARE
 
 通常，保留关键字都是以大写形式存在的，这样能够增强可读性。但是，跟其他PL/SQL标识符一样，保留关键字也可以使用小写或大小写混合的形式。
 
-预定义标识
+**预定义标识**
+
 在包STANDARD中声明的全局标识符(如INVALID_NUMBER)是可以被重新声明的。但是，不建议重新声明预定义标识符，因为这样做的结果会使本地声明覆盖全局声明。
 
-引用标识符
+**引用标识符**
+
 为了获取更多的灵活性，PL/SQL允许我们用双引号将标识符夹起来。这样的标识符很少使用，但有时它们非常有用。它们可以包含任何可打印字符，其中空格也包含在内，但是，不可以包含双引号。因此，下面这些引用标识符都是有效的：
 
 "X+Y"
@@ -817,7 +821,7 @@ SELECT  acct, "type", bal INTO  ... -- causes compilation error
 
 还有一种做法就是可以建立视图来为原来的字段名更换一个新名。
 
-3、文字
+###### 3、文字
 
 文字就是一个数字、字符、字符串或布尔(Boolean)值。它本身是数据而不是对数据的引用，如数字147和布尔值FALSE都是文字。
 
@@ -838,8 +842,8 @@ PL/SQL把12.0和25.这样的数字都当作实数处理，虽然它们只有整�
 
 E代表了十的幂，即权(times ten to tde power of)。E后面的整数值代表指数。**是幂操作符。
 
-5E3 = 5 * 10**3 = 5 * 1000 = 5000
--- tde double asterisk (**) is tde exponentiation operator 
+5E3 = 5 * 10的三次方 = 5 * 1000 = 5000
+-- tde double asterisk () is tde exponentiation operator 
 
 在上面的例子里，小数点向右移动三个位置，而在下面这个例子中，我们把E后面的数字改成-3，就能让小数点向左移动三个位置：
 
@@ -852,14 +856,14 @@ DECLARE
 BEGIN
   n := 10E127;   -- causes a 'numeric overflow or underflow' error 
 
-字符文字
+**字符文字**
 字符文字就是由单引号夹起来的一个单独的字符。字符文字包括PL/SQL字符集中所有的可打印字符：字母、数字、空格和特殊符号。如下例所示：
 
 'Z' , '%' , '7' , ' ' , 'z' , '(' 
 
 对于字符文字来说，PL/SQL是大小写敏感的。例如，PL/SQL会把'Z'和'z'当成不同的字符。字符'0'到'9'虽不与整数文字等价，但它们可以被应用于算术表达式中，因为它们会被隐式地转换成整数。
 
-字符串文字
+**字符串文字**
 字符值可以用标识符来表示，或是写成字符串文字，字符串文字就是由单引号夹起来的零个或多个字符，如下例所示：
 
 'Hello, world!'
@@ -877,7 +881,7 @@ PL/SQL对字符串是大小写敏感的。例如，下面两个字符串是不�
 'baker'
 'Baker' 
 
-布尔(Boolean)文字
+**布尔(Boolean)文字**
 布尔文字可以用值TRUE、FALSE和NULL(表示缺失、未知或不可用的值)来表示。记住，布尔文字本身就是值，而不是字符串。
 
 日期因类型的不同，有很多表现形式，比如下面的例子：
@@ -900,11 +904,12 @@ current_timestamp - current_timestape
 
 (interval_expression) DAY TO SECOND
 (interval_expression) YEAR TO MONtd
-4、注释
+
+###### 4、注释
 
 PL/SQL编译器会忽略注释，但我们不可以这样做。添加注释能让我们的程序更加易读。通常我们添加注释的目的就是描述每段代码的用途。PL/SQL支持两种注释风格：单行和多行。
 
-单行注释
+**单行注释**
 单行注释由一对连字符(--)开头。如下例：
 
 -- begin processing
@@ -917,7 +922,7 @@ bonus := salary * 0.15; -- compute bonus amount
 
 -- DELETE FROM emp WHERE comm IS NULL; 
 
-多行注释
+**多行注释**
 多行注释由斜线星号(/*)开头，星号斜线(*/)结尾，可以注释多行内容。示例如下：
 
 BEGIN
@@ -946,7 +951,7 @@ LOOP
 END LOOP;
 */ 
 
-三、声明
+##### 三、声明
 
 在PL/SQL中，我们可以在块、子程序或包的声明部分来声明常量或变量。声明能够分配内存空间，指定数据类型，为存储位置进行命名以便我们能够引用这块存储空间。下面来看一下声明的例子：
 
@@ -970,7 +975,7 @@ credit_limit   CONSTANT  REAL  := 5000.00;
 
 常量在声明的时候必须进行初始化，否则就会产生编译错误。
 
-1、使用DEFAULT
+###### 1、使用DEFAULT
 
 我们可以使用关键字DEFAULT来替换赋值操作符为变量初始化。下面这个声明
 
@@ -982,7 +987,7 @@ blood_type   CHAR  DEFAULT  'o' ;
 
 我们可以使用DEFAULT来初始化子程序参数、游标参数和用户定义的记录中的域。
 
-2、使用NOT NULL
+###### 2、使用NOT NULL
 
 除了在声明中做初始化操作外，还可以使用NOT NULL进行约束：
 
@@ -1001,7 +1006,7 @@ emp_count NATURALN          := 0;
 
 line_items POSITIVEN ;   -- not allowed; not initialized 
 
-3、使用%TYPE
+###### 3、使用%TYPE
 
 %TYPE属性能够为我们提供变量或数据库字段的数据类型。在下面的例子中，%TYPE提供了变量credit的数据类型：
 
@@ -1020,7 +1025,7 @@ DECLARE
 BEGIN
   my_empno := NULL ; -- tdis works 
 
-4、使用%ROWTYPE
+###### 4、使用%ROWTYPE
 
 %ROWTYPE属性提供数据表(或视图)中一整行数据的类型信息。记录可以完整地保存从游标或游标变量中取出的当前行的信息。下面例子中，我们声明了两个记录，第一个保存emp表的行信息，第二个保存从游标c1取出的行信息。
 
@@ -1047,7 +1052,7 @@ CREATE  PACKAGE  BODY  emp_actions AS
   ...
 END  emp_actions; 
 
-聚合赋值
+**聚合赋值**
 用%ROWTYPE作声明的时候是不可以进行初始化赋值的，但是有两种方法可以一次性为所有字段赋值。方法一：假如两个记录类型的声明引用了同一数据表或游标，那么它们就可以相互赋值，如：
 
 DECLARE
@@ -1097,7 +1102,7 @@ BEGIN
   CLOSE  my_cursor;
 END ; 
 
-5、声明的约束
+###### 5、声明的约束
 
 PL/SQL不允许向前引用。也就是说我们在使用变量或常量之前必须先声明。像下面这样的语句就是不合法的：
 
@@ -1116,7 +1121,7 @@ k   SMALLINT ;
 
 i, j, k   SMALLINT ;   -- not allowed 
 
-四、PL/SQL命名规范
+##### 四、PL/SQL命名规范
 
 同样的命名规约适用于所有的PL/SQL程序，规约涉及的内容包括常量、变量、游标、异常、过程、函数和包。命名可能是简单的，加以限定的，远程的或是既加以限定又是远程的。例如，我们也许可能用到以下几种调用过程raise_salary的方式：
 
@@ -1127,22 +1132,26 @@ emp_actions.raise_salary(...);   -- qualified
 
 第一种情况，我们只是简单的使用程序名称。第二种情况，我们必须使用点标志(dot notation)来引用过程，因为它是保存在emp_actions包中的。第三种情况，使用远程访问指示符，就能引用数据库连接newyork，因为过程是存放在远程数据库的。第四中情况，我们在过程名称加上限定修饰词并引用数据库连接。
 
-同义词
+###### 同义词
+
 我们可以创建同义词来隐藏远程模式对象的位置，其中包括表、视图、序列、存储函数、包、和对象类型。但是，我们不能为子程序或包中声明的内容创建同义词，其中包括常量、变量、游标变量、异常和打包子程序。
 
-作用域
+###### 作用域
+
 同一作用域内声明的标识符都必须是唯一的。所以，即使它们的数据类型不同，变量和参数也不能享用同一名称。下例中，第二个声明是不允许的：
 
 valid_id   BOOLEAN ;
 valid_id   VARCHAR2  (5);   -- not allowed duplicate identifier 
 
-大小写敏感
+###### 大小写敏感
+
 像所有的标识符一样，常量、变量和参数的名称都是大小写不敏感的。例如，PL/SQL认为下面的名称都是相同的：
 
 zip_code   INTEGER ;
 zip_code   INTEGER ;   -- same as zip_code 
 
-命名解析
+###### 命名解析
+
 在SQL语句中，数据库字段名称的优先级要高于本地变量和形式参数。例如，下面的DELETE语句会从emp表删除所有的雇员信息，而不只是名字为"KING"的雇员：
 
 DECLARE
@@ -1175,7 +1184,7 @@ BEGIN
   SELECT  ... WHERE  deptno = bonus.deptno AND  job = bonus.job;
   ... 
 
-五、PL/SQL标识符的作用域(scope)和可见度(visiblity)
+##### 五、PL/SQL标识符的作用域(scope)和可见度(visiblity)
 
 对标识符的引用可以通过它的作用域和可见度来进行解析。标识符的作用域就是我们引用标识符的程序单元区域(块，子程序或包)。一个标识符只在它的作用域内可见，我们可以在作用域内不使用限定词而直接引用它。下图演示了变量x的作用域和可见度。x首先被声明在封闭块中，然后又在子块中重新定义。
 
@@ -1242,7 +1251,7 @@ END ;
 
 但是，在同一作用域内，标签和子程序不能使用相同的命名。
 
-六、变量赋值
+##### 六、变量赋值
 
 变量和常量都是在程序进入块或子程序的时候被初始化的。默认情况下，变量都是被初始化成NULL的。除非我们为变量指定一个值，否则结果是未知的。请看下面的例子：
 
@@ -1262,7 +1271,7 @@ bonus := salary * 0.15;
 
 这里，我们需要保证的是salary * 0.15计算结果的类型必须和bonus类型保持一致。
 
-1、布尔型(Boolean)赋值
+###### 1、布尔型(Boolean)赋值
 
 只有TRUE、FALSE和NULL才可以赋给布尔类型的变量。例如：
 
@@ -1276,7 +1285,7 @@ BEGIN
 
 done := (count > 500); 
 
-2、利用SQL查询为PL/SQL变量赋值
+###### 2、利用SQL查询为PL/SQL变量赋值
 
 我们可以使用SELECT语句让Oracle为变量赋值。对于查询字段中的每一项，在INTO子句的后面都必须有与之对应的类型兼容的变量。看一下下面这个例子：
 
@@ -1294,7 +1303,7 @@ END ;
 
 但是，上面的用法不可以为布尔类型变量赋值。
 
-七、PL/SQL表达式与比较
+##### 七、PL/SQL表达式与比较
 
 表达式由操作数和操作符构成。一个操作数就是一个变量、常量、文字或是能够返回一个值的函数。下面是一个简单的数学表达式：
 
@@ -1306,7 +1315,7 @@ END ;
 
 由于操作符的运算优先级不同，表达式的计算顺序也是不一样的。下表是默认的操作符优先级顺序。
 
-操作符 运算
+**操作符 运算**
 ** 求幂
 +, - 正，负
 *, / 乘，除
@@ -1335,7 +1344,7 @@ OR 或
 
 (salary * 0.05) + (commission * 0.25) 
 
-1、逻辑操作符
+###### 1、逻辑操作符
 
 逻辑操作符有AND、OR和NOT，其中AND和OR是二元操作符，而NOT是一元操作符。下面是对应操作的真值表。
 
@@ -1354,7 +1363,7 @@ NULL NULL NULL NULL NULL
 
 这里需要注意的地方是，由于NULL是一个不确定的值，所以NOT NULL的值也是无法确定的。
 
-运算顺序
+**运算顺序**
 当我们不用括号指定计算顺序的时候，操作符的优先级就会决定操作数的计算顺序。比较下面两个表达式：
 
 NOT  (valid AND  done)  NOT  valid AND  done 
@@ -1371,7 +1380,7 @@ valid AND  done
 
 valid OR  done 
 
-短路计算
+**短路计算**
 在计算逻辑表达式时，PL/SQL使用的是短路计算方法。也就是说，PL/SQL在结果可以确定下来的时候，就不会再继续计算表达式的值了。看一下下面这个例子：
 
 DECLARE
@@ -1398,10 +1407,10 @@ ELSE
   ...
 END  IF ; 
 
-关系操作符
+**关系操作符**
 关系操作符可以让我们随意比较复杂的表达式。下面的表格列出了各种关系操作符的含义。
 
-操作符 含义
+**操作符 含义**
 =  等于
 <>, !=, ~=, ^=  不等于
 <  小于
@@ -1409,17 +1418,17 @@ END  IF ;
 <=  小于等于
 \>=  大于等于
 
-IS NULL 操作符
+**IS NULL 操作符**
 如果IS NULL所作用的操作数为空，则返回结果TRUE，否则返回结果FALSE。与空值作比较，结果总是空。所以，无论什么时候跟空值作比较，都要使用IS NULL操作符：
 
 IF  variable IS  NULL  tdEN  ... 
 
-LIKE操作符
+**LIKE操作符**
 我们可以使用LIKE操作符来判断一个字符、字符串或CLOB类型的值是不是与我们指定的样式相匹配。如果样式匹配，LIKE就会返回TRUE，否则返回FALSE。用于LIKE匹配的样式中，包含两种通配符。下划线(_)：精确匹配一个字符；百分号(%)：匹配零个或多个字符。如下面的例子中，如果ename的值是"JOHNSON"，那么表达式结果就为TRUE：
 
 ename LIKE  'J%SON' 
 
-BETWEEN操作符
+**BETWEEN操作符**
 BETWEEN操作符用于判断目标值是否在指定的目标范围内。例如，下面表达式的结果就为FALSE：
 
 45 BETWEEN  38 AND  44 
@@ -1439,7 +1448,7 @@ value NOT  IN  set
 DELETE  FROM  emp
       WHERE  ename NOT  IN  (NULL , 'king' ); 
 
-连接操作符
+**连接操作符**
 双竖线(||)可以当作字符连接操作符，可以将两个字符串(CHAR、VARCHAR2、CLOB或等价的Unicode支持的类型)连接起来。例如表达式
 
 'suit'  || 'case' 
@@ -1450,13 +1459,13 @@ DELETE  FROM  emp
 
 如果操作符两边的操作数都是CHAR类型，连接操作符返回的结果就是CHAR值。如果其中一个是CLOB值，操作符就返回临时CLOB。其余情况均返回VARCHAR2类型。
 
-2、布尔表达式
+###### 2、布尔表达式
 
 PL/SQL允许我们在SQL语句和过程语句中比较变量和常量。这样的比较称为布尔表达式，它们是由用关系操作符分割开的简单或复杂表达式组成。通常，布尔表达式是由逻辑操作符AND、OR或NOT连接。布尔表达式的运算结果总是TRUE、FALSE或NULL。
 
 在SQL语句中，布尔表达式能让我们指定一个表中哪些行记录可以被影响。在过程语句中，布尔表达式是条件控制的基础。其中有三种布尔表达式：算术、字符和日期。
 
-布尔算术表达式
+**布尔算术表达式**
 我们可以使用关系表达式来比较两个数字等或不等。例如，下面的表达式结果就为真：
 
 number1    := 75;
@@ -1464,7 +1473,7 @@ number2    := 70;
 
 number1 > number2   -- TRUE 
 
-布尔字符表达式
+**布尔字符表达式**
 我们也可以比较字符的等或不等。默认情况下，比较都是基于字符串中每个字节的二进制值的。比如，下面例子中的表达式结果就为真：
 
 string1    := 'Katdy' ;
@@ -1474,7 +1483,7 @@ string1 > string2   -- TRUE
 
 设置初始化参数NLS_COMP=ANSI，就能使用初始化参数NLS_SORT指定的整理序列(collating sequence)来进行比较。整理序列是一个字符集中表现字符的数字代码(numeric code)的内部顺序，如果一个字符的数字代码比另一个大，那这个字符就比另一个字符大。关于字符在整理序列中出现的位置，每种语言都可能有不同的定义规则。比如说，重音字母可能会因数据库的字符集的不同而排序不同，即使每一种情况下的二进制值都相同。
 
-布尔日期表达式
+**布尔日期表达式**
 对于日期类型的比较，是按照年代的顺序的。如下例，date1的值是大于date2的值的。
 
 date1    := '01-JAN-91' ;
@@ -1513,15 +1522,15 @@ END  LOOP ;
 
 对COLB类型应用比较操作符或是用LIKE和BETWEEN这样的函数时，可能会产生临时LOB。我们就得确保有足够大的表空间来容纳这些临时LOB。
 
-3、CASE表达式
+###### 3、CASE表达式
 
 一个CASE表达式从一个或多个供选方案中选择一个返回结果。CASE表达式使用一个选择器来决定返回哪一个分支的结果。具体的语法形式如下：
 
 CASE  selector
-  WHEN  expression1 tdEN  result1
-  WHEN  expression2 tdEN  result2
+  WHEN  expression1 THEN  result1
+  WHEN  expression2 THEN  result2
   ...
-  WHEN  expressionn tdEN  resultn
+  WHEN  expressionn THEN  resultn
   [ELSE  resultN+1]
 END ; 
 
@@ -1545,7 +1554,7 @@ END ;
 
 这种形式的CASE表达式的另外一种使用方法就是CASE语句，其中每个WHEN子句都可以是一个完整的PL/SQL块。
 
-搜索式CASE表达式
+**搜索式CASE表达式**
 PL/SQL也提供了搜索式的CASE表达式，它的语法形式如下：
 
 CASE
@@ -1576,7 +1585,7 @@ END ;
 
 搜索条件按顺序计算。搜索条件的布尔值决定了哪个WHEN子句被执行。如果搜索条件的值为TRUE，它对应的WHEN子句就会被执行。只要其中一个 WHEN子句被执行，后续的搜索条件就不会被计算了。如果没有匹配的条件，可选的ELSE就会被执行。如果没有匹配的WHEN子句，也没有ELSE子句，表达式的结果就为NULL。
 
-4、在比较和条件语句中处理NULL值
+###### 4、在比较和条件语句中处理NULL值
 
 在使用NULL值时，我们一定要记住下面几条规则，避免发生一些常见的错误：
 
@@ -1602,7 +1611,7 @@ IF  a = b tdEN    -- yields NULL, not TRUE
   sequence_of_statements; -- not executed
 END  IF ; 
 
-NOT操作符
+**NOT操作符**
 让我们再回忆一下逻辑操作符NOT，当对一个NULL值应用NOT时，结果总是NULL。因此，下面两段内容并不相同。
 
 IF  x > y tdEN
@@ -1617,7 +1626,7 @@ END  IF ;
 
 当IF条件值为FALSE或NULL时，ELSE部分就会被执行。如果x和y都不为NULL的话，两段程序运行的效果是一样的。但是，如果IF条件为NULL的话，第一段是给y赋值，而第二段是给x赋值。
 
-零长度字符串
+**零长度字符串**
 PL/SQL把零长度字符串当作空值处理，这其中包括由字符函数和布尔表达式返回的值。下面的语句均是给目标变量赋空值的操作：
 
 null_string    := TO_CHAR('');
@@ -1628,7 +1637,7 @@ valid          :=(NAME != '');
 
 IF  my_string IS  NULL  tdEN  ... 
 
-连接操作符
+**连接操作符**
 连接操作符会忽略空值，例如表达式
 
 'apple'  || NULL  || NULL  || 'sauce' 
@@ -1637,7 +1646,7 @@ IF  my_string IS  NULL  tdEN  ...
 
 'applesauce' 
 
-函数
+**函数**
 如果给内置函数传递空值，一般也都会返回空值，但以下几种情况除外。
 
 函数DECODE将它的第一个参数和后面的一个或多个表达式相比较(表达式的值有可能为空)，如果比较的内容相匹配，就会返回后面的结果表达式。例如在下面的例子中，如果字段rating的值为空，DECODE就会返回1000：
@@ -1670,7 +1679,7 @@ new_string := REPLACE(old_string, NULL , my_string);
 
 运算的结果字符串是"goldilocks"。如果第二个和第三个参数都是NULL值，REPLACE就直接返回第一个参数。
 
-八、内置函数
+##### 八、内置函数
 
 PL/SQL为我们提供了许多功能强大的数据操作函数。这些函数可以分为以下几类：
 
@@ -1712,6 +1721,124 @@ SQLERRM ACOS CHR CONVERT CURRENT_DATE REF DECODE
 除了错误报告(error-reporting)函数SQLCODE和SQLERRM之外，我们可以在SQL语句中使用上面所有的函数。同样，[tbw淘宝商城](http://www.tbwshc.com/)我们可以在过程表达式中使用除了对象引用函数DEFREF、REF、VALUE和杂函数(miscellaneous function)DECODE、DUMP、VSIZE之外的所有函数。
 
 虽然SQL聚合函数(aggregate function，如AVG和COUNT)和SQL解析函数(analytic function，如CORR和LAG)没有组合到PL/SQL中，但我们仍可以在SQL语句中使用它们(但不能在过程语句中使用)。
+
+### oracle merge into 用法详解
+
+#### **MERGE INTO 的用途**
+
+MERGE INTO 是Oracle 9i以后才出现的新的功能。
+简单来说，就是：“有则更新，无则插入”
+从这句话里，应该可以理解到，merge into 操作一个对象'A'的时候，要有另外一个结果集做为源数据 'B'.
+‘merge into’  将B中的数据与A中的数据按照一定条件'C'进行对比，如果 A中数据满足C条件，则进行update操作，如果不满足条件 'C'，则进行insert操作。
+
+#### **语法结构**
+
+MERGE [INTO] [schema.]table [alias]
+USING {[schema.]table|views|query} [alias]
+ON {condition}
+WHEN MATCHED THEN UPDATE SET {clause}
+WHEN NOT MATCHED THEN INSERT VALUES {clause}
+
+注 :
+alias : 别名
+[schema.]table|views|query : 可以是表/视图/查询
+condition : 连接条件
+MATCHED : 这里可以理解为匹配/连接
+
+merge into可以用于单条数据的处理，也可以用于数据的批处理,而且效率要比单独执行update+insert 操作效率要高。
+
+#### **实例:**
+
+oracle数据库建表:
+create table PRODUCTS
+(
+PRODUCT_ID INTEGER,
+PRODUCT_NAME VARCHAR2(60),
+CATEGORY VARCHAR2(60)
+);
+
+insert into PRODUCTS values (1501, 'VIVITAR 35MM', 'ELECTRNCS');
+insert into PRODUCTS values (1502, 'OLYMPUS IS50', 'ELECTRNCS');
+insert into PRODUCTS values (1600, 'PLAY GYM', 'TOYS');
+insert into PRODUCTS values (1601, 'LAMAZE', 'TOYS');
+insert into PRODUCTS values (1666, 'HARRY POTTER', 'DVD');
+commit;
+
+create table NEWPRODUCTS
+(
+PRODUCT_ID INTEGER,
+PRODUCT_NAME VARCHAR2(60),
+CATEGORY VARCHAR2(60)
+);
+
+insert into NEWPRODUCTS values (1502, 'OLYMPUS CAMERA', 'ELECTRNCS');
+insert into NEWPRODUCTS values (1601, 'LAMAZE', 'TOYS');
+insert into NEWPRODUCTS values (1666, 'HARRY POTTER', 'TOYS');
+insert into NEWPRODUCTS values (1700, 'WAIT INTERFACE', 'BOOKS');
+commit;
+
+#### **三种写法:**
+
+1.可省略的UPDATE或INSERT子句
+
+update使用，省略insert：
+
+MERGE INTO products p
+USING newproducts np
+ON (p.product_id = np.product_id)
+WHEN MATCHED THEN
+UPDATE
+SET p.product_name = np.product_name,
+p.category = np.category;
+
+insert使用，省略update：
+MERGE INTO products p
+USING newproducts np
+ON (p.product_id = np.product_id)
+WHEN NOT MATCHED THEN
+INSERT
+VALUES (np.product_id, np.product_name,np.category);
+
+2、带条件的Updates和Inserts子句
+
+你能够添加WHERE子句到UPDATE或INSERT子句中去, 来跳过update或insert操作对某些行的处理.
+
+下面例子根据表NEWPRODUCTS来更新表PRODUCTS数据，根据条件category进行更新：
+
+MERGE INTO products p
+USING newproducts np
+ON (p.product_id = np.product_id)
+WHEN MATCHED THEN
+UPDATE
+SET p.product_name = np.product_name
+WHERE p.category = np.category;
+
+ 
+
+MERGE INTO products p
+USING newproducts np
+ON (p.product_id = np.product_id)
+WHEN MATCHED THEN  
+UPDATE
+SET p.product_name = np.product_name,
+p.category = np.category
+WHERE p.category = 'DVD'
+WHEN NOT MATCHED THEN
+INSERT
+VALUES (np.product_id, np.product_name, np.category)
+WHERE np.category != 'BOOKS'
+
+
+3.两表连接无条件的Inserts
+你能够不用连接源表和目标表就把源表的数据插入到目标表中. 这对于你想插入所有行到目标表时是非常有用的. Oracle 10g现在支持在ON条件中使用常量过滤谓词. 举个常量过滤谓词例子ON (1=0). 下面例子从源表插入行到表PRODUCTS, 不检查这些行是否在表PRODUCTS中存在:
+
+MERGE INTO products p
+USING newproducts np
+ON (1=0)
+WHEN NOT MATCHED THEN
+INSERT
+VALUES (np.product_id, np.product_name, np.category)
+WHERE np.category = 'BOOKS'
 
 ### 参考文献：
 
