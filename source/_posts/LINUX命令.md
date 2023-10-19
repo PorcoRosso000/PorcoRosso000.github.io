@@ -8,50 +8,61 @@ date: 2023-05-26 15:33:58
 permalink:
 ---
 
-
-
 ### Linux  查看端口使用情况
 
+```
 netstat -tunlp | grep 8030 
+```
 
 ### Linux  解压war包
 
 可以用unzip命令
 
+```
 unzip project.war -d project 
+```
 
 ### 文件上传
 
+```
 rz 上传文件
+```
 
 ### 虚拟机查看内存 
 
+```
 free -m  
+```
 
 ### 查看tomcat运行情况
 
+```
 ps -ef|grep tomcat   
+```
 
 ### 查看所有服务
 
+```
 ps x   
+```
 
 ### 查看日志 
 
+```
 tail -f logs /日志   
-
-#### docker 查看日志 
-
-实时查看docker容器日志
-sudo docker logs -f -t --tail 行数 容器名
+```
 
 ### 杀进程 
 
-kill -9 pid    
+```
+kill -9 pid  
+```
 
 ### 启动服务 
 
-sh tomcats/tomcat-ywh-ms-8010/bin/startup.sh  
+```
+sh tomcats/tomcat-ywh-ms-8010/bin/startup.sh 
+```
 
 ### 删除镜像
 
@@ -76,3 +87,64 @@ docker images|grep none|awk '{print $3 }'|xargs docker rmi
 上述命令 还解决了我在删除镜像文件时的一个报错：Error response from daemon: conflict: unable to delete 0138793f7e1f (cannot be forced) - image has dependent child images
 ```
 
+### 实时查看docker容器日志
+
+```
+sudo docker logs -f -t --tail 行数 容器名
+```
+
+### docker指令
+
+#### 查看所有正在运行容器
+
+```
+docker ps 
+```
+
+#### 根据容器id停止容器
+
+```
+docker stop containerId // containerId 是容器的ID
+```
+
+#### 查看所有容器
+
+```
+docker ps -a 
+```
+
+#### 查看所有容器ID
+
+```
+docker ps -a -q 
+```
+
+#### start启动所有停止的容器
+
+```
+docker start $(docker ps -a -q) 
+```
+
+#### stop停止所有容器
+
+```
+docker stop $(docker ps -a -q) 
+```
+
+#### remove删除所有容器
+
+```
+docker rm $(docker ps -a -q) 
+```
+
+#### 查看所有容器
+
+```
+docker ps -a
+```
+
+#### 通过ID删除指定的容器
+
+```
+docker rm -f  CONTAINER ID
+```

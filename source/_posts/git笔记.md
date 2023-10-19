@@ -8,9 +8,85 @@ date: 2023-08-04 22:28:50
 permalink:
 ---
 
+### git安装
+
+#### 安装git
+
+![图片](./clip_image002.gif)
+
+![图片](./clip_image004.gif)
+
+![图片](./clip_image006.gif)
+
+![图片](./clip_image008.gif)
+
+![图片](./clip_image010.gif)
+
+![图片](./clip_image012.gif)
+
+![图片](./clip_image014.gif)
+
+![图片](./clip_image016.gif)
 
 
-### 1、git命令大全（整理成表格，方便查阅）
+
+![图片](./clip_image018.gif)
+
+![图片](./clip_image020.gif)
+
+![图片](./clip_image022.gif)
+
+![图片](./clip_image024.gif)
+
+![图片](./clip_image026.gif)
+
+![图片](./clip_image028.gif)
+
+![图片](./clip_image030.gif)
+
+![图片](./clip_image032.gif)
+
+![图片](./clip_image034.gif)
+
+![图片](./clip_image036.gif)
+
+表示安装成功
+
+#### git获取SSH公钥
+
+运行git Bash
+输入git  没报错表示安装成功
+git配置ssh:
+
+```
+git config --global user.name "用户名"
+```
+
+![图片](./clip_image038.gif)
+
+```
+git config --global user.email "邮箱"
+```
+
+![图片](./clip_image040.gif)
+
+```
+ssh-keygen -t rsa -C "邮箱"
+连续3回 回车键
+cd到 ~/.ssh  ls ,这回会出现 id_dsa或者id_rsa两个文件，.pub文件是我们的公钥，另一个是私钥 
+```
+
+#### Idea配置git
+
+![图片](./clip_image042.gif)
+
+![图片](./clip_image044.gif)
+
+![图片](./clip_image046.gif)
+
+至此 配置成功！
+
+### git命令大全（整理成表格，方便查阅）
 
 #### 创建仓库命令
 
@@ -166,7 +242,7 @@ permalink:
 | git count-objects      | 计算解包的对象数量                                           |
 | git help 或 git --help | Git帮助，查看git相关命令，如果想看某个特定命令的具体细节，可使用git [命令] --help,如 git commit --help 表示查看提交相关命令的帮助 |
 
-### 2、Git操作流程
+### Git操作流程
 
 git的操作往往都不是一个命令能解决的，就比如下图所示，单单**代码提交和同步代码**，就涉及到6个命令的组合。
 
@@ -532,7 +608,7 @@ $ git config --global alias.logg "log --graph --decorate --abbrev-commit --all"
 
 
 
-### 3、新建了一个git仓库，本地代码上传gitlab
+### 新建了一个git仓库，本地代码上传gitlab
 
 ```csharp
 $ git init  //建立一个新的git链接
@@ -545,14 +621,14 @@ $ git pull origin master  //先拉取下后提交不容易错
 $ git push -u origin master  //提交到master分支
 ```
 
-### 4、git status 出错 interactive rebase in progress； onto 796e78f
+### git status 出错 interactive rebase in progress； onto 796e78f
 
 ```
 使用 git commit --amend 命令修订当前的提交
 使用 git rebase --continue 命令继续代码的提交(推荐),执行之后,需要重新提交,解决一下当前的代码冲突之后重新提交直至没有rebase提示,就可以正常提交了
 ```
 
-### 5、切换仓库源
+### 切换仓库源
 
 **移除之前的git源：**
 
@@ -566,7 +642,7 @@ git remote rm origin
 git remote add origin '仓库地址'
 ```
 
-### 6、git冲突解决
+### git冲突解决
 
 用
 
@@ -626,7 +702,7 @@ git push -u origin master
 
 
 
-### 7、git commit 最后一次提交的注释信息，如何修改？ 如何退出编辑器？
+### git commit 最后一次提交的注释信息，如何修改？ 如何退出编辑器？
 
 今天用git commit -m “注释”提交的时候，注释写错了，
 
@@ -648,7 +724,7 @@ git push -u origin master
 
 ，你会惊喜的发现，终于保存好退出来了！
 
-### 8、查看提交历史
+### 查看提交历史
 
 ```
 git log :列出历史提交记录  (退出方式 : 英文状态下输入q就可以直接退出了)
@@ -680,7 +756,7 @@ f88b2e6 Initial commit
 
 ```
 
-### 9、变基 
+### 变基 
 
 #### 本分支变基
 
@@ -711,7 +787,7 @@ git rebase -i HEAD~3
 第一次提交使用pick 后面的都改成 squash ,
 这样三次提交就可以合并
 
-### 10、命令说明
+### 命令说明
 
 > pick：保留该commit（缩写:p）
 >  reword：保留该commit，但我需要修改该commit的注释（缩写:r）
@@ -721,14 +797,14 @@ git rebase -i HEAD~3
 >  exec：执行shell命令（缩写:x）
 >  drop：我要丢弃该commit（缩写:d）
 
-### 11、查看提交信息
+### 查看提交信息
 
 git show commit_id | grep diff | cut -d" " -f 3
 
 例如 :
 a/README.md
 
-### 12、提交规范
+### 提交规范
 
 - feat: 新功能
 - fix: 修复问题
@@ -766,7 +842,7 @@ git rebase --abort
 git rebase --continue
 ```
 
-### 13、git回退版本
+### git回退版本
 
 #### git reset 回退  
 
@@ -849,7 +925,7 @@ git cherry-pick 76sdeb
 
 ![12665637-fec52bf232159982](./12665637-fec52bf232159982.png)
 
-### 14、Git如何做到同一个分支只上线部分功能 Cherry-Pick
+### Git如何做到同一个分支只上线部分功能 Cherry-Pick
 
 在开发的时候，我们通常会在同一个开发分支(B)上，同时开发多个功能，但最终可能只需要上线(合并到master分支)部分功能。显然这时直接将B分支合并（pull request）到master分支，是会将所有提交都合并到master，所以这里我们无法直接使用pull requst。直接将B分支推送到master分支是同一个结果。
 
@@ -903,7 +979,7 @@ git cherry-pick commit3编号
 
 
 
-### 15、cherry-pick 详细用法
+### cherry-pick 详细用法
 
 #### 基本用法
 
@@ -1059,7 +1135,7 @@ $ git log target/master
 $ git cherry-pick <commitHash>
 ```
 
-### 16、合并分支
+### 合并分支
 
 ```
 // 合并分支（多人开发中，经常一人一个分支，各自在自己分支开发，开发完成以后合并到某一个指定分支，没有问题后最后合并到master主分支，我们的流程是各自在自己的develop开发，开发完成以后合并到lastest分支，没有问题后提交合并申请到master分支，由leader审批是否统一合并到master，因为很多新人不太清楚代码的具体用途，所以讲的稍微详细点，明白命令的实现目的能更好的掌握使用，后面会有具体的操作流程）
@@ -1076,17 +1152,6 @@ git push （develop-author分支，即自己的开发分支）
 ```
 
 
-
-### 17.git获取SSH公钥
-
-运行Git Bash
-输入git  没报错表示安装成功
-输入：
-git config --global user.name "用户名"
-git config --global user.email "邮箱"
-ssh-keygen -t rsa -C "邮箱"
-连续3回 回车键
-cd到 ~/.ssh  ls ,这回会出现 id_dsa或者id_rsa两个文件，.pub文件是我们的公钥，另一个是私钥 
 
 ### 参考文章:
 

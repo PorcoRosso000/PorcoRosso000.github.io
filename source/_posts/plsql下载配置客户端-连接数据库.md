@@ -135,7 +135,33 @@ SERVICE_NAME ：是数据库名（对应jdbc:oracle:thin:@10...**:1521:corcl）�
 
 
 
+## 八、问题解决
 
+### plsql连接oracle使用like模糊查询中文不成功的问题
+
+1.执行：select userenv('language') from dual;   
+查看oracle服务器的编码集 
+
+2.在你的操作系统下，设置环境变量。
+变量名：NLS_LANG，变量值：（第一步的编码集） 
+
+3.打开plsql–首选项–Oracle—连接
+
+①设置Oracle主目录名：D:\softwareRepository\plsql\instantclient_21_8
+
+②设置OCI库：D:\softwareRepository\plsql\instantclient_21_8\oci.dll（对应在你的Oracle客户端地址下）
+
+③应用并重启plsql
+
+重启plsql问题解决。
+
+### plsql设置多行注释和取消注释快捷键
+
+点上方tools -> Preferences ->Key Configuration 
+
+-> comment 添加注释 Ctrl + /
+
+unconment 取消注释 Ctrl + .
 
 ## 原文链接：
 

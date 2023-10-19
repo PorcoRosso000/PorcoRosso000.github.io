@@ -625,3 +625,69 @@ a、 b中的属性要名字相同，才能被赋值，不然的话需要手动�
 Spring的BeanUtils的CopyProperties方法需要对应的属性有getter和setter方法；
 如果存在属性完全相同的内部类，但是不是同一个内部类，即分别属于各自的内部类，则spring会认为属性不同，不会copy；
 spring和apache的copy属性的方法源和目的参数的位置正好相反，所以导包和调用的时候都要注意一下。
+
+
+
+## java类
+
+### BigDecimal(包装类)
+
+包名: java.math.BigDecimal
+
+计算方式
+
+```
+BigDecimal num1 = new BigDecimal("0.005");
+BigDecimal num2 = new BigDecimal("1000000");
+BigDecimal num3 = new BigDecimal(-"1000000");
+
+//尽量用字符串的形式初始化
+BigDecimal num12 = new BigDecimal("0.005");
+BigDecimal num22 = new BigDecimal("1000000");
+BigDecimal num32 = new BigDecimal("-1000000");
+
+//加法
+BigDecimal result1 = num1.add(num2);
+BigDecimal result12 = num12.add(num22);
+
+//减法
+BigDecimal result2 = num1.subtract(num2);
+BigDecimal result22 = num12.subtract(num22);
+
+//乘法
+BigDecimal result3 = num1.multiply(num2);
+BigDecimal result32 = num12.multiply(num22);
+
+//绝对值
+BigDecimal result4 = num3.abs();
+BigDecimal result42 = num32.abs();
+
+//除法
+BigDecimal result5 = num2.divide(num1,"20",BigDecimal.ROUND_HALF_UP);
+BigDecimal result52 = num22.divide(num12,"20",BigDecimal.ROUND_HALF_UP);
+```
+
+## 时间问题
+
+### String类型转Date类型
+
+```plain
+DateUtil.getDate(req.getStartTime())
+```
+
+### 获取几个月以后的时间
+
+```plain
+DateUtil.getAfterMonths(DateUtil.getDate(req.getStartTime()), 3)
+```
+
+### 比较两个字符串的时间类型大小
+
+```plain
+String endTime;
+String startTime;
+//endTime - startTime;
+int endCompare = req.getEndTime().compareTo(req.getStartTime());
+int<0 : endTime小于startTime
+```
+

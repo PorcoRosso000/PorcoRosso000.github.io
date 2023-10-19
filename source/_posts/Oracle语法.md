@@ -1840,6 +1840,133 @@ INSERT
 VALUES (np.product_id, np.product_name, np.category)
 WHERE np.category = 'BOOKS'
 
+
+
+### oracle语句
+
+#### 主键的添加、删除等操作
+
+##### 1.有命名主键
+
+###### 1）有命名主键的添加
+
+①建表时添加主键(yy为主键“ID”的主键名称)
+
+```
+CREATE TABLE table_test(
+id INT NOT NULL,       --注意：主键必须非空
+name VARCHAR(20) NOT NULL,
+address VARCHAR(20),
+constraint yy PRIMARY KEY(id)
+);
+```
+
+②建表后添加主键
+
+```
+alter table table_test add constraint yy primary key(id);
+公式：alter table 表名 add constraint yy primary key(主键1，主键2);
+```
+
+###### 2）有命名主键的删除
+
+```
+ALTER TABLE table_test DROP CONSTRAINT yy;
+公式：ALTER TABLE 表名DROP CONSTRAINT 主键名;
+```
+
+###### 3）有命名主键的修改
+
+```
+需先删除主键，再进行添加
+```
+
+
+
+##### 2.无命名主键
+
+###### 1）无命名主键的创建
+
+①建表时添加主键(主键“ID”的主键名称需要查询出来，下文有方法)
+
+```
+CREATE TABLE table_test(
+id INT NOT NULL,       --注意：主键必须非空
+name VARCHAR(20) NOT NULL,
+address VARCHAR(20),
+PRIMARY KEY(id)
+);
+```
+
+②建表后添加主键
+
+```
+alter table table_test add primary key (id);
+公式：alter table 表名 add primary key(主键字段1,主键字段2...); 
+```
+
+###### 2）无命名主键的删除
+
+①先查出来主键名（constraint_name），user_cons_columns表会在文末给出解释
+
+```
+SELECT t.* from user_cons_columns t where t.table_name  = 'TABLE_TEST' and t.position is not null;
+公式：SELECT t.* from user_cons_columns t where t.table_name  = '表名' and t.position is not null;   --表名必须大写，如：TABLE_TEST
+```
+
+
+②再执行删除的SQL
+
+```
+ALTER TABLE table_test DROP CONSTRAINT SYS_C0056038;  
+公式：ALTER TABLE 表名 DROP CONSTRAINT 主键名;
+```
+
+###### 3）无命名主键的修改
+
+```
+需先删除主键，再进行添加
+```
+
+#### 字段、注释的添加删除操作
+
+
+
+1、添加表注释
+
+```
+语法：COMMENT ON TABLE 表名 IS '表注释';
+
+--添加表注释
+COMMENT ON TABLE STUDENT_INFO IS '学生信息表';
+```
+
+2、添加字段、注释
+
+```
+语法：
+
+-- 添加字段
+ALTER TABLE 表名
+ADD 字段1 类型(字段长度)
+ADD 字段2 类型(字段长度);
+
+-- 添加字段的注释
+COMMENT ON COLUMN 表名.字段1 IS '字段1的名称';
+COMMENT ON COLUMN 表名.字段2 IS '字段2的名称';
+
+例：
+
+ALTER TABLE BF_PUPIL
+ADD F_ID VARCHAR2(32) 
+ADD F_CITY VARCHAR2(32);
+
+COMMENT ON COLUMN STUDENT_INFO.STU_ID IS '学号';
+COMMENT ON COLUMN STUDENT_INFO.STU_NAME IS '姓名';
+```
+
+
+
 ### 参考文献：
 
 CSDN博主「鱼丸丶粗面」：https://blog.csdn.net/qq_34745941/article/details/85085866
@@ -1847,3 +1974,5 @@ CSDN博主「鱼丸丶粗面」：https://blog.csdn.net/qq_34745941/article/deta
 CSDN博主「Kerwin Ma」: https://blog.csdn.net/MCJ_2017/article/details/114822608
 
 博客园 [tbwshc](http://www.blogjava.net/tbwshc/): http://www.blogjava.net/tbwshc/
+
+CSDN博主「zxl技术博客」的原创文章：https://blog.csdn.net/zxljsbk/article/details/88951326

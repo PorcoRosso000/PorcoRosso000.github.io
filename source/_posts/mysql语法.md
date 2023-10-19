@@ -7,8 +7,6 @@ tags: mysql
 permalink:
 ---
 
-
-
 ### java代码
 
 #### SELECT LAST_INSERT_ID()：
@@ -24,7 +22,7 @@ Last_insert_id()不受其他客户端影响，所以是线程安全的，当前�
 比如fileid是主键，并且设置成自动增加，那么在插入的时候不指定fileid，插入后通过LAST_INSERT_ID()就能得到插入最后一条记录的id
  ，并且是当前线程执行的，并不需要事务控制
 
-```java
+```
 <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
 SELECT LAST_INSERT_ID()
 </selectKey>
@@ -36,7 +34,7 @@ SELECT LAST_INSERT_ID()
 
 这个在[MyBatis](https://so.csdn.net/so/search?q=MyBatis&spm=1001.2101.3001.7020)查询数据库的sql中经常会出现。它的在上面已经定义，作用相当于 ，Base_Column_List是固定的几个字段，而用*号的话会降低查询效率，因为后期数据库的字段会不断增加。
 
-```java
+```
 <sql id="Base_Column_List">
 id, tenant_id, role_type, parent_id, inherit_role, inherit_role_id, role_name, description, 
 status, owner_id, period_type, period_start_time, period_end_time, create_time, update_time, 
@@ -53,7 +51,7 @@ where id = #{id,jdbcType=BIGINT}
 
 #### sql中使用in/not in关键字后集合参数遍历方式
 
-```java
+```
 <select id="getIdsByOrgNums" resultType="java.lang.Long">
 select id
 from user_organization where org_num in
@@ -65,7 +63,7 @@ from user_organization where org_num in
 
 #### 集合方式批量添加
 
-```java
+```
 <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
 <!--@mbg.generated-->
 insert into user_organization
@@ -251,59 +249,54 @@ SELECT
 
 #### 将一个表的所有列复制到另一个表：
 
+```
 INSERT INTO *table2*
 SELECT * FROM *table1*WHERE *condition*;
+```
 
 #### 仅将一个表中的一些列复制到另一个表中：
 
+```
 INSERT INTO *table2* (*column1*, *column2*, *column3*, ...)
 SELECT *column1*, *column2*, *column3*, ...
 FROM *table1*
 WHERE *condition*;
-
-
+```
 
 #### 也可以将几个表联查的数据复制到另一个表中
 
+```
 INSERT INTO *table2* (*column1*, *column2*, *column3*, ...)
 SELECT 
-
-*column1*, *column2*, *column3*, ...
-FROM 
-(
-
-select
-id,
-
-*column1*
-from
-table1
-
-)
-left join
-
-(
-select
-id,
-
-*column2*
-from
-table2
-
-)
-on table1.id =  table2.id
-
-left join  .......
-
-列的值也可以直接赋值  例如  '三山' as *column3*
-
-
+    *column1*
+    , *column2*
+    , *column3*, ...
+    FROM 
+    (
+        select
+        id,
+        *column1*
+        from table1
+    ) tab_1
+    left join
+    (
+        select
+        id,
+        *column2*
+        from table2
+    )tab_2
+    on tab_1.id =  tab_2.id
+    left join  .......
+    列的值也可以直接赋值  例如  '三山' as *column3*
+```
 
 #### with as 用法
 
 **with as 定义**
 
+```
 with A as (select * from class)
+```
 
 也就是将重复用到的大批量 的SQL语句，放到with as 中，加一个别名，在后面用到的时候就可以直接用。对于大批量的SQL数据，起到优化的作用。
 
@@ -321,35 +314,34 @@ with A as (select * from class)
 
 **–针对一个别名**
 
+```
 with tmp as (select * from tb_name)
+```
 
 **–针对多个别名**
 
+```
 with
-
 tmp as (select * from tb_name),
-
 tmp2 as (select * from tb_name2),
-
 tmp3 as (select * from tb_name3),
+```
 
 **–相当于建了个e临时表**
 
+```
 with e as (select * from scott.emp e where e.empno=7499)
-
 select * from e;
+```
 
 **–相当于建了e、d临时表**
 
+```
 with
-
 e as (select * from scott.emp),
-
 d as (select * from scott.dept)
-
 select * from e, d where e.deptno = d.deptno;
-
-
+```
 
 #### 数据库删除某条数据死锁怎么就解决?
 
@@ -458,6 +450,181 @@ SELECT * FROM Persons WHERE (FirstName='Thomas' OR FirstName='William')
 AND LastName='Carter'
 ```
 
+### mysql语句
+
+#### mysql建库、建表语句
+
+```
+语法：
+CREATE DATABASE 数据库名;
+CREATE TABLE table_name (column_name column_type);
+例：
+CREATE DATABASE runoob;
+CREATE TABLE IF NOT EXISTS `runoob_tbl`(
+`runoob_id` INT UNSIGNED AUTO_INCREMENT,
+`runoob_title` VARCHAR(100) NOT NULL,
+`runoob_author` VARCHAR(40) NOT NULL,
+`submission_date` DATE,
+PRIMARY KEY ( `runoob_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+#### mysql 删库、删表语句
+
+```
+语法： 
+drop database <数据库名>;
+DROP TABLE table_name ;
+```
+
+#### mysql 添加新列及注释
+
+```
+在表尾添加
+语法：
+ALTER TABLE <表名> ADD <字段名> <数据类型> [约束条件];
+例：
+ALTER TABLE `user` ADD `phone` VARCHAR(11) DEFAULT NULL COMMENT '电话号码';
+
+在表头添加
+语法：
+ALTER TABLE <表名> ADD <字段名> <数据类型> [约束条件] FIRST;
+
+在中间位置添加
+语法：
+ALTER TABLE <表名> ADD <字段名> <数据类型> [约束条件] AFTER <已经存在的字段名>;
+AFTER 的作用是将新字段添加到某个已有字段后面。注意：只能在某个已有字段的后面添加新字段，不能在它的前面添加新字段。
+例：ALTER TABLE `user` ADD `username` VARCHAR(30) DEFAULT NULL COMMENT '用户名' AFTER `user_id`;
+```
+
+#### 修改字段
+
+```
+1.修改字段属性
+(1)语法
+
+ALTER TABLE <表名> MODIFY <字段名> <数据类型> [约束条件];
+(2)示例
+
+a)将email字段VARCHAR(50)修改成VARCHAR(200)
+
+ALTER TABLE `user` MODIFY `email` VARCHAR(200) NOT NULL DEFAULT 'email@163.com';
+注意：修改时如果不带完整性约束条件，原有的约束条件将丢失，如果想保留修改时就得带上完整性约束条件
+
+b)将email移到phone后面
+
+ALTER TABLE `user` MODIFY `email` VARCHAR(50) AFTER `phone`;
+c)将email放到第一个，保留原完整性约束条件
+
+ALTER TABLE `user` MODIFY `email` VARCHAR(50) NOT NULL DEFAULT 'test@163.com' FIRST;
+d)将username字段修改成大小写敏感，即查询时区分大小写
+
+ALTER TABLE `user` MODIFY `username` VARCHAR(30) BINARY CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '用户名';
+2.修改字段名称和属性
+(1)语法
+
+ALTER TABLE <表名> CHANGE <原字段名> <新字段名> <数据类型> [约束条件];
+(2)示例
+
+将username字段修改成user_name
+
+ALTER TABLE `user` CHANGE `username` `user_name` VARCHAR(30) DEFAULT NULL COMMENT '用户名';
+```
+
+#### 添加删除默认值
+
+```
+(1)语法
+
+-- 添加默认值
+ALTER TABLE <表名> ALTER <字段名> SET DEFAULT <默认值>;
+-- 删除默认值
+ALTER TABLE <表名> ALTER <字段名> DROP DEFAULT;
+(2)示例
+
+a)给sex添加默认值
+ALTER TABLE `user` ALTER `sex` SET DEFAULT '男';
+
+b)删除sex的默认值
+ALTER TABLE `user` ALTER `sex` DROP DEFAULT;
+```
+
+#### 添加删除主键
+
+```
+(1)语法
+-- 添加主键
+ALTER TABLE <表名> ADD [CONSTRAINT <约束名>] PRIMARY KEY (<字段名称,...>);
+-- 删除主键
+ALTER TABLE <表名> DROP PRIMARY KEY;
+
+(2)示例
+a)添加主键
+ALTER TABLE `user` ADD PRIMARY KEY(`user_id`);
+
+b)添加复合主键
+
+ALTER TABLE `user_role` ADD PRIMARY KEY(`user_id`,`role_id`);
+
+c)删除主键
+ALTER TABLE `user` DROP PRIMARY KEY;
+
+d)删除带自增长属性的主键
+-- 先用MODIFY删除自增长属性，注意MODIFY不能去掉主键属性
+ALTER TABLE test MODIFY id INT UNSIGNED;
+-- 再来删除主键
+ALTER TABLE test DROP PRIMARY KEY;
+```
+
+#### 添加删除唯一索引
+
+```
+(1)语法
+-- 添加唯一性约束
+ALTER TABLE <表名> ADD [CONSTANT <约束名>] UNIQUE [INDEX | KEY] [索引名称](<字段名称,...>)
+-- 删除唯一性约束
+ALTER TABLE <表名> DROP [INDEX | KEY] [索引名称];
+
+(2)示例
+a)为username添加唯一性约束，如果没有指定索引名称，系统会以字段名建立索引
+ALTER TABLE `user` ADD UNIQUE(`username`);
+
+b)为username添加唯一性约束，并指定索引名称
+ALTER TABLE `user` ADD UNIQUE KEY uni_username(`username`);
+
+c)查看索引
+SHOW CREATE TABLE `user`;
+
+d)添加联合unique
+ALTER TABLE `user` ADD UNIQUE INDEX uni_nickname_username(`nickname`, `username`);
+
+e)删除索引
+ALTER TABLE `user` DROP INDEX username;
+ALTER TABLE `user` DROP KEY uni_username;
+ALTER TABLE `user` DROP INDEX uni_nickname_username;
+```
+
+#### 修改表的存储引擎
+
+```
+(1)语法
+ALTER TABLE <表名> ENGINE=<存储引擎名称>
+
+(2)示例
+ALTER TABLE `user` ENGINE=MyISAM;
+ALTER TABLE `user` ENGINE=INNODB;
+```
+
+#### 修改自增长值
+
+```
+(1)语法
+ALTER TABLE <表名> AUTO_INCREMENT=[值];
+
+(2)示例
+ALTER TABLE `user` AUTO_INCREMENT=100;
+```
+
 ### 参考文献: 
 
 CSDN博主「生活压力大」：https://blog.csdn.net/weixin_37783650/article/details/111588665
@@ -467,3 +634,5 @@ CSDN博主「shaoduo」 ：https://blog.csdn.net/shaoduo/article/details/7088885
 CSDN博主「好__好」: https://blog.csdn.net/qq_32067151/article/details/105186355
 
 c语言中文网 「站长严长生」:http://c.biancheng.net/sql/truncate-table.html
+
+CSDN博主「说故事的五公子」的原创文章：https://blog.csdn.net/JDream111/article/details/119163838
