@@ -1,9 +1,10 @@
 ---
 title: SpringBoot整合MongoDB
 typora-root-url: SpringBoot整合MongoDB
-date: 2023-10-18 09:23:27
 tags: MongoDB
 categories: MongoDB
+abbrlink: 4fc9bfdc
+date: 2023-10-18 09:23:27
 permalink:
 ---
 

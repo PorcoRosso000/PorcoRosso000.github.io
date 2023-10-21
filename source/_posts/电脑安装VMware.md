@@ -1,9 +1,10 @@
 ---
 title: 电脑安装VMware
 typora-root-url: 电脑安装VMware
-date: 2023-10-17 17:29:22
 tags: VMware
 categories: VMware
+abbrlink: a55fa9fa
+date: 2023-10-17 17:29:22
 permalink:
 ---
 
