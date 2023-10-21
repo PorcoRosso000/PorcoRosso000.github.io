@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title>notepad++学习</title>
+      <link href="/posts/2b41cf7d.html"/>
+      <url>/posts/2b41cf7d.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="notepad-快捷键"><a href="#notepad-快捷键" class="headerlink" title="notepad++快捷键"></a>notepad++快捷键</h2><p>Alt+H 隐藏行</p><p>Ctrl+Tab 实现在多个打开的窗口间切换</p><p>Ctrl+Shift+Q区块注释</p><p>Ctrl+K行注释(取消Ctrl+Shift+K)</p><h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><p>新建文件 Ctrl+N<br>打开文件 Ctrl+O<br>保存文件 Ctrl+S<br>另存为 Ctrl+Alt+S<br>全部保存 Ctrl+Shift+S<br>关闭当前文件 Ctrl+W<br>打印文件 Ctrl+P<br>退出 Alt+F4</p><h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><p>撤销 Ctrl+Z<br>恢复 Ctrl+Y<br>剪切 Ctrl+X<br>复制 Ctrl+C<br>删除 Del<br>全选 Ctrl+A<br>列编辑 Alt+C</p><h3 id="缩进-Tab"><a href="#缩进-Tab" class="headerlink" title="缩进 Tab"></a>缩进 Tab</h3><p>删除缩进 Shift+Tab<br>转为大写 Ctrl+Shift+U<br>转为小写 Ctrl+U<br>复制当前行 Ctrl+D<br>删除当前行 Ctrl+L<br>分割行 Ctrl+I<br>合并行 Ctrl+J<br>上移当前行 Ctrl+Shift+Up<br>下移当前行 Ctrl+Shift+Down<br>添加/删除单行注释 Ctrl+Q<br>设置行注释 Ctrl+K<br>取消行注释 Ctrl+Shift+K<br>区块注释 Ctrl+Shift+Q<br>函数自动完成 Ctrl+Space</p><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>查找 Ctrl+F<br>在文件中搜索 Ctrl+Shift+F<br>查找下一个 F3<br>查找上一个 Shift+F3<br>选定并找下一个 Ctrl+F3<br>行定位 Ctrl+G<br>定位匹配括号 Ctrl+B<br>设置/取消书签 Ctrl+F2<br>下一书签 F2<br>上一书签 Shift+F2</p><h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>全屏 F11<br>便签模式 F12<br>折叠所有层次 Alt+0<br>展开所有层次 Alt+Shift+0<br>折叠当前层次 Ctrl+Alt+F<br>展开当前层次 Ctrl+Alt+Shift+F<br>隐藏行 Alt+H 从视图激活 F8</p><h3 id="文本比较工具"><a href="#文本比较工具" class="headerlink" title="文本比较工具"></a>文本比较工具</h3><p>打开的文件比较 Alt+D<br>关闭文件比较 Ctrl+Alt+D<br>跟上次保存的文件比较 Alt+S<br>跟SVN的文件比较 Alt+B<br>上一个差异地方 Ctrl+Page UP<br>下一个差异地方 Ctrl+Page Down<br>第一个差异地方 Ctrl+Shift+Page Up<br>最后一个差异地方 Ctrl+Shift+Page Down</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>chatgpt使用</title>
+      <link href="/posts/31806627.html"/>
+      <url>/posts/31806627.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>定时任务学习</title>
       <link href="/posts/1378ae0.html"/>
       <url>/posts/1378ae0.html</url>
