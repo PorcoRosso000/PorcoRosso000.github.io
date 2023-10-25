@@ -1,6 +1,7 @@
 ---
 title: notepad++学习
 typora-root-url: notepad++学习
+abbrlink: 2b41cf7d
 date: 2023-10-21 18:37:56
 tags:
 categories:
