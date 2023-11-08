@@ -665,6 +665,33 @@ BigDecimal result42 = num32.abs();
 //除法
 BigDecimal result5 = num2.divide(num1,"20",BigDecimal.ROUND_HALF_UP);
 BigDecimal result52 = num22.divide(num12,"20",BigDecimal.ROUND_HALF_UP);
+
+BigDecimal 多参自定义除法
+public BigDecimal divide(BigDecimal divisor, int scale, int roundingMode)
+
+    public static void main(String[] args){
+        BigDecimal b1 = new BigDecimal(10.005);
+        BigDecimal b2 = new BigDecimal(2);
+        //参数1 为除数
+        //scale 为计算所得商的位数
+        //roundingMode 共8种0，1，2 ，3，4，5，6，7
+        System.out.println(b1.divide(b2, 3, BigDecimal.ROUND_UNNECESSARY));
+    }
+
+其中，第三位参数为除法模式，分以下8种，可自传值，也可使用BigDecimal的枚举，都一样的，如下：
+0 - ROUND_UP 远离0的方向
+例：1.1->2 1.5->2 1.8->2 -1.1->-2 -1.5->-2 -1.8->-2
+1 - ROUND_DOWN 向0的方向移动
+例：1.1->1 1.5->1 1.8->1 -1.1->-1 -1.5->-1 -1.8>-1
+2 - ROUND_CEILING 舍位时往正无穷方向移动
+例：1.1->2 1.5->2 1.8->2 -1.1->-1 -1.5->-1 -1.8->-1
+3 - ROUND_FLOOR 与CEILING相反，往负无穷
+例：1.1->1 1.5->1 1.8->1 -1.1->-2 -1.5->-2 -1.8->-2
+4 - ROUND_HALF_UP 最常见的四舍五入
+5 - ROUND_HALF_DOWN 以5为分界线，或曰五舍六入
+6 - ROUND_HALF_EVEN 同样以5为分界线，如果是5，则前一位变偶数1.15->1.2 1.16->1.2 1.25->1.2 1.26->1.3
+7 - ROUND_UNNECESSARY 舍入模式可以断言所请求的操作具有精确的结果，因此不需要舍入。如果在产生不精确结果的操作上指定了这种舍入模式，则会抛出 {@code ArithmeticException}。
+
 ```
 
 ## 时间问题
@@ -691,3 +718,6 @@ int endCompare = req.getEndTime().compareTo(req.getStartTime());
 int<0 : endTime小于startTime
 ```
 
+## 参考文章
+
+CSDN博主「了迹奇有没」的原创文章：https://blog.csdn.net/w_monster/article/details/112008308
