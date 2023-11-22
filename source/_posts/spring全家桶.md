@@ -31,122 +31,143 @@ permalink:
 
 ### SpringAOP
 
- AOP全称：Aspect-Oriented Programming，面向切面编程。
-
-​      AOP，面向切面编程，就是把可重用的功能提取出来，然后将这些通用功能在合适的时候织入到应用程序中，比如事务管理、权限控制、日志记录、性能统计等。
-
-​     AOP并没有帮助我们解决任何新的问题，它只是提供了一种更好的办法，能够用更少的工作量来解决现有的一些问题，使得系统更加健壮，可维护性更好。
-
- 使用@Aspect注解将一个java类定义为切面类
- 使用@Pointcut定义一个切入点，可以是一个规则表达式，比如下例中某个package下的所有函数，也可以是一个注解等。根据需要在切入点不同位置的切入内容
- 同一个方法被多个Aspect类拦截时，可以使用@Order注解指定顺序。
- Authentication权限 ->实现使用环绕通知
- Caching ->缓存->环绕通知
-
- 场景
-
- Authentication 权限  
-
- Caching 缓存
-
- Error handling 错误处理
-
- Debugging 调试	
-
- Performance optimization 性能优化
-
- Resource pooling 资源池
-
- Synchronization 同步
-
- Transactions 事务
-
- Logging 日志
-
- aop五种通知类型
-
- //前置通知：在方法执行前通知
-
- @Before(value = “”)
-
- //返回通知：在方法正常执行完成进行通知，可以访问到方法的返回值的。
-
- @AfterReturning(value = “”)
-
- //环绕通知：可以将要执行的方法（point.proceed()）进行包裹执行，可以在前后添加需要执行的操作
-
- @Around(value = “”)
-
- //异常通知：在方法出现异常时进行通知,可以访问到异常对象，且可以指定在出现特定异常时在执行通知。
-
- @AfterThrowing(value = “”)
-
- //方法执行后通知： 在目标方法执行后无论是否发生异常，执行通知,不能访问目标方法的执行的结果。
-
- @After(value = “”)
-
- 使用@Aspect注解将一个java类定义为切面类
-
- 使用@Pointcut定义一个切入点，可以是一个规则表达式，比如下例中某个package下的所有函数，也可以是一个注解等。根据需要在切入点不同位置的切入内容
-
- 同一个方法被多个Aspect类拦截时，可以使用@Order注解指定顺序。
-
- Authentication 权限 实现使用环绕通知
-
- Caching 缓存   环绕通知
-
- Error handling 错误处理  前置 后置 环绕
-
- Logging 日志   后置通知
-
- Performance optimization 性能优化   环绕通知
-
- Debugging 调试  前置通知
-
- Resource pooling 资源池  环绕通知
-
- Synchronization 同步  前置通知
-
- Transactions 事务   前置  后置  环绕
-
-#### SpringAOP的含义是面向切面编程:
-
-​	
-
-​	AOP 的全称是“Aspect Oriented Programming”，即面向切面编程，它将业务逻辑的各个部分进行隔离，使开发人员在编写业务逻辑时可以专心于核心业务，从而提高了开发效率。
+AOP 的全称是“Aspect Oriented(**ɔːrientɪd**) Programming”，即面向切面编程，它将业务逻辑的各个部分进行隔离，使开发人员在编写业务逻辑时可以专心于核心业务，从而提高了开发效率。aop并没有帮助我们解决任何新的问题，它只是提供了一种更好的办法，能够用更少的工作量来解决现有的一些问题，使得系统更加健壮，可维护性更好。
 
 Spring AOP 是基于 AOP 编程模式的一个框架，它的使用有效减少了系统间的重复代码，达到了模块间的松耦合目的。
 
 AOP 采取横向抽取机制，取代了传统纵向继承体系的重复性代码，其应用主要体现在事务处理、日志管理、权限控制、异常处理等方面。
 
-aop是基于动态代理实现的
+#### AOP的核心概念及术语
+
+**使用@Aspect注解将一个java类定义为切面类 使用@Pointcut定义一个切入点，可以是一个规则表达式，比如下例中某个package下的所有函数，也可以是一个注解等。根据需要在切入点不同位置的切入内容 同一个方法被多个Aspect类拦截时，可以使用@Order注解指定顺序。**
+
+**切面（Aspect）**: 指关注点模块化，这个关注点可能会横切多个对象。事务管理是企业级Java应用中有关横切关注点的例子。 在Spring AOP中，切面可以使用通用类基于模式的方式（schema-based approach）或者在普通类中以@Aspect注解（@AspectJ 注解方式）来实现。
+
+**切点（Pointcut）:** 匹配连接点的断言。通知和切点表达式相关联，并在满足这个切点的连接点上运行（例如，当执行某个特定名称的方法时）。切点表达式如何和连接点匹配是AOP的核心：Spring默认使用AspectJ切点语义
+
+**连接点（Join point）**: 在程序执行过程中某个特定的点，例如某个方法调用的时间点或者处理异常的时间点。在Spring AOP中，一个连接点总是代表一个方法的执行。
+
+**通知（Advice）**: 在切面的某个特定的连接点上执行的动作。通知有多种类型，包括“around”, “before” and “after”等等。通知的类型将在后面的章节进行讨论。 许多AOP框架，包括Spring在内，都是以拦截器做通知模型的，并维护着一个以连接点为中心的拦截器链。
+
+**引入（Introduction）**: 声明额外的方法或者某个类型的字段。Spring允许引入新的接口（以及一个对应的实现）到任何被通知的对象上。例如，可以使用引入来使bean实现 IsModified接口， 以便简化缓存机制（在AspectJ社区，引入也被称为内部类型声明（inter））。
+
+**目标对象（Target object）**: 被一个或者多个切面所通知的对象。也被称作被通知（advised）对象。既然Spring AOP是通过运行时代理实现的，那么这个对象永远是一个被代理（proxied）的对象。
+
+**AOP****代理（AOP proxy）**:AOP框架创建的对象，用来实现切面契约（aspect contract）（包括通知方法执行等功能）。在Spring中，AOP代理可以是JDK动态代理或CGLIB代理。
+
+**织入（Weaving）**: 把切面连接到其它的应用程序类型或者对象上，并创建一个被被通知的对象的过程。这个过程可以在编译时（例如使用AspectJ编译器）、类加载时或运行时中完成。 Spring和其他纯Java AOP框架一样，是在运行时完成织入的。
+
+#### AOP的通知类型（5种）
+
+//前置通知：在方法执行前通知
+
+@Before(value = “”)
+
+前置通知（Before advice）: 在连接点之前运行但无法阻止执行流程进入连接点的通知（除非它引发异常）。
+
+ 
+
+//后置通知： 在目标方法执行后无论是否发生异常，执行通知,不能访问目标方法的执行的结果。
+
+@After(value = “”)
+
+后置通知（总会执行）（After (finally) advice）: 当连接点退出的时候执行的通知（无论是正常返回还是异常退出）。
+
+ 
+
+//环绕通知：可以将要执行的方法（point.proceed()）进行包裹执行，可以在前后添加需要执行的操作
+
+@Around(value = “”)
+
+环绕通知（Around Advice）:环绕连接点的通知，例如方法调用。这是最强大的一种通知类型，。环绕通知可以在方法调用前后完成自定义的行为。它可以选择是否继续执行连接点或直接返回自定义的返回值又或抛出异常将执行结束。
+
+ 
+
+//后置异常通知：在方法出现异常时进行通知,可以访问到异常对象，且可以指定在出现特定异常时在执行通知。
+
+@AfterThrowing(value = “”)
+
+后置异常通知（After throwing advice）: 在方法抛出异常退出时执行的通知。
+
+ 
+
+//后置返回通知：在方法正常执行完成进行通知，可以访问到方法的返回值的。
+
+@AfterReturning(value = “”)
+
+后置返回通知（After returning advice）:在连接点正常完成后执行的通知（例如，当方法没有抛出任何异常并正常返回时）。
+
+#### 场景
+
+Authentication 权限 实现使用环绕通知
+
+Caching 缓存   环绕通知
+
+Error handling 错误处理  前置 后置 环绕
+
+Logging 日志   后置通知
+
+Performance optimization 性能优化   环绕通知
+
+Debugging 调试  前置通知
+
+Resource pooling 资源池  环绕通知
+
+Synchronization 同步  前置通知
+
+Transactions 事务   前置  后置  环绕
+
+#### aop实现
+
+aop是基于**动态代理**实现的
 
 JDK动态代理：利用反射机制生成一个实现代理接口的匿名类，在调用具体方法前调用InvokeHandler来处理。
- CGlib动态代理：利用ASM（开源的Java字节码编辑库，操作字节码）开源包，将代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。
+CGlib动态代理：利用ASM（开源的Java字节码编辑库，操作字节码）开源包，将代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。
 
- 两种动态代理的区别：
+两种动态代理的区别：
 
 JDK动态代理只能对实现了接口的类生成代理，而不能针对类。
 
 CGLIB是针对类实现代理，主要是对指定的类生成一个子类，覆盖其中的方法。
 
-正向代理的过程，隐藏了真实的客户端。客户端请求的服务都被代理服务器代替来请求  
+### **代理**
 
-位于客户端和目标服务器之间
+代理就相当于中间商,本来A和B是可以直接连接的,但是此时添加了一个C在中间,A跟B不直接连接,而是通过C作为中介进行连接。最常见的例子就是二手东,其实很多我们租房子时签约的人不是房子的真正房东,而是房东委托的中介,房东不想管事或者房子太多,只靠自己无法进行管理,所以才会通过中介(代理)进行处理,像蛋壳、自如这样的租房软件其实也是中介的一种,真正的房东是直接将房子委托给这样的第三方中介进行出租。
 
-反向代理的过程，隐藏真实的服务端 。
+一个完整的请求是由: client(客户端) -> proxy(代理) -> server(服务端) 组成。
 
-位于用户与目标服务器之间  
+**正向代理**: 顺着请求的方向进行的代理，即代理服务器它是由你配置为你服务，去请求目标服务器地址。
 
-正向代理是目标地址服务器不知道访问的用户是谁；而方向代理服务器用户不知道访问的服务器是那个。  
+![img](qwer.webp)
 
-IoC和DI有什么关系呢？
+正向代理的作用:
 
-IoC和DI有什么关系呢？其实它们是同一个概念的不同角度描述，
+1. 访问原来无法访问的资源，如google
 
-依赖注入是从应用程序的角度在描述：应用程序依赖容器创建并注入它所需要的外部资源；
+2. 可以做缓存，加速访问资源
 
-而控制反转是从容器的角度在描述：容器控制应用程序，由容器反向的向应用程序注入应用程序所需要的外部资源。  
+3. 对客户端访问授权，上网进行认证
+
+4. 代理可以记录用户访问记录（上网行为管理），对外隐藏用户信息
+
+ 
+
+**反向代理**: 跟正向代理相反,它是为目标服务器进行服务的
+
+![img](qwer1.webp)
+
+反向代理的作用:
+
+1. 保证内网的安全，阻止web攻击，大型网站，通常将反向代理作为公网访问地址，Web服务器是内网。
+
+2. 负载均衡，通过反向代理服务器来优化网站的负载。
+
+#### **两者的区别**
+
+正向代理即是客户端代理, 代理客户端, 服务端不知道实际发起请求的客户端.
+反向代理即是服务端代理, 代理服务端, 客户端不知道实际提供服务的服务端.
+
+![img](qw.webp)
 
 ### SpringDI
 
@@ -246,6 +267,14 @@ Spring 的 IoC 设计支持以下功能：
 
 支持回调某些方法（但是需要实现 Spring 接口，略有侵入）
 
+### IoC和DI区别
+
+其实它们是同一个概念的不同角度描述，
+
+依赖注入是从应用程序的角度在描述：应用程序依赖容器创建并注入它所需要的外部资源；
+
+而控制反转是从容器的角度在描述：容器控制应用程序，由容器反向的向应用程序注入应用程序所需要的外部资源。 
+
 ### Spring bean
 
 #### springbean的生命周期
@@ -282,15 +311,15 @@ Spring启动，查找并加载需要被Spring管理的bean，进行Bean的实例
 
 singleton：单例作用域（默认作用域）
 
- prototype  / proʊtətaɪp// ：原型作用域（多例作用域）
+prototype：原型作用域（多例作用域）
 
- request：请求作用域
+request：请求作用域
 
- session：回话作用域   
+session：回话作用域   
 
- application：全局作用域
+application：全局作用域
 
- websocket：HTTP WebSocket 作用域
+websocket：HTTP WebSocket 作用域
 
 #### Bean的自动装配
 
@@ -304,35 +333,23 @@ Bytype 根据类型装配
 
 Constructor 利用构造函数装配 构造函数通过bytype装配
 
- Autodetect 自动探测，有构造使用构造，否则使用类型
+Autodetect 自动探测，有构造使用构造，否则使用类型
 
- springBean的四种注入方式：
+#### springBean的四种注入方式：
 
- set方法注入
+set方法注入
 
- 构造器注入
+构造器注入
 
- 静态工厂注入
+静态工厂注入
 
- 实例工厂注入
+实例工厂注入
 
-#### Spring的事务
+ 
 
-事务分为
+### Servlet的生命周期   
 
-编程式事务
-
-​	是通过代码编写的。TransactionTemplate或TransactionManager手动管理事务。没怎么用过
-
- 声明式事务: 是基于注解的事务。通过AOP实现。
-
- Spring的事务管理机制实现的原理，就是通过这样一个动态代理对所有需要事务管理的Bean进行加载，并根据配置在invoke方法中对当前调用的 方法名进行判定，并在method.invoke方法前后为其加上合适的事务管理代码，这样就实现了Spring式的事务管理。  
-
-@Transactional事务实现的原理是基于AOP来实现的，AOP的实现原理：动态代理+拦截链，由此可以大概推测出@Transactional的实现逻辑：Spring有一个针对@Transactional的增强器（拦截器）Interceptor，在bean实例初始化的最后一步会调用带该拦截器的拦截器链增强@Transactional注解的方法，并且生成代理类
-
-![img](lu152441l02jn_tmp_db46e48ddf693c96.png) 
-
-Servlet的生命周期   init() 初始化 service()服务 destroy()销毁   
+init() 初始化 service()服务 destroy()销毁   
 
 ### Spring
 
@@ -433,6 +450,22 @@ Spring事务类型:
 唯一不足地方是，最细粒度只能作用到方法级别，无法做到像编程式事务那样可以作用到代码块级别。
 
    Spring中也有自己的事务管理机制，一般是使用TransactionMananger进行管理，可以通过Spring的注入来完成此功能。
+
+#### Spring的事务
+
+**编程式事务:** 
+
+是通过代码编写的。TransactionTemplate或TransactionManager手动管理事务。没怎么用过
+
+**声明式事务:** 
+
+是基于注解的事务。通过AOP实现。
+
+Spring的事务管理机制实现的原理，就是通过这样一个动态代理对所有需要事务管理的Bean进行加载，并根据配置在invoke方法中对当前调用的 方法名进行判定，并在method.invoke方法前后为其加上合适的事务管理代码，这样就实现了Spring式的事务管理。  
+
+@Transactional事务实现的原理是基于AOP来实现的，AOP的实现原理：动态代理+拦截链，由此可以大概推测出@Transactional的实现逻辑：Spring有一个针对@Transactional的增强器（拦截器）Interceptor，在bean实例初始化的最后一步会调用带该拦截器的拦截器链增强@Transactional注解的方法，并且生成代理类
+
+![img](./lu152441l02jn_tmp_db46e48ddf693c96.png)
 
 #### Spring事务传播行为:
 
@@ -1228,7 +1261,7 @@ SpringCloud： 是一套目前完整的微服务框架，它 是一系列框架�
 
 
 ##### Eureka集群选举机制:
-  
+
 
 Eureka集群中的各节点之间不存在主从关系。Eureka集群中的节点的关系是对等的，其他3种集群则都存在主从关系，这是Eureka集群的一个特色。
 
@@ -1249,7 +1282,7 @@ Eureka集群中的各节点之间不存在主从关系。Eureka集群中的节�
 分区容错性（P）：系统应该能持续提供服务，即使系统内部有消息丢失（分区）。  
 
 
-  
+
 
  由于分区容错性在是分布式系统中必须要保证的，因此我们只能在 A 和C 之间进行权衡。在此 Zookeeper 保证的是CP, 而 Eureka 则是 AP。  
 
@@ -1286,7 +1319,7 @@ Nacos 默认和dubbo一样cp，但是也可以修改为 ap
  Eureka 节点会进入“自我保护模式”，同时保留那些“心跳死亡”的服务注册信息不过期。此时，这个 Eureka 节点对于新的服务还能提供注册服务，对于“死亡”的仍然保留，以防还有客户端向其发起请求。当网络故障恢复后，
 
 
-  
+
 
 ####  服务端和客户端之间的数据同步
 
@@ -1305,7 +1338,7 @@ Nacos 默认和dubbo一样cp，但是也可以修改为 ap
  Eureka Server 各个节点都是平等的，几个节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而 Eureka Client 在向某个 Eureka 注册时，如果发现连接失败，则会自动切换至其它节点。只要有一台 Eureka Server 还在，就能保证注册服务可用(保证可用性)，只不过查到的信息可能不是最新的(不保证强一致性)。
 
 
-  
+
 
 
   
@@ -1319,14 +1352,14 @@ Eureka 高可用（服务端集群）搭建：
 例：
 
 
-  
+
 
 eureka.instance.hostname=javaeestudy1     
 
 eureka.client.serviceUrl.defaultZone=http://javaeestudy:123456@javaeestudy2:8762/eureka/,http://javaeestudy:123456@javaeestudy3:8763/eureka/
 
 
-  
+
 
 eureka.instance.hostname=javaeestudy2
 
@@ -1337,7 +1370,7 @@ eureka.client.serviceUrl.defaultZone=http://javaeestudy:123456@javaeestudy1:8761
    //--------------------------------------------------
 
 
-  
+
 
 
   
@@ -1347,7 +1380,7 @@ eureka.client.serviceUrl.defaultZone=http://javaeestudy:123456@javaeestudy1:8761
 例如:
 
 
-  
+
 
 \# server
 
@@ -1390,7 +1423,7 @@ spring-cloud-provider2.ribbon.NFLoadBalancerRuleClassName=com.netflix.loadbalanc
 //---------------------------------
 
 
-  
+
 
 #### feign:
 
@@ -1415,7 +1448,7 @@ spring-cloud-provider2.ribbon.NFLoadBalancerRuleClassName=com.netflix.loadbalanc
 当使用Feign接口调用服务时，LoadBalancerFeignClient和FeignLoadBalancer作为调用Ribbon的入口为Feign接口提供负载均衡服务。
 
 
- 
+
   
 
 #### Hystrix:
@@ -1431,7 +1464,7 @@ spring-cloud-provider2.ribbon.NFLoadBalancerRuleClassName=com.netflix.loadbalanc
 Hystrix 就是具备有以上功能的应用。  
 
 
-  
+
 
 //-----------------
 
@@ -1444,7 +1477,7 @@ Hystrix 就是具备有以上功能的应用。
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=3000
 
 
-  
+
 
 ##### Hystrix能解决什么问题?
 
@@ -1478,9 +1511,9 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=3000
 监控+报警+优化，各种异常的情况，有问题就及时报警，优化一些系统的配置和参数，或者代码
 
 
+
  
- 
-  
+
 
 ##### hystrix熔断原理:
 
@@ -1502,11 +1535,11 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=3000
 1. 如果熔断器打开，且距离熔断器打开的时间或上一次试探请求放行的时间超过circuitBreaker.sleepWindowInMilliseconds的值时，熔断器器进入半开状态，允许放行一个试探请求；否则，不允许放行。
 
 此外，为了提供决策依据，每个熔断器默认维护了10个bucket，每秒一个bucket，当新的bucket被创建时，最旧的bucket会被抛弃。其中每个blucket维护了请求成功、失败、超时、拒绝的计数器，Hystrix负责收集并统计这些计数器。 
- 
+
   
 
 
-  
+
 
 //----------------------
 
@@ -1537,7 +1570,7 @@ Zuul 的请求来自于 DispatcherServlet，然后交给 ZuulHandlerMapping 处�
  最后再 Filter 链中经过种种变换，得到预期结果。
 
 
- 
+
   
 
 ### SpringCloud几大痛点
