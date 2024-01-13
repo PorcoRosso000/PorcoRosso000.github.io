@@ -170,7 +170,7 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page 首页背景大图
-index_img: https://c.53326.com/d/file/newpc202302/cghcagspdgx.jpg
+index_img: https://file.moyublog.com/d/file/2024-01-13/c56f8e258d235fc58c6093461054585b.jpg
 
 # If the banner of page not setting, it will show the top_img
 default_top_img:
@@ -206,59 +206,23 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    - https://c.53326.com/d/file/20221010/nbja5lkr25h.jpg
-    - https://c.53326.com/d/file/20211231/2xiagec3blt.jpg
-    - https://c.53326.com/d/file/20210602/05sispf5ipe.jpg
-    - https://c.53326.com/d/file/pc20200519/yuwdzgujggf.jpg
-    - https://c.53326.com/d/file/20221010/h4ozdxrl5xf.jpg
-    - https://c.53326.com/d/file/20220101/nlzo2gqg2kq.jpg
-    - https://c.53326.com/d/file/20220101/q4lqgcx1hvj.jpg
-    - https://c.53326.com/d/file/20220101/lvdmlansrf1.jpg
-    - https://c.53326.com/d/file/20210602/chi3zxhoocp.jpg
-    - https://c.53326.com/d/file/pc20200519/fz1ef1viyby.jpg
-    - https://c.53326.com/d/file/pc20200519/sri4a0nphjn.jpg
-    - https://c.53326.com/d/file/20221010/jmurdo1h3uc.jpg
-    - https://c.53326.com/d/file/20221010/5502qj3h23u.jpg
-    - https://c.53326.com/d/file/20221010/giwa1oyl0gg.jpg
-    - https://c.53326.com/d/file/20220101/szcsz5inu41.jpg
-    - https://c.53326.com/d/file/20210602/nvnyvod2wsi.jpg
-    - https://c.53326.com/d/file/pc20200519/1al0quodg14.jpg
-    - https://c.53326.com/d/file/pc20200519/fg5znixcvkf.jpg
-    - https://c.53326.com/d/file/newpc202302/b0ci1sfofpz.jpg
-    - https://c.53326.com/d/file/newpc202302/nxumx4iuqgn.jpg
-    - https://c.53326.com/d/file/newpc202302/21ae33to1de.jpg
-    - https://c.53326.com/d/file/newpc202302/4gslbicyqsp.jpg
-    - https://c.53326.com/d/file/newpc202302/ajfhc1rjenk.jpg
-    - https://c.53326.com/d/file/newpc202302/eazn5xyhrv3.jpg
-    - https://c.53326.com/d/file/newpc202302/4gslbicyqsp.jpg
-    - https://c.53326.com/d/file/newpc202302/yffnmyq14iy.jpg
-    - https://c.53326.com/d/file/newpc202302/pn2y4d0sksy.jpg
-    - https://c.53326.com/d/file/newpc202302/to1qwx215wt.jpg
-    - https://c.53326.com/d/file/newpc202302/xbobb2m1tsg.jpg
-    - https://c.53326.com/d/file/newpc202302/r0jlaclhomm.jpg
-    - https://c.53326.com/d/file/newpc202302/jsciyfhk21i.jpg
-    - https://c.53326.com/d/file/newpc202302/hmllqlhfzpq.jpg
-    - https://c.53326.com/d/file/newpc202302/ayphi1v41bp.jpg
-    - https://c.53326.com/d/file/newpc202302/yvnkgwd1l1d.jpg
-    - https://c.53326.com/d/file/newpc202302/aw0er2swwms.jpg
-    - https://c.53326.com/d/file/pcbigpic/20200519/k51p3akmd3z.jpg
-    - https://c.53326.com/d/file/newpc202302/u5m511dthbd.jpg
-    - https://c.53326.com/d/file/newpc202302/ykxrzuw55ph.jpg
-    - https://c.53326.com/d/file/newpc202302/4clxxymovbk.jpg
-    - https://c.53326.com/d/file/newpc202302/2jeugigayl5.jpg
-    - https://c.53326.com/d/file/newpc202302/b4pvok5kpfn.jpg
-    - https://c.53326.com/d/file/newpc202302/3bcys2vmasc.jpg
-    - https://c.53326.com/d/file/newpc202302/hrsftyw4lol.jpg
-    - https://c.53326.com/d/file/newpc202302/xmrxrlvmirh.jpg
-    - https://c.53326.com/d/file/newpc202302/w5erjvrrefv.jpg
-    - https://c.53326.com/d/file/newpc202302/nh3cafzhqap.jpg
-    - https://c.53326.com/d/file/newpc202302/vdwuktkff3b.jpg
-    - https://c.53326.com/d/file/newpc202302/ctf1crnhavb.jpg
-    - https://c.53326.com/d/file/newpc202302/ujbiq5pezcl.jpg
-    - https://c.53326.com/d/file/newpc202302/zgyklxii1j0.jpg
-    - https://c.53326.com/d/file/newpc202302/k2sngowct2f.jpg
-    - https://c.53326.com/d/file/pcbigpic/20200519/pw0jjgmsiys.jpg
-
+    - https://file.moyublog.com/d/file/2024-01-11/c7b281ba7506410554b975f9800721f1.jpg
+    - https://file.moyublog.com/d/file/2023-08-18/c8ce99cf286240594501be828c1cc351.jpg
+    - https://file.moyublog.com/d/file/2023-10-14/cc47981fcd3508597b2433353265b9cc.jpg
+    - https://file.moyublog.com/d/file/2023-02-09/5d716ca64a4444caedaf910088c8910a.jpg
+    - https://file.moyublog.com/d/file/2022-06-02/e3c4e658f6c78e29a7a0455abf26c760.jpg
+    - https://file.moyublog.com/d/file/2021-06-13/1805e328fe7e7dc22afb5d491cb26b26.jpg
+    - https://file.moyublog.com/d/file/2021-02-18/52907f606ce6be632229ef1cdbffa96b.jpg
+    - https://file.moyublog.com/d/file/2024-01-13/4009f4ab66b4b9e351b109abbb83e035.jpg
+    - https://file.moyublog.com/d/file/2023-12-23/6ad6fbe905d7d596acc68c77dd12336c.jpg
+    - https://file.moyublog.com/d/file/2021-01-10/dd04f0e10196683b4b224a6672d11bc2.jpg
+    - https://file.moyublog.com/d/file/2024-01-12/ba9014bc98e7390f2b2f0a8b184a8af7.jpg
+    - https://file.moyublog.com/d/file/2024-01-11/8fa8778aaf402c307b8a0edf9065953a.jpg
+    - https://file.moyublog.com/d/file/2024-01-12/b73686bc48910faec034038a00f585f3.jpg
+    - https://file.moyublog.com/d/file/2023-11-11/7a9b054bd6e6fb5c0c739782b8db72dc.jpg
+    - https://file.moyublog.com/d/file/2024-01-13/bdb96d797402ea5a86126851d142d360.jpg
+    - https://file.moyublog.com/d/file/2024-01-13/2390eee1e2f83609db65b5a53ad32442.jpg
+    - https://file.moyublog.com/d/file/2024-01-10/e010e51a8872f3cd820b0dc66af430d7.jpg
 
 
 
