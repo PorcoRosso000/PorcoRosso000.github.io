@@ -124,7 +124,7 @@ categoryBar:
   custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
 #侧边栏电子时钟
 electric_clock:
-  enable: true # 开关
+  enable: false # 开关
   priority: 5 #过滤器优先权
   enable_page: all # 应用页面
   exclude:
@@ -867,11 +867,11 @@ runtimeshow:
 
 # Aside widget - Newest Comments
 newest_comments:
-  enable: true
+  enable: false
   sort_order: # Don't modify the setting unless you know how it works
   limit: 6
   storage: 10 # unit: mins, save data to localStorage
-  avatar: true
+  avatar: false
   # You can only choose one, or neither
   valine: false
   github_issues:
