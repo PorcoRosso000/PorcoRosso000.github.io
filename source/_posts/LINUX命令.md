@@ -130,13 +130,65 @@ docker images|grep none|awk '{print $3 }'|xargs docker rmi
 
 创建多级目录
 
+```
 mkdir -p <目录路径>
+```
 
+```
 例如 mkdir -p mysql/config   就会创建mysql 目录及 config目录
+```
 
 创建单级目录
 
+```
 mkdir <目录名>
+```
+
+
+
+#### 创建文件
+
+```cobol 
+touch a.txt
+```
+
+如果a.txt文件存在，那么修改文件的时间属性为当前时间；
+如果a.txt文件不存在，那么新建一个a.txt空白文件。
+
+```less
+touch -t 202001010101 a.txt
+```
+
+如果a.txt文件存在，那么修改文件的时间属性为指定的时间，这里是2020年1月1日1时1分；
+如果a.txt文件不存在，那么新建一个a.txt空白文件。
+
+```bash
+touch catkin_ws/a.txt
+```
+
+如果catkin_ws路径下存在a.txt文件，那么修改文件的时间属性为当前时间；
+如果catkin_ws路径下不存在a.txt文件，那么新建一个a.txt空白文件。
+
+```cobol
+touch c.txt d.txt
+```
+
+如果c.txt文件和d.txt都存在，那么修改这两个文件的时间属性为当前时间；
+如果c.txt文件和d.txt都不存在，那么新建c.txt和d.txt两个空白文件；
+
+如果只存在一个，那么修改存在的文件的时间属性，并新建另外一个空白文件。
+
+```cobol
+touch a{1..4}
+```
+
+表示在当前路径下新建a1、a2、a3和a4这4个文件。
+
+```cobol
+touch a{1..4}.txt
+```
+
+表示在当前路径下新建a1.txt、a2.txt、a3.txt和a4.txt这4个文件。
 
 
 
