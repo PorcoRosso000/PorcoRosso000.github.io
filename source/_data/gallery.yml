@@ -1,0 +1,28 @@
+## 画廊
+# name:         标题
+# en_name:      英文标题
+# description:  描述内容
+# cover:        封面图片路径
+# link:         链接路径，无链接为空即可
+# preview:      预览路径，无则可以为空
+#
+- name: 凡人修仙传
+  en_name: fanrenxiuxianzhuan
+  description: 《凡人修仙传》是当代中国网络作家忘语所著的一部极富盛名的仙侠小说。这本小说因其精妙的情节设计、鲜明的角色塑造以及丰富的修仙世界观而深受读者喜爱。
+  cover: /images/sample/20240712144305.png
+  link: 
+  preview: 
+
+- name: 刻意练习
+  en_name: keyilianxi
+  description: 《刻意练习》这个概念最早由心理学家安德斯·艾利克森（Anders Ericsson）提出，是一种高效学习的方法论。这一概念在许多领域，尤其是需要高度技能的领域，被广泛认可为提高个人能力的关键手段。
+  cover: /images/sample/20240712144629.png
+  link: 
+  preview: 
+
+- name: 太上感应篇
+  en_name: taishangganying
+  description: 《太上感应篇》是道教的一部著名经文，其全称为《太上灵宝感应篇》，也称作《太上道祖感应篇》或简称《感应篇》。这部经典教义深奥，内容丰富，向人们传达了道教的宇宙观、伦理观和人生哲学。
+  cover: /images/sample/20240712144718.png
+  link: 
+  preview: 

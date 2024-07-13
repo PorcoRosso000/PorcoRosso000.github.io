@@ -1,18 +1,22 @@
 ---
 title: Canal
 typora-root-url: Canal
-tags: Canal
-categories: Canal
 abbrlink: 2040d45d
 date: 2023-07-04 23:33:18
-permalink:
+keywords: ','
+tags: Canal
+categories: Canal
+photos: 
+description: Canal是阿里开源的中间件，主要用于同步mysql数据库变更；
 ---
 
+Canal是阿里开源的中间件，主要用于同步mysql数据库变更；
+
+<!--more-->
+
+------
 
 
-### 什么是Canal？
-
-canal是阿里开源的中间件，主要用于同步mysql数据库变更；
 
 ### Canal数据库监听的原理是什么？
 

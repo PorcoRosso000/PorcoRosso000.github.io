@@ -3,11 +3,18 @@ title: ASCII码表
 typora-root-url: ASCII码表
 abbrlink: c85fdebe
 date: 2022-12-08 19:30:29
-tags:
-permalink:
+keywords: 'ASCII'
+tags: ASCII
+categories: 
+photos:
+description: ASCII码
 ---
 
+ASCII码
 
+<!--more-->
+
+------
 
 ASCII码表
 

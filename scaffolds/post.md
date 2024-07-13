@@ -2,10 +2,16 @@
 title: {{ title }}
 date: {{ date }}
 typora-root-url: {{ title }}
-tags:
+tags: 
 categories: 
-permalink:
+keywords: ','
+photos: 
+description:
 ---
 
 
+
+<!--more-->
+
+------
 

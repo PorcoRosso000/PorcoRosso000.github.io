@@ -1,0 +1,28 @@
+## 企业文化
+# name:         标题
+# en_name:      英文标题
+# description:  描述内容
+# cover:        封面图片路径
+# cover_size:   封面图片大小
+# link:         链接路径，无链接为空即可
+#
+- name: 结交好友
+  en_name: 
+  description: 好朋友来自四面八方。
+  cover: /images/culture/icon_1.svg
+  cover_size: 64
+  link:
+
+- name: 人生如戏
+  en_name: 
+  description: 人生如戏，全靠演技。
+  cover: /images/culture/icon_2.svg
+  cover_size: 64
+  link:
+
+- name: 克己复礼
+  en_name: 
+  description: 非礼勿视，非礼勿听，非礼勿言，非礼勿动。
+  cover: /images/culture/icon_3.svg
+  cover_size: 64
+  link:

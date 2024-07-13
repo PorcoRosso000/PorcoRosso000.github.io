@@ -9,7 +9,7 @@ subtitle: ''
   # - '每临大事有静气，不信今时无古贤!'
 description: '人必有所执,方能有所成'
 keywords:
-author: juzi
+author: 菊子酒
 language: zh-CN
 timezone: ''
 
@@ -18,24 +18,29 @@ search:
   field: post
   content: true
 
-algolia:
-  appId: "7PZLOEQWZ0"
-  apiKey: "09b62775f116ef72b0ccf883bb5d9727"
-  adminApiKey: "d98487855de4b18f2eee6c54d3276657"
-  chunkSize: 5000
-  indexName: "porco_rosso"
-  fields:
-    - content:strip:truncate,0,500
-    - excerpt:strip
-    - gallery
-    - permalink
-    - photos
-    - slug
-    - tags
-    - title
-plugins:
-  - hexo-algoliasearch
-  
+# algolia:
+  # appId: "7PZLOEQWZ0"
+  # apiKey: "09b62775f116ef72b0ccf883bb5d9727"
+  # adminApiKey: "d98487855de4b18f2eee6c54d3276657"
+  # chunkSize: 5000
+  # indexName: "porco_rosso"
+  # fields:
+    # - content:strip:truncate,0,500
+    # - excerpt:strip
+    # - gallery
+    # - permalink
+    # - photos
+    # - slug
+    # - tags
+    # - title
+# plugins:
+  # - hexo-algoliasearch
+ # autoprefixer:
+  # exclude:
+    # - '*.min.css'
+ # clean_css:
+  # exclude: 
+    # - *.min.css
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -96,7 +101,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 8
+  per_page: 4
   order_by: -date
 
 # Category & Tag
@@ -131,7 +136,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: butterfly
+theme: acorn
+#butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -142,6 +148,24 @@ deploy:
   repository: git@github.com:PorcoRosso000/PorcoRosso000.github.io.git
   branch: master
   
+autoprefixer:
+  exclude:
+    - '*.min.css'
 
+clean_css:
+  exclude: 
+    - '*.min.css'
+    
+# sitemap:
+  # path: 
+    # - sitemap.xml
+    # - sitemap.txt
+  # template: ./sitemap_template.xml
+  # template_txt: ./sitemap_template.txt
+  # rel: false
+  # tags: true
+  # categories: true
 
+# baidusitemap:
+  # path: baidusitemap.xml
 

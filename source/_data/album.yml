@@ -1,0 +1,49 @@
+## 专辑
+# name:         标题
+# en_name:      英文标题
+# description:  描述内容
+# cover:        封面图片路径
+# link:         链接路径，无链接为空即可
+# preview:      预览路径，无则可以为空
+#
+- name: 技术
+  en_name: technology
+  description: 深入研究计算机技术和机器人技术
+  cover: /images/sample/2dsad600.jpg
+  link: 
+  preview: 
+
+- name: 兴趣
+  en_name: interest
+  description: 吹口琴，听风声雨声雷声水声，，，打游戏
+  cover: /images/sample/qwerg.jpg
+  link: 
+  preview: 
+
+- name: 爱好
+  en_name: hobby
+  description: 看书，听歌，美丽的女生
+  cover: /images/sample/qqwer.jpg
+  link: 
+  preview: 
+
+# # - name: 
+  # # en_name: ENGLISH TITLE 4
+  # # description: 披绣闼，俯雕甍，山原旷其盈视，川泽纡其骇瞩。闾阎扑地，钟鸣鼎食之家；舸舰弥津，青雀黄龙之舳。云销雨霁，彩彻区明。落霞与孤鹜齐飞，秋水共长天一色。渔舟唱晚，响穷彭蠡之滨；雁阵惊寒，声断衡阳之浦。
+  # # cover: /images/sample/mydesk.png
+  # # link: 
+  # # preview: 
+
+# # - name: 中文标题五
+  # # en_name: ENGLISH TITLE 5
+  # # description: 披绣闼，俯雕甍，山原旷其盈视，川泽纡其骇瞩。闾阎扑地，钟鸣鼎食之家；舸舰弥津，青雀黄龙之舳。云销雨霁，彩彻区明。落霞与孤鹜齐飞，秋水共长天一色。渔舟唱晚，响穷彭蠡之滨；雁阵惊寒，声断衡阳之浦。
+  # # cover: /images/sample/mydesk.png
+  # # link: 
+  # # preview: 
+
+# # - name: 中文标题六
+  # # en_name: ENGLISH TITLE 6
+  # # description: 披绣闼，俯雕甍，山原旷其盈视，川泽纡其骇瞩。闾阎扑地，钟鸣鼎食之家；舸舰弥津，青雀黄龙之舳。云销雨霁，彩彻区明。落霞与孤鹜齐飞，秋水共长天一色。渔舟唱晚，响穷彭蠡之滨；雁阵惊寒，声断衡阳之浦。
+  # # cover: /images/sample/mydesk.png
+  # # link: 
+  # # preview: 

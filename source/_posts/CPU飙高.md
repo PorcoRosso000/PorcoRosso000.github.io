@@ -3,9 +3,18 @@ title: CPU飙高
 typora-root-url: CPU飙高
 abbrlink: f64d8ae3
 date: 2022-11-26 16:45:15
-tags:
-permalink:
+keywords: 'CPU,cpu'
+tags: CPU飙高
+categories: CPU飙高
+photos: 
+description: CPU飙高
 ---
+
+CPU飙高
+
+<!--more-->
+
+------
 
 
 
@@ -24,15 +33,15 @@ permalink:
    2.cpu频繁的上下文切换
 
    	原因创建了大量线程
-
+		
    	解决方案：保存运行线程的执行状态
-
+		
    		    让处于等待中的线程执行
 
    3.cpu资源消耗过多
 
    	原因：有线程一直占用cpu
-
+		
    	解决方案：使用top命令找到线程中的利用率较高的线程     通过jstack获取线程的demp日志
 
  ![img](lu152441l02jn_tmp_79357f887fcf3b51.png) 

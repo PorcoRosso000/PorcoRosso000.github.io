@@ -1,0 +1,29 @@
+## 项目案例
+# name:         标题
+# en_name:      英文标题
+# description:  描述内容
+# cover:        封面图片路径
+# link:         链接路径，无链接为空即可
+# preview:      预览路径，无则可以为空
+#
+- name: 软件开发
+  en_name: 
+  description: 软件开发是一项创造性的工作，它需要开发者具备丰富的知识和技能，以及对用户需求的深刻理解。通过编写代码，开发者可以将自己的想法转化为实际的应用程序，为用户提供更好的体验和服务。
+  cover: /images/sample/qwer123.png
+  # link: /2012/12/21/tengwanggexu/
+  link:
+  preview: 
+
+- name: 机器人技术
+  en_name: 
+  description: 机器人技术是一个跨学科的领域，它结合了机械工程、电气工程、计算机科学等多个学科的知识。机器人技术的发展已经取得了显著的成就，机器人已经广泛应用于工业生产、医疗卫生、军事等领域。随着技术的不断进步，机器人的性能和功能也在不断提高，未来机器人将会在更多的领域得到应用。
+  cover: /images/sample/qwer1234.jpg
+  link: 
+  preview: 
+
+# - name: 软件分享
+  # en_name: 
+  # description: 豫章故郡，洪都新府。星分翼轸，地接衡庐。襟三江而带五湖，控蛮荆而引瓯越。物华天宝，龙光射牛斗之墟；人杰地灵，徐孺下陈蕃之榻。
+  # cover: /images/sample/mydesk.png
+  # link: 
+  # preview: 
