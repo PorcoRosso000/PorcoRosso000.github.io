@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>cas学习 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-cas学习" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      cas学习
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2022-11-26T09:01:46.000Z" itemprop="datePublished">
+  2022-11-26
+</time>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/cas/">cas</a>
+  </div>
+
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="cas"><a href="#cas" class="headerlink" title="cas"></a>cas</h3><h4 id="cas在Hotspot虚拟机中的实现"><a href="#cas在Hotspot虚拟机中的实现" class="headerlink" title="cas在Hotspot虚拟机中的实现"></a>cas在Hotspot虚拟机中的实现</h4><p>1.在Hotspot虚拟机中，cas (Compare And Swap) 操作是通过汇编指今实现的，底层涉及到CPU的原子操作</p>
+<p>2.Hotspot使用了Unsafe类来提供cas操作的支持，Unsafe类是一个提供了一系列底层操作的工具类，它允许java程序直接访间底层内存和执行特定的操作，是Hotspot虚拟机的一部分，</p>
+<p>3 <strong>Unsafe</strong>类中的compaeAndSwapInt、 compaeAndSwapIong、compaeAndSwapObject是cas操作的具体实现，这些法接收三个参教:内存地址、期望值和更新值，它们会很据底层平台的特性，使用汇编指令来进行原子比较和交换操作。</p>
+<p>4.在X86架构下，Hotspot使用了lock cmpxchg指令来实现cas操作，该指令会比较内存中的值与期望值，如果相等，则用更新值替换内存中的值，并返回操作前的值，如果不相等，则不会进行替换操作，</p>
+<p>5在执行cas操作时，Hotspot会使用内存屏障（memory barrier） 来保证可见性和有序性。</p>
+<p>内存屏障有三种类型 LoadLoad屏障 、LoadStore屏障 、StoreStore屏障。</p>
+<p>LoadLoad屏障保证在其前面的读操作完成后，后面的读操才可开始，StoreStore屏保证在其前面的写操完成后，后面的写操作才可开始，LoadStore屏保证在其前面的读操完成后，后面的写操作才可开始，</p>
+<h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>乐观锁：乐观锁在操作数据时非常乐观，认为别人不会同时修改数据。因此乐观锁不会上锁，只是在执行更新的时候判断一下在此期间别人是否修改了数据：如果别人修改了数据则放弃操作，否则执行操作。</p>
+<p>乐观锁的实现方式有两种：cas机制和版本号机制</p>
+<p>cas是乐观锁的一种实现，cas全称是比较和替换，cas的操作主要由以下几个步骤组成：</p>
+<p>​        1.先查询原始值</p>
+<p>2.操作时比较原始值是否修改</p>
+<p>3.如果修改，则操作失败，禁止更新操作，如果没有发生修改，则更新为新值</p>
+<p>上述三个步骤是一个原子性操作，不可以被拆分执行。</p>
+<h4 id="乐观锁加锁吗？"><a href="#乐观锁加锁吗？" class="headerlink" title="乐观锁加锁吗？"></a>乐观锁加锁吗？</h4><p>（1）乐观锁本身是不加锁的，只是在更新数据的时候会判断一下数据是否被其他线程已经更新过了</p>
+<p>（2）有时乐观锁可能与加锁操作两者同时使用</p>
+<p> 假设有两个线程——线程1和线程2，两个线程按照顺序进行以下操作</p>
+<p> (1)线程1读取内存中数据为A；</p>
+<p> (2)线程2将该数据修改为B；</p>
+<p> (3)线程2将该数据修改为A；</p>
+<p> (4)线程1对数据进行cas操作</p>
+<p> 在第(4)步中，由于内存中数据仍然为A，因此cas操作成功，但实际上该数据已经被线程2修改过了。这就是ABA问题。</p>
+<p> 在AtomicInteger的例子中，ABA似乎没有什么危害。但是在某些场景下，ABA却会带来隐患，例如栈顶问题：<strong>一个栈的栈顶经过两次(或多次)变化又恢复了原值，但是栈可能已发生了变化。</strong></p>
+<p> 对于ABA问题，比较有效的方案是引入版本号，内存中的值每发生一次变化，版本号都+1；在进行cas操作时，不仅比较内存中的值，也会比较版本号，只有当二者都没有变化时，cas才能执行成功。</p>
+<h4 id="cas的优势"><a href="#cas的优势" class="headerlink" title="cas的优势"></a>cas的优势</h4><p>cas是一种无锁操作，不需要加锁，避免了线程切换的开销。</p>
+<h4 id="cas的问题"><a href="#cas的问题" class="headerlink" title="cas的问题"></a>cas的问题</h4><p>cas虽然在低并发量的情况下可以减少系统的开销，但是cas也有一些问题：</p>
+<p><strong>CPU开销过大问题</strong> ：使用cas时，如果并发量过大，我们的程序有可能会一直自旋，长时间占用CPU资源</p>
+<p><strong>ABA问题</strong> ：</p>
+<p>假设有个共享变量J，原始值为1。</p>
+<p>1.线程A读取变量J，值为1</p>
+<p>2.线程B读取变量J，值为1</p>
+<p>3.线程A变量J+1，cas成功从1修改为2</p>
+<p>4.线程C读取变量J，值为2</p>
+<p>5.线程C将变量J-1，cas成功从2修改为1</p>
+<p>6.线程A通过cas比较和替换，依然可以改为自己想修改的值</p>
+<p>上述过程，线程B和C已经将变量J的值已经改变了，但是线程A无法发现，依然可以修改共享变量，这就产生了ABA问题。</p>
+<p><strong>只能针对一个共享变量</strong> ：</p>
+<p>cas操作单个共享变量的时候可以保证原子的操作，无法操作多个变量。但是在JDK5之后，AtomicReference可以用来保证对象之间的原子性，我们可以把多个对象放入cas中操作。</p>
+<h5 id="aba问题-常见的一些解决办法"><a href="#aba问题-常见的一些解决办法" class="headerlink" title="aba问题 常见的一些解决办法:"></a>aba问题 常见的一些解决办法:</h5><p>使用版本号(判断版本号一致值相同再经行设置新值操作)</p>
+<p>使用定长数组，这样就可以提前分配好内存，就不涉及内存分配，避免aba出现。（这是一个非常巧妙的思路 很多项目都用到了这招）</p>
+<h5 id="如何防止cas的aba"><a href="#如何防止cas的aba" class="headerlink" title="如何防止cas的aba"></a>如何防止cas的aba</h5><p>方案：加版本号（version）</p>
+<p>至于版本号可以是自增的数字，也可以是时间戳。通过版本号我们可以精确的知道每次修改。</p>
+<h4 id="cas的一个基本操作流程"><a href="#cas的一个基本操作流程" class="headerlink" title="cas的一个基本操作流程"></a>cas的一个基本操作流程</h4><p>读取数据–&gt;操作数据–&gt;原数据是否修改</p>
+<p>​                        –&gt;否–&gt;更新数据</p>
+<p>​                        –&gt;是–&gt;读取数据(继续走一遍流程直到更新成功)</p>
+<h4 id="cas如何保证原子性"><a href="#cas如何保证原子性" class="headerlink" title="cas如何保证原子性"></a>cas如何保证原子性</h4><p>多核和多处理器 使用cpu指令lock cmpxchg 可以保证其原子性</p>
+<p>单核可以不加lock ，即使增加也会被替换为nop</p>
+<p>对共享内存，通过LOCK#信号在指令操作期间，锁住系统总线，来保证原子性。</p>
+<p>对于已经被缓存的数据，通过Cache lock来保证原子性。Cache ock是通过缓存一致性协议，来保证修改的原子性，而不是通过总线锁，这样可以提高性能。</p>
+<p>CPU 为了解决并发问题，提供了 cas 指令。作为一条 CPU 指令，cas 指令本身是能够保证原子性的。</p>
+<p>汇编语言的程序中指令前面加上前缀“LOCK”,电位拉低,从而把总线锁住,保证了这条指令在多处理器环境中的原子性。</p>
+<p>volatile底层实现主要是通过汇编lock前缀指令</p>
+<p>volatile保证可见性与有序性，但是不保证原子性。</p>
+<p>Volatile不能保证原子性的原因：</p>
+<p>volatile读取写入都是原子的，但是本地计算不是</p>
+<p>读取写入各4个步骤+计算，没有vo关键字，每一步都是会有并发问题，而加了vo以后就好很多了，但还是没全拦到</p>
+<h4 id="常见指令的操作细节"><a href="#常见指令的操作细节" class="headerlink" title="常见指令的操作细节"></a>常见指令的操作细节</h4><table>
+<thead>
+<tr>
+<th>操作类型</th>
+<th>操作细节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lock(锁定)</td>
+<td>作用于主内存的变量，把一个变量标记为一条线程独占状态</td>
+</tr>
+<tr>
+<td>unlock(解锁）</td>
+<td>作用于主内存的变量，把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定</td>
+</tr>
+<tr>
+<td>read(读取)</td>
+<td>作用于主内存的变量，把一个变量值从主内存传输到线程的工作内存中，以便随后的load动作使用</td>
+</tr>
+<tr>
+<td>load(载入)</td>
+<td>作用于工作内存的变量，它把read操作从主内存中得到的变量值放入工作内存的变量副本中</td>
+</tr>
+<tr>
+<td>use(使用)</td>
+<td>作用于工作内存的变量，把工作内存中的一个变量值传递给执行引擎</td>
+</tr>
+<tr>
+<td>assign(赋值)</td>
+<td>作用于工作内存的变量，它把一个从执行引擎接收到的值赋给工作内存的变量</td>
+</tr>
+<tr>
+<td>store(存储)</td>
+<td>作用于工作内存的变量，把工作内存中的一个变量的值传送到主内存中，以便随后的write的操作</td>
+</tr>
+<tr>
+<td>write(写入)</td>
+<td>作用于工作内存的变量，它把store操作从工作内存中的一个变量的值传送到主内存的变靠中</td>
+</tr>
+</tbody></table>
+<h4 id="共享变量的存取和使用"><a href="#共享变量的存取和使用" class="headerlink" title="共享变量的存取和使用"></a>共享变量的存取和使用</h4><p><img src="/posts/969d9481/20231101200722.png" alt="图片"></p>
+<h4 id="版本号机制"><a href="#版本号机制" class="headerlink" title="版本号机制"></a>版本号机制</h4><p>版本号机制也可以用来实现乐观锁。版本号机制的主要思想是在数据中增加一个字段version，表示该数据的版本号，每当数据被修改时，同时读取版本号version的值，若刚才读取到的version值为当前数据库中的version值相等时才更新，则版本号加1；否则重试更新操作，直到更新成功。当某个线程查询数据时，将该数据的版本号一起查出来；当该线程更新数据时，判断当前版本号与之前读取的版本号是否一致，如果一致才进行操作。</p>
+<h4 id="cas在java中的哪些类用到"><a href="#cas在java中的哪些类用到" class="headerlink" title="cas在java中的哪些类用到?"></a>cas在java中的哪些类用到?</h4><p>cas 在 jdk 中主要应用在 J.U.C 相关包下的 Atomic 相关类中，主要有 AtomicInteger、AtomicLong、AtomicBoolean、AtomicDouble、AtomicReference、AtomicReferenceFieldUpdater </p>
+<p>例:AtomicInteger 类下的 getAndUpdate  </p>
+<p>第一步：首先通过 get () 方法获取到当前对象的 value。</p>
+<p>第二步：updateFunction 为函数引用，不过他的操作也是为了赋值，并返回预期结果。</p>
+<p>第三步：进行 cas 操作，传入第一步 get () 获取到的值和目前对象中的值进行比较，如果一样就修改为 next, 不一样就继续循环，直到 cas 操作返回 true 为止。</p>
+<p>第四步：返回当前获取到的值 prev。</p>
+<h3 id="jvm"><a href="#jvm" class="headerlink" title="jvm"></a>jvm</h3><h4 id="jvm常用参数"><a href="#jvm常用参数" class="headerlink" title="jvm常用参数"></a>jvm常用参数</h4><p><img src="/posts/969d9481/c6cc405bb7caaf22ec.jpg" alt="图片"></p>
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/javajiao-fu-56">知乎君慕贤</a>:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/287855051">https://zhuanlan.zhihu.com/p/287855051</a></p>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/" rel="tag">cas</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/dfdb52be.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          AQS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/a9b3efe1.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">单点登录</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>hexo指令 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-hexo指令" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      hexo指令
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2022-11-11T14:30:29.000Z" itemprop="datePublished">
+  2022-11-11
+</time>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="hexo基础命令"><a href="#hexo基础命令" class="headerlink" title="hexo基础命令"></a>hexo基础命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo new post &quot;文章名&quot; :创建文章</span><br><span class="line">hexo clean ：删除之前生成的文件，若未生成过静态文件，可忽略此命令。</span><br><span class="line">hexo generate ：生成静态文章，可以用hexo g缩写 (尽量使用 hexo g -c 8 可以防止内存溢出)</span><br><span class="line">hexo deploy ：部署文章，可以用hexo d缩写</span><br><span class="line">hexo s -p 8000 : 搜索启动</span><br><span class="line">hexo server :运行服务</span><br><span class="line">hexo algolia ：搜集更新博文数据</span><br></pre></td></tr></table></figure>
+
+<h3 id="多台电脑都可以使用个人博客"><a href="#多台电脑都可以使用个人博客" class="headerlink" title="多台电脑都可以使用个人博客"></a>多台电脑都可以使用个人博客</h3><p>除了master分支再建立一个hexo分支(设为默认)</p>
+<p>创建一个叫hexo（或者blog，名字随意）的分支，并切换到这个分支</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b hexo</span><br></pre></td></tr></table></figure>
+
+<p>添加所有文件到暂存区</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add –all</span><br></pre></td></tr></table></figure>
+
+<p>进行提交</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m “提交信息xxx”</span><br></pre></td></tr></table></figure>
+
+<p>推送hexo分支的文件到github仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push –set-upstream origin hexo</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="下次要写博客从仓库里把代码拉下来"><a href="#下次要写博客从仓库里把代码拉下来" class="headerlink" title="下次要写博客从仓库里把代码拉下来"></a>下次要写博客从仓库里把代码拉下来</h4><p>执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo</span><br><span class="line"></span><br><span class="line">npm install hexo-cli -g</span><br><span class="line"></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">npm install hexo-deployer-git</span><br><span class="line"></span><br><span class="line">//执行完这四条命令 然后创建文章</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="替换md文件空行"><a href="#替换md文件空行" class="headerlink" title="替换md文件空行"></a>替换md文件空行</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\s*(?=\r?$)\n  :在vscode中替换空行的正则</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新giuhub仓库hexo分支"><a href="#更新giuhub仓库hexo分支" class="headerlink" title="更新giuhub仓库hexo分支"></a>更新giuhub仓库hexo分支</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//如果本地代码没有写新的东西 第四条命令可以放到第一步去执行</span><br><span class="line">git status  :查看修改的文件</span><br><span class="line">git add .  :放入缓存区</span><br><span class="line">git commit -m “本次提交的备注”  :本次提交的文字说明</span><br><span class="line">git pull origin hexo  :远程更新本地没更新先更新远程脚本到本地</span><br><span class="line">git push -u origin hexo    :将项目上传到远程仓库的hexo分支</span><br></pre></td></tr></table></figure>
+
+<h3 id="提交出错回滚到上个版本"><a href="#提交出错回滚到上个版本" class="headerlink" title="提交出错回滚到上个版本"></a>提交出错回滚到上个版本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~1</span><br></pre></td></tr></table></figure>
+
+<h3 id="报错"><a href="#报错" class="headerlink" title="报错 :"></a>报错 :</h3><h4 id="failed-to-push-some-refs-to-‘github-com-PorcoRosso000-PorcoRosso000-github-io-git’"><a href="#failed-to-push-some-refs-to-‘github-com-PorcoRosso000-PorcoRosso000-github-io-git’" class="headerlink" title="failed to push some refs to ‘github.com:PorcoRosso000/PorcoRosso000.github.io.git’"></a>failed to push some refs to ‘github.com:PorcoRosso000/PorcoRosso000.github.io.git’</h4><p>远程库和本地库不一致<br>解决方案: 拉取远程库数据同步到本地库      </p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin hexo </span><br></pre></td></tr></table></figure>
+<h4 id="error-cannot-pull-with-rebase-Your-index-contains-uncommitted-changes"><a href="#error-cannot-pull-with-rebase-Your-index-contains-uncommitted-changes" class="headerlink" title="error: cannot pull with rebase: Your index contains uncommitted changes."></a>error: cannot pull with rebase: Your index contains uncommitted changes.</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">error: cannot pull with rebase: Your index contains uncommitted changes.</span><br><span class="line">error: please commit or stash them.</span><br><span class="line"></span><br><span class="line">解决方案：修复冲突</span><br><span class="line"></span><br><span class="line">git stash     :储藏dev分支下的修改</span><br><span class="line"></span><br><span class="line">git pull --rebase    : 想要更好的提交树，使用rebase操作会更好一点。这样可以线性的看到每一次提交，并且没有增加提交节点。merge 操作遇到冲突的时候，当前merge不能继续进行下去。手动修改冲突内容后，add 修改，commit 就可以了。而rebase 操作的话，会中断rebase,同时会提示去解决冲突。解决冲突后,将修改add后执行git rebase –continue继续操作，或者git rebase –skip忽略冲突。</span><br><span class="line"></span><br><span class="line">git stash pop     :取出之前储藏的修改</span><br><span class="line"></span><br><span class="line">之后就可以继续提交</span><br></pre></td></tr></table></figure>
+
+<h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><p>新建文章:  hexo new post xxx</p>
+<p>Front-matter<br>Front-matter 是 markdown 文件最上方以—分隔的区域，用于指定个别档案的变数。</p>
+<p>Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br>如果标注可选的参数，可根据自己需要添加，不用全部都写在markdown里</p>
+<h4 id="Page-Front-matter"><a href="#Page-Front-matter" class="headerlink" title="Page Front-matter"></a>Page Front-matter</h4><p>title:<br>date:<br>updated:<br>type:<br>comments:<br>description:<br>keywords:<br>top_img:<br>mathjax:<br>katex:<br>aside:<br>aplayer:<br>highlight_shrink:</p>
+<hr>
+<p>写法    解释<br>title    【必需】页面标题<br>date    【必需】页面创建日期<br>type    【必需】标籤、分类和友情链接三个页面需要配置<br>updated    【可选】页面更新日期<br>description    【可选】页面描述<br>keywords    【可选】页面关键字<br>comments    【可选】显示页面评论模块(默认 true)<br>top_img    【可选】页面顶部图片<br>mathjax    【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)<br>katex    【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)<br>aside    【可选】显示侧边栏 (默认 true)<br>aplayer    【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置<br>highlight_shrink    【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)</p>
+<hr>
+<h4 id="Post-Front-matter"><a href="#Post-Front-matter" class="headerlink" title="Post Front-matter"></a>Post Front-matter</h4><hr>
+<p>title:<br>date:<br>updated:<br>tags:<br>categories:<br>keywords:<br>description:<br>top_img:<br>comments:<br>cover:<br>toc:<br>toc_number:<br>toc_style_simple:<br>copyright:<br>copyright_author:<br>copyright_author_href:<br>copyright_url:<br>copyright_info:<br>mathjax:<br>katex:<br>aplayer:<br>highlight_shrink:<br>aside:</p>
+<hr>
+<p>写法    解释<br>title    【必需】文章标题<br>date    【必需】文章创建日期<br>updated    【可选】文章更新日期<br>tags    【可选】文章标籤<br>categories    【可选】文章分类<br>keywords    【可选】文章关键字<br>description    【可选】文章描述<br>top_img    【可选】文章顶部图片<br>cover    【可选】文章缩略图(如果没有设置top_img,文章页顶部将显示缩略图，可设为false/图片地址/留空)<br>comments    【可选】显示文章评论模块(默认 true)<br>toc    【可选】显示文章TOC(默认为设置中toc的enable配置)<br>toc_number    【可选】显示toc_number(默认为设置中toc的number配置)<br>toc_style_simple    【可选】显示 toc 简洁模式<br>copyright    【可选】显示文章版权模块(默认为设置中post_copyright的enable配置)<br>copyright_author    【可选】文章版权模块的文章作者<br>copyright_author_href    【可选】文章版权模块的文章作者链接<br>copyright_url    【可选】文章版权模块的文章连结链接<br>copyright_info    【可选】文章版权模块的版权声明文字<br>mathjax    【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)<br>katex    【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)<br>aplayer    【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置<br>highlight_shrink    【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)<br>aside    【可选】显示侧边栏 (默认 true)</p>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/3ff4e7d7.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          rabbitmq知识整理
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

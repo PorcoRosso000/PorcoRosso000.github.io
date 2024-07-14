@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>Onedrive实现与本地文件同步 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-Onedrive实现与本地文件同步" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Onedrive实现与本地文件同步
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-02-25T05:31:02.000Z" itemprop="datePublished">
+  2023-02-25
+</time>
+        
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="具体操作方法"><a href="#具体操作方法" class="headerlink" title="具体操作方法"></a>具体操作方法</h2><p>打开Onedrive，在右下角系统托盘上点击右键，选择设置。<br>选择“自动保存”选项卡，在“保护重要文件夹”中勾选文档。这一步的操作是为了保证文档文件夹中的内容电脑时刻与云端保持同步。注意：选择之后本地的文档将成为指向Onedrive文件夹的目录，因此保存在其中的虚拟机或VS工程文件等有可能出现无法读取的现象，请注意在操作后进行调整。</p>
+<p>假设我要同步的本地文件夹是E:\工作，而Onedrive在本地的保存目录为C:\Users\用户名\OneDrive。</p>
+<p>以管理员模式打开命令提示符（Win10用户可直接搜索cmd，然后右键命令提示符搜索结果的程序，选择以管理员权限运行）。在打开的窗口中输入命令：mklink /d C:\Users\用户名\OneDrive\工作 E:\工作。注意：执行本操作时请确保C:\Users\用户名\OneDrive下没有名为“工作”的目录，否则将会报错。</p>
+<p>回车键执行后，命令提示符返回“……创建的文件链接”字样的文字，即说明建立连接成功。</p>
+<p><strong>注意</strong>：如果文件目录中包含空格，则在输入命令的时候应使用英文双引号将该完整目录括起来。</p>
+<h2 id="windows-软链接的建立及删除"><a href="#windows-软链接的建立及删除" class="headerlink" title="windows 软链接的建立及删除"></a>windows 软链接的建立及删除</h2><h3 id="1-建立举例"><a href="#1-建立举例" class="headerlink" title="1.建立举例"></a>1.建立举例</h3><ol>
+<li>##建立d:develop链接目录，指向远程的目标服务器上的e盘的对应目录。</li>
+<li>mklink /d d:\develop \138.20.1.141\e$\develop</li>
+<li></li>
+<li>##建立d:develop链接目录，指向远程的目标服务器上的e盘的对应目录。</li>
+<li>mklink /d d:\recivefiles \138.20.1.141\e$\recivefiles<br>mklink/d d：\recivefiles \138.20.1.141\e$\recivefiles</li>
+</ol>
+<h3 id="2-删除举例"><a href="#2-删除举例" class="headerlink" title="2.删除举例"></a>2.删除举例</h3><ol>
+<li>#删除虚拟的链接目录，并不会删除远程文件夹真实文件，注意千万不能用del，del会删除远程的真实文件。</li>
+<li>rmdir d:\recivefiles rmdir d：\recivefiles</li>
+<li>rmdir d:\develop rmdir d：\development</li>
+</ol>
+<h3 id="3-补充mklink用法"><a href="#3-补充mklink用法" class="headerlink" title="3.补充mklink用法"></a>3.补充mklink用法</h3><ol>
+<li>C:\Users\joshua&gt;mklink C：\Users\joshua&gt;mklink</li>
+<li>Creates a symbolic link. 创建符号链接。</li>
+<li>MKLINK [[/D] | [/H] | [/J]] Link Target</li>
+<li>MKLINK[[/D] |[/H] |[/J]]链接目标</li>
+<li> /D Creates a directory symbolic link. Default is a file symbolic link.</li>
+<li> /D Createsadirectory symbolic link.默认为文件符号链接。</li>
+<li>/H Creates a hard link instead of a symbolic link.<br>/HCreatesahardlink而不是asymboliclink。</li>
+<li>/J Creates a Directory Junction. /j CreatesaDirectory Junction.   </li>
+<li>Link specifies the new symbolic link name.<br>链接指定新的符号链接名称。</li>
+<li>Target specifies the path (relative or absolute) that the new link refers to.<br>目标指定新链接引用的路径（相对或绝对）。</li>
+</ol>
+<p>命令格式：mklink /d(定义参数) \MyDocs(链接文件) \Users\User1\Documents(原文件)</p>
+<p>/d：建立目录的符号链接符号链接(symbolic link)<br>/j：建立目录的软链接（联接）(junction)</p>
+<p>/h：建立文件的硬链接(hard link)</p>
+<h2 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h2><p>1.CSDN博主「Caleb_Sung」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41933331/article/details/86761373">https://blog.csdn.net/qq_41933331/article/details/86761373</a></p>
+<p>2.CSDN博主「<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37861937">zhe哲</a>」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37861937/article/details/79064841">https://blog.csdn.net/qq_37861937/article/details/79064841</a></p>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Onedrive/" rel="tag">Onedrive</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/32dc7368.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Tomcat学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/2f57a694.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">正则表达式</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

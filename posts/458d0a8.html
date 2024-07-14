@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>代码笔记 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-代码笔记" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      代码笔记
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-01-07T06:32:04.000Z" itemprop="datePublished">
+  2023-01-07
+</time>
+        
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="类之间转换"><a href="#类之间转换" class="headerlink" title="类之间转换"></a>类之间转换</h2><p>BeanUtils.copyProperties(“转换前的类”, “转换后的类”);  </p>
+<p>有几点我们需要注意： BeanUtils.copyProperties(a, b); </p>
+<p>b中的存在的属性，a中一定要有，但是a中可以有多余的属性；</p>
+<p>a中与b中相同的属性都会被替换，不管是否有值；a、 b中的属性要名字相同，才能被赋值，不然的话需要手动赋值；</p>
+<p>Spring的BeanUtils的CopyProperties方法需要对应的属性有getter和setter方法；</p>
+<p>如果存在属性完全相同的内部类，但是不是同一个内部类，即分别属于各自的内部类，则spring会认为属性不同，不会copy；</p>
+<p>spring和apache的copy属性的方法源和目的参数的位置正好相反，所以导包和调用的时候都要注意一下。</p>
+<h2 id="幂等"><a href="#幂等" class="headerlink" title="幂等"></a>幂等</h2><h3 id="什么是幂等"><a href="#什么是幂等" class="headerlink" title="什么是幂等"></a><strong>什么是幂等</strong></h3><p><strong>幂等性：</strong>多次调用方法或者接口不会改变业务状态，可以保证重复调用的结果和单次调用的结果一致。</p>
+<h3 id="使用幂等的场景"><a href="#使用幂等的场景" class="headerlink" title="使用幂等的场景"></a><strong>使用幂等的场景</strong></h3><p><strong>1、前端重复提交</strong></p>
+<p>用户注册，用户创建商品等操作，前端都会提交一些数据给后台服务，后台需要根据用户提交的数据在数据库中创建记录。如果用户不小心多点了几次，后端收到了好几次提交，这时就会在数据库中重复创建了多条记录。这就是接口没有幂等性带来的 bug。</p>
+<p><strong>2、接口超时重试</strong></p>
+<p>对于给第三方调用的接口，有可能会因为网络原因而调用失败，这时，一般在设计的时候会对接口调用加上失败重试的机制。如果第一次调用已经执行了一半时，发生了网络异常。这时再次调用时就会因为脏数据的存在而出现调用异常。</p>
+<p><strong>3、消息重复消费</strong></p>
+<p>在使用消息中间件来处理消息队列，且手动 ack 确认消息被正常消费时。如果消费者突然断开连接，那么已经执行了一半的消息会重新放回队列。</p>
+<p>当消息被其他消费者重新消费时，如果没有幂等性，就会导致消息重复消费时结果异常，如数据库重复数据，数据库数据冲突，资源重复等。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a><strong>解决方案</strong></h3><p><strong>1、token 机制实现</strong></p>
+<p>通过token 机制实现接口的幂等性,这是一种比较通用性的实现方法。</p>
+<p>示意图如下：</p>
+<p> <img src="/posts/458d0a8/v2-a813e4f94b89049877fe513264e0eb5d_720w.webp" alt="img"></p>
+<p>具体流程步骤：</p>
+<ol>
+<li>客户端会先发送一个请求去获取 token，服务端会生成一个全局唯一的 ID 作为 token 保存在 redis 中，同时把这个 ID 返回给客户端</li>
+<li>客户端第二次调用业务请求的时候必须携带这个 token</li>
+<li>服务端会校验这个 token，如果校验成功，则执行业务，并删除 redis 中的 token</li>
+<li>如果校验失败，说明 redis 中已经没有对应的 token，则表示重复操作，直接返回指定的结果给客户端</li>
+</ol>
+<p>注意：</p>
+<ol>
+<li>对 redis 中是否存在 token 以及删除的代码逻辑建议用 Lua 脚本实现，保证原子性</li>
+<li>全局唯一 ID 可以用百度的 uid-generator、美团的 Leaf 去生成</li>
+</ol>
+<p><strong>2、基于 mysql 实现</strong></p>
+<p>这种实现方式是利用 mysql 唯一索引的特性。</p>
+<p>示意图如下：</p>
+<p> <img src="/posts/458d0a8/v2-dc3df46efad1657a9785aebbc2069b5c_720w.webp" alt="img"></p>
+<p>具体流程步骤：</p>
+<ol>
+<li>建立一张去重表，其中某个字段需要建立唯一索引</li>
+<li>客户端去请求服务端，服务端会将这次请求的一些信息插入这张去重表中</li>
+<li>因为表中某个字段带有唯一索引，如果插入成功，证明表中没有这次请求的信息，则执行后续的业务逻辑</li>
+<li>如果插入失败，则代表已经执行过当前请求，直接返回</li>
+</ol>
+<p><strong>3、基于 redis 实现</strong></p>
+<p>这种实现方式是基于 SETNX 命令实现的</p>
+<p>SETNX key value：将 key 的值设为 value ，当且仅当 key 不存在。若给定的 key 已经存在，则 SETNX 不做任何动作。</p>
+<p>该命令在设置成功时返回 1，设置失败时返回 0。</p>
+<p>示意图如下：  </p>
+<p> <img src="/posts/458d0a8/v2-6ae389fa7bcb099a8f8a6eaf89f5f46d_720w.webp" alt="img"></p>
+<p>具体流程步骤：</p>
+<ol>
+<li>客户端先请求服务端，会拿到一个能代表这次请求业务的唯一字段</li>
+<li>将该字段以 SETNX 的方式存入 redis 中，并根据业务设置相应的超时时间</li>
+<li>如果设置成功，证明这是第一次请求，则执行后续的业务逻辑</li>
+<li>如果设置失败，则代表已经执行过当前请求，直接返回</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>这几种实现幂等的方式其实都是大同小异的，类似的还有使用状态机、悲观锁、乐观锁的方式来实现，都是比较简单的。</p>
+
+    </div>
+    <footer class="article-footer">
+      
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/d36bd08c.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          mysql语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/271ebaf8.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">注解笔记</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

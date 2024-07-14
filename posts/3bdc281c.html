@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>计算机底层原理 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-计算机底层原理" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      计算机底层原理
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2024-01-12T06:18:46.000Z" itemprop="datePublished">
+  2024-01-12
+</time>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">计算机底层原理</a>
+  </div>
+
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="计算机底层原理"><a href="#计算机底层原理" class="headerlink" title="计算机底层原理"></a>计算机底层原理</h2><h3 id="cpu是如何制作的？"><a href="#cpu是如何制作的？" class="headerlink" title="cpu是如何制作的？"></a>cpu是如何制作的？</h3><p>一堆沙子 +一堆铜 + 一堆胶水 + 特定金属添加+ 特殊工艺</p>
+<p>沙子脱氧 -&gt; 石英 -&gt;二氧化硅-&gt; 提纯 -&gt; 硅-&gt; 切割 -&gt; 晶圆-&gt; 涂抹光刻胶 -&gt; 光刻 -&gt; 蚀刻 &gt; 清除光刻胶 -&gt; 电镀 -&gt; 抛光 -&gt; 铜层 -&gt; 测试 -&gt; 切片 -&gt;封装</p>
+<p><strong>cpu的核心是晶体管</strong></p>
+<p>计算机的核心是找到一种方式可以代表数字，有进行运算的方式</p>
+<p>发展史： 机械摇把式计算机 -&gt; 真空管计算机（不稳定，笨重） -&gt; 晶体管计算机</p>
+<p>晶体管通一次电可以进行一次单次的计算</p>
+<p>硅-&gt; 加入特殊元素-&gt; P半导体 N半导体 -&gt; PN结 -&gt; 二极管 -&gt; 场效应晶体管 -&gt; 逻辑开关</p>
+<p>与门 或门 非门 或非门 已非门 异或非门 -&gt; 基础逻辑电路加法器 累加器 锁存器<br>实现手动计算(通电一次，运行一次位运算)<br>加入内存 实现自动运算 (每次读取内存指令（高电低电）)</p>
+<h3 id="计算机的组成："><a href="#计算机的组成：" class="headerlink" title="计算机的组成："></a>计算机的组成：</h3><p><img src="/posts/3bdc281c/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%9B%BE.png" alt="img"></p>
+<p>cpu 内部组成：</p>
+<p>cpu通过总线读取内存中的数据</p>
+<p>内存中存取的一条一条的指令</p>
+<p><strong>程序计数器（指令计数器pc）</strong>：用于存放指令的地址，指向当前需要取出的指令，当CPU从内存中取出一个指令以后，EIP/IP就自动增加，指向下一个指令的地址。这样看来上下文切换实际就是寄存器的切换。</p>
+<p>cpu要做计算的时候，通过pc中指令的地址从内存中拿到对应的数据，读到<strong>寄存器(Registers)<strong>中，然后通过cpu的</strong>运算单元（ALU）</strong>运算，之后再写到内存中去</p>
+<h3 id="存储的层次结构"><a href="#存储的层次结构" class="headerlink" title="存储的层次结构"></a>存储的层次结构</h3><p><img src="/posts/3bdc281c/%E5%AD%98%E5%82%A8%E7%9A%84%E5%B1%82%E6%AD%A4%E7%BB%93%E6%9E%84.png" alt="img"></p>
+<p>主存的中取数据的速度大概是寄存器的100分之一</p>
+<p><img src="/posts/3bdc281c/%E9%80%9F%E5%BA%A6%E5%AF%B9%E6%AF%94.png" alt="img"></p>
+<p>多级缓存的结构</p>
+<p><img src="/posts/3bdc281c/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E7%BB%93%E6%9E%84.png" alt="img"></p>
+<p>为了取数据更快，内存会将数据存储在L3,L2,L1中，然后cpu去取数据的时候，先从L1中查找数据,找不到数据的情况下，会从L2,L3中依次查找数据，最后再在内存中去查找数据</p>
+<p>每个核中有L1,L2 ,多个核共享三级缓存L3，多块cpu共享内存</p>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程:"></a>线程:</h4><p>线程中的指令放程序计数器中,线程中的数据放到寄存器中</p>
+<p>线程的切换: 多线程执行的时候,要将线程的数据存到内存中,线程执行一半中止了,其它线程执行完之后,要从内存中拿到之前线程执行的数据恢复到程序计数器和寄存器中继续执行线程</p>
+<h4 id="超线程"><a href="#超线程" class="headerlink" title="超线程:"></a>超线程:</h4><p>一个ALU对应多个PC/寄存器</p>
+<p>四核八线程就是  四个ALU(计算单元)对应两组寄存器和PC</p>
+<h4 id="cpu读取数据"><a href="#cpu读取数据" class="headerlink" title="cpu读取数据"></a>cpu读取数据</h4><p>cpu读取数据的时候是很多个数据一起读取的,数据是0还是1其实就是线有没有通电,总线是很多根线</p>
+<p>找数据是从L1-&gt;L2-&gt;L3-&gt;内存 </p>
+<p>cpu从内存中读取数据的时候是一块一块的读取的(假如只需要数据a,它会读取含a的一块数据,不是只读取a),一块数据叫一个缓存行(cache line,64个字节),读取到数据之后缓存到L3-&gt;L2-&gt;L1下次需要数据直接从L1中取数据</p>
+<p><strong>为什么只读取64字节数据?</strong></p>
+<p>缓存行缓存行越大，局部性空间效率越高，但读取时间慢缓存行越小，局部性空间效率越低，但读取时间快取一个折中值，目前多用:64字节</p>
+<p>为了避免相邻的数据在不同cpu中反复修改,可以让这俩数据不在同一个缓存行,比如数据设置成long类型,前面或者后面加七个long 类型数据,一个long类型是8字节</p>
+<p><strong>缓存一致性协议:</strong> </p>
+<p>MESI Cache 一致性协议 四种状态</p>
+<p>Modified 被修改</p>
+<p>Exclusive 独享</p>
+<p>Shared 分享</p>
+<p>Lnvalid 失效</p>
+<p>使用缓存一致性协议保证cpu中的数据一致</p>
+<p>在一个核中缓存行修改了,修改完的数据会强制写道内存中,相同的缓存行在另一个核中就会失效(使用缓存锁实现),必须从内存中去读取最新的</p>
+<p>缓存一致性协议是<strong>缓存锁</strong>实现之一有些无法被缓存的数据或者跨越多个缓存行的数据依然必须使用<strong>总线锁</strong></p>
+<h3 id="bug的由来"><a href="#bug的由来" class="headerlink" title="bug的由来"></a>bug的由来</h3><p>原始的纸带算计需要给纸带上打眼进行计算，小飞虫把眼堵住了，然后程序一直有问题，英语的小飞虫叫bug</p>
+<p>0101010 太繁琐，之后就出现 助记符 （起别名）</p>
+<p>给0101010起一个别名，这种语言叫做<strong>汇编语言</strong>（就是机器语言）</p>
+<p>高级语言 -&gt; 编译器（将高级语言翻译成计算机可以识别的语言） -&gt; 机器语言</p>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" rel="tag">计算机底层原理</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/2d0f2cd9.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          软件开发魔法咒语
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/e64cd6b8.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">项目性能优化</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

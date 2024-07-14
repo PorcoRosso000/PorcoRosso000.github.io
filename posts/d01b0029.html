@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>长链接变短链接 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-长链接变短链接" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      长链接变短链接
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-10-18T08:38:37.000Z" itemprop="datePublished">
+  2023-10-18
+</time>
+        
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <p>一、实现原理</p>
+<p>1.将长网址用md5算法生成32位签名串，分为4段,，每段8个字符。</p>
+<p>2.对这4段循环处理，取每段的8个字符, 将他看成16进制字符串与0x3fffffff(30位1)的位与操作，超过30位的忽略处理。多了也没用因为下面要分成6段  嘿嘿正好取整。注意用Long型变量（长度问题  你懂得）</p>
+<p>3.将每段得到的30位字符（后台以long十进制显示）又分成6段，通过移位运算将每5位分别与字符数组求与运算（0x0000003D），得到其在字符数组中的索引并取出拼串。</p>
+<p>4.这样一个md5字符串可以获得4个6位串，取里面的任意一个就可作为这个长url的短url地址。</p>
+<p>二、代码实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.codec.digest.DigestUtils;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShortUrl</span> &#123;  </span><br><span class="line">      </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;  </span><br><span class="line">        <span class="comment">// 长连接  </span></span><br><span class="line">        <span class="type">String</span> <span class="variable">longUrl</span> <span class="operator">=</span> <span class="string">&quot;http://data.13322.com/basket/team/27_0_1.html&quot;</span>;  </span><br><span class="line">        <span class="comment">// 转换成的短链接后6位码  </span></span><br><span class="line">        String[] shortCodeArray = shortUrl(longUrl);  </span><br><span class="line">          </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; shortCodeArray.length; i++) &#123;  </span><br><span class="line">            System.out.println(shortCodeArray[i]);<span class="comment">// 任意一个都可以作为短链接码  </span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] shortUrl(String url) &#123;  </span><br><span class="line">        <span class="comment">// 可以自定义生成 MD5 加密字符传前的混合 KEY  </span></span><br><span class="line">        <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;  </span><br><span class="line">        <span class="comment">// 要使用生成 URL 的字符  </span></span><br><span class="line">        String[] chars = <span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>, <span class="string">&quot;f&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;h&quot;</span>,  </span><br><span class="line">                <span class="string">&quot;i&quot;</span>, <span class="string">&quot;j&quot;</span>, <span class="string">&quot;k&quot;</span>, <span class="string">&quot;l&quot;</span>, <span class="string">&quot;m&quot;</span>, <span class="string">&quot;n&quot;</span>, <span class="string">&quot;o&quot;</span>, <span class="string">&quot;p&quot;</span>, <span class="string">&quot;q&quot;</span>, <span class="string">&quot;r&quot;</span>, <span class="string">&quot;s&quot;</span>, <span class="string">&quot;t&quot;</span>,  </span><br><span class="line">                <span class="string">&quot;u&quot;</span>, <span class="string">&quot;v&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;z&quot;</span>, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;3&quot;</span>, <span class="string">&quot;4&quot;</span>, <span class="string">&quot;5&quot;</span>,  </span><br><span class="line">                <span class="string">&quot;6&quot;</span>, <span class="string">&quot;7&quot;</span>, <span class="string">&quot;8&quot;</span>, <span class="string">&quot;9&quot;</span>, <span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;E&quot;</span>, <span class="string">&quot;F&quot;</span>, <span class="string">&quot;G&quot;</span>, <span class="string">&quot;H&quot;</span>,  </span><br><span class="line">                <span class="string">&quot;I&quot;</span>, <span class="string">&quot;J&quot;</span>, <span class="string">&quot;K&quot;</span>, <span class="string">&quot;L&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;N&quot;</span>, <span class="string">&quot;O&quot;</span>, <span class="string">&quot;P&quot;</span>, <span class="string">&quot;Q&quot;</span>, <span class="string">&quot;R&quot;</span>, <span class="string">&quot;S&quot;</span>, <span class="string">&quot;T&quot;</span>,  </span><br><span class="line">                <span class="string">&quot;U&quot;</span>, <span class="string">&quot;V&quot;</span>, <span class="string">&quot;W&quot;</span>, <span class="string">&quot;X&quot;</span>, <span class="string">&quot;Y&quot;</span>, <span class="string">&quot;Z&quot;</span> &#125;;  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// 对传入网址进行 MD5 加密  </span></span><br><span class="line">        <span class="type">String</span> <span class="variable">sMD5EncryptResult</span> <span class="operator">=</span> DigestUtils.md5Hex(key + url);  </span><br><span class="line">        <span class="type">String</span> <span class="variable">hex</span> <span class="operator">=</span> sMD5EncryptResult;  </span><br><span class="line">        String[] resUrl = <span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">4</span>];  </span><br><span class="line">        <span class="comment">//0x3ffffff的意思是，一个f在16进制中表示15，15转换为2进制为1111，即4位，所以6个f一共是24位；3转换为2进制为11，即2位，所以24+2=26位，也就代表了26个字母</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;  </span><br><span class="line">            <span class="comment">// 把加密字符按照 8 位一组 16 进制与 0x3FFFFFFF 进行位与运算  </span></span><br><span class="line">            <span class="type">String</span> <span class="variable">sTempSubString</span> <span class="operator">=</span> hex.substring(i * <span class="number">8</span>, i * <span class="number">8</span> + <span class="number">8</span>);  </span><br><span class="line">            <span class="comment">// 这里需要使用 long 型来转换，因为 Inteper .parseInt() 只能处理 31 位 , 首位为符号位 , 如果不用  </span></span><br><span class="line">            <span class="comment">// long ，则会越界  </span></span><br><span class="line">            <span class="type">long</span> <span class="variable">lHexLong</span> <span class="operator">=</span> <span class="number">0x3FFFFFFF</span> &amp; Long.parseLong(sTempSubString, <span class="number">16</span>);  </span><br><span class="line">            <span class="type">String</span> <span class="variable">outChars</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;  </span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">6</span>; j++) &#123;  </span><br><span class="line">                <span class="comment">// 把得到的值与 0x0000003D 进行位与运算，取得字符数组 chars 索引  </span></span><br><span class="line">                <span class="type">long</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0x0000003D</span> &amp; lHexLong;  </span><br><span class="line">                <span class="comment">// 把取得的字符相加  </span></span><br><span class="line">                outChars += chars[(<span class="type">int</span>) index];  </span><br><span class="line">                <span class="comment">// 每次循环按位右移 5 位  </span></span><br><span class="line">                lHexLong = lHexLong &gt;&gt; <span class="number">5</span>;  </span><br><span class="line">            &#125;  </span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 把字符串存入对应索引的输出数组  </span></span><br><span class="line">            resUrl[i] = outChars;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> resUrl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三、跳转原理</p>
+<p>当我们生成短链接之后，只需要在表中（数据库或者<a target="_blank" rel="noopener" href="https://www.yisu.com/mongodb">NoSql</a> ）存储原始链接与短链接的映射关系即可。</p>
+<p>当我们访问短链接时，只需要从映射关系中找到原始链接，即可跳转到原始链接。</p>
+<p>转换原理： 将原url通过一系列方式，转换成6位短码（只要能不重复，随便怎么方式都行）；将长短链接存入数据库，形成一条对应关系；访问短链接的时候，在数据库找到对应的长链接，并通过重定向实现原url的访问；（如果你的转换方式能过还原，也可以不要数据库，但必须保证转换后的短码不能重复）数据库大概是这个样子。</p>
+<p><img src="/posts/d01b0029/clip_image002.gif" alt="图片"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/&#123;shortUrl&#125;&quot;)</span>     </span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">jumpLongLink</span><span class="params">(HttpServletRequest request, ModelAndView mav, <span class="meta">@PathVariable(&quot;shortUrl&quot;)</span>String shortUrl)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">longUrl</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">longurl</span> <span class="operator">=</span> shorturlService.restoreUrl(shortUrl);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (longUrl!=<span class="literal">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">        longUrl = longurl;</span><br><span class="line">    &#125;</span><br><span class="line">    mav.setViewName(<span class="string">&quot;redirect:&quot;</span>+longurl)</span><br></pre></td></tr></table></figure>
+
+<p>第一行注解我就不讲了，{shortUrl}这个就是动态变化的生成的短链接，shorturlService.restoreUrl（）方法是通过传入得短链接到库里查询对应的长链接即真实地址。然后转发重定向到真实的地址即可。完整的短链接本地访问：127.0.0.1/端口号/短链接，如：127.0.0.1/8888/2MnQFj,线上的访问地址：域名/短链接,如：<a target="_blank" rel="noopener" href="http://www.baidu.com/2MnQFj,%E5%A6%82%E6%9E%9C%E9%A1%B9%E7%9B%AE%E6%9C%89%E6%8B%A6%E6%88%AA%E5%99%A8%EF%BC%8C%E5%9B%A0%E4%B8%BA%E7%9F%AD%E9%93%BE%E6%8E%A5%E6%98%AF%E5%8A%A8%E6%80%81%E5%8F%98%E5%8C%96%E7%9A%84%EF%BC%8C%E9%9C%80%E8%A6%81%E5%9C%A8%E5%89%8D%E9%9D%A2%E5%8A%A0%E4%B8%80%E5%B1%82%E8%B7%AF%E5%BE%84%EF%BC%8C%E5%83%8F%E8%BF%99%E6%A0%B7%EF%BC%9A127.0.0.1/8888/go/2MnQFj%E7%84%B6%E5%90%8E%E5%B0%B1%E5%AE%8C%E4%BA%8B%E4%BA%86%E3%80%82">www.baidu.com/2MnQFj,如果项目有拦截器，因为短链接是动态变化的，需要在前面加一层路径，像这样：127.0.0.1/8888/go/2MnQFj然后就完事了。</a></p>
+
+    </div>
+    <footer class="article-footer">
+      
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/4356f0fa.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          端口被占用的解决方式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/dc2aa829.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">SpringBoot整合ES搜索</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

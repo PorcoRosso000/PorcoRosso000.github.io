@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>Tomcat学习笔记 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-Tomcat学习笔记" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Tomcat学习笔记
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-02-25T06:24:00.000Z" itemprop="datePublished">
+  2023-02-25
+</time>
+        
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="1、Tomcat启动、停止"><a href="#1、Tomcat启动、停止" class="headerlink" title="1、Tomcat启动、停止"></a>1、Tomcat启动、停止</h2><table>
+<thead>
+<tr>
+<th><code>首先进入tomcat 所在bin目录 cd  /home/server/Tomcat/bin (需根据个人tomcat目录进入)</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>关闭tomcat服务: ./shutdown.sh 或则 sh shutdown.sh　　</code></td>
+</tr>
+<tr>
+<td>启动tomcat:  <br>（1）给bin文件夹可执行权限：chmod -R 777 文件目录<br>（2）执行./startup.sh 看不见日志的启动方式 或则 sh startup.sh<br>（3）执行./catalina.sh 可以看见启动日志的启动方式</td>
+</tr>
+</tbody></table>
+<h2 id="2、查看正在运行的Tomcat进程"><a href="#2、查看正在运行的Tomcat进程" class="headerlink" title="2、查看正在运行的Tomcat进程"></a>2、查看正在运行的Tomcat进程</h2><table>
+<thead>
+<tr>
+<th>（1）ps aux | grep tomcat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>（2）ps -ef | grep tomcat</td>
+</tr>
+</tbody></table>
+<h2 id="3、杀死Tomcat进程"><a href="#3、杀死Tomcat进程" class="headerlink" title="3、杀死Tomcat进程"></a>3、杀死Tomcat进程</h2><table>
+<thead>
+<tr>
+<th>通过查看运行的Tomcat进程后 可对 进程进行kill</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kill -9 1234   （kill -9 进程ID）</td>
+</tr>
+</tbody></table>
+<h2 id="4、查看Tomcat占据的端口"><a href="#4、查看Tomcat占据的端口" class="headerlink" title="4、查看Tomcat占据的端口"></a>4、查看Tomcat占据的端口</h2><table>
+<thead>
+<tr>
+<th>netstat -nat  或则 netstat -apn  （查看所有的端口）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>netstat -anlp | grep 12345   或则  netstat -anop | grep 12345 (根据进程号查看端口号)</td>
+</tr>
+<tr>
+<td>lsof -i:80   （通过端口号，查看其所属的进程号相关信息）</td>
+</tr>
+</tbody></table>
+<h2 id="5、查看tomcat运行日志"><a href="#5、查看tomcat运行日志" class="headerlink" title="5、查看tomcat运行日志"></a>5、查看tomcat运行日志</h2><table>
+<thead>
+<tr>
+<th>先切换到：cd /home/server/Tomcat/logs (需根据个人tomcat目录进入)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tail -f catalina.out   (实时查看运行日志)<img src="/posts/32dc7368/570408-20181018113638172-1772219512.png" alt="img"> 　　Ctrl+c 是退出tail命令。</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="6-防火墙设置端口"><a href="#6-防火墙设置端口" class="headerlink" title="6.防火墙设置端口"></a>6.防火墙设置端口</h2><p>cat /proc/version  Linux 查看当前操作系统版本信息<br>iptables -L -n  查看当前iptables(防火墙)规则添加指定端口到防火墙中<br>iptables -I INPUT -p 协议 –dport 端口号 -j ACCEPT<br>#iptables -I INPUT -p udp –dport 161 -j ACCEPT<br>#iptables -I INPUT -p tcp –dport 8080 -j ACCEPT</p>
+<h2 id="7-Tomcat下载地址"><a href="#7-Tomcat下载地址" class="headerlink" title="7.Tomcat下载地址"></a>7.Tomcat下载地址</h2><p>官网:<a target="_blank" rel="noopener" href="https://archive.apache.org/dist/tomcat/">https://archive.apache.org/dist/tomcat/</a></p>
+<p>国内快速镜像:<a target="_blank" rel="noopener" href="https://mirrors.cnnic.cn/apache/tomcat/">https://mirrors.cnnic.cn/apache/tomcat/</a></p>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/987b4fa.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          多Tomcat运行
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/644d29f9.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Onedrive实现与本地文件同步</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

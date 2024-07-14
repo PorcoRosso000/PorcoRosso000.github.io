@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>SpringBoot整合ES搜索 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-SpringBoot整合ES搜索" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot整合ES搜索
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-10-18T01:46:15.000Z" itemprop="datePublished">
+  2023-10-18
+</time>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ES/">ES</a>
+  </div>
+
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建文章索引</span></span><br><span class="line"><span class="string">PUT</span> <span class="string">article</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;mappings&quot;:</span> &#123;</span><br><span class="line">    <span class="attr">&quot;properties&quot;:</span> &#123;</span><br><span class="line">      <span class="string">&quot;title&quot;</span><span class="string">:</span>&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;:</span> <span class="string">&quot;text&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;analyzer&quot;:</span> <span class="string">&quot;ik_smart&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;search_analyzer&quot;:</span> <span class="string">&quot;ik_smart&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">&quot;author&quot;:</span> &#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;:</span> <span class="string">&quot;keyword&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">&quot;type&quot;:</span> &#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;:</span> <span class="string">&quot;keyword&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">&quot;address&quot;:</span> &#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;:</span> <span class="string">&quot;text&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;analyzer&quot;:</span> <span class="string">&quot;ik_max_word&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;search_analyzer&quot;:</span> <span class="string">&quot;ik_max_word&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">&quot;price&quot;</span><span class="string">:</span>&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;:</span> <span class="string">&quot;double&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">&quot;createTime&quot;</span><span class="string">:</span>&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;:</span> <span class="string">&quot;long&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ES依赖"><a href="#ES依赖" class="headerlink" title="ES依赖"></a>ES依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch.client<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化ES"><a href="#初始化ES" class="headerlink" title="初始化ES"></a>初始化ES</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构建 ES 高级客户端</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> RestHighLevelClient client;</span><br><span class="line"><span class="keyword">public</span> <span class="title function_">ArticleController</span><span class="params">(HttpServletRequest request)</span> &#123;</span><br><span class="line">    client = <span class="keyword">new</span> <span class="title class_">RestHighLevelClient</span>(</span><br><span class="line">            RestClient.builder(</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">HttpHost</span>(<span class="string">&quot;192.168.23.129&quot;</span>, <span class="number">9200</span>, <span class="string">&quot;http&quot;</span>)));</span><br><span class="line">    log.info(<span class="string">&quot;初始化ES：IP地址：【192.168.23.129】，端口：【9200】&quot;</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h2 id="构建实体类"><a href="#构建实体类" class="headerlink" title="构建实体类"></a>构建实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Article</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 主键</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 文章标题</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 作者</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String author;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  地址</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 文章类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建时间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 价格</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Double price;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="新增数据-修改"><a href="#新增数据-修改" class="headerlink" title="新增数据/修改"></a>新增数据/修改</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">add</span><span class="params">(<span class="meta">@RequestBody</span> Article article)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">requestURI</span> <span class="operator">=</span> request.getRequestURI();</span><br><span class="line">        <span class="type">String</span> <span class="variable">method</span> <span class="operator">=</span> request.getMethod();</span><br><span class="line">        log.info(<span class="string">&quot;功能名称：【&#123;&#125;】，请求路径：【&#123;&#125;】，请求方式【&#123;&#125;】，请求参数：【&#123;&#125;】&quot;</span>, <span class="string">&quot;添加文章&quot;</span>, requestURI, method, JSON.toJSONString(article));</span><br><span class="line">        <span class="comment">// 添加</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 1: 创建索引请求对象传入索引名</span></span><br><span class="line">            <span class="type">IndexRequest</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IndexRequest</span>(INDEX_NAME);</span><br><span class="line">            <span class="comment">// 2：设置 数据</span></span><br><span class="line">            article.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">            <span class="comment">// id</span></span><br><span class="line">            <span class="keyword">if</span> (StringUtils.isEmpty(article.getId())) &#123;  <span class="comment">// 添加</span></span><br><span class="line">                request.id(UUID.randomUUID().toString().replace(<span class="string">&quot;_&quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;  <span class="comment">// 修改</span></span><br><span class="line">                request.id(article.getId());</span><br><span class="line">            &#125;</span><br><span class="line">            request.source(JSON.toJSONString(article), XContentType.JSON)  </span><br><span class="line">            <span class="comment">// 3: 发送请求</span></span><br><span class="line">            <span class="type">IndexResponse</span> <span class="variable">response</span> <span class="operator">=</span> client.index(request, RequestOptions.DEFAULT);</span><br><span class="line">            log.info(<span class="string">&quot;添加文章,响应结果：【&#123;&#125;】&quot;</span>, JSON.toJSONString(response));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            log.error(e);</span><br><span class="line"><span class="comment">//            e.printStackTrace();</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Result</span> <span class="variable">result</span> <span class="operator">=</span> Result.success();</span><br><span class="line">        log.info(<span class="string">&quot;功能名称：【&#123;&#125;】，请求路径：【&#123;&#125;】，请求方式【&#123;&#125;】，响应结果：【&#123;&#125;】&quot;</span>, <span class="string">&quot;添加文章&quot;</span>, requestURI, method, JSON.toJSONString(result));</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeleteMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">deleteById</span><span class="params">(<span class="meta">@PathVariable</span> String id)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">requestURI</span> <span class="operator">=</span> request.getRequestURI();</span><br><span class="line">    <span class="type">String</span> <span class="variable">method</span> <span class="operator">=</span> request.getMethod();</span><br><span class="line">    log.info(<span class="string">&quot;功能名称：【&#123;&#125;】，请求路径：【&#123;&#125;】，请求方式【&#123;&#125;】，请求参数：【&#123;&#125;】&quot;</span>, <span class="string">&quot;根据ID删除文章&quot;</span>, requestURI, method, id);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 1： 创建 删除请求对象</span></span><br><span class="line">        <span class="type">DeleteRequest</span> <span class="variable">deleteRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DeleteRequest</span>(INDEX_NAME, id);</span><br><span class="line">        <span class="comment">// 2； 发送</span></span><br><span class="line">        <span class="type">DeleteResponse</span> <span class="variable">response</span> <span class="operator">=</span> client.delete(deleteRequest, RequestOptions.DEFAULT);</span><br><span class="line">        log.info(<span class="string">&quot;删除ID为【&#123;&#125;】的文章,响应结果：【&#123;&#125;】&quot;</span>, id, JSON.toJSONString(response));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">        log.error(ex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Result</span> <span class="variable">result</span> <span class="operator">=</span> Result.success();</span><br><span class="line">    log.info(<span class="string">&quot;功能名称：【&#123;&#125;】，请求路径：【&#123;&#125;】，请求方式【&#123;&#125;】，响应结果：【&#123;&#125;】&quot;</span>, <span class="string">&quot;根据ID删除文章&quot;</span>, requestURI, method, JSON.toJSONString(result));</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="查询单条数据"><a href="#查询单条数据" class="headerlink" title="查询单条数据"></a>查询单条数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Result&lt;Article&gt; <span class="title function_">findOneById</span><span class="params">(<span class="meta">@PathVariable</span> String id)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">requestURI</span> <span class="operator">=</span> request.getRequestURI();</span><br><span class="line">    <span class="type">String</span> <span class="variable">method</span> <span class="operator">=</span> request.getMethod();</span><br><span class="line">    log.info(<span class="string">&quot;功能名称：【&#123;&#125;】，请求路径：【&#123;&#125;】，请求方式【&#123;&#125;】，请求参数：【&#123;&#125;】&quot;</span>, <span class="string">&quot;根据ID查询文章&quot;</span>, requestURI, method, id);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 1: 创建查询对象</span></span><br><span class="line">        <span class="type">GetRequest</span> <span class="variable">getRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GetRequest</span>(INDEX_NAME, id);</span><br><span class="line">        <span class="comment">// 2: 发送请求进行查询</span></span><br><span class="line">        <span class="type">GetResponse</span> <span class="variable">response</span> <span class="operator">=</span> client.get(getRequest, RequestOptions.DEFAULT);</span><br><span class="line">        <span class="comment">// 3: 解析查询响应结果</span></span><br><span class="line">        <span class="keyword">if</span> (response.isExists()) &#123;</span><br><span class="line">            <span class="comment">// 存在 查询到了</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">respJson</span> <span class="operator">=</span> response.getSourceAsString();  <span class="comment">// JSON结果</span></span><br><span class="line">            <span class="type">Article</span> <span class="variable">article</span> <span class="operator">=</span> JSONObject.parseObject(respJson, Article.class);</span><br><span class="line">            <span class="comment">// 设置 id</span></span><br><span class="line">            article.setId(id);</span><br><span class="line">            Result&lt;Article&gt; result = Result.success(article);</span><br><span class="line">            log.info(<span class="string">&quot;功能名称：【&#123;&#125;】，请求路径：【&#123;&#125;】，请求方式【&#123;&#125;】，响应结果：【&#123;&#125;】&quot;</span>, <span class="string">&quot;根据ID查询文章&quot;</span>, requestURI, method, JSON.toJSONString(result));</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 没有查询到</span></span><br><span class="line">            <span class="keyword">return</span> Result.error(<span class="string">&quot;没有查询到&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span>(Exception ex) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;根据id查询文章出现异常，异常信息是【&#123;&#125;】&quot;</span>, ex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="搜索查询参数对象"><a href="#搜索查询参数对象" class="headerlink" title="搜索查询参数对象"></a>搜索查询参数对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArticleRequest</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 标题</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 地址</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 价格区间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Double startPrice;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 价格区间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Double endPrice;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 时间区间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String startTime;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 时间区间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String endTime;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 页码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">Integer</span> <span class="variable">pageNum</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 每页记录数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">Integer</span> <span class="variable">pageSize</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="搜索查询"><a href="#搜索查询" class="headerlink" title="搜索查询"></a>搜索查询</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/search&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Result&lt;PageResult&lt;Article&gt;&gt; <span class="title function_">search</span><span class="params">(<span class="meta">@RequestBody</span> ArticleRequest articleRequest)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">requestURI</span> <span class="operator">=</span> request.getRequestURI();</span><br><span class="line">    <span class="type">String</span> <span class="variable">method</span> <span class="operator">=</span> request.getMethod();</span><br><span class="line">    log.info(<span class="string">&quot;功能名称：【&#123;&#125;】，请求路径：【&#123;&#125;】，请求方式【&#123;&#125;】，请求参数：【&#123;&#125;】&quot;</span>, <span class="string">&quot;文章搜索&quot;</span>, requestURI, method, JSON.toJSONString(articleRequest));</span><br><span class="line">    <span class="comment">// 先定义返回结果</span></span><br><span class="line">    <span class="type">long</span> <span class="variable">total</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 总记录数</span></span><br><span class="line">    List&lt;Article&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(); <span class="comment">// 结果集</span></span><br><span class="line">    <span class="comment">// 发送请求</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 1: 创建搜索请求对象</span></span><br><span class="line">        <span class="type">SearchRequest</span> <span class="variable">searchRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SearchRequest</span>(INDEX_NAME);</span><br><span class="line">        <span class="comment">// 2: 搜索载体</span></span><br><span class="line">        <span class="type">SearchSourceBuilder</span> <span class="variable">searchSourceBuilder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SearchSourceBuilder</span>();</span><br><span class="line">        <span class="comment">// 3: 构建拼接查询条件对象</span></span><br><span class="line">        <span class="type">BoolQueryBuilder</span> <span class="variable">bqb</span> <span class="operator">=</span> QueryBuilders.boolQuery();</span><br><span class="line">        <span class="comment">// 4: 判断搜索条件   标题</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isNotEmpty(articleRequest.getTitle())) &#123;</span><br><span class="line">            <span class="type">MatchQueryBuilder</span> <span class="variable">mb</span> <span class="operator">=</span> QueryBuilders.matchQuery(<span class="string">&quot;title&quot;</span>, articleRequest.getTitle());</span><br><span class="line">            bqb.must(mb);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 作者</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isNotEmpty(articleRequest.getAuthor())) &#123;</span><br><span class="line">            <span class="type">MatchQueryBuilder</span> <span class="variable">mb</span> <span class="operator">=</span> QueryBuilders.matchQuery(<span class="string">&quot;author&quot;</span>, articleRequest.getAuthor());</span><br><span class="line">            bqb.must(mb);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 地址</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isNotEmpty(articleRequest.getAddress())) &#123;</span><br><span class="line">            <span class="type">MatchQueryBuilder</span> <span class="variable">mb</span> <span class="operator">=</span> QueryBuilders.matchQuery(<span class="string">&quot;address&quot;</span>, articleRequest.getAddress());</span><br><span class="line">            bqb.must(mb);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 时间区间</span></span><br><span class="line">        <span class="keyword">if</span> (articleRequest.getStartTime() != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="type">RangeQueryBuilder</span> <span class="variable">rangeQueryBuilder</span> <span class="operator">=</span>  QueryBuilders.rangeQuery(<span class="string">&quot;createTime&quot;</span>).gte(articleRequest.getStartTime().getTime());</span><br><span class="line">            bqb.must(rangeQueryBuilder);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (articleRequest.getEndTime() != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="type">RangeQueryBuilder</span> <span class="variable">rangeQueryBuilder</span> <span class="operator">=</span> QueryBuilders.rangeQuery(<span class="string">&quot;createTime&quot;</span>).lte(articleRequest.getEndTime().getTime());</span><br><span class="line">            bqb.must(rangeQueryBuilder);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 放入 查询条件</span></span><br><span class="line">        searchSourceBuilder.query(bqb);</span><br><span class="line">        <span class="comment">// 分页</span></span><br><span class="line">        searchSourceBuilder.from((articleRequest.getPageNum() - <span class="number">1</span>) * articleRequest.getPageSize());</span><br><span class="line">        searchSourceBuilder.size(articleRequest.getPageSize());</span><br><span class="line">        <span class="comment">// 排序</span></span><br><span class="line">        searchSourceBuilder.sort(<span class="string">&quot;createTime&quot;</span>, SortOrder.DESC);</span><br><span class="line">        searchRequest.source(searchSourceBuilder);</span><br><span class="line">        <span class="type">SearchResponse</span> <span class="variable">response</span> <span class="operator">=</span> client.search(searchRequest, RequestOptions.DEFAULT);</span><br><span class="line">        <span class="comment">// 获取结果 【命中】</span></span><br><span class="line">        <span class="type">SearchHits</span> <span class="variable">hits</span> <span class="operator">=</span> response.getHits();</span><br><span class="line">        <span class="comment">// 获取总记录数</span></span><br><span class="line">        total = hits.getTotalHits().value;</span><br><span class="line">        <span class="comment">// 获取结果</span></span><br><span class="line">        SearchHit[] getHits = hits.getHits();</span><br><span class="line">        <span class="keyword">for</span> (SearchHit hit : getHits) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">articleJson</span> <span class="operator">=</span> hit.getSourceAsString();</span><br><span class="line">            <span class="comment">// 转换成Article</span></span><br><span class="line">            <span class="type">Article</span> <span class="variable">article</span> <span class="operator">=</span> JSONObject.parseObject(articleJson, Article.class);</span><br><span class="line">            article.setId(hit.getId());  <span class="comment">// 单独设置ID</span></span><br><span class="line">            <span class="comment">// 将 文章对象 添加到  结果集</span></span><br><span class="line">            list.add(article);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    Result&lt;PageResult&lt;Article&gt;&gt; result = PageResult.toResult(total, list);</span><br><span class="line">    log.info(<span class="string">&quot;功能名称：【&#123;&#125;】，请求路径：【&#123;&#125;】，请求方式【&#123;&#125;】，响应结果：【&#123;&#125;】&quot;</span>, <span class="string">&quot;文章搜索&quot;</span>, requestURI, method, JSON.toJSONString(result));</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 高亮</span></span><br><span class="line"><span class="type">HighlightBuilder</span> <span class="variable">highlightBuilder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HighlightBuilder</span>();</span><br><span class="line">highlightBuilder.field(<span class="string">&quot;goodsName&quot;</span>);</span><br><span class="line">highlightBuilder.preTags(<span class="string">&quot;&lt;span style=\&quot;color:red\&quot;&gt;&quot;</span>);</span><br><span class="line">highlightBuilder.postTags(<span class="string">&quot;&lt;/span&gt;&quot;</span>);</span><br><span class="line">searchSourceBuilder.highlighter(highlightBuilder);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置高亮  原字段 替换成 高亮字段</span></span><br><span class="line">Map&lt;String, HighlightField&gt; highlightFields = hit.getHighlightFields();</span><br><span class="line"><span class="keyword">if</span> (highlightFields != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="type">HighlightField</span> <span class="variable">highlightField</span> <span class="operator">=</span> highlightFields.get(<span class="string">&quot;goodsName&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (highlightField != <span class="literal">null</span>) &#123;</span><br><span class="line">        Text[] fragments = highlightField.getFragments();</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (Text fragment : fragments) &#123;</span><br><span class="line">            str += fragment;</span><br><span class="line">        &#125;</span><br><span class="line">        goodsResponse.setGoodsName(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="es基本操作"><a href="#es基本操作" class="headerlink" title="es基本操作"></a>es基本操作</h2><h3 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h3><h4 id="新增索引"><a href="#新增索引" class="headerlink" title="新增索引"></a>新增索引</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT 索引名</span><br><span class="line">&#123;</span><br><span class="line">  &quot;settings&quot;: &#123;</span><br><span class="line">    &quot;index&quot;: &#123;</span><br><span class="line">      &quot;number_of_shards&quot;: &quot;3&quot;,</span><br><span class="line">      &quot;number_of_replicas&quot;: &quot;0&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE 索引名</span><br></pre></td></tr></table></figure>
+
+<h4 id="设置索引mapping"><a href="#设置索引mapping" class="headerlink" title="设置索引mapping"></a>设置索引mapping</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">PUT 索引名/_doc/_mapping?include_type_name=true</span><br><span class="line">&#123;</span><br><span class="line">  &quot;properties&quot;: &#123;</span><br><span class="line">    &quot;id&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;keyword&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;name&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;text&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;age&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;integer&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;sal&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;double&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;create_time&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;integer&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><h4 id="新增"><a href="#新增" class="headerlink" title="新增"></a>新增</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">指定ID插入</span><br><span class="line">PUT user_info/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">	&quot;name&quot;:&quot;wei&quot;,</span><br><span class="line">	&quot;sal&quot;:&quot;188.68&quot;,</span><br><span class="line">	&quot;age&quot;:28,</span><br><span class="line">	&quot;create_time&quot;:&quot;1647911799000&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">自动ID插入</span><br><span class="line">POST user_info/_doc/</span><br><span class="line">&#123;</span><br><span class="line">	&quot;name&quot;:&quot;wei&quot;,</span><br><span class="line">	&quot;sal&quot;:&quot;188.68&quot;,</span><br><span class="line">	&quot;age&quot;:28,</span><br><span class="line">	&quot;create_time&quot;:&quot;1647911799000&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#DELETE /索引/文档类型/文档id</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><h4 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET user_info/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;name&quot;: &#123;</span><br><span class="line">        &quot;query&quot;: &quot;张三&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES/" rel="tag">ES</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/d01b0029.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          长链接变短链接
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/4fc9bfdc.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">SpringBoot整合MongoDB</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

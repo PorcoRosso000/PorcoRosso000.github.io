@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>计算机体系结构 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-计算机体系结构" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      计算机体系结构
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-09-23T07:23:05.000Z" itemprop="datePublished">
+  2023-09-23
+</time>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">计算机体系结构</a>
+  </div>
+
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <p><strong>冯.诺依曼体系结构</strong></p>
+<p>从Linux 服务器开发视角来看计算机，都是符合冯.诺依曼体系结构的。</p>
+<p>冯.诺依曼结构:总线 接口 南桥 北桥</p>
+<p>数学家冯·诺依曼提出了计算机制造的<strong>三个基本原则</strong>（采用二进制、程序存储、顺序执行），以及计算机的<strong>五个组成部分</strong>（运算器、控制器、存储器、输入设备、输出设备），这套理论被称为<strong>冯·诺依曼体系结构</strong>，根据这一原理制造的计算机被称为冯·诺依曼结构计算机。</p>
+<p>灵魂就是将程序<strong>从硬件实现转换为软件实现</strong>（存储程序控制原理）</p>
+<p><strong>计算机的基本工作原理</strong>就是：存储程序控制原理！</p>
+<p><img src="/posts/cae4c11d/%E5%86%AF.%E8%AF%BA%E4%BE%9D%E6%9B%BC%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.jpg" alt="冯.诺依曼体系结构"></p>
+<p><strong>CPU位数怎么确定？</strong></p>
+<p>内部寄存器到运算单元之间总线位数来确定</p>
+<p><strong>如何确定设备位宽？</strong></p>
+<p>根据数据总线</p>
+<p><strong>总线频率 与 CPU自身频率？</strong></p>
+<p>这是2个不同的概念。总线频率一般指FSB频率，相当于CPU向外部存取数据时的数据传输速率</p>
+<p>CPU自身频率则表示CPU运算时电路产生的频率</p>
+<p><strong>计算机总线 对比 OSI模型</strong></p>
+<p>计算机总线是一个只有物理层、网络层和上三成的网络</p>
+<p><strong>主机 如何 寻找设备？</strong></p>
+<p>每个IO设备在启动时都要向内存中映射一个或者多个地址，这个地址有8bit长，又称作IO端口。针对这个地址的数据，统统被北桥芯片重定向到IO总线上实际的设备上。</p>
+<p><strong>计算机详细体系结构</strong></p>
+<p><img src="/posts/cae4c11d/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%A6%E7%BB%86%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" alt="计算机详细体系结构"></p>
+<p><strong>三大总线（并行通信）：</strong></p>
+<p>地址总线：传输地址信号，通过地址信号找到要操作的寄存器、内存单元等</p>
+<p>控制总线：传输控制信号，比如通过地址总线找到内存的某位置了，接下来到底是进行读还是写，就由控制总线发控制信号决定</p>
+<p>数据总线：传输数据信号，比如通过地址找到内存的某个位置了，控制总线发出写的控制信号，希望对其写数据，那么写数据时，数据信号就是在数据总线上传输的</p>
+<p><strong>IO总线</strong></p>
+<p><img src="/posts/cae4c11d/IO%E6%80%BB%E7%BA%BF.png" alt="IO总线"></p>
+<p><strong>什么是接口？</strong></p>
+<p>接口的概念有点抽象，因为它最准确地指的是一个标准（一组数据交换规则/协议）</p>
+<p><strong>IO桥这里指南桥 北桥</strong></p>
+<p>​    <strong>北桥芯片作用</strong></p>
+<p>　　北桥芯片负责与CPU的联系并控制内存AGP数据在北桥内部传输，提供对CPU的类型和主频、系统的前端总线频率、内存的类型和最大容量、AGP插槽、ECC纠错等支持，整合型芯片组的北桥芯片还集成了显示核心。北桥起到的作用非常明显，在电脑中起着主导的作用，所以人们习惯的称为主桥（Host Bridge）。</p>
+<p>​    <strong>北桥芯片特点</strong></p>
+<p>　　北桥芯片就是主板上离CPU最近的芯片，这主要是考虑到北桥芯片与处理器之间的通信最密切，为了提高通信性能而缩短传输距离。因为北桥芯片的数据处理量非常大，发热量也越来越大，所以现在的北桥芯片都覆盖着散热片用来加强北桥芯片的散热，有些主板的北桥芯片还会配合风扇进行散热。</p>
+<p>​    <strong>南桥芯片作用</strong></p>
+<p>　　南桥芯片负责I/O总线之间的通信，如PCI总线、USB、LAN、ATA、SATA、音频控制器、键盘控制器、实时时钟控制器、高级电源管理等，这些技术一般相对来说比较稳定，所以不同芯片组中可能南桥芯片是一样的，不同的只是北桥芯片。所以现在主板芯片组中北桥芯片的数量要远远多于南桥芯片。</p>
+<p><strong>可以不用IO桥吗</strong></p>
+<p>可以，如果没有IO桥，所有的“外设IO接口”都是直接挂接在三大高速总线上的，但是随着发展，挂接的外部设备越来越多，直接挂接在总线上，太多了，管理是一个麻烦，慢慢的才有了IO桥这个管理者。</p>
+<p><strong>IO桥的好处</strong></p>
+<p>设备的IO接口直接挂接在IO桥上，IO桥有效的管理着众多的外设IO接口，IO桥里面会有相应的控制芯片，控制IO桥的工作。</p>
+<p><strong>并不是计算机都需要IO桥</strong></p>
+<p>IO桥是PC机特有的，并不是所有的计算机都有的，比如我们后面讲的ARM的开发板，就没有明显的IO桥这个东西。</p>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" rel="tag">计算机体系结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/e5dd7f0f.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          maven学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/64502b93.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">摩斯密码</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

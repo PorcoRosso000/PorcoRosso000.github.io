@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>docker安装gitlab |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-docker安装gitlab" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      docker安装gitlab
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-10-16T08:37:32.000Z" itemprop="datePublished">
+  2023-10-16
+</time>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/gitlab/">gitlab</a>
+  </div>
+
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="1-先建gitlab文件夹"><a href="#1-先建gitlab文件夹" class="headerlink" title="1.先建gitlab文件夹"></a>1.先建gitlab文件夹</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/docker</span><br><span class="line">mkdir gitlab</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-docker-安装配置阿里云镜像源"><a href="#2-docker-安装配置阿里云镜像源" class="headerlink" title="2.docker 安装配置阿里云镜像源"></a>2.docker 安装配置阿里云镜像源</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. sudo mkdir -p /etc/docker</span><br><span class="line"></span><br><span class="line">2. sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://yxzrazem.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">3.sudo systemctl daemon-reload</span><br><span class="line">4.sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-gitlab-镜像拉取"><a href="#3-gitlab-镜像拉取" class="headerlink" title="3.gitlab 镜像拉取"></a>3.gitlab 镜像拉取</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-ce为稳定版本，后面不填写版本则默认pull最新latest版本</span><br><span class="line">$ docker pull gitlab/gitlab-ce </span><br></pre></td></tr></table></figure>
+
+<p>4.提前建好docker文件夹 为了挂载镜像路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/docker/gitlab</span><br><span class="line">mkdir config</span><br><span class="line">mkdir logs</span><br><span class="line">mkdir data</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-编写启动配置文件"><a href="#5-编写启动配置文件" class="headerlink" title="5.编写启动配置文件"></a>5.编写启动配置文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim startGitlab.sh</span><br></pre></td></tr></table></figure>
+
+<p>配置文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 443:443 \</span><br><span class="line">-p 9001:80 \</span><br><span class="line">-p 9002:22 \</span><br><span class="line">--name gitlab \</span><br><span class="line">--restart always </span><br><span class="line">-v /usr/local/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-给配置文件赋权"><a href="#6-给配置文件赋权" class="headerlink" title="6.给配置文件赋权"></a>6.给配置文件赋权</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 startGitlab.sh</span><br></pre></td></tr></table></figure>
+
+<p>启动gitlab</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./startGitlab.sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-修改gitlab-rb-文件"><a href="#7-修改gitlab-rb-文件" class="headerlink" title="7.修改gitlab.rb 文件"></a>7.修改gitlab.rb 文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/docker/gitlab/config/gitlab.rb</span><br><span class="line"></span><br><span class="line"># 配置http协议所使用的访问地址,不加端口号默认为80</span><br><span class="line">external_url &#x27;http://192.168.xxx.xxx&#x27;</span><br><span class="line"># 配置ssh协议所使用的访问地址和端口</span><br><span class="line">gitlab_rails[&#x27;gitlab_ssh_host&#x27;] = &#x27;192.168.xxx.xxx&#x27;</span><br><span class="line">gitlab_rails[&#x27;gitlab_shell_ssh_port&#x27;] = 9002 # 此端口是run时22端口映射的222端口</span><br></pre></td></tr></table></figure>
+
+<p>8.查看已开启的端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
+
+<p>查看防火墙状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure>
+
+<p>开启防火墙:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost gitlab]# systemctl start firewalld</span><br></pre></td></tr></table></figure>
+
+<p>在防火墙中对外开启此端口:开启9001和9002端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost gitlab]# firewall-cmd --zone=public --add-port=9001/tcp --permanent</span><br><span class="line">[root@localhost gitlab]# firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>重新启动gitlab加载配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart gitlab</span><br></pre></td></tr></table></figure>
+
+<p>此时项目的仓库地址就变了。如果ssh端口地址不是默认的22，就会加上ssh:// 协议头</p>
+<p> 打开浏览器输入ip地址(因为我的gitlab端口不是80，所以浏览器url要输入端口号，如果端口号不是80，则打开为：ip:端口号)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.227.xxx:9001/</span><br></pre></td></tr></table></figure>
+
+<p>登录gitlab修改密码</p>
+<p>初始密码位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/docker/gitlab/config/initial_root_password</span><br></pre></td></tr></table></figure>
+
+<p>接下来就可以创建项目了</p>
+<h4 id="没有卸载干净的情况"><a href="#没有卸载干净的情况" class="headerlink" title="没有卸载干净的情况"></a>没有卸载干净的情况</h4><p>由于汉化版本都低于英文版本，为了不产生不必要的麻烦就要先下载汉化包，查看汉化包的版本号，根据汉化包的版本号来安装指定版本的GitLab。若你安装的版本是最新的比汉化包高太多，那么你汉化时需要忽略数百到上千次的文件。若你是刚装的GitLab，可以考虑重新卸载后安装和汉化包版本一致的版本。下面是如何彻底卸载GitLab。</p>
+<p>1、停止gitlab</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop gitlab</span><br></pre></td></tr></table></figure>
+
+<p>2、卸载gitlab（注意这里写的是gitlab-ce）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<p>3、查看gitlab进程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep gitlab</span><br></pre></td></tr></table></figure>
+
+<p>4、杀掉第一个进程（就是带有好多…的进程） kill -9 进程号</p>
+<p>杀掉后，在ps aux | grep gitlab确认一遍，还有没有gitlab的进程。若还存在，可以把它的主要组件的进程也杀一边。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">run: alertmanager: (pid 100019) 13376s; run: log: (pid 82025) 86211s</span><br><span class="line">run: gitaly: (pid 100032) 13376s; run: log: (pid 82041) 86211s</span><br><span class="line">run: gitlab-monitor: (pid 100047) 13375s; run: log: (pid 82047) 86211s</span><br><span class="line">run: gitlab-workhorse: (pid 100054) 13375s; run: log: (pid 82031) 86211s</span><br><span class="line">run: logrotate: (pid 121160) 2574s; run: log: (pid 82039) 86211s</span><br><span class="line">run: nginx: (pid 100070) 13374s; run: log: (pid 82037) 86211s</span><br><span class="line">run: node-exporter: (pid 100077) 13374s; run: log: (pid 82027) 86211s</span><br><span class="line">run: postgres-exporter: (pid 100082) 13373s; run: log: (pid 82023) 86211s</span><br><span class="line">run: postgresql: (pid 100097) 13372s; run: log: (pid 82035) 86211s</span><br><span class="line">run: prometheus: (pid 100100) 13372s; run: log: (pid 82021) 86211s</span><br><span class="line">run: redis: (pid 100114) 13372s; run: log: (pid 82033) 86211s</span><br><span class="line">run: redis-exporter: (pid 100118) 13371s; run: log: (pid 82043) 86211s</span><br><span class="line">run: sidekiq: (pid 100124) 13370s; run: log: (pid 82029) 86211s</span><br><span class="line">run: unicorn: (pid 100136) 13369s; run: log: (pid 82045) 86211s</span><br></pre></td></tr></table></figure>
+
+<p>日志的进程不用管。</p>
+<p>5、删除所有包含gitlab文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name gitlab | xargs rm -rf</span><br></pre></td></tr></table></figure>
+
+<p>当然若你没有全杀权限。那么可以可以把这三个目录给干掉也可以：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf  /opt/gitlab</span><br><span class="line">rm -rf  /etc/gitlab</span><br><span class="line">rm -rf  /var/log/gitlab</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/72c8f5cf.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          docker安装MySQL
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/39e58a97.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">搭建SpringCloudAlibaba</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

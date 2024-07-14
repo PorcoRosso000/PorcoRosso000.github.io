@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>sql日期格式转换 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-sql日期格式转换" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      sql日期格式转换
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-04-17T16:01:49.000Z" itemprop="datePublished">
+  2023-04-18
+</time>
+        
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="Oracle日期和字符串互相转换"><a href="#Oracle日期和字符串互相转换" class="headerlink" title="Oracle日期和字符串互相转换"></a>Oracle日期和字符串互相转换</h2><h3 id="1-日期转字符串"><a href="#1-日期转字符串" class="headerlink" title="1 日期转字符串"></a>1 日期转字符串</h3><p>1.1 yyyy年mm月dd日hh24時mi分ss秒</p>
+<p>手动拼接年月日</p>
+<p>select<br>      to_char(sysdate, ‘yyyy’) || ‘年’<br>   || to_char(sysdate, ‘mm’) || ‘月’<br>   || to_char(sysdate, ‘dd’) || ‘日’<br>   || ‘ ‘<br>   || to_char(sysdate, ‘hh24’) || ‘時’<br>   || to_char(sysdate, ‘mi’) || ‘分’<br>   || to_char(sysdate, ‘ss’) || ‘秒’<br>from<br>  dual</p>
+<p>⏹结果<br>2021年09月08日</p>
+<p>1.2 yyyy-mm-dd hh24:mi:ss</p>
+<p>日期不去掉0,并且以24小时制显示</p>
+<p>select<br>  to_char(sysdate, ‘yyyy-mm-dd hh24:mi:ss’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021-09-08 11:12:02</p>
+<p>1.3 yyyyfm-mm-dd hh24:mi:ss<br>日期去掉0,并且以24小时制显示</p>
+<p>select<br>  to_char(sysdate, ‘yyyyfm-mm-dd hh24:mi:ss’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021-9-8 11:21:55</p>
+<p>1.4 yyyy/mm/dd<br>只显示年月日,并且有分隔符</p>
+<p>select<br>  to_char(sysdate, ‘yyyy/mm/dd’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021/09/08</p>
+<p>1.5 yyyymmdd<br>只显示年月日,没有分隔符</p>
+<p>select<br>  to_char(sysdate, ‘yyyymmdd’)<br>from<br>  dual</p>
+<p>⏹结果<br>20210908</p>
+<h3 id="2-字符串转日期"><a href="#2-字符串转日期" class="headerlink" title="2 字符串转日期"></a>2 字符串转日期</h3><p>使用to_date(‘日期’, ‘格式’)函数,具体格式和to_char()中的格式相同</p>
+<p>select<br>  to_date(‘20210908’, ‘yyyymmdd’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021/09/08 0:00:00</p>
+<p>select<br>  to_date(‘2021-9-8 11:21:55’, ‘yyyyfm-mm-dd hh24:mi:ss’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021/09/08 11:21:55</p>
+<h2 id="Mysql日期和字符串互相转换"><a href="#Mysql日期和字符串互相转换" class="headerlink" title="Mysql日期和字符串互相转换"></a>Mysql日期和字符串互相转换</h2><p>参考资料: MySQL中日期时间类型与格式化</p>
+<h3 id="1-日期转字符串-1"><a href="#1-日期转字符串-1" class="headerlink" title="1 日期转字符串"></a>1 日期转字符串</h3><p>DATE_FORMAT( )函数</p>
+<p>1.1 yyyy年mm月dd日 hh时ii分ss秒<br>SELECT<br>    DATE_FORMAT(NOW(), ‘%Y年%m月%d日 %H时%i分%s秒’ );<br>⏹结果<br>2021年09月08日 21时04分59秒</p>
+<p>1.2 yyyy-mm-dd hh:ii:ss<br>SELECT<br>    DATE_FORMAT(NOW(), ‘%Y-%m-%d %H:%i:%s’)</p>
+<h3 id="2-字符串转日期-1"><a href="#2-字符串转日期-1" class="headerlink" title="2 字符串转日期"></a>2 字符串转日期</h3><p>STR_TO_DATE函数</p>
+<p>SELECT<br>    STR_TO_DATE(‘2019年01月17日 19时05分05秒’, ‘%Y年%m月%d日 %H时%i分%s秒’);</p>
+<p>⏹结果<br>2019-01-17 19:05:05</p>
+<h3 id="3-数据判空并进行日期转换"><a href="#3-数据判空并进行日期转换" class="headerlink" title="3.数据判空并进行日期转换"></a>3.数据判空并进行日期转换</h3><p>xxxx年xx月xx日 格式或者其他格式转换成  xxxx-xx-xx</p>
+<p>SELECT IF(‘2019年01月17日’ = ‘NULL’,NULL<br>,IF(‘2019年01月17日’ like ‘%日%’,STR_TO_DATE(‘2019年01月17日’,’%Y年%m月%d日’),DATE_FORMAT(‘2019年01月17日’,’%Y-%m-%d’)))</p>
+<p>xxxx年xx月xx日 xx时xx分xx秒 格式或者其他格式转换成  xxxx-xx-xx xx:xx:xx</p>
+<p>IF ( st_approve_start_time = ‘NULL’, NULL,IF(st_approve_start_time like ‘%日%’,STR_TO_DATE(st_approve_start_time,’%Y年%m月%d日 %H时%i分%s秒’),DATE_FORMAT(st_approve_start_time,’%Y-%m-%d %H:%i:%s’))) as st_approve_start_time</p>
+<h2 id="版权声明："><a href="#版权声明：" class="headerlink" title="版权声明："></a>版权声明：</h2><p>本文为CSDN博主「fengyehongWorld」的原创文章<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/feyehong/article/details/120177756">https://blog.csdn.net/feyehong/article/details/120177756</a></p>
+
+    </div>
+    <footer class="article-footer">
+      
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/43387b37.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          业务专业名词
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/cf90fc03.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">List集合</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

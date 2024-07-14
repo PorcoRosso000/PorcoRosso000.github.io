@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>mysql语法 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-mysql语法" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      mysql语法
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-01-07T06:34:51.000Z" itemprop="datePublished">
+  2023-01-07
+</time>
+        
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h3><h4 id="SELECT-LAST-INSERT-ID-："><a href="#SELECT-LAST-INSERT-ID-：" class="headerlink" title="SELECT LAST_INSERT_ID()："></a>SELECT LAST_INSERT_ID()：</h4><p>得到刚 insert 进去记录的主键值，只适用与自增主键；</p>
+<p>mysql一个表中唯一ID生成就需要这个函数</p>
+<p>Last_insert_id()是MYSQL提供的返回当前客户端最后一个insert或update查询中设置为AUTO_INCREMENT列的值</p>
+<p>Last_insert_id()不受其他客户端影响，所以是线程安全的，当前客户端只能拿到当前客户端的最新值，不需加锁处理</p>
+<p>比如fileid是主键，并且设置成自动增加，那么在插入的时候不指定fileid，插入后通过LAST_INSERT_ID()就能得到插入最后一条记录的id<br> ，并且是当前线程执行的，并不需要事务控制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;selectKey keyProperty=&quot;id&quot; order=&quot;AFTER&quot; resultType=&quot;java.lang.Long&quot;&gt;</span><br><span class="line">SELECT LAST_INSERT_ID()</span><br><span class="line">&lt;/selectKey&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="lt-include-refid-”Base-Column-List”"><a href="#lt-include-refid-”Base-Column-List”" class="headerlink" title="&lt;include refid=”Base_Column_List”"></a>&lt;include refid=”Base_Column_List”</h4><p>这个在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=MyBatis&spm=1001.2101.3001.7020">MyBatis</a>查询数据库的sql中经常会出现。它的在上面已经定义，作用相当于 ，Base_Column_List是固定的几个字段，而用*号的话会降低查询效率，因为后期数据库的字段会不断增加。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;sql id=&quot;Base_Column_List&quot;&gt;</span><br><span class="line">id, tenant_id, role_type, parent_id, inherit_role, inherit_role_id, role_name, description, </span><br><span class="line">status, owner_id, period_type, period_start_time, period_end_time, create_time, update_time, </span><br><span class="line">create_user, update_user, code</span><br><span class="line">&lt;/sql&gt;</span><br><span class="line"></span><br><span class="line">&lt;select id=&quot;selectByPrimaryKey&quot; parameterType=&quot;java.lang.Long&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">select </span><br><span class="line">&lt;include refid=&quot;Base_Column_List&quot; /&gt;</span><br><span class="line">from t_role</span><br><span class="line">where id = #&#123;id,jdbcType=BIGINT&#125;</span><br><span class="line">&lt;/select&gt;` </span><br></pre></td></tr></table></figure>
+
+<h4 id="sql中使用in-not-in关键字后集合参数遍历方式"><a href="#sql中使用in-not-in关键字后集合参数遍历方式" class="headerlink" title="sql中使用in/not in关键字后集合参数遍历方式"></a>sql中使用in/not in关键字后集合参数遍历方式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;getIdsByOrgNums&quot; resultType=&quot;java.lang.Long&quot;&gt;</span><br><span class="line">select id</span><br><span class="line">from user_organization where org_num in</span><br><span class="line">&lt;foreach collection=&quot;orgNums&quot; index=&quot;index&quot; item=&quot;orgNum&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;</span><br><span class="line">#&#123;orgNum&#125;</span><br><span class="line">&lt;/foreach&gt;</span><br><span class="line">&lt;/select&gt; </span><br></pre></td></tr></table></figure>
+
+<h4 id="集合方式批量添加"><a href="#集合方式批量添加" class="headerlink" title="集合方式批量添加"></a>集合方式批量添加</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;batchInsert&quot; keyColumn=&quot;id&quot; keyProperty=&quot;id&quot; parameterType=&quot;map&quot; useGeneratedKeys=&quot;true&quot;&gt;</span><br><span class="line">&lt;!--@mbg.generated--&gt;</span><br><span class="line">insert into user_organization</span><br><span class="line">(org_name, company_flag, org_type, parent_id, ent_name, ent_short_name, social_credit_code,</span><br><span class="line">contact_person, billing_telephone, billing_address, opening_bank, bank_account,</span><br><span class="line">introduction, org_num, org_path, outer_org_id, org_source, creator_user_id, creation_time,</span><br><span class="line">update_user_id, update_time, delete_flag, gehr_org_id, sort_order, is_virtual_dept,</span><br><span class="line">department_name_en, department_level, app_code, gdc_org_id)</span><br><span class="line">values</span><br><span class="line">&lt;foreach collection=&quot;list&quot; item=&quot;item&quot; separator=&quot;,&quot;&gt;</span><br><span class="line">(#&#123;item.orgName&#125;, #&#123;item.companyFlag&#125;, #&#123;item.orgType&#125;, #&#123;item.parentId&#125;, #&#123;item.entName&#125;,</span><br><span class="line">#&#123;item.entShortName&#125;, #&#123;item.socialCreditCode&#125;, #&#123;item.contactPerson&#125;, #&#123;item.billingTelephone&#125;,</span><br><span class="line">#&#123;item.billingAddress&#125;, #&#123;item.openingBank&#125;, #&#123;item.bankAccount&#125;, #&#123;item.introduction&#125;,</span><br><span class="line">#&#123;item.orgNum&#125;, #&#123;item.orgPath&#125;, #&#123;item.outerOrgId&#125;, #&#123;item.orgSource&#125;, #&#123;item.creatorUserId&#125;,</span><br><span class="line">#&#123;item.creationTime&#125;, #&#123;item.updateUserId&#125;, #&#123;item.updateTime&#125;, #&#123;item.deleteFlag&#125;,</span><br><span class="line">#&#123;item.gehrOrgId&#125;, #&#123;item.sortOrder&#125;, #&#123;item.isVirtualDept&#125;, #&#123;item.departmentNameEn&#125;,</span><br><span class="line">#&#123;item.departmentLevel&#125;, #&#123;item.appCode&#125;, #&#123;item.gdcOrgId&#125;)</span><br><span class="line">&lt;/foreach&gt;</span><br><span class="line">&lt;/insert&gt; </span><br></pre></td></tr></table></figure>
+
+<h4 id="Unknown-collation-‘utf8mb4-0900-ai-ci‘-的解决方案高版本的数据库数据导入时报错解决方案"><a href="#Unknown-collation-‘utf8mb4-0900-ai-ci‘-的解决方案高版本的数据库数据导入时报错解决方案" class="headerlink" title="Unknown collation: ‘utf8mb4_0900_ai_ci‘ 的解决方案高版本的数据库数据导入时报错解决方案"></a>Unknown collation: ‘utf8mb4_0900_ai_ci‘ 的解决方案高版本的数据库数据导入时报错解决方案</h4><p>将MySQL8.0导出的sql文件中，所有的utf8mb4_0900_ai_ci替换为utf8_general_ci   </p>
+<h4 id="jpa在mapper层上通过注解的方式写sql"><a href="#jpa在mapper层上通过注解的方式写sql" class="headerlink" title="jpa在mapper层上通过注解的方式写sql"></a>jpa在mapper层上通过注解的方式写sql</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Query(      value = &quot;SELECT id,report_type,report_id,project_id,project_no,report_name,change_type,change_user,change_date,change_content,status,process_version,process_description,compound_id,production_type,report_section FROM notification WHERE CASE WHEN :no = true THEN project_no in (:projects) ELSE 1=1 END AND CASE WHEN :changeType = true THEN change_type in (:changeTypes) ELSE 1=1 END AND CASE WHEN :reportType = true THEN report_type in (:reportTypes) ELSE 1=1 END order by change_date desc limit :size offset :page&quot;,      nativeQuery = true) </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="jpa多条件多表联合查询"><a href="#jpa多条件多表联合查询" class="headerlink" title="jpa多条件多表联合查询"></a>jpa多条件多表联合查询</h4><p>通过实体类映射实现多表关联条件查询<br>jpa对于多表关联可以在实体类中进行关联映射，一对一用@OneToOne，一对多用@OneToMany，多对多用@ManyToMany，多对一用@ManyToOne，具体实体类配置就不多说了，然后对于条件查询采用Specification对象进行封装，如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Specification&lt;A&gt; specification = new Specification&lt;A&gt;() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public Predicate toPredicate(Root&lt;A&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb) &#123;</span><br><span class="line">            //创建查询条件集合</span><br><span class="line">            List&lt;Predicate&gt; orlist = new ArrayList&lt;Predicate&gt;();</span><br><span class="line">            //判断是否模糊查询</span><br><span class="line">            if (StringUtils.isNotBlank(key))&#123;</span><br><span class="line">                //添加查询条件  cb.like：模糊查询   root.get(&quot;查询字段&quot;).as(类型.class)</span><br><span class="line">                orlist.add(cb.like(root.get(&quot;name&quot;).as(String.class),&quot;%&quot;+  key + &quot;%&quot;));</span><br><span class="line">                orlist.add(cb.like(root.get(&quot;phone&quot;).as(String.class), &quot;%&quot;+  key + &quot;%&quot;));</span><br><span class="line">                orlist.add(cb.like(root.get(&quot;role&quot;).as(String.class),&quot;%&quot;+  key + &quot;%&quot;));</span><br><span class="line">                //创建左外连接  Join&lt;左，右&gt;     root.join(&quot;副表实体在主表主体中的属性名&quot;，连接方式)</span><br><span class="line">                Join&lt;A,B&gt; join = root.join(&quot;b&quot;, JoinType.LEFT);</span><br><span class="line">                //将连接表需要查询的字段写入</span><br><span class="line">                orlist.add(cb.like(join.get(&quot;post&quot;).as(String.class),&quot;%&quot;+key+&quot;%&quot;));</span><br><span class="line">            &#125;</span><br><span class="line">            return  cb.or(orlist.toArray(new Predicate[orlist.size()]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>通过@Query(value=“sql语句”)方式实现表关联查询<br>创建ARepository接口然后继承JpaRepository和JpaSpecificationExecutor，然后在repository接口中编写查询方法，如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public interface ARepository extends JpaRepository&lt;A,String&gt; , JpaSpecificationExecutor&lt;A&gt; &#123;</span><br><span class="line">@Query(value=&quot;SELECT * &quot; +</span><br><span class="line">        &quot;FROM A_table a &quot; +</span><br><span class="line">        &quot;LEFT JOIN B_table b ON a.b_unid = b.unid &quot; +</span><br><span class="line">        &quot;LEFT JOIN C_table c ON a.c_unid = c.unid &quot; +</span><br><span class="line">        &quot;WHERE a.delete_flag = 0 &quot; +</span><br><span class="line">        &quot;AND (?1 is null or ?1=&#x27;&#x27; or a.b_unid = ?1 )&quot; +</span><br><span class="line">        &quot;AND (?2 is null or ?2=&#x27;&#x27; or a.c_unid = ?2 ) &quot; +</span><br><span class="line">        &quot;AND (?3 is null or ?3=&#x27;&#x27; or a.created_time &gt;= ?3 ) &quot; +</span><br><span class="line">        &quot;ORDER BY fqcm.created_time DESC&quot;,nativeQuery = true)</span><br><span class="line">List&lt;Map&gt; selectABC(String bUnid, String cUnid, String createdTimeStart);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>@Query中?!,?2,?3代表传递的参数，应和下边方法中的参数顺序保持一致，其中条件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AND (?1 is null or ?1=&#x27;&#x27; or a.b_unid = ?1 )</span><br></pre></td></tr></table></figure>
+
+<p>表示参数如果为空字符串或者null时条件不生效，不为空字符串和null时条件生效。<br>nativeQuery = true 表示可以执行原生的sql语句。</p>
+<h4 id="代码中map文件-配置一对多"><a href="#代码中map文件-配置一对多" class="headerlink" title="代码中map文件 配置一对多"></a>代码中map文件 配置一对多</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;resultMap id=&quot;BaseResultMap&quot; type=&quot;com.hundsun.exchange.iwms.domain.query.inventory.WhSlInventoryIAreaQuery&quot; &gt;</span><br><span class="line">    &lt;id column=&quot;ID&quot; property=&quot;id&quot; jdbcType=&quot;NUMERIC&quot; /&gt;</span><br><span class="line">    &lt;collection property=&quot;areaList&quot; ofType=&quot;com.hundsun.exchange.iwms.domain.dto.inventory.WhSlInventoryItemArea&quot;&gt;</span><br><span class="line">        &lt;id column=&quot;ID&quot; property=&quot;id&quot; jdbcType=&quot;NUMERIC&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;INVENTORY_ITEM_ID&quot; property=&quot;inventoryItemId&quot; jdbcType=&quot;NUMERIC&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;AREA_CODE&quot; property=&quot;areaCode&quot; jdbcType=&quot;VARCHAR&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;TOTAL_AMOUNT&quot; property=&quot;totalAmount&quot; jdbcType=&quot;BIGINT&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;UNABSORBED_AMOUNT&quot; property=&quot;unabsorbedAmount&quot; jdbcType=&quot;BIGINT&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;PUBLIC_AMOUNT&quot; property=&quot;publicAmount&quot; jdbcType=&quot;BIGINT&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;PUBLIC_AVAILABLE_AMOUNT&quot; property=&quot;publicAvailableAmount&quot; jdbcType=&quot;BIGINT&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;PUBLIC_FROZEN_AMOUNT&quot; property=&quot;publicFrozenAmount&quot; jdbcType=&quot;BIGINT&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;RESERVE_AMOUNT&quot; property=&quot;reserveAmount&quot; jdbcType=&quot;BIGINT&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;RESERVE_AVAILABLE_AMOUNT&quot; property=&quot;reserveAvailableAmount&quot; jdbcType=&quot;BIGINT&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;RESERVE_FROZEN_AMOUNT&quot; property=&quot;reserveFrozenAmount&quot; jdbcType=&quot;BIGINT&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;GMT_CREATE&quot; property=&quot;gmtCreate&quot; jdbcType=&quot;DATE&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;GMT_MODIFY&quot; property=&quot;gmtModify&quot; jdbcType=&quot;DATE&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;MODIFIER_ID&quot; property=&quot;modifierId&quot; jdbcType=&quot;VARCHAR&quot; /&gt;</span><br><span class="line">        &lt;result column=&quot;IS_DELETED&quot; property=&quot;isDeleted&quot; jdbcType=&quot;VARCHAR&quot; /&gt;</span><br><span class="line">    &lt;/collection&gt;</span><br><span class="line">&lt;/resultMap&gt;</span><br><span class="line">&lt;!-- 统计货位库存的重量等  --&gt;</span><br><span class="line">&lt;select id=&quot;getAllInventoryAreaList&quot; resultClass=&quot;BaseResultMap&quot; &gt;</span><br><span class="line">    SELECT i.ID,a.AREA_CODE,a.PUBLIC_AMOUNT,a.PUBLIC_AVAILABLE_AMOUNT,a.PUBLIC_FROZEN_AMOUNT,a.RESERVE_AMOUNT,a.RESERVE_AVAILABLE_AMOUNT,a.RESERVE_FROZEN_AMOUNT,a.TOTAL_AMOUNT,a.UNABSORBED_AMOUNT</span><br><span class="line">    from</span><br><span class="line">         WH_SL_INVENTORY_ITEM i</span><br><span class="line">             LEFT JOIN  WH_SL_INVENTORY_ITEM_AREA a</span><br><span class="line">                 ON i.ID=a.INVENTORY_ITEM_ID</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="sql语句"><a href="#sql语句" class="headerlink" title="sql语句"></a>sql语句</h3><h4 id="CASE-WHEN-ELSE-END"><a href="#CASE-WHEN-ELSE-END" class="headerlink" title="CASE WHEN ELSE END"></a>CASE WHEN ELSE END</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1. </span><br><span class="line">CASE </span><br><span class="line">        WHEN table1.st_licence_location = &#x27;CUSTOMER&#x27; THEN &#x27;客户&#x27;</span><br><span class="line">        WHEN table1.st_licence_location = &#x27;AGENT&#x27; THEN &#x27;经销商&#x27;</span><br><span class="line">        WHEN table1.st_licence_location = &#x27;CUSTOMERMANAGER&#x27; THEN &#x27;客户经理&#x27;</span><br><span class="line">        WHEN table1.st_licence_location = &#x27;DMV&#x27; THEN &#x27;车管所&#x27;</span><br><span class="line">        WHEN table1.st_licence_location = &#x27;OTHER&#x27; THEN &#x27;其他&#x27;</span><br><span class="line">    END  AS st_licence_location, -- 登记证当前位置</span><br><span class="line">2.</span><br><span class="line"> case when salary &lt;= 500 then &#x27;1&#x27;</span><br><span class="line">         when salary &gt; 500 and salary &lt;= 600  then &#x27;2&#x27;</span><br><span class="line">         when salary &gt; 600 and salary &lt;= 800  then &#x27;3&#x27;</span><br><span class="line">         when salary &gt; 800 and salary &lt;= 1000 then &#x27;4&#x27;</span><br><span class="line">         else null end salary_class</span><br><span class="line">3.</span><br><span class="line">case country</span><br><span class="line">        when &#x27;中国&#x27;     then&#x27;亚洲&#x27;</span><br><span class="line">        when &#x27;印度&#x27;     then&#x27;亚洲&#x27;</span><br><span class="line">        when &#x27;日本&#x27;     then&#x27;亚洲&#x27;</span><br><span class="line">        when &#x27;美国&#x27;     then&#x27;北美洲&#x27;</span><br><span class="line">        when &#x27;加拿大&#x27;  then&#x27;北美洲&#x27;</span><br><span class="line">        when &#x27;墨西哥&#x27;  then&#x27;北美洲&#x27;</span><br><span class="line">        else &#x27;其他&#x27; end </span><br><span class="line">        </span><br><span class="line">4.when 后有多个条件的时候可以使用and 或者or连接</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="union-all"><a href="#union-all" class="headerlink" title="union all"></a>union all</h4><p>UNION 操作符用于合并两个或多个 SELECT 语句的结果集。</p>
+<p>请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。</p>
+<p>默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">    st_cust_name AS st_lessee_name,</span><br><span class="line">    st_cust_no</span><br><span class="line">    FROM</span><br><span class="line">    ods_cust_info_df  </span><br><span class="line">    UNION ALL</span><br><span class="line">    SELECT </span><br><span class="line">    st_enterprise_name AS st_lessee_name,</span><br><span class="line">    st_cust_no</span><br><span class="line">    FROM</span><br><span class="line">    ods_enterprise_customer_df  </span><br></pre></td></tr></table></figure>
+
+<h4 id="INSERT-INTO-SELECT-语法"><a href="#INSERT-INTO-SELECT-语法" class="headerlink" title="INSERT INTO SELECT 语法"></a>INSERT INTO SELECT 语法</h4><h4 id="将一个表的所有列复制到另一个表："><a href="#将一个表的所有列复制到另一个表：" class="headerlink" title="将一个表的所有列复制到另一个表："></a>将一个表的所有列复制到另一个表：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO *table2*</span><br><span class="line">SELECT * FROM *table1*WHERE *condition*;</span><br></pre></td></tr></table></figure>
+
+<h4 id="仅将一个表中的一些列复制到另一个表中："><a href="#仅将一个表中的一些列复制到另一个表中：" class="headerlink" title="仅将一个表中的一些列复制到另一个表中："></a>仅将一个表中的一些列复制到另一个表中：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO *table2* (*column1*, *column2*, *column3*, ...)</span><br><span class="line">SELECT *column1*, *column2*, *column3*, ...</span><br><span class="line">FROM *table1*</span><br><span class="line">WHERE *condition*;</span><br></pre></td></tr></table></figure>
+
+<h4 id="也可以将几个表联查的数据复制到另一个表中"><a href="#也可以将几个表联查的数据复制到另一个表中" class="headerlink" title="也可以将几个表联查的数据复制到另一个表中"></a>也可以将几个表联查的数据复制到另一个表中</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO *table2* (*column1*, *column2*, *column3*, ...)</span><br><span class="line">SELECT </span><br><span class="line">    *column1*</span><br><span class="line">    , *column2*</span><br><span class="line">    , *column3*, ...</span><br><span class="line">    FROM </span><br><span class="line">    (</span><br><span class="line">        select</span><br><span class="line">        id,</span><br><span class="line">        *column1*</span><br><span class="line">        from table1</span><br><span class="line">    ) tab_1</span><br><span class="line">    left join</span><br><span class="line">    (</span><br><span class="line">        select</span><br><span class="line">        id,</span><br><span class="line">        *column2*</span><br><span class="line">        from table2</span><br><span class="line">    )tab_2</span><br><span class="line">    on tab_1.id =  tab_2.id</span><br><span class="line">    left join  .......</span><br><span class="line">    列的值也可以直接赋值  例如  &#x27;三山&#x27; as *column3*</span><br></pre></td></tr></table></figure>
+
+<h4 id="with-as-用法"><a href="#with-as-用法" class="headerlink" title="with as 用法"></a>with as 用法</h4><p><strong>with as 定义</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with A as (select * from class)</span><br></pre></td></tr></table></figure>
+
+<p>也就是将重复用到的大批量 的SQL语句，放到with as 中，加一个别名，在后面用到的时候就可以直接用。对于大批量的SQL数据，起到优化的作用。</p>
+<p><strong>注意点：</strong></p>
+<p>1、with子句只能被select查询块引用</p>
+<p>2.with子句的返回结果存到用户的临时表空间中，只做一次查询，反复使用,提高效率。</p>
+<p>3.在同级select前有多个查询定义的时候，第1个用with，后面的不用with，并且用逗号隔开。</p>
+<p>4.最后一个with 子句与下面的查询之间不能有逗号，只通过右括号分割,with 子句的查询必须用括号括起来</p>
+<p><strong>用法：</strong></p>
+<p><strong>–针对一个别名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with tmp as (select * from tb_name)</span><br></pre></td></tr></table></figure>
+
+<p><strong>–针对多个别名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">with</span><br><span class="line">tmp as (select * from tb_name),</span><br><span class="line">tmp2 as (select * from tb_name2),</span><br><span class="line">tmp3 as (select * from tb_name3),</span><br></pre></td></tr></table></figure>
+
+<p><strong>–相当于建了个e临时表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with e as (select * from scott.emp e where e.empno=7499)</span><br><span class="line">select * from e;</span><br></pre></td></tr></table></figure>
+
+<p><strong>–相当于建了e、d临时表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">with</span><br><span class="line">e as (select * from scott.emp),</span><br><span class="line">d as (select * from scott.dept)</span><br><span class="line">select * from e, d where e.deptno = d.deptno;</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据库删除某条数据死锁怎么就解决"><a href="#数据库删除某条数据死锁怎么就解决" class="headerlink" title="数据库删除某条数据死锁怎么就解决?"></a>数据库删除某条数据死锁怎么就解决?</h4><p>今天想删掉一个表里所有的数据，直接删总是卡住，  最后一点点删，删到最后一条，发现是那条有问题。</p>
+<p>不管是改表名，delete，还是truncate，还是drop都不行，就卡在那里。</p>
+<p>最后用了navicat里面的修复功能。就好了。 </p>
+<h5 id="1-方法一-mysql命令行修复"><a href="#1-方法一-mysql命令行修复" class="headerlink" title="1.方法一  mysql命令行修复"></a>1.方法一  mysql命令行修复</h5><p>（1）登录数据库：mysql -u root -p密码</p>
+<p>（2）使用数据库：use  dataName；(dataName要修复的数据库名)</p>
+<p>（3）检查表：check table tableName；(tableName检查的表名)</p>
+<p>（4）分析表：analyze table tableName;(tableName要分析的表名)</p>
+<p>（5）修复表：repair table tableName;(tableName要修复的表名)</p>
+<p>（6）优化表：optimize table tableName;(tableName要优化的表)</p>
+<h5 id="2-方法二-使用navicat修复"><a href="#2-方法二-使用navicat修复" class="headerlink" title="2.方法二    使用navicat修复"></a>2.方法二    使用navicat修复</h5><p> （1）右键要修复的表；</p>
+<p>  （2）点击维护；</p>
+<p>  （3）选择修复。</p>
+<h4 id="SQL-TRUNCATE-TABLE：清空表"><a href="#SQL-TRUNCATE-TABLE：清空表" class="headerlink" title="SQL TRUNCATE TABLE：清空表"></a>SQL TRUNCATE TABLE：清空表</h4><p>SQL TRUNCATE TABLE 语句用来删除表中的所有记录，也即清空表，它类似于不带 WHERE 子句的 DELETE FROM 语句。</p>
+<h5 id="TRUNCATE-TABLE-和-DROP-TABLE"><a href="#TRUNCATE-TABLE-和-DROP-TABLE" class="headerlink" title="TRUNCATE TABLE 和 DROP TABLE"></a>TRUNCATE TABLE 和 DROP TABLE</h5><p>DROP TABLE 用来删除表，包括删除该表的数据、结构、索引、触发器、约束等所有信息。一旦使用 DROP TABLE 删除了表，则该表的所有信息都将丢失，该表再也无法使用了。如果您希望存储一些数据，就只能重新创建该表。<br>TRUNCATE TABLE 仅仅删除表的所有记录，表的结构、索引、触发器、约束等将被保留，后续仍然可以使用该表。不带 WHERE 子句的 DELETE FROM 语句同样可以达到清空表的效果，但是 TRUNCATE TABLE 使用的系统资源和日志资源更少，因此比 DELETE FROM 更加快速。</p>
+<p>此外，TRUNCATE TABLE 还能重置具有自动递增（AUTO_INCREMENT）属性的字段，而 DELETE FROM 却不具备该功能。</p>
+<ul>
+<li>当您不再需要该表时，使用 DROP TABLE；</li>
+<li>当您仍要保留该表，只是想删除所有记录时，使用 TRUNCATE TABLE；</li>
+<li>当你要删除部分记录时，使用带有 WHERE 子句的 DELETE FROM。</li>
+</ul>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><p>TRUNCATE TABLE 命令的基本语法如下：</p>
+<p>TRUNCATE TABLE  table_name;</p>
+<p>table_name 为表名。</p>
+<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><p>有包含如下记录的 CUSTOMERS 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+----+----------+-----+-----------+----------+</span><br><span class="line">| ID | NAME     | AGE | ADDRESS   | SALARY   |</span><br><span class="line">+----+----------+-----+-----------+----------+</span><br><span class="line">|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |</span><br><span class="line">|  2 | Khilan   |  25 | Delhi     |  1500.00 |</span><br><span class="line">|  3 | kaushik  |  23 | Kota      |  2000.00 |</span><br><span class="line">|  4 | Chaitali |  25 | Mumbai    |  6500.00 |</span><br><span class="line">|  5 | Hardik   |  27 | Bhopal    |  8500.00 |</span><br><span class="line">|  6 | Komal    |  22 | MP        |  4500.00 |</span><br><span class="line">|  7 | Muffy    |  24 | Indore    | 10000.00 |</span><br><span class="line">+----+----------+-----+-----------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>使用 TRUNCATE TABLE 命令清空数据表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL &gt; TRUNCATE TABLE CUSTOMERS;</span><br></pre></td></tr></table></figure>
+
+<p>现在 CUSTOMERS 表已被清空，使用 SELECT 语句的输出结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; SELECT * FROM CUSTOMERS;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="AND-和-OR-运算符"><a href="#AND-和-OR-运算符" class="headerlink" title="AND 和 OR 运算符"></a>AND 和 OR 运算符</h3><p><strong>AND 和 OR 运算符用于基于一个以上的条件对记录进行过滤。</strong></p>
+<p>AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。</p>
+<p>如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。</p>
+<p>如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</p>
+<h4 id="结合-AND-和-OR-运算符"><a href="#结合-AND-和-OR-运算符" class="headerlink" title="结合 AND 和 OR 运算符"></a>结合 AND 和 OR 运算符</h4><p>我们也可以把 AND 和 OR 结合起来（使用圆括号来组成复杂的表达式）:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Persons WHERE (FirstName=&#x27;Thomas&#x27; OR FirstName=&#x27;William&#x27;)</span><br><span class="line">AND LastName=&#x27;Carter&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="mysql语句"><a href="#mysql语句" class="headerlink" title="mysql语句"></a>mysql语句</h3><h4 id="mysql建库、建表语句"><a href="#mysql建库、建表语句" class="headerlink" title="mysql建库、建表语句"></a>mysql建库、建表语句</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line">CREATE DATABASE 数据库名;</span><br><span class="line">CREATE TABLE table_name (column_name column_type);</span><br><span class="line">例：</span><br><span class="line">CREATE DATABASE runoob;</span><br><span class="line">CREATE TABLE IF NOT EXISTS `runoob_tbl`(</span><br><span class="line">`runoob_id` INT UNSIGNED AUTO_INCREMENT,</span><br><span class="line">`runoob_title` VARCHAR(100) NOT NULL,</span><br><span class="line">`runoob_author` VARCHAR(40) NOT NULL,</span><br><span class="line">`submission_date` DATE,</span><br><span class="line">PRIMARY KEY ( `runoob_id` )</span><br><span class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+
+<h4 id="mysql-删库、删表语句"><a href="#mysql-删库、删表语句" class="headerlink" title="mysql 删库、删表语句"></a>mysql 删库、删表语句</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">语法： </span><br><span class="line">drop database &lt;数据库名&gt;;</span><br><span class="line">DROP TABLE table_name ;</span><br></pre></td></tr></table></figure>
+
+<h4 id="mysql-添加新列及注释"><a href="#mysql-添加新列及注释" class="headerlink" title="mysql 添加新列及注释"></a>mysql 添加新列及注释</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">在表尾添加</span><br><span class="line">语法：</span><br><span class="line">ALTER TABLE &lt;表名&gt; ADD &lt;字段名&gt; &lt;数据类型&gt; [约束条件];</span><br><span class="line">例：</span><br><span class="line">ALTER TABLE `user` ADD `phone` VARCHAR(11) DEFAULT NULL COMMENT &#x27;电话号码&#x27;;</span><br><span class="line"></span><br><span class="line">在表头添加</span><br><span class="line">语法：</span><br><span class="line">ALTER TABLE &lt;表名&gt; ADD &lt;字段名&gt; &lt;数据类型&gt; [约束条件] FIRST;</span><br><span class="line"></span><br><span class="line">在中间位置添加</span><br><span class="line">语法：</span><br><span class="line">ALTER TABLE &lt;表名&gt; ADD &lt;字段名&gt; &lt;数据类型&gt; [约束条件] AFTER &lt;已经存在的字段名&gt;;</span><br><span class="line">AFTER 的作用是将新字段添加到某个已有字段后面。注意：只能在某个已有字段的后面添加新字段，不能在它的前面添加新字段。</span><br><span class="line">例：ALTER TABLE `user` ADD `username` VARCHAR(30) DEFAULT NULL COMMENT &#x27;用户名&#x27; AFTER `user_id`;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改字段"><a href="#修改字段" class="headerlink" title="修改字段"></a>修改字段</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1.修改字段属性</span><br><span class="line">(1)语法</span><br><span class="line"></span><br><span class="line">ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;数据类型&gt; [约束条件];</span><br><span class="line">(2)示例</span><br><span class="line"></span><br><span class="line">a)将email字段VARCHAR(50)修改成VARCHAR(200)</span><br><span class="line"></span><br><span class="line">ALTER TABLE `user` MODIFY `email` VARCHAR(200) NOT NULL DEFAULT &#x27;email@163.com&#x27;;</span><br><span class="line">注意：修改时如果不带完整性约束条件，原有的约束条件将丢失，如果想保留修改时就得带上完整性约束条件</span><br><span class="line"></span><br><span class="line">b)将email移到phone后面</span><br><span class="line"></span><br><span class="line">ALTER TABLE `user` MODIFY `email` VARCHAR(50) AFTER `phone`;</span><br><span class="line">c)将email放到第一个，保留原完整性约束条件</span><br><span class="line"></span><br><span class="line">ALTER TABLE `user` MODIFY `email` VARCHAR(50) NOT NULL DEFAULT &#x27;test@163.com&#x27; FIRST;</span><br><span class="line">d)将username字段修改成大小写敏感，即查询时区分大小写</span><br><span class="line"></span><br><span class="line">ALTER TABLE `user` MODIFY `username` VARCHAR(30) BINARY CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT &#x27;用户名&#x27;;</span><br><span class="line">2.修改字段名称和属性</span><br><span class="line">(1)语法</span><br><span class="line"></span><br><span class="line">ALTER TABLE &lt;表名&gt; CHANGE &lt;原字段名&gt; &lt;新字段名&gt; &lt;数据类型&gt; [约束条件];</span><br><span class="line">(2)示例</span><br><span class="line"></span><br><span class="line">将username字段修改成user_name</span><br><span class="line"></span><br><span class="line">ALTER TABLE `user` CHANGE `username` `user_name` VARCHAR(30) DEFAULT NULL COMMENT &#x27;用户名&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加删除默认值"><a href="#添加删除默认值" class="headerlink" title="添加删除默认值"></a>添加删除默认值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(1)语法</span><br><span class="line"></span><br><span class="line">-- 添加默认值</span><br><span class="line">ALTER TABLE &lt;表名&gt; ALTER &lt;字段名&gt; SET DEFAULT &lt;默认值&gt;;</span><br><span class="line">-- 删除默认值</span><br><span class="line">ALTER TABLE &lt;表名&gt; ALTER &lt;字段名&gt; DROP DEFAULT;</span><br><span class="line">(2)示例</span><br><span class="line"></span><br><span class="line">a)给sex添加默认值</span><br><span class="line">ALTER TABLE `user` ALTER `sex` SET DEFAULT &#x27;男&#x27;;</span><br><span class="line"></span><br><span class="line">b)删除sex的默认值</span><br><span class="line">ALTER TABLE `user` ALTER `sex` DROP DEFAULT;</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加删除主键"><a href="#添加删除主键" class="headerlink" title="添加删除主键"></a>添加删除主键</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(1)语法</span><br><span class="line">-- 添加主键</span><br><span class="line">ALTER TABLE &lt;表名&gt; ADD [CONSTRAINT &lt;约束名&gt;] PRIMARY KEY (&lt;字段名称,...&gt;);</span><br><span class="line">-- 删除主键</span><br><span class="line">ALTER TABLE &lt;表名&gt; DROP PRIMARY KEY;</span><br><span class="line"></span><br><span class="line">(2)示例</span><br><span class="line">a)添加主键</span><br><span class="line">ALTER TABLE `user` ADD PRIMARY KEY(`user_id`);</span><br><span class="line"></span><br><span class="line">b)添加复合主键</span><br><span class="line"></span><br><span class="line">ALTER TABLE `user_role` ADD PRIMARY KEY(`user_id`,`role_id`);</span><br><span class="line"></span><br><span class="line">c)删除主键</span><br><span class="line">ALTER TABLE `user` DROP PRIMARY KEY;</span><br><span class="line"></span><br><span class="line">d)删除带自增长属性的主键</span><br><span class="line">-- 先用MODIFY删除自增长属性，注意MODIFY不能去掉主键属性</span><br><span class="line">ALTER TABLE test MODIFY id INT UNSIGNED;</span><br><span class="line">-- 再来删除主键</span><br><span class="line">ALTER TABLE test DROP PRIMARY KEY;</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加删除唯一索引"><a href="#添加删除唯一索引" class="headerlink" title="添加删除唯一索引"></a>添加删除唯一索引</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">(1)语法</span><br><span class="line">-- 添加唯一性约束</span><br><span class="line">ALTER TABLE &lt;表名&gt; ADD [CONSTANT &lt;约束名&gt;] UNIQUE [INDEX | KEY] [索引名称](&lt;字段名称,...&gt;)</span><br><span class="line">-- 删除唯一性约束</span><br><span class="line">ALTER TABLE &lt;表名&gt; DROP [INDEX | KEY] [索引名称];</span><br><span class="line"></span><br><span class="line">(2)示例</span><br><span class="line">a)为username添加唯一性约束，如果没有指定索引名称，系统会以字段名建立索引</span><br><span class="line">ALTER TABLE `user` ADD UNIQUE(`username`);</span><br><span class="line"></span><br><span class="line">b)为username添加唯一性约束，并指定索引名称</span><br><span class="line">ALTER TABLE `user` ADD UNIQUE KEY uni_username(`username`);</span><br><span class="line"></span><br><span class="line">c)查看索引</span><br><span class="line">SHOW CREATE TABLE `user`;</span><br><span class="line"></span><br><span class="line">d)添加联合unique</span><br><span class="line">ALTER TABLE `user` ADD UNIQUE INDEX uni_nickname_username(`nickname`, `username`);</span><br><span class="line"></span><br><span class="line">e)删除索引</span><br><span class="line">ALTER TABLE `user` DROP INDEX username;</span><br><span class="line">ALTER TABLE `user` DROP KEY uni_username;</span><br><span class="line">ALTER TABLE `user` DROP INDEX uni_nickname_username;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改表的存储引擎"><a href="#修改表的存储引擎" class="headerlink" title="修改表的存储引擎"></a>修改表的存储引擎</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(1)语法</span><br><span class="line">ALTER TABLE &lt;表名&gt; ENGINE=&lt;存储引擎名称&gt;</span><br><span class="line"></span><br><span class="line">(2)示例</span><br><span class="line">ALTER TABLE `user` ENGINE=MyISAM;</span><br><span class="line">ALTER TABLE `user` ENGINE=INNODB;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改自增长值"><a href="#修改自增长值" class="headerlink" title="修改自增长值"></a>修改自增长值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1)语法</span><br><span class="line">ALTER TABLE &lt;表名&gt; AUTO_INCREMENT=[值];</span><br><span class="line"></span><br><span class="line">(2)示例</span><br><span class="line">ALTER TABLE `user` AUTO_INCREMENT=100;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><p>CSDN博主「生活压力大」：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37783650/article/details/111588665">https://blog.csdn.net/weixin_37783650/article/details/111588665</a></p>
+<p>CSDN博主「shaoduo」 ：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shaoduo/article/details/70888855">https://blog.csdn.net/shaoduo/article/details/70888855</a></p>
+<p>CSDN博主「好__好」: <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32067151/article/details/105186355">https://blog.csdn.net/qq_32067151/article/details/105186355</a></p>
+<p>c语言中文网 「站长严长生」:<a target="_blank" rel="noopener" href="http://c.biancheng.net/sql/truncate-table.html">http://c.biancheng.net/sql/truncate-table.html</a></p>
+<p>CSDN博主「说故事的五公子」的原创文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/JDream111/article/details/119163838">https://blog.csdn.net/JDream111/article/details/119163838</a></p>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/10fd86b3.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          java时间段重叠判断
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/458d0a8.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">代码笔记</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

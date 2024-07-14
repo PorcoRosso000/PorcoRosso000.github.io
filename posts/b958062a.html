@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="爬虫,">
+  
+  
+    <meta name="description" content="爬虫">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>爬虫原理 |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-爬虫原理" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      爬虫原理
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2022-11-26T08:48:41.000Z" itemprop="datePublished">
+  2022-11-26
+</time>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <p>爬虫原理</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="爬虫原理"><a href="#爬虫原理" class="headerlink" title="爬虫原理"></a>爬虫原理</h2><p>如果我们把互联网比作一张大的蜘蛛网,数据便是存放于蜘蛛网的各个节点,而爬虫就是一只小蜘蛛,沿着网络抓取自己的猎物(数据)爬虫指的是:向网络发起请求,获取资源后分析并提取有用数据的程序</p>
+<p>从技术层面来说就是通过程序模拟浏览器请求站点的行为,吧站点返回HTML代码/JSON数据/二进制数据(图片,视频)爬到本地,进而提取自己需要的数据,存放起来使用</p>
+<p>爬虫的基本流程:</p>
+<p>模拟浏览器发送请求(获取网页代码)</p>
+<p>提取有用的数据</p>
+<p>存放于数据库或文件</p>
+<p>反爬虫机制</p>
+<p>检验数据头 User-Agent反爬虫机制</p>
+<p>当我们使用浏览器访问网站的时候,浏览器会发送一小段信息给网站,我们称之为Request Headers, 在这个头部信息里面包含了本次访问的一些信息;其中最常被用到的一个信息叫做”User-Agent”.</p>
+<p>网站可以通过User-Agent来判断用户是在使用什么浏览器访问,不同的浏览器的User-Agent是不一样的,但都有遵循一定的规则.</p>
+<p>但是如果我们使用Python的Requests直接访问网站,处理网址不提供其他的信息,那么网站收到的User-Agent是空的.这个时候就知道我们不是使用浏览器访问的,于是它就可以拒绝我们的访问</p>
+<p>  访问频率限制或检验</p>
+<p>大多数情况下,我们遇到的是访问频率的限制.如果你访问太快了,网站就会认为你不是一个人.</p>
+<p>这种情况下需要设定好的阈值,否则可能会误伤.</p>
+<p>另外,还可以检索访问频率是否每次都相同,如果相同,那么久一定是爬虫了</p>
+<p>蜜罐技术</p>
+<p>蜜獾:来自于网络攻防战中,一方会故意设置一个或者几个服务器,故意留下漏洞,让另一方轻易的入侵进来.而这些故意设置的服务器,就是蜜罐,</p>
+<p>里面可能安装了监控软件,用来监控入侵者,同时还能拖延    入侵者的时间.</p>
+<p>在反爬虫机制中:网页上会故意留下一些人类看不到或者绝对不会点击的链接,</p>
+<p>由于爬虫会从源代码中获取内容,所以爬虫可能会访问这样的链接,这个时候只要网站发现了IP访问这个链接,立刻永久封禁该IP + User-Agent + Mac地址等等,可以应用于访问者身份识别.这个时候,访问者即使更换IP,也没有办法访问这个网站了.给爬虫造成了非常大的访问障碍</p>
+<p>应对方案:</p>
+<p>设定Request Headers中的User-Agent</p>
+<p>检查User-Agent是一种最简单的反爬虫机制,而通过设定Request Headers中User-Agent,可以突破这种机制.</p>
+<p>设定随机访问频率</p>
+<p>遇到访问频率限制可以采用设定随机访问频率的方式来突破</p>
+<p>代理IP或者分布爬虫</p>
+<p>另外,如果对页的爬虫的效率有要求,那就不能通过设定访问时间间隔来绕过频率检查了,可以采用代理IP或者分布式爬虫</p>
+<p>1.如果通100个代理IP来访问100个页面,可以给网站造成一种有100个人,每人访问1页的错觉,自然就不会被限制访问了</p>
+<p>2.分布式爬虫会部署到台服务器上,每个服务器上的爬虫统一从一个地方拿网址这样平均下来每个服务器访问网站的频率也就降低了.由于服务器是掌握在我们手上的,因此实现的爬虫会更加的稳定和高效</p>
+<p>对于蜜罐技术可以采用定向爬虫</p>
+<p>由于定向爬虫的爬虫轨迹是由我们来决定的,爬虫会访问哪些网址我们都是知道的.</p>
+<p>因此即使网站中有蜜罐,定向爬虫也不一定会中招</p>
+<p>通过cookie和验证码识别爬虫</p>
+<p>场景:</p>
+<ol>
+<li>点击登录按钮之后发起post请求</li>
+<li>Post请求中会携带登录之前录入的相关登录信息(用户名,密码)</li>
+<li>没有请求到对应的页码数据的原因:<ol>
+<li>发起第二次基于个人主页的页面请求的时候,服务器端并不知道本次请求是基于登录状态下的请求.</li>
+</ol>
+</li>
+<li>Cookie:用来让服务器daunt记录客户端的相关状态</li>
+</ol>
+<p>解决方案:</p>
+<p>手动处理</p>
+<p>通过抓包工具来获取Cookie值,讲该值封装到Headers中</p>
+<p>自动处理</p>
+<p>Session会话对象</p>
+<p>可以进行请求的发送</p>
+<p>如果请求过程中产生了cookie,则cookie会被自动存储/携带在该Session对象中</p>
+<p>操作步骤:</p>
+<ul>
+<li>创建一个session对象:session=requests.Session()</li>
+<li>是同session     对象进行模拟登录post请求的发送(cookie就会被存储在session中)</li>
+<li>Session对象对于个人主页的get请求进行了发送(携带了cookie)</li>
+</ul>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/d48132d3.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          ElasticSearch
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/f64d8ae3.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">CPU飙高</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

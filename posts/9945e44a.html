@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="人必有所执,方能有所成">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <title>docker安装kibana |  红猪的博客</title>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
+  
+  
+    <link rel="shortcut icon" href="/images/favico.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <main class="main">
+    
+	<header id="header" class="header">
+
+	<div class="container">
+		<nav class="navbar d-flex align-items-center">
+			<a class="brand" href="/">
+				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+			</a>
+			<ul class="main-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		</nav>
+		<a id="mobile-nav-toggle">
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+			<span class="mobile-nav-toggle-bar"></span>
+		</a>
+	</div>
+</header>
+
+    <section>
+      <div class="container">
+  <article id="post-docker安装kibana" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  
+  <div class="article-cover mb-5">
+    
+  </div>
+  
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+      
+  
+    <h1 class="article-title" itemprop="name">
+      docker安装kibana
+    </h1>
+  
+
+      <div class="article-meta">
+        <time class="text-gray" datetime="2023-10-17T07:31:39.000Z" itemprop="datePublished">
+  2023-10-17
+</time>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kibana/">kibana</a>
+  </div>
+
+      </div>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># cd /usr/local/docker/</span></span><br><span class="line"><span class="comment"># 创建 kibana 目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># mkdir kibana/</span></span><br><span class="line"><span class="comment"># 进入 kibana 目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># cd kibana/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 config 挂载目录</span></span><br><span class="line">[<span class="string">root@MuYu</span> <span class="string">kibana</span>]<span class="comment"># mkdir config</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入 config 目录</span></span><br><span class="line">[<span class="string">root@MuYu</span> <span class="string">kibana</span>]<span class="comment"># cd config/</span></span><br><span class="line"><span class="comment"># 编写配置文件 或者直接 上传下面这个 配置文件</span></span><br><span class="line">[<span class="string">root@MuYu</span> <span class="string">config</span>]<span class="comment"># vim kibana.yml</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/vmnKvzuXEAFTazBC.yml?fileGuid=loqeMYlyWrfrBWqn">kibana.yml</a></p>
+<p>赋权限：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">chmod</span> <span class="string">-R</span> <span class="number">777</span> <span class="string">kibana.yml</span></span><br><span class="line"><span class="string">docker</span> <span class="string">logs</span> <span class="string">-f</span> <span class="string">-t</span> <span class="string">--tail</span> <span class="string">-f</span> <span class="string">容器id</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 主机地址，可以是ip,主机名</span></span><br><span class="line"><span class="attr">server.host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="comment"># 提供服务的端口，监听端口</span></span><br><span class="line"><span class="attr">server.port:</span> <span class="number">5601</span></span><br><span class="line"><span class="comment"># 该 kibana 服务的名称，默认 your-hostname</span></span><br><span class="line"><span class="attr">server.name:</span> <span class="string">&quot;MuYu-kibana&quot;</span></span><br><span class="line"><span class="attr">server.shutdownTimeout:</span> <span class="string">&quot;5s&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#####----------elasticsearch相关----------#####</span></span><br><span class="line"><span class="comment"># kibana访问es服务器的URL,就可以有多个，以逗号&quot;,&quot;隔开</span></span><br><span class="line"><span class="attr">elasticsearch.hosts:</span> [ <span class="string">&quot;http://你的IP地址:9200&quot;</span> ]</span><br><span class="line"><span class="attr">monitoring.ui.container.elasticsearch.enabled:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">####----------日志相关----------#####</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># kibana日志文件存储路径，默认stdout</span></span><br><span class="line"><span class="attr">logging.dest:</span> <span class="string">stdout</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 此值为true时，禁止所有日志记录输出</span></span><br><span class="line"><span class="comment"># 默认false</span></span><br><span class="line"><span class="attr">logging.silent:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 此值为true时，禁止除错误消息之外的所有日志记录输出</span></span><br><span class="line"><span class="comment"># 默认false</span></span><br><span class="line"><span class="attr">logging.quiet:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 此值为true时，记录所有事件，包括系统使用信息和所有请求</span></span><br><span class="line"><span class="comment"># 默认false</span></span><br><span class="line"><span class="attr">logging.verbose:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#####----------其他----------#####</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 系统和进程取样间隔，单位ms，最小值100ms</span></span><br><span class="line"><span class="comment"># 默认5000ms</span></span><br><span class="line"><span class="attr">ops.interval:</span> <span class="number">5000</span></span><br><span class="line"><span class="comment"># kibana web语言</span></span><br><span class="line"><span class="comment"># 默认en</span></span><br><span class="line"><span class="attr">i18n.locale:</span> <span class="string">&quot;zh-CN&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">config</span>]<span class="comment"># cd ../  </span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">kibana</span>]<span class="comment"># vim startKibana.sh</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name kibana-7.17.0 \</span><br><span class="line">--privileged=true \</span><br><span class="line">--restart=always \</span><br><span class="line">-p 5601:5601 \</span><br><span class="line">-e TZ=&quot;Asia/Shanghai&quot; \</span><br><span class="line">-v /usr/local/docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml \</span><br><span class="line">kibana:7.17.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">kibana</span>]<span class="comment"># chmod -R 700 startKibana.sh </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">kibana</span>]<span class="comment"># ./startKibana.sh</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><p><img src="/posts/9945e44a/clip_image002.gif" alt="图片"></p>
+<p><img src="/posts/9945e44a/clip_image004.gif" alt="图片"></p>
+
+    </div>
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kibana/" rel="tag">kibana</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+    
+<nav class="article-nav pt-4 mt-3" id="article-nav">
+  
+    <a href="/posts/921863cb.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          docker安装ES
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/cbab506c.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">docker安装redis</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+</div>
+    </section>
+    <footer class="footer pt-5 mt-5">
+  <div class="container">
+    <div class="py-3">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
+          <p class="mb-4">人必有所执,方能有所成</p>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
+                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="juzi_dhx">
+                  <img 0="微信" src="/images/icons/contact_wechat.svg">
+                </a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="mailto:dong_haoxin@foxmail.com">
+                  <img 0="邮箱" src="/images/icons/contact_email.svg">
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>友情链接</h5>
+          <ul class="list-inline">
+            
+              <li class="list-inline-item">
+                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
+              </li>
+            
+              <li class="list-inline-item">
+                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="hr" style="opacity: .25;">
+    <div class="pt-3 pb-5">
+      <ul class="list-inline mb-0 text-center">
+        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+        
+        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+  </main>
+  <div id="mobile-nav-dimmer"></div>
+<div id="mobile-nav">
+	<div id="mobile-nav-inner">
+		<ul class="mobile-nav">
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/">首页</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/gallery">书目</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/stories">文章分类</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/archives">文章</a>
+  </li>
+  
+    
+  <li class="nav-item ">
+    <a class="nav-item-link" href="/about">关于</a>
+  </li>
+  
+</ul>
+		
+	</div>
+</div>
+
+  <script src="/libs/feather/feather.min.js"></script>
+<script src="/libs/lazysizes/lazysizes.min.js"></script>
+
+	<script src="/libs/tocbot/tocbot.min.js"></script>
+	<script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    });
+	</script>
+
+
+
+
+
+<script src="/js/mobile-nav.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>
