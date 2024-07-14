@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="jdk,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="java运行环境JDK">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>java运行环境JDK |  红猪的博客</title>
@@ -110,7 +112,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h3 id="jdk更换版本"><a href="#jdk更换版本" class="headerlink" title="jdk更换版本"></a>jdk更换版本</h3><p>直接去修改系统变量JAVA_HOME的话会发现不起作用</p>
+      <p>java运行环境JDK</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="jdk更换版本"><a href="#jdk更换版本" class="headerlink" title="jdk更换版本"></a>jdk更换版本</h3><p>直接去修改系统变量JAVA_HOME的话会发现不起作用</p>
 <p>原因是安装JDK1.8版本时，会在C:\ProgramData\Oracle\Java目录中生成一些配置文件，并同时将此目录写到环境变量中的Path中，所以我们应该去把系统变量Path中的C:\ProgramData\Oracle\Java\javapath删除了，这样问题就解决了！ </p>
 <p>JAVA_HOME<br>%JAVA_HOME7%</p>
 <p>CLASSPATH<br>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar; </p>

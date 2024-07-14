@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="cas,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="cas学习">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>cas学习 |  红猪的博客</title>
@@ -101,16 +103,16 @@
   2022-11-26
 </time>
         
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/cas/">cas</a>
-  </div>
-
       </div>
       
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h3 id="cas"><a href="#cas" class="headerlink" title="cas"></a>cas</h3><h4 id="cas在Hotspot虚拟机中的实现"><a href="#cas在Hotspot虚拟机中的实现" class="headerlink" title="cas在Hotspot虚拟机中的实现"></a>cas在Hotspot虚拟机中的实现</h4><p>1.在Hotspot虚拟机中，cas (Compare And Swap) 操作是通过汇编指今实现的，底层涉及到CPU的原子操作</p>
+      <p>cas学习</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="cas"><a href="#cas" class="headerlink" title="cas"></a>cas</h3><h4 id="cas在Hotspot虚拟机中的实现"><a href="#cas在Hotspot虚拟机中的实现" class="headerlink" title="cas在Hotspot虚拟机中的实现"></a>cas在Hotspot虚拟机中的实现</h4><p>1.在Hotspot虚拟机中，cas (Compare And Swap) 操作是通过汇编指今实现的，底层涉及到CPU的原子操作</p>
 <p>2.Hotspot使用了Unsafe类来提供cas操作的支持，Unsafe类是一个提供了一系列底层操作的工具类，它允许java程序直接访间底层内存和执行特定的操作，是Hotspot虚拟机的一部分，</p>
 <p>3 <strong>Unsafe</strong>类中的compaeAndSwapInt、 compaeAndSwapIong、compaeAndSwapObject是cas操作的具体实现，这些法接收三个参教:内存地址、期望值和更新值，它们会很据底层平台的特性，使用汇编指令来进行原子比较和交换操作。</p>
 <p>4.在X86架构下，Hotspot使用了lock cmpxchg指令来实现cas操作，该指令会比较内存中的值与期望值，如果相等，则用更新值替换内存中的值，并返回操作前的值，如果不相等，则不会进行替换操作，</p>
@@ -220,8 +222,6 @@
     </div>
     <footer class="article-footer">
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/" rel="tag">cas</a></li></ul>
-
     </footer>
   </div>
   

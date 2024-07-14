@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="mysql,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="mysql语法">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>mysql语法 |  红猪的博客</title>
@@ -101,12 +103,20 @@
   2023-01-07
 </time>
         
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
       </div>
       
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h3 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h3><h4 id="SELECT-LAST-INSERT-ID-："><a href="#SELECT-LAST-INSERT-ID-：" class="headerlink" title="SELECT LAST_INSERT_ID()："></a>SELECT LAST_INSERT_ID()：</h4><p>得到刚 insert 进去记录的主键值，只适用与自增主键；</p>
+      <p>mysql语法</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h3><h4 id="SELECT-LAST-INSERT-ID-："><a href="#SELECT-LAST-INSERT-ID-：" class="headerlink" title="SELECT LAST_INSERT_ID()："></a>SELECT LAST_INSERT_ID()：</h4><p>得到刚 insert 进去记录的主键值，只适用与自增主键；</p>
 <p>mysql一个表中唯一ID生成就需要这个函数</p>
 <p>Last_insert_id()是MYSQL提供的返回当前客户端最后一个insert或update查询中设置为AUTO_INCREMENT列的值</p>
 <p>Last_insert_id()不受其他客户端影响，所以是线程安全的，当前客户端只能拿到当前客户端的最新值，不需加锁处理</p>

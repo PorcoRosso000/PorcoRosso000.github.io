@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="SpEL,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="SpEL表达式学习">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>SpEL表达式学习 |  红猪的博客</title>
@@ -110,7 +112,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="SpEl"><a href="#SpEl" class="headerlink" title="SpEl"></a>SpEl</h2><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>Spring也有自己的EL，叫Spring Expression Language，简称SpEl。其可以在程序中单独使用，也可以在Spring应用中进行bean定义时使用。其核心是org.springframework.expression.Expression接口，Spring使用该接口来表示EL中的表达式。通过Expression接口的系列getValue()方法我们可以获取对应Expression在特定EvaluationContext下的值，也可以通过其系列setValue()方法来设值。对应的Expression通常不是由我们直接来new对应实现类的实例，而是通过Spring提供的org.springframework.expression.ExpressionParser接口的系列parseExpression()方法来将一个字符串类型的表达式解析为一个Expression。以下是一个简单的示例，在该示例中我们将字符串表达式“1+2”解析为一个Expression，然后进行计算得出其值为3。</p>
+      <p>SpEL表达式学习</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="SpEl"><a href="#SpEl" class="headerlink" title="SpEl"></a>SpEl</h2><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>Spring也有自己的EL，叫Spring Expression Language，简称SpEl。其可以在程序中单独使用，也可以在Spring应用中进行bean定义时使用。其核心是org.springframework.expression.Expression接口，Spring使用该接口来表示EL中的表达式。通过Expression接口的系列getValue()方法我们可以获取对应Expression在特定EvaluationContext下的值，也可以通过其系列setValue()方法来设值。对应的Expression通常不是由我们直接来new对应实现类的实例，而是通过Spring提供的org.springframework.expression.ExpressionParser接口的系列parseExpression()方法来将一个字符串类型的表达式解析为一个Expression。以下是一个简单的示例，在该示例中我们将字符串表达式“1+2”解析为一个Expression，然后进行计算得出其值为3。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Testpublic void test() &#123; String expressionStr = &quot;1+2&quot;; ExpressionParser parser = new SpelExpressionParser(); Expression expression = parser.parseExpression(expressionStr); Integer val = expression.getValue(Integer.class); System.out.println(expressionStr + &quot;的结果是：&quot; + val);&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Expression接口有一系列的getValue()方法，当其不接收任何参数时表示将会把Expression的计算结果当做一个Object进行返回，如果我们希望返回的是特定的类型，则可以传递对应的类型作为getValue()方法的参数，如上述示例中传递的Interger.class。我们也可以通过给Expression的getValue()方法传递EvaluationContext用以获取在特定环境下的计算结果，也可以传递一个Object作为Expression计算的rootObject。关于Expression接口的更多介绍请参考Spring的API文档。</p>

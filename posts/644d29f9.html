@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="onedrive,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="Onedrive实现与本地文件同步">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>Onedrive实现与本地文件同步 |  红猪的博客</title>
@@ -101,12 +103,20 @@
   2023-02-25
 </time>
         
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Onedrive/">Onedrive</a>
+  </div>
+
       </div>
       
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="具体操作方法"><a href="#具体操作方法" class="headerlink" title="具体操作方法"></a>具体操作方法</h2><p>打开Onedrive，在右下角系统托盘上点击右键，选择设置。<br>选择“自动保存”选项卡，在“保护重要文件夹”中勾选文档。这一步的操作是为了保证文档文件夹中的内容电脑时刻与云端保持同步。注意：选择之后本地的文档将成为指向Onedrive文件夹的目录，因此保存在其中的虚拟机或VS工程文件等有可能出现无法读取的现象，请注意在操作后进行调整。</p>
+      <p>Onedrive实现与本地文件同步</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="具体操作方法"><a href="#具体操作方法" class="headerlink" title="具体操作方法"></a>具体操作方法</h2><p>打开Onedrive，在右下角系统托盘上点击右键，选择设置。<br>选择“自动保存”选项卡，在“保护重要文件夹”中勾选文档。这一步的操作是为了保证文档文件夹中的内容电脑时刻与云端保持同步。注意：选择之后本地的文档将成为指向Onedrive文件夹的目录，因此保存在其中的虚拟机或VS工程文件等有可能出现无法读取的现象，请注意在操作后进行调整。</p>
 <p>假设我要同步的本地文件夹是E:\工作，而Onedrive在本地的保存目录为C:\Users\用户名\OneDrive。</p>
 <p>以管理员模式打开命令提示符（Win10用户可直接搜索cmd，然后右键命令提示符搜索结果的程序，选择以管理员权限运行）。在打开的窗口中输入命令：mklink /d C:\Users\用户名\OneDrive\工作 E:\工作。注意：执行本操作时请确保C:\Users\用户名\OneDrive下没有名为“工作”的目录，否则将会报错。</p>
 <p>回车键执行后，命令提示符返回“……创建的文件链接”字样的文字，即说明建立连接成功。</p>
@@ -163,9 +173,9 @@
     </a>
   
   
-    <a href="/posts/2f57a694.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/posts/16e89da7.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">正则表达式</div>
+      <div class="article-nav-title">Oracle11gR2安装教程</div>
     </a>
   
 </nav>

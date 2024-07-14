@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="函数式编程,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="函数式编程">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>函数式编程 |  红猪的博客</title>
@@ -106,7 +108,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="forEach-和-map-的区别"><a href="#forEach-和-map-的区别" class="headerlink" title=".forEach()和.map()的区别"></a>.forEach()和.map()的区别</h2><p>共同点:</p>
+      <p>函数式编程</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="forEach-和-map-的区别"><a href="#forEach-和-map-的区别" class="headerlink" title=".forEach()和.map()的区别"></a>.forEach()和.map()的区别</h2><p>共同点:</p>
 <p>1.都循环数组中的每一项;</p>
 <p>2.每次循环的匿名函数都有三个参数</p>
 <p>​    数组中的当前项item</p>
@@ -603,24 +609,32 @@
 <p><strong>抽象方法：accept</strong></p>
 <p>Consumer 接口中包含抽象方法 void accept(T t) ，意为消费一个指定泛型的数据。基本使用如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo01Consumer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        consumerString(s -&gt; System.out.println(s));</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">consumerString</span><span class="params">(Consumer&lt;String&gt; function)</span> &#123;</span><br><span class="line">        function.accept(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>运行程序，控制台输出：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello</span><br></pre></td></tr></table></figure>
+
 <p>当然，更好的写法是使用方法引用。</p>
 <p><strong>默认方法：andThen</strong></p>
 <p>如果一个方法的参数和返回值全都是 Consumer 类型，那么就可以实现效果:消费数据的时候，首先做一个操作， 然后再做一个操作，实现组合。而这个方法就是 Consumer 接口中的default方法 andThen 。</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">default Consumer&lt;T&gt; <span class="built_in">andThen</span>(Consumer&lt;? super T&gt; after) &#123;</span><br><span class="line">    Objects<span class="selector-class">.requireNonNull</span>(after);</span><br><span class="line">    return (T t) -&gt; &#123; <span class="built_in">accept</span>(t); after<span class="selector-class">.accept</span>(t); &#125;;</span><br><span class="line">&#125;</span><br><span class="line">备注: java.util.Objects 的 requireNonNull 静态方法将会在参数为null时主动抛出</span><br><span class="line"> NullPointerException 异常。这省去了重复编写if语句和抛出空指针异常的麻烦。</span><br></pre></td></tr></table></figure>
+
 <p>要想实现组合，需要两个或多个Lambda表达式即可，而 andThen 的语义正是“一步接一步”操作。例如两个步骤组 合的情况：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo02Consumer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        consumerString(</span><br><span class="line">                <span class="comment">// toUpperCase()方法，将字符串转换为大写</span></span><br><span class="line">                s -&gt; System.out.println(s.toUpperCase()),</span><br><span class="line">                <span class="comment">// toLowerCase()方法，将字符串转换为小写</span></span><br><span class="line">                s -&gt; System.out.println(s.toLowerCase())</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">consumerString</span><span class="params">(Consumer&lt;String&gt; one, Consumer&lt;String&gt; two)</span> &#123;</span><br><span class="line">        one.andThen(two).accept(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>运行结果将会首先打印完全大写的HELLO，然后打印完全小写的hello。当然，通过链式写法可以实现更多步骤的组合。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HELLO</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+
 <p>练习：格式化打印信息</p>
 <p><strong>题目</strong></p>
 <p>下面的字符串数组当中存有多条信息，请按照格式“ 姓名:XX。性别:XX。 ”的格式将信息打印出来。要求将打印姓 名的动作作为第一个 Consumer 接口的Lambda实例，将打印性别的动作作为第二个 Consumer 接口的Lambda实 例，将两个 Consumer 接口按照顺序“拼接”到一起。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] array = &#123; <span class="string">&quot;大雄，男&quot;</span>, <span class="string">&quot;静香，女&quot;</span>, <span class="string">&quot;胖虎，男&quot;</span> &#125;;</span><br></pre></td></tr></table></figure>
+
 <p><strong>解答</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoPrintInfo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String[] array = &#123; <span class="string">&quot;大雄，男&quot;</span>, <span class="string">&quot;静香，女&quot;</span>, <span class="string">&quot;胖虎，男&quot;</span> &#125;;</span><br><span class="line"> </span><br><span class="line">        printInfo(</span><br><span class="line">                s -&gt; System.out.print(<span class="string">&quot;姓名：&quot;</span> + s.split(<span class="string">&quot;，&quot;</span>)[<span class="number">0</span>] + <span class="string">&quot;，&quot;</span>),</span><br><span class="line">                s -&gt; System.out.println(<span class="string">&quot;性别：&quot;</span> + s.split(<span class="string">&quot;，&quot;</span>)[<span class="number">1</span>] + <span class="string">&quot;。&quot;</span>),</span><br><span class="line">                array</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printInfo</span><span class="params">(Consumer&lt;String&gt; one, Consumer&lt;String&gt; two, String[] array)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (String info : array) &#123;</span><br><span class="line">            one.andThen(two).accept(info);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>运行程序，控制台输出：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">姓名：大雄，性别：男。</span><br><span class="line">姓名：静香，性别：女。</span><br><span class="line">姓名：胖虎，性别：男。</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><p>​    Function 计算转换接口</p>
 <p>根据其中抽象方法的参数列表和返回值类型知道，我们可以在方法中对传入的参数计算或转换，把结果返回</p>

@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="注解笔记,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="注解笔记">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>注解笔记 |  红猪的博客</title>
@@ -106,7 +108,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><h3 id="Target-目标即作用范围"><a href="#Target-目标即作用范围" class="headerlink" title="@Target 目标即作用范围"></a>@Target 目标即作用范围</h3><p> Target注解的作用是：描述注解的使用范围（即：被修饰的注解可以用在什么地方） 。</p>
+      <p>注解笔记</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><h3 id="Target-目标即作用范围"><a href="#Target-目标即作用范围" class="headerlink" title="@Target 目标即作用范围"></a>@Target 目标即作用范围</h3><p> Target注解的作用是：描述注解的使用范围（即：被修饰的注解可以用在什么地方） 。</p>
 <p>Target注解用来说明那些被它所注解的注解类可修饰的对象范围：注解可以用于修饰 packages、types（类、接口、枚举、注解类）、类成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数），在定义注解类时使用了@Target 能够更加清晰的知道它能够被用来修饰哪些对象，它的取值范围定义在ElementType 枚举中。</p>
 <p>@Target(ElementType.xxx,ElementType.xxx)</p>
 <p>ElementType.PACKAGE：该注解只能声明在一个包名前。 </p>

@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="java基础,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="java基础">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>java基础 |  红猪的博客</title>
@@ -106,7 +108,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h3 id="NIO和BIO的主要区别"><a href="#NIO和BIO的主要区别" class="headerlink" title="NIO和BIO的主要区别"></a>NIO和BIO的主要区别</h3><h3 id="Java-BIO和NIO之间的主要区别："><a href="#Java-BIO和NIO之间的主要区别：" class="headerlink" title="Java BIO和NIO之间的主要区别："></a>Java BIO和NIO之间的主要区别：</h3><table>
+      <p>java基础</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h3 id="NIO和BIO的主要区别"><a href="#NIO和BIO的主要区别" class="headerlink" title="NIO和BIO的主要区别"></a>NIO和BIO的主要区别</h3><h3 id="Java-BIO和NIO之间的主要区别："><a href="#Java-BIO和NIO之间的主要区别：" class="headerlink" title="Java BIO和NIO之间的主要区别："></a>Java BIO和NIO之间的主要区别：</h3><table>
 <thead>
 <tr>
 <th>BIO</th>
@@ -436,7 +442,32 @@
 
 <h3 id="比较两个字符串的时间类型大小"><a href="#比较两个字符串的时间类型大小" class="headerlink" title="比较两个字符串的时间类型大小"></a>比较两个字符串的时间类型大小</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String endTime;</span><br><span class="line">String startTime;</span><br><span class="line">//endTime - startTime;</span><br><span class="line">int endCompare = req.getEndTime().compareTo(req.getStartTime());</span><br><span class="line">int&lt;0 : endTime小于startTime</span><br></pre></td></tr></table></figure>
 
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>CSDN博主「了迹奇有没」的原创文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/w_monster/article/details/112008308">https://blog.csdn.net/w_monster/article/details/112008308</a></p>
+<h2 id="List集合去重的5种方式"><a href="#List集合去重的5种方式" class="headerlink" title="List集合去重的5种方式"></a>List集合去重的5种方式</h2><h3 id="1、双重for循环"><a href="#1、双重for循环" class="headerlink" title="1、双重for循环"></a>1、双重for循环</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0; i &lt; list.size(); i++) &#123; </span><br><span class="line">	for (int j = 0; j &lt; list.size(); j++) &#123; </span><br><span class="line">		if(i!=j&amp;&amp;list.get(i)==list.get(j)) &#123; </span><br><span class="line">			list.remove(list.get(j)); </span><br><span class="line"> 		&#125; </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、利用List集合的contains方法循环遍历，清空，重新添加"><a href="#2、利用List集合的contains方法循环遍历，清空，重新添加" class="headerlink" title="2、利用List集合的contains方法循环遍历，清空，重新添加"></a>2、利用List集合的contains方法循环遍历，清空，重新添加</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private static void removeDuplicate(List&lt;String&gt; list) &#123;</span><br><span class="line">    List&lt;String&gt; result = new ArrayList&lt;String&gt;(list.size());</span><br><span class="line">    for (String str : list) &#123;</span><br><span class="line">        if (!result.contains(str)) &#123;</span><br><span class="line">            result.add(str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    list.clear();</span><br><span class="line">    list.addAll(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序"><a href="#3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序" class="headerlink" title="3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序"></a>3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private static void removeDuplicate(List&lt;String&gt; list) &#123;</span><br><span class="line">    HashSet&lt;String&gt; set = new HashSet&lt;String&gt;(list.size());</span><br><span class="line">    List&lt;String&gt; result = new ArrayList&lt;String&gt;(list.size());</span><br><span class="line">    for (String str : list) &#123;</span><br><span class="line">        if (set.add(str)) &#123;</span><br><span class="line">            result.add(str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    list.clear();</span><br><span class="line">    list.addAll(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、使用java8特性的stream进行List去重"><a href="#4、使用java8特性的stream进行List去重" class="headerlink" title="4、使用java8特性的stream进行List去重"></a>4、使用java8特性的stream进行List去重</h3><p>要从arraylist中删除重复项，我们也可以使用java 8 stream api。</p>
+<p>使用steam的distinct()方法返回一个由不同数据组成的流，通过对象的equals（）方法进行比较。收集所有区域数据List使用Collectors.toList()。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line">public class ArrayListExample &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; numbersList = new ArrayList&lt;&gt;(Arrays.asList(1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 7, 8));</span><br><span class="line">        System.out.println(numbersList);</span><br><span class="line">        List&lt;Integer&gt; listWithoutDuplicates = numbersList.stream().distinct().collect(Collectors.toList());</span><br><span class="line">        System.out.println(listWithoutDuplicates);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据"><a href="#5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据" class="headerlink" title="5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据"></a>5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据</h3><p>LinkedHashSet是在一个ArrayList删除重复数据的最佳方法。</p>
+<p>LinkedHashSet在内部完成两件事：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">删除重复数据</span><br><span class="line">保持添加到其中的数据的顺序</span><br></pre></td></tr></table></figure>
+
+<p>Java示例使用LinkedHashSet删除arraylist中的重复项。在给定的示例中，numbersList是包含整数的arraylist，其中一些是重复的数字。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.LinkedHashSet;</span><br><span class="line"></span><br><span class="line">public class ArrayListExample &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; numbersList = new ArrayList&lt;&gt;(Arrays.asList(1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 7, 8));</span><br><span class="line">        System.out.println(numbersList);</span><br><span class="line">        LinkedHashSet&lt;Integer&gt; hashSet = new LinkedHashSet&lt;&gt;(numbersList);</span><br><span class="line">        ArrayList&lt;Integer&gt; listWithoutDuplicates = new ArrayList&lt;&gt;(hashSet);</span><br><span class="line">        System.out.println(listWithoutDuplicates);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id><a href="#" class="headerlink" title></a></h2><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>CSDN博主「了迹奇有没」的原创文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/w_monster/article/details/112008308">https://blog.csdn.net/w_monster/article/details/112008308</a></p>
 
     </div>
     <footer class="article-footer">

@@ -4,11 +4,13 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="抢购,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="抢购服务">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-  <title>秒杀服务 |  红猪的博客</title>
+  <title>抢购服务 |  红猪的博客</title>
   
     <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
@@ -78,7 +80,7 @@
 
     <section>
       <div class="container">
-  <article id="post-秒杀服务" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <article id="post-抢购服务" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   
   <div class="article-cover mb-5">
@@ -92,7 +94,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      秒杀服务
+      抢购服务
     </h1>
   
 
@@ -106,7 +108,12 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="秒杀项目流程"><a href="#秒杀项目流程" class="headerlink" title="秒杀项目流程:"></a>秒杀项目流程:</h2><p>项目启动同步将做秒杀活动的商品库存同步到redis</p>
+      <p>服务</p>
+<p>抢购服务</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="抢购项目流程"><a href="#抢购项目流程" class="headerlink" title="抢购项目流程:"></a>抢购项目流程:</h2><p>项目启动同步将做秒杀活动的商品库存同步到redis</p>
 <p>-&gt;用户到抢购商品页面的时候后台生成一个uuidpath存到redis中设置5分钟的过期时间 ,放到作用域传到前台</p>
 <p>-&gt;用户将要结算购物车中商品进行支付或者直接点击支付的时候,将uuidpath以参数的形式传到后台</p>
 <p>-&gt;请求到抢购接口,获取参数的uuidpath和redis 中是否相同,相同过期就删掉这个redis,重新生成新的uuidpath防止恶意用户知道地址,一直重复请求抢购接口(接口地址隐藏),将用户id+活动id+秒杀商品id作为键,5作为值,然后给用户请求接口的次数计数,超过5 ,就给用户返回一个系统繁忙的提示,给用户进行限流,再结合setinel的全局限流给接口进行全局限流</p>

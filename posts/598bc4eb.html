@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="sql,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="sql日期格式转换">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>sql日期格式转换 |  红猪的博客</title>
@@ -101,12 +103,20 @@
   2023-04-18
 </time>
         
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/sql/">sql</a>
+  </div>
+
       </div>
       
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="Oracle日期和字符串互相转换"><a href="#Oracle日期和字符串互相转换" class="headerlink" title="Oracle日期和字符串互相转换"></a>Oracle日期和字符串互相转换</h2><h3 id="1-日期转字符串"><a href="#1-日期转字符串" class="headerlink" title="1 日期转字符串"></a>1 日期转字符串</h3><p>1.1 yyyy年mm月dd日hh24時mi分ss秒</p>
+      <p>sql日期格式转换</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="Oracle日期和字符串互相转换"><a href="#Oracle日期和字符串互相转换" class="headerlink" title="Oracle日期和字符串互相转换"></a>Oracle日期和字符串互相转换</h2><h3 id="1-日期转字符串"><a href="#1-日期转字符串" class="headerlink" title="1 日期转字符串"></a>1 日期转字符串</h3><p>1.1 yyyy年mm月dd日hh24時mi分ss秒</p>
 <p>手动拼接年月日</p>
 <p>select<br>      to_char(sysdate, ‘yyyy’) || ‘年’<br>   || to_char(sysdate, ‘mm’) || ‘月’<br>   || to_char(sysdate, ‘dd’) || ‘日’<br>   || ‘ ‘<br>   || to_char(sysdate, ‘hh24’) || ‘時’<br>   || to_char(sysdate, ‘mi’) || ‘分’<br>   || to_char(sysdate, ‘ss’) || ‘秒’<br>from<br>  dual</p>
 <p>⏹结果<br>2021年09月08日</p>
@@ -144,6 +154,8 @@
     </div>
     <footer class="article-footer">
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/" rel="tag">sql</a></li></ul>
+
     </footer>
   </div>
   
@@ -161,9 +173,9 @@
     </a>
   
   
-    <a href="/posts/cf90fc03.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/posts/a8e4d798.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">List集合</div>
+      <div class="article-nav-title">Oracle语法</div>
     </a>
   
 </nav>

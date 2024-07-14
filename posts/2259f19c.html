@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="docker,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="Liunx安装docker">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>Liunx安装docker |  红猪的博客</title>
@@ -110,7 +112,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="配置yum国内镜像加速"><a href="#配置yum国内镜像加速" class="headerlink" title="配置yum国内镜像加速"></a>配置yum国内镜像加速</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、备份</span></span><br><span class="line"><span class="built_in">mv</span> /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo.backup</span><br><span class="line"><span class="comment"># 2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/</span></span><br><span class="line"><span class="built_in">wget</span> <span class="literal">-O</span> /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo http://mirrors.aliyun.com/repo/Centos<span class="literal">-7</span>.repo</span><br><span class="line"><span class="comment"># 3、生成缓存</span></span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+      <p>Liunx安装docker</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="配置yum国内镜像加速"><a href="#配置yum国内镜像加速" class="headerlink" title="配置yum国内镜像加速"></a>配置yum国内镜像加速</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、备份</span></span><br><span class="line"><span class="built_in">mv</span> /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo.backup</span><br><span class="line"><span class="comment"># 2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/</span></span><br><span class="line"><span class="built_in">wget</span> <span class="literal">-O</span> /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo http://mirrors.aliyun.com/repo/Centos<span class="literal">-7</span>.repo</span><br><span class="line"><span class="comment"># 3、生成缓存</span></span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
 
 <h2 id="安装docker运行环境"><a href="#安装docker运行环境" class="headerlink" title="安装docker运行环境"></a>安装docker运行环境</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 由于 Docker 是基于 C 和 C++ 开发的，所以需要先安装相关环境。</span></span><br><span class="line">yum <span class="literal">-y</span> install gcc</span><br><span class="line">yum <span class="literal">-y</span> install gcc<span class="literal">-c</span>++</span><br></pre></td></tr></table></figure>
 

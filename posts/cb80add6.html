@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="ThreadLocal,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="ThreadLocal学习笔记">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>ThreadLocal学习笔记 |  红猪的博客</title>
@@ -110,7 +112,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="概念"><a href="#概念" class="headerlink" title="概念:"></a>概念:</h2><p>ThreadLocal叫做本地线程变量，意思是说，ThreadLocal中填充的的是当前线程的变量，该变量对其他线程而言是封闭且隔离的，线程内新建了一个“局部变量”，之所以加引号是因为，这个局部变量实际上可以是本线程内的全局变量。</p>
+      <p>ThreadLocal学习笔记</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念:"></a>概念:</h2><p>ThreadLocal叫做本地线程变量，意思是说，ThreadLocal中填充的的是当前线程的变量，该变量对其他线程而言是封闭且隔离的，线程内新建了一个“局部变量”，之所以加引号是因为，这个局部变量实际上可以是本线程内的全局变量。</p>
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点:"></a>特点:</h2><p>线程并发:在多线程并发的场景下使用</p>
 <p>传递数据:可以通过threadlocal在同一个线程，不同组件传递公共变量</p>
 <p>线程隔离:每个线程变量都是独立的，不会互相影响</p>

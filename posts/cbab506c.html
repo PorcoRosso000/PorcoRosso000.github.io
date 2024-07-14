@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="redis,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="docker安装redis">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>docker安装redis |  红猪的博客</title>
@@ -110,7 +112,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis:6.2.6</span><br></pre></td></tr></table></figure>
+      <p>docker安装redis</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis:6.2.6</span><br></pre></td></tr></table></figure>
 
 <h2 id="docker配置redis"><a href="#docker配置redis" class="headerlink" title="docker配置redis"></a>docker配置redis</h2><p>使用前下载redis配置文件：<a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/GWTjtzHwGe3j3HD0.conf?fileGuid=rqhjpZwZC7Q4TzUJ">redis.conf</a></p>
 <h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">打开目录</span></span><br><span class="line">[root@MuYu /]# cd /usr/local/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在其目录下创建 docker/redis</span></span><br><span class="line">[root@MuYu local]# mkdir -p docker/redis</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入 docker/redis目录</span></span><br><span class="line">[root@MuYu local]# cd docker/redis/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建 redis的config和redis的data</span></span><br><span class="line">[root@MuYu redis]# mkdir config</span><br><span class="line">[root@MuYu redis]# mkdir data</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">上传配置文件到 config目录下面</span></span><br><span class="line">[root@MuYu redis]# cd config/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用rz上传文件</span></span><br><span class="line">[root@MuYu config]# rz</span><br><span class="line">[root@MuYu config]# ll</span><br><span class="line">total 92</span><br><span class="line">-rw-r--r-- 1 root root 93724 Oct  4  2021 redis.conf</span><br></pre></td></tr></table></figure>

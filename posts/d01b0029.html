@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="长链接变短链接,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="长链接变短链接">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>长链接变短链接 |  红猪的博客</title>
@@ -106,7 +108,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <p>一、实现原理</p>
+      <p>长链接变短链接</p>
+<span id="more"></span>
+
+<hr>
+<p>一、实现原理</p>
 <p>1.将长网址用md5算法生成32位签名串，分为4段,，每段8个字符。</p>
 <p>2.对这4段循环处理，取每段的8个字符, 将他看成16进制字符串与0x3fffffff(30位1)的位与操作，超过30位的忽略处理。多了也没用因为下面要分成6段  嘿嘿正好取整。注意用Long型变量（长度问题  你懂得）</p>
 <p>3.将每段得到的30位字符（后台以long十进制显示）又分成6段，通过移位运算将每5位分别与字符数组求与运算（0x0000003D），得到其在字符数组中的索引并取出拼串。</p>

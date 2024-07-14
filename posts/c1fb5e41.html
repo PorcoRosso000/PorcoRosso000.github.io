@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="portainer,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="docker安装portainer">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>docker安装portainer |  红猪的博客</title>
@@ -110,7 +112,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入目录</span></span><br><span class="line">[root@MuYu docker]# cd /usr/local/docker</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建文件夹</span></span><br><span class="line">[root@MuYu docker]# mkdir -p portainer/data</span><br></pre></td></tr></table></figure>
+      <p>docker安装portainer</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入目录</span></span><br><span class="line">[root@MuYu docker]# cd /usr/local/docker</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建文件夹</span></span><br><span class="line">[root@MuYu docker]# mkdir -p portainer/data</span><br></pre></td></tr></table></figure>
 
 <h2 id="汉化包"><a href="#汉化包" class="headerlink" title="汉化包"></a>汉化包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">打开目录portainer</span></span><br><span class="line">[root@localhost docker]# cd portainer/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载汉化包(汉化包已失效,重新找汉化包)</span></span><br><span class="line">[root@MuYu portainer]# wget https://labx.me/dl/4nat/public.zip</span><br><span class="line">--2022-05-01 23:09:00--  https://labx.me/dl/4nat/public.zip</span><br><span class="line">Resolving labx.me (labx.me)... 43.134.207.90</span><br><span class="line">Connecting to labx.me (labx.me)|43.134.207.90|:443... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 1932694 (1.8M) [application/zip]</span><br><span class="line">Saving to: ‘public.zip’</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">100%</span><span class="language-bash">[===============================================================================================================================================&gt;] 1,932,694   1.72MB/s   <span class="keyword">in</span> 1.1s</span>   </span><br><span class="line"></span><br><span class="line">2022-05-01 23:09:03 (1.72 MB/s) - ‘public.zip’ saved [1932694/1932694]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解压汉化包</span></span><br><span class="line">[root@MuYu portainer]# unzip public.zip</span><br></pre></td></tr></table></figure>
 

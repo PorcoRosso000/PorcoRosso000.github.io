@@ -337,460 +337,27 @@
       <div class="col-3">
         <article id="post-MongoDB学习" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
-  
-  <div class="article-inner">
+  <div class="card rounded">
     
-    <header class="article-header">
-      
-      
+    <div class="card-body bg-light">
+			
   
-    <h5 class="article-title" itemprop="name">
+    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
       <a href="/posts/88175981.html">MongoDB学习</a>
     </h5>
   
 
-      <div class="article-meta">
-        <time class="text-gray" datetime="2023-10-17T09:48:48.000Z" itemprop="datePublished">
+			<time class="text-gray" datetime="2023-10-17T09:48:48.000Z" itemprop="datePublished">
   2023-10-17
 </time>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MongoDB/">MongoDB</a>
-  </div>
-
+			<div class="card-text mt-3 line-clamp line-clamp-2"><p>MongoDB学习</p></div>
+      <hr class="hr">
+      
+      <div class="article-more-link">
+        <a href="/posts/88175981.html#more">阅读全文</a>
       </div>
       
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      <h2 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h2><p>MongoDB是一个介于关系数据库和非关系数据库之间的产品，  </p>
-<p>MongoDB是文档型的NoSQL数据库，数据以文档（对应关系型数据库的记录）的形式在MongoDB中保存，文档实际上就是一个个JSON字符串，使用JSON的好处是非常直观  </p>
-<p>NoSQL简介</p>
-<p>NoSQL(NoSQL = Not Only SQL)，意即反SQL运动，指的是非关系型的数据库，是一项全新的数据库革命性运动，早期就有人提出，发展至2009年趋势越发高涨。NoSQL的拥护者们提倡运用非关系型的数据存储，相对于目前铺天盖地的关系型数据库运用，这一概念无疑是一种全新的思维的注入</p>
-<p>为什幺使用NoSQL : </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、对数据库高并发读写。</span><br><span class="line"></span><br><span class="line">2、对海量数据的高效率存储和访问。</span><br><span class="line"></span><br><span class="line">3、对数据库的高可扩展性和高可用性。</span><br></pre></td></tr></table></figure>
-
-<p>弱点：    </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、数据库事务一致性需求</span><br><span class="line"></span><br><span class="line">2、数据库的写实时性和读实时性需求</span><br><span class="line"></span><br><span class="line">3、对复杂的SQL查询，特别是多表关联查询的需求</span><br></pre></td></tr></table></figure>
-
-<h2 id="什么是MongoDB"><a href="#什么是MongoDB" class="headerlink" title="什么是MongoDB ?"></a>什么是MongoDB ?</h2><p>MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统。</p>
-<p>在高负载的情况下，添加更多的节点，可以保证服务器性能。</p>
-<p>MongoDB 旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
-<p>MongoDB 将数据存储为一个文档，数据结构由键值(key=&gt;value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。</p>
-<p><img src="/posts/88175981/clip_image002.gif" alt="图片"></p>
-<h3 id="MongoDB事务"><a href="#MongoDB事务" class="headerlink" title="MongoDB事务"></a>MongoDB事务</h3><p> MongoDB目前只支持单文档事务，MongoDB暂时不适合需要复杂事务的场景。</p>
-<p> 灵活的文档模型JSON格式存储最接近真实对象模型，对开发者友好，方便快速开发迭代，可用复制集满足数据高可靠、高可用的需求，运维较为简单、故障自动切换可扩展分片集群海量数据存储。</p>
-<h3 id="应用案例："><a href="#应用案例：" class="headerlink" title="应用案例："></a>应用案例：</h3><p> （1）游戏场景</p>
-<p> 使用MongoDB存储游戏用户信息、装备、积分等，直接以内嵌文档的形式存储，方便查询、更新。</p>
-<p> （2）物流场景</p>
-<p> 使用MongoDB存储订单信息、订单状态、物流信息，订单状态在运送过程中飞速迭代、以MongoDB内嵌数组的形式来存储，一次查询就能将订单所有的变更查出来，牛逼plus。</p>
-<p> （3）社交场景</p>
-<p> 使用MongoDB存储用户信息，朋友圈信息，通过地理位置索引实现附近的人、定位功能。</p>
-<p> （4）物联网场景</p>
-<p> 使用MongoDB存储设备信息、设备汇报的日志信息、并对这些信息进行多维度分析。</p>
-<p> （5）视频直播</p>
-<p> 使用MongoDB存储用户信息、点赞互动信息。</p>
-<h4 id="场景总结："><a href="#场景总结：" class="headerlink" title="场景总结："></a>场景总结：</h4><ul>
-<li>数据量大</li>
-<li>读写操作频繁</li>
-<li>数据价值较低，对事务要求不高</li>
-</ul>
-<h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><p> MongoDB的最小存储单位是文档（document）对象，相当于MySQL中的行，数据以BSON文档的形式存储在磁盘上。</p>
-<p> BSON是一种二进制形式的存储格式，简称Binary JSON。</p>
-<h2 id="MongoDB-特点"><a href="#MongoDB-特点" class="headerlink" title="MongoDB 特点"></a>MongoDB 特点</h2><p>1、MongoDB 是一个面向文档存储的数据库，操作起来比较简单和容易。</p>
-<p>2、你可以在MongoDB记录中设置任何属性的索引 (如：FirstName=”Sameer”,Address=”8 Gandhi Road”)来实现更快的排序。</p>
-<p>3、你可以通过本地或者网络创建数据镜像，这使得MongoDB有更强的扩展性。</p>
-<p>4、如果负载的增加（需要更多的存储空间和更强的处理能力） ，它可以分布在计算机网络中的其他节点上这就是所谓的分片。</p>
-<p>5、Mongo支持丰富的查询表达式。查询指令使用JSON形式的标记，可轻易查询文档中内嵌的对象及数组。</p>
-<p>6、MongoDb 使用update()命令可以实现替换完成的文档（数据）或者一些指定的数据字段 。</p>
-<p>7、Mongodb中的Map/reduce主要是用来对数据进行批量处理和聚合操作。</p>
-<p>8、Map和Reduce。Map函数调用emit(key,value)遍历集合中所有的记录，将key与value传给Reduce函数进行处理。</p>
-<p>9、Map函数和Reduce函数是使用Javascript编写的，并可以通过db.runCommand或mapreduce命令来执行MapReduce操作。</p>
-<p>10、GridFS是MongoDB中的一个内置功能，可以用于存放大量小文件。</p>
-<p>11、MongoDB允许在服务端执行脚本，可以用Javascript编写某个函数，直接在服务端执行，也可以把函数的定义存储在服务端，下次直接调用即可。</p>
-<p>12、MongoDB支持各种编程语言:RUBY，PYTHON，JAVA，C++，PHP，C#等多种语言。</p>
-<p>13、MongoDB安装简单。</p>
-<p><strong>数据量非常大并且数据不是非常重要的</strong></p>
-<p>企业中：  用于存系统日志   </p>
-<p>重新安装一个linux    100G     4G </p>
-<h2 id="MongoDB-概念解析"><a href="#MongoDB-概念解析" class="headerlink" title="MongoDB 概念解析"></a>MongoDB 概念解析</h2><p>不管我们学习什么数据库都应该学习其中的基础概念，在mongodb中基本的概念是文档、集合、数据库，下面我们挨个介绍。</p>
-<p>下表将帮助您更容易理解Mongo中的一些概念：</p>
-<table>
-<thead>
-<tr>
-<th align="left">SQL术语/概念</th>
-<th align="left">MongoDB术语/概念</th>
-<th align="left">解释/说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">database</td>
-<td align="left">database</td>
-<td align="left">数据库</td>
-</tr>
-<tr>
-<td align="left">table</td>
-<td align="left">collection</td>
-<td align="left">数据库表/集合</td>
-</tr>
-<tr>
-<td align="left">row</td>
-<td align="left">document</td>
-<td align="left">数据记录行/文档</td>
-</tr>
-<tr>
-<td align="left">column</td>
-<td align="left">field</td>
-<td align="left">数据字段/域</td>
-</tr>
-<tr>
-<td align="left">index</td>
-<td align="left">index</td>
-<td align="left">索引</td>
-</tr>
-<tr>
-<td align="left">table joins</td>
-<td align="left"></td>
-<td align="left">表连接,MongoDB不支持</td>
-</tr>
-<tr>
-<td align="left">primary key</td>
-<td align="left">primary key</td>
-<td align="left">主键,MongoDB自动将_id字段设置为主键</td>
-</tr>
-</tbody></table>
-<p>通过下图实例，我们也可以更直观的的了解Mongo中的一些概念：</p>
-<p><img src="/posts/88175981/clip_image004.gif" alt="图片"></p>
-<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>一个mongodb中可以建立多个数据库</p>
-<p>常用操作：</p>
-<p>1、 Help查看命令提示 db.help()<br>2、 切换/创建数据库use test 如果数据库不存在，则创建数据库，否则切换到指定数据库<br>3、 查询所有数据库 show dbs;<br>4、 删除当前使用数据库 db.dropDatabase();<br>5、 查看当前使用的数据库 db.getName();<br>6、 显示当前db状态 db.stats();<br>7、 当前db版本 db.version();<br>8、 查看当前db的链接机器地址 db.getMongo();</p>
-<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p>文档是一组键值(key-value)对(即BSON)。MongoDB 的文档不需要设置相同的字段，并且相同的字段不需要相同的数据类型，这与关系型数据库有很大的区别，也是 MongoDB 非常突出的特点。</p>
-<p>下表列出了 RDBMS 与 MongoDB 对应的术语：</p>
-<table>
-<thead>
-<tr>
-<th align="left">RDBMS</th>
-<th align="left">MongoDB</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">数据库</td>
-<td align="left">数据库</td>
-</tr>
-<tr>
-<td align="left">表格</td>
-<td align="left">集合</td>
-</tr>
-<tr>
-<td align="left">行</td>
-<td align="left">文档</td>
-</tr>
-<tr>
-<td align="left">列</td>
-<td align="left">字段</td>
-</tr>
-<tr>
-<td align="left">表联合</td>
-<td align="left">嵌入文档</td>
-</tr>
-<tr>
-<td align="left">主键</td>
-<td align="left">主键 (MongoDB 提供了 key 为 _id )</td>
-</tr>
-</tbody></table>
-<p><strong>需要注意的是：</strong></p>
-<p> </p>
-<p>1、文档中的键/值对是有序的。</p>
-<p>2、文档中的值不仅可以是在双引号里面的字符串，还可以是其他几种数据类型（甚至可以是整个嵌入的文档)。</p>
-<p>3、MongoDB区分类型和大小写。</p>
-<p>4、MongoDB的文档不能有重复的键。</p>
-<p>5、文档的键是字符串。除了少数例外情况，键可以使用任意UTF-8字符。</p>
-<p><strong>文档键命名规范：</strong></p>
-<p>1、键不能含有(空字符)。这个字符用来表示键的结尾。</p>
-<p>2、.和$有特别的意义，只有在特定环境下才能使用。</p>
-<p>3、以下划线”_”开头的键是保留的(不是严格要求的)。</p>
-<h2 id="集合-（表）"><a href="#集合-（表）" class="headerlink" title="集合 （表）"></a>集合 （表）</h2><p>集合就是 MongoDB 文档组，类似于 RDBMS （关系数据库管理系统：Relational Database Management System)中的表格。</p>
-<p>集合存在于数据库中，集合没有固定的结构，这意味着你在对集合可以插入不同格式和类型的数据，但通常情况下我们插入集合的数据都会有一定的关联性。</p>
-<p>常用命令：</p>
-<p>|1、 创建一个集合（table)<br>db.createCollection( “collName”);<br>2、 得到指定名称的集合（table )<br>db.getCollection(“user”);|<br>|:—-|</p>
-<p>MongoDB 数据类型</p>
-<p>下表为MongoDB中常用的几种数据类型：</p>
-<table>
-<thead>
-<tr>
-<th align="left">数据类型</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">String</td>
-<td align="left">字符串。存储数据常用的数据类型。在 MongoDB 中，UTF-8 编码的字符串才是合法的。</td>
-</tr>
-<tr>
-<td align="left">Integer</td>
-<td align="left">整型数值。用于存储数值。根据你所采用的服务器，可分为 32 位或 64 位。</td>
-</tr>
-<tr>
-<td align="left">Boolean</td>
-<td align="left">布尔值。用于存储布尔值（真/假）。</td>
-</tr>
-<tr>
-<td align="left">Double</td>
-<td align="left">双精度浮点值。用于存储浮点值。</td>
-</tr>
-<tr>
-<td align="left">Min/Max keys</td>
-<td align="left">将一个值与 BSON（二进制的 JSON）元素的最低值和最高值相对比。</td>
-</tr>
-<tr>
-<td align="left">Arrays</td>
-<td align="left">用于将数组或列表或多个值存储为一个键。</td>
-</tr>
-<tr>
-<td align="left">Timestamp</td>
-<td align="left">时间戳。记录文档修改或添加的具体时间。</td>
-</tr>
-<tr>
-<td align="left">Object</td>
-<td align="left">用于内嵌文档。</td>
-</tr>
-<tr>
-<td align="left">Null</td>
-<td align="left">用于创建空值。</td>
-</tr>
-<tr>
-<td align="left">Symbol</td>
-<td align="left">符号。该数据类型基本上等同于字符串类型，但不同的是，它一般用于采用特殊符号类型的语言。</td>
-</tr>
-<tr>
-<td align="left">Date</td>
-<td align="left">日期时间。用 UNIX 时间格式来存储当前日期或时间。你可以指定自己的日期时间：创建 Date 对象，传入年月日信息。</td>
-</tr>
-<tr>
-<td align="left">Object ID</td>
-<td align="left">对象 ID。用于创建文档的 ID。</td>
-</tr>
-<tr>
-<td align="left">Binary Data</td>
-<td align="left">二进制数据。用于存储二进制数据。</td>
-</tr>
-<tr>
-<td align="left">Code</td>
-<td align="left">代码类型。用于在文档中存储 JavaScript 代码。</td>
-</tr>
-<tr>
-<td align="left">Regular expression</td>
-<td align="left">正则表达式类型。用于存储正则表达式。</td>
-</tr>
-</tbody></table>
-<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>1、网站数据：Mongo非常适合实时的插入，更新与查询，并具备网站实时数据存储所需的复制及高度伸缩性。</p>
-<p>2、缓存：由于性能很高，Mongo也适合作为信息基础设施的缓存层。在系统重启之后，由M ongo搭建的持久化缓存层可以避免下层的数据源过载。</p>
-<p>3、大尺寸，低价值的数据：使用传统的关系型数据库存储一些数据时可能会比较昂贵， 在此之前，很多时候程序员往往会选择传统的文件进行存储。</p>
-<p>4、高伸缩性的场景：Mongo非常适合由数十或数百台服务器组成的数据库。Mongo的路线图中已经包含对Map Reduce弓摩的内置支持。</p>
-<p>5、用于对象及 JSON数据的存储：Mongo的BSON数据格式非常适合文档化格式的存储 及查询。</p>
-<p><strong>不适用场合</strong></p>
-<p>1、高度事务性的系统：例如银行或会计系统。传统的关系型数据库目前还是更适用于需要大量原子性复杂事务的应用程序。</p>
-<p>2、传统的商业智能应用：针对特定问题的BI数据库会对产生高度优化的查询方式。对于此类应用，数据仓库可能是更合适的选择。</p>
-<h2 id="MongoDB入门"><a href="#MongoDB入门" class="headerlink" title="MongoDB入门"></a><strong>MongoDB入门</strong></h2><h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h3><p>db.User.save({name:’zhangsan’,age:21,sex:true})</p>
-<blockquote>
-<p>db.User.find()<br>{“_id”: Objectld(“4f69e680c9106ee2ec95da66”), “name”: “zhangsan”, “age”: 21,”sex”: true}</p>
-</blockquote>
-<p>_id组合</p>
-<p>Objectld是、id”的默认类型。Objectld使用12字节的存储空间，每个字节二位十六进制数字， 是一个24位的字符串</p>
-<p><img src="/posts/88175981/clip_image006.gif" alt="图片"></p>
-<ol>
-<li>时间戳：时间不断变化的</li>
-<li>机器：主机的唯_标识码。通常是机器主机名的散列值，这样可以确保不同主机 ,生成不同的Objectld , 不产生冲突。</li>
-<li>PID: 为了确保在同一台机器上并发的多个进程产生的Objectld是唯一的，所以加上进程标识符(PID).</li>
-<li>计数器：前9个字节保证了同一秒钟不同机器不同进程产生的Objectld是唯一的。 </li>
-</ol>
-<p>后3个字节就是一个自动增加的计数器，确保相同进程同一秒产生的Objectld也是 </p>
-<p>不一样。同一秒最多允许每个进程拥有IS 777 2托个不同的Objectld。</p>
-<h3 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h3><p>1、WHERE</p>
-<p>|# select * from User where name = ‘zhangsan</p>
-<blockquote>
-<p>db.User.find({name:”zhangsan”})|<br>|:—-|</p>
-</blockquote>
-<p>2、FIELDS</p>
-<p>|# select name, age from User where age = 21</p>
-<blockquote>
-<p>db.User.find({age:21}, {‘name’:1, ‘age’:1})|<br>|:—-|</p>
-</blockquote>
-<p>3、SORT</p>
-<p>在 MongoDB 中使用 sort() 方法对数据进行排序，sort() 方法可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而 -1 是用于降序排列。</p>
-<p>|# select * from User order by age</p>
-<blockquote>
-<p>db.User.find().sort({age:1})|<br>|:—-|</p>
-</blockquote>
-<p>4、分页</p>
-<p>在 MongoDB 中使用 limit()方法来读取指定数量的数据，skip()方法来跳过指定数量的数据</p>
-<p>mysql  </p>
-<p>limit  (pageNum-1)*pageSize, pageSize</p>
-<p>skip() :   跳过指定数量的数据    需要计算 </p>
-<p>limit()： </p>
-<p>|# select * from User skip 2 limit 3</p>
-<blockquote>
-<p>db.User.find().skip(0).limit(3)|<br>|:—-|</p>
-</blockquote>
-<p>5、IN</p>
-<p>|# select * from User where age in (21, 26, 32)</p>
-<blockquote>
-<p>db.User.find( {age : {$in : [21,26,32 ] } })|<br>|:—-|</p>
-</blockquote>
-<p>6、COUNT</p>
-<p>|# select count(*) from User where age &gt;20</p>
-<blockquote>
-<p> db.User.find( { age: {$gt: 20 } } ).count()|<br>|:—-|</p>
-</blockquote>
-<p>7、0R</p>
-<p>|# select * from User where age = 21 or age = 28</p>
-<blockquote>
-<p> db.User.find( {$or : [{age: 21}, {age: 28}]} )|<br>|:—-|</p>
-</blockquote>
-<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>可直接用类似T-SQL条件表达式更新，或用Save更新从数据库返回到文档对象。</p>
-<p>|# update User set age = 100, sex = 0 where name = ‘user1’</p>
-<blockquote>
-<p>db.User.update({ name : “zhangsan” },  { $set: {age:100, sex: 0} })|<br>|:—-|</p>
-</blockquote>
-<p>Update()有几个参数需要注意。</p>
-<p>db.collection.update(criteria, objNew, upsert, mult)</p>
-<ul>
-<li>criteria:需要更新的条件表达式</li>
-<li>objNew:更新表达式</li>
-<li>upsert:如FI标记录不存在，是否插入新文档。 </li>
-<li>multi:是否更新多个文档。</li>
-</ul>
-<h3 id="Remove"><a href="#Remove" class="headerlink" title="Remove"></a><strong>Remove</strong></h3><p>remove 用于删除单个或全部文档，删除后的文档无法恢复。</p>
-<p>|&gt; db.User.remove(id)<br>// 移除对应id的行</p>
-<p>|&gt; db.User.remove({})<br>// 移除所有|<br>|:—-|</p>
-<h3 id="aggregate"><a href="#aggregate" class="headerlink" title="aggregate"></a>aggregate</h3><p>MongoDB中聚合(aggregate)主要用于处理数据(诸如统计平均值,求和等)，并返回计算后的数据结果。有点类似sql语句中的 count(*)</p>
-<p>插入数据</p>
-<p>|&gt;db.article.insert({<br>   title: ‘MongoDB Overview’,<br>   description: ‘MongoDB is no sql database’,<br>   by_user: ‘runoob.com’,<br>   url: ‘<a target="_blank" rel="noopener" href="http://www.runoob.com&/#39;">http://www.runoob.com&#39;</a>,<br>   tags: [‘mongodb’, ‘database’, ‘NoSQL’],<br>   likes: 100<br>})<br>|&gt;db.article.insert({   title: ‘NoSQL Overview’,<br>   description: ‘No sql database is very fast’,<br>   by_user: ‘runoob.com’,<br>   url: ‘<a target="_blank" rel="noopener" href="http://www.runoob.com&/#39;">http://www.runoob.com&#39;</a>,<br>   tags: [‘mongodb’, ‘database’, ‘NoSQL’],<br>   likes: 10<br>})<br>|&gt;db.article.insert({<br>   title: ‘Neo4j Overview’,<br>   description: ‘Neo4j is no sql database’,<br>   by_user: ‘Neo4j’,<br>   url: ‘<a target="_blank" rel="noopener" href="http://www.neo4j.com&/#39;">http://www.neo4j.com&#39;</a>,<br>   tags: [‘neo4j’, ‘database’, ‘NoSQL’],<br>   likes: 750<br>})|<br>|:—-|</p>
-<h4 id="统计sum"><a href="#统计sum" class="headerlink" title="统计sum"></a>统计sum</h4><p>现在我们通过以上集合计算每个作者所写的文章数</p>
-<p>|# select by_user, count(*) from article group by by_user<br>|&gt; db.article.aggregate( [{$group : {<em>id : “$by_user”, num_tutorial : {$sum : 1}}}] )</em><br>{<br>“result” : [<br>      {<br>“<em>id” : “runoob.com”,</em><br>“num_tutorial” : 2<br>      },<br>      {<br>“_id” : “Neo4j”,<br>“num_tutorial” : 1<br>      }<br>   ],<br>“ok” : 1<br>}|<br>|:—-|</p>
-<p>在上面的例子中，我们通过字段 by_user 字段对数据进行分组，并计算 by_user 字段相同值的总和。</p>
-<h4 id="常见的聚合表达式"><a href="#常见的聚合表达式" class="headerlink" title="常见的聚合表达式"></a>常见的聚合表达式</h4><table>
-<thead>
-<tr>
-<th align="left"><strong>表达式</strong></th>
-<th align="left"><strong>描述</strong></th>
-<th align="left"><strong>实例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">$sum</td>
-<td align="left">计算总和。</td>
-<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$sum : “$likes”}}}])</td>
-</tr>
-<tr>
-<td align="left">$avg</td>
-<td align="left">计算平均值</td>
-<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$avg : “$likes”}}}])</td>
-</tr>
-<tr>
-<td align="left">$min</td>
-<td align="left">获取集合中所有文档对应值得最小值。</td>
-<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$min : “$likes”}}}])</td>
-</tr>
-<tr>
-<td align="left">$max</td>
-<td align="left">获取集合中所有文档对应值得最大值。</td>
-<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$max : “$likes”}}}])</td>
-</tr>
-<tr>
-<td align="left">$push</td>
-<td align="left">在结果文档中插入值到一个数组中。</td>
-<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, url : {$push: “$url”}}}])</td>
-</tr>
-<tr>
-<td align="left">$addToSet</td>
-<td align="left">在结果文档中插入值到一个数组中，但不创建副本。</td>
-<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, url : {$addToSet : “$url”}}}])</td>
-</tr>
-<tr>
-<td align="left">$first</td>
-<td align="left">根据资源文档的排序获取第一个文档数据。</td>
-<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, first_url : {$first : “$url”}}}])</td>
-</tr>
-<tr>
-<td align="left">$last</td>
-<td align="left">根据资源文档的排序获取最后一个文档数据</td>
-<td align="left">db.mycol.aggregate([{$group : {_id : “$by_user”, last_url : {$last : “$url”}}}])</td>
-</tr>
-</tbody></table>
-<h4 id><a href="#" class="headerlink" title></a></h4><h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>索引通常能够极大的提高查询的效率，如果没有索引，MongoDB在读取数据时必须扫描集合中的每个文件并选取那些符合查询条件的记录。</p>
-<p>这种扫描全集合的查询效率是非常低的，特别在处理大量的数据时，查询可以要花费几十秒甚至几分钟，这对网站的性能是非常致命的。</p>
-<p>索引是特殊的数据结构，索引存储在一个易于遍历读取的数据集合中，索引是对数据库表中一列或多列的值进行排序的一种结构。</p>
-<table>
-<thead>
-<tr>
-<th align="left">&gt;db.User.createIndex({“name”:1})</th>
-</tr>
-</thead>
-</table>
-<p>语法中 name值为你要创建的索引字段，1 为指定按升序创建索引，如果你想按降序来创建索引指定为 -1 即可</p>
-<h2 id="常用命令："><a href="#常用命令：" class="headerlink" title="常用命令："></a>常用命令：</h2><h3 id="选择和创建数据库"><a href="#选择和创建数据库" class="headerlink" title="选择和创建数据库"></a>选择和创建数据库</h3><p>选择和创建数据库的语法格式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 数据库名称</span><br></pre></td></tr></table></figure>
-
-<p>如果数据库不存在则自动创建<br>以下语句创建testdb数据库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use testdb</span><br></pre></td></tr></table></figure>
-
-<h3 id="新建collection"><a href="#新建collection" class="headerlink" title="新建collection"></a>新建collection</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.createCollection(&quot;user_info&quot;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="插入一条数据"><a href="#插入一条数据" class="headerlink" title="插入一条数据"></a>插入一条数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">document = (&#123;</span><br><span class="line">    name:&quot;张三&quot;,</span><br><span class="line">    password:&quot;123456&quot;,</span><br><span class="line">    age:10,</span><br><span class="line">    price: 10.25</span><br><span class="line"> &#125;)</span><br><span class="line"> db.user_info.insert(document)</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.spit.insert(&#123;</span><br><span class="line">    name:&quot;张三&quot;,</span><br><span class="line">    password:&quot;123456&quot;,</span><br><span class="line">    age:10,</span><br><span class="line">    price: 10.25</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
-
-<p>这里你会发现每条文档会有一个叫_id的字段，这个相当于我们原来关系数据库中表的主<br>键，当你在插入文档记录时没有指定该字段，MongoDB会自动创建，其类型是ObjectID</p>
-<p>类型。如果我们在插入文档记录时指定该字段也可以，其类型可以是ObjectID类型，也</p>
-<p>可以是MongoDB支持的任意类型。</p>
-<p>输入以下测试语句:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.user_info.insert(&#123;_id:&quot;1&quot;,name:&quot;jack&quot;,password:&quot;1012&quot;,age:20,price:20.12&#125;);</span><br><span class="line">db.user_info.insert(&#123;_id:&quot;2&quot;,name:&quot;rose&quot;,password:&quot;1013&quot;,age:21,price:20.13&#125;);</span><br><span class="line">db.user_info.insert(&#123;_id:&quot;3&quot;,name:&quot;tom&quot;,password:&quot;1013&quot;,age:22,price:20.14&#125;);</span><br><span class="line">db.user_info.insert(&#123;_id:&quot;4&quot;,name:&quot;lucy&quot;,password:&quot;1014&quot;,age:23,price:20.15&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="查询所有数据"><a href="#查询所有数据" class="headerlink" title="查询所有数据"></a>查询所有数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.集合名称.find()</span><br></pre></td></tr></table></figure>
-
-<p>查询用户集合所有的数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.user_info.find()</span><br></pre></td></tr></table></figure>
-
-<h2 id="精确查询"><a href="#精确查询" class="headerlink" title="精确查询"></a>精确查询</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.getCollection(&quot;user_info&quot;).find(&#123;name:&quot;张三&quot; , age: 10&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>如果你只需要返回符合条件的第一条数据，我们可以使用findOne命令来实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.user_info.findOne(&#123;_id:&#x27;1&#x27;&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.user_info.find().limit(1000).skip(0)</span><br></pre></td></tr></table></figure>
-
-<h2 id="区间查询"><a href="#区间查询" class="headerlink" title="区间查询"></a>区间查询</h2><p>&lt;, &lt;=, &gt;, &gt;= 这个操作符也是很常用的，格式如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.集合名称.find(&#123; &quot;field&quot; : &#123; $gt: value &#125;&#125;) // 大于: field &gt; value</span><br><span class="line">db.集合名称.find(&#123; &quot;field&quot; : &#123; $lt: value &#125;&#125;) // 小于: field &lt; value</span><br><span class="line">db.集合名称.find(&#123; &quot;field&quot; : &#123; $gte: value &#125;&#125;) // 大于等于: field &gt;= value</span><br><span class="line">db.集合名称.find(&#123; &quot;field&quot; : &#123; $lte: value &#125;&#125;) // 小于等于: field &lt;= value</span><br><span class="line">db.集合名称.find(&#123; &quot;field&quot; : &#123; $ne: value &#125;&#125;) // 不等于: field != value</span><br></pre></td></tr></table></figure>
-
-<p>查询用户年龄9-11之间的用户信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.user_info.find(&#123;age : &#123;$gt : 9 , $lt :11&#125;&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="or查询"><a href="#or查询" class="headerlink" title="or查询"></a>or查询</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.user_info.find(&#123; $or: [&#123;name:&quot;张三&quot;&#125;,&#123;name:&quot;李四&quot;&#125;]&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><p>查询包含***</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;name&quot;:/***/&#125;</span><br></pre></td></tr></table></figure>
-
-<p>查询以***开头</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;name&quot;:/^***/&#125;</span><br></pre></td></tr></table></figure>
-
-<p>查询以***结尾</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;name&quot;:/***^/&#125;</span><br></pre></td></tr></table></figure>
-
-<p>查询忽略大小写</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;name&quot;:/***/i&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.user_info.update( &#123; _id: ObjectId(&quot;625e16c8a33c000060000193&quot;) &#125;, &#123; $set: &#123; password: &quot;123456&quot; &#125; &#125; )</span><br></pre></td></tr></table></figure>
-
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.user_info.remove(&#123;name: &quot;张三&quot;&#125;)</span><br></pre></td></tr></table></figure>
-
-
     </div>
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li></ul>
-
-    </footer>
   </div>
   
   
@@ -800,60 +367,27 @@
       <div class="col-3">
         <article id="post-电脑安装VMware" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
-  
-  <div class="article-inner">
+  <div class="card rounded">
     
-    <header class="article-header">
-      
-      
+    <div class="card-body bg-light">
+			
   
-    <h5 class="article-title" itemprop="name">
+    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
       <a href="/posts/a55fa9fa.html">电脑安装VMware</a>
     </h5>
   
 
-      <div class="article-meta">
-        <time class="text-gray" datetime="2023-10-17T09:29:22.000Z" itemprop="datePublished">
+			<time class="text-gray" datetime="2023-10-17T09:29:22.000Z" itemprop="datePublished">
   2023-10-17
 </time>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/VMware/">VMware</a>
-  </div>
-
+			<div class="card-text mt-3 line-clamp line-clamp-2"><p>电脑安装VMware</p></div>
+      <hr class="hr">
+      
+      <div class="article-more-link">
+        <a href="/posts/a55fa9fa.html#more">阅读全文</a>
       </div>
       
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      <p>双击下载的安装包，点击”下一步“</p>
-<p><img src="/posts/a55fa9fa/clip_image002.jpg" alt="图片"></p>
-<p>接受许可协议条款，点击“下一步”</p>
-<p><img src="/posts/a55fa9fa/clip_image004.jpg" alt="图片"></p>
-<p>更改安装位置，点击“下一步”</p>
-<p><img src="/posts/a55fa9fa/clip_image006.jpg" alt="图片"></p>
-<p>用户体验设置，建议全部取消勾选，然后点击“下一步”</p>
-<p><img src="/posts/a55fa9fa/clip_image008.jpg" alt="图片"></p>
-<p>快捷方式，根据个人喜好选择，点击“下一步”</p>
-<p><img src="/posts/a55fa9fa/clip_image010.jpg" alt="图片"></p>
-<p>点击“安装”</p>
-<p><img src="/posts/a55fa9fa/clip_image012.jpg" alt="图片"><img src="/posts/a55fa9fa/clip_image014.jpg" alt="图片"></p>
-<p>点击“许可证”<img src="/posts/a55fa9fa/clip_image016.jpg" alt="图片"></p>
-<p>输入许可证密钥，点击“输入”</p>
-<p><img src="/posts/a55fa9fa/clip_image018.jpg" alt="图片"></p>
-<p>选择其中之一</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">l  ZF3R0-FHED2-M80TY-8QYGC-NPKYF</span><br><span class="line"></span><br><span class="line">l  YF390-0HF8P-M81RQ-2DXQE-M2UT6</span><br><span class="line"></span><br><span class="line">l  ZF71R-DMX85-08DQY-8YMNC-PPHV8</span><br></pre></td></tr></table></figure>
-
-<p>点击“完成”</p>
-<p><img src="/posts/a55fa9fa/clip_image020.jpg" alt="图片"></p>
-<p>完成转到：<a target="_blank" rel="noopener" href="https://shimo.im/docs/B1Aw1wBXN7cEPbqm">02 - VMware安装liunx</a> </p>
-
     </div>
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li></ul>
-
-    </footer>
   </div>
   
   
@@ -863,65 +397,27 @@
       <div class="col-3">
         <article id="post-liunx基础安装命令" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
-  
-  <div class="article-inner">
+  <div class="card rounded">
     
-    <header class="article-header">
-      
-      
+    <div class="card-body bg-light">
+			
   
-    <h5 class="article-title" itemprop="name">
+    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
       <a href="/posts/2b8db47c.html">liunx基础安装命令</a>
     </h5>
   
 
-      <div class="article-meta">
-        <time class="text-gray" datetime="2023-10-17T08:37:17.000Z" itemprop="datePublished">
+			<time class="text-gray" datetime="2023-10-17T08:37:17.000Z" itemprop="datePublished">
   2023-10-17
 </time>
-        
+			<div class="card-text mt-3 line-clamp line-clamp-2"><p>liunx基础安装命令</p></div>
+      <hr class="hr">
+      
+      <div class="article-more-link">
+        <a href="/posts/2b8db47c.html#more">阅读全文</a>
       </div>
       
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      <h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# systemctl disable firewalld</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装ll"><a href="#安装ll" class="headerlink" title="安装ll"></a>安装ll</h2><p>按照顺序输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 编写</span><br><span class="line">[root@localhost ~]# vi ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p><img src="/posts/2b8db47c/clip_image002.jpg" alt="图片"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 刷新</span><br><span class="line">[root@localhost ~]# source ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装wget"><a href="#安装wget" class="headerlink" title="安装wget"></a>安装wget</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y wget</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装ifconfig"><a href="#安装ifconfig" class="headerlink" title="安装ifconfig"></a>安装ifconfig</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y net-tools</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装xinetd"><a href="#安装xinetd" class="headerlink" title="安装xinetd"></a>安装xinetd</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y gcc automake autoconf libtool make</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装rzrs"><a href="#安装rzrs" class="headerlink" title="安装rzrs"></a>安装rzrs</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y xinetd</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装unzip"><a href="#安装unzip" class="headerlink" title="安装unzip"></a>安装unzip</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y unzip</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装service"><a href="#安装service" class="headerlink" title="安装service"></a>安装service</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y initscripts</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装sudo"><a href="#安装sudo" class="headerlink" title="安装sudo"></a>安装sudo</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y sudo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装libaio"><a href="#安装libaio" class="headerlink" title="安装libaio"></a>安装libaio</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y libaio-devel.x86_64</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装GCC-C"><a href="#安装GCC-C" class="headerlink" title="安装GCC-C++"></a>安装GCC-C++</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="literal">-y</span> install gcc</span><br><span class="line">yum <span class="literal">-y</span> install gcc<span class="literal">-c</span>++</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装GCC"><a href="#安装GCC" class="headerlink" title="安装GCC"></a>安装GCC</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y centos-release-scl</span><br><span class="line">[root@localhost ~]# yum install -y devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils</span><br><span class="line">[root@localhost ~]# scl enable devtoolset-9 bash</span><br><span class="line">#如果要长期生效的话，执行如下：</span><br><span class="line">[root@localhost ~]# echo &quot;source /opt/rh/devtoolset-9/enable&quot; &gt;&gt;/etc/profile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y vim*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装rz"><a href="#安装rz" class="headerlink" title="安装rz"></a>安装rz</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install lrzsz -y</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
     </div>
-    <footer class="article-footer">
-      
-    </footer>
   </div>
   
   
@@ -931,92 +427,27 @@
       <div class="col-3">
         <article id="post-VMware安装liunx" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
-  
-  <div class="article-inner">
+  <div class="card rounded">
     
-    <header class="article-header">
-      
-      
+    <div class="card-body bg-light">
+			
   
-    <h5 class="article-title" itemprop="name">
+    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
       <a href="/posts/4b56a127.html">VMware安装liunx</a>
     </h5>
   
 
-      <div class="article-meta">
-        <time class="text-gray" datetime="2023-10-17T08:04:25.000Z" itemprop="datePublished">
+			<time class="text-gray" datetime="2023-10-17T08:04:25.000Z" itemprop="datePublished">
   2023-10-17
 </time>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/liunx/">liunx</a>
-  </div>
-
+			<div class="card-text mt-3 line-clamp line-clamp-2"><p>VMware安装liunx</p></div>
+      <hr class="hr">
+      
+      <div class="article-more-link">
+        <a href="/posts/4b56a127.html#more">阅读全文</a>
       </div>
       
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      <h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p><img src="/posts/4b56a127/clip_image002.gif" alt="图片"></p>
-<h2 id="安装向导"><a href="#安装向导" class="headerlink" title="安装向导"></a>安装向导</h2><h3 id="选择自定义"><a href="#选择自定义" class="headerlink" title="选择自定义"></a>选择自定义</h3><p><img src="/posts/4b56a127/clip_image004.gif" alt="图片"></p>
-<h3 id="选择workstation-16-x"><a href="#选择workstation-16-x" class="headerlink" title="选择workstation 16.x"></a>选择workstation 16.x</h3><p><img src="/posts/4b56a127/clip_image006.gif" alt="图片"></p>
-<h3 id="选择稍后安装操作系统"><a href="#选择稍后安装操作系统" class="headerlink" title="选择稍后安装操作系统"></a>选择稍后安装操作系统</h3><p><img src="/posts/4b56a127/clip_image008.gif" alt="图片"></p>
-<h3 id="选择liunx-centos-7-64位"><a href="#选择liunx-centos-7-64位" class="headerlink" title="选择liunx - centos 7 64位"></a>选择liunx - centos 7 64位</h3><p><img src="/posts/4b56a127/clip_image010.gif" alt="图片"></p>
-<h3 id="选择虚拟机位置和名称"><a href="#选择虚拟机位置和名称" class="headerlink" title="选择虚拟机位置和名称"></a>选择虚拟机位置和名称</h3><p><img src="/posts/4b56a127/clip_image012.gif" alt="图片"><img src="/posts/4b56a127/clip_image014.gif" alt="图片"></p>
-<h3 id="选择虚拟机核心数量"><a href="#选择虚拟机核心数量" class="headerlink" title="选择虚拟机核心数量"></a>选择虚拟机核心数量</h3><p><img src="/posts/4b56a127/clip_image016.jpg" alt="图片"></p>
-<h3 id="选择虚拟机内存"><a href="#选择虚拟机内存" class="headerlink" title="选择虚拟机内存"></a>选择虚拟机内存</h3><p><img src="/posts/4b56a127/clip_image018.gif" alt="图片"></p>
-<h3 id="选择虚拟机网络"><a href="#选择虚拟机网络" class="headerlink" title="选择虚拟机网络"></a>选择虚拟机网络</h3><p><img src="/posts/4b56a127/clip_image020.gif" alt="图片"></p>
-<h3 id="选择I-O控制器类型"><a href="#选择I-O控制器类型" class="headerlink" title="选择I/O控制器类型"></a>选择I/O控制器类型</h3><p><img src="/posts/4b56a127/clip_image022.gif" alt="图片"></p>
-<h3 id="选择虚拟磁盘类型"><a href="#选择虚拟磁盘类型" class="headerlink" title="选择虚拟磁盘类型"></a>选择虚拟磁盘类型</h3><p><img src="/posts/4b56a127/clip_image024.gif" alt="图片"></p>
-<h3 id="选择磁盘"><a href="#选择磁盘" class="headerlink" title="选择磁盘"></a>选择磁盘</h3><p><img src="/posts/4b56a127/clip_image026.gif" alt="图片"></p>
-<h3 id="选择磁盘容量"><a href="#选择磁盘容量" class="headerlink" title="选择磁盘容量"></a>选择磁盘容量</h3><p><img src="/posts/4b56a127/clip_image028.gif" alt="图片"></p>
-<h3 id="指定磁盘文件"><a href="#指定磁盘文件" class="headerlink" title="指定磁盘文件"></a>指定磁盘文件</h3><p><img src="/posts/4b56a127/clip_image030.gif" alt="图片"></p>
-<h3 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h3><p><img src="/posts/4b56a127/clip_image032.jpg" alt="图片"></p>
-<p><img src="/posts/4b56a127/clip_image034.gif" alt="图片"></p>
-<h2 id="配置系统"><a href="#配置系统" class="headerlink" title="配置系统"></a>配置系统</h2><h3 id="编辑虚拟机"><a href="#编辑虚拟机" class="headerlink" title="编辑虚拟机"></a>编辑虚拟机</h3><p><img src="/posts/4b56a127/clip_image036.gif" alt="图片"></p>
-<h3 id="选择liunx镜像"><a href="#选择liunx镜像" class="headerlink" title="选择liunx镜像"></a>选择liunx镜像</h3><p><img src="/posts/4b56a127/clip_image038.gif" alt="图片"></p>
-<h3 id="点击确定"><a href="#点击确定" class="headerlink" title="点击确定"></a>点击确定</h3><p><img src="/posts/4b56a127/clip_image040.gif" alt="图片"></p>
-<h2 id="安装虚拟机"><a href="#安装虚拟机" class="headerlink" title="安装虚拟机"></a>安装虚拟机</h2><h3 id="开启虚拟机"><a href="#开启虚拟机" class="headerlink" title="开启虚拟机"></a>开启虚拟机</h3><p><img src="/posts/4b56a127/clip_image042.gif" alt="图片"></p>
-<h3 id="安装-CentOS-7"><a href="#安装-CentOS-7" class="headerlink" title="安装 CentOS 7"></a>安装 CentOS 7</h3><p><img src="/posts/4b56a127/clip_image044.gif" alt="图片"></p>
-<h3 id="等待调取安装程序"><a href="#等待调取安装程序" class="headerlink" title="等待调取安装程序"></a>等待调取安装程序</h3><p><img src="/posts/4b56a127/clip_image046.gif" alt="图片"></p>
-<h3 id="选择中文"><a href="#选择中文" class="headerlink" title="选择中文"></a>选择中文</h3><p><img src="/posts/4b56a127/clip_image048.gif" alt="图片"></p>
-<h3 id="选择最小安装"><a href="#选择最小安装" class="headerlink" title="选择最小安装"></a>选择最小安装</h3><p><img src="/posts/4b56a127/clip_image050.gif" alt="图片"></p>
-<h3 id="选择磁盘-1"><a href="#选择磁盘-1" class="headerlink" title="选择磁盘"></a>选择磁盘</h3><p><img src="/posts/4b56a127/clip_image052.gif" alt="图片"></p>
-<h3 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h3><p><img src="/posts/4b56a127/clip_image054.gif" alt="图片"></p>
-<h4 id="记录网络"><a href="#记录网络" class="headerlink" title="记录网络"></a>记录网络</h4><p><img src="/posts/4b56a127/clip_image056.gif" alt="图片"></p>
-<h4 id="记录到记事本上面"><a href="#记录到记事本上面" class="headerlink" title="记录到记事本上面"></a>记录到记事本上面</h4><p><img src="/posts/4b56a127/clip_image058.gif" alt="图片"></p>
-<h4 id="配置网络-常规"><a href="#配置网络-常规" class="headerlink" title="配置网络 - 常规"></a>配置网络 - 常规</h4><p><img src="/posts/4b56a127/clip_image060.gif" alt="图片"></p>
-<h4 id="配置网络-IPv4-设置"><a href="#配置网络-IPv4-设置" class="headerlink" title="配置网络 - IPv4 设置"></a>配置网络 - IPv4 设置</h4><p><img src="/posts/4b56a127/clip_image062.gif" alt="图片"></p>
-<h4 id="配置网络-配置IP"><a href="#配置网络-配置IP" class="headerlink" title="配置网络 - 配置IP"></a>配置网络 - 配置IP</h4><p><img src="/posts/4b56a127/clip_image064.gif" alt="图片"></p>
-<h4 id="网络配置-保存"><a href="#网络配置-保存" class="headerlink" title="网络配置 - 保存"></a>网络配置 - 保存</h4><p><img src="/posts/4b56a127/clip_image066.gif" alt="图片"></p>
-<h4 id="网络配置-检验"><a href="#网络配置-检验" class="headerlink" title="网络配置 - 检验"></a>网络配置 - 检验</h4><p><img src="/posts/4b56a127/clip_image068.gif" alt="图片"></p>
-<h4 id="网络设置-完成"><a href="#网络设置-完成" class="headerlink" title="网络设置 - 完成"></a>网络设置 - 完成</h4><p><img src="/posts/4b56a127/clip_image070.gif" alt="图片"></p>
-<h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><p><img src="/posts/4b56a127/clip_image072.gif" alt="图片"></p>
-<h3 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h3><p><img src="/posts/4b56a127/clip_image074.gif" alt="图片"></p>
-<h3 id="完成保存密码"><a href="#完成保存密码" class="headerlink" title="完成保存密码"></a>完成保存密码</h3><p><img src="/posts/4b56a127/clip_image076.gif" alt="图片"></p>
-<h3 id="等待安装完成"><a href="#等待安装完成" class="headerlink" title="等待安装完成"></a>等待安装完成</h3><p><img src="/posts/4b56a127/clip_image078.gif" alt="图片"></p>
-<h3 id="完成重启"><a href="#完成重启" class="headerlink" title="完成重启"></a>完成重启</h3><p><img src="/posts/4b56a127/clip_image080.gif" alt="图片"></p>
-<h2 id="启动liunx"><a href="#启动liunx" class="headerlink" title="启动liunx"></a>启动liunx</h2><p><img src="/posts/4b56a127/clip_image082.gif" alt="图片"></p>
-<h2 id="Liunx启动成功"><a href="#Liunx启动成功" class="headerlink" title="Liunx启动成功"></a>Liunx启动成功</h2><p><img src="/posts/4b56a127/clip_image084.gif" alt="图片"></p>
-<h2 id="验证安装结果"><a href="#验证安装结果" class="headerlink" title="验证安装结果"></a>验证安装结果</h2><h3 id="登录系统"><a href="#登录系统" class="headerlink" title="登录系统"></a>登录系统</h3><p><img src="/posts/4b56a127/clip_image084.gif" alt="图片"></p>
-<h4 id="查看IP"><a href="#查看IP" class="headerlink" title="查看IP"></a>查看IP</h4><p><img src="/posts/4b56a127/clip_image087.gif" alt="图片"></p>
-<h4 id="查看本机IP"><a href="#查看本机IP" class="headerlink" title="查看本机IP"></a>查看本机IP</h4><h5 id="打开cmd"><a href="#打开cmd" class="headerlink" title="打开cmd"></a>打开cmd</h5><p><img src="/posts/4b56a127/clip_image089.gif" alt="图片"></p>
-<h5 id="查看本机IP地址"><a href="#查看本机IP地址" class="headerlink" title="查看本机IP地址"></a>查看本机IP地址</h5><p><img src="/posts/4b56a127/clip_image091.gif" alt="图片"></p>
-<h3 id="验证网络"><a href="#验证网络" class="headerlink" title="验证网络"></a>验证网络</h3><h4 id="虚拟机-ping-本机"><a href="#虚拟机-ping-本机" class="headerlink" title="虚拟机 ping 本机"></a>虚拟机 ping 本机</h4><p><img src="/posts/4b56a127/clip_image093.gif" alt="图片"></p>
-<h4 id="本机-ping-虚拟机"><a href="#本机-ping-虚拟机" class="headerlink" title="本机 ping 虚拟机"></a>本机 ping 虚拟机</h4><p><img src="/posts/4b56a127/clip_image095.gif" alt="图片"></p>
-<h2 id="使用xshell连接虚拟机"><a href="#使用xshell连接虚拟机" class="headerlink" title="使用xshell连接虚拟机"></a>使用xshell连接虚拟机</h2><h3 id="新建连接"><a href="#新建连接" class="headerlink" title="新建连接"></a>新建连接</h3><p><img src="/posts/4b56a127/clip_image097.gif" alt="图片"></p>
-<h3 id="连接liunx系统"><a href="#连接liunx系统" class="headerlink" title="连接liunx系统"></a>连接liunx系统</h3><p><img src="/posts/4b56a127/clip_image099.gif" alt="图片"></p>
-<h3 id="输入用户名"><a href="#输入用户名" class="headerlink" title="输入用户名"></a>输入用户名</h3><p><img src="/posts/4b56a127/clip_image101.gif" alt="图片"></p>
-<h3 id="输入密码并记住密码"><a href="#输入密码并记住密码" class="headerlink" title="输入密码并记住密码"></a>输入密码并记住密码</h3><p><img src="/posts/4b56a127/clip_image103.gif" alt="图片"></p>
-<h3 id="登录成功"><a href="#登录成功" class="headerlink" title="登录成功"></a>登录成功</h3><p><img src="/posts/4b56a127/clip_image105.gif" alt="图片"></p>
-<p>完成转到：<a target="_blank" rel="noopener" href="https://shimo.im/docs/svGngDG4K0sq398w">liunx基础安装命令</a> 逐步执行</p>
-
     </div>
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/liunx/" rel="tag">liunx</a></li></ul>
-
-    </footer>
   </div>
   
   

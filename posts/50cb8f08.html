@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="线程,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="关于线程的了解">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>关于线程的了解 |  红猪的博客</title>
@@ -101,12 +103,20 @@
   2022-11-26
 </time>
         
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BA%BF%E7%A8%8B/">线程</a>
+  </div>
+
       </div>
       
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="核心线程为什么默认不会回收"><a href="#核心线程为什么默认不会回收" class="headerlink" title="核心线程为什么默认不会回收?"></a>核心线程为什么默认不会回收?</h3><p>关于线程池的回收<br>核心线程通常不会回收，java核心线程池的回收由<strong>allowCoreThreadTimeOut</strong>参数控制，<strong>默认为false</strong>，若开启为true，则此时线程池中不论核心线程还是非核心线程，只要其空闲时间达到<strong>keepAliveTime</strong>都会被回收。但如果这样就违背了线程池的初衷（减少线程创建和开销），所以默认该参数为false。</p>
+      <p>关于线程的了解</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="核心线程为什么默认不会回收"><a href="#核心线程为什么默认不会回收" class="headerlink" title="核心线程为什么默认不会回收?"></a>核心线程为什么默认不会回收?</h3><p>关于线程池的回收<br>核心线程通常不会回收，java核心线程池的回收由<strong>allowCoreThreadTimeOut</strong>参数控制，<strong>默认为false</strong>，若开启为true，则此时线程池中不论核心线程还是非核心线程，只要其空闲时间达到<strong>keepAliveTime</strong>都会被回收。但如果这样就违背了线程池的初衷（减少线程创建和开销），所以默认该参数为false。</p>
 <p>设置方法</p>
 <p>static ThreadPoolExecutor executor=new ThreadPoolExecutor(8,16,0,TimeUnit.SECONDS,new LinkedBlockingQueue&lt;&gt;(10));</p>
 <p>static {<br>    //如果设置为true,当任务执行完后，所有的线程在指定的空闲时间后，poolSize会为0<br>    //如果不设置，或者设置为false，那么，poolSize会保留为核心线程的数量<br>    executor.allowCoreThreadTimeOut(true);<br>}<br><strong>keepAliveTime</strong>是指当线程池中线程数量大于corePollSize时，此时存在非核心线程，keepAliveTime指非核心线程空闲时间达到的阈值会被回收。</p>
@@ -514,6 +524,8 @@ public class ConcurrentThreadGlobalConfig &#123;
     </div>
     <footer class="article-footer">
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li></ul>
+
     </footer>
   </div>
   

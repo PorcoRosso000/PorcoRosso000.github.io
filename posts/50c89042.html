@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   
   
+    <meta name="keywords" content="JavaScript,">
   
-    <meta name="description" content="人必有所执,方能有所成">
+  
+    <meta name="description" content="JavaScript语法笔记">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>JavaScript语法笔记 |  红猪的博客</title>
@@ -101,12 +103,20 @@
   2023-06-03
 </time>
         
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
       </div>
       
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <h3 id="校验："><a href="#校验：" class="headerlink" title="校验："></a>校验：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">车牌校验</span><br><span class="line">var re = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/;</span><br><span class="line">手机号校验</span><br><span class="line">var reg = /^((\+?86)|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d&#123;8&#125;$/;</span><br><span class="line">身份证校验</span><br><span class="line">var reg = /^\d&#123;15&#125;(\d&#123;2&#125;(\d|[A-Z]))?$/;</span><br><span class="line">必须为大于等于0的数字,且只能保留两位小数</span><br><span class="line">theregex = /^(\d+)([.]\d&#123;1,2&#125;)?$/;</span><br><span class="line">去掉空格</span><br><span class="line">value = value.replace(/(^\s*)|(\s*$)/g, &#x27;&#x27;);  //去掉空格;</span><br><span class="line">必须为数字,且只能保留两位小数</span><br><span class="line">theregex = /^(-)?(\d+)([.]\d&#123;1,2&#125;)?$/;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      <p>JavaScript语法笔记</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="校验："><a href="#校验：" class="headerlink" title="校验："></a>校验：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">车牌校验</span><br><span class="line">var re = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/;</span><br><span class="line">手机号校验</span><br><span class="line">var reg = /^((\+?86)|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d&#123;8&#125;$/;</span><br><span class="line">身份证校验</span><br><span class="line">var reg = /^\d&#123;15&#125;(\d&#123;2&#125;(\d|[A-Z]))?$/;</span><br><span class="line">必须为大于等于0的数字,且只能保留两位小数</span><br><span class="line">theregex = /^(\d+)([.]\d&#123;1,2&#125;)?$/;</span><br><span class="line">去掉空格</span><br><span class="line">value = value.replace(/(^\s*)|(\s*$)/g, &#x27;&#x27;);  //去掉空格;</span><br><span class="line">必须为数字,且只能保留两位小数</span><br><span class="line">theregex = /^(-)?(\d+)([.]\d&#123;1,2&#125;)?$/;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="全选"><a href="#全选" class="headerlink" title="全选"></a>全选</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 全选</span><br><span class="line"> */</span><br><span class="line">function check_all()&#123;</span><br><span class="line">   var checked = $(&quot;#check_all&quot;).attr(&quot;checked&quot;);</span><br><span class="line">   var items = $(&quot;input[name=check_item][type=checkbox]&quot;);</span><br><span class="line">   $.each(items ,function()&#123;</span><br><span class="line">      this.checked = checked;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -236,6 +246,8 @@
     </div>
     <footer class="article-footer">
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
     </footer>
   </div>
   

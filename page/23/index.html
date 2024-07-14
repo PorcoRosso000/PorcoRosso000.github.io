@@ -335,193 +335,6 @@
   <div class="row flex-wrap">
     
       <div class="col-3">
-        <article id="post-resdisson学习" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-      
-  
-    <h5 class="article-title" itemprop="name">
-      <a href="/posts/4eb3381c.html">resdisson学习</a>
-    </h5>
-  
-
-      <div class="article-meta">
-        <time class="text-gray" datetime="2022-11-26T07:18:08.000Z" itemprop="datePublished">
-  2022-11-26
-</time>
-        
-      </div>
-      
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      <h2 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h2><h3 id="redisson分布式锁"><a href="#redisson分布式锁" class="headerlink" title="redisson分布式锁"></a>redisson分布式锁</h3><p>分布式锁实现的三个核心要素:加锁,解锁,锁超时</p>
-<p>Redisson分布式锁产生的原因</p>
-<p>一开始redis作为分布式锁用的是setnx(redis分布式锁)，再这基础上设置个定时过期时间</p>
-<p>有什么问题</p>
-<p>\1. 首先是原子性问题，setnx+过期时间这两个操作必须是原子性的，所以这可以用lua脚本解决</p>
-<p>2.释放锁的时机该如何定？</p>
-<p>不管我们定多少过期时间，都不能保证，在这段时间内锁住的代码执行完成了，所以这个时间定多少都不好；</p>
-<p>如果不定时间，当执行完成后释放锁，问题就是如果执行到一半机器宕机，那这把锁就永远放不掉了</p>
-<h4 id="分布式锁产生死锁怎么解决"><a href="#分布式锁产生死锁怎么解决" class="headerlink" title="分布式锁产生死锁怎么解决?"></a>分布式锁产生死锁怎么解决?</h4><p>使用看门狗机制,然后给锁续期,设置一个超时时间超过这个时间就给锁释放掉</p>
-<h4 id="Redisson概念"><a href="#Redisson概念" class="headerlink" title="Redisson概念"></a>Redisson概念</h4><ol>
-<li>对它对setnx进行了精简的封装，使用简单，甚至不用主动设置过期时间</li>
-<li>设计了watch     dog看门狗，每隔10秒会检查一下是否还持有锁，若持有锁，就给他更新过期时间30秒；这样可以让他在没有释放锁之前一直持有锁，哪怕宕机了，也能自动释放锁</li>
-<li>而不能获得锁的客户端则是不断循环尝试加锁</li>
-<li>通过记录锁的客户端id，可以把它设计成可重入锁</li>
-</ol>
-<p><img src="/posts/4eb3381c/lu152441l02jn_tmp_c71f2472bdfb0327.jpg" alt="img"> </p>
-<h4 id="底层有五种机制一个缺点"><a href="#底层有五种机制一个缺点" class="headerlink" title="底层有五种机制一个缺点"></a>底层有五种机制一个缺点</h4><ul>
-<li>加锁机制</li>
-</ul>
-<p>根据hash节点选择一台机器(只选择一台机器)这点很关键！紧接着，就会发送一段lua脚本到redis上</p>
-<p>业务逻辑，可以通过封装在lua脚本中发送给redis，保证这段复杂业务逻辑执行的原子性。</p>
-<p>为啥要用lua脚本呢？</p>
-<p> 这个不用多说，主要是如果你的业务逻辑复杂的话，通过封装在lua脚本中发送给redis，而且redis是单线程的，这样就保证这段复杂业务逻辑执行的原子性。</p>
-<ul>
-<li>锁互斥机制</li>
-</ul>
-<p> 如果这个时候客户端B来尝试加锁，执行了同样的一段lua脚本。第一个if判断会执行“exists myLock”，发现myLock这个锁key已经存在。接着第二个if判断，判断myLock锁key的hash数据结构中，是否包含客户端B的ID，但明显没有，那么客户端B会获取到pttl myLock返回的一个数字，代表myLock这个锁key的剩余生存时间。此时客户端B会进入一个while循环，不听的尝试加锁。</p>
-<ul>
-<li>看门狗自动延期机制</li>
-</ul>
-<p>看门狗，他是一个后台线程，会每隔10秒检查一下，如果客户端1还持有锁key，那么就会不断的延长锁key的生存时间。</p>
-<ul>
-<li>可重入锁机制</li>
-</ul>
-<p><img src="/posts/4eb3381c/lu152441l02jn_tmp_bc55b2785f9c2707.jpg" alt="img"> </p>
-<p><img src="/posts/4eb3381c/lu152441l02jn_tmp_4ef61d3c00dd6b97.jpg" alt="img"> </p>
-<p>可重入锁的机制，它最大的优点就是相同线程不需要在等待锁，而是可以直接进行相应操作。</p>
-<ul>
-<li>释放锁机制</li>
-</ul>
-<p>缺点是:使用主从redis集群主节点宕机,从变成主,别的客户端来了直接在新的主节点上完成加锁,出现两个以上客户端对同一个分布式锁完成加锁,不能保证数据的原子性,产生大量脏数据, 在redis master实例宕机的时候，可能导致多个客户端同时完成加锁</p>
-<ul>
-<li>缺点:</li>
-</ul>
-<p>如果发送redis master宕机,主备切换，redis slave变为了redis master.</p>
-<p>这就会导致客户端B来尝试加锁的时候，在新的redis master上完成了加锁，而客户端A也以为自己成功加了锁，此时就会导致多个客户端对一个分布式锁完成了加锁。这时就会导致各种脏数据的产生。</p>
-<p> 所以这个就是redis cluster，或者是redis master-slave架构的主从异步复制导致</p>
-<p>在redis master实例宕机的时候，可能导致多个客户端同时完成加锁。</p>
-<p>应用场景: 抢购, 抢票等高并发的场景</p>
-<p>redisson 信号量 项目中的应用，有什么优势</p>
-<h4 id="基于set命令的分布式锁"><a href="#基于set命令的分布式锁" class="headerlink" title="基于set命令的分布式锁"></a>基于set命令的分布式锁</h4><p>1.加锁:使用setnx经行加锁,当该指令返回1 时,说明成功获取锁</p>
-<p>2.解锁: 当得到锁的线程执行完任务之后,使用del命令释放锁,以便其他线程可以继续setnx命令来获取锁</p>
-<p>(1)存在的问题: 假设线程获取了锁之后,在执行任务的过程中挂掉,来不及执行del命令释放锁,那么竞争该锁的线程都会执行布隆,产生死锁的情况</p>
-<p>(2) 解决方案: 设置锁超时时间</p>
-<p>3.设置超时时间:setnx 必须设置一个超时时间,以保证即使没有显示的释放,也要在一定时间后自动释放,可以使用expire命令设置锁超时时间</p>
-<p>大批量动作需要执行使用分布式锁(自旋)</p>
-<p>单个操作使用信号量</p>
-<p>死锁:服务器宕机  发生异常</p>
-<p>​    解决:在try{}finally{}中释放锁</p>
-<p>锁过期:三十秒的默认过期时间 时间到了还没执行完 就释放锁</p>
-<p>​    加守护线程</p>
-<h4 id="分布式锁和分布式事务区别"><a href="#分布式锁和分布式事务区别" class="headerlink" title="分布式锁和分布式事务区别:"></a>分布式锁和分布式事务区别:</h4><p>锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。</p>
-<p>而事务问题的关键则在于事务涉及的一系列操作需要满足ACID特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。</p>
-<p>cpu飘高  导致  内存泄漏</p>
-<h3 id="redisssonReadLock"><a href="#redisssonReadLock" class="headerlink" title="redisssonReadLock:"></a>redisssonReadLock:</h3><p>   Redis中针对此种情况，引入了红锁的概念。红锁采用主节点过半机制，即获取锁或者释放锁成功的标志为：在过半的节点上操作成功。</p>
-<p>原理</p>
-<p>​        在Redis的分布式环境中，我们假设有N个Redis master。这些节点完全互相独立，不存在主从复制或者其他集群协调机制。之前我们已经描述了在Redis单实例下怎么安全地获取和释放锁。我们确保将在每（N）个实例上使用此方法获取和释放锁。在这个样例中，我们假设有5个Redis master节点，这是一个比较合理的设置，所以我们需要在5台机器上面或者5台虚拟机上面运行这些实例，这样保证他们不会同时都宕掉。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedissonRedLockDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">       <span class="type">RedissonClient</span> <span class="variable">redissonClient</span> <span class="operator">=</span> RedissonClientUtil.getClient(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="type">RLock</span> <span class="variable">rLock1</span> <span class="operator">=</span> redissonClient.getLock(<span class="string">&quot;lock1&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="type">RLock</span> <span class="variable">rLock2</span> <span class="operator">=</span> redissonClient.getLock(<span class="string">&quot;lock2&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="type">RLock</span> <span class="variable">rLock3</span> <span class="operator">=</span> redissonClient.getLock(<span class="string">&quot;lock3&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="type">RedissonRedLock</span> <span class="variable">redLock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RedissonRedLock</span>(rLock1, rLock2, rLock3);</span><br><span class="line"></span><br><span class="line">       redLock.lock();</span><br><span class="line"></span><br><span class="line">       redLock.unlock();</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">result1</span> <span class="operator">=</span> CRC16.crc16(<span class="string">&quot;lock1&quot;</span>.getBytes()) % <span class="number">16384</span>;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">result2</span> <span class="operator">=</span> CRC16.crc16(<span class="string">&quot;lock2&quot;</span>.getBytes()) % <span class="number">16384</span>;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">result3</span> <span class="operator">=</span> CRC16.crc16(<span class="string">&quot;lock3&quot;</span>.getBytes()) % <span class="number">16384</span>;</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;========测试一=========&quot;</span>);</span><br><span class="line"></span><br><span class="line">       System.out.println(result1);</span><br><span class="line"></span><br><span class="line">       System.out.println(result2);</span><br><span class="line"></span><br><span class="line">       System.out.println(result3);</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">result11</span> <span class="operator">=</span> CRC16.crc16(<span class="string">&quot;lockone&quot;</span>.getBytes()) % <span class="number">16384</span>;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">result21</span> <span class="operator">=</span> CRC16.crc16(<span class="string">&quot;locktwo&quot;</span>.getBytes()) % <span class="number">16384</span>;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">result31</span> <span class="operator">=</span> CRC16.crc16(<span class="string">&quot;lockthree&quot;</span>.getBytes()) % <span class="number">16384</span>;</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;========测试二=========&quot;</span>);</span><br><span class="line"></span><br><span class="line">       System.out.println(result11);</span><br><span class="line"></span><br><span class="line">       System.out.println(result21);</span><br><span class="line"></span><br><span class="line">       System.out.println(result31);</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;redis cluster 三个节点，平均 slot:&quot;</span>+<span class="number">16384</span>/<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>RedissonRedLock 不愧是基于 RedissonMultiLock 做的简单扩展，确实连使用都是基本一致的；只需要配置好 N 个锁，一般数量就是对应集群中主节点的数量，然后创建一个 RedissonRedLock 对象，接着就是调用获取锁和释放锁的方法即可。</p>
-<p>使用 RedissonRedLock 时需要注意 key 的使用</p>
-<p>那下面的那些计算slot是怎么回事？</p>
-<p>在 RedLock 算法中提到的是，获取锁其实就是在所有 Redis 实例节点使用同一个 key 进行加锁操作。</p>
-<p>但在 Redisson 中，执行lua脚本前是需要根据 Key 来定位 slot 的，然后 slot 能对应一个 Redis 节点。那么，如果我们在使用 RedissonRedLock 时，如果所有 RLock 都指定同一个key，都等同于当前客户端在重复获取同一把锁，那么最终就达不到 RedLock 算法的效果了。</p>
-<h3 id="redisson信号量"><a href="#redisson信号量" class="headerlink" title="redisson信号量"></a>redisson信号量</h3><h4 id="Semaphore概念"><a href="#Semaphore概念" class="headerlink" title="Semaphore概念"></a>Semaphore概念</h4><p>Semaphore也叫信号量，在JDK1.5被引入，可以用来控制同时访问特定资源的线程数量，通过协调各个线程，以保证合理的使用资源。Semaphore内部主要通过AQS（AbstractQueuedSynchronizer）实现线程的管理。Semaphore有两个构造函数，参数permits表示许可数，它最后传递给了AQS的state值。线程在运行时首先获取许可，如果成功，许可数就减1，线程运行，当线程运行结束就释放许可，许可数就加1。如果许可数为0，则获取失败，线程位于AQS的等待队列中，它会被其它释放许可的线程唤醒。在创建Semaphore对象的时候还可以指定它的公平性。一般常用非公平的信号量，非公平信号量是指在获取许可时先尝试获取许可，而不必关心是否已有需要获取许可的线程位于等待队列中，如果获取失败，才会入列。而公平的信号量在获取许可时首先要查看等待队列中是否已有线程，如果有则入列。</p>
-<p>Semaphore可以用来做流量分流，特别是对公共资源有限的场景，比如数据库连接。假设有这个的需求，读取几万个文件的数据到数据库中，由于文件读取是IO密集型任务，可以启动几十个线程并发读取，但是数据库连接数只有10个，这时就必须控制最多只有10个线程能够拿到数据库连接进行操作。这个时候，就可以使用Semaphore做流量控制。</p>
-<p>单个信号量的Semaphore对象可以实现互斥锁的功能，这时这个信号量就类似一个锁，并且可以是由一个线程获得了“锁”，再由另一个线程释放“锁”，这可应用于死锁恢复的一些场合（锁只能被本线程释放，不能被其他线程释放）</p>
-<h4 id="信号量常用接口"><a href="#信号量常用接口" class="headerlink" title="信号量常用接口"></a>信号量常用接口</h4><p>提供了<a href="https://link.juejin.cn/?target=http://static.javadoc.io/org.redisson/redisson/3.10.0/org/redisson/api/RSemaphoreAsync.html">异步（Async）</a>、<a href="https://link.juejin.cn/?target=http://static.javadoc.io/org.redisson/redisson/3.10.0/org/redisson/api/RSemaphoreReactive.html">反射式（Reactive）</a>和<a href="https://link.juejin.cn/?target=http://static.javadoc.io/org.redisson/redisson/3.10.0/org/redisson/api/RSemaphoreRx.html">RxJava2标准</a>的接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Config config=<span class="keyword">new</span> <span class="title class_">Config</span>();</span><br><span class="line">config.useSingleServer().setAddress(<span class="string">&quot;redis://192.168.xxx.xxx:6379&quot;</span>).setPassword(<span class="string">&quot;xxx&quot;</span>).setDatabase(<span class="number">0</span>);;</span><br><span class="line">RedissonClient redissonClient= Redisson.create(config);</span><br><span class="line"><span class="type">RSemaphore</span> <span class="variable">semaphore_text</span> <span class="operator">=</span> redissonClient.getSemaphore(<span class="string">&quot;semaphore_text&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取到一个信号量去执行任务 信号量-1</span></span><br><span class="line">semaphore_text.acquire();</span><br><span class="line"></span><br><span class="line"><span class="comment">//异步获取到30个信号量去执行任务 信号量-30</span></span><br><span class="line">semaphore_text.acquireAsync(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//有返回值的信号量扣减参数是几就扣减几个信号量</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">b</span> <span class="operator">=</span> semaphore_text.tryAcquire(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//有返回值的信号量异步扣减参数是几就扣减几个信号量</span></span><br><span class="line">semaphore_text.tryAcquireAsync(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//只有在给定的等待时间内所有许可都可用且当前线程未被中断时，才获取给定的许可数。(没有第一个参数就只获取一个许可) 扣减信号量</span></span><br><span class="line">semaphore_text.tryAcquire(<span class="number">2</span>,<span class="number">23</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line"><span class="comment">//只有在给定的等候时间内所有许可证都可用时，才异步获得给定数量的许可证。(没有第一个参数就只获取一个许可)扣减信号量</span></span><br><span class="line">semaphore_text.tryAcquireAsync(<span class="number">2</span>,<span class="number">23</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放给定数量的许可，并将它们返回给信号量,信号量加10</span></span><br><span class="line">semaphore_text.release(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放一个信号量 信号量加一</span></span><br><span class="line">semaphore_text.release();</span><br><span class="line"></span><br><span class="line"><span class="comment">//异步释放一个信号量 信号量加一</span></span><br><span class="line">semaphore_text.releaseAsync();</span><br><span class="line"></span><br><span class="line"><span class="comment">//把所有的信号量获取掉 信号量置0</span></span><br><span class="line">semaphore_text.drainPermits();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Resisson桶示例"><a href="#Resisson桶示例" class="headerlink" title="Resisson桶示例"></a>Resisson桶示例</h3><p><strong>作用：</strong></p>
-<p>桶存储单个对象，提供了原子替换功能，可在高并发场景下进行更新操作</p>
-<h4 id="RBucket-桶-相关接口"><a href="#RBucket-桶-相关接口" class="headerlink" title="RBucket(桶)相关接口"></a>RBucket(桶)相关接口</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">RBucket</span>&lt;V&gt; <span class="keyword">extends</span> <span class="title class_">RExpirable</span>, RBucketAsync&lt;V&gt; &#123;</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">set</span><span class="params">(V var1)</span>;                                  <span class="comment">//设置桶存储的对象</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">set</span><span class="params">(V var1, <span class="type">long</span> var2, TimeUnit var4)</span>;        <span class="comment">//设置桶存储的对象，设置操作的超时时间var2</span></span><br><span class="line"> </span><br><span class="line"><span class="type">boolean</span> <span class="title function_">trySet</span><span class="params">(V var1)</span>;                            <span class="comment">//尝试设置桶的新值</span></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">trySet</span><span class="params">(V var1, <span class="type">long</span> var2, TimeUnit var4)</span>;  <span class="comment">//尝试设置桶的新值，设置超时时间var2</span></span><br><span class="line"> </span><br><span class="line"><span class="type">boolean</span> <span class="title function_">compareAndSet</span><span class="params">(V var1, V var2)</span>;             <span class="comment">//原子替换桶的新值为var2</span></span><br><span class="line"> </span><br><span class="line"><span class="type">long</span> <span class="title function_">size</span><span class="params">()</span>;                                       <span class="comment">//桶存储对象的大小</span></span><br><span class="line"> </span><br><span class="line">V <span class="title function_">get</span><span class="params">()</span>;                                           <span class="comment">//返回桶存储的对象</span></span><br><span class="line">V <span class="title function_">getAndDelete</span><span class="params">()</span>;                                  <span class="comment">//返回并删除桶存储的对象</span></span><br><span class="line"> </span><br><span class="line">V <span class="title function_">getAndSet</span><span class="params">(V var1)</span>;                               <span class="comment">//返回桶的旧值，设置新值</span></span><br><span class="line">V <span class="title function_">getAndSet</span><span class="params">(V var1, <span class="type">long</span> var2, TimeUnit var4)</span>;     <span class="comment">//返回桶的旧值，设置新值，设置操作的超时时间var2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">测试方法<span class="number">1</span>:</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//配置redis连接 redisson 注意:此时redis 必须要设置密码 没有密码 会报密码错误</span></span><br><span class="line">        Config config=<span class="keyword">new</span> <span class="title class_">Config</span>();</span><br><span class="line">        config.useSingleServer().setAddress(<span class="string">&quot;redis://192.168.xxx.xxx:6379&quot;</span>).setPassword(<span class="string">&quot;xxx&quot;</span>).setDatabase(<span class="number">0</span>);;</span><br><span class="line">        RedissonClient client= Redisson.create(config);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//redisson闭锁 CountDownLatch 允许一个或多个线程一直等待，直到其他线程执行完后再执行</span></span><br><span class="line">        RCountDownLatch countDownLatch=client.getCountDownLatch(<span class="string">&quot;countDownLatch&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//添加记数器 计数器</span></span><br><span class="line">        countDownLatch.trySetCount(<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取桶</span></span><br><span class="line">        RBucket&lt;String&gt; bucket=client.getBucket(<span class="string">&quot;bucket8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//给桶对象赋值</span></span><br><span class="line">        bucket.set(<span class="string">&quot;瓜田李下 &quot;</span>+<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//获取同对象的值</span></span><br><span class="line">        String oldValue=bucket.get();</span><br><span class="line">        System.out.println(<span class="string">&quot;更新之前的桶对象是:&quot;</span>+oldValue);</span><br><span class="line">        <span class="comment">//创建线程</span></span><br><span class="line">        ExecutorService executorService= Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">20</span>;i++)&#123;</span><br><span class="line">            <span class="comment">//启动线程</span></span><br><span class="line">            executorService.submit(()-&gt;&#123;</span><br><span class="line">                <span class="comment">//线程中使用cas达到线程安全的目的,获取内存中的值和oldValue的值进行比较相同就更新值为 &quot;瓜田李下 &quot;+2</span></span><br><span class="line">                <span class="keyword">if</span> (bucket.compareAndSet(oldValue,<span class="string">&quot;瓜田李下 &quot;</span>+<span class="number">2</span>))&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;线程&quot;</span>+Thread.currentThread().getId()+<span class="string">&quot;更新了bucket的值&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//计数减一</span></span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//计数不是零就会一直等待</span></span><br><span class="line">            countDownLatch.await();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取当前桶中的计数</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">count</span> <span class="operator">=</span> countDownLatch.getCount();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;计数目前值是:&quot;</span>+count);</span><br><span class="line">        System.out.println(<span class="string">&quot;更新后的桶对象为：&quot;</span>+bucket.get());</span><br><span class="line">    	<span class="comment">//说明：有20个线程更新桶对象，只有一个执行了更新操作</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">简单的测试方法:</span><br><span class="line"> <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">zou</span><span class="params">()</span>&#123;</span><br><span class="line">        Config config=<span class="keyword">new</span> <span class="title class_">Config</span>();</span><br><span class="line">        config.useSingleServer().setAddress(<span class="string">&quot;redis://192.168.xxx.xxx:6379&quot;</span>).setPassword(<span class="string">&quot;xxx&quot;</span>).setDatabase(<span class="number">0</span>);;</span><br><span class="line">        RedissonClient redissonClient= Redisson.create(config);</span><br><span class="line">        <span class="comment">//获得锁</span></span><br><span class="line">        <span class="type">RCountDownLatch</span> <span class="variable">door</span> <span class="operator">=</span> redissonClient.getCountDownLatch(<span class="string">&quot;door&quot;</span>);</span><br><span class="line">        <span class="comment">//添加记数器</span></span><br><span class="line">        door.trySetCount(<span class="number">5</span>);</span><br><span class="line">        <span class="type">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            door.countDown();</span><br><span class="line">            <span class="type">int</span> k=++j;</span><br><span class="line">            System.out.println(<span class="string">&quot;走了:&quot;</span>+ k);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//等待</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            door.await();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;走完了....&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章:"></a>参考文章:</h2><p>CSDN博主「o_瓜田李下_o」的原创文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43931625/article/details/103250648">https://blog.csdn.net/weixin_43931625/article/details/103250648</a></p>
-
-    </div>
-    <footer class="article-footer">
-      
-    </footer>
-  </div>
-  
-  
-</article>
-      </div>
-      
-      <div class="col-3">
-        <article id="post-金融项目" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="card rounded">
-    
-    <div class="card-body bg-light">
-			
-  
-    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
-      <a href="/posts/9f7fd4b8.html">金融项目</a>
-    </h5>
-  
-
-			<time class="text-gray" datetime="2022-11-26T07:14:46.000Z" itemprop="datePublished">
-  2022-11-26
-</time>
-			<div class="card-text mt-3 line-clamp line-clamp-2"><p>金融项目</p></div>
-      <hr class="hr">
-      
-      <div class="article-more-link">
-        <a href="/posts/9f7fd4b8.html#more">阅读全文</a>
-      </div>
-      
-    </div>
-  </div>
-  
-  
-</article>
-      </div>
-      
-      <div class="col-3">
-        <article id="post-找房项目" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="card rounded">
-    
-    <div class="card-body bg-light">
-			
-  
-    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
-      <a href="/posts/4c216fd7.html">找房项目</a>
-    </h5>
-  
-
-			<time class="text-gray" datetime="2022-11-26T07:11:20.000Z" itemprop="datePublished">
-  2022-11-26
-</time>
-			<div class="card-text mt-3 line-clamp line-clamp-2"><p>找房</p></div>
-      <hr class="hr">
-      
-      <div class="article-more-link">
-        <a href="/posts/4c216fd7.html#more">阅读全文</a>
-      </div>
-      
-    </div>
-  </div>
-  
-  
-</article>
-      </div>
-      
-      <div class="col-3">
         <article id="post-关于JVM" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="card rounded">
@@ -542,6 +355,96 @@
       
       <div class="article-more-link">
         <a href="/posts/df4b4949.html#more">阅读全文</a>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+</article>
+      </div>
+      
+      <div class="col-3">
+        <article id="post-java基础" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="card rounded">
+    
+    <div class="card-body bg-light">
+			
+  
+    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
+      <a href="/posts/b8b0eacd.html">java基础</a>
+    </h5>
+  
+
+			<time class="text-gray" datetime="2022-11-26T06:38:26.000Z" itemprop="datePublished">
+  2022-11-26
+</time>
+			<div class="card-text mt-3 line-clamp line-clamp-2"><p>java基础</p></div>
+      <hr class="hr">
+      
+      <div class="article-more-link">
+        <a href="/posts/b8b0eacd.html#more">阅读全文</a>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+</article>
+      </div>
+      
+      <div class="col-3">
+        <article id="post-HashMap" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="card rounded">
+    
+    <div class="card-body bg-light">
+			
+  
+    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
+      <a href="/posts/3d614825.html">HashMap</a>
+    </h5>
+  
+
+			<time class="text-gray" datetime="2022-11-26T06:22:54.000Z" itemprop="datePublished">
+  2022-11-26
+</time>
+			<div class="card-text mt-3 line-clamp line-clamp-2"><p>HashMap</p></div>
+      <hr class="hr">
+      
+      <div class="article-more-link">
+        <a href="/posts/3d614825.html#more">阅读全文</a>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+</article>
+      </div>
+      
+      <div class="col-3">
+        <article id="post-关于线程的了解" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="card rounded">
+    
+    <div class="card-body bg-light">
+			
+  
+    <h5 class="article-title mb-0 line-clamp line-clamp-1" itemprop="name">
+      <a href="/posts/50cb8f08.html">关于线程的了解</a>
+    </h5>
+  
+
+			<time class="text-gray" datetime="2022-11-26T05:45:44.000Z" itemprop="datePublished">
+  2022-11-26
+</time>
+			<div class="card-text mt-3 line-clamp line-clamp-2"><p>关于线程的了解</p></div>
+      <hr class="hr">
+      
+      <div class="article-more-link">
+        <a href="/posts/50cb8f08.html#more">阅读全文</a>
       </div>
       
     </div>
