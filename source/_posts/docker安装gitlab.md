@@ -1,12 +1,20 @@
 ---
 title: docker安装gitlab
 typora-root-url: docker安装gitlab
-tags: gitlab
-categories: gitlab
 abbrlink: 8dbcf254
 date: 2023-10-16 16:37:32
-permalink:
+keywords: 'gitlab'
+tags: gitlab
+categories: gitlab
+photos:
+description: docker安装gitlab
 ---
+
+docker安装gitlab
+
+<!--more-->
+
+------
 
 
 

@@ -1,12 +1,22 @@
 ---
 title: Linux命令
 typora-root-url: Linux命令
-tags: Linux
-categories: Linux
 abbrlink: f340ee61
 date: 2023-05-26 15:33:58
-permalink:
+keywords: 'Linux'
+tags: 
+categories: 
+photos:
+description: Linux命令
 ---
+
+Linux命令
+
+<!--more-->
+
+------
+
+
 
 ### Linux指令
 

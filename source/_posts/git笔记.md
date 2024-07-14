@@ -1,12 +1,22 @@
 ---
 title: git笔记
 typora-root-url: git笔记
-tags: git
-categories: git
 abbrlink: d9283bc6
 date: 2023-08-04 22:28:50
-permalink:
+keywords: 'git'
+tags: git
+categories: git
+photos:
+description: git笔记
 ---
+
+git笔记
+
+<!--more-->
+
+------
+
+
 
 ### git安装
 

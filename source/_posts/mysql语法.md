@@ -3,9 +3,20 @@ title: mysql语法
 typora-root-url: mysql语法
 abbrlink: d36bd08c
 date: 2023-01-07 14:34:51
+keywords: 'mysql'
 tags: mysql
-permalink:
+categories: mysql
+photos:
+description: mysql语法
 ---
+
+mysql语法
+
+<!--more-->
+
+------
+
+
 
 ### java代码
 

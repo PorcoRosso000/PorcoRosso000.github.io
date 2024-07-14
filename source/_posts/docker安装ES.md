@@ -1,12 +1,22 @@
 ---
 title: docker安装ES
 typora-root-url: docker安装ES
-tags: ES
-categories: ES
 abbrlink: 921863cb
 date: 2023-10-17 15:45:05
-permalink:
+keywords: 'ES'
+tags: ES
+categories: ES
+photos:
+description: docker安装ES
 ---
+
+docker安装ES
+
+<!--more-->
+
+------
+
+
 
 ## 准备工作
 

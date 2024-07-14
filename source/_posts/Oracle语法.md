@@ -1,12 +1,22 @@
 ---
 title: Oracle语法
 typora-root-url: Oracle语法
-tags: Oracle
 abbrlink: a8e4d798
 date: 2023-03-01 07:39:47
-categories:
-permalink:
+keywords: 'oracle'
+tags: oracle
+categories: oracle
+photos:
+description: Oracle语法
 ---
+
+Oracle语法
+
+<!--more-->
+
+------
+
+
 
 ### Oracle数据库查询存储过程内容
 

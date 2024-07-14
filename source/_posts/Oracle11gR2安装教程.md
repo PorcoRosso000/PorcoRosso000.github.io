@@ -1,12 +1,20 @@
 ---
 title: Oracle11gR2安装教程
 typora-root-url: Oracle11gR2安装教程
-tags: Oracle
-categories: Oracle
 abbrlink: 16e89da7
 date: 2023-01-23 16:39:38
-permalink:
+keywords: 'Oracle'
+tags: Oracle
+categories: Oracle
+photos: 
+description: Oracle11gR2安装教程
 ---
+
+Oracle11gR2安装教程
+
+<!--more-->
+
+------
 
 
 

@@ -1,13 +1,20 @@
 ---
 title: liunx基础安装命令
 typora-root-url: liunx基础安装命令
-c: 8
 abbrlink: 2b8db47c
 date: 2023-10-17 16:37:17
-tags:
-categories:
-permalink:
+keywords: 'liunx'
+tags: liunx
+categories: liunx
+photos:
+description: liunx基础安装命令
 ---
+
+liunx基础安装命令
+
+<!--more-->
+
+------
 
 
 

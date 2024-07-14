@@ -1,12 +1,22 @@
 ---
 title: ThreadLocal学习笔记
 typora-root-url: ThreadLocal学习笔记
-tags: ThreadLocal
-categories: ThreadLocal
 abbrlink: cb80add6
 date: 2023-11-04 11:07:37
-permalink:
+keywords: 'ThreadLocal'
+tags: ThreadLocal
+categories: ThreadLocal
+photos:
+description: ThreadLocal学习笔记
 ---
+
+ThreadLocal学习笔记
+
+<!--more-->
+
+------
+
+
 
 ## 概念:
 

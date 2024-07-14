@@ -1,12 +1,20 @@
 ---
 title: docker安装portainer
 typora-root-url: docker安装portainer
-tags: portainer
-categories: portainer
 abbrlink: c1fb5e41
 date: 2023-10-17 14:56:53
-permalink:
+keywords: 'portainer'
+tags: portainer
+categories: portainer
+photos:
+description: docker安装portainer
 ---
+
+docker安装portainer
+
+<!--more-->
+
+------
 
 
 

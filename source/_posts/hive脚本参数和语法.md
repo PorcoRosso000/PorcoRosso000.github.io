@@ -3,10 +3,18 @@ title: hive脚本参数和语法
 typora-root-url: hive脚本参数和语法
 abbrlink: 3d21d1a7
 date: 2023-05-25 10:38:54
+keywords: 'hive'
 tags: hive
 categories: hive
-permalink:
+photos:
+description: hive脚本参数和语法
 ---
+
+hive脚本参数和语法
+
+<!--more-->
+
+------
 
 
 

@@ -1,12 +1,20 @@
 ---
 title: 搭建SpringCloudAlibaba
 typora-root-url: 搭建SpringCloudAlibaba
-tags: SpringCloudAlibab
-categories: SpringCloudAlibab
 abbrlink: 39e58a97
 date: 2023-10-16 15:06:59
-permalink:
+keywords: 'SpringCloudAlibaba'
+tags: SpringCloudAlibaba
+categories: SpringCloudAlibaba
+photos:
+description: 搭建SpringCloudAlibaba
 ---
+
+搭建SpringCloudAlibaba
+
+<!--more-->
+
+------
 
 
 

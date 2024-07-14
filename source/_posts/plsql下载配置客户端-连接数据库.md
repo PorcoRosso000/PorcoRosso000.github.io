@@ -1,12 +1,20 @@
 ---
 title: plsql下载配置客户端_连接数据库
 typora-root-url: plsql下载配置客户端_连接数据库
-tags: oracle
-categories: oracle
 abbrlink: b6044a20
 date: 2023-01-23 16:36:25
-permalink:
+keywords: 'oracle,plsql'
+tags: oracle
+categories: oracle
+photos:
+description: plsql下载配置客户端_连接数据库
 ---
+
+plsql下载配置客户端_连接数据库
+
+<!--more-->
+
+------
 
 
 

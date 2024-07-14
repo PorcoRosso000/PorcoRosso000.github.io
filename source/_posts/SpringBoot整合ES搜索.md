@@ -1,12 +1,22 @@
 ---
 title: SpringBoot整合ES搜索
 typora-root-url: SpringBoot整合ES搜索
-tags: ES
-categories: ES
 abbrlink: dc2aa829
 date: 2023-10-18 09:46:15
-permalink:
+keywords: 'es'
+tags: es
+categories: es
+photos:
+description: SpringBoot整合ES搜索
 ---
+
+SpringBoot整合ES搜索
+
+<!--more-->
+
+------
+
+
 
 ## 创建索引
 

@@ -1,16 +1,21 @@
 ---
 title: 淘宝分布式NOSQL框架Tair
 typora-root-url: 淘宝分布式NOSQL框架Tair
-tags: NOSQL
-categories: NOSQL
 abbrlink: ca07c336
 date: 2023-01-16 22:26:46
-permalink:
+keywords: 'NOSQL,Tair，分布式'
+tags: 分布式框架
+categories: 分布式框架
+photos:
+description: 淘宝分布式NOSQL框架Tair
 ---
 
+淘宝分布式NOSQL框架Tair
+<!--more-->
+
+------
 
 
-## [淘宝分布式NOSQL框架：Tair](https://www.cnblogs.com/chenny7/p/4875396.html)
 
 ## Tair 分布式K-V存储方案
 

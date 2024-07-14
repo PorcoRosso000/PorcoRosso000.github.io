@@ -3,10 +3,20 @@ title: JavaScript语法笔记
 typora-root-url: JavaScript语法笔记
 abbrlink: 50c89042
 date: 2023-06-03 21:15:48
-tags:
-categories:
-permalink:
+keywords: 'JavaScript'
+tags: JavaScript
+categories: JavaScript
+photos:
+description: JavaScript语法笔记
 ---
+
+JavaScript语法笔记
+
+<!--more-->
+
+------
+
+
 
 ### 校验：
 

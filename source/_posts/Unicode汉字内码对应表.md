@@ -1,12 +1,22 @@
 ---
 title: Unicode汉字内码对应表
 typora-root-url: Unicode汉字内码对应表
-tags: Unicode
-categories: Unicode
 abbrlink: 7593ac01
 date: 2023-01-23 12:46:59
-permalink:
+keywords: 'Unicode'
+tags: java基础
+categories: java基础
+photos:
+description: Unicode汉字内码对应表
 ---
+
+Unicode汉字内码对应表
+
+<!--more-->
+
+------
+
+
 
 ## 1、历史简述
 

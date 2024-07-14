@@ -1,12 +1,20 @@
 ---
 title: docker安装MongoDB
 typora-root-url: docker安装MongoDB
-tags: MongoDB
-categories: MongoDB
 abbrlink: afdec5ed
 date: 2023-10-16 16:57:21
-permalink:
+keywords: 'MongoDB'
+tags: MongoDB
+categories: MongoDB
+photos:
+description: docker安装MongoDB
 ---
+
+docker安装MongoDB
+
+<!--more-->
+
+------
 
 
 

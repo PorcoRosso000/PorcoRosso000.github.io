@@ -1,12 +1,20 @@
 ---
 title: java运行环境JDK
 typora-root-url: java运行环境JDK
-tags: jdk
-categories: jdk
 abbrlink: a90fd208
 date: 2023-06-03 20:11:54
-permalink:
+keywords: 'jdk'
+tags: jdk
+categories: jdk
+photos:
+description: java运行环境JDK
 ---
+
+java运行环境JDK
+
+<!--more-->
+
+------
 
 
 

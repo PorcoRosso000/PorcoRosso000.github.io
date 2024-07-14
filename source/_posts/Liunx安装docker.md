@@ -1,12 +1,20 @@
 ---
 title: Liunx安装docker
 typora-root-url: Liunx安装docker
-tags: docker
-categories: docker
 abbrlink: 2259f19c
 date: 2023-10-17 15:53:02
-permalink:
+keywords: 'docker'
+tags: docker
+categories: docker
+photos:
+description: Liunx安装docker
 ---
+
+Liunx安装docker
+
+<!--more-->
+
+------
 
 
 

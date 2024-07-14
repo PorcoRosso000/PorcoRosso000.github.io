@@ -1,14 +1,20 @@
 ---
 title: 电脑安装VMware
 typora-root-url: 电脑安装VMware
-tags: VMware
-categories: VMware
 abbrlink: a55fa9fa
 date: 2023-10-17 17:29:22
-permalink:
+keywords: 'VMware'
+tags: VMware
+categories: VMware
+photos:
+description: 电脑安装VMware
 ---
 
+电脑安装VMware
 
+<!--more-->
+
+------
 
 双击下载的安装包，点击”下一步“
 

@@ -1,12 +1,22 @@
 ---
 title: docker安装kibana
 typora-root-url: docker安装kibana
-tags: kibana
-categories: kibana
 abbrlink: 9945e44a
 date: 2023-10-17 15:31:39
-permalink:
+keywords: 'kibana'
+tags: kibana
+categories: kibana
+photos:
+description: docker安装kibana
 ---
+
+docker安装kibana
+
+<!--more-->
+
+------
+
+
 
 ## 准备工作
 

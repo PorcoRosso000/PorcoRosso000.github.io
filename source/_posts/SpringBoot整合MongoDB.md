@@ -1,12 +1,22 @@
 ---
 title: SpringBoot整合MongoDB
 typora-root-url: SpringBoot整合MongoDB
-tags: MongoDB
-categories: MongoDB
 abbrlink: 4fc9bfdc
 date: 2023-10-18 09:23:27
-permalink:
+keywords: 'MongoDB'
+tags: MongoDB
+categories: MongoDB
+photos:
+description: SpringBoot整合MongoDB
 ---
+
+SpringBoot整合MongoDB
+
+<!--more-->
+
+------
+
+
 
 ## 引入依赖
 

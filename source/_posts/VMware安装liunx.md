@@ -1,12 +1,22 @@
 ---
 title: VMware安装liunx
 typora-root-url: VMware安装liunx
-tags: liunx
-categories: liunx
 abbrlink: 4b56a127
 date: 2023-10-17 16:04:25
-permalink:
+keywords: 'liunx'
+tags: liunx
+categories: liunx
+photos:
+description: VMware安装liunx
 ---
+
+VMware安装liunx
+
+<!--more-->
+
+------
+
+
 
 ## 新建虚拟机
 

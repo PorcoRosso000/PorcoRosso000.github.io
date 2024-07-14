@@ -3,8 +3,20 @@ title: rabbitmq知识整理
 typora-root-url: rabbitmq知识整理
 abbrlink: 3ff4e7d7
 date: 2022-11-25 11:30:34
-tags:
+keywords: 'rabbitmq'
+tags: rabbitmq
+categories: rabbitmq
+photos:
+description: rabbitmq知识整理
 ---
+
+rabbitmq知识整理
+
+<!--more-->
+
+------
+
+
 
 ## 什么叫消息队列？
 

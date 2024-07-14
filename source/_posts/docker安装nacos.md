@@ -1,12 +1,20 @@
 ---
 title: docker安装nacos
 typora-root-url: docker安装nacos
-tags: nacos
-categories: nacos
 abbrlink: b2cc0cbb
 date: 2023-10-17 15:04:42
-permalink:
+keywords: 'nacos'
+tags: nacos
+categories: nacos
+photos:
+description: docker安装nacos
 ---
+
+docker安装nacos
+
+<!--more-->
+
+------
 
 
 

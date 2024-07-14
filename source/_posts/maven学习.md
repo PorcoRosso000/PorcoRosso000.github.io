@@ -1,12 +1,20 @@
 ---
 title: maven学习
 typora-root-url: maven学习
-tags: maven
-categories: maven
 abbrlink: e5dd7f0f
 date: 2023-10-08 19:20:45
-permalink:
+keywords: 'maven'
+tags: maven
+categories: maven
+photos:
+description: maven学习
 ---
+
+maven学习
+
+<!--more-->
+
+------
 
 
 

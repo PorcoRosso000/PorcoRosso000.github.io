@@ -1,12 +1,22 @@
 ---
 title: SpEL表达式学习
 typora-root-url: SpEL表达式学习
-tags: SpEL
-categories: SpEL
 abbrlink: 200e4d1e
 date: 2023-10-08 21:24:50
-permalink:
+keywords: 'SpEL'
+tags: SpEL
+categories: SpEL
+photos:
+description: SpEL表达式学习
 ---
+
+SpEL表达式学习
+
+<!--more-->
+
+------
+
+
 
 ## SpEl
 

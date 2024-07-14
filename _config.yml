@@ -155,7 +155,14 @@ autoprefixer:
 clean_css:
   exclude: 
     - '*.min.css'
-    
+ 
+ # offline config passed to sw-precache. 加快网页浏览速度
+service_worker:
+  maximumFileSizeToCacheInBytes: 5242880
+  staticFileGlobs:
+  - public/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2}
+  stripPrefix: public
+  verbose: true
 # sitemap:
   # path: 
     # - sitemap.xml

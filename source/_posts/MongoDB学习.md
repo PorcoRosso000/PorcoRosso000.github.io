@@ -1,12 +1,22 @@
 ---
 title: MongoDB学习
 typora-root-url: MongoDB学习
-tags: MongoDB
-categories: MongoDB
 abbrlink: '88175981'
 date: 2023-10-17 17:48:48
-permalink:
+keywords: 'MongoDB'
+tags: MongoDB
+categories: MongoDB
+photos:
+description: MongoDB学习
 ---
+
+MongoDB学习
+
+<!--more-->
+
+------
+
+
 
 ## MongoDB简介
 

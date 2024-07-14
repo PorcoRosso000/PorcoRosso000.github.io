@@ -1,12 +1,22 @@
 ---
 title: docker安装redis
 typora-root-url: docker安装redis
-tags: redis
-categories: redis
 abbrlink: cbab506c
 date: 2023-10-17 15:22:21
-permalink:
+keywords: 'redis'
+tags: redis
+categories: redis
+photos:
+description: docker安装redis
 ---
+
+docker安装redis
+
+<!--more-->
+
+------
+
+
 
 ## 拉取镜像
 

@@ -1,12 +1,22 @@
 ---
 title: svn学习
 typora-root-url: svn学习
-tags: svn
-categories: svn
 abbrlink: 75951dbb
 date: 2023-10-08 21:12:12
-permalink:
+keywords: 'svn'
+tags: svn
+categories: svn
+photos:
+description: svn学习
 ---
+
+svn学习
+
+<!--more-->
+
+------
+
+
 
 ### idea 中使用svn步骤
 

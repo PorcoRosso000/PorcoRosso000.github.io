@@ -3,10 +3,20 @@ title: idea操作文档
 typora-root-url: idea操作文档
 abbrlink: 5646c163
 date: 2023-09-21 07:08:07
-tags:
-categories:
-permalink:
+keywords: 'idea'
+tags: idea
+categories: idea
+photos:
+description: idea操作文档
 ---
+
+idea操作文档
+
+<!--more-->
+
+------
+
+
 
 ### idea代码快速追踪定位
 

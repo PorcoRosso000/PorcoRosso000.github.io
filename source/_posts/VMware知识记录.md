@@ -1,12 +1,22 @@
 ---
 title: VMware知识记录
 typora-root-url: VMware知识记录
-tags: VMware
-categories: VMware
 abbrlink: 5b52618
 date: 2023-07-22 15:18:17
-permalink:
+keywords: 'VMware'
+tags: VMware
+categories: VMware
+photos:
+description: VMware知识记录
 ---
+
+VMware知识记录
+
+<!--more-->
+
+------
+
+
 
 ### 虚拟机ifconfig或ip addr不显示ip地址
 

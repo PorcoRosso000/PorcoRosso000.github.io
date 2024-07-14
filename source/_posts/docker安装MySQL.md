@@ -1,12 +1,20 @@
 ---
 title: docker安装MySQL
 typora-root-url: docker安装MySQL
-tags: MYSQL
-categories: MYSQL
 abbrlink: 72c8f5cf
 date: 2023-10-16 16:46:16
-permalink:
+keywords: 'MySQL'
+tags: MySQL
+categories: MySQL
+photos:
+description: docker安装MySQL
 ---
+
+docker安装MySQL
+
+<!--more-->
+
+------
 
 
 
