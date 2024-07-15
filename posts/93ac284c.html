@@ -112,7 +112,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <p>事务</p>
+      
+        <!-- 文章目录 -->
+        
+        <!-- Table of Contents -->
+        <p>事务</p>
 <span id="more"></span>
 
 <hr>
@@ -244,6 +248,7 @@
 <p> （4）如果在Service层用了try catch，在catch里面再抛出一个 RuntimeException异常，这样出了异常才会回滚</p>
 <p> 5还可以直接在catch后面写一句回滚代码（TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();）来实现回滚，这样的话，就可以在抛异常后也能return 返回值；  </p>
 
+      
     </div>
     <footer class="article-footer">
       

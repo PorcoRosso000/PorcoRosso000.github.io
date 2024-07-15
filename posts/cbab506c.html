@@ -112,7 +112,11 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      <p>docker安装redis</p>
+      
+        <!-- 文章目录 -->
+        
+        <!-- Table of Contents -->
+        <p>docker安装redis</p>
 <span id="more"></span>
 
 <hr>
@@ -138,6 +142,7 @@
 
 <h2 id="测试redis"><a href="#测试redis" class="headerlink" title="测试redis"></a>测试redis</h2><p><img src="/posts/cbab506c/clip_image008.gif" alt="图片"></p>
 <h2 id="一键重置redis脚本"><a href="#一键重置redis脚本" class="headerlink" title="一键重置redis脚本"></a>一键重置redis脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建sh脚本</span></span><br><span class="line">[root@MuYu redis]# vim resetRedis.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编写sh脚本</span></span><br><span class="line">docker rm -f redis</span><br><span class="line">./startRedis.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">赋权</span></span><br><span class="line">[root@MuYu redis]# chmod -R 777 resetRedis.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行</span></span><br><span class="line">[root@MuYu redis]# ./resetRedis.sh </span><br><span class="line">redis</span><br><span class="line">bbb4e496f5b9b98fd61ce21fa4133c401e2a069f326894594adfd472632e13e3</span><br></pre></td></tr></table></figure>
+      
     </div>
     <footer class="article-footer">
       
