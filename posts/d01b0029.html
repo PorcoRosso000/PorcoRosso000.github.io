@@ -108,11 +108,7 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
-        <!-- 文章目录 -->
-        
-        <!-- Table of Contents -->
-        <p>长链接变短链接</p>
+      <p>长链接变短链接</p>
 <span id="more"></span>
 
 <hr>
@@ -133,8 +129,8 @@
 
 <p>第一行注解我就不讲了，{shortUrl}这个就是动态变化的生成的短链接，shorturlService.restoreUrl（）方法是通过传入得短链接到库里查询对应的长链接即真实地址。然后转发重定向到真实的地址即可。完整的短链接本地访问：127.0.0.1/端口号/短链接，如：127.0.0.1/8888/2MnQFj,线上的访问地址：域名/短链接,如：<a target="_blank" rel="noopener" href="http://www.baidu.com/2MnQFj,%E5%A6%82%E6%9E%9C%E9%A1%B9%E7%9B%AE%E6%9C%89%E6%8B%A6%E6%88%AA%E5%99%A8%EF%BC%8C%E5%9B%A0%E4%B8%BA%E7%9F%AD%E9%93%BE%E6%8E%A5%E6%98%AF%E5%8A%A8%E6%80%81%E5%8F%98%E5%8C%96%E7%9A%84%EF%BC%8C%E9%9C%80%E8%A6%81%E5%9C%A8%E5%89%8D%E9%9D%A2%E5%8A%A0%E4%B8%80%E5%B1%82%E8%B7%AF%E5%BE%84%EF%BC%8C%E5%83%8F%E8%BF%99%E6%A0%B7%EF%BC%9A127.0.0.1/8888/go/2MnQFj%E7%84%B6%E5%90%8E%E5%B0%B1%E5%AE%8C%E4%BA%8B%E4%BA%86%E3%80%82">www.baidu.com/2MnQFj,如果项目有拦截器，因为短链接是动态变化的，需要在前面加一层路径，像这样：127.0.0.1/8888/go/2MnQFj然后就完事了。</a></p>
 
-      
     </div>
+	
     <footer class="article-footer">
       
     </footer>
