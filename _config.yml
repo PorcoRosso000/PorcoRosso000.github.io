@@ -18,23 +18,29 @@ search:
   field: post
   content: true
 
-algolia:
-  appId: "8FGLQ0B7KR"
-  apiKey: "682baf05c27a5834c50f617c2863d140"
-  adminApiKey: "3fafdb9a28a4578361f45b7618727b0b"
-  chunkSize: 5000
-  indexName: "juzi_dhx"
-  fields:
-    - content:strip:truncate,0,500
-    - excerpt:strip
-    - gallery
-    - permalink
-    - photos
-    - slug
-    - tags
-    - title
+# # 搜索功能 
+# # Local search
+# local_search:
+# #  enable: false
+  # enable: true
+
+# algolia:
+  # appId: "8FGLQ0B7KR"
+  # apiKey: "682baf05c27a5834c50f617c2863d140"
+  # adminApiKey: "3fafdb9a28a4578361f45b7618727b0b"
+  # chunkSize: 5000
+  # indexName: "juzi_dhx"
+  # fields:
+    # - content:strip:truncate,0,500
+    # - excerpt:strip
+    # - gallery
+    # - permalink
+    # - photos
+    # - slug
+    # - tags
+    # - title
 plugins:
-  - hexo-algoliasearch
+  - hexo-tag-cloud
 
 
 # URL
@@ -131,7 +137,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: acorn
+theme: cactus-white
 #butterfly
 
 # Deployment

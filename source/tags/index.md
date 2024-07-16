@@ -1,7 +1,6 @@
 ---
 title: tags
 date: 2022-11-06 21:09:30
-type: "tags"
+layout: tags
 ---
-
 
