@@ -1,126 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=zh>
 <head>
-  <meta charset="utf-8">
-  
-  
-    <meta name="keywords" content="HashMap,">
-  
-  
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="HashMap">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-  <title>HashMap |  红猪的博客</title>
-  
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/webclip/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/webclip/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/webclip/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/webclip/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/images/webclip/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/webclip/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/webclip/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/webclip/apple-touch-icon-180x180.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="/images/webclip/apple-touch-icon-167x167.png">
-  
-  
-  
-    <link rel="shortcut icon" href="/images/favico.ico">
-  
-  
-  
-  
-  
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap">
+<meta property="og:url" content="http://porcorosso.top/posts/3d614825.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="HashMap">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/lu152441l02jn_tmp_aa78b1aae4f96ff2.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/lu152441l02jn_tmp_b49e48306e0a0a9e.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/lu152441l02jn_tmp_a175be2b7814d863.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/lu152441l02jn_tmp_f43f76db76b301d2.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/lu152441l02jn_tmp_9e4559e12065df5a.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/lu152441l02jn_tmp_968091efce50ef84.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/lu152441l02jn_tmp_ecdbd35aa2d749dd.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/20200914143526670.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/2020091414594076.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3d614825/20200914151350888.png">
+<meta property="article:published_time" content="2022-11-26T06:22:54.000Z">
+<meta property="article:modified_time" content="2024-07-13T14:42:47.670Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="HashMap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/3d614825/lu152441l02jn_tmp_aa78b1aae4f96ff2.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>HashMap</title>
+    <!-- styles -->
+    
 <link rel="stylesheet" href="/css/style.css">
 
-  
+    <!-- rss -->
+    
+    
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body>
-  <main class="main">
     
-	<header id="header" class="header">
-
-	<div class="container">
-		<nav class="navbar d-flex align-items-center">
-			<a class="brand" href="/">
-				<img class="logo lazyload" data-src="/images/brand.svg" alt="红猪的博客" role="img">
-			</a>
-			<ul class="main-nav">
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/">首页</a>
-  </li>
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/gallery">书目</a>
-  </li>
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/stories">文章分类</a>
-  </li>
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/archives">文章</a>
-  </li>
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/about">关于</a>
-  </li>
-  
-</ul>
-		</nav>
-		<a id="mobile-nav-toggle">
-			<span class="mobile-nav-toggle-bar"></span>
-			<span class="mobile-nav-toggle-bar"></span>
-			<span class="mobile-nav-toggle-bar"></span>
-		</a>
-	</div>
-	<div id="search-container">
-	  <input id="search-input" type="text" placeholder="Search...">
-	  <div id="search-results"></div>
-	</div>
-</header>
-
-    <section>
-      <div class="container">
-  <article id="post-HashMap" class="article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  
-  <div class="article-cover mb-5">
-    
-  </div>
-  
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-      
-  
-    <h1 class="article-title" itemprop="name">
-      HashMap
-    </h1>
-  
-
-      <div class="article-meta">
-        <time class="text-gray" datetime="2022-11-26T06:22:54.000Z" itemprop="datePublished">
-  2022-11-26
-</time>
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/PorcoRosso000">Projects</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
         
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HashMap/">HashMap</a>
-  </div>
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/b8b0eacd.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/50cb8f08.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/3d614825.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/3d614825.html&text=HashMap"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/3d614825.html&is_video=false&description=HashMap"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HashMap&body=Check out this article: http://porcorosso.top/posts/3d614825.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/3d614825.html&name=HashMap&description=&lt;p&gt;HashMap&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-      </div>
-      
-    </header>
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap"><span class="toc-number">1.</span> <span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%E4%B8%80%E4%B8%8BHashMap%E7%9A%84%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">回顾一下HashMap的底层数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AE%BE%E7%BD%AE%E9%93%BE%E8%A1%A8%E9%95%BF%E5%BA%A6%E5%A4%A7%E4%BA%8E8%E8%BD%AC%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="toc-number">1.1.1.</span> <span class="toc-text">为什么设置链表长度大于8转红黑树？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B0%8F%E4%BA%8E6%E7%9A%84%E6%97%B6%E5%80%99%E5%B0%B1%E8%BD%AC%E5%8C%96%E6%88%90%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">为什么小于6的时候就转化成链表？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">为什么使用数组?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="toc-number">1.1.4.</span> <span class="toc-text">为什么使用链表？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="toc-number">1.1.5.</span> <span class="toc-text">为什么使用红黑树？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91-%E6%A0%91%E6%9C%896%E4%B8%AA%E6%80%A7%E8%B4%A8%EF%BC%9B"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">红黑 树有6个性质；</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">为什么不使用二叉树？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashMap1-7%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">hashMap1.7不安全的原因：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap1-7%E4%B8%8B%E7%9A%84%E5%AF%BC%E8%87%B4%E7%9A%84%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.3.1.</span> <span class="toc-text">hashmap1.7下的导致的循环链表的原因?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap1-7%E5%92%8C1-8%E5%A4%B4%E6%8F%92%E5%85%A5%E4%B8%8E%E5%B0%BE%E6%8F%92%E5%85%A5%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.4.</span> <span class="toc-text">HashMap1.7和1.8头插入与尾插入的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%85%E6%9E%90HashMap%E7%9A%84put-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">浅析HashMap的put()方法执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashmap%E7%9A%84get%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">hashmap的get方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap%E4%B8%AD%E7%9A%84put%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%A4%A7%E4%BD%93%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.7.</span> <span class="toc-text">HashMap中的put方法执行过程大体如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hashmap%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="toc-number">1.8.</span> <span class="toc-text">Hashmap扩容机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A90-75"><span class="toc-number">1.8.1.</span> <span class="toc-text">hashmap为什么选择0.75</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%A7%A6%E5%8F%91%E6%89%A9%E5%AE%B9%EF%BC%9F"><span class="toc-number">1.8.2.</span> <span class="toc-text">hashmap什么时候触发扩容？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6ConcurrentHashMap"><span class="toc-number">1.9.</span> <span class="toc-text">研究ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ConcurrentHashMap%E7%9A%84get-int-key-%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF%E4%B8%BA%EF%BC%9A"><span class="toc-number">1.9.1.</span> <span class="toc-text">ConcurrentHashMap的get(int key)方法的实现思路为：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ConcurrentHashMap%E7%9A%84put%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF%E4%B8%BA%EF%BC%9A"><span class="toc-number">1.9.2.</span> <span class="toc-text">ConcurrentHashMap的put方法的实现思路为：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.10.</span> <span class="toc-text">底层实现:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3hash%E5%86%B2%E7%AA%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.11.</span> <span class="toc-text">解决hash冲突的方法:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%86%8Dhash%E6%B3%95"><span class="toc-number">1.11.1.</span> <span class="toc-text">1.再hash法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E6%94%BE%E5%AE%9A%E5%9D%80%E6%B3%95"><span class="toc-number">1.11.2.</span> <span class="toc-text">2.开放定址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-number">1.11.3.</span> <span class="toc-text">3.链地址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%BB%BA%E7%AB%8B%E5%85%AC%E5%85%B1%E6%BA%A2%E5%87%BA%E5%8C%BA"><span class="toc-number">1.11.4.</span> <span class="toc-text">4.建立公共溢出区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap-%E5%92%8CHashtable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.12.</span> <span class="toc-text">ConcurrentHashMap 和Hashtable的区别?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Collection%E5%92%8CCollections%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">Collection和Collections区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap%E5%92%8CHashTable%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">HashMap和HashTable的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap%E6%BA%90%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">hashmap源码:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap%E6%8F%92%E5%85%A5%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%A4%B4%E6%8F%92%E6%B3%95%E8%BF%98%E6%98%AF%E5%B0%BE%E6%8F%92%E6%B3%95%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">HashMap插入时，使用头插法还是尾插法？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">hashmap怎么保证安全？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashMap%E9%94%AE%E4%B8%80%E6%A0%B7%E5%80%BC%E4%B8%8D%E4%B8%80%E6%A0%B7%E6%80%8E%E4%B9%88%E8%8E%B7%E5%8F%96%E5%80%BC"><span class="toc-number">7.</span> <span class="toc-text">hashMap键一样值不一样怎么获取值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashset%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8E%BB%E9%87%8D"><span class="toc-number">8.</span> <span class="toc-text">hashset如何实现去重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8D%95%E9%93%BE%E8%A1%A8%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">9.</span> <span class="toc-text">使用单链表插入数据</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
     
-    <div class="article-entry" itemprop="articleBody">
-      <p>HashMap</p>
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        HashMap
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2022-11-26T06:22:54.000Z" itemprop="datePublished">2022-11-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/HashMap/" rel="tag">HashMap</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>HashMap</p>
 <span id="more"></span>
 
 <hr>
@@ -276,179 +309,122 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SingleLinkedListDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">PersonNode</span> <span class="variable">person1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PersonNode</span>(<span class="number">1</span>, <span class="string">&quot;Mary&quot;</span>, <span class="string">&quot;董事长&quot;</span>);</span><br><span class="line">        <span class="type">PersonNode</span> <span class="variable">person2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PersonNode</span>(<span class="number">2</span>, <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;总经理&quot;</span>);</span><br><span class="line">        <span class="type">PersonNode</span> <span class="variable">person3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PersonNode</span>(<span class="number">3</span>, <span class="string">&quot;Tom&quot;</span>, <span class="string">&quot;架构师&quot;</span>);</span><br><span class="line">        <span class="type">PersonNode</span> <span class="variable">person4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PersonNode</span>(<span class="number">4</span>, <span class="string">&quot;Jenny&quot;</span>, <span class="string">&quot;工程师&quot;</span>);</span><br><span class="line">        <span class="type">SingleLinkedList</span> <span class="variable">singleLinkedList</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SingleLinkedList</span>();</span><br><span class="line"><span class="comment">//        System.out.println(&quot;头插法测试&quot;);</span></span><br><span class="line"><span class="comment">//        singleLinkedList.headInsert(person1);</span></span><br><span class="line"><span class="comment">//        singleLinkedList.headInsert(person2);</span></span><br><span class="line"><span class="comment">//        singleLinkedList.headInsert(person3);</span></span><br><span class="line"><span class="comment">//        singleLinkedList.headInsert(person4);</span></span><br><span class="line"><span class="comment">//        singleLinkedList.list();</span></span><br><span class="line">        System.out.println(<span class="string">&quot;尾插法测试&quot;</span>);</span><br><span class="line">        singleLinkedList.tailInsert(person1);</span><br><span class="line">        singleLinkedList.tailInsert(person2);</span><br><span class="line">        singleLinkedList.tailInsert(person3);</span><br><span class="line">        singleLinkedList.tailInsert(person4);</span><br><span class="line">        singleLinkedList.list();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 链表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SingleLinkedList</span> &#123;</span><br><span class="line">    <span class="comment">// 定义一个头结点，不存储结点数据，只是用来指向链表的第一个元素</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">PersonNode</span> <span class="variable">head</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PersonNode</span>(<span class="number">0</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 头插法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> node 待插入结点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">headInsert</span><span class="params">(PersonNode node)</span> &#123;</span><br><span class="line">        <span class="comment">// 判断链表是否为空，如果为空，则将head.next指向node</span></span><br><span class="line">        <span class="keyword">if</span> (head.next == <span class="literal">null</span>) &#123;</span><br><span class="line">            head.next = node;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果链表不为空，找到head.next，将node插入head和head.next之间</span></span><br><span class="line">        <span class="type">PersonNode</span> <span class="variable">temp</span> <span class="operator">=</span> head.next;</span><br><span class="line">        head.next = node;  <span class="comment">// head.next指向node</span></span><br><span class="line">        node.next = temp;  <span class="comment">// node.next指向之前的head.next</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 尾插法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> node 待插入结点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">tailInsert</span><span class="params">(PersonNode node)</span> &#123;</span><br><span class="line">        <span class="comment">// 如果链表为空，直接head.next = node</span></span><br><span class="line">        <span class="keyword">if</span> (head.next == <span class="literal">null</span>) &#123;</span><br><span class="line">            head.next = node;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果链表不为空，遍历查找最后一个结点</span></span><br><span class="line">        <span class="type">PersonNode</span> <span class="variable">temp</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 这里的条件注意下，使用temp.next==null，不要用temp==null, 两者的区别体会一下，我自己在写的时候就写成后者了</span></span><br><span class="line">            <span class="keyword">if</span> (temp.next == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 跳出循环后，temp即为我们要找的链表的最后一个结点，直接temp.next=node</span></span><br><span class="line">        temp.next = node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 遍历打印链表结点数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">list</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 如果链表为空，返回</span></span><br><span class="line">        <span class="keyword">if</span> (head.next == <span class="literal">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;链表为空。&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果链表不为空，遍历</span></span><br><span class="line">        <span class="comment">// head标识链表的头部，不要动，定义一个临时引用，用来遍历链表</span></span><br><span class="line">        <span class="type">PersonNode</span> <span class="variable">temp</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果temp为空，说明链表已经到达尾部，跳出循环</span></span><br><span class="line">            <span class="keyword">if</span> (temp == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 此时temp表示last.next = temp，即最后一个结点指向它</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 如果temp不为空，打印temp</span></span><br><span class="line">            System.out.println(temp);</span><br><span class="line">            <span class="comment">// temp后移，继续遍历</span></span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 结点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PersonNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> no;</span><br><span class="line">    String name;</span><br><span class="line">    String job;</span><br><span class="line">    PersonNode next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PersonNode</span><span class="params">(<span class="type">int</span> no, String name, String job)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.no = no;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.job = job;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PersonNode</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getNo</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> no;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setNo</span><span class="params">(<span class="type">int</span> no)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.no = no;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getJob</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> job;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setJob</span><span class="params">(String job)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.job = job;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> PersonNode <span class="title function_">getNext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setNext</span><span class="params">(PersonNode next)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;PersonNode&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;no=&quot;</span> + no +</span><br><span class="line">                <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, job=&#x27;&quot;</span> + job +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-    </div>
-	
-    <footer class="article-footer">
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li></ul>
-
-    </footer>
   </div>
-  
-  
-    
-<nav class="article-nav pt-4 mt-3" id="article-nav">
-  
-    <a href="/posts/b8b0eacd.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          java基础
-        
-      </div>
-    </a>
-  
-  
-    <a href="/posts/50cb8f08.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">关于线程的了解</div>
-    </a>
-  
-</nav>
-
-
-  
 </article>
-</div>
-    </section>
-    <footer class="footer pt-5 mt-5">
-  <div class="container">
-    <div class="py-3">
-      <div class="row justify-content-between">
-        <div class="col-6">
-          <img class="filter-gray mb-3 lazyload" height="40" data-src="/images/brand.svg" alt="红猪的博客" role="img">
-          <p class="mb-4">人必有所执,方能有所成</p>
-          <ul class="list-inline">
-            
-              <li class="list-inline-item">
-                <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/explore">
-                  <img 0="小红书" src="/images/icons/contact_wotobuy.svg">
-                </a>
-              </li>
-            
-              <li class="list-inline-item">
-                <a href="juzi_dhx">
-                  <img 0="微信" src="/images/icons/contact_wechat.svg">
-                </a>
-              </li>
-            
-              <li class="list-inline-item">
-                <a href="mailto:dong_haoxin@foxmail.com">
-                  <img 0="邮箱" src="/images/icons/contact_email.svg">
-                </a>
-              </li>
-            
-          </ul>
-        </div>
-        <div class="col-4">
-          <h5>友情链接</h5>
-          <ul class="list-inline">
-            
-              <li class="list-inline-item">
-                <a href="https://www.xdull.cn/" title="CodeTime" target="_blank" rel="noopener">CodeTime</a>
-              </li>
-            
-              <li class="list-inline-item">
-                <a href="https://www.antmoe.com/" title="小康博客" target="_blank" rel="noopener">小康博客</a>
-              </li>
-            
-              <li class="list-inline-item">
-                <a href="https://www.beierblog.com/" title="奇想派" target="_blank" rel="noopener">奇想派</a>
-              </li>
-            
-              <li class="list-inline-item">
-                <a href="https://siax.cn/" title="Siax&#39;s Blog" target="_blank" rel="noopener">Siax&#39;s Blog</a>
-              </li>
-            
-              <li class="list-inline-item">
-                <a href="https://fe32.top/" title="Ethan.Tzy" target="_blank" rel="noopener">Ethan.Tzy</a>
-              </li>
-            
-              <li class="list-inline-item">
-                <a href="https://www.bitbug.net/" title="比特虫-图片转ico" target="_blank" rel="noopener">比特虫-图片转ico</a>
-              </li>
-            
-              <li class="list-inline-item">
-                <a href="https://www.dyjihe2.com/" title="高清电影下载网站" target="_blank" rel="noopener">高清电影下载网站</a>
-              </li>
-            
-          </ul>
-        </div>
-      </div>
+
+
+
     </div>
-    <hr class="hr" style="opacity: .25;">
-    <div class="pt-3 pb-5">
-      <ul class="list-inline mb-0 text-center">
-        <li class="list-inline-item">&copy; 2024 红猪的博客</li>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/PorcoRosso000">Projects</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
         
-        <li class="list-inline-item">Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
-        <li class="list-inline-item">Designer <a href="https://acorn.imaging.xin/" target="_blank">菊子酒</a></li>
       </ul>
     </div>
-  </div>
-</footer>
-  </main>
-  <div id="mobile-nav-dimmer"></div>
-<div id="mobile-nav">
-	<div id="mobile-nav-inner">
-		<ul class="mobile-nav">
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/">首页</a>
-  </li>
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/gallery">书目</a>
-  </li>
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/stories">文章分类</a>
-  </li>
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/archives">文章</a>
-  </li>
-  
-    
-  <li class="nav-item ">
-    <a class="nav-item-link" href="/about">关于</a>
-  </li>
-  
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap"><span class="toc-number">1.</span> <span class="toc-text">HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%E4%B8%80%E4%B8%8BHashMap%E7%9A%84%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">回顾一下HashMap的底层数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AE%BE%E7%BD%AE%E9%93%BE%E8%A1%A8%E9%95%BF%E5%BA%A6%E5%A4%A7%E4%BA%8E8%E8%BD%AC%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="toc-number">1.1.1.</span> <span class="toc-text">为什么设置链表长度大于8转红黑树？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B0%8F%E4%BA%8E6%E7%9A%84%E6%97%B6%E5%80%99%E5%B0%B1%E8%BD%AC%E5%8C%96%E6%88%90%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">为什么小于6的时候就转化成链表？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">为什么使用数组?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="toc-number">1.1.4.</span> <span class="toc-text">为什么使用链表？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="toc-number">1.1.5.</span> <span class="toc-text">为什么使用红黑树？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91-%E6%A0%91%E6%9C%896%E4%B8%AA%E6%80%A7%E8%B4%A8%EF%BC%9B"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">红黑 树有6个性质；</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">为什么不使用二叉树？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashMap1-7%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">hashMap1.7不安全的原因：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap1-7%E4%B8%8B%E7%9A%84%E5%AF%BC%E8%87%B4%E7%9A%84%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.3.1.</span> <span class="toc-text">hashmap1.7下的导致的循环链表的原因?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap1-7%E5%92%8C1-8%E5%A4%B4%E6%8F%92%E5%85%A5%E4%B8%8E%E5%B0%BE%E6%8F%92%E5%85%A5%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.4.</span> <span class="toc-text">HashMap1.7和1.8头插入与尾插入的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%85%E6%9E%90HashMap%E7%9A%84put-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">浅析HashMap的put()方法执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashmap%E7%9A%84get%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">hashmap的get方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap%E4%B8%AD%E7%9A%84put%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%A4%A7%E4%BD%93%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.7.</span> <span class="toc-text">HashMap中的put方法执行过程大体如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hashmap%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="toc-number">1.8.</span> <span class="toc-text">Hashmap扩容机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A90-75"><span class="toc-number">1.8.1.</span> <span class="toc-text">hashmap为什么选择0.75</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hashmap%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%A7%A6%E5%8F%91%E6%89%A9%E5%AE%B9%EF%BC%9F"><span class="toc-number">1.8.2.</span> <span class="toc-text">hashmap什么时候触发扩容？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6ConcurrentHashMap"><span class="toc-number">1.9.</span> <span class="toc-text">研究ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ConcurrentHashMap%E7%9A%84get-int-key-%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF%E4%B8%BA%EF%BC%9A"><span class="toc-number">1.9.1.</span> <span class="toc-text">ConcurrentHashMap的get(int key)方法的实现思路为：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ConcurrentHashMap%E7%9A%84put%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF%E4%B8%BA%EF%BC%9A"><span class="toc-number">1.9.2.</span> <span class="toc-text">ConcurrentHashMap的put方法的实现思路为：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.10.</span> <span class="toc-text">底层实现:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3hash%E5%86%B2%E7%AA%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.11.</span> <span class="toc-text">解决hash冲突的方法:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%86%8Dhash%E6%B3%95"><span class="toc-number">1.11.1.</span> <span class="toc-text">1.再hash法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E6%94%BE%E5%AE%9A%E5%9D%80%E6%B3%95"><span class="toc-number">1.11.2.</span> <span class="toc-text">2.开放定址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-number">1.11.3.</span> <span class="toc-text">3.链地址法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%BB%BA%E7%AB%8B%E5%85%AC%E5%85%B1%E6%BA%A2%E5%87%BA%E5%8C%BA"><span class="toc-number">1.11.4.</span> <span class="toc-text">4.建立公共溢出区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap-%E5%92%8CHashtable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.12.</span> <span class="toc-text">ConcurrentHashMap 和Hashtable的区别?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Collection%E5%92%8CCollections%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">Collection和Collections区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap%E5%92%8CHashTable%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">HashMap和HashTable的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap%E6%BA%90%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">hashmap源码:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap%E6%8F%92%E5%85%A5%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%A4%B4%E6%8F%92%E6%B3%95%E8%BF%98%E6%98%AF%E5%B0%BE%E6%8F%92%E6%B3%95%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">HashMap插入时，使用头插法还是尾插法？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">hashmap怎么保证安全？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashMap%E9%94%AE%E4%B8%80%E6%A0%B7%E5%80%BC%E4%B8%8D%E4%B8%80%E6%A0%B7%E6%80%8E%E4%B9%88%E8%8E%B7%E5%8F%96%E5%80%BC"><span class="toc-number">7.</span> <span class="toc-text">hashMap键一样值不一样怎么获取值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashset%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8E%BB%E9%87%8D"><span class="toc-number">8.</span> <span class="toc-text">hashset如何实现去重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8D%95%E9%93%BE%E8%A1%A8%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">9.</span> <span class="toc-text">使用单链表插入数据</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/3d614825.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/3d614825.html&text=HashMap"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/3d614825.html&is_video=false&description=HashMap"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HashMap&body=Check out this article: http://porcorosso.top/posts/3d614825.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/3d614825.html&title=HashMap"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/3d614825.html&name=HashMap&description=&lt;p&gt;HashMap&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
-		
-	</div>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 
-  <script src="/libs/feather/feather.min.js"></script>
-<script src="/libs/lazysizes/lazysizes.min.js"></script>
-
-	<script src="/libs/tocbot/tocbot.min.js"></script>
-	<script>
-    tocbot.init({
-      // Where to render the table of contents.
-      tocSelector: '.js-toc',
-      // Where to grab the headings to build the table of contents.
-      contentSelector: '.js-toc-content',
-      // Which headings to grab inside of the contentSelector element.
-      headingSelector: 'h2, h3',
-      // For headings inside relative or absolute positioned containers within content.
-      hasInnerContainers: true,
-    });
-	</script>
-
-
-
-
-
-<script src="/js/mobile-nav.js"></script>
-
-
-<script src="/js/script.js"></script>
-
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/posts/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/PorcoRosso000">Projects</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37473492-6', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+
