@@ -76,7 +76,8 @@
     <!-- rss -->
     
     
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
     
@@ -199,13 +200,13 @@
 <p><img src="/posts/d9283bc6/clip_image036.gif" alt="图片"></p>
 <p>表示安装成功</p>
 <h4 id="git获取SSH公钥"><a href="#git获取SSH公钥" class="headerlink" title="git获取SSH公钥"></a>git获取SSH公钥</h4><p>运行git Bash<br>输入git  没报错表示安装成功<br>git配置ssh:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="attr">--global</span> user<span class="selector-class">.name</span> <span class="string">&quot;用户名&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="/posts/d9283bc6/clip_image038.gif" alt="图片"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="attr">--global</span> user<span class="selector-class">.email</span> <span class="string">&quot;邮箱&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="/posts/d9283bc6/clip_image040.gif" alt="图片"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;邮箱&quot;</span><br><span class="line">连续3回 回车键</span><br><span class="line">cd到 ~/.ssh  ls ,这回会出现 id_dsa或者id_rsa两个文件，.pub文件是我们的公钥，另一个是私钥 </span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;邮箱&quot;</span></span><br><span class="line">连续3回 回车键</span><br><span class="line"><span class="keyword">cd</span>到 ~<span class="string">/.ssh</span>  <span class="keyword">ls</span> ,这回会出现 id_dsa或者id_rsa两个文件，<span class="string">.pub</span>文件是我们的公钥，另一个是私钥 </span><br></pre></td></tr></table></figure>
 
 <h4 id="Idea配置git"><a href="#Idea配置git" class="headerlink" title="Idea配置git"></a>Idea配置git</h4><p><img src="/posts/d9283bc6/clip_image042.gif" alt="图片"></p>
 <p><img src="/posts/d9283bc6/clip_image044.gif" alt="图片"></p>
@@ -655,7 +656,7 @@
 <td>删除所有缓存的stash</td>
 </tr>
 </tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有时也可通过这种方法实现避免或解决冲突，当你修改的内容是最新的，但是你需要pull下来的代码是需要被替换的，你pull的时候还是会冲突，可以先把你的修改stash临时保存，pull完代码以后在恢复stash的保存，即可替换pull下来的需要被替换的代码，当然不保存直接对比解决冲突也是可以的</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有时也可通过这种方法实现避免或解决冲突，当你修改的内容是最新的，但是你需要pull下来的代码是需要被替换的，你pull的时候还是会冲突，可以先把你的修改stash临时保存，pull完代码以后在恢复stash的保存，即可替换pull下来的需要被替换的代码，当然不保存直接对比解决冲突也是可以的</span><br></pre></td></tr></table></figure>
 
 <h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><table>
 <thead>
@@ -911,7 +912,7 @@
 
 <h3 id="新建了一个git仓库，本地代码上传gitlab"><a href="#新建了一个git仓库，本地代码上传gitlab" class="headerlink" title="新建了一个git仓库，本地代码上传gitlab"></a>新建了一个git仓库，本地代码上传gitlab</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="keyword">init</span>  <span class="comment">//建立一个新的git链接</span></span><br><span class="line">$ git remote <span class="keyword">add</span> origin https:<span class="comment">//gitee.com/xxx/XXX.git  //https：自己的仓库地址</span></span><br><span class="line">$ git config --<span class="keyword">global</span> user.email <span class="string">&quot;you@example.com&quot;</span>   <span class="comment">//自己的邮箱</span></span><br><span class="line">$ git config --<span class="keyword">global</span> user.name <span class="string">&quot;Your Name&quot;</span>  <span class="comment">//用户名</span></span><br><span class="line">$ git <span class="keyword">add</span> .  <span class="comment">//. 是添加所有文件到git仓库</span></span><br><span class="line">$ git commit -m <span class="string">&quot;提交的内容名称&quot;</span></span><br><span class="line">$ git pull origin master  <span class="comment">//先拉取下后提交不容易错</span></span><br><span class="line">$ git push -u origin master  <span class="comment">//提交到master分支</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="git-status-出错-interactive-rebase-in-progress；-onto-796e78f"><a href="#git-status-出错-interactive-rebase-in-progress；-onto-796e78f" class="headerlink" title="git status 出错 interactive rebase in progress； onto 796e78f"></a>git status 出错 interactive rebase in progress； onto 796e78f</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用 git commit --amend 命令修订当前的提交</span><br><span class="line">使用 git rebase --continue 命令继续代码的提交(推荐),执行之后,需要重新提交,解决一下当前的代码冲突之后重新提交直至没有rebase提示,就可以正常提交了</span><br></pre></td></tr></table></figure>
+<h3 id="git-status-出错-interactive-rebase-in-progress；-onto-796e78f"><a href="#git-status-出错-interactive-rebase-in-progress；-onto-796e78f" class="headerlink" title="git status 出错 interactive rebase in progress； onto 796e78f"></a>git status 出错 interactive rebase in progress； onto 796e78f</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用 git <span class="keyword">commit</span> <span class="comment">--amend 命令修订当前的提交</span></span><br><span class="line">使用 git rebase <span class="comment">--continue 命令继续代码的提交(推荐),执行之后,需要重新提交,解决一下当前的代码冲突之后重新提交直至没有rebase提示,就可以正常提交了</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="切换仓库源"><a href="#切换仓库源" class="headerlink" title="切换仓库源"></a>切换仓库源</h3><p><strong>移除之前的git源：</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
@@ -920,15 +921,15 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &#x27;仓库地址&#x27;</span><br></pre></td></tr></table></figure>
 
 <h3 id="git冲突解决"><a href="#git冲突解决" class="headerlink" title="git冲突解决"></a>git冲突解决</h3><p>用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin <span class="literal">master</span></span><br></pre></td></tr></table></figure>
 
 <p>该命令会将远程仓库的代码同步到本地，但是不会合并到任何分支上，而是存放到一个 origin/master分支上；</p>
 <p>之后调用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff origin/master   可以查看远程仓库到底修改了哪些东西 </span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff origin/<span class="keyword">master</span>   <span class="title">可以查看远程仓库到底修改了哪些东西 </span></span><br></pre></td></tr></table></figure>
 
 <p>git diff 对比两次文件修改了什么。但如何退出呢？按q即可</p>
 <p>最后调用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge origin/master</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge origin/master</span><br></pre></td></tr></table></figure>
 
 <p>将远程仓库的代码与本地主干分支进行合并；执行完这一步后所有本地与远程的代码就合并了，只是存在冲突的地方</p>
 <p>被加上了标记，需要手动去解决冲突；执行完该命令后git中会显示每个冲突所在的文件，</p>
@@ -940,26 +941,26 @@
 <p>需要在这个两个版本中选择一个，然后把标记符号也要一起删除</p>
 </blockquote>
 <p>合并完成后执行  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add . 命令 </span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">add</span> . 命令 </span><br></pre></td></tr></table></figure>
 
 <p>将你合并的文件添加进去 然后</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m “你的提交信息”</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> commit -m “你的提交信息”</span><br></pre></td></tr></table></figure>
 
 <p>提交合并成功后就可以上传到远程仓库啦</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">push</span> -u <span class="built_in">origin</span> master</span><br></pre></td></tr></table></figure>
 
 <p>另外在 git commit 这步常常忘记输入提交信息导致进入 编辑提交信息的界面 应该就是下面的git bash vim吧；</p>
 <h3 id="git-commit-最后一次提交的注释信息，如何修改？-如何退出编辑器？"><a href="#git-commit-最后一次提交的注释信息，如何修改？-如何退出编辑器？" class="headerlink" title="git commit 最后一次提交的注释信息，如何修改？ 如何退出编辑器？"></a>git commit 最后一次提交的注释信息，如何修改？ 如何退出编辑器？</h3><p>今天用git commit -m “注释”提交的时候，注释写错了，</p>
 <p>首先 使用 git commit –amend 命令（修改最近一次提交的注释信息），会进入到 vim 编辑器</p>
 <p>然后 你会发现编辑器里你怎么输入都没反应，这是因为vim处在不可编辑状态，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按下字母键 c（此时进入编辑状态）</span><br></pre></td></tr></table></figure>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按下字母键 <span class="keyword">c</span>（此时进入编辑状态）</span><br></pre></td></tr></table></figure>
 
 <p>，可以开始修改注释信息了</p>
 <p>修改好后，你会发现怎么都退出不了，然后如下操作：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按下 Esc (退出编辑状态)； 接着连按两次大写字母Z</span><br></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按下 Esc <span class="comment">(退出编辑状态)</span>； 接着连按两次大写字母Z</span><br></pre></td></tr></table></figure>
 
 <p>，你会惊喜的发现，终于保存好退出来了！</p>
-<h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">git log :列出历史提交记录  (退出方式 : 英文状态下输入q就可以直接退出了)</span><br><span class="line">例:</span><br><span class="line">commit 64487e1132ed01fea1c87c315a2f9de2b80c75ed</span><br><span class="line">Author: porcorosso &lt;1332355083@qq.com&gt;</span><br><span class="line">Date:   Fri Aug 4 22:04:48 2023 +0800</span><br><span class="line"></span><br><span class="line">    init</span><br><span class="line"></span><br><span class="line">commit 8b495e74edfea974f5eb087530fede425800fa51</span><br><span class="line">Author: porcorosso &lt;1332355083@qq.com&gt;</span><br><span class="line">Date:   Fri Aug 4 21:39:59 2023 +0800</span><br><span class="line"></span><br><span class="line">    init</span><br><span class="line"></span><br><span class="line">commit f88b2e6cb8996f9b7d3fc4b8a847c20e9bddbe19</span><br><span class="line">Author: Administrator &lt;admin@example.com&gt;</span><br><span class="line">Date:   Wed Aug 2 23:21:08 2023 +0000</span><br><span class="line"></span><br><span class="line">    Initial commit</span><br><span class="line"></span><br><span class="line">git log --oneline :查看历史记录的简洁的版本</span><br><span class="line">例:</span><br><span class="line">4b7e397 (HEAD -&gt; master, origin/master) md</span><br><span class="line">64487e1 init</span><br><span class="line">8b495e7 init</span><br><span class="line">f88b2e6 Initial commit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">git log :列出历史提交记录  (退出方式 : 英文状态下输入q就可以直接退出了)</span><br><span class="line">例:</span><br><span class="line"><span class="keyword">commit</span> <span class="number">64487e1132</span>ed01fea1c87c315a2f9de2b80c75ed</span><br><span class="line">Author: porcorosso <span class="operator">&lt;</span><span class="number">1332355083</span><span class="variable">@qq</span>.com<span class="operator">&gt;</span></span><br><span class="line"><span class="type">Date</span>:   Fri Aug <span class="number">4</span> <span class="number">22</span>:<span class="number">04</span>:<span class="number">48</span> <span class="number">2023</span> <span class="operator">+</span><span class="number">0800</span></span><br><span class="line"></span><br><span class="line">    init</span><br><span class="line"></span><br><span class="line"><span class="keyword">commit</span> <span class="number">8</span>b495e74edfea974f5eb087530fede425800fa51</span><br><span class="line">Author: porcorosso <span class="operator">&lt;</span><span class="number">1332355083</span><span class="variable">@qq</span>.com<span class="operator">&gt;</span></span><br><span class="line"><span class="type">Date</span>:   Fri Aug <span class="number">4</span> <span class="number">21</span>:<span class="number">39</span>:<span class="number">59</span> <span class="number">2023</span> <span class="operator">+</span><span class="number">0800</span></span><br><span class="line"></span><br><span class="line">    init</span><br><span class="line"></span><br><span class="line"><span class="keyword">commit</span> f88b2e6cb8996f9b7d3fc4b8a847c20e9bddbe19</span><br><span class="line">Author: Administrator <span class="operator">&lt;</span>admin<span class="variable">@example</span>.com<span class="operator">&gt;</span></span><br><span class="line"><span class="type">Date</span>:   Wed Aug <span class="number">2</span> <span class="number">23</span>:<span class="number">21</span>:<span class="number">08</span> <span class="number">2023</span> <span class="operator">+</span><span class="number">0000</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">Initial</span> <span class="keyword">commit</span></span><br><span class="line"></span><br><span class="line">git log <span class="comment">--oneline :查看历史记录的简洁的版本</span></span><br><span class="line">例:</span><br><span class="line"><span class="number">4</span>b7e397 (HEAD <span class="operator">-</span><span class="operator">&gt;</span> master, origin<span class="operator">/</span>master) md</span><br><span class="line"><span class="number">64487e1</span> init</span><br><span class="line"><span class="number">8</span>b495e7 init</span><br><span class="line">f88b2e6 <span class="keyword">Initial</span> <span class="keyword">commit</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="变基"><a href="#变基" class="headerlink" title="变基"></a>变基</h3><h4 id="本分支变基"><a href="#本分支变基" class="headerlink" title="本分支变基"></a>本分支变基</h4><p>在master分支上添加了5次提交，我们的目标是把最后三个提交合并为一个提交：</p>
 <p>变基命令：<br> <code>git rebase -i [startpoint] [endpoint]</code></p>
@@ -997,17 +998,17 @@
 
 <hr>
 <p>抛弃本地的 commit，采用远程的 commit。慎用：因为你本地的修改都会失去。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --skip</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase <span class="comment">--skip</span></span><br></pre></td></tr></table></figure>
 
 <p>终止这次 rebase 操作</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --abort</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase <span class="comment">--abort</span></span><br></pre></td></tr></table></figure>
 
 <p>手动处理冲突的文件：执行git add .，再 git rebase –continue，反复操作直到解决完所有冲突，并合并到分支上。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --<span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="git回退版本"><a href="#git回退版本" class="headerlink" title="git回退版本"></a>git回退版本</h3><h4 id="git-reset-回退"><a href="#git-reset-回退" class="headerlink" title="git reset 回退"></a>git reset 回退</h4><p>缺点: 回退并且窗口关闭后 错误的版本会消失 找不到  ,没有关闭窗口的话还可以通过 git reset –hard 错误的版本号 回退到错误的版本</p>
 <p>1.<strong>使用git log 找到要回退的版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git log </span><br><span class="line"></span><br><span class="line">commit f88b2e6cb8996f9b7d3fc4b8a847c20e9bddbe19</span><br><span class="line">Author: Administrator &lt;admin@example.com&gt;</span><br><span class="line">Date:   Wed Aug 2 23:21:08 2023 +0000</span><br><span class="line"></span><br><span class="line">    Initial commit</span><br><span class="line"></span><br><span class="line">commit  后面就是版本号</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> log </span><br><span class="line"></span><br><span class="line"><span class="attribute">commit</span> f88b2e6cb8996f9b7d3fc4b8a847c20e9bddbe19</span><br><span class="line"><span class="attribute">Author</span>: Administrator &lt;admin@example.com&gt;</span><br><span class="line"><span class="attribute">Date</span>:   Wed Aug <span class="number">2</span> <span class="number">23</span>:<span class="number">21</span>:<span class="number">08</span> <span class="number">2023</span> +<span class="number">0000</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">Initial</span> commit</span><br><span class="line"></span><br><span class="line"><span class="attribute">commit</span>  后面就是版本号</span><br></pre></td></tr></table></figure>
 
 <p>2.<strong>使用git reset –hard 版本号 回退到版本</strong></p>
 <p>其”–soft 、–mixed以及–hard是三个恢复等级。<br> 使用–soft就仅仅将头指针恢复，已经add的暂存区以及工作空间的所有东西都不变。<br> 如果使用–mixed，就将头恢复掉，已经add的暂存区也会丢失掉，工作空间的代码什么的是不变的。<br> 如果使用–hard，那么一切就全都恢复了，头变，add的暂存区消失，代码什么的也恢复到以前状态。</p>
@@ -1025,14 +1026,14 @@
 <p>这里会生成两个新有提交：D’ 和 C’，如下图示：</p>
 <p><img src="/posts/d9283bc6/12665637-cf079bb4922d85e5.png" alt="12665637-cf079bb4922d85e5"></p>
 <p>这里只有两个提交需要 revert，我们可以一个个回退。但如果有几十个呢？一个个回退肯定效率太低而且容易出错。我们可以使用以下方法进行批量回退：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert OLD_COMMIT_ID^..NEW_COMMIT_ID</span><br></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">revert</span> OLD_COMMIT_ID^..NEW_COMMIT_ID</span><br></pre></td></tr></table></figure>
 
 <p>这样操作的话 HEAD 指针是往后移动的，可以直接使用 git push 命令推送到远程仓库里</p>
 <p>举个更难一点的例子。</p>
 <p>假如现在有三个提交，但很不巧的是，那个错误的提交刚好位于中间。如下图示：</p>
 <p><img src="/posts/d9283bc6/12665637-cae2607ac18a7f47.png" alt="12665637-cae2607ac18a7f47"></p>
 <p>这时，直接使用 git reset 命令将 HEAD 指针重置到 A 提交显然是不行的，因为 C 提交是正确的，需要保留的。先把 C 提交 及 B 提交全部回退，再使用 cherry-pick 命令将 C 提交重新再生成一个新的提交 C’’，这样就实现了将 B提交回退的需求。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cherry-pick 76sdeb</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> cherry-pick <span class="number">76</span>sdeb</span><br></pre></td></tr></table></figure>
 
 <p>完整的过程如下：</p>
 <p><img src="/posts/d9283bc6/12665637-fec52bf232159982.png" alt="12665637-fec52bf232159982"></p>
@@ -1157,7 +1158,7 @@
 <p>最后，使用<code>git cherry-pick</code>命令转移提交。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git cherry-pick &lt;commitHash&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 合并分支（多人开发中，经常一人一个分支，各自在自己分支开发，开发完成以后合并到某一个指定分支，没有问题后最后合并到master主分支，我们的流程是各自在自己的develop开发，开发完成以后合并到lastest分支，没有问题后提交合并申请到master分支，由leader审批是否统一合并到master，因为很多新人不太清楚代码的具体用途，所以讲的稍微详细点，明白命令的实现目的能更好的掌握使用，后面会有具体的操作流程）</span><br><span class="line">1.本地代码依次</span><br><span class="line">git status</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;&quot;</span><br><span class="line">git pull </span><br><span class="line">git push （develop-author分支，即自己的开发分支）</span><br><span class="line">以后（把本地代码推送到远程对应分支）</span><br><span class="line">2.git checkout lastest （切换到lastest分支）</span><br><span class="line">3.git pull origin lastest  （先把远程lastest分支修改内容拉取，多人开发，需要把远程lastest上的代码pull下来）</span><br><span class="line">4.git  merge develop-author   （合并自己的分支到lastest）</span><br></pre></td></tr></table></figure>
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 合并分支（多人开发中，经常一人一个分支，各自在自己分支开发，开发完成以后合并到某一个指定分支，没有问题后最后合并到master主分支，我们的流程是各自在自己的develop开发，开发完成以后合并到lastest分支，没有问题后提交合并申请到master分支，由leader审批是否统一合并到master，因为很多新人不太清楚代码的具体用途，所以讲的稍微详细点，明白命令的实现目的能更好的掌握使用，后面会有具体的操作流程）</span></span><br><span class="line"><span class="number">1</span>.本地代码依次</span><br><span class="line">git status</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;&quot;</span></span><br><span class="line">git pull </span><br><span class="line">git push （develop-author分支，即自己的开发分支）</span><br><span class="line">以后（把本地代码推送到远程对应分支）</span><br><span class="line"><span class="number">2</span><span class="selector-class">.git</span> checkout lastest （切换到lastest分支）</span><br><span class="line"><span class="number">3</span><span class="selector-class">.git</span> pull origin lastest  （先把远程lastest分支修改内容拉取，多人开发，需要把远程lastest上的代码pull下来）</span><br><span class="line"><span class="number">4</span><span class="selector-class">.git</span>  merge develop-author   （合并自己的分支到lastest）</span><br></pre></td></tr></table></figure>
 
 
 

@@ -54,7 +54,8 @@
     <!-- rss -->
     
     
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
     
@@ -187,7 +188,7 @@
 <p>2.创建tnsnames.ora</p>
 <p>D:\instantclient_11，在instantclient_11下创建instantclient_11\network\ADMIN 这两个文件夹，然后再创建文件tnsnames.ora</p>
 <p>2.1修改tnsnames.ora：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TEST =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = 115.28.**.**)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVICE_NAME = corcl)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">TEST ：连接名，连接数据库的别名，可以自己起。</span><br><span class="line">HOST = 115.28.. ：host后面是数据库地址ip。</span><br><span class="line">SERVICE_NAME ：是数据库名（对应jdbc:oracle:thin:@10...**:1521:corcl）。</span><br></pre></td></tr></table></figure>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TEST </span>=</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = 115.28.**.**)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVICE_NAME = corcl)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"><span class="keyword">TEST </span>：连接名，连接数据库的别名，可以自己起。</span><br><span class="line">HOST = 115.28.. ：host后面是数据库地址ip。</span><br><span class="line">SERVICE_NAME ：是数据库名（对应jdbc:oracle:thin:@10...**:1521:corcl）。</span><br></pre></td></tr></table></figure>
 
 <p>注意:<br>    安装好后的默认端口号是1521，数据库实例名是ORCL，由于我安装了两个Oracle数据库（忘记本机装过了），所以端口号和数据库实例名改了一下。所以不需要改动里面的配置哈。如果你看了别的教程修改过了里面的IP地址，端口号什么的话，建议改回来。我就是这样被折腾的</p>
 <h2 id="五、连接Oracle数据库"><a href="#五、连接Oracle数据库" class="headerlink" title="五、连接Oracle数据库"></a>五、连接Oracle数据库</h2><p>用户名：sys<br>口令：你安装Oracle时输入的口令（我这里的是123456）<br>数据库：我的是TEST，你的可能是ORCL，根据你安装数据库时创建的实例名。<br>连接为：以超级管理员（SYSDBA）的身份连接，sys用户连接时规定是这样的，不要问为什么。</p>
