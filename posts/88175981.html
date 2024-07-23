@@ -50,8 +50,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -529,78 +528,78 @@
 </table>
 <p>语法中 name值为你要创建的索引字段，1 为指定按升序创建索引，如果你想按降序来创建索引指定为 -1 即可</p>
 <h2 id="常用命令："><a href="#常用命令：" class="headerlink" title="常用命令："></a>常用命令：</h2><h3 id="选择和创建数据库"><a href="#选择和创建数据库" class="headerlink" title="选择和创建数据库"></a>选择和创建数据库</h3><p>选择和创建数据库的语法格式：</p>
-<pre class="line-numbers language-plain"><code class="language-plain">use 数据库名称
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-plain"><code class="language-plain">use 数据库名称
+</code></pre>
 <p>如果数据库不存在则自动创建<br>以下语句创建testdb数据库</p>
-<pre class="line-numbers language-plain"><code class="language-plain">use testdb
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="新建collection"><a href="#新建collection" class="headerlink" title="新建collection"></a>新建collection</h3><pre class="line-numbers language-shell"><code class="language-shell">db.createCollection("user_info");
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="插入一条数据"><a href="#插入一条数据" class="headerlink" title="插入一条数据"></a>插入一条数据</h3><pre class="line-numbers language-shell"><code class="language-shell">document = (&#123;
+<pre class=" language-plain"><code class="language-plain">use testdb
+</code></pre>
+<h3 id="新建collection"><a href="#新建collection" class="headerlink" title="新建collection"></a>新建collection</h3><pre class=" language-shell"><code class="language-shell">db.createCollection("user_info");
+</code></pre>
+<h3 id="插入一条数据"><a href="#插入一条数据" class="headerlink" title="插入一条数据"></a>插入一条数据</h3><pre class=" language-shell"><code class="language-shell">document = (&#123;
     name:"张三",
     password:"123456",
     age:10,
     price: 10.25
  &#125;)
  db.user_info.insert(document)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>或者</p>
-<pre class="line-numbers language-plain"><code class="language-plain">db.spit.insert(&#123;
+<pre class=" language-plain"><code class="language-plain">db.spit.insert(&#123;
     name:"张三",
     password:"123456",
     age:10,
     price: 10.25
  &#125;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>这里你会发现每条文档会有一个叫_id的字段，这个相当于我们原来关系数据库中表的主<br>键，当你在插入文档记录时没有指定该字段，MongoDB会自动创建，其类型是ObjectID</p>
 <p>类型。如果我们在插入文档记录时指定该字段也可以，其类型可以是ObjectID类型，也</p>
 <p>可以是MongoDB支持的任意类型。</p>
 <p>输入以下测试语句:</p>
-<pre class="line-numbers language-plain"><code class="language-plain">db.user_info.insert(&#123;_id:"1",name:"jack",password:"1012",age:20,price:20.12&#125;);
+<pre class=" language-plain"><code class="language-plain">db.user_info.insert(&#123;_id:"1",name:"jack",password:"1012",age:20,price:20.12&#125;);
 db.user_info.insert(&#123;_id:"2",name:"rose",password:"1013",age:21,price:20.13&#125;);
 db.user_info.insert(&#123;_id:"3",name:"tom",password:"1013",age:22,price:20.14&#125;);
 db.user_info.insert(&#123;_id:"4",name:"lucy",password:"1014",age:23,price:20.15&#125;);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="查询所有数据"><a href="#查询所有数据" class="headerlink" title="查询所有数据"></a>查询所有数据</h3><pre class="line-numbers language-plain"><code class="language-plain">db.集合名称.find()
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</code></pre>
+<h3 id="查询所有数据"><a href="#查询所有数据" class="headerlink" title="查询所有数据"></a>查询所有数据</h3><pre class=" language-plain"><code class="language-plain">db.集合名称.find()
+</code></pre>
 <p>查询用户集合所有的数据</p>
-<pre class="line-numbers language-plain"><code class="language-plain">db.user_info.find()
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="精确查询"><a href="#精确查询" class="headerlink" title="精确查询"></a>精确查询</h2><pre class="line-numbers language-shell"><code class="language-shell">db.getCollection("user_info").find(&#123;name:"张三" , age: 10&#125;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-plain"><code class="language-plain">db.user_info.find()
+</code></pre>
+<h2 id="精确查询"><a href="#精确查询" class="headerlink" title="精确查询"></a>精确查询</h2><pre class=" language-shell"><code class="language-shell">db.getCollection("user_info").find(&#123;name:"张三" , age: 10&#125;)
+</code></pre>
 <p>如果你只需要返回符合条件的第一条数据，我们可以使用findOne命令来实现</p>
-<pre class="line-numbers language-plain"><code class="language-plain">db.user_info.findOne(&#123;_id:'1'&#125;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><pre class="line-numbers language-shell"><code class="language-shell">db.user_info.find().limit(1000).skip(0)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-plain"><code class="language-plain">db.user_info.findOne(&#123;_id:'1'&#125;)
+</code></pre>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><pre class=" language-shell"><code class="language-shell">db.user_info.find().limit(1000).skip(0)
+</code></pre>
 <h2 id="区间查询"><a href="#区间查询" class="headerlink" title="区间查询"></a>区间查询</h2><p>&lt;, &lt;=, &gt;, &gt;= 这个操作符也是很常用的，格式如下:</p>
-<pre class="line-numbers language-plain"><code class="language-plain">db.集合名称.find(&#123; "field" : &#123; $gt: value &#125;&#125;) // 大于: field > value
+<pre class=" language-plain"><code class="language-plain">db.集合名称.find(&#123; "field" : &#123; $gt: value &#125;&#125;) // 大于: field > value
 db.集合名称.find(&#123; "field" : &#123; $lt: value &#125;&#125;) // 小于: field < value
 db.集合名称.find(&#123; "field" : &#123; $gte: value &#125;&#125;) // 大于等于: field >= value
 db.集合名称.find(&#123; "field" : &#123; $lte: value &#125;&#125;) // 小于等于: field <= value
 db.集合名称.find(&#123; "field" : &#123; $ne: value &#125;&#125;) // 不等于: field != value
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>查询用户年龄9-11之间的用户信息：</p>
-<pre class="line-numbers language-plain"><code class="language-plain">db.user_info.find(&#123;age : &#123;$gt : 9 , $lt :11&#125;&#125;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="or查询"><a href="#or查询" class="headerlink" title="or查询"></a>or查询</h2><pre class="line-numbers language-shell"><code class="language-shell">db.user_info.find(&#123; $or: [&#123;name:"张三"&#125;,&#123;name:"李四"&#125;]&#125;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-plain"><code class="language-plain">db.user_info.find(&#123;age : &#123;$gt : 9 , $lt :11&#125;&#125;)
+</code></pre>
+<h2 id="or查询"><a href="#or查询" class="headerlink" title="or查询"></a>or查询</h2><pre class=" language-shell"><code class="language-shell">db.user_info.find(&#123; $or: [&#123;name:"张三"&#125;,&#123;name:"李四"&#125;]&#125;)
+</code></pre>
 <h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><p>查询包含***</p>
-<pre class="line-numbers language-plain"><code class="language-plain">&#123;"name":/***/&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-plain"><code class="language-plain">&#123;"name":/***/&#125;
+</code></pre>
 <p>查询以***开头</p>
-<pre class="line-numbers language-plain"><code class="language-plain">&#123;"name":/^***/&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-plain"><code class="language-plain">&#123;"name":/^***/&#125;
+</code></pre>
 <p>查询以***结尾</p>
-<pre class="line-numbers language-plain"><code class="language-plain">&#123;"name":/***^/&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-plain"><code class="language-plain">&#123;"name":/***^/&#125;
+</code></pre>
 <p>查询忽略大小写</p>
-<pre class="line-numbers language-plain"><code class="language-plain">&#123;"name":/***/i&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><pre class="line-numbers language-shell"><code class="language-shell">db.user_info.update( &#123; _id: ObjectId("625e16c8a33c000060000193") &#125;, &#123; $set: &#123; password: "123456" &#125; &#125; )
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><pre class="line-numbers language-shell"><code class="language-shell">db.user_info.remove(&#123;name: "张三"&#125;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-plain"><code class="language-plain">&#123;"name":/***/i&#125;
+</code></pre>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><pre class=" language-shell"><code class="language-shell">db.user_info.update( &#123; _id: ObjectId("625e16c8a33c000060000193") &#125;, &#123; $set: &#123; password: "123456" &#125; &#125; )
+</code></pre>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><pre class=" language-shell"><code class="language-shell">db.user_info.remove(&#123;name: "张三"&#125;)
+</code></pre>
 
   </div>
 </article>

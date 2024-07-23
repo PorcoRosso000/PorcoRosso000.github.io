@@ -46,8 +46,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -150,7 +149,7 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 创建文章索引</span>
+<h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 创建文章索引</span>
 PUT article
 &amp;<span class="token comment" spellcheck="true">#123;</span>
   "mappings"<span class="token punctuation">:</span> &amp;<span class="token comment" spellcheck="true">#123;</span>
@@ -180,13 +179,13 @@ PUT article
     &amp;<span class="token comment" spellcheck="true">#125;</span>
   &amp;<span class="token comment" spellcheck="true">#125;</span>
 &amp;<span class="token comment" spellcheck="true">#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="ES依赖"><a href="#ES依赖" class="headerlink" title="ES依赖"></a>ES依赖</h2><pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="ES依赖"><a href="#ES依赖" class="headerlink" title="ES依赖"></a>ES依赖</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.elasticsearch.client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>elasticsearch-rest-high-level-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="初始化ES"><a href="#初始化ES" class="headerlink" title="初始化ES"></a>初始化ES</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 构建 ES 高级客户端</span>
+</code></pre>
+<h2 id="初始化ES"><a href="#初始化ES" class="headerlink" title="初始化ES"></a>初始化ES</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 构建 ES 高级客户端</span>
 <span class="token keyword">private</span> <span class="token keyword">final</span> RestHighLevelClient client<span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token function">ArticleController</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RestHighLevelClient</span><span class="token punctuation">(</span>
@@ -194,8 +193,8 @@ PUT article
                     <span class="token keyword">new</span> <span class="token class-name">HttpHost</span><span class="token punctuation">(</span><span class="token string">"192.168.23.129"</span><span class="token punctuation">,</span> <span class="token number">9200</span><span class="token punctuation">,</span> <span class="token string">"http"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"初始化ES：IP地址：【192.168.23.129】，端口：【9200】"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="构建实体类"><a href="#构建实体类" class="headerlink" title="构建实体类"></a>构建实体类</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
+</code></pre>
+<h2 id="构建实体类"><a href="#构建实体类" class="headerlink" title="构建实体类"></a>构建实体类</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Article</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
@@ -227,8 +226,8 @@ PUT article
      */</span>
     <span class="token keyword">private</span> Double price<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="新增数据-修改"><a href="#新增数据-修改" class="headerlink" title="新增数据/修改"></a>新增数据/修改</h2><pre class="line-numbers language-java"><code class="language-java">    <span class="token annotation punctuation">@PostMapping</span>
+</code></pre>
+<h2 id="新增数据-修改"><a href="#新增数据-修改" class="headerlink" title="新增数据/修改"></a>新增数据/修改</h2><pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@PostMapping</span>
     <span class="token keyword">public</span> Result <span class="token function">add</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> Article article<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         String requestURI <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         String method <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -257,8 +256,8 @@ PUT article
         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"功能名称：【&amp;#123;&amp;#125;】，请求路径：【&amp;#123;&amp;#125;】，请求方式【&amp;#123;&amp;#125;】，响应结果：【&amp;#123;&amp;#125;】"</span><span class="token punctuation">,</span> <span class="token string">"添加文章"</span><span class="token punctuation">,</span> requestURI<span class="token punctuation">,</span> method<span class="token punctuation">,</span> JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> result<span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> Result <span class="token function">deleteById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> String id<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     String requestURI <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     String method <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -276,8 +275,8 @@ PUT article
     log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"功能名称：【&amp;#123;&amp;#125;】，请求路径：【&amp;#123;&amp;#125;】，请求方式【&amp;#123;&amp;#125;】，响应结果：【&amp;#123;&amp;#125;】"</span><span class="token punctuation">,</span> <span class="token string">"根据ID删除文章"</span><span class="token punctuation">,</span> requestURI<span class="token punctuation">,</span> method<span class="token punctuation">,</span> JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="查询单条数据"><a href="#查询单条数据" class="headerlink" title="查询单条数据"></a>查询单条数据</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="查询单条数据"><a href="#查询单条数据" class="headerlink" title="查询单条数据"></a>查询单条数据</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> Result<span class="token operator">&lt;</span>Article<span class="token operator">></span> <span class="token function">findOneById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> String id<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     String requestURI <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     String method <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -306,8 +305,8 @@ PUT article
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> null<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="搜索查询参数对象"><a href="#搜索查询参数对象" class="headerlink" title="搜索查询参数对象"></a>搜索查询参数对象</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
+</code></pre>
+<h2 id="搜索查询参数对象"><a href="#搜索查询参数对象" class="headerlink" title="搜索查询参数对象"></a>搜索查询参数对象</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ArticleRequest</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">/**
      * 标题
@@ -346,8 +345,8 @@ PUT article
      */</span>
     <span class="token keyword">private</span> Integer pageSize <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="搜索查询"><a href="#搜索查询" class="headerlink" title="搜索查询"></a>搜索查询</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/search"</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="搜索查询"><a href="#搜索查询" class="headerlink" title="搜索查询"></a>搜索查询</h2><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/search"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> Result<span class="token operator">&lt;</span>PageResult<span class="token operator">&lt;</span>Article<span class="token operator">>></span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> ArticleRequest articleRequest<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     String requestURI <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     String method <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -417,15 +416,15 @@ PUT article
     log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"功能名称：【&amp;#123;&amp;#125;】，请求路径：【&amp;#123;&amp;#125;】，请求方式【&amp;#123;&amp;#125;】，响应结果：【&amp;#123;&amp;#125;】"</span><span class="token punctuation">,</span> <span class="token string">"文章搜索"</span><span class="token punctuation">,</span> requestURI<span class="token punctuation">,</span> method<span class="token punctuation">,</span> JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 高亮</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 高亮</span>
 HighlightBuilder highlightBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HighlightBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 highlightBuilder<span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"goodsName"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 highlightBuilder<span class="token punctuation">.</span><span class="token function">preTags</span><span class="token punctuation">(</span><span class="token string">"&lt;span style=\"color:red\">"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 highlightBuilder<span class="token punctuation">.</span><span class="token function">postTags</span><span class="token punctuation">(</span><span class="token string">"&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 searchSourceBuilder<span class="token punctuation">.</span><span class="token function">highlighter</span><span class="token punctuation">(</span>highlightBuilder<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 设置高亮  原字段 替换成 高亮字段</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 设置高亮  原字段 替换成 高亮字段</span>
 Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> HighlightField<span class="token operator">></span> highlightFields <span class="token operator">=</span> hit<span class="token punctuation">.</span><span class="token function">getHighlightFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">if</span> <span class="token punctuation">(</span>highlightFields <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     HighlightField highlightField <span class="token operator">=</span> highlightFields<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"goodsName"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -438,8 +437,8 @@ Map<span class="token operator">&lt;</span>String<span class="token punctuation"
         goodsResponse<span class="token punctuation">.</span><span class="token function">setGoodsName</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="es基本操作"><a href="#es基本操作" class="headerlink" title="es基本操作"></a>es基本操作</h2><h3 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h3><h4 id="新增索引"><a href="#新增索引" class="headerlink" title="新增索引"></a>新增索引</h4><pre class="line-numbers language-plain"><code class="language-plain">PUT 索引名
+</code></pre>
+<h2 id="es基本操作"><a href="#es基本操作" class="headerlink" title="es基本操作"></a>es基本操作</h2><h3 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h3><h4 id="新增索引"><a href="#新增索引" class="headerlink" title="新增索引"></a>新增索引</h4><pre class=" language-plain"><code class="language-plain">PUT 索引名
 &#123;
   "settings": &#123;
     "index": &#123;
@@ -448,10 +447,10 @@ Map<span class="token operator">&lt;</span>String<span class="token punctuation"
     &#125;
   &#125;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><pre class="line-numbers language-plain"><code class="language-plain">DELETE 索引名
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="设置索引mapping"><a href="#设置索引mapping" class="headerlink" title="设置索引mapping"></a>设置索引mapping</h4><pre class="line-numbers language-plain"><code class="language-plain">PUT 索引名/_doc/_mapping?include_type_name=true
+</code></pre>
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><pre class=" language-plain"><code class="language-plain">DELETE 索引名
+</code></pre>
+<h4 id="设置索引mapping"><a href="#设置索引mapping" class="headerlink" title="设置索引mapping"></a>设置索引mapping</h4><pre class=" language-plain"><code class="language-plain">PUT 索引名/_doc/_mapping?include_type_name=true
 &#123;
   "properties": &#123;
     "id": &#123;
@@ -471,8 +470,8 @@ Map<span class="token operator">&lt;</span>String<span class="token punctuation"
     &#125;
   &#125;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><h4 id="新增"><a href="#新增" class="headerlink" title="新增"></a>新增</h4><pre class="line-numbers language-plain"><code class="language-plain">指定ID插入
+</code></pre>
+<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><h4 id="新增"><a href="#新增" class="headerlink" title="新增"></a>新增</h4><pre class=" language-plain"><code class="language-plain">指定ID插入
 PUT user_info/_doc/1
 &#123;
     "name":"wei",
@@ -489,10 +488,10 @@ POST user_info/_doc/
     "age":28,
     "create_time":"1647911799000"
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><pre class="line-numbers language-plain"><code class="language-plain">#DELETE /索引/文档类型/文档id
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><h4 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h4><pre class="line-numbers language-plain"><code class="language-plain">GET user_info/_search
+</code></pre>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><pre class=" language-plain"><code class="language-plain">#DELETE /索引/文档类型/文档id
+</code></pre>
+<h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><h4 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h4><pre class=" language-plain"><code class="language-plain">GET user_info/_search
 &#123;
   "query": &#123;
     "match": &#123;
@@ -502,7 +501,7 @@ POST user_info/_doc/
     &#125;
   &#125;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
   </div>
 </article>

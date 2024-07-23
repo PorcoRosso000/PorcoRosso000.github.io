@@ -45,8 +45,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -306,7 +305,7 @@
 <p> StringBuilder和StringBuffer是可变的</p>
 <p> StringBuilder和StringBuffer的区别：StringBuilder的效率高，所以说是线程不安全的，而StringBuffer的效率低，因此是安全的，在一般情况下我们会去使用StringBuilder因为效率较高，但是如果要求要线程的话要使用StringBuffer。StringBuffer底层是通过锁来保证安全的。</p>
 <h3 id="StringBuilder为什么是线程不安全的-1"><a href="#StringBuilder为什么是线程不安全的-1" class="headerlink" title="StringBuilder为什么是线程不安全的"></a>StringBuilder为什么是线程不安全的</h3><p> 首先两个全部都继承了AbstractStringBuilder，如果创.0建的话变量是存在AbstractStringBuilder中的，有一个char和count，第一个不安全就是，他底层的append方法是没有加锁的，没有保证了原子性，如果说创建线程同时去执行的话，谁先获取到就谁先执行，很有可能出现两个人同时获取到，那么同时进行操作，就会出现所得结果小于真实结果，第二个就是在添加的时候会出现数组下标越界，每次添加的时候都回去判断下标和数组长度，如果长度够就可以添加，在这里又没有保证原子性，如果两个线程同时进来操作，其中一个因为cpu满了，有一个添加进去了，那么就会出现第二个添加的时候已经达到最大长度了，这时候就会出现下标越界</p>
-<h2 id="switch-case-语句语法格式"><a href="#switch-case-语句语法格式" class="headerlink" title="switch case 语句语法格式"></a>switch case 语句语法格式</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">switch</span><span class="token punctuation">(</span>expression<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h2 id="switch-case-语句语法格式"><a href="#switch-case-语句语法格式" class="headerlink" title="switch case 语句语法格式"></a>switch case 语句语法格式</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">switch</span><span class="token punctuation">(</span>expression<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">case</span> value <span class="token operator">:</span>
        <span class="token comment" spellcheck="true">//语句</span>
        <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//可选</span>
@@ -317,7 +316,7 @@
     <span class="token keyword">default</span> <span class="token operator">:</span> <span class="token comment" spellcheck="true">//可选</span>
        <span class="token comment" spellcheck="true">//语句</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h2 id="抽象类和接口的区别-1"><a href="#抽象类和接口的区别-1" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h2><ul>
 <li>抽象类要被子类继承，接口要被类实现。</li>
 <li>接口只能做方法声明，抽象类中可以作方法声明，也可以做方法实现。</li>
@@ -475,7 +474,7 @@ e50b7c2 第二次修改
 <p>简单选择排序</p>
 <p>堆排序</p>
 <p>冒泡排序</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
       <span class="token comment" spellcheck="true">// int a[] = &amp;#123;12, 23, 34, 45, 12, 23, 43, 56&amp;#125;;</span>
 
@@ -508,7 +507,7 @@ e50b7c2 第二次修改
        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>快速排序</p>
 <p>归还排序</p>
 <p>基数排序</p>
@@ -573,16 +572,16 @@ public BigDecimal divide(BigDecimal divisor, int scale, int roundingMode)
 6 - ROUND_HALF_EVEN 同样以5为分界线，如果是5，则前一位变偶数1.15-&gt;1.2 1.16-&gt;1.2 1.25-&gt;1.2 1.26-&gt;1.3
 7 - ROUND_UNNECESSARY 舍入模式可以断言所请求的操作具有精确的结果，因此不需要舍入。如果在产生不精确结果的操作上指定了这种舍入模式，则会抛出 &#123;@code ArithmeticException&#125;。
 </code></pre>
-<h2 id="时间问题"><a href="#时间问题" class="headerlink" title="时间问题"></a>时间问题</h2><h3 id="String类型转Date类型"><a href="#String类型转Date类型" class="headerlink" title="String类型转Date类型"></a>String类型转Date类型</h3><pre class="line-numbers language-plain"><code class="language-plain">DateUtil.getDate(req.getStartTime())
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="获取几个月以后的时间"><a href="#获取几个月以后的时间" class="headerlink" title="获取几个月以后的时间"></a>获取几个月以后的时间</h3><pre class="line-numbers language-plain"><code class="language-plain">DateUtil.getAfterMonths(DateUtil.getDate(req.getStartTime()), 3)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="比较两个字符串的时间类型大小"><a href="#比较两个字符串的时间类型大小" class="headerlink" title="比较两个字符串的时间类型大小"></a>比较两个字符串的时间类型大小</h3><pre class="line-numbers language-plain"><code class="language-plain">String endTime;
+<h2 id="时间问题"><a href="#时间问题" class="headerlink" title="时间问题"></a>时间问题</h2><h3 id="String类型转Date类型"><a href="#String类型转Date类型" class="headerlink" title="String类型转Date类型"></a>String类型转Date类型</h3><pre class=" language-plain"><code class="language-plain">DateUtil.getDate(req.getStartTime())
+</code></pre>
+<h3 id="获取几个月以后的时间"><a href="#获取几个月以后的时间" class="headerlink" title="获取几个月以后的时间"></a>获取几个月以后的时间</h3><pre class=" language-plain"><code class="language-plain">DateUtil.getAfterMonths(DateUtil.getDate(req.getStartTime()), 3)
+</code></pre>
+<h3 id="比较两个字符串的时间类型大小"><a href="#比较两个字符串的时间类型大小" class="headerlink" title="比较两个字符串的时间类型大小"></a>比较两个字符串的时间类型大小</h3><pre class=" language-plain"><code class="language-plain">String endTime;
 String startTime;
 //endTime - startTime;
 int endCompare = req.getEndTime().compareTo(req.getStartTime());
 int<0 : endTime小于startTime
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h2 id="List集合去重的5种方式"><a href="#List集合去重的5种方式" class="headerlink" title="List集合去重的5种方式"></a>List集合去重的5种方式</h2><h3 id="1、双重for循环"><a href="#1、双重for循环" class="headerlink" title="1、双重for循环"></a>1、双重for循环</h3><pre><code>for (int i = 0; i &lt; list.size(); i++) &#123; 
     for (int j = 0; j &lt; list.size(); j++) &#123; 
         if(i!=j&amp;&amp;list.get(i)==list.get(j)) &#123; 

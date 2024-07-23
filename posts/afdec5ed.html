@@ -49,8 +49,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -153,28 +152,28 @@
 <span id="more"></span>
 
 <hr>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开目录</span>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开目录</span>
 <span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># cd /usr/local/docker/</span>
 <span class="token comment" spellcheck="true"># 创建 mongodb 文件夹</span>
 <span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># mkdir mongodb</span>
 <span class="token comment" spellcheck="true"># 打开 mongodb 文件夹</span>
 <span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># cd mongodb/</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 数据挂在目录</span>
+</code></pre>
+<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 数据挂在目录</span>
 <span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># mkdir data</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 编写脚本</span>
+</code></pre>
+<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 编写脚本</span>
 <span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># vim startMongodb.sh</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class="line-numbers language-shell"><code class="language-shell">docker run -d \
+</code></pre>
+<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class=" language-shell"><code class="language-shell">docker run -d \
 --name mongodb-4.0.28 \
 --restart=always \
 -v /usr/local/docker/mongodb/data:/data/db \
 -p 27017:27017 mongo:4.0.28
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># chmod -R 700 startMongodb.sh</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># ./startMongodb.sh </span>
+</code></pre>
+<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># chmod -R 700 startMongodb.sh</span>
+</code></pre>
+<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># ./startMongodb.sh </span>
 Unable to find image <span class="token string">'mongo:4.0.28'</span> locally
 4<span class="token punctuation">.</span>0<span class="token punctuation">.</span>28: Pulling <span class="token keyword">from</span> library<span class="token operator">/</span>mongo
 58690f9b18fc: Pull complete 
@@ -193,7 +192,7 @@ b40f828abab8: Pull complete
 Digest: sha256:d22f53e7aa6851a62f28bff4061176ceaa90ca8dfd025067dfb5db84a60eb0cc
 Status: Downloaded newer image <span class="token keyword">for</span> mongo:4<span class="token punctuation">.</span>0<span class="token punctuation">.</span>28
 e557fd76e2b1dcada82ad2f63ed29bcddb5e748d56d5e98e5379f4d8384109ac
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h1 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h1><p><img src="/posts/afdec5ed/clip_image002.gif" alt="图片"></p>
 <p><img src="/posts/afdec5ed/clip_image004.gif" alt="图片"></p>
 

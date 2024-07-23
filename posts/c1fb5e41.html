@@ -51,8 +51,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -155,12 +154,12 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><pre class="line-numbers language-shell"><code class="language-shell"># 进入目录
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><pre class=" language-shell"><code class="language-shell"># 进入目录
 [root@MuYu docker]# cd /usr/local/docker
 # 创建文件夹
 [root@MuYu docker]# mkdir -p portainer/data
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="汉化包"><a href="#汉化包" class="headerlink" title="汉化包"></a>汉化包</h2><pre class="line-numbers language-shell"><code class="language-shell"># 打开目录portainer
+</code></pre>
+<h2 id="汉化包"><a href="#汉化包" class="headerlink" title="汉化包"></a>汉化包</h2><pre class=" language-shell"><code class="language-shell"># 打开目录portainer
 [root@localhost docker]# cd portainer/
 
 # 下载汉化包(汉化包已失效,重新找汉化包)
@@ -177,8 +176,8 @@ Saving to: ‘public.zip’
 2022-05-01 23:09:03 (1.72 MB/s) - ‘public.zip’ saved [1932694/1932694]
 # 解压汉化包
 [root@MuYu portainer]# unzip public.zip
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><pre class="line-numbers language-shell"><code class="language-shell">[root@MuYu portainer]# docker pull portainer/portainer
+</code></pre>
+<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><pre class=" language-shell"><code class="language-shell">[root@MuYu portainer]# docker pull portainer/portainer
 Using default tag: latest
 latest: Pulling from portainer/portainer
 94cfa856b2b1: Pull complete 
@@ -187,8 +186,8 @@ a2300fd28637: Pull complete 
 Digest: sha256:fb45b43738646048a0a0cc74fcee2865b69efde857e710126084ee5de9be0f3f
 Status: Downloaded newer image for portainer/portainer:latest
 docker.io/portainer/portainer:latest
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><pre class="line-numbers language-shell"><code class="language-shell"># 编写脚本
+</code></pre>
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><pre class=" language-shell"><code class="language-shell"># 编写脚本
 [root@MuYu portainer]# vim startPortainer.sh
 # 编写脚本文件
 docker run -d \
@@ -205,7 +204,7 @@ docker run -d \
 # 执行脚本
 [root@MuYu portainer]# ./startPortainer.sh 
 312623fe0b0192c645250f11e3603fd5f73f91393b22db3988a44fb93fb4dc89
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h2 id="可视化页面"><a href="#可视化页面" class="headerlink" title="可视化页面"></a>可视化页面</h2><h3 id="启动页面"><a href="#启动页面" class="headerlink" title="启动页面"></a>启动页面</h3><p><img src="/posts/c1fb5e41/clip_image002.gif" alt="图片"></p>
 <h3 id="选择本地"><a href="#选择本地" class="headerlink" title="选择本地"></a>选择本地</h3><p><img src="/posts/c1fb5e41/clip_image004.gif" alt="图片"></p>
 <h3 id="管理页面"><a href="#管理页面" class="headerlink" title="管理页面"></a>管理页面</h3><p><img src="/posts/c1fb5e41/clip_image006.gif" alt="图片"></p>

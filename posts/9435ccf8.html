@@ -46,8 +46,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -174,7 +173,7 @@
 <p>#一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms，建议设置比数据库超时时长少60秒，#参考MySQL wait_timeout参数（show variables like ‘%timeout%’;） –&gt;</p>
 <p>spring.datasource.hikari.max-lifetime=28740000<br>spring.datasource.hikari.connection-test-query=SELECT 1</p>
 <p>#注意：如果配置不当，数据库连接池也可能因影响到系统性能</p>
-<h4 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h4><pre class="line-numbers language-java"><code class="language-java">
+<h4 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h4><pre class=" language-java"><code class="language-java">
  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>mysql<span class="token operator">--</span><span class="token operator">></span>
             <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
                 <span class="token operator">&lt;</span>groupId<span class="token operator">></span>com<span class="token punctuation">.</span>zaxxer<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
@@ -197,7 +196,7 @@
                 <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>mysql<span class="token operator">-</span>connector<span class="token operator">-</span>java<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
                 <span class="token operator">&lt;</span>version<span class="token operator">></span>$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>mysql<span class="token punctuation">.</span>version<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
             <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h3 id="支持数据库"><a href="#支持数据库" class="headerlink" title="支持数据库"></a>支持数据库</h3><p>支持多种常见的数据库（包含但不限于）：</p>
 <p>Oracle、MS SQL Server、MySQL、PostgreSQL</p>
 

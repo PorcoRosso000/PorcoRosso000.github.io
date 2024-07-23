@@ -49,8 +49,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -153,14 +152,14 @@
 <span id="more"></span>
 
 <hr>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class="line-numbers language-json"><code class="language-json"># 打开目录
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class=" language-json"><code class="language-json"># 打开目录
 <span class="token punctuation">[</span>root@MuYu ~<span class="token punctuation">]</span># cd /usr/local/docker/
 # 创建文件夹
 <span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># mkdir mysql
 # 打开文件夹
 <span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># cd mysql/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="创建挂载目录"><a href="#创建挂载目录" class="headerlink" title="创建挂载目录"></a>创建挂载目录</h1><pre class="line-numbers language-json"><code class="language-json"># 创建数据挂在目录
+</code></pre>
+<h1 id="创建挂载目录"><a href="#创建挂载目录" class="headerlink" title="创建挂载目录"></a>创建挂载目录</h1><pre class=" language-json"><code class="language-json"># 创建数据挂在目录
 <span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># 
 # 创建配置文件目录
 <span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># mkdir config
@@ -168,8 +167,8 @@
 <span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># cd config/
 # 编写配置文件
 <span class="token punctuation">[</span>root@MuYu config<span class="token punctuation">]</span># vim my.cnf
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h1><pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">[</span>client<span class="token punctuation">]</span>
+</code></pre>
+<h1 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h1><pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>client<span class="token punctuation">]</span>
 # 端口号
 port=<span class="token number">3306</span>
 
@@ -231,11 +230,11 @@ binlog_row_event_max_size=8K
 sync_master_info=<span class="token number">10000</span>
 sync_relay_log=<span class="token number">10000</span>
 sync_relay_log_info=<span class="token number">10000</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>下载镜像</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mysql]</span><span class="token comment" spellcheck="true"># docker pull mysql:5.7</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开目录</span>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mysql]</span><span class="token comment" spellcheck="true"># docker pull mysql:5.7</span>
+</code></pre>
+<h1 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h1><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开目录</span>
 <span class="token namespace">[root@MuYu config]</span><span class="token comment" spellcheck="true"># cd /usr/local/docker/mysql/</span>
 
 <span class="token comment" spellcheck="true"># 编写脚本</span>
@@ -255,12 +254,12 @@ docker run <span class="token operator">-</span>d \
 
 <span class="token comment" spellcheck="true"># 权限赋予</span>
 <span class="token namespace">[root@MuYu mysql]</span><span class="token comment" spellcheck="true"># chmod -R 777 startMysql.sh</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-json"><code class="language-json"># 执行脚本
+</code></pre>
+<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class=" language-json"><code class="language-json"># 执行脚本
 <span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># ./startMysql.sh
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <h1 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h1><p><img src="/posts/72c8f5cf/clip_image002.gif" alt="图片"></p>
-<pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 进入容器</span>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 进入容器</span>
 <span class="token namespace">[root@MuYu mysql]</span><span class="token comment" spellcheck="true"># docker exec -it mysql57-3306 /bin/bash</span>
 <span class="token comment" spellcheck="true"># 连接MySQL</span>
 root@4ff92e46f363:<span class="token operator">/</span><span class="token comment" spellcheck="true"># mysql -uroot -pDongzl828..</span>
@@ -288,7 +287,7 @@ mysql> show databases<span class="token punctuation">;</span>
 <span class="token punctuation">|</span> sys                <span class="token punctuation">|</span>
 <span class="token operator">+</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">-</span><span class="token operator">+</span>
 4 rows in <span class="token function">set</span> <span class="token punctuation">(</span>0<span class="token punctuation">.</span>01 sec<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p><img src="/posts/72c8f5cf/clip_image004.gif" alt="图片"></p>
 
   </div>

@@ -66,8 +66,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -240,7 +239,7 @@
 </ol>
 <p>我们公司的消息推送系统，要统计每个推送的到达量和点击量，每次大促一推送出去，就会有非常多的点击上报，对数据库压力非常大，我们做了一个请求合并后，压力瞬间下降，效果很好。</p>
 <p><img src="/posts/e64cd6b8/image-1703648880078.png" alt="img"></p>
-<pre class="line-numbers language-bash"><code class="language-bash">@HystrixCollapser<span class="token punctuation">(</span>batchMethod <span class="token operator">=</span> <span class="token string">"updateAdminPushBatch"</span>, scope <span class="token operator">=</span> Scope.GLOBAL
+<pre class=" language-bash"><code class="language-bash">@HystrixCollapser<span class="token punctuation">(</span>batchMethod <span class="token operator">=</span> <span class="token string">"updateAdminPushBatch"</span>, scope <span class="token operator">=</span> Scope.GLOBAL
         , collapserProperties <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;@HystrixProperty(name = "timerDelayInMilliseconds", value = "200")</span>
         , @HystrixProperty<span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"maxRequestsInBatch"</span>, value <span class="token operator">=</span> <span class="token string">"100"</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;)</span>
     public Future<span class="token operator">&lt;</span>Boolean<span class="token operator">></span> increase<span class="token punctuation">(</span>ReportData data<span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;//单个请求</span>
@@ -279,7 +278,7 @@
         private String pushId<span class="token punctuation">;</span>
         private String eventType<span class="token punctuation">;</span>
     <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h3 id="自己开发一个请求折叠工具"><a href="#自己开发一个请求折叠工具" class="headerlink" title="自己开发一个请求折叠工具"></a>自己开发一个请求折叠工具</h3><p>如果我们需要有一个合并请求的框架，它需要满足哪些点呢？</p>
 <p>![img](./请求合并初稿 .jpg)</p>
 <ol>
@@ -298,12 +297,12 @@
 <p>2.单线程</p>
 <p>3.没有分组，不适合分组批量聚合的场景</p>
 <h2 id="kafka实现"><a href="#kafka实现" class="headerlink" title="kafka实现"></a>kafka实现</h2><p>首先kafka有个RecordAccumulator，来实现消息的批量发送。</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>dependency<span class="token operator">></span>
     <span class="token operator">&lt;</span>groupId<span class="token operator">></span>org.springframework.kafka<span class="token operator">&lt;</span>/groupId<span class="token operator">></span>
     <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>spring-kafka<span class="token operator">&lt;</span>/artifactId<span class="token operator">></span>
     <span class="token operator">&lt;</span>version<span class="token operator">></span>2.5.10.RELEASE<span class="token operator">&lt;</span>/version<span class="token operator">></span>
 <span class="token operator">&lt;</span>/dependency<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p><img src="/posts/e64cd6b8/09100800_63e455802ea8f26395.png" alt="img"></p>
 <p>通过</p>
 <p>batch.size=16kb</p>
@@ -335,12 +334,12 @@
 <p>2.没有为分组消息分配线程池</p>
 <p>因为kafka都是单线程进行消息的发送，没有这方面的需求。</p>
 <h2 id="hystrix实现"><a href="#hystrix实现" class="headerlink" title="hystrix实现"></a>hystrix实现</h2><p><a target="_blank" rel="noopener" href="https://github.com/Netflix/Hystrix/wiki/How-it-Works#RequestCollapsing">https://github.com/Netflix/Hystrix/wiki/How-it-Works#RequestCollapsing</a></p>
-<pre class="line-numbers language-bash"><code class="language-bash"> <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+<pre class=" language-bash"><code class="language-bash"> <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
     <span class="token operator">&lt;</span>groupId<span class="token operator">></span>com.netflix.hystrix<span class="token operator">&lt;</span>/groupId<span class="token operator">></span>
     <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>hystrix-core<span class="token operator">&lt;</span>/artifactId<span class="token operator">></span>
     <span class="token operator">&lt;</span>version<span class="token operator">></span>1.5.12<span class="token operator">&lt;</span>/version<span class="token operator">></span>
 <span class="token operator">&lt;</span>/dependency<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p><img src="/posts/e64cd6b8/5.png" alt="img"></p>
 <h3 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h3><p>后端的合并器，是RequestCollapser</p>
 <p>具体的分批是RequestBatch</p>

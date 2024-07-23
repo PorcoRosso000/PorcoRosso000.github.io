@@ -51,8 +51,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -155,10 +154,10 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><pre class="line-numbers language-shell"><code class="language-shell">docker pull redis:6.2.6
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><pre class=" language-shell"><code class="language-shell">docker pull redis:6.2.6
+</code></pre>
 <h2 id="docker配置redis"><a href="#docker配置redis" class="headerlink" title="docker配置redis"></a>docker配置redis</h2><p>使用前下载redis配置文件：<a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/GWTjtzHwGe3j3HD0.conf?fileGuid=rqhjpZwZC7Q4TzUJ">redis.conf</a></p>
-<h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><pre class="line-numbers language-shell"><code class="language-shell"># 打开目录
+<h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><pre class=" language-shell"><code class="language-shell"># 打开目录
 [root@MuYu /]# cd /usr/local/
 
 # 在其目录下创建 docker/redis
@@ -179,31 +178,31 @@
 [root@MuYu config]# ll
 total 92
 -rw-r--r-- 1 root root 93724 Oct  4  2021 redis.conf
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><h4 id="数据存储目录"><a href="#数据存储目录" class="headerlink" title="数据存储目录"></a>数据存储目录</h4><pre class="line-numbers language-shell"><code class="language-shell"># 修改配置文件
+</code></pre>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><h4 id="数据存储目录"><a href="#数据存储目录" class="headerlink" title="数据存储目录"></a>数据存储目录</h4><pre class=" language-shell"><code class="language-shell"># 修改配置文件
 dir ./                ->   dir /data
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <p><img src="/posts/cbab506c/clip_image002.jpg" alt="图片"></p>
-<h4 id="IP访问"><a href="#IP访问" class="headerlink" title="IP访问"></a>IP访问</h4><pre class="line-numbers language-shell"><code class="language-shell">bind 127.0.0.1 -::1   ->   bind 0.0.0.0
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="IP访问"><a href="#IP访问" class="headerlink" title="IP访问"></a>IP访问</h4><pre class=" language-shell"><code class="language-shell">bind 127.0.0.1 -::1   ->   bind 0.0.0.0
+</code></pre>
 <p><img src="/posts/cbab506c/clip_image004.jpg" alt="图片"></p>
-<h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><pre class="line-numbers language-shell"><code class="language-shell"># 退出目录
+<h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><pre class=" language-shell"><code class="language-shell"># 退出目录
 [root@MuYu config]# cd ..
 
 # 编辑sh脚本
 [root@MuYu redis]# vim startRedis.sh
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><pre class="line-numbers language-shell"><code class="language-shell">docker run  --privileged=true -p 6379:6379 --name redis --restart=always \
+</code></pre>
+<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><pre class=" language-shell"><code class="language-shell">docker run  --privileged=true -p 6379:6379 --name redis --restart=always \
  -v /usr/local/docker/redis/config/redis.conf:/etc/redis/redis.conf \
  -v /usr/local/docker/redis/data:/data \
  -d redis:6.2.6 redis-server /etc/redis/redis.conf
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p><img src="/posts/cbab506c/clip_image006.jpg" alt="图片"></p>
-<pre class="line-numbers language-shell"><code class="language-shell">
+<pre class=" language-shell"><code class="language-shell">
 # 脚本设置可执行权限
 [root@MuYu redis]# chmod -R 777 startRedis.sh
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h2><pre class="line-numbers language-shell"><code class="language-shell"># 运行脚本
+</code></pre>
+<h2 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h2><pre class=" language-shell"><code class="language-shell"># 运行脚本
 [root@MuYu redis]# ./startRedis.sh 
 46bc734d227e3a8a1dada5588a2683c1a433fa021488a07cbad510c5410edee3
 
@@ -211,9 +210,9 @@ dir ./                ->   dir /data
 [root@MuYu redis]# docker ps
 CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS         PORTS                                       NAMES
 46bc734d227e   redis:6.2.6   "docker-entrypoint.s…"   3 seconds ago   Up 2 seconds   0.0.0.0:6379->6379/tcp, :::6379->6379/tcp   redis
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h2 id="测试redis"><a href="#测试redis" class="headerlink" title="测试redis"></a>测试redis</h2><p><img src="/posts/cbab506c/clip_image008.gif" alt="图片"></p>
-<h2 id="一键重置redis脚本"><a href="#一键重置redis脚本" class="headerlink" title="一键重置redis脚本"></a>一键重置redis脚本</h2><pre class="line-numbers language-shell"><code class="language-shell"># 创建sh脚本
+<h2 id="一键重置redis脚本"><a href="#一键重置redis脚本" class="headerlink" title="一键重置redis脚本"></a>一键重置redis脚本</h2><pre class=" language-shell"><code class="language-shell"># 创建sh脚本
 [root@MuYu redis]# vim resetRedis.sh
 # 编写sh脚本
 docker rm -f redis
@@ -224,7 +223,7 @@ docker rm -f redis
 [root@MuYu redis]# ./resetRedis.sh 
 redis
 bbb4e496f5b9b98fd61ce21fa4133c401e2a069f326894594adfd472632e13e3
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
   </div>
 </article>

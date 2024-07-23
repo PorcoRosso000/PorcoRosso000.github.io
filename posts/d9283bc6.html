@@ -77,8 +77,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -696,35 +695,35 @@ cd到 ~/.ssh  ls ,这回会出现 id_dsa或者id_rsa两个文件，.pub文件是
 <li>第一步: 文件增删改，变为已修改状态</li>
 <li>第二步: git add ，变为已暂存状态</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git status
+<pre class=" language-text"><code class="language-text">$ git status
 $ git add --all # 当前项目下的所有更改
 $ git add .  # 当前目录下的所有更改
 $ git add xx/xx.py xx/xx2.py  # 添加某几个文件
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>第三步: git commit，变为已提交状态</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git commit -m"<这里写commit的描述>"
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git commit -m"<这里写commit的描述>"
+</code></pre>
 <ul>
 <li>第四步: git push，变为已推送状态</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git push -u origin master # 第一次需要关联上
+<pre class=" language-text"><code class="language-text">$ git push -u origin master # 第一次需要关联上
 $ git push # 之后再推送就不用指明应该推送的远程分支了
 $ git branch # 可以查看本地仓库的分支
 $ git branch -a # 可以查看本地仓库和本地远程仓库(远程仓库的本地镜像)的所有分支
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <blockquote>
 <p>在某个分支下，我最常用的操作如下</p>
 </blockquote>
-<pre class="line-numbers language-text"><code class="language-text">$ git status
+<pre class=" language-text"><code class="language-text">$ git status
 $ git add -a
 $ git status
 $ git commit -m 'xxx'
 $ git pull --rebase
 $ git push origin xxbranch` 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="2、代码撤销和撤销同步"><a href="#2、代码撤销和撤销同步" class="headerlink" title="2、代码撤销和撤销同步"></a>2、代码撤销和撤销同步</h4><h5 id="一、已修改，但未暂存"><a href="#一、已修改，但未暂存" class="headerlink" title="一、已修改，但未暂存"></a>一、已修改，但未暂存</h5><pre class="line-numbers language-text"><code class="language-text">$ git diff # 列出所有的修改
+</code></pre>
+<h4 id="2、代码撤销和撤销同步"><a href="#2、代码撤销和撤销同步" class="headerlink" title="2、代码撤销和撤销同步"></a>2、代码撤销和撤销同步</h4><h5 id="一、已修改，但未暂存"><a href="#一、已修改，但未暂存" class="headerlink" title="一、已修改，但未暂存"></a>一、已修改，但未暂存</h5><pre class=" language-text"><code class="language-text">$ git diff # 列出所有的修改
 $ git diff xx/xx.py xx/xx2.py # 列出某(几)个文件的修改
 
 $ git checkout # 撤销项目下所有的修改
@@ -737,245 +736,245 @@ $ git clean -df # untracked状态，撤销新增的文件和文件夹
 #  (use "git add <file>..." to include in what will be committed)
 #
 # xxx.py
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h5 id="二、已暂存，未提交"><a href="#二、已暂存，未提交" class="headerlink" title="二、已暂存，未提交"></a>二、已暂存，未提交</h5><blockquote>
 <p>这个时候已经执行过git add，但未执行git commit，但是用git diff已经看不到任何修改。 因为git diff检查的是工作区与暂存区之间的差异。</p>
 </blockquote>
-<pre class="line-numbers language-text"><code class="language-text">$ git diff --cached # 这个命令显示暂存区和本地仓库的差异
+<pre class=" language-text"><code class="language-text">$ git diff --cached # 这个命令显示暂存区和本地仓库的差异
 
 $ git reset # 暂存区的修改恢复到工作区
 $ git reset --soft # 与git reset等价，回到已修改状态，修改的内容仍然在工作区中
 $ git reset --hard # 回到未修改状态，清空暂存区和工作区
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <blockquote>
 <p>git reset –hard 操作等价于 git reset 和 git checkout 2步操作</p>
 </blockquote>
 <h5 id="三、已提交，未推送"><a href="#三、已提交，未推送" class="headerlink" title="三、已提交，未推送"></a>三、已提交，未推送</h5><blockquote>
 <p>执行完commit之后，会在仓库中生成一个版本号(hash值)，标志这次提交。之后任何时候，都可以借助这个hash值回退到这次提交。</p>
 </blockquote>
-<pre class="line-numbers language-text"><code class="language-text">$ git diff <branch-name1> <branch-name2> # 比较2个分支之间的差异
+<pre class=" language-text"><code class="language-text">$ git diff <branch-name1> <branch-name2> # 比较2个分支之间的差异
 $ git diff master origin/master # 查看本地仓库与本地远程仓库的差异
 
 $ git reset --hard origin/master # 回退与本地远程仓库一致
 $ git reset --hard HEAD^ # 回退到本地仓库上一个版本
 $ git reset --hard <hash code> # 回退到任意版本
 $ git reset --soft/git reset # 回退且回到已修改状态，修改仍保留在工作区中。 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="四、已推送到远程"><a href="#四、已推送到远程" class="headerlink" title="四、已推送到远程"></a>四、已推送到远程</h5><pre class="line-numbers language-text"><code class="language-text">$ git push -f orgin master # 强制覆盖远程分支
+</code></pre>
+<h5 id="四、已推送到远程"><a href="#四、已推送到远程" class="headerlink" title="四、已推送到远程"></a>四、已推送到远程</h5><pre class=" language-text"><code class="language-text">$ git push -f orgin master # 强制覆盖远程分支
 $ git push -f # 如果之前已经用 -u 关联过，则可省略分支名
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <blockquote>
 <p>慎用，一般情况下，本地分支比远程要新，所以可以直接推送到远程，但有时推送到远程后发现有问题，进行了版本回退，旧版本或者分叉版本推送到远程，需要添加 -f参数，表示强制覆盖。</p>
 </blockquote>
 <h4 id="️3、其它常见操作"><a href="#️3、其它常见操作" class="headerlink" title="️3、其它常见操作"></a>️3、其它常见操作</h4><h5 id="一、关联远程仓库"><a href="#一、关联远程仓库" class="headerlink" title="一、关联远程仓库"></a>一、关联远程仓库</h5><ul>
 <li>如果还没有Git仓库，你需要</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git init
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git init
+</code></pre>
 <ul>
 <li>如果你想关联远程仓库</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git remote add <name> <git-repo-url>
+<pre class=" language-text"><code class="language-text">$ git remote add <name> <git-repo-url>
 # 例如 git remote add origin https://github.com/xxxxxx # 是远程仓库的名称，通常为 origin 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>如果你想关联多个远程仓库</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git remote add <name> <another-git-repo-url>
+<pre class=" language-text"><code class="language-text">$ git remote add <name> <another-git-repo-url>
 # 例如 git remote add coding https://coding.net/xxxxxx 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>忘了关联了哪些仓库或者地址</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git remote -v
+<pre class=" language-text"><code class="language-text">$ git remote -v
 # origin https://github.com/gzdaijie/koa-react-server-render-blog.git (fetch)
 # origin https://github.com/gzdaijie/koa-react-server-render-blog.git (push) 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>如果远程有仓库，你需要clone到本地</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git clone <git-repo-url>
+<pre class=" language-text"><code class="language-text">$ git clone <git-repo-url>
 # 关联的远程仓库将被命名为origin，这是默认的。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>如果你想把别人仓库的地址改为自己的</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git remote set-url origin <your-git-url>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git remote set-url origin <your-git-url>
+</code></pre>
 <h5 id="二、-切换分支"><a href="#二、-切换分支" class="headerlink" title="二、 切换分支"></a>二、 切换分支</h5><blockquote>
 <p>新建仓库后，默认生成了master分支</p>
 </blockquote>
 <ul>
 <li>如果你想新建分支并切换</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git checkout -b <new-branch-name>
+<pre class=" language-text"><code class="language-text">$ git checkout -b <new-branch-name>
 # 例如 git checkout -b dev
 # 如果仅新建，不切换，则去掉参数 -b
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>看看当前有哪些分支</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git branch
+<pre class=" language-text"><code class="language-text">$ git branch
 # * dev
 #   master # 标*号的代表当前所在的分支
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>看看当前本地&amp;远程有哪些分支</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git branch -a
+<pre class=" language-text"><code class="language-text">$ git branch -a
 # * dev
 #   master
 #   remotes/origin/master
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>切换到现有的分支</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git checkout master
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git checkout master
+</code></pre>
 <ul>
 <li>你想把dev分支合并到master分支</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git merge <branch-name>
+<pre class=" language-text"><code class="language-text">$ git merge <branch-name>
 # 例如 git merge dev
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>你想把本地master分支推送到远程去</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git push origin master
+<pre class=" language-text"><code class="language-text">$ git push origin master
 # 你可以使用git push -u origin master将本地分支与远程分支关联，之后仅需要使用git push即可。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>远程分支被别人更新了，你需要更新代码</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git pull origin <branch-name>
+<pre class=" language-text"><code class="language-text">$ git pull origin <branch-name>
 # 之前如果push时使用过-u，那么就可以省略为git pull
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>本地有修改，不能先git pull</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git stash # 工作区修改暂存
+<pre class=" language-text"><code class="language-text">$ git stash # 工作区修改暂存
 $ git pull  # 更新分支
 $ git stash pop # 暂存修改恢复到工作区  
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h5 id="三、-撤销操作"><a href="#三、-撤销操作" class="headerlink" title="三、 撤销操作"></a>三、 撤销操作</h5><ul>
 <li>恢复暂存区文件到工作区</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git checkout <file-name> 
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git checkout <file-name> 
+</code></pre>
 <ul>
 <li>恢复暂存区的所有文件到工作区</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git checkout .
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git checkout .
+</code></pre>
 <ul>
 <li>重置暂存区的某文件，与上一次commit保持一致，但工作区不变</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git reset <file-name>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git reset <file-name>
+</code></pre>
 <ul>
 <li>重置暂存区与工作区，与上一次commit保持一致</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git reset --hard <file-name>
+<pre class=" language-text"><code class="language-text">$ git reset --hard <file-name>
 # 如果是回退版本(commit)，那么file，变成commit的hash码就好了。 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>去掉某个commit</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git revert <commit-hash>
+<pre class=" language-text"><code class="language-text">$ git revert <commit-hash>
 # 实质是新建了一个与原来完全相反的commit，抵消了原来commit的效果 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>reset回退错误恢复</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git reflog #查看最近操作记录
+<pre class=" language-text"><code class="language-text">$ git reflog #查看最近操作记录
 $ git reset --hard HEAD&#123;5&#125; #恢复到前五笔操作
 $ git pull origin backend-log #再次拉取代码
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h5 id="四、版本回退与前进"><a href="#四、版本回退与前进" class="headerlink" title="四、版本回退与前进"></a>四、版本回退与前进</h5><ul>
 <li>查看历史版本</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git log
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git log
+</code></pre>
 <ul>
 <li>你可能觉得这样的log不好看，试试这个</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git log --graph --decorate --abbrev-commit --all
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git log --graph --decorate --abbrev-commit --all
+</code></pre>
 <ul>
 <li>检出到任意版本</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git checkout a5d88ea
+<pre class=" language-text"><code class="language-text">$ git checkout a5d88ea
 # hash码很长，通常6-7位就够了
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>远程仓库的版本很新，但是你还是想用老版本覆盖</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git push origin master --force
+<pre class=" language-text"><code class="language-text">$ git push origin master --force
 # 或者 git push -f origin master
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>觉得commit太多了? 多个commit合并为1个</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git rebase -i HEAD~4
+<pre class=" language-text"><code class="language-text">$ git rebase -i HEAD~4
 # 这个命令，将最近4个commit合并为1个，HEAD代表当前版本。将进入VIM界面，你可以修改提交信息。推送到远程分支的commit，不建议这样做，多人合作时，通常不建议修改历史。 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>想回退到某一个版本</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git reset --hard <hash>
+<pre class=" language-text"><code class="language-text">$ git reset --hard <hash>
 # 例如 git reset --hard a3hd73r
 # --hard代表丢弃工作区的修改，让工作区与版本代码一模一样，与之对应，--soft参数代表保留工作区的修改。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>想回退到上一个版本，有没有简便方法?</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git reset --hard HEAD^ 
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git reset --hard HEAD^ 
+</code></pre>
 <ul>
 <li>回退到上上个版本呢?</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git reset --hard HEAD^^
+<pre class=" language-text"><code class="language-text">$ git reset --hard HEAD^^
 # HEAD^^可以换作具体版本hash值。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>回退错了，能不能前进呀</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git reflog
+<pre class=" language-text"><code class="language-text">$ git reflog
 # 这个命令保留了最近执行的操作及所处的版本，每条命令前的hash值，则是对应版本的hash值。使用上述的git checkout 或者 git reset命令 则可以检出或回退到对应版本。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>刚才commit信息写错了，可以修改吗</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git commit --amend
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git commit --amend
+</code></pre>
 <ul>
 <li>看看当前状态吧</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git status 
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git status 
+</code></pre>
 <h5 id="五、配置属于你的Git"><a href="#五、配置属于你的Git" class="headerlink" title="五、配置属于你的Git"></a>五、配置属于你的Git</h5><ul>
 <li>看看当前的配置</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git config --list 
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git config --list 
+</code></pre>
 <ul>
 <li>估计你需要配置你的名字</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git config --global user.name "<name>
+<pre class=" language-text"><code class="language-text">$ git config --global user.name "<name>
 #  --global为可选参数，该参数表示配置全局信息` 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>希望别人看到你的commit可以联系到你</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git config --global user.email "<email address>" 
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-text"><code class="language-text">$ git config --global user.email "<email address>" 
+</code></pre>
 <ul>
 <li>有些命令很长，能不能简化一下</li>
 </ul>
-<pre class="line-numbers language-text"><code class="language-text">$ git config --global alias.logg "log --graph --decorate --abbrev-commit --all"
+<pre class=" language-text"><code class="language-text">$ git config --global alias.logg "log --graph --decorate --abbrev-commit --all"
 # 之后就可以开心地使用 git log了
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="新建了一个git仓库，本地代码上传gitlab"><a href="#新建了一个git仓库，本地代码上传gitlab" class="headerlink" title="新建了一个git仓库，本地代码上传gitlab"></a>新建了一个git仓库，本地代码上传gitlab</h3><pre class="line-numbers language-csharp"><code class="language-csharp">$ git init  <span class="token comment" spellcheck="true">//建立一个新的git链接</span>
+</code></pre>
+<h3 id="新建了一个git仓库，本地代码上传gitlab"><a href="#新建了一个git仓库，本地代码上传gitlab" class="headerlink" title="新建了一个git仓库，本地代码上传gitlab"></a>新建了一个git仓库，本地代码上传gitlab</h3><pre class=" language-csharp"><code class="language-csharp">$ git init  <span class="token comment" spellcheck="true">//建立一个新的git链接</span>
 $ git remote <span class="token keyword">add</span> origin https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>gitee<span class="token punctuation">.</span>com<span class="token operator">/</span>xxx<span class="token operator">/</span>XXX<span class="token punctuation">.</span>git  <span class="token comment" spellcheck="true">//https：自己的仓库地址</span>
 $ git config <span class="token operator">--</span><span class="token keyword">global</span> user<span class="token punctuation">.</span>email <span class="token string">"you@example.com"</span>   <span class="token comment" spellcheck="true">//自己的邮箱</span>
 $ git config <span class="token operator">--</span><span class="token keyword">global</span> user<span class="token punctuation">.</span>name <span class="token string">"Your Name"</span>  <span class="token comment" spellcheck="true">//用户名</span>
@@ -983,16 +982,16 @@ $ git <span class="token keyword">add</span> <span class="token punctuation">.</
 $ git commit <span class="token operator">-</span>m <span class="token string">"提交的内容名称"</span>
 $ git pull origin master  <span class="token comment" spellcheck="true">//先拉取下后提交不容易错</span>
 $ git push <span class="token operator">-</span>u origin master  <span class="token comment" spellcheck="true">//提交到master分支</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h3 id="git-status-出错-interactive-rebase-in-progress；-onto-796e78f"><a href="#git-status-出错-interactive-rebase-in-progress；-onto-796e78f" class="headerlink" title="git status 出错 interactive rebase in progress； onto 796e78f"></a>git status 出错 interactive rebase in progress； onto 796e78f</h3><pre><code>使用 git commit --amend 命令修订当前的提交
 使用 git rebase --continue 命令继续代码的提交(推荐),执行之后,需要重新提交,解决一下当前的代码冲突之后重新提交直至没有rebase提示,就可以正常提交了
 </code></pre>
 <h3 id="切换仓库源"><a href="#切换仓库源" class="headerlink" title="切换仓库源"></a>切换仓库源</h3><p><strong>移除之前的git源：</strong></p>
-<pre class="line-numbers language-html"><code class="language-html">git remote rm origin
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-html"><code class="language-html">git remote rm origin
+</code></pre>
 <p><strong>连接新的git源：</strong></p>
-<pre class="line-numbers language-html"><code class="language-html">git remote add origin '仓库地址'
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-html"><code class="language-html">git remote add origin '仓库地址'
+</code></pre>
 <h3 id="git冲突解决"><a href="#git冲突解决" class="headerlink" title="git冲突解决"></a>git冲突解决</h3><p>用</p>
 <pre><code>git fetch origin master
 </code></pre>
@@ -1070,11 +1069,11 @@ f88b2e6 Initial commit
 <ul>
 <li>输入命令：</li>
 </ul>
-<pre class="line-numbers language-cpp"><code class="language-cpp">git rebase <span class="token operator">-</span>i 073ea5e <span class="token comment" spellcheck="true">//第三次提交ID</span>
+<pre class=" language-cpp"><code class="language-cpp">git rebase <span class="token operator">-</span>i 073ea5e <span class="token comment" spellcheck="true">//第三次提交ID</span>
 
 <span class="token comment" spellcheck="true">//上面等同如下命令</span>
 git rebase <span class="token operator">-</span>i HEAD<span class="token operator">~</span><span class="token number">3</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>在交互界面使用下面命令对提交进行操作</p>
 <p><img src="/posts/d9283bc6/20230805141202.png" alt="20230805141202"></p>
 <p>比如要合并那三次提交,<br>第一次提交使用pick 后面的都改成 squash ,<br>这样三次提交就可以合并</p>
@@ -1095,8 +1094,8 @@ git rebase <span class="token operator">-</span>i HEAD<span class="token operato
 <li>deps: 升级依赖</li>
 </ul>
 <p><strong>例如</strong></p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> commit -m <span class="token string">'fix:修复xxxbug'</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> commit -m <span class="token string">'fix:修复xxxbug'</span>
+</code></pre>
 <hr>
 <p>抛弃本地的 commit，采用远程的 commit。慎用：因为你本地的修改都会失去。</p>
 <pre><code>git rebase --skip
@@ -1122,20 +1121,20 @@ commit  后面就是版本号
 <p>2.<strong>使用git reset –hard 版本号 回退到版本</strong></p>
 <p>其”–soft 、–mixed以及–hard是三个恢复等级。<br> 使用–soft就仅仅将头指针恢复，已经add的暂存区以及工作空间的所有东西都不变。<br> 如果使用–mixed，就将头恢复掉，已经add的暂存区也会丢失掉，工作空间的代码什么的是不变的。<br> 如果使用–hard，那么一切就全都恢复了，头变，add的暂存区消失，代码什么的也恢复到以前状态。</p>
 <p>回退代码快捷操作：</p>
-<pre class="line-numbers language-git"><code class="language-git">git reset --hard HEAD^ #回退到上一个版本
+<pre class=" language-git"><code class="language-git">git reset --hard HEAD^ #回退到上一个版本
 git reset --hard HEAD^^ #回退到上上一个版本
 git reset --hard HEAD~3 #回退到往上3个版本
 git reset --hard HEAD~10 #回退到往上10个版本
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>3.<strong>git push origin 仓库名 –force 推送代码</strong></p>
 <p>提交后 </p>
 <p><img src="/posts/d9283bc6/12665637-84cd705d964a100c.png" alt="12665637-84cd705d964a100c"></p>
 <h4 id="git-revert-回退"><a href="#git-revert-回退" class="headerlink" title="git revert 回退"></a>git revert 回退</h4><p>优点: 既可以回退代码，又可以保存错误的提交</p>
 <p>git revert的作用通过反做创建一个新的版本，这个版本的内容与我们要回退到的目标版本一样，但是HEAD指针是指向这个新生成的版本，而不是目标版本。</p>
 <p>使用 git revert 命令来实现上述例子的话，我们可以这样做：先 revert D，再 revert C （有多个提交需要回退的话需要由新到旧进行 revert）：</p>
-<pre class="line-numbers language-undefined"><code class="language-undefined">git revert 5lk4er
+<pre class=" language-undefined"><code class="language-undefined">git revert 5lk4er
 git revert 76sdeb
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <p>这里会生成两个新有提交：D’ 和 C’，如下图示：</p>
 <p><img src="/posts/d9283bc6/12665637-cf079bb4922d85e5.png" alt="12665637-cf079bb4922d85e5"></p>
 <p>这里只有两个提交需要 revert，我们可以一个个回退。但如果有几十个呢？一个个回退肯定效率太低而且容易出错。我们可以使用以下方法进行批量回退：</p>
@@ -1152,8 +1151,8 @@ git revert 76sdeb
 <p><img src="/posts/d9283bc6/12665637-fec52bf232159982.png" alt="12665637-fec52bf232159982"></p>
 <h3 id="Git如何做到同一个分支只上线部分功能-Cherry-Pick"><a href="#Git如何做到同一个分支只上线部分功能-Cherry-Pick" class="headerlink" title="Git如何做到同一个分支只上线部分功能 Cherry-Pick"></a>Git如何做到同一个分支只上线部分功能 Cherry-Pick</h3><p>在开发的时候，我们通常会在同一个开发分支(B)上，同时开发多个功能，但最终可能只需要上线(合并到master分支)部分功能。显然这时直接将B分支合并（pull request）到master分支，是会将所有提交都合并到master，所以这里我们无法直接使用pull requst。直接将B分支推送到master分支是同一个结果。</p>
 <p>这时我们可以使用到cherry-pick命令拉取代码，cherry-pick可以做到commit维度的代码拉取，也就是只拉取某次commit中的所有代码变更。我们想要上线部分功能可以从这个命令入手。</p>
-<pre class="line-numbers language-shell"><code class="language-shell">git cherry-pick <commit id>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-shell"><code class="language-shell">git cherry-pick <commit id>
+</code></pre>
 <blockquote>
 <p>cherry-pick:选出自己喜欢的</p>
 </blockquote>
@@ -1193,12 +1192,12 @@ git revert 76sdeb
 </tr>
 </tbody></table>
 <p>想要达到第五天的效果，我们可以使用cherry-pick，来选出自己想要的commit，来合并到D分支上。</p>
-<pre class="line-numbers language-shell"><code class="language-shell">#需要先切换到D分支后，再执行cherry-pick命令，可以将别的分支的commit选取拉到当前分支。
+<pre class=" language-shell"><code class="language-shell">#需要先切换到D分支后，再执行cherry-pick命令，可以将别的分支的commit选取拉到当前分支。
 # 切换到 D 分支
 git checkout D
 git cherry-pick commit1编号
 git cherry-pick commit3编号
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>在拉取多个提交时应按照先后提交顺序拉取，并将某个功能的所有commit都拉取到以免代码丢失。</p>
 <p>假如，只拉取commit3，但是commit3与commit1是在同一个文件中做修改，这是会有冲突出现。但是只拉取commit1而忘记了commit3，这时不会有冲突，但是后续便丢失了commit3的代码。</p>
 <h4 id="避免代码的冲突与丢失"><a href="#避免代码的冲突与丢失" class="headerlink" title="避免代码的冲突与丢失"></a>避免代码的冲突与丢失</h4><p>为了避免冲突的出现与代码的丢失，我们可以做下面几点来预防：</p>
@@ -1208,42 +1207,42 @@ git cherry-pick commit3编号
 <li>cherry-pick时可以用idea将某个功能的所有提交，全选出来，一次性都pick出来。或者，按照先后顺序将commit依次pick过来，直接pick多次修改后的commit会存在冲突。</li>
 </ol>
 <h3 id="cherry-pick-详细用法"><a href="#cherry-pick-详细用法" class="headerlink" title="cherry-pick 详细用法"></a>cherry-pick 详细用法</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p><code>git cherry-pick</code>命令的作用，就是将指定的提交（commit）应用于其他分支。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>commitHash<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>commitHash<span class="token operator">></span>
+</code></pre>
 <p>上面命令就会将指定的提交<code>commitHash</code>，应用于当前分支。这会在当前分支产生一个新的提交，当然它们的哈希值会不一样。</p>
 <p>举例来说，代码仓库有<code>master</code>和<code>feature</code>两个分支。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">    a - b - c - d   Master
+<pre class=" language-bash"><code class="language-bash">    a - b - c - d   Master
          \
            e - f - g Feature
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>现在将提交<code>f</code>应用到<code>master</code>分支。</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 切换到 master 分支</span>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 切换到 master 分支</span>
 $ <span class="token function">git</span> checkout master
 
 <span class="token comment" spellcheck="true"># Cherry pick 操作</span>
 $ <span class="token function">git</span> cherry-pick f
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>上面的操作完成以后，代码库就变成了下面的样子。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">    a - b - c - d - f   Master
+<pre class=" language-bash"><code class="language-bash">    a - b - c - d - f   Master
          \
            e - f - g Feature
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>从上面可以看到，<code>master</code>分支的末尾增加了一个提交<code>f</code>。</p>
 <p><code>git cherry-pick</code>命令的参数，不一定是提交的哈希值，分支名也是可以的，表示转移该分支的最新提交。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick feature
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick feature
+</code></pre>
 <p>上面代码表示将<code>feature</code>分支的最近一次提交，转移到当前分支。</p>
 <h4 id="转移多个提交"><a href="#转移多个提交" class="headerlink" title="转移多个提交"></a>转移多个提交</h4><p>Cherry pick 支持一次转移多个提交。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>HashA<span class="token operator">></span> <span class="token operator">&lt;</span>HashB<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>HashA<span class="token operator">></span> <span class="token operator">&lt;</span>HashB<span class="token operator">></span>
+</code></pre>
 <p>上面的命令将 A 和 B 两个提交应用到当前分支。这会在当前分支生成两个对应的新提交。</p>
 <p>如果想要转移一系列的连续提交，可以使用下面的简便语法。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick A<span class="token punctuation">..</span>B 
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick A<span class="token punctuation">..</span>B 
+</code></pre>
 <p>上面的命令可以转移从 A 到 B 的所有提交。它们必须按照正确的顺序放置：提交 A 必须早于提交 B，否则命令将失败，但不会报错。</p>
 <p>注意，使用上面的命令，提交 A 将不会包含在 Cherry pick 中。如果要包含提交 A，可以使用下面的语法。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick A^<span class="token punctuation">..</span>B 
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick A^<span class="token punctuation">..</span>B 
+</code></pre>
 <h4 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h4><p><code>git cherry-pick</code>命令的常用配置项如下。</p>
 <p><strong>（1）-e，–edit</strong></p>
 <p>打开外部编辑器，编辑提交信息。</p>
@@ -1256,33 +1255,33 @@ $ <span class="token function">git</span> cherry-pick f
 <p><strong>（5）-m parent-number，–mainline parent-number</strong></p>
 <p>如果原始提交是一个合并节点，来自于两个分支的合并，那么 Cherry pick 默认将失败，因为它不知道应该采用哪个分支的代码变动。</p>
 <p><code>-m</code>配置项告诉 Git，应该采用哪个分支的变动。它的参数<code>parent-number</code>是一个从<code>1</code>开始的整数，代表原始提交的父分支编号。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick -m 1 <span class="token operator">&lt;</span>commitHash<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick -m 1 <span class="token operator">&lt;</span>commitHash<span class="token operator">></span>
+</code></pre>
 <p>上面命令表示，Cherry pick 采用提交<code>commitHash</code>来自编号1的父分支的变动。</p>
 <p>一般来说，1号父分支是接受变动的分支（the branch being merged into），2号父分支是作为变动来源的分支（the branch being merged from）。</p>
 <h4 id="代码冲突"><a href="#代码冲突" class="headerlink" title="代码冲突"></a>代码冲突</h4><p>如果操作过程中发生代码冲突，Cherry pick 会停下来，让用户决定如何继续操作。</p>
 <p><strong>（1）–continue</strong></p>
 <p>用户解决代码冲突后，第一步将修改的文件重新加入暂存区（<code>git add .</code>），第二步使用下面的命令，让 Cherry pick 过程继续执行。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick --continue
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick --continue
+</code></pre>
 <p><strong>（2）–abort</strong></p>
 <p>发生代码冲突后，放弃合并，回到操作前的样子。</p>
 <p><strong>（3）–quit</strong></p>
 <p>发生代码冲突后，退出 Cherry pick，但是不回到操作前的样子。</p>
 <h4 id="转移到另一个代码库"><a href="#转移到另一个代码库" class="headerlink" title="转移到另一个代码库"></a>转移到另一个代码库</h4><p>Cherry pick 也支持转移另一个代码库的提交，方法是先将该库加为远程仓库。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> remote add target git://gitUrl
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> remote add target git://gitUrl
+</code></pre>
 <p>上面命令添加了一个远程仓库<code>target</code>。</p>
 <p>然后，将远程代码抓取到本地。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> fetch target
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> fetch target
+</code></pre>
 <p>上面命令将远程代码仓库抓取到本地。</p>
 <p>接着，检查一下要从远程仓库转移的提交，获取它的哈希值。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> log target/master
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> log target/master
+</code></pre>
 <p>最后，使用<code>git cherry-pick</code>命令转移提交。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>commitHash<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>commitHash<span class="token operator">></span>
+</code></pre>
 <h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><pre><code>// 合并分支（多人开发中，经常一人一个分支，各自在自己分支开发，开发完成以后合并到某一个指定分支，没有问题后最后合并到master主分支，我们的流程是各自在自己的develop开发，开发完成以后合并到lastest分支，没有问题后提交合并申请到master分支，由leader审批是否统一合并到master，因为很多新人不太清楚代码的具体用途，所以讲的稍微详细点，明白命令的实现目的能更好的掌握使用，后面会有具体的操作流程）
 1.本地代码依次
 git status

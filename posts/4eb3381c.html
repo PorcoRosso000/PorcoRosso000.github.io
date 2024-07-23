@@ -50,8 +50,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -221,7 +220,7 @@
 <h3 id="redisssonReadLock"><a href="#redisssonReadLock" class="headerlink" title="redisssonReadLock:"></a>redisssonReadLock:</h3><p>   Redis中针对此种情况，引入了红锁的概念。红锁采用主节点过半机制，即获取锁或者释放锁成功的标志为：在过半的节点上操作成功。</p>
 <p>原理</p>
 <p>​        在Redis的分布式环境中，我们假设有N个Redis master。这些节点完全互相独立，不存在主从复制或者其他集群协调机制。之前我们已经描述了在Redis单实例下怎么安全地获取和释放锁。我们确保将在每（N）个实例上使用此方法获取和释放锁。在这个样例中，我们假设有5个Redis master节点，这是一个比较合理的设置，所以我们需要在5台机器上面或者5台虚拟机上面运行这些实例，这样保证他们不会同时都宕掉。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedissonRedLockDemo</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedissonRedLockDemo</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
@@ -272,7 +271,7 @@
    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>RedissonRedLock 不愧是基于 RedissonMultiLock 做的简单扩展，确实连使用都是基本一致的；只需要配置好 N 个锁，一般数量就是对应集群中主节点的数量，然后创建一个 RedissonRedLock 对象，接着就是调用获取锁和释放锁的方法即可。</p>
 <p>使用 RedissonRedLock 时需要注意 key 的使用</p>
 <p>那下面的那些计算slot是怎么回事？</p>
@@ -282,7 +281,7 @@
 <p>Semaphore可以用来做流量分流，特别是对公共资源有限的场景，比如数据库连接。假设有这个的需求，读取几万个文件的数据到数据库中，由于文件读取是IO密集型任务，可以启动几十个线程并发读取，但是数据库连接数只有10个，这时就必须控制最多只有10个线程能够拿到数据库连接进行操作。这个时候，就可以使用Semaphore做流量控制。</p>
 <p>单个信号量的Semaphore对象可以实现互斥锁的功能，这时这个信号量就类似一个锁，并且可以是由一个线程获得了“锁”，再由另一个线程释放“锁”，这可应用于死锁恢复的一些场合（锁只能被本线程释放，不能被其他线程释放）</p>
 <h4 id="信号量常用接口"><a href="#信号量常用接口" class="headerlink" title="信号量常用接口"></a>信号量常用接口</h4><p>提供了<a href="https://link.juejin.cn/?target=http://static.javadoc.io/org.redisson/redisson/3.10.0/org/redisson/api/RSemaphoreAsync.html">异步（Async）</a>、<a href="https://link.juejin.cn/?target=http://static.javadoc.io/org.redisson/redisson/3.10.0/org/redisson/api/RSemaphoreReactive.html">反射式（Reactive）</a>和<a href="https://link.juejin.cn/?target=http://static.javadoc.io/org.redisson/redisson/3.10.0/org/redisson/api/RSemaphoreRx.html">RxJava2标准</a>的接口</p>
-<pre class="line-numbers language-java"><code class="language-java">Config config<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java">Config config<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 config<span class="token punctuation">.</span><span class="token function">useSingleServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAddress</span><span class="token punctuation">(</span><span class="token string">"redis://192.168.xxx.xxx:6379"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setPassword</span><span class="token punctuation">(</span><span class="token string">"xxx"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setDatabase</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
 RedissonClient redissonClient<span class="token operator">=</span> Redisson<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
 RSemaphore semaphore_text <span class="token operator">=</span> redissonClient<span class="token punctuation">.</span><span class="token function">getSemaphore</span><span class="token punctuation">(</span><span class="token string">"semaphore_text"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -316,10 +315,10 @@ semaphore_text<span class="token punctuation">.</span><span class="token functio
 
 <span class="token comment" spellcheck="true">//把所有的信号量获取掉 信号量置0</span>
 semaphore_text<span class="token punctuation">.</span><span class="token function">drainPermits</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h3 id="Resisson桶示例"><a href="#Resisson桶示例" class="headerlink" title="Resisson桶示例"></a>Resisson桶示例</h3><p><strong>作用：</strong></p>
 <p>桶存储单个对象，提供了原子替换功能，可在高并发场景下进行更新操作</p>
-<h4 id="RBucket-桶-相关接口"><a href="#RBucket-桶-相关接口" class="headerlink" title="RBucket(桶)相关接口"></a>RBucket(桶)相关接口</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">RBucket</span><span class="token operator">&lt;</span>V<span class="token operator">></span> <span class="token keyword">extends</span> <span class="token class-name">RExpirable</span><span class="token punctuation">,</span> RBucketAsync<span class="token operator">&lt;</span>V<span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h4 id="RBucket-桶-相关接口"><a href="#RBucket-桶-相关接口" class="headerlink" title="RBucket(桶)相关接口"></a>RBucket(桶)相关接口</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">RBucket</span><span class="token operator">&lt;</span>V<span class="token operator">></span> <span class="token keyword">extends</span> <span class="token class-name">RExpirable</span><span class="token punctuation">,</span> RBucketAsync<span class="token operator">&lt;</span>V<span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 <span class="token keyword">void</span> <span class="token function">set</span><span class="token punctuation">(</span>V var1<span class="token punctuation">)</span><span class="token punctuation">;</span>                                  <span class="token comment" spellcheck="true">//设置桶存储的对象</span>
 <span class="token keyword">void</span> <span class="token function">set</span><span class="token punctuation">(</span>V var1<span class="token punctuation">,</span> <span class="token keyword">long</span> var2<span class="token punctuation">,</span> TimeUnit var4<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//设置桶存储的对象，设置操作的超时时间var2</span>
  
@@ -336,8 +335,8 @@ V <span class="token function">getAndDelete</span><span class="token punctuation
 V <span class="token function">getAndSet</span><span class="token punctuation">(</span>V var1<span class="token punctuation">)</span><span class="token punctuation">;</span>                               <span class="token comment" spellcheck="true">//返回桶的旧值，设置新值</span>
 V <span class="token function">getAndSet</span><span class="token punctuation">(</span>V var1<span class="token punctuation">,</span> <span class="token keyword">long</span> var2<span class="token punctuation">,</span> TimeUnit var4<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//返回桶的旧值，设置新值，设置操作的超时时间var2</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-java"><code class="language-java">测试方法<span class="token number">1</span><span class="token operator">:</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java">测试方法<span class="token number">1</span><span class="token operator">:</span>
 <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
         <span class="token comment" spellcheck="true">//配置redis连接 redisson 注意:此时redis 必须要设置密码 没有密码 会报密码错误</span>
@@ -412,7 +411,7 @@ V <span class="token function">getAndSet</span><span class="token punctuation">(
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"走完了...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章:"></a>参考文章:</h2><p>CSDN博主「o_瓜田李下_o」的原创文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43931625/article/details/103250648">https://blog.csdn.net/weixin_43931625/article/details/103250648</a></p>
 
   </div>

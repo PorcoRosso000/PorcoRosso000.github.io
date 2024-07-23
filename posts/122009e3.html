@@ -46,8 +46,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -150,7 +149,7 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="ibatis"><a href="#ibatis" class="headerlink" title="ibatis"></a>ibatis</h2><h3 id="ibatis中符号"><a href="#ibatis中符号" class="headerlink" title="ibatis中符号"></a>ibatis中符号</h3><pre class="line-numbers language-java"><code class="language-java">
+<h2 id="ibatis"><a href="#ibatis" class="headerlink" title="ibatis"></a>ibatis</h2><h3 id="ibatis中符号"><a href="#ibatis中符号" class="headerlink" title="ibatis中符号"></a>ibatis中符号</h3><pre class=" language-java"><code class="language-java">
           特殊字符           替代符号
              <span class="token operator">&amp;</span>               <span class="token operator">&amp;</span>amp<span class="token punctuation">;</span>
              <span class="token operator">&lt;</span>               <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>
@@ -160,7 +159,7 @@
 小于等于     a<span class="token operator">&lt;=</span>b             a <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">=</span> b              a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">&lt;=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
 大于等于     a<span class="token operator">>=</span>b             a <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token operator">=</span> b              a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">>=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
 不等于       a<span class="token operator">!=</span>b             a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span> <span class="token operator">&lt;</span><span class="token operator">></span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b    a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">!=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h2 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h2><h3 id="mybatis中的Criteria及对应xml的解析"><a href="#mybatis中的Criteria及对应xml的解析" class="headerlink" title="mybatis中的Criteria及对应xml的解析"></a>mybatis中的Criteria及对应xml的解析</h3><p>Criteria的and和or进行联合查询<br>DemoExample example=new DemoExample ();<br>DemoExample.Criteria criteria=example.createCriteria();<br>criteria.andidEqualTo(id);<br>criteria.andStatusEqualTo(“0”);</p>
 <p>DemoExample.Criteria criteria2=example.createCriteria();<br>criteria2.andidEqualTo(id);<br>criteria2.andstatusEqualTo(“1”);<br>example.or(criteria2);<br>dao.countByExample(example);</p>
 <p>sql：select count(*) from demo WHERE ( ID = ? and STATUS = ? ) or( ID = ? and STATUS = ? )</p>

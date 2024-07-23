@@ -45,8 +45,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -190,7 +189,7 @@
 &#125;
 </code></pre>
 <p>为了验证应用了这三种策略的注解类有何区别，分别使用三种策略各定义一个注解类做测试。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>SOURCE<span class="token punctuation">)</span>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>SOURCE<span class="token punctuation">)</span>
 <span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">SourcePolicy</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
  
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -204,7 +203,7 @@
 <span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">RuntimePolicy</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
  
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>用定义好的三个注解类分别去注解一个方法。  </p>
 <pre><code>public class RetentionTest &#123;
  
@@ -222,7 +221,7 @@
 &#125;
 </code></pre>
 <p>通过执行 javap -verbose RetentionTest 命令获取到的RetentionTest 的 class 字节码内容如下。 </p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
   <span class="token keyword">public</span> retention<span class="token punctuation">.</span><span class="token function">RetentionTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     flags<span class="token operator">:</span> ACC_PUBLIC
     Code<span class="token operator">:</span>
@@ -261,7 +260,7 @@
     RuntimeVisibleAnnotations<span class="token operator">:</span>
       <span class="token number">0</span><span class="token operator">:</span> #<span class="token function">14</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>从 RetentionTest 的字节码内容我们可以得出以下两点结论：</p>
 <pre><code>          1. 编译器并没有记录下 sourcePolicy() 方法的注解信息； 
           2.  编译器分别使用了 RuntimeInvisibleAnnotations 和 RuntimeVisibleAnnotations 属性去记录了classPolicy()方法 和 runtimePolicy()方法 的注解信息；  
@@ -271,7 +270,7 @@
 <p>接口用上个@Inherited修饰的注解，其实现类不会继承这个注解<br>父类的方法用了@Inherited修饰的注解，子类也不会继承这个注解</p>
 <p>当用了@Inherited修饰的注解的@Retention是RetentionPolicy.RUNTIME，则增强了继承性，在反射中可以获取得到</p>
 <p>代码演示：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>ElementType<span class="token punctuation">.</span>TYPE<span class="token punctuation">)</span>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>ElementType<span class="token punctuation">.</span>TYPE<span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Inherited</span>
 <span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">ATable</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -361,7 +360,7 @@
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>通过代码的结果得知：子类继承了父类（由于继承特性，子类会拥有父类的公有一切），在通过反射获取子类所有公有字段/方法/构造器的时候，会获取得到自身和父亲的所有public字段/方法/构造器，而通过反射获取所有任何字段/方法/构造器的时候，只能得到自身的所有任何访问权限修饰符的字段/方法/构造器，不会得到父类的任何字段/方法/构造器。然注解不一样，只有当父类的注解中用@Inherited修饰，子类的getAnnotations()才能获取得到父亲的注解以及自身的注解，而getDeclaredAnnotations()只会获取自身的注解，无论如何都不会获取父亲的注解。</p>
 <h3 id="Documented-文档"><a href="#Documented-文档" class="headerlink" title="@Documented 文档"></a>@Documented 文档</h3><p>Documented注解的作用是：描述在用javadoc命令生成API文档时 是否要保留其注解信息。</p>
 <h3 id="Repeatable-java1-8-新增项"><a href="#Repeatable-java1-8-新增项" class="headerlink" title="@Repeatable (java1.8 新增项)"></a>@Repeatable (java1.8 新增项)</h3><p>当没有@Repeatable修饰的时候，注解在同一个位置，只能出现一次</p>
@@ -433,11 +432,11 @@ name of method
 <li> <code>@SuppressWarnings(&#123;&#125;)</code>  如: <code>@SuppressWarnings(&#123;&quot;unchecked&quot;,&quot;rawtypes&quot;&#125;)</code> </li>
 <li> <code>@SuppressWarnings(value=&#123;&#125;)</code> 如: <code>@SuppressWarnings(value=&#123;&quot;unchecked&quot;,&quot;rawtypes&quot;&#125;)</code> </li>
 </ul>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"static-access"</span><span class="token punctuation">)</span>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"static-access"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">fo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h3 id="用途列表"><a href="#用途列表" class="headerlink" title="用途列表"></a>用途列表</h3><p>根据使用需要，选择表中的关键字。</p>
 <table>
 <thead>

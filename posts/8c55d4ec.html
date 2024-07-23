@@ -47,8 +47,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -238,7 +237,7 @@
 <h2 id="如何保证消费的可靠性传输"><a href="#如何保证消费的可靠性传输" class="headerlink" title="如何保证消费的可靠性传输?"></a>如何保证消费的可靠性传输?</h2><p>在使用消息队列的过程中，应该做到消息不能多消费，也不能少消费。</p>
 <p>其实这个可靠性传输，每种MQ都要从三个角度来分析:生产者弄丢数据、消息队列弄丢数据、消费者弄丢数据</p>
 <h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a><strong>RabbitMQ</strong></h3><p>(1)生产者丢数据<br>从生产者弄丢数据这个角度来看，RabbitMQ提供transaction和confirm模式来确保生产者不丢消息。<br>transaction机制就是说，发送消息前，开启事物(channel.txSelect())，然后发送消息，如果发送过程中出现什么异常，事物就会回滚(channel.txRollback())，如果发送成功则提交事物(channel.txCommit())。<br>然而缺点就是吞吐量下降了。因此，按照博主的经验，生产上用confirm模式的居多。一旦channel进入confirm模式，所有在该信道上面发布的消息都将会被指派一个唯一的ID(从1开始)，一旦消息被投递到所有匹配的队列之后，rabbitMQ就会发送一个Ack给生产者(包含消息的唯一ID)，这就使得生产者知道消息已经正确到达目的队列了.如果rabiitMQ没能处理该消息，则会发送一个Nack消息给你，你可以进行重试操作。处理Ack和Nack的代码如下所示</p>
-<pre class="line-numbers language-java"><code class="language-java">channel<span class="token punctuation">.</span><span class="token function">addConfirmListener</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ConfirmListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java">channel<span class="token punctuation">.</span><span class="token function">addConfirmListener</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ConfirmListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token annotation punctuation">@Override</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleNack</span><span class="token punctuation">(</span><span class="token keyword">long</span> deliveryTag<span class="token punctuation">,</span> <span class="token keyword">boolean</span> multiple<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"nack: deliveryTag = "</span><span class="token operator">+</span>deliveryTag<span class="token operator">+</span><span class="token string">" multiple: "</span><span class="token operator">+</span>multiple<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -249,7 +248,7 @@
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ack: deliveryTag = "</span><span class="token operator">+</span>deliveryTag<span class="token operator">+</span><span class="token string">" multiple: "</span><span class="token operator">+</span>multiple<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>(2)消息队列丢数据<br>处理消息队列丢数据的情况，一般是<strong>开启持久化磁盘的配置</strong>。这个持久化配置可以和confirm机制配合使用，你可以在消息持久化磁盘后，再给生产者发送一个Ack信号。这样，如果消息持久化磁盘之前，rabbitMQ阵亡了，那么生产者收不到Ack信号，生产者会自动重发。<br>那么如何持久化呢，这里顺便说一下吧，其实也很容易，就下面两步<br>1、将queue的持久化标识durable设置为true,则代表是一个持久的队列<br>2、发送消息的时候将deliveryMode=2<br>这样设置以后，rabbitMQ就算挂了，重启后也能恢复数据</p>
 <p>(3)消费者丢数据<br>消费者丢数据一般是因为采用了自动确认消息模式。这种模式下，消费者会自动确认收到信息。这时rahbitMQ会立即将消息删除，这种情况下如果消费者出现异常而没能处理该消息，就会丢失该消息。<br>至于解决方案，采用手动确认消息即可。</p>
 <h3 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a><strong>kafka</strong></h3><p>kafka的数据流向图</p>

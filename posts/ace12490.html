@@ -54,8 +54,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -220,7 +219,7 @@
 <p><img src="/posts/ace12490/4.jpg" alt="img"></p>
 <h6 id="令牌桶和漏桶区别："><a href="#令牌桶和漏桶区别：" class="headerlink" title="令牌桶和漏桶区别："></a>令牌桶和漏桶区别：</h6><p>主要区别在于<strong>“漏桶算法”能够强行限制数据的传输速率</strong>，而<strong>“令牌桶算法”在能够限制数据的平均传输速率外，还允许某种程度的突发传输</strong>。在“令牌桶算法”中，只要令牌桶中存在令牌，那么就允许突发地传输数据直到达到用户配置的门限，因此它适合于具有突发特性的流量。</p>
 <h3 id="基于Redis的分布式令牌桶实现"><a href="#基于Redis的分布式令牌桶实现" class="headerlink" title="基于Redis的分布式令牌桶实现"></a>基于Redis的分布式令牌桶实现</h3><p>Redis中有incr命令实现原子自增、如果每个调用appKey请求一次，我们对其自增1，如果一秒内超过500，就拒绝当前请求能够实现我们的需求。如何统计1秒内呢，我们可以利用过期机制，设定当前请求计数的key过期时间为1s，但是incr没有提供原子操作的incr过期时间，该如何实现呢？</p>
-<pre class="line-numbers language-java"><code class="language-java">local key <span class="token operator">=</span>KEYS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<pre class=" language-java"><code class="language-java">local key <span class="token operator">=</span>KEYS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
 
 local expire_time <span class="token operator">=</span>ARGV<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
 
@@ -233,14 +232,14 @@ local count <span class="token operator">=</span>redis<span class="token punctua
 end
 
 <span class="token keyword">return</span> count
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>其中KEYS[1]为计数的appKey、ARGV[1]为一个计时时间间隔，单位为s。 最后利用redis的eval命令执行lua脚本，实现incr与expire的原子操作：</p>
-<pre class="line-numbers language-java"><code class="language-java">Long current <span class="token operator">=</span> <span class="token punctuation">(</span>Long<span class="token punctuation">)</span> jedis<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span>INCR_LUA_SCRIPT<span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span> “<span class="token number">1</span>”<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java">Long current <span class="token operator">=</span> <span class="token punctuation">(</span>Long<span class="token punctuation">)</span> jedis<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span>INCR_LUA_SCRIPT<span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span> “<span class="token number">1</span>”<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">></span> <span class="token number">500</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 
 <span class="token keyword">return</span> <span class="token boolean">true</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h2 id="Volatitle-关键字-（并发编程相关）"><a href="#Volatitle-关键字-（并发编程相关）" class="headerlink" title="Volatitle 关键字 （并发编程相关）"></a>Volatitle 关键字 （并发编程相关）</h2><p>一旦一个共享变量（类的成员变量、类的静态成员变量）被volatile修饰之后，那么就具备了两层语义：</p>
 <p>1）保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。</p>
 <p>2）禁止进行指令重排序。</p>
@@ -271,7 +270,7 @@ double area = pi*r*r;//(3)
 <p>1）将当前处理器缓存行的数据写回到系统内存。<br>2）这个写回内存的操作会使在其他CPU里缓存了该内存地址的数据无效。</p>
 <p>为了提高处理速度，处理器不直接和内存进行通信，而是先将系统内存的数据读到内部缓存（L1，L2或其他）后再进行操作，但操作完不知道何时会写到内存。如果对声明了volatile的变量进行写操作，JVM就会向处理器发送一条Lock前缀的指令，将这个变量所在缓存行的数据写回到系统内存。但是，就算写回到内存，如果其他处理器缓存的值还是旧的，再执行计算操作就会有问题。所以，在多处理器下，为了保证各个处理器的缓存是一致的，就会实现缓存一致性协议，每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是不是过期了，当处理器发现自己缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置成无效状态，当处理器对这个数据进行修改操作的时候，会重新从系统内存中把数据读到处理器缓存里。</p>
 <h3 id="volatile的优缺点"><a href="#volatile的优缺点" class="headerlink" title="volatile的优缺点"></a>volatile的优缺点</h3><p>优点： volatile是轻量级同步机制。在访问volatile变量时不会执行加锁操作，因此也就不会使执行线程阻塞，是一种比synchronized关键字更轻量级的同步机制。<br>缺点：volatile只能保证变量的可见性，无法保证原子性。除此之外，由于volatile屏蔽掉了VM中必要的代码优化，所以在效率上会稍微低点。这是两个缺点。volatile禁止了JVM底层的指令重排序优化，造成了一定的性能损耗，但是在多线程环境中提高了安全性。</p>
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例:"></a>案例:</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingleTon</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例:"></a>案例:</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingleTon</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> SingleTon singleTon<span class="token punctuation">;</span>
 
@@ -290,7 +289,7 @@ double area = pi*r*r;//(3)
         <span class="token keyword">return</span> singleTon<span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>上面是一个双重检查的单例模式，由于使用了双重检查保证了整个上下文环境中只有一个 SingleTon对象，但是在多线程环境中，由于 singleTon = new SingleTon();不是一个原子操作，所以经过JVM的指令重排序以后仍然会引发问题。</p>
 <p>singleTon = new SingleTon();语句分为三步：</p>
 <p>(1)、在堆内存开辟一块空间</p>
@@ -330,7 +329,7 @@ public static void main(String[] args) throws InterruptedException &#123;
 <p><img src="/posts/ace12490/20200715115622174-1669457548712.png" alt="Java内存模型"></p>
 <p>1、每个线程都有自己的一块工作内存，将主存里的数据缓存到自己的工作内存中。<br>此时，Threa1跟Thread2都通过read+load将 data = 0 缓存到自己的工作内存中去了。<br>2、cpu切换到Thread1时，Thread1就会将data = 0 use 进cpu里面计算data++的操作，但是没来得及将计算结果data = 1, assign回Thread1的工作内存中。cpu此时切换到了Thread2，然后在Thread2线程也做了同样的操作（将data = 0 use进cpu并执行data++），继续assign回Thread2的工作内存，并store+write将data = 1写回主存。<br>因为data是用volatile修饰的，根据缓存一致性协议，其他的线程（这里指的是Thread1）就会立即知道自己工作内存中的数据（data = 0）已经失效了。然而，并没有用！因为Thread1之前已经将data = 0 use 进cpu进行计算去了，cpu切换回Thread1时，Thread1将之前计算好的data = 1 assign 到自己的工作内存中，并store+write写回主存。通过以上的执行顺序，两个线程分别对data做了一次data++操作之后，得到的data = 1 而不是我们预期中的data = 2。<br>3、总结：多线程同时修改一个被volatile修饰的共享变量时，不能保证原子性，只能保证可见性和顺序性。</p>
 <h3 id="如何保证原子性"><a href="#如何保证原子性" class="headerlink" title="如何保证原子性"></a>如何保证原子性</h3><p>就是用synchronized…只有加了锁，让别的线程连读的机会都没有，才能够安安心心的搞完 read-load-use-assign-store-write全套而不被中途打扰。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">volatile</span> <span class="token keyword">int</span> data <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     Thread thread1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -356,7 +355,7 @@ public static void main(String[] args) throws InterruptedException &#123;
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最终的data为："</span> <span class="token operator">+</span> Test<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>原子类的原子性是通过 volatile +cas 实现的</p>
 <h2 id="SpringBoot并发编程"><a href="#SpringBoot并发编程" class="headerlink" title="SpringBoot并发编程"></a>SpringBoot并发编程</h2><h3 id="SpringBoot集成一款轻量级高并发服务器——Undertow"><a href="#SpringBoot集成一款轻量级高并发服务器——Undertow" class="headerlink" title="SpringBoot集成一款轻量级高并发服务器——Undertow"></a>SpringBoot集成一款轻量级高并发服务器——Undertow</h3><p>Undertow 是红帽公司开发的一款基于 NIO 的高性能 Web嵌入式服务器，它是一个轻量级web服务器，不像我们经常使用的tomcat，它由两个核心 Jar 包组成，加载一个 Web 应用可以小于 10MB 内存。它提供了对Servlet3.1 以及 Web Socket 的支持，undertow底层就是基于netty开发的web服务器</p>
 <p>在开始集成之前我先把jetty、tomcat以及undertow的压力测试的数据放在下面，给大家一个直观的感受。</p>

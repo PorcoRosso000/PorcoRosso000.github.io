@@ -46,8 +46,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -155,7 +154,7 @@
 <p>六个星代表  秒  分  时  日  周  年</p>
 <p>最近开发中遇到需要定时执行的任务，使用xxl-job创建任务，创建任务，定时执行，在描述任务时，使用cron表达式来描述任务执行间隔，常用比如：每天凌晨一点执行，每月最后一天执行等，下面记录一些常用的表达式。</p>
 <h4 id="表达式："><a href="#表达式：" class="headerlink" title="表达式："></a>表达式：</h4><p>秒 分 时 日 月 周 年(可选)。</p>
-<pre class="line-numbers language-plain"><code class="language-plain">           字段名               允许的值                        允许的特殊字符  
+<pre class=" language-plain"><code class="language-plain">           字段名               允许的值                        允许的特殊字符  
            秒                    0-59                           , - * /  
            分                    0-59                           , - * /  
            小时                  0-23                           , - * /  
@@ -178,8 +177,8 @@
            “W”字符：指定离给定日期最近的工作日(周一到周五)
 
            “#”字符：表示该月第几个周X。6#3表示该月第3个周五
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="范例："><a href="#范例：" class="headerlink" title="范例："></a>范例：</h4><pre class="line-numbers language-plain"><code class="language-plain">             每隔5秒执行一次：*/5 * * * * ?
+</code></pre>
+<h4 id="范例："><a href="#范例：" class="headerlink" title="范例："></a>范例：</h4><pre class=" language-plain"><code class="language-plain">             每隔5秒执行一次：*/5 * * * * ?
 
              每隔1分钟执行一次：0 */1 * * * ?
 
@@ -196,7 +195,7 @@
              在26分、29分、33分执行一次：0 26,29,33 * * * ?
 
              每天的0点、13点、18点、21点都执行一次：0 0 0,13,18,21 * * ?
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
   </div>
 </article>

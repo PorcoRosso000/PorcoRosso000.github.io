@@ -46,8 +46,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -150,7 +149,7 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.bawei<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>bawei-common<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -165,8 +164,8 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-mongodb<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="配置MongoDB"><a href="#配置MongoDB" class="headerlink" title="配置MongoDB"></a>配置MongoDB</h2><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+</code></pre>
+<h2 id="配置MongoDB"><a href="#配置MongoDB" class="headerlink" title="配置MongoDB"></a>配置MongoDB</h2><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">10069</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -185,8 +184,8 @@
   <span class="token key atrule">client</span><span class="token punctuation">:</span>
     <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
       <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>10086/eureka/
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="MongoDB操作"><a href="#MongoDB操作" class="headerlink" title="MongoDB操作"></a>MongoDB操作</h2><h3 id="创建实体类"><a href="#创建实体类" class="headerlink" title="创建实体类"></a>创建实体类</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span><span class="token string">"sys_user"</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="MongoDB操作"><a href="#MongoDB操作" class="headerlink" title="MongoDB操作"></a>MongoDB操作</h2><h3 id="创建实体类"><a href="#创建实体类" class="headerlink" title="创建实体类"></a>创建实体类</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span><span class="token string">"sys_user"</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Data</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysUser</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token annotation punctuation">@Id</span>
@@ -197,15 +196,15 @@
     <span class="token keyword">private</span> String sex<span class="token punctuation">;</span>
     <span class="token keyword">private</span> Date createTime<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span>
+</code></pre>
+<h3 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span>
 <span class="token keyword">public</span> Result <span class="token function">insert</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> SysUser sysUser<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     sysUser<span class="token punctuation">.</span><span class="token function">setCreateTime</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     SysUser user <span class="token operator">=</span> mongoTemplate<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>sysUser<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> Result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@PutMapping</span>
+</code></pre>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@PutMapping</span>
 <span class="token keyword">public</span> Result <span class="token function">update</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> SysUser sysUser<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 构建查询条件</span>
     Query query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -217,26 +216,26 @@
     mongoTemplate<span class="token punctuation">.</span><span class="token function">updateFirst</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> update<span class="token punctuation">,</span> SysUser<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> Result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="查询所有"><a href="#查询所有" class="headerlink" title="查询所有"></a>查询所有</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span>
+</code></pre>
+<h3 id="查询所有"><a href="#查询所有" class="headerlink" title="查询所有"></a>查询所有</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span>
 <span class="token keyword">public</span> Result <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     List<span class="token operator">&lt;</span>SysUser<span class="token operator">></span> sysUsers <span class="token operator">=</span> mongoTemplate<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span>SysUser<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> Result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>sysUsers<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="根据id查询"><a href="#根据id查询" class="headerlink" title="根据id查询"></a>根据id查询</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="根据id查询"><a href="#根据id查询" class="headerlink" title="根据id查询"></a>根据id查询</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> Result <span class="token function">findById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> String id<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     SysUser sysUser <span class="token operator">=</span> mongoTemplate<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> SysUser<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> Result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>sysUser<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><pre class="line-numbers language-java"><code class="language-java">  <span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><pre class=" language-java"><code class="language-java">  <span class="token annotation punctuation">@DeleteMapping</span><span class="token punctuation">(</span><span class="token string">"/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span>
   <span class="token keyword">public</span> Result <span class="token function">delete</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> String id<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
       mongoTemplate<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>Query<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>Criteria<span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">"_id"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> SysUser<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
       <span class="token keyword">return</span> Result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="模糊分页条件查询"><a href="#模糊分页条件查询" class="headerlink" title="模糊分页条件查询"></a>模糊分页条件查询</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/list"</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="模糊分页条件查询"><a href="#模糊分页条件查询" class="headerlink" title="模糊分页条件查询"></a>模糊分页条件查询</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/list"</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@SystemLog</span><span class="token punctuation">(</span><span class="token string">"mongo查询系统用户列表"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> Result<span class="token operator">&lt;</span>PageResult<span class="token operator">&lt;</span>SysUser<span class="token operator">>></span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> SysUserRequest sysUserRequest<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"功能名称：mongo查询系统用户列表，请求路径：【&amp;#123;&amp;#125;】，请求方式：【&amp;#123;&amp;#125;】，请求参数：【&amp;#123;&amp;#125;】"</span><span class="token punctuation">,</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -275,8 +274,8 @@
             request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> JSONObject<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="MongoDB记录日志"><a href="#MongoDB记录日志" class="headerlink" title="MongoDB记录日志"></a>MongoDB记录日志</h2><h3 id="修改网关微服务添加路由匹配到mongo微服务"><a href="#修改网关微服务添加路由匹配到mongo微服务" class="headerlink" title="修改网关微服务添加路由匹配到mongo微服务"></a>修改网关微服务添加路由匹配到mongo微服务</h3><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">routes</span><span class="token punctuation">:</span>
+</code></pre>
+<h2 id="MongoDB记录日志"><a href="#MongoDB记录日志" class="headerlink" title="MongoDB记录日志"></a>MongoDB记录日志</h2><h3 id="修改网关微服务添加路由匹配到mongo微服务"><a href="#修改网关微服务添加路由匹配到mongo微服务" class="headerlink" title="修改网关微服务添加路由匹配到mongo微服务"></a>修改网关微服务添加路由匹配到mongo微服务</h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">routes</span><span class="token punctuation">:</span>
   <span class="token comment" spellcheck="true"># mongodb</span>
   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> bawei<span class="token punctuation">-</span>mongo
     <span class="token key atrule">uri</span><span class="token punctuation">:</span> lb<span class="token punctuation">:</span>//bawei<span class="token punctuation">-</span>mongo
@@ -284,8 +283,8 @@
       <span class="token punctuation">-</span> Path=/mongo/**
     <span class="token key atrule">filters</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> StripPrefix=1
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="添加网关过滤器用来记录日志"><a href="#添加网关过滤器用来记录日志" class="headerlink" title="添加网关过滤器用来记录日志"></a>添加网关过滤器用来记录日志</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+</code></pre>
+<h3 id="添加网关过滤器用来记录日志"><a href="#添加网关过滤器用来记录日志" class="headerlink" title="添加网关过滤器用来记录日志"></a>添加网关过滤器用来记录日志</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 自定义过滤器
  */</span>
 <span class="token annotation punctuation">@Component</span>
@@ -320,8 +319,8 @@
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="mongo微服务添加日志记录"><a href="#mongo微服务添加日志记录" class="headerlink" title="mongo微服务添加日志记录"></a>mongo微服务添加日志记录</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/list"</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="mongo微服务添加日志记录"><a href="#mongo微服务添加日志记录" class="headerlink" title="mongo微服务添加日志记录"></a>mongo微服务添加日志记录</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/list"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> Result <span class="token function">list</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> SysUserRequest sysUserRequest<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     String requestURI <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     String method <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -357,8 +356,8 @@
     log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"本次请求的路径是：[&amp;#123;&amp;#125;]，请求方式是：[&amp;#123;&amp;#125;]，响应数据是：[&amp;#123;&amp;#125;]"</span><span class="token punctuation">,</span> requestURI<span class="token punctuation">,</span> method<span class="token punctuation">,</span> respJson<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> PageResult<span class="token punctuation">.</span><span class="token function">toResult</span><span class="token punctuation">(</span>count<span class="token punctuation">,</span> users<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="使用AOP全局记录日志"><a href="#使用AOP全局记录日志" class="headerlink" title="使用AOP全局记录日志"></a>使用AOP全局记录日志</h3><h4 id="自定义注解-SysLog用来标注需要记录日志的方法"><a href="#自定义注解-SysLog用来标注需要记录日志的方法" class="headerlink" title="自定义注解@SysLog用来标注需要记录日志的方法"></a>自定义注解@SysLog用来标注需要记录日志的方法</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+</code></pre>
+<h3 id="使用AOP全局记录日志"><a href="#使用AOP全局记录日志" class="headerlink" title="使用AOP全局记录日志"></a>使用AOP全局记录日志</h3><h4 id="自定义注解-SysLog用来标注需要记录日志的方法"><a href="#自定义注解-SysLog用来标注需要记录日志的方法" class="headerlink" title="自定义注解@SysLog用来标注需要记录日志的方法"></a>自定义注解@SysLog用来标注需要记录日志的方法</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 自定义注解 用来标注需要记录日志的方法
  */</span>
 <span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 作用于方法上</span>
@@ -369,8 +368,8 @@
     String <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">;</span>
 
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="编写日志记录对应的实体类"><a href="#编写日志记录对应的实体类" class="headerlink" title="编写日志记录对应的实体类"></a>编写日志记录对应的实体类</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span><span class="token string">"sys_log"</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="编写日志记录对应的实体类"><a href="#编写日志记录对应的实体类" class="headerlink" title="编写日志记录对应的实体类"></a>编写日志记录对应的实体类</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span><span class="token string">"sys_log"</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Data</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysLog</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
@@ -418,8 +417,8 @@
     <span class="token keyword">private</span> String respJson<span class="token punctuation">;</span>
 
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="编写记录日志业务逻辑层"><a href="#编写记录日志业务逻辑层" class="headerlink" title="编写记录日志业务逻辑层"></a>编写记录日志业务逻辑层</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SysLogService</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="编写记录日志业务逻辑层"><a href="#编写记录日志业务逻辑层" class="headerlink" title="编写记录日志业务逻辑层"></a>编写记录日志业务逻辑层</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SysLogService</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token keyword">void</span> <span class="token function">addLog</span><span class="token punctuation">(</span>SysLog log<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -437,8 +436,8 @@
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="编写AOP全局记录日志"><a href="#编写AOP全局记录日志" class="headerlink" title="编写AOP全局记录日志"></a>编写AOP全局记录日志</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+</code></pre>
+<h4 id="编写AOP全局记录日志"><a href="#编写AOP全局记录日志" class="headerlink" title="编写AOP全局记录日志"></a>编写AOP全局记录日志</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token annotation punctuation">@Aspect</span>
 <span class="token annotation punctuation">@Log4j2</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogAop</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -493,7 +492,7 @@
         <span class="token keyword">return</span> res<span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
   </div>
 </article>

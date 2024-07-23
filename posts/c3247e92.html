@@ -55,8 +55,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -177,7 +176,7 @@ import time  # 用于延时
 import pyautogui  # 用于模拟人手
 </code></pre>
 <h4 id="2-2、程序所需函数详解"><a href="#2-2、程序所需函数详解" class="headerlink" title="2.2、程序所需函数详解"></a>2.2、程序所需函数详解</h4><h5 id="（1）自定义单选函数"><a href="#（1）自定义单选函数" class="headerlink" title="（1）自定义单选函数"></a>（1）自定义单选函数</h5><p>当问卷中有单选就可以直接查询到问卷中的所有单选进行自动答题。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">danxuan</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">danxuan</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
 <span class="token comment" spellcheck="true"># 找到所有标签（定位问题）这里是单选</span>
 
@@ -186,9 +185,9 @@ import pyautogui  # 用于模拟人手
         ans <span class="token operator">=</span> answer<span class="token punctuation">.</span>find_elements_by_css_selector<span class="token punctuation">(</span><span class="token string">'.ui-radio'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#对应的绝对子标签</span>
         random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 找到标签并点击</span>
         time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h5 id="（2）自定义多选函数"><a href="#（2）自定义多选函数" class="headerlink" title="（2）自定义多选函数"></a>（2）自定义多选函数</h5><p>寻找问卷中第几题是多选，就可自动去答多选中的题。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">duoxuan</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">duoxuan</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token comment" spellcheck="true">#这里是多选题,找到所有多选的标签</span>
     duo <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_elements_by_css_selector<span class="token punctuation">(</span><span class="token string">'#div2 > div.ui-controlgroup.column1'</span><span class="token punctuation">)</span>
     <span class="token keyword">for</span> answer <span class="token keyword">in</span> duo<span class="token punctuation">:</span>
@@ -197,10 +196,10 @@ import pyautogui  # 用于模拟人手
         <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment" spellcheck="true">#这里的7可以改成5，10，12</span>
             random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#找到标签并点击</span>
         time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h5 id="（3）自定义填空函数"><a href="#（3）自定义填空函数" class="headerlink" title="（3）自定义填空函数"></a>（3）自定义填空函数</h5><p>需要自己去定义第几题是填空并填上自己想要填写的内容。<br>如果要修改可这样改，例子：index里的数量一定要对应answer里的数量，index的名字可以跟answer不一样</p>
 <p>index = [“1”, “2”, “B”, “D”]<br>answer = {“1”: “python真的好用！”, “2”: “这个测试很成功！”, “B”: “填空题随机填写文本”,“D”: “随便填写！”}</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">tiankong</span><span class="token punctuation">(</span>driver<span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">tiankong</span><span class="token punctuation">(</span>driver<span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token comment" spellcheck="true">#填空函数</span>
     <span class="token comment" spellcheck="true">#这里是所需要问题的标签汇总，例如有四个要答的问题，下面的answer的ABC数量需要跟index里面的数量相等</span>
     index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"C"</span><span class="token punctuation">]</span>
@@ -210,9 +209,9 @@ import pyautogui  # 用于模拟人手
     answer <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;"A": "python真的好用！", "B": "这个测试很成功！", "C": "填空题随机填写文本"&amp;#125;</span>
     driver<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>by<span class="token operator">=</span>By<span class="token punctuation">.</span>CSS_SELECTOR<span class="token punctuation">,</span> value<span class="token operator">=</span>f<span class="token string">'#q&amp;#123;num&amp;#125;'</span><span class="token punctuation">)</span>\
         <span class="token punctuation">.</span>send_keys<span class="token punctuation">(</span>answer<span class="token punctuation">.</span>get<span class="token punctuation">(</span>index<span class="token punctuation">[</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h5 id="（4）自定义智能验证函数"><a href="#（4）自定义智能验证函数" class="headerlink" title="（4）自定义智能验证函数"></a>（4）自定义智能验证函数</h5><p>当出现智能验证的时候，用自定义的这个函数可以帮我们解决。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">renzheng</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">renzheng</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
 <span class="token comment" spellcheck="true"># 智能验证,找到智能认证的标签</span>
 
@@ -223,9 +222,9 @@ import pyautogui  # 用于模拟人手
     rectBottom <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_css_selector<span class="token punctuation">(</span><span class="token string">'#rectBottom'</span><span class="token punctuation">)</span> #提交按钮
     rectBottom<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#点击</span>
     time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h5 id="（5）自定义滑块验证函数"><a href="#（5）自定义滑块验证函数" class="headerlink" title="（5）自定义滑块验证函数"></a>（5）自定义滑块验证函数</h5><p>当填写问卷次数过多，这时智能验证之后还会出现滑块验证，这时候就需要滑块验证函数帮我们解决。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">huakuai</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">huakuai</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token comment" spellcheck="true"># 当次数多了的时候就会出现滑块，这里是模拟人手解决滑块拖动</span>
     pyautogui<span class="token punctuation">.</span>moveTo<span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">494</span><span class="token punctuation">,</span> <span class="token number">496</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">791</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#控制鼠标移动到x,y处，耗时0.2秒</span>
     time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
@@ -236,15 +235,15 @@ import pyautogui  # 用于模拟人手
     pyautogui<span class="token punctuation">.</span>moveTo<span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">494</span><span class="token punctuation">,</span> <span class="token number">496</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">791</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#控制鼠标移动到x,y处，耗时0.2秒</span>
     time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
     pyautogui<span class="token punctuation">.</span>dragTo<span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">888</span><span class="token punctuation">,</span> <span class="token number">890</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">791</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#让鼠标点击并拖拽到x,y处，耗时1秒</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h5 id="（6）自定义屏幕滚动函数"><a href="#（6）自定义屏幕滚动函数" class="headerlink" title="（6）自定义屏幕滚动函数"></a>（6）自定义屏幕滚动函数</h5><p>当问卷中的题数量多的时候，由于答题过快，屏幕没有滑动，这时会被检测出是机器人，就会提交失败，所以我们还需要一个自定义屏幕滑动函数来帮我们解决屏幕滚动问题。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">gundong</span><span class="token punctuation">(</span>driver<span class="token punctuation">,</span> distance<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#用于屏幕滚动</span>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">gundong</span><span class="token punctuation">(</span>driver<span class="token punctuation">,</span> distance<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#用于屏幕滚动</span>
     <span class="token comment" spellcheck="true">#测算出最大的距离根据电脑屏幕分辨率而异，一般填写400到800,800是最大滑动距离</span>
     js <span class="token operator">=</span> <span class="token string">"var q=document.documentElement.scrollTop="</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>distance<span class="token punctuation">)</span>    
     driver<span class="token punctuation">.</span>execute_script<span class="token punctuation">(</span>js<span class="token punctuation">)</span>
     time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="（7）主函数"><a href="#（7）主函数" class="headerlink" title="（7）主函数"></a>（7）主函数</h5><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">zonghe</span><span class="token punctuation">(</span>times<span class="token punctuation">)</span><span class="token punctuation">:</span>
+</code></pre>
+<h5 id="（7）主函数"><a href="#（7）主函数" class="headerlink" title="（7）主函数"></a>（7）主函数</h5><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">zonghe</span><span class="token punctuation">(</span>times<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> times<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
     <span class="token comment" spellcheck="true">#初始配置，地址</span>
@@ -286,9 +285,9 @@ huakuai<span class="token punctuation">(</span><span class="token punctuation">)
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'已经提交了&amp;#123;&amp;#125;次问卷'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>int<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">+</span> int<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
 driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#停止</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>三、项目整体代码</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>common<span class="token punctuation">.</span>by <span class="token keyword">import</span> By  <span class="token comment" spellcheck="true"># 没有selenium库的(请在所用的环境下pip install selenium)</span>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>common<span class="token punctuation">.</span>by <span class="token keyword">import</span> By  <span class="token comment" spellcheck="true"># 没有selenium库的(请在所用的环境下pip install selenium)</span>
 <span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver  <span class="token comment" spellcheck="true">#selenium库</span>
 <span class="token keyword">import</span> random  <span class="token comment" spellcheck="true"># 用于产生随机数</span>
 <span class="token keyword">import</span> time  <span class="token comment" spellcheck="true"># 用于延时</span>
@@ -386,7 +385,7 @@ driver<span class="token punctuation">.</span>quit<span class="token punctuation
     <span class="token comment" spellcheck="true"># time.sleep(1)</span>
     <span class="token comment" spellcheck="true"># rectBottom = driver.find_element_by_css_selector('#rectBottom') #提交按钮</span>
     <span class="token comment" spellcheck="true"># rectBottom.click() #点击</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h3 id="四、项目修改及扩展"><a href="#四、项目修改及扩展" class="headerlink" title="四、项目修改及扩展"></a>四、项目修改及扩展</h3><p>如果上面的代码发现跟自己问卷星对不上且无法打开怎么办，别慌！这里教你怎么修改代码<br>①这里我们用谷歌浏览器打开所需要填写的问卷星地址，然后用电脑上的F12打开开发者模式</p>
 <p><img src="/posts/c3247e92/005431bb29ae4c7f865679b6123dfcd7.png" alt="005431bb29ae4c7f865679b6123dfcd7"></p>
 <p>②这里我们可以选用快捷键CTRL+SHIFT+C启动元素检查或者点击我下图标注的地方来进行选择到题号</p>
@@ -400,7 +399,7 @@ driver<span class="token punctuation">.</span>quit<span class="token punctuation
 <p>再接着我们就可以看到各个小标签</p>
 <p><img src="/posts/c3247e92/67d22049966c4593a325ca18e5e65211.png" alt="67d22049966c4593a325ca18e5e65211"></p>
 <p>⑤然后我们就可以修改我们的代码了</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">danxuan</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">danxuan</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token triple-quoted-string string">'''
     找到所有标签（定位问题）这里是单选，注意我们使用的是find.elements_by_CSS_selector()
     这样得到的是一个列表，里面包含了所有的选择题，将我们得到的大标签填入如下
@@ -412,18 +411,18 @@ driver<span class="token punctuation">.</span>quit<span class="token punctuation
         ans <span class="token operator">=</span> answer<span class="token punctuation">.</span>find_elements_by_css_selector<span class="token punctuation">(</span><span class="token string">'.ui-radio'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#对应的绝对子标签</span>
         random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 找到标签并点击</span>
         time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>多选题和填空题也是一样，看代码相信大家一定能看懂，这里就不过多展示了</p>
 <p>多选题和填空题也是一样，看代码相信大家一定能看懂，这里就不过多展示了</p>
 <p>这里用的是CSS的方式，其实在项目中可以选择ID查找，XPATH路径去查找都可以，博客里面也有很多资料，都万变不离其宗，找到对应的标签即可。</p>
-<pre class="line-numbers language-python"><code class="language-python"> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">'//*[@id="div1"]/div[2]/div[1]'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#这是用XPATH得到的</span>
+<pre class=" language-python"><code class="language-python"> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">'//*[@id="div1"]/div[2]/div[1]'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#这是用XPATH得到的</span>
  <span class="token comment" spellcheck="true">#简单解释一下里面的值含义吧</span>
  <span class="token operator">//</span><span class="token operator">*</span><span class="token punctuation">[</span>@id<span class="token operator">=</span><span class="token string">"div1"</span><span class="token punctuation">]</span><span class="token operator">/</span>div<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">/</span>div<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
  <span class="token comment" spellcheck="true">#第一个div1表示的是第一题，第二个div[2]表示的是第二大部分是选择题，第三个div[1]表示的是选择第一个。</span>
  <span class="token comment" spellcheck="true">#那么你一定能看懂这个XPATH是什么意思  </span>
     <span class="token operator">//</span><span class="token operator">*</span><span class="token punctuation">[</span>@id<span class="token operator">=</span><span class="token string">"div2"</span><span class="token punctuation">]</span><span class="token operator">/</span>div<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">/</span>div<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
  <span class="token comment" spellcheck="true">#这里表示的是第二题选择题第二个。</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p>python的selenium库是个很重要的网页处理函数库，在处理动态网页上扮演者很重要的角色，一般我们所看到的网页都可以用里面对应方法来完成，只要理解到标签的含义，其实做这类的题是很简单的</p>
 <h3 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明:"></a>版权声明:</h3><p>版权声明：本文为CSDN博主「不当王多鱼不改名」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_68174024/article/details/129598729">https://blog.csdn.net/m0_68174024/article/details/129598729</a></p>
 

@@ -51,8 +51,7 @@
     
     
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body>
     
@@ -499,17 +498,17 @@ in 后括号之中的是一个集合
 <p>假设使用<code>CROSS JOIN</code>连接两个表。 结果集将包括两个表中的所有行，其中结果集中的每一行都是第一个表中的行与第二个表中的行的组合。 当连接的表之间没有关系时，会使用这种情况。</p>
 <p>要特别注意的是，如果每个表有<code>1000</code>行，那么结果集中就有<code>1000 x 1000 = 1,000,000</code>行，那么数据量是非常巨大的。</p>
 <p>下面说明连接两个表：<code>T1</code>和<code>T2</code>的<code>CROSS JOIN</code>子句的语法：</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
     <span class="token operator">*</span>
 <span class="token keyword">FROM</span>
     T1
         <span class="token keyword">CROSS</span> <span class="token keyword">JOIN</span>
     T2<span class="token punctuation">;</span>
 SQL
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>请注意，与<a target="_blank" rel="noopener" href="http://www.yiibai.com/mysql/inner-join.html">INNER JOIN</a>或<a target="_blank" rel="noopener" href="http://www.yiibai.com/mysql/left-join.html">LEFT JOIN</a>子句不同，<code>CROSS JOIN</code>子句不具有连接条件。</p>
 <p>如果添加了<code>WHERE</code>子句，如果<code>T1</code>和<code>T2</code>有关系，则<code>CROSS JOIN</code>的工作方式与<code>INNER JOIN</code>子句类似，如以下查询所示：</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
     <span class="token operator">*</span>
 <span class="token keyword">FROM</span>
     T1
@@ -518,9 +517,9 @@ SQL
 <span class="token keyword">WHERE</span>
     T1<span class="token punctuation">.</span>id <span class="token operator">=</span> T2<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
 SQL
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h4 id="MySQL-CROSS-JOIN子句示例"><a href="#MySQL-CROSS-JOIN子句示例" class="headerlink" title="MySQL CROSS JOIN子句示例"></a>MySQL CROSS JOIN子句示例</h4><p>下面我们将使用以下几个表来演示<code>CROSS JOIN</code>的工作原理。</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> testdb<span class="token punctuation">;</span>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> testdb<span class="token punctuation">;</span>
 <span class="token keyword">USE</span> testdb<span class="token punctuation">;</span>
 
 <span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> products<span class="token punctuation">;</span>
@@ -554,7 +553,7 @@ SQL
         <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 SQL
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>上面语句中，创建了三个表：</p>
 <ul>
 <li>产品(<code>products</code>)表包含产品编号，产品名称和销售价格等产品主要数据。</li>
@@ -562,7 +561,7 @@ SQL
 <li>销售(<code>sales</code>)表包含在特定商店按数量和日期销售的产品。</li>
 </ul>
 <p>假设有三个产品：<code>iPhone</code>，<code>iPad</code>和<code>Macbook Pro</code>，在北部(<code>North</code>)和南部(<code>South</code>)的这两个商店中出售。</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> products<span class="token punctuation">(</span>product_name<span class="token punctuation">,</span> price<span class="token punctuation">)</span>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> products<span class="token punctuation">(</span>product_name<span class="token punctuation">,</span> price<span class="token punctuation">)</span>
 <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'iPhone'</span><span class="token punctuation">,</span> <span class="token number">699</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
       <span class="token punctuation">(</span><span class="token string">'iPad'</span><span class="token punctuation">,</span><span class="token number">599</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
       <span class="token punctuation">(</span><span class="token string">'Macbook Pro'</span><span class="token punctuation">,</span><span class="token number">1299</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -578,9 +577,9 @@ SQL
       <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">30</span><span class="token punctuation">,</span><span class="token string">'2017-01-02'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
       <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">35</span><span class="token punctuation">,</span><span class="token string">'2017-01-05'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 SQL
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>要获得每个商店和每个产品的总销售额，您可以计算销售额，并按商店和产品分组如下：</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
     store_name<span class="token punctuation">,</span>
     product_name<span class="token punctuation">,</span>
     <span class="token function">SUM</span><span class="token punctuation">(</span>quantity <span class="token operator">*</span> price<span class="token punctuation">)</span> <span class="token keyword">AS</span> revenue
@@ -592,9 +591,9 @@ SQL
     stores <span class="token keyword">ON</span> stores<span class="token punctuation">.</span>id <span class="token operator">=</span> sales<span class="token punctuation">.</span>store_id
 <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> store_name <span class="token punctuation">,</span> product_name<span class="token punctuation">;</span>
 SQL
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>执行上面查询，得到以下结果 - </p>
-<pre class="line-numbers language-shell"><code class="language-shell">mysql> SELECT 
+<pre class=" language-shell"><code class="language-shell">mysql> SELECT 
     store_name,
     product_name,
     SUM(quantity * price) AS revenue
@@ -616,20 +615,20 @@ GROUP BY store_name , product_name;
 +------------+--------------+------------+
 5 rows in set
 Shell
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>现在，如果你想知道哪个商店中的哪些产品的没有销售怎么办？ 上面的查询无法回答这个问题。</p>
 <p>要解决这个问题，可以使用<code>CROSS JOIN</code>子句。</p>
 <p>首先，使用<code>CROSS JOIN</code>子句来获取所有商店和产品的组合：</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
     store_name<span class="token punctuation">,</span> product_name
 <span class="token keyword">FROM</span>
     stores <span class="token keyword">AS</span> <span class="token number">a</span>
         <span class="token keyword">CROSS</span> <span class="token keyword">JOIN</span>
     products <span class="token keyword">AS</span> <span class="token number">b</span><span class="token punctuation">;</span>
 SQL
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>执行上面查询语句，得到以下结果 - </p>
-<pre class="line-numbers language-shell"><code class="language-shell">mysql> SELECT 
+<pre class=" language-shell"><code class="language-shell">mysql> SELECT 
     store_name, product_name
 FROM
     stores AS a
@@ -647,9 +646,9 @@ FROM
 +------------+--------------+
 6 rows in set
 Shell
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>接下来，将上述查询的结果与按商店和产品返回总销售额的查询相结合。以下查询说明了这个想法：</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
     <span class="token number">b</span><span class="token punctuation">.</span>store_name<span class="token punctuation">,</span>
     <span class="token number">a</span><span class="token punctuation">.</span>product_name<span class="token punctuation">,</span>
     IFNULL<span class="token punctuation">(</span><span class="token number">c</span><span class="token punctuation">.</span>revenue<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> revenue
@@ -672,7 +671,7 @@ Shell
         <span class="token operator">AND</span> <span class="token number">c</span><span class="token punctuation">.</span>product_id<span class="token operator">=</span> <span class="token number">a</span><span class="token punctuation">.</span>id
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token number">b</span><span class="token punctuation">.</span>store_name<span class="token punctuation">;</span>
 SQL
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>请注意，如果收入为<code>NULL</code>(表示商店没有销售的产品)，则查询使用<a target="_blank" rel="noopener" href="http://www.yiibai.com/mysql/ifnull.html">IFNULL</a>函数返回<code>0</code>。</p>
 <p>通过这样使用<code>CROSS JOIN</code>子句，可以解决类似这样的问题，例如销售人员按月查找销售收入，即使推销员在特定月份没有销售产品。</p>
 <h3 id="hive中实现group-concat"><a href="#hive中实现group-concat" class="headerlink" title="hive中实现group_concat"></a>hive中实现group_concat</h3><p>mysql中的group_concat分组连接功能相当强大，可以先分组再连接成字符串，还可以进行排序连接。但是hive中并没有这个函数，那么hive中怎么实现这个功能呢？</p>
@@ -894,8 +893,8 @@ case
 </code></pre>
 <h3 id="hive字段转换数据类型"><a href="#hive字段转换数据类型" class="headerlink" title="hive字段转换数据类型"></a>hive字段转换数据类型</h3><p>CAST来显式的将一个类型的数据转换成另一个数据类型<br>基础语法：<br>CAST(value AS TYPE)</p>
 <p><img src="/posts/3d21d1a7/cast%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2%E5%9B%BE.png" alt="cast数据转换图"></p>
-<h3 id="hive自增列"><a href="#hive自增列" class="headerlink" title="hive自增列"></a>hive自增列</h3><pre class="line-numbers language-sql"><code class="language-sql">row_number<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">over</span> <span class="token punctuation">(</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> NEWINDEX
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="hive自增列"><a href="#hive自增列" class="headerlink" title="hive自增列"></a>hive自增列</h3><pre class=" language-sql"><code class="language-sql">row_number<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">over</span> <span class="token punctuation">(</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> NEWINDEX
+</code></pre>
 <h3 id="用炸裂函数-获取到开始日期到结束日期的每一天"><a href="#用炸裂函数-获取到开始日期到结束日期的每一天" class="headerlink" title="用炸裂函数 获取到开始日期到结束日期的每一天"></a>用炸裂函数 获取到开始日期到结束日期的每一天</h3><pre><code>select
     date_add(start_date, pos) as mid_date
 from(
@@ -907,7 +906,7 @@ from(
         split(space(datediff(end_date, start_date)), &#39;&#39;)
     ) t as pos,val 
 </code></pre>
-<h3 id="hive-常用运算"><a href="#hive-常用运算" class="headerlink" title="hive 常用运算"></a>hive 常用运算</h3><h4 id="第一部分：关系运算"><a href="#第一部分：关系运算" class="headerlink" title="第一部分：关系运算"></a>第一部分：关系运算</h4><pre class="line-numbers language-go"><code class="language-go">Hive支持的关系运算符
+<h3 id="hive-常用运算"><a href="#hive-常用运算" class="headerlink" title="hive 常用运算"></a>hive 常用运算</h3><h4 id="第一部分：关系运算"><a href="#第一部分：关系运算" class="headerlink" title="第一部分：关系运算"></a>第一部分：关系运算</h4><pre class=" language-go"><code class="language-go">Hive支持的关系运算符
 •常见的关系运算符
 •等值比较<span class="token punctuation">:</span> <span class="token operator">=</span>
 •不等值比较<span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token operator">></span>
@@ -996,7 +995,7 @@ hive> select 1 from dual where '</span>123456aa<span class="token string">' rlik
 举例：
 hive> select 1 from dual where ‘key'</span> REGEXP <span class="token string">'^f.*r$'</span><span class="token punctuation">;</span>
 <span class="token number">1</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h4 id="第二部分：逻辑运算与数学运算"><a href="#第二部分：逻辑运算与数学运算" class="headerlink" title="第二部分：逻辑运算与数学运算"></a>第二部分：逻辑运算与数学运算</h4><pre><code>Hive数学运算
 •加法操作: +
 •减法操作: -
