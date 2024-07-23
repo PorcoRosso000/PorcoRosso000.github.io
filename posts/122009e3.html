@@ -152,10 +152,17 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="ibatis"><a href="#ibatis" class="headerlink" title="ibatis"></a>ibatis</h2><h3 id="ibatis中符号"><a href="#ibatis中符号" class="headerlink" title="ibatis中符号"></a>ibatis中符号</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">          特殊字符           替代符号</span><br><span class="line">             &amp;               &amp;amp;</span><br><span class="line">             &lt;               &amp;lt;</span><br><span class="line">             &gt;               &amp;gt;</span><br><span class="line">             <span class="string">&quot;               &amp;quot;</span></span><br><span class="line"><span class="string">             &#x27;               &amp;apos;</span></span><br><span class="line"><span class="string">小于等于     a&lt;=b             a &amp;lt;= b              a &lt;![CDATA[&lt;= ]]&gt;b</span></span><br><span class="line"><span class="string">大于等于     a&gt;=b             a &amp;gt;= b              a &lt;![CDATA[&gt;= ]]&gt;b</span></span><br><span class="line"><span class="string">不等于       a!=b             a &lt;![CDATA[ &lt;&gt; ]]&gt;b    a &lt;![CDATA[!= ]]&gt;b</span></span><br></pre></td></tr></table></figure>
-
-
-
+<h2 id="ibatis"><a href="#ibatis" class="headerlink" title="ibatis"></a>ibatis</h2><h3 id="ibatis中符号"><a href="#ibatis中符号" class="headerlink" title="ibatis中符号"></a>ibatis中符号</h3><pre class=" language-java"><code class="language-java">
+          特殊字符           替代符号
+             <span class="token operator">&amp;</span>               <span class="token operator">&amp;</span>amp<span class="token punctuation">;</span>
+             <span class="token operator">&lt;</span>               <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>
+             <span class="token operator">></span>               <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span>
+             "               <span class="token operator">&amp;</span>quot<span class="token punctuation">;</span>
+             '               <span class="token operator">&amp;</span>apos<span class="token punctuation">;</span>
+小于等于     a<span class="token operator">&lt;=</span>b             a <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">=</span> b              a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">&lt;=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
+大于等于     a<span class="token operator">>=</span>b             a <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token operator">=</span> b              a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">>=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
+不等于       a<span class="token operator">!=</span>b             a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span> <span class="token operator">&lt;</span><span class="token operator">></span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b    a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">!=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
+</code></pre>
 <h2 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h2><h3 id="mybatis中的Criteria及对应xml的解析"><a href="#mybatis中的Criteria及对应xml的解析" class="headerlink" title="mybatis中的Criteria及对应xml的解析"></a>mybatis中的Criteria及对应xml的解析</h3><p>Criteria的and和or进行联合查询<br>DemoExample example=new DemoExample ();<br>DemoExample.Criteria criteria=example.createCriteria();<br>criteria.andidEqualTo(id);<br>criteria.andStatusEqualTo(“0”);</p>
 <p>DemoExample.Criteria criteria2=example.createCriteria();<br>criteria2.andidEqualTo(id);<br>criteria2.andstatusEqualTo(“1”);<br>example.or(criteria2);<br>dao.countByExample(example);</p>
 <p>sql：select count(*) from demo WHERE ( ID = ? and STATUS = ? ) or( ID = ? and STATUS = ? )</p>
@@ -242,12 +249,40 @@ id, name, price, color, cima, imgPath
 <!-- 查询的方法 -->
 <!-- 方法名 返回值类型 参数类型 -->
 
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectByExample&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.baidu.bean.GGoodExample&quot;</span> &gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- 查询 --&gt;</span></span></span><br><span class="line"><span class="language-xml">select</span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- 条件满足 这个字段在exa实体类中 是一个布尔值 --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;distinct&quot;</span> &gt;</span></span></span><br><span class="line"><span class="language-xml">distinct</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- 正常查询 --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">from g_good</span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- 如果参数列表不为空 调用下面的方法 这个方法返回的是参数列表 也可以是条件查询--&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;_parameter != null&quot;</span> &gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Example_Where_Clause&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- 如果有分组字段 根据该字段进行分组查询 --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;orderByClause != null&quot;</span> &gt;</span></span></span><br><span class="line"><span class="language-xml">order by $</span><span class="template-variable">&#123;orderByClause&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- 这个是分页查询要在exa实体类中添加两个字段 offset limit --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;offset != null &amp;&amp; limit != null&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">limit $</span><span class="template-variable">&#123;offset&#125;</span><span class="language-xml">,$</span><span class="template-variable">&#123;limit&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
+<pre><code>&lt;select id=&quot;selectByExample&quot; resultMap=&quot;BaseResultMap&quot; parameterType=&quot;com.baidu.bean.GGoodExample&quot; &gt;
+&lt;!-- 查询 --&gt;
+select
+&lt;!-- 条件满足 这个字段在exa实体类中 是一个布尔值 --&gt;
+&lt;if test=&quot;distinct&quot; &gt;
+distinct
+&lt;/if&gt;
+&lt;!-- 正常查询 --&gt;
+&lt;include refid=&quot;Base_Column_List&quot; /&gt;
+from g_good
+&lt;!-- 如果参数列表不为空 调用下面的方法 这个方法返回的是参数列表 也可以是条件查询--&gt;
+&lt;if test=&quot;_parameter != null&quot; &gt;
+&lt;include refid=&quot;Example_Where_Clause&quot; /&gt;
+&lt;/if&gt;
+&lt;!-- 如果有分组字段 根据该字段进行分组查询 --&gt;
+&lt;if test=&quot;orderByClause != null&quot; &gt;
+order by $&#123;orderByClause&#125;
+&lt;/if&gt;
+&lt;!-- 这个是分页查询要在exa实体类中添加两个字段 offset limit --&gt;
+&lt;if test=&quot;offset != null &amp;&amp; limit != null&quot;&gt;
+limit $&#123;offset&#125;,$&#123;limit&#125;
+&lt;/if&gt;
+&lt;/select&gt;
+</code></pre>
 <!-- 通过id查询 -->
 
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectByPrimaryKey&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.Integer&quot;</span> &gt;</span></span></span><br><span class="line"><span class="language-xml">select</span></span><br><span class="line"><span class="language-xml"><span class="comment">&lt;!-- 要查询的字段 --&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">from g_good</span></span><br><span class="line"><span class="language-xml">where id = #</span><span class="template-variable">&#123;id,jdbcType=INTEGER&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
+<pre><code>&lt;select id=&quot;selectByPrimaryKey&quot; resultMap=&quot;BaseResultMap&quot; parameterType=&quot;java.lang.Integer&quot; &gt;
+select
+&lt;!-- 要查询的字段 --&gt;
+&lt;include refid=&quot;Base_Column_List&quot; /&gt;
+from g_good
+where id = #&#123;id,jdbcType=INTEGER&#125;
+&lt;/select&gt;
+</code></pre>
 <!-- 通过id删除 -->
 <delete id="deleteByPrimaryKey" parametertype="java.lang.Integer">
 delete from g_good

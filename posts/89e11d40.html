@@ -150,37 +150,66 @@
 <span id="more"></span>
 
 <hr>
-<h3 id="hexo基础命令"><a href="#hexo基础命令" class="headerlink" title="hexo基础命令"></a>hexo基础命令</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> post <span class="string">&quot;文章名&quot;</span> :创建文章</span><br><span class="line">hexo clean ：删除之前生成的文件，若未生成过静态文件，可忽略此命令。</span><br><span class="line">hexo <span class="keyword">generate</span> ：生成静态文章，可以用hexo g缩写 (尽量使用 hexo g -c <span class="number">8</span> 可以防止内存溢出)</span><br><span class="line">hexo deploy ：部署文章，可以用hexo d缩写</span><br><span class="line">hexo s -p <span class="number">8000</span> : 搜索启动</span><br><span class="line">hexo server :运行服务</span><br><span class="line">hexo algolia ：搜集更新博文数据</span><br></pre></td></tr></table></figure>
-
+<h3 id="hexo基础命令"><a href="#hexo基础命令" class="headerlink" title="hexo基础命令"></a>hexo基础命令</h3><pre><code>hexo new post &quot;文章名&quot; :创建文章
+hexo clean ：删除之前生成的文件，若未生成过静态文件，可忽略此命令。
+hexo generate ：生成静态文章，可以用hexo g缩写 (尽量使用 hexo g -c 8 可以防止内存溢出)
+hexo deploy ：部署文章，可以用hexo d缩写
+hexo s -p 8000 : 搜索启动
+hexo server :运行服务
+hexo algolia ：搜集更新博文数据
+</code></pre>
 <h3 id="多台电脑都可以使用个人博客"><a href="#多台电脑都可以使用个人博客" class="headerlink" title="多台电脑都可以使用个人博客"></a>多台电脑都可以使用个人博客</h3><p>除了master分支再建立一个hexo分支(设为默认)</p>
 <p>创建一个叫hexo（或者blog，名字随意）的分支，并切换到这个分支</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> checkout -<span class="keyword">b</span> hexo</span><br></pre></td></tr></table></figure>
-
+<pre><code>git checkout -b hexo
+</code></pre>
 <p>添加所有文件到暂存区</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span> –<span class="keyword">all</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>git add –all
+</code></pre>
 <p>进行提交</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> commit -m “提交信息xxx”</span><br></pre></td></tr></table></figure>
-
+<pre><code>git commit -m “提交信息xxx”
+</code></pre>
 <p>推送hexo分支的文件到github仓库</p>
-<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">git</span> <span class="string">push</span> –<span class="built_in">set-upstream</span> <span class="string">origin</span> <span class="string">hexo</span></span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code>git push –set-upstream origin hexo
+</code></pre>
 <h4 id="下次要写博客从仓库里把代码拉下来"><a href="#下次要写博客从仓库里把代码拉下来" class="headerlink" title="下次要写博客从仓库里把代码拉下来"></a>下次要写博客从仓库里把代码拉下来</h4><p>执行</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo</span><br><span class="line"></span><br><span class="line">npm <span class="keyword">install</span> hexo-cli -g</span><br><span class="line"></span><br><span class="line">npm <span class="keyword">install</span></span><br><span class="line"></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-git</span><br><span class="line"></span><br><span class="line">//执行完这四条命令 然后创建文章</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>npm install hexo
 
-<h3 id="替换md文件空行"><a href="#替换md文件空行" class="headerlink" title="替换md文件空行"></a>替换md文件空行</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\s*(<span class="string">?=\r</span>?<span class="variable">$)</span>\n  <span class="symbol">:</span>在vscode中替换空行的正则</span><br></pre></td></tr></table></figure>
+npm install hexo-cli -g
 
-<h3 id="更新giuhub仓库hexo分支"><a href="#更新giuhub仓库hexo分支" class="headerlink" title="更新giuhub仓库hexo分支"></a>更新giuhub仓库hexo分支</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//如果本地代码没有写新的东西 第四条命令可以放到第一步去执行</span><br><span class="line">git <span class="built_in">status</span>  :查看修改的文件</span><br><span class="line">git add .  :放入缓存区</span><br><span class="line">git commit -m “本次提交的备注”  :本次提交的文字说明</span><br><span class="line">git pull <span class="built_in">origin</span> hexo  :远程更新本地没更新先更新远程脚本到本地</span><br><span class="line">git <span class="built_in">push</span> -u <span class="built_in">origin</span> hexo    :将项目上传到远程仓库的hexo分支</span><br></pre></td></tr></table></figure>
+npm install
 
-<h3 id="提交出错回滚到上个版本"><a href="#提交出错回滚到上个版本" class="headerlink" title="提交出错回滚到上个版本"></a>提交出错回滚到上个版本</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> reset HEAD~<span class="number">1</span></span><br></pre></td></tr></table></figure>
+npm install hexo-deployer-git
 
+//执行完这四条命令 然后创建文章
+</code></pre>
+<h3 id="替换md文件空行"><a href="#替换md文件空行" class="headerlink" title="替换md文件空行"></a>替换md文件空行</h3><pre><code>^\s*(?=\r?$)\n  :在vscode中替换空行的正则
+</code></pre>
+<h3 id="更新giuhub仓库hexo分支"><a href="#更新giuhub仓库hexo分支" class="headerlink" title="更新giuhub仓库hexo分支"></a>更新giuhub仓库hexo分支</h3><pre><code>//如果本地代码没有写新的东西 第四条命令可以放到第一步去执行
+git status  :查看修改的文件
+git add .  :放入缓存区
+git commit -m “本次提交的备注”  :本次提交的文字说明
+git pull origin hexo  :远程更新本地没更新先更新远程脚本到本地
+git push -u origin hexo    :将项目上传到远程仓库的hexo分支
+</code></pre>
+<h3 id="提交出错回滚到上个版本"><a href="#提交出错回滚到上个版本" class="headerlink" title="提交出错回滚到上个版本"></a>提交出错回滚到上个版本</h3><pre><code>git reset HEAD~1
+</code></pre>
 <h3 id="报错"><a href="#报错" class="headerlink" title="报错 :"></a>报错 :</h3><h4 id="failed-to-push-some-refs-to-‘github-com-PorcoRosso000-PorcoRosso000-github-io-git’"><a href="#failed-to-push-some-refs-to-‘github-com-PorcoRosso000-PorcoRosso000-github-io-git’" class="headerlink" title="failed to push some refs to ‘github.com:PorcoRosso000/PorcoRosso000.github.io.git’"></a>failed to push some refs to ‘github.com:PorcoRosso000/PorcoRosso000.github.io.git’</h4><p>远程库和本地库不一致<br>解决方案: 拉取远程库数据同步到本地库      </p>
 <p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="comment">--rebase origin hexo </span></span><br></pre></td></tr></table></figure>
-<h4 id="error-cannot-pull-with-rebase-Your-index-contains-uncommitted-changes"><a href="#error-cannot-pull-with-rebase-Your-index-contains-uncommitted-changes" class="headerlink" title="error: cannot pull with rebase: Your index contains uncommitted changes."></a>error: cannot pull with rebase: Your index contains uncommitted changes.</h4><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">error: </span>cannot pull with rebase: Your index contains uncommitted changes.</span><br><span class="line"><span class="keyword">error: </span>please commit or stash them.</span><br><span class="line"></span><br><span class="line">解决方案：修复冲突</span><br><span class="line"></span><br><span class="line">git stash     :储藏dev分支下的修改</span><br><span class="line"></span><br><span class="line">git pull --rebase    : 想要更好的提交树，使用rebase操作会更好一点。这样可以线性的看到每一次提交，并且没有增加提交节点。merge 操作遇到冲突的时候，当前merge不能继续进行下去。手动修改冲突内容后，add 修改，commit 就可以了。而rebase 操作的话，会中断rebase,同时会提示去解决冲突。解决冲突后,将修改add后执行git rebase –continue继续操作，或者git rebase –skip忽略冲突。</span><br><span class="line"></span><br><span class="line">git stash pop     :取出之前储藏的修改</span><br><span class="line"></span><br><span class="line">之后就可以继续提交</span><br></pre></td></tr></table></figure>
+<pre><code>git pull --rebase origin hexo 
+</code></pre>
+<h4 id="error-cannot-pull-with-rebase-Your-index-contains-uncommitted-changes"><a href="#error-cannot-pull-with-rebase-Your-index-contains-uncommitted-changes" class="headerlink" title="error: cannot pull with rebase: Your index contains uncommitted changes."></a>error: cannot pull with rebase: Your index contains uncommitted changes.</h4><pre><code>error: cannot pull with rebase: Your index contains uncommitted changes.
+error: please commit or stash them.
 
+解决方案：修复冲突
+
+git stash     :储藏dev分支下的修改
+
+git pull --rebase    : 想要更好的提交树，使用rebase操作会更好一点。这样可以线性的看到每一次提交，并且没有增加提交节点。merge 操作遇到冲突的时候，当前merge不能继续进行下去。手动修改冲突内容后，add 修改，commit 就可以了。而rebase 操作的话，会中断rebase,同时会提示去解决冲突。解决冲突后,将修改add后执行git rebase –continue继续操作，或者git rebase –skip忽略冲突。
+
+git stash pop     :取出之前储藏的修改
+
+之后就可以继续提交
+</code></pre>
 <h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><p>新建文章:  hexo new post xxx</p>
 <p>Front-matter<br>Front-matter 是 markdown 文件最上方以—分隔的区域，用于指定个别档案的变数。</p>
 <p>Page Front-matter 用于页面配置<br>Post Front-matter 用于文章页配置<br>如果标注可选的参数，可根据自己需要添加，不用全部都写在markdown里</p>

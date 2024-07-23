@@ -152,72 +152,116 @@
 <span id="more"></span>
 
 <hr>
-<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="1-先建gitlab文件夹"><a href="#1-先建gitlab文件夹" class="headerlink" title="1.先建gitlab文件夹"></a>1.先建gitlab文件夹</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/docker</span><br><span class="line">mkdir gitlab</span><br></pre></td></tr></table></figure>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="1-先建gitlab文件夹"><a href="#1-先建gitlab文件夹" class="headerlink" title="1.先建gitlab文件夹"></a>1.先建gitlab文件夹</h4><pre class=" language-plain"><code class="language-plain">cd /usr/local/docker
+mkdir gitlab
+</code></pre>
+<h4 id="2-docker-安装配置阿里云镜像源"><a href="#2-docker-安装配置阿里云镜像源" class="headerlink" title="2.docker 安装配置阿里云镜像源"></a>2.docker 安装配置阿里云镜像源</h4><pre class=" language-plain"><code class="language-plain">1. sudo mkdir -p /etc/docker
 
-<h4 id="2-docker-安装配置阿里云镜像源"><a href="#2-docker-安装配置阿里云镜像源" class="headerlink" title="2.docker 安装配置阿里云镜像源"></a>2.docker 安装配置阿里云镜像源</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. sudo mkdir -p /etc/docker</span><br><span class="line"></span><br><span class="line">2. sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://yxzrazem.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">3.sudo systemctl daemon-reload</span><br><span class="line">4.sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-gitlab-镜像拉取"><a href="#3-gitlab-镜像拉取" class="headerlink" title="3.gitlab 镜像拉取"></a>3.gitlab 镜像拉取</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-ce为稳定版本，后面不填写版本则默认pull最新latest版本</span><br><span class="line">$ docker pull gitlab/gitlab-ce </span><br></pre></td></tr></table></figure>
-
+2. sudo tee /etc/docker/daemon.json <<-'EOF'
+&#123;
+  "registry-mirrors": ["https://yxzrazem.mirror.aliyuncs.com"]
+&#125;
+EOF
+3.sudo systemctl daemon-reload
+4.sudo systemctl restart docker
+</code></pre>
+<h4 id="3-gitlab-镜像拉取"><a href="#3-gitlab-镜像拉取" class="headerlink" title="3.gitlab 镜像拉取"></a>3.gitlab 镜像拉取</h4><pre class=" language-plain"><code class="language-plain"># gitlab-ce为稳定版本，后面不填写版本则默认pull最新latest版本
+$ docker pull gitlab/gitlab-ce 
+</code></pre>
 <p>4.提前建好docker文件夹 为了挂载镜像路径</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/docker/gitlab</span><br><span class="line">mkdir config</span><br><span class="line">mkdir logs</span><br><span class="line">mkdir data</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-编写启动配置文件"><a href="#5-编写启动配置文件" class="headerlink" title="5.编写启动配置文件"></a>5.编写启动配置文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim startGitlab.sh</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">cd /usr/local/docker/gitlab
+mkdir config
+mkdir logs
+mkdir data
+</code></pre>
+<h4 id="5-编写启动配置文件"><a href="#5-编写启动配置文件" class="headerlink" title="5.编写启动配置文件"></a>5.编写启动配置文件</h4><pre class=" language-plain"><code class="language-plain">vim startGitlab.sh
+</code></pre>
 <p>配置文件内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 443:443 \</span><br><span class="line">-p 9001:80 \</span><br><span class="line">-p 9002:22 \</span><br><span class="line">--name gitlab \</span><br><span class="line">--restart always </span><br><span class="line">-v /usr/local/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-给配置文件赋权"><a href="#6-给配置文件赋权" class="headerlink" title="6.给配置文件赋权"></a>6.给配置文件赋权</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 startGitlab.sh</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">docker run -d \
+-p 443:443 \
+-p 9001:80 \
+-p 9002:22 \
+--name gitlab \
+--restart always 
+-v /usr/local/docker/gitlab/config:/etc/gitlab \
+-v /usr/local/docker/gitlab/logs:/var/log/gitlab \
+-v /usr/local/docker/gitlab/data:/var/opt/gitlab \
+gitlab/gitlab-ce
+</code></pre>
+<h4 id="6-给配置文件赋权"><a href="#6-给配置文件赋权" class="headerlink" title="6.给配置文件赋权"></a>6.给配置文件赋权</h4><pre class=" language-plain"><code class="language-plain">chmod -R 777 startGitlab.sh
+</code></pre>
 <p>启动gitlab</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./startGitlab.sh</span><br></pre></td></tr></table></figure>
+<pre class=" language-plain"><code class="language-plain">./startGitlab.sh
+</code></pre>
+<h4 id="7-修改gitlab-rb-文件"><a href="#7-修改gitlab-rb-文件" class="headerlink" title="7.修改gitlab.rb 文件"></a>7.修改gitlab.rb 文件</h4><pre class=" language-plain"><code class="language-plain">vim /usr/local/docker/gitlab/config/gitlab.rb
 
-<h4 id="7-修改gitlab-rb-文件"><a href="#7-修改gitlab-rb-文件" class="headerlink" title="7.修改gitlab.rb 文件"></a>7.修改gitlab.rb 文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/docker/gitlab/config/gitlab.rb</span><br><span class="line"></span><br><span class="line"># 配置http协议所使用的访问地址,不加端口号默认为80</span><br><span class="line">external_url &#x27;http://192.168.xxx.xxx&#x27;</span><br><span class="line"># 配置ssh协议所使用的访问地址和端口</span><br><span class="line">gitlab_rails[&#x27;gitlab_ssh_host&#x27;] = &#x27;192.168.xxx.xxx&#x27;</span><br><span class="line">gitlab_rails[&#x27;gitlab_shell_ssh_port&#x27;] = 9002 # 此端口是run时22端口映射的222端口</span><br></pre></td></tr></table></figure>
-
+# 配置http协议所使用的访问地址,不加端口号默认为80
+external_url 'http://192.168.xxx.xxx'
+# 配置ssh协议所使用的访问地址和端口
+gitlab_rails['gitlab_ssh_host'] = '192.168.xxx.xxx'
+gitlab_rails['gitlab_shell_ssh_port'] = 9002 # 此端口是run时22端口映射的222端口
+</code></pre>
 <p>8.查看已开启的端口</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">firewall-cmd --list-ports
+</code></pre>
 <p>查看防火墙状态</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">firewall-cmd --state
+</code></pre>
 <p>开启防火墙:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost gitlab]# systemctl start firewalld</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">[root@localhost gitlab]# systemctl start firewalld
+</code></pre>
 <p>在防火墙中对外开启此端口:开启9001和9002端口</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost gitlab]# firewall-cmd --zone=public --add-port=9001/tcp --permanent</span><br><span class="line">[root@localhost gitlab]# firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">[root@localhost gitlab]# firewall-cmd --zone=public --add-port=9001/tcp --permanent
+[root@localhost gitlab]# firewall-cmd --reload
+</code></pre>
 <p>重新启动gitlab加载配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart gitlab</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">docker restart gitlab
+</code></pre>
 <p>此时项目的仓库地址就变了。如果ssh端口地址不是默认的22，就会加上ssh:// 协议头</p>
 <p> 打开浏览器输入ip地址(因为我的gitlab端口不是80，所以浏览器url要输入端口号，如果端口号不是80，则打开为：ip:端口号)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.227.xxx:9001/</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">http://192.168.227.xxx:9001/
+</code></pre>
 <p>登录gitlab修改密码</p>
 <p>初始密码位置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/docker/gitlab/config/initial_root_password</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">vim /usr/local/docker/gitlab/config/initial_root_password
+</code></pre>
 <p>接下来就可以创建项目了</p>
 <h4 id="没有卸载干净的情况"><a href="#没有卸载干净的情况" class="headerlink" title="没有卸载干净的情况"></a>没有卸载干净的情况</h4><p>由于汉化版本都低于英文版本，为了不产生不必要的麻烦就要先下载汉化包，查看汉化包的版本号，根据汉化包的版本号来安装指定版本的GitLab。若你安装的版本是最新的比汉化包高太多，那么你汉化时需要忽略数百到上千次的文件。若你是刚装的GitLab，可以考虑重新卸载后安装和汉化包版本一致的版本。下面是如何彻底卸载GitLab。</p>
 <p>1、停止gitlab</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop gitlab</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">docker stop gitlab
+</code></pre>
 <p>2、卸载gitlab（注意这里写的是gitlab-ce）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e gitlab-ce</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">rpm -e gitlab-ce
+</code></pre>
 <p>3、查看gitlab进程</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep gitlab</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">ps aux | grep gitlab
+</code></pre>
 <p>4、杀掉第一个进程（就是带有好多…的进程） kill -9 进程号</p>
 <p>杀掉后，在ps aux | grep gitlab确认一遍，还有没有gitlab的进程。若还存在，可以把它的主要组件的进程也杀一边。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">run: alertmanager: (pid 100019) 13376s; run: log: (pid 82025) 86211s</span><br><span class="line">run: gitaly: (pid 100032) 13376s; run: log: (pid 82041) 86211s</span><br><span class="line">run: gitlab-monitor: (pid 100047) 13375s; run: log: (pid 82047) 86211s</span><br><span class="line">run: gitlab-workhorse: (pid 100054) 13375s; run: log: (pid 82031) 86211s</span><br><span class="line">run: logrotate: (pid 121160) 2574s; run: log: (pid 82039) 86211s</span><br><span class="line">run: nginx: (pid 100070) 13374s; run: log: (pid 82037) 86211s</span><br><span class="line">run: node-exporter: (pid 100077) 13374s; run: log: (pid 82027) 86211s</span><br><span class="line">run: postgres-exporter: (pid 100082) 13373s; run: log: (pid 82023) 86211s</span><br><span class="line">run: postgresql: (pid 100097) 13372s; run: log: (pid 82035) 86211s</span><br><span class="line">run: prometheus: (pid 100100) 13372s; run: log: (pid 82021) 86211s</span><br><span class="line">run: redis: (pid 100114) 13372s; run: log: (pid 82033) 86211s</span><br><span class="line">run: redis-exporter: (pid 100118) 13371s; run: log: (pid 82043) 86211s</span><br><span class="line">run: sidekiq: (pid 100124) 13370s; run: log: (pid 82029) 86211s</span><br><span class="line">run: unicorn: (pid 100136) 13369s; run: log: (pid 82045) 86211s</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">run: alertmanager: (pid 100019) 13376s; run: log: (pid 82025) 86211s
+run: gitaly: (pid 100032) 13376s; run: log: (pid 82041) 86211s
+run: gitlab-monitor: (pid 100047) 13375s; run: log: (pid 82047) 86211s
+run: gitlab-workhorse: (pid 100054) 13375s; run: log: (pid 82031) 86211s
+run: logrotate: (pid 121160) 2574s; run: log: (pid 82039) 86211s
+run: nginx: (pid 100070) 13374s; run: log: (pid 82037) 86211s
+run: node-exporter: (pid 100077) 13374s; run: log: (pid 82027) 86211s
+run: postgres-exporter: (pid 100082) 13373s; run: log: (pid 82023) 86211s
+run: postgresql: (pid 100097) 13372s; run: log: (pid 82035) 86211s
+run: prometheus: (pid 100100) 13372s; run: log: (pid 82021) 86211s
+run: redis: (pid 100114) 13372s; run: log: (pid 82033) 86211s
+run: redis-exporter: (pid 100118) 13371s; run: log: (pid 82043) 86211s
+run: sidekiq: (pid 100124) 13370s; run: log: (pid 82029) 86211s
+run: unicorn: (pid 100136) 13369s; run: log: (pid 82045) 86211s
+</code></pre>
 <p>日志的进程不用管。</p>
 <p>5、删除所有包含gitlab文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name gitlab | xargs rm -rf</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">find / -name gitlab | xargs rm -rf
+</code></pre>
 <p>当然若你没有全杀权限。那么可以可以把这三个目录给干掉也可以：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf  /opt/gitlab</span><br><span class="line">rm -rf  /etc/gitlab</span><br><span class="line">rm -rf  /var/log/gitlab</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain">rm -rf  /opt/gitlab
+rm -rf  /etc/gitlab
+rm -rf  /var/log/gitlab
+</code></pre>
 
   </div>
 </article>

@@ -156,20 +156,45 @@
 <span id="more"></span>
 
 <hr>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开docker目录</span></span><br><span class="line">[<span class="string">root@MuYu</span> <span class="string">~</span>]<span class="comment"># cd /usr/local/docker/</span></span><br><span class="line"><span class="comment"># 创建rabbitmq文件夹</span></span><br><span class="line">[<span class="string">root@MuYu</span> <span class="string">docker</span>]<span class="comment"># mkdir rabbitmq</span></span><br><span class="line"><span class="comment"># 打开rabbitmq文件夹</span></span><br><span class="line">[<span class="string">root@MuYu</span> <span class="string">docker</span>]<span class="comment"># cd rabbitmq/</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建挂载目录</span></span><br><span class="line">[<span class="string">root@MuYu</span> <span class="string">rabbitmq</span>]<span class="comment"># mkdir data</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编写脚本</span></span><br><span class="line">[<span class="string">root@MuYu</span> <span class="string">rabbitmq</span>]<span class="comment"># vim startRabbitMq.sh</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-v /usr/local/docker/rabbitmq/data:/var/lib/rabbitmq \</span><br><span class="line">-p 5672:5672 -p 15672:15672 \</span><br><span class="line">--name rabbitmq \</span><br><span class="line">--privileged=true \</span><br><span class="line">--restart=always \</span><br><span class="line">--hostname host rabbitmq:3.9.13-management</span><br></pre></td></tr></table></figure>
-
-<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@MuYu</span> <span class="string">rabbitmq</span>]<span class="comment"># chmod -R 700 startRabbitMq.sh</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">rabbitmq</span>]<span class="comment"># ./startRabbitMq.sh</span></span><br><span class="line">Unable to find image <span class="string">&#x27;rabbitmq:3.9.13-management&#x27;</span> locally</span><br><span class="line"><span class="number">3.9</span>.<span class="number">13</span>: Pulling from library/rabbitmq</span><br><span class="line"><span class="number">4</span>d32b49e2995: Pull complete </span><br><span class="line"><span class="number">2108</span>a18330ce: Pull complete </span><br><span class="line"><span class="number">5</span>c6af9d52173: Pull complete </span><br><span class="line"><span class="number">0</span>f88690b6c7c: Pull complete </span><br><span class="line"><span class="number">9531</span>e199a7d9: Pull complete </span><br><span class="line">efaba55aede6: Pull complete </span><br><span class="line"><span class="number">41502</span>a4f43bc: Pull complete </span><br><span class="line"><span class="number">11</span>b60d9df2ff: Pull complete </span><br><span class="line">ac0763dc13e5: Pull complete </span><br><span class="line">Digest: sha256:f5c8c7fd99e4c88527276df319556fdcb56e4d289614c5fefda5ee8d17c5ea89</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> rabbitmq:<span class="number">3.9</span>.<span class="number">13</span><span class="literal">-management</span></span><br><span class="line">ee7636e3d0baa7df4d5490c99616fef006bceedb08c46d7a2fea5650a6f01429</span><br></pre></td></tr></table></figure>
-
-
-
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 打开docker目录</span>
+<span class="token punctuation">[</span>root@MuYu ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd /usr/local/docker/</span>
+<span class="token comment" spellcheck="true"># 创建rabbitmq文件夹</span>
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir rabbitmq</span>
+<span class="token comment" spellcheck="true"># 打开rabbitmq文件夹</span>
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd rabbitmq/</span>
+</code></pre>
+<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 创建挂载目录</span>
+<span class="token punctuation">[</span>root@MuYu rabbitmq<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir data</span>
+</code></pre>
+<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 编写脚本</span>
+<span class="token punctuation">[</span>root@MuYu rabbitmq<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim startRabbitMq.sh</span>
+</code></pre>
+<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class=" language-shell"><code class="language-shell">docker run -d \
+-v /usr/local/docker/rabbitmq/data:/var/lib/rabbitmq \
+-p 5672:5672 -p 15672:15672 \
+--name rabbitmq \
+--privileged=true \
+--restart=always \
+--hostname host rabbitmq:3.9.13-management
+</code></pre>
+<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><pre class=" language-yaml"><code class="language-yaml"><span class="token punctuation">[</span>root@MuYu rabbitmq<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># chmod -R 700 startRabbitMq.sh</span>
+</code></pre>
+<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu rabbitmq]</span><span class="token comment" spellcheck="true"># ./startRabbitMq.sh</span>
+Unable to find image <span class="token string">'rabbitmq:3.9.13-management'</span> locally
+3<span class="token punctuation">.</span>9<span class="token punctuation">.</span>13: Pulling <span class="token keyword">from</span> library<span class="token operator">/</span>rabbitmq
+4d32b49e2995: Pull complete 
+2108a18330ce: Pull complete 
+5c6af9d52173: Pull complete 
+0f88690b6c7c: Pull complete 
+9531e199a7d9: Pull complete 
+efaba55aede6: Pull complete 
+41502a4f43bc: Pull complete 
+11b60d9df2ff: Pull complete 
+ac0763dc13e5: Pull complete 
+Digest: sha256:f5c8c7fd99e4c88527276df319556fdcb56e4d289614c5fefda5ee8d17c5ea89
+Status: Downloaded newer image <span class="token keyword">for</span> rabbitmq:3<span class="token punctuation">.</span>9<span class="token punctuation">.</span>13<span class="token operator">-</span>management
+ee7636e3d0baa7df4d5490c99616fef006bceedb08c46d7a2fea5650a6f01429
+</code></pre>
 <p><img src="/posts/8bf81981/clip_image002.gif" alt="图片"></p>
 <p>查看结果</p>
 <p><img src="/posts/8bf81981/clip_image004.jpg" alt="图片"></p>

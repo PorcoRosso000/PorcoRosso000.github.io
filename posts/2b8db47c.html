@@ -154,38 +154,45 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# systemctl disable firewalld</span><br></pre></td></tr></table></figure>
-
+<h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><pre class=" language-xml"><code class="language-xml">[root@localhost ~]# systemctl disable firewalld
+</code></pre>
 <h2 id="安装ll"><a href="#安装ll" class="headerlink" title="安装ll"></a>安装ll</h2><p>按照顺序输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 编写</span><br><span class="line">[root@localhost ~]# vi ~/.bashrc</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain"># 编写
+[root@localhost ~]# vi ~/.bashrc
+</code></pre>
 <p><img src="/posts/2b8db47c/clip_image002.jpg" alt="图片"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 刷新</span><br><span class="line">[root@localhost ~]# source ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装wget"><a href="#安装wget" class="headerlink" title="安装wget"></a>安装wget</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y wget</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装ifconfig"><a href="#安装ifconfig" class="headerlink" title="安装ifconfig"></a>安装ifconfig</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y net-tools</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装xinetd"><a href="#安装xinetd" class="headerlink" title="安装xinetd"></a>安装xinetd</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y gcc automake autoconf libtool make</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装rzrs"><a href="#安装rzrs" class="headerlink" title="安装rzrs"></a>安装rzrs</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y xinetd</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装unzip"><a href="#安装unzip" class="headerlink" title="安装unzip"></a>安装unzip</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y unzip</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装service"><a href="#安装service" class="headerlink" title="安装service"></a>安装service</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y initscripts</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装sudo"><a href="#安装sudo" class="headerlink" title="安装sudo"></a>安装sudo</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y sudo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装libaio"><a href="#安装libaio" class="headerlink" title="安装libaio"></a>安装libaio</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y libaio-devel.x86_64</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装GCC-C"><a href="#安装GCC-C" class="headerlink" title="安装GCC-C++"></a>安装GCC-C++</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="literal">-y</span> install gcc</span><br><span class="line">yum <span class="literal">-y</span> install gcc<span class="literal">-c</span>++</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装GCC"><a href="#安装GCC" class="headerlink" title="安装GCC"></a>安装GCC</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y centos-release-scl</span><br><span class="line">[root@localhost ~]# yum install -y devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils</span><br><span class="line">[root@localhost ~]# scl enable devtoolset-9 bash</span><br><span class="line">#如果要长期生效的话，执行如下：</span><br><span class="line">[root@localhost ~]# echo &quot;source /opt/rh/devtoolset-9/enable&quot; &gt;&gt;/etc/profile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install -y vim*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装rz"><a href="#安装rz" class="headerlink" title="安装rz"></a>安装rz</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install lrzsz -y</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-plain"><code class="language-plain"># 刷新
+[root@localhost ~]# source ~/.bashrc
+</code></pre>
+<h2 id="安装wget"><a href="#安装wget" class="headerlink" title="安装wget"></a>安装wget</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y wget
+</code></pre>
+<h2 id="安装ifconfig"><a href="#安装ifconfig" class="headerlink" title="安装ifconfig"></a>安装ifconfig</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y net-tools
+</code></pre>
+<h2 id="安装xinetd"><a href="#安装xinetd" class="headerlink" title="安装xinetd"></a>安装xinetd</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y gcc automake autoconf libtool make
+</code></pre>
+<h2 id="安装rzrs"><a href="#安装rzrs" class="headerlink" title="安装rzrs"></a>安装rzrs</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y xinetd
+</code></pre>
+<h2 id="安装unzip"><a href="#安装unzip" class="headerlink" title="安装unzip"></a>安装unzip</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y unzip
+</code></pre>
+<h2 id="安装service"><a href="#安装service" class="headerlink" title="安装service"></a>安装service</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y initscripts
+</code></pre>
+<h2 id="安装sudo"><a href="#安装sudo" class="headerlink" title="安装sudo"></a>安装sudo</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y sudo
+</code></pre>
+<h2 id="安装libaio"><a href="#安装libaio" class="headerlink" title="安装libaio"></a>安装libaio</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y libaio-devel.x86_64
+</code></pre>
+<h2 id="安装GCC-C"><a href="#安装GCC-C" class="headerlink" title="安装GCC-C++"></a>安装GCC-C++</h2><pre class=" language-powershell"><code class="language-powershell">yum <span class="token operator">-</span>y install gcc
+yum <span class="token operator">-</span>y install gcc<span class="token operator">-</span>c+<span class="token operator">+</span>
+</code></pre>
+<h2 id="安装GCC"><a href="#安装GCC" class="headerlink" title="安装GCC"></a>安装GCC</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y centos-release-scl
+[root@localhost ~]# yum install -y devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils
+[root@localhost ~]# scl enable devtoolset-9 bash
+#如果要长期生效的话，执行如下：
+[root@localhost ~]# echo "source /opt/rh/devtoolset-9/enable" >>/etc/profile
+</code></pre>
+<h2 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y vim*
+</code></pre>
+<h2 id="安装rz"><a href="#安装rz" class="headerlink" title="安装rz"></a>安装rz</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install lrzsz -y
+</code></pre>
 
   </div>
 </article>

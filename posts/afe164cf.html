@@ -154,45 +154,102 @@
 <hr>
 <h2 id="使用springboot-springmvc-thymeleaf想在前端js中直接获取后台model传的值"><a href="#使用springboot-springmvc-thymeleaf想在前端js中直接获取后台model传的值" class="headerlink" title="使用springboot +springmvc +thymeleaf想在前端js中直接获取后台model传的值"></a>使用springboot +springmvc +thymeleaf想在前端js中直接获取后台model传的值</h2><h3 id="有两种方式："><a href="#有两种方式：" class="headerlink" title="有两种方式："></a>有两种方式：</h3><h4 id="使用隐藏域"><a href="#使用隐藏域" class="headerlink" title="使用隐藏域"></a>使用隐藏域</h4><p>先把model的值通过标签的方式放到某个input标签下，再到js中通过jquery按照id的方式选取（这种方法对于对象类型的传值支持不好，字符串什么的还可以）</p>
 <p>后台传值：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.add<span class="constructor">Attribute(<span class="string">&quot;roles&quot;</span>, <span class="params">allRoleInfos</span>)</span>;</span><br></pre></td></tr></table></figure>
-
+<pre><code>model.addAttribute(&quot;roles&quot;, allRoleInfos);
+</code></pre>
 <p>前台隐藏域接收：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="attribute">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attribute">id</span>=<span class="string">&quot;roles&quot;</span> <span class="attribute">value</span>=<span class="string">&quot;<span class="variable">$&#123;roles&#125;</span>&#125;&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-
+<pre><code>&lt;input type=&quot;hidden&quot; id=&quot;roles&quot; value=&quot;$&#123;roles&#125;&#125;&quot;&gt;
+</code></pre>
 <p>js中通过jquery使用id选取的方式获取值(需要注意的是这种不支持对象类型的)</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">data</span>= $(<span class="string">&quot;#roles&quot;</span>).<span class="keyword">val</span>();</span><br></pre></td></tr></table></figure>
-
+<pre><code>var data= $(&quot;#roles&quot;).val();
+</code></pre>
 <h4 id="内联js方式"><a href="#内联js方式" class="headerlink" title="内联js方式"></a>内联js方式</h4><p>后台传值：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.add<span class="constructor">Attribute(<span class="string">&quot;roles&quot;</span>, <span class="params">allRoleInfos</span>)</span>;</span><br></pre></td></tr></table></figure>
-
+<pre><code>model.addAttribute(&quot;roles&quot;, allRoleInfos);
+</code></pre>
 <p>js中直接获取值（需要注意的是需要使用内联js方式）</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script th:inline=<span class="string">&quot;javascript&quot;</span>&gt;</span><br><span class="line">    function getRoleMapping(cellvalue, item, index)&#123;</span><br><span class="line">        var <span class="class"><span class="keyword">data</span> = [[$&#123;<span class="title">roles</span>&#125;]];</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="class"><span class="keyword">data</span>!=null)</span></span><br><span class="line">        &#123;</span><br><span class="line">            for(var i=<span class="number">0</span>;i&lt;<span class="class"><span class="keyword">data</span>.length;i++)</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(cellvalue==<span class="class"><span class="keyword">data</span>[i].roleId)</span></span><br><span class="line">                &#123;</span><br><span class="line">                    return <span class="class"><span class="keyword">data</span>[i].roleName;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
+<pre><code>&lt;script th:inline=&quot;javascript&quot;&gt;
+    function getRoleMapping(cellvalue, item, index)&#123;
+        var data = [[$&#123;roles&#125;]];
+        if(data!=null)
+        &#123;
+            for(var i=0;i&lt;data.length;i++)
+            &#123;
+                if(cellvalue==data[i].roleId)
+                &#123;
+                    return data[i].roleName;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&lt;/script&gt;
+</code></pre>
 <p><strong>限制span标签不换行，并使超出的部分以点号代替</strong></p>
 <p>需求效果图：</p>
 <p><img src="/posts/afe164cf/20240711135147.png" alt="前端"></p>
 <p>实现代码如下：</p>
 <p>HTML代码</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>费用自理<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;spanStyle&quot;</span>&gt;</span>80000000<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../img/tip.png&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>&lt;div&gt;
+    &lt;span&gt;费用自理&lt;/span&gt;
+    &lt;span class=&quot;spanStyle&quot;&gt;80000000&lt;/span&gt;
+　　&lt;span&gt;&lt;img src=&quot;../img/tip.png&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+</code></pre>
 <p>当然，字体颜色样式按需求而定，此处只讲跟换行设置相关的。</p>
 <p>css代码</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.spanStyle</span>&#123;</span><br><span class="line">      <span class="attribute">white-space</span>: nowrap;  <span class="comment">/*强制span不换行*/</span></span><br><span class="line">      <span class="attribute">display</span>: inline-block;  <span class="comment">/*将span当做块级元素对待*/</span></span><br><span class="line">      <span class="attribute">width</span>: <span class="number">32px</span>;  <span class="comment">/*限制宽度*/</span></span><br><span class="line">      <span class="attribute">overflow</span>: hidden;  <span class="comment">/*超出宽度部分隐藏*/</span></span><br><span class="line">      <span class="attribute">text-overflow</span>: ellipsis;  <span class="comment">/*超出部分以点号代替*/</span></span><br><span class="line">      <span class="attribute">line-height</span>: <span class="number">0.9</span>;  <span class="comment">/*数字与之前的文字对齐*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code>.spanStyle&#123;
+      white-space: nowrap;  /*强制span不换行*/
+      display: inline-block;  /*将span当做块级元素对待*/
+      width: 32px;  /*限制宽度*/
+      overflow: hidden;  /*超出宽度部分隐藏*/
+      text-overflow: ellipsis;  /*超出部分以点号代替*/
+      line-height: 0.9;  /*数字与之前的文字对齐*/
+&#125;
+</code></pre>
 <p>至此，功能实现。</p>
 <p>那么现在再来理一下这件事的逻辑。要想让span不换行，并且以点号代替超出的内容，则肯定要有相应的代码；超出长度不换行，那么这个span怎么着也要有个长度吧！所以要限定宽；可是span不吃这一套，所以要把它变成块级元素（至于用inline-block还是用block视情况而定，此处我的span后面还要排列一张图片，因此我用了inline-block）。要做的事情已经结束啦，可是发现限定为块级元素后，数字与之前的文字对不牢了，所以灵机一动，调整了一下行高。不知道这个做法是不是主流，不过可以对其了。后来发现之后的图片与数字也对不齐了，调整一下图片对齐方式就可以了。图片对齐默认的应该是中部对齐，我将其调整成了底部对齐，也就是这句代码：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">vertical-align</span>: bottom;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-css"><code class="language-css"><span class="token property">vertical-align</span><span class="token punctuation">:</span> bottom<span class="token punctuation">;</span>
+</code></pre>
 <h2 id="如何获取span中的文本内容与删除"><a href="#如何获取span中的文本内容与删除" class="headerlink" title="如何获取span中的文本内容与删除"></a>如何获取span中的文本内容与删除</h2><p>document.getElementById(“#spanID”).innerHTML = “文本内容”；</p>
 <p>$(“#spanID”)[0].innerHTML = “文本内容”;</p>
 <p>这是删除内容</p>
 <p>$(“#spanID”).empty();</p>
-<h2 id="js、jquery监听输入框input获取、失去焦点事件focus、blur"><a href="#js、jquery监听输入框input获取、失去焦点事件focus、blur" class="headerlink" title="js、jquery监听输入框input获取、失去焦点事件focus、blur"></a>js、jquery监听输入框input获取、失去焦点事件focus、blur</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onfocus 事件在对象获得焦点时发生， 通常用于 <span class="language-xml"><span class="tag">&lt;<span class="name">input</span>&gt;</span></span>、<span class="language-xml"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span>、 和<span class="language-xml"><span class="tag">&lt;<span class="name">a</span>&gt;</span></span>。</span><br><span class="line">onblur 事件会在对象失去焦点时发生。</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">onfocus</span>=<span class="string">&quot;myFocus()&quot;</span> <span class="attr">onblur</span>=<span class="string">&quot;myBlur()&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;name&quot;</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="js、jquery监听输入框input获取、失去焦点事件focus、blur"><a href="#js、jquery监听输入框input获取、失去焦点事件focus、blur" class="headerlink" title="js、jquery监听输入框input获取、失去焦点事件focus、blur"></a>js、jquery监听输入框input获取、失去焦点事件focus、blur</h2><pre class=" language-markdown"><code class="language-markdown">onfocus 事件在对象获得焦点时发生， 通常用于 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span><span class="token punctuation">></span></span>、<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span><span class="token punctuation">></span></span>、 和<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token punctuation">></span></span>。
+onblur 事件会在对象失去焦点时发生。
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">onfocus</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myFocus()<span class="token punctuation">"</span></span> <span class="token attr-name">onblur</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myBlur()<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="js绑定input-3种方法"><a href="#js绑定input-3种方法" class="headerlink" title="js绑定input 3种方法"></a>js绑定input 3种方法</h2><pre class=" language-markdown"><code class="language-markdown">var nameInput = document.getElementById("name");
+//1
+nameInput.onfocus = function () <span class="token entity" title="&#123;">&amp;#123;</span>
+console.log("input获取焦点1111---")
+<span class="token entity" title="&#125;">&amp;#125;</span>;
 
-<h2 id="js绑定input-3种方法"><a href="#js绑定input-3种方法" class="headerlink" title="js绑定input 3种方法"></a>js绑定input 3种方法</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var nameInput = document.getElementById(&quot;name&quot;);</span><br><span class="line">//1</span><br><span class="line">nameInput.onfocus = function () &#123;</span><br><span class="line">console.log(&quot;input获取焦点1111---&quot;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">nameInput.onblur = function () &#123;</span><br><span class="line">console.log(&quot;input失去焦点1111---&quot;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//2</span><br><span class="line">nameInput.addEventListener(&quot;focus&quot;, function () &#123;</span><br><span class="line">console.log(&quot;input获取焦点2222---&quot;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">nameInput.addEventListener(&quot;blur&quot;, function () &#123;</span><br><span class="line">console.log(&quot;input失去焦点2222---&quot;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//3</span><br><span class="line">function myFocus() &#123;</span><br><span class="line">console.log(&quot;input获取焦点3333---&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function myBlur() &#123;</span><br><span class="line">console.log(&quot;input失去焦点3333---&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+nameInput.onblur = function () <span class="token entity" title="&#123;">&amp;#123;</span>
+console.log("input失去焦点1111---")
+<span class="token entity" title="&#125;">&amp;#125;</span>;
 
-<h2 id="jquery绑定input"><a href="#jquery绑定input" class="headerlink" title="jquery绑定input"></a>jquery绑定input</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;input&quot;).focus(function () &#123;</span><br><span class="line">// 输入框获取焦点</span><br><span class="line">&#125;).blur(function () &#123;</span><br><span class="line">// 输入框失去焦点</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+//2
+nameInput.addEventListener("focus", function () <span class="token entity" title="&#123;">&amp;#123;</span>
+console.log("input获取焦点2222---")
+<span class="token entity" title="&#125;">&amp;#125;</span>);
 
+nameInput.addEventListener("blur", function () <span class="token entity" title="&#123;">&amp;#123;</span>
+console.log("input失去焦点2222---")
+<span class="token entity" title="&#125;">&amp;#125;</span>);
+
+//3
+function myFocus() <span class="token entity" title="&#123;">&amp;#123;</span>
+console.log("input获取焦点3333---")
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+function myBlur() <span class="token entity" title="&#123;">&amp;#123;</span>
+console.log("input失去焦点3333---")
+<span class="token entity" title="&#125;">&amp;#125;</span>
+</code></pre>
+<h2 id="jquery绑定input"><a href="#jquery绑定input" class="headerlink" title="jquery绑定input"></a>jquery绑定input</h2><pre class=" language-markdown"><code class="language-markdown">$("input").focus(function () <span class="token entity" title="&#123;">&amp;#123;</span>
+// 输入框获取焦点
+<span class="token entity" title="&#125;">&amp;#125;</span>).blur(function () <span class="token entity" title="&#123;">&amp;#123;</span>
+// 输入框失去焦点
+<span class="token entity" title="&#125;">&amp;#125;</span>);
+</code></pre>
 <p>参考文献:</p>
 <p>「程序媛zcx」的原创文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40015157/article/details/114139808">https://blog.csdn.net/qq_40015157/article/details/114139808</a></p>
 
