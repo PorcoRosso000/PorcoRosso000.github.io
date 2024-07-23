@@ -197,22 +197,12 @@
 <hr>
 <h2 id="分布式策略"><a href="#分布式策略" class="headerlink" title="分布式策略"></a>分布式策略</h2><p>tair 的分布采用的是一致性哈希算法，对于所有的key，分到Q个桶中，桶是负载均衡和数据迁移的基本单位。config server 根据一定的策略把每个桶指派到不同的data server上，因为数据按照key做hash算法，所以可以认为每个桶中的数据基本是平衡的，保证了桶分布的均衡性, 就保证了数据分布的均衡性。</p>
 <p>具体说，首先计算Hash(key)，得到key所对应的bucket，然后再去config server查找该bucket对应的data server，再与相应的data server进行通信。也就是说，config server维护了一张由bucket映射到data server的对照表，比如：</p>
-<pre><code>bucket   data server0    192.168.10.1
-1    192.168.10.2
-2    192.168.10.1
-3    192.168.10.2
-4    192.168.10.1
-5    192.168.10.2
-</code></pre>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">bucket</span>   data server0    <span class="number">192.168.10.1</span></span><br><span class="line"><span class="number">1</span>    <span class="number">192.168.10.2</span></span><br><span class="line"><span class="number">2</span>    <span class="number">192.168.10.1</span></span><br><span class="line"><span class="number">3</span>    <span class="number">192.168.10.2</span></span><br><span class="line"><span class="number">4</span>    <span class="number">192.168.10.1</span></span><br><span class="line"><span class="number">5</span>    <span class="number">192.168.10.2</span></span><br></pre></td></tr></table></figure>
+
 <p>这里共6个bucket，由两台机器负责，每台机器负责3个bucket。客户端将key hash后，对6取模，找到负责的数据节点，然后和其直接通信。表的大小（行数）通常会远大于集群的节点数，这和consistent hash中的虚拟节点很相似。</p>
 <p>假设我们加入了一台新的机器——192.168.10.3，Tair会自动调整对照表，将部分bucket交由新的节点负责，比如新的表很可能类似下表：</p>
-<pre><code>0    192.168.10.1
-1    192.168.10.2
-2    192.168.10.1
-3    192.168.10.2
-4    192.168.10.3
-5    192.168.10.3
-</code></pre>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span>   <span class="number">192.168</span>.<span class="number">10.1</span></span><br><span class="line"><span class="symbol">1 </span>   <span class="number">192.168</span>.<span class="number">10.2</span></span><br><span class="line"><span class="symbol">2 </span>   <span class="number">192.168</span>.<span class="number">10.1</span></span><br><span class="line"><span class="symbol">3 </span>   <span class="number">192.168</span>.<span class="number">10.2</span></span><br><span class="line"><span class="symbol">4 </span>   <span class="number">192.168</span>.<span class="number">10.3</span></span><br><span class="line"><span class="symbol">5 </span>   <span class="number">192.168</span>.<span class="number">10.3</span></span><br></pre></td></tr></table></figure>
+
 <p>在老的表中，每个节点负责3个桶，当扩容后，每个节点将负责2个桶，数据被均衡的分布到所有节点上。</p>
 <p>如果有多个备份，那么对照表将包含多列，比如备份是为3，则表有4列，后面的3列都是数据存储的节点。</p>
 <p>为了增强数据的安全性，Tair支持配置数据的备份数（COPY_COUNT）。比如你可以配置备份数为3，则每个bucket都会写在不同的3台机器上。当数据写入一个节点（通常我们称其为主节点）后，主节点会根据对照表自动将数据写入到其他备份节点，整个过程对用户是透明的。</p>

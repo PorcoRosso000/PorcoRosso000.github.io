@@ -239,40 +239,28 @@
 <p> （1）如果表定义了主键，则PK就是聚集索引；<br> （2）如果表没有定义主键，则第一个非空唯一索引（not NULL unique）列是聚集索引；<br> （3）否则，InnoDB会创建一个隐藏的row-id作为聚集索引；</p>
 <p>普通索引(单字段)和联合索引,以及唯一索引都能实现覆盖索引的作用。  </p>
 <h5 id="如何实现索引覆盖？"><a href="#如何实现索引覆盖？" class="headerlink" title="如何实现索引覆盖？"></a><code>如何实现索引覆盖？</code></h5><h6 id="1、常见的方法是：将被查询的字段，建立到联合索引里去。"><a href="#1、常见的方法是：将被查询的字段，建立到联合索引里去。" class="headerlink" title="1、常见的方法是：将被查询的字段，建立到联合索引里去。"></a>1、常见的方法是：将被查询的字段，建立到联合索引里去。</h6><p> 例子</p>
-<pre><code>create table user (
-id int primary key,
-name varchar(20),
-sex varchar(5),
-index(name)
-)engine=innodb;
-</code></pre>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span> (</span><br><span class="line">id <span class="type">int</span> <span class="keyword">primary key</span>,</span><br><span class="line"><span class="type">name</span> <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">sex <span class="type">varchar</span>(<span class="number">5</span>),</span><br><span class="line"><span class="keyword">index</span>(<span class="type">name</span>)</span><br><span class="line">)engine=innodb;</span><br></pre></td></tr></table></figure>
+
 <p> 第一个sql：</p>
 <p> select id,name from user where name=’shenjian’;</p>
 <p><img src="/posts/9520183a/lu285616d6d5_tmp_238d2bbcb87d603b.png" alt="img"> </p>
 <p> 能够命中name索引，索引叶子节点存储了主键id，通过name的索引树即可获取id和name，无需回表，符合索引覆盖，效率较高。</p>
 <p> Extra：Using index。</p>
 <p> 第二个sql：</p>
-<pre><code>select id,name,sex from user where name=&#39;shenjian&#39;;
-</code></pre>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id,<span class="type">name</span>,sex <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="type">name</span>=<span class="string">&#x27;shenjian&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
 <p><img src="/posts/9520183a/lu285616d6d5_tmp_4d1d442d335ae188.png" alt="img"> </p>
 <p> 能够命中name索引，索引叶子节点存储了主键id，没有储存sex，sex字段必须回表查询才能获取到，不符合索引覆盖，需要再次通过id值扫描聚集索引获取sex字段，效率会降低。</p>
 <p> Extra：Using index condition。</p>
 <p> 如果把(name)单列索引升级为联合索引(name, sex)就不同了。</p>
-<pre><code>create table user1 (
-id int primary key,
-name varchar(20),
-sex varchar(5),
-index(name, sex)
-)engine=innodb;
-</code></pre>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> user1 (</span><br><span class="line">id <span class="type">int</span> <span class="keyword">primary key</span>,</span><br><span class="line"><span class="type">name</span> <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">sex <span class="type">varchar</span>(<span class="number">5</span>),</span><br><span class="line"><span class="keyword">index</span>(<span class="type">name</span>, sex)</span><br><span class="line">)engine=innodb;</span><br></pre></td></tr></table></figure>
+
 <p> <img src="/posts/9520183a/lu285616d6d5_tmp_e9ee48f83eea107a.png" alt="img"> </p>
 <p> 可以看到：</p>
 <p> select id,name … where name=’shenjian’;<br> select id,name,sex … where name=’shenjian’;<br> 单列索升级为联合索引(name, sex)后，索引叶子节点存储了主键id，name，sex，都能够命中索引覆盖，无需回表。</p>
 <p> 画外音，Extra：Using index。</p>
-<h4 id="什么是回表"><a href="#什么是回表" class="headerlink" title="什么是回表?"></a>什么是回表?</h4><pre><code>当我们使用 k 这个索引来查询 k = 2 的记录时就要用到回表。select  from xttblog where k = 2; 原因是通过 k 这个普通索引查询方式，则需要先搜索 k 索引树，然后得到主键 ID 的值为 1，再到 ID 索引树搜索一次。这个过程虽然用了索引，但实际上底层进行了两次索引查询，这个过程就称为回表。 
+<h4 id="什么是回表"><a href="#什么是回表" class="headerlink" title="什么是回表?"></a>什么是回表?</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当我们使用 k 这个索引来查询 k <span class="operator">=</span> <span class="number">2</span> 的记录时就要用到回表。select  from xttblog where k <span class="operator">=</span> <span class="number">2</span><span class="comment">; 原因是通过 k 这个普通索引查询方式，则需要先搜索 k 索引树，然后得到主键 ID 的值为 1，再到 ID 索引树搜索一次。这个过程虽然用了索引，但实际上底层进行了两次索引查询，这个过程就称为回表。 </span></span><br><span class="line"></span><br><span class="line">解决回表查询的方式就是使用覆盖索引</span><br></pre></td></tr></table></figure>
 
-解决回表查询的方式就是使用覆盖索引
-</code></pre>
 <h5 id="为什么要使用联合索引"><a href="#为什么要使用联合索引" class="headerlink" title="为什么要使用联合索引"></a>为什么要使用联合索引</h5><ul>
 <li>减少开销</li>
 <li>覆盖索引</li>

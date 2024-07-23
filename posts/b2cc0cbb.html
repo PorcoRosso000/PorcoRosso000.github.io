@@ -155,64 +155,29 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><pre class=" language-json"><code class="language-json"># 打开目录 
-<span class="token punctuation">[</span>root@MuYu ~<span class="token punctuation">]</span># cd /usr/local/docker/
-# 创建nacos文件夹
-<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># mkdir nacos
-# 打开目录
-<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># cd nacos/
-# 创建文件夹 config
-<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># mkdir config
-# 打开文件夹
-<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># cd config/
-</code></pre>
-<h3 id="上传配置文件"><a href="#上传配置文件" class="headerlink" title="上传配置文件"></a>上传配置文件</h3><pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># 
-</code></pre>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 打开目录 </span><br><span class="line"><span class="punctuation">[</span>root@MuYu ~<span class="punctuation">]</span># cd /usr/local/docker/</span><br><span class="line"># 创建nacos文件夹</span><br><span class="line"><span class="punctuation">[</span>root@MuYu docker<span class="punctuation">]</span># mkdir nacos</span><br><span class="line"># 打开目录</span><br><span class="line"><span class="punctuation">[</span>root@MuYu docker<span class="punctuation">]</span># cd nacos/</span><br><span class="line"># 创建文件夹 config</span><br><span class="line"><span class="punctuation">[</span>root@MuYu docker<span class="punctuation">]</span># mkdir config</span><br><span class="line"># 打开文件夹</span><br><span class="line"><span class="punctuation">[</span>root@MuYu docker<span class="punctuation">]</span># cd config/</span><br></pre></td></tr></table></figure>
+
+<h3 id="上传配置文件"><a href="#上传配置文件" class="headerlink" title="上传配置文件"></a>上传配置文件</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span>root@MuYu docker<span class="punctuation">]</span># </span><br></pre></td></tr></table></figure>
+
 <p><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/RWKJhIXk8JB444Hi.properties?fileGuid=lL9WvLiIYusV3jIJ">application.properties</a></p>
-<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu config]</span><span class="token comment" spellcheck="true"># vim application.properties</span>
-</code></pre>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">config</span>]<span class="comment"># vim application.properties</span></span><br></pre></td></tr></table></figure>
+
 <p><img src="/posts/b2cc0cbb/clip_image002.jpg" alt="图片"></p>
-<pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 连接类型</span>
-spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>platform=mysql
-db<span class="token punctuation">.</span>num=1
-<span class="token comment" spellcheck="true"># 连接地址</span>
-db<span class="token punctuation">.</span>url<span class="token punctuation">.</span>0=jdbc:mysql:<span class="token operator">/</span><span class="token operator">/</span>IP:端口<span class="token operator">/</span>数据库名称?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;serverTimezone=UTC
-<span class="token comment" spellcheck="true"># 数据库用户名</span>
-db<span class="token punctuation">.</span>user=root
-<span class="token comment" spellcheck="true"># 数据库密码</span>
-db<span class="token punctuation">.</span>password=Dongzl828<span class="token punctuation">.</span><span class="token punctuation">.</span>
-</code></pre>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 连接类型</span></span><br><span class="line">spring.datasource.platform=mysql</span><br><span class="line">db.num=<span class="number">1</span></span><br><span class="line"><span class="comment"># 连接地址</span></span><br><span class="line">db.url.<span class="number">0</span>=jdbc:mysql://IP:端口/数据库名称?characterEncoding=utf8&amp;connectTimeout=<span class="number">1000</span>&amp;socketTimeout=<span class="number">3000</span>&amp;autoReconnect=true&amp;serverTimezone=UTC</span><br><span class="line"><span class="comment"># 数据库用户名</span></span><br><span class="line">db.user=root</span><br><span class="line"><span class="comment"># 数据库密码</span></span><br><span class="line">db.password=Dongzl828..</span><br></pre></td></tr></table></figure>
+
 <h2 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h2><p>在nacos需要连接的数据库当中，创建数据库 nacos_config 字符集类型为 utf8mb4</p>
 <p><img src="/posts/b2cc0cbb/clip_image004.gif" alt="图片"></p>
 <h2 id="SQL脚本"><a href="#SQL脚本" class="headerlink" title="SQL脚本"></a>SQL脚本</h2><p><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/GAM432RosXNTiQcB.sql?fileGuid=ZzkLM4NQv4CyoeAQ">nacos-mysql.sql</a></p>
 <h2 id="导入SQL脚本"><a href="#导入SQL脚本" class="headerlink" title="导入SQL脚本"></a>导入SQL脚本</h2><p><img src="/posts/b2cc0cbb/clip_image006.gif" alt="图片"></p>
 <h2 id="导入完成"><a href="#导入完成" class="headerlink" title="导入完成"></a>导入完成</h2><p><img src="/posts/b2cc0cbb/clip_image008.gif" alt="图片"></p>
-<h2 id="下载nacos镜像"><a href="#下载nacos镜像" class="headerlink" title="下载nacos镜像"></a>下载nacos镜像</h2><pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>root@MuYu nacos<span class="token punctuation">]</span># docker pull nacos/nacos-server<span class="token operator">:</span>v2<span class="token number">.0</span>.<span class="token number">4</span>
-</code></pre>
-<h2 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h2><pre class=" language-json"><code class="language-json"># 根目录
-<span class="token punctuation">[</span>root@MuYu config<span class="token punctuation">]</span># cd ../
-# 编写脚本
-<span class="token punctuation">[</span>root@MuYu nacos<span class="token punctuation">]</span># vim startNacos.sh
-</code></pre>
-<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class=" language-json"><code class="language-json">docker run -d \
---privileged=<span class="token boolean">true</span> \
---restart=always \
---name nacos<span class="token number">-8848</span> \
---network host \
--e MODE=standalone \
--e JVM_XMS=256m \
--e JVM_XMX=256m \
--e JVM_XMN=256m \
--p <span class="token number">8848</span><span class="token operator">:</span><span class="token number">8848</span> \
--p <span class="token number">9848</span><span class="token operator">:</span><span class="token number">9848</span> \
--v /usr/local/docker/nacos/config/application.properties<span class="token operator">:</span>/home/nacos/conf/application.properties \
-nacos/nacos-server<span class="token operator">:</span>v2<span class="token number">.0</span>.<span class="token number">4</span>
-</code></pre>
-<h2 id="nacos-nacos-server-v2-0-4启动脚本"><a href="#nacos-nacos-server-v2-0-4启动脚本" class="headerlink" title="nacos/nacos-server:v2.0.4启动脚本"></a>nacos/nacos-server:v2.0.4启动脚本</h2><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 权限</span>
-<span class="token namespace">[root@MuYu nacos]</span><span class="token comment" spellcheck="true"># chmod -R 777 startNacos.sh</span>
-<span class="token comment" spellcheck="true"># 启动</span>
-<span class="token namespace">[root@MuYu nacos]</span><span class="token comment" spellcheck="true"># ./startNacos.sh</span>
-</code></pre>
+<h2 id="下载nacos镜像"><a href="#下载nacos镜像" class="headerlink" title="下载nacos镜像"></a>下载nacos镜像</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span>root@MuYu nacos<span class="punctuation">]</span># docker pull nacos/nacos-server<span class="punctuation">:</span>v2<span class="number">.0</span><span class="number">.4</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 根目录</span><br><span class="line"><span class="punctuation">[</span>root@MuYu config<span class="punctuation">]</span># cd ../</span><br><span class="line"># 编写脚本</span><br><span class="line"><span class="punctuation">[</span>root@MuYu nacos<span class="punctuation">]</span># vim startNacos.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--privileged=<span class="literal"><span class="keyword">true</span></span> \</span><br><span class="line">--restart=always \</span><br><span class="line">--name nacos<span class="number">-8848</span> \</span><br><span class="line">--network host \</span><br><span class="line">-e MODE=standalone \</span><br><span class="line">-e JVM_XMS=<span class="number">256</span>m \</span><br><span class="line">-e JVM_XMX=<span class="number">256</span>m \</span><br><span class="line">-e JVM_XMN=<span class="number">256</span>m \</span><br><span class="line">-p <span class="number">8848</span><span class="punctuation">:</span><span class="number">8848</span> \</span><br><span class="line">-p <span class="number">9848</span><span class="punctuation">:</span><span class="number">9848</span> \</span><br><span class="line">-v /usr/local/docker/nacos/config/application.properties<span class="punctuation">:</span>/home/nacos/conf/application.properties \</span><br><span class="line">nacos/nacos-server<span class="punctuation">:</span>v2<span class="number">.0</span><span class="number">.4</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="nacos-nacos-server-v2-0-4启动脚本"><a href="#nacos-nacos-server-v2-0-4启动脚本" class="headerlink" title="nacos/nacos-server:v2.0.4启动脚本"></a>nacos/nacos-server:v2.0.4启动脚本</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 权限</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">nacos</span>]<span class="comment"># chmod -R 777 startNacos.sh</span></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">nacos</span>]<span class="comment"># ./startNacos.sh</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p><img src="/posts/b2cc0cbb/clip_image010.gif" alt="图片"></p>
 <p>查看容器日志命令：</p>
 <p>docker logs -f -t –tail -f 容器名|id</p>

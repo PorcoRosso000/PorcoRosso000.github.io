@@ -154,57 +154,14 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><pre class=" language-shell"><code class="language-shell"># 进入目录
-[root@MuYu docker]# cd /usr/local/docker
-# 创建文件夹
-[root@MuYu docker]# mkdir -p portainer/data
-</code></pre>
-<h2 id="汉化包"><a href="#汉化包" class="headerlink" title="汉化包"></a>汉化包</h2><pre class=" language-shell"><code class="language-shell"># 打开目录portainer
-[root@localhost docker]# cd portainer/
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入目录</span></span><br><span class="line">[root@MuYu docker]# cd /usr/local/docker</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建文件夹</span></span><br><span class="line">[root@MuYu docker]# mkdir -p portainer/data</span><br></pre></td></tr></table></figure>
 
-# 下载汉化包(汉化包已失效,重新找汉化包)
-[root@MuYu portainer]# wget https://labx.me/dl/4nat/public.zip
---2022-05-01 23:09:00--  https://labx.me/dl/4nat/public.zip
-Resolving labx.me (labx.me)... 43.134.207.90
-Connecting to labx.me (labx.me)|43.134.207.90|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1932694 (1.8M) [application/zip]
-Saving to: ‘public.zip’
+<h2 id="汉化包"><a href="#汉化包" class="headerlink" title="汉化包"></a>汉化包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">打开目录portainer</span></span><br><span class="line">[root@localhost docker]# cd portainer/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载汉化包(汉化包已失效,重新找汉化包)</span></span><br><span class="line">[root@MuYu portainer]# wget https://labx.me/dl/4nat/public.zip</span><br><span class="line">--2022-05-01 23:09:00--  https://labx.me/dl/4nat/public.zip</span><br><span class="line">Resolving labx.me (labx.me)... 43.134.207.90</span><br><span class="line">Connecting to labx.me (labx.me)|43.134.207.90|:443... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 1932694 (1.8M) [application/zip]</span><br><span class="line">Saving to: ‘public.zip’</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">100%</span><span class="language-bash">[===============================================================================================================================================&gt;] 1,932,694   1.72MB/s   <span class="keyword">in</span> 1.1s</span>   </span><br><span class="line"></span><br><span class="line">2022-05-01 23:09:03 (1.72 MB/s) - ‘public.zip’ saved [1932694/1932694]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解压汉化包</span></span><br><span class="line">[root@MuYu portainer]# unzip public.zip</span><br></pre></td></tr></table></figure>
 
-100%[===============================================================================================================================================>] 1,932,694   1.72MB/s   in 1.1s   
+<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@MuYu portainer]# docker pull portainer/portainer</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from portainer/portainer</span><br><span class="line">94cfa856b2b1: Pull complete </span><br><span class="line">49d59ee0881a: Pull complete </span><br><span class="line">a2300fd28637: Pull complete </span><br><span class="line">Digest: sha256:fb45b43738646048a0a0cc74fcee2865b69efde857e710126084ee5de9be0f3f</span><br><span class="line">Status: Downloaded newer image for portainer/portainer:latest</span><br><span class="line">docker.io/portainer/portainer:latest</span><br></pre></td></tr></table></figure>
 
-2022-05-01 23:09:03 (1.72 MB/s) - ‘public.zip’ saved [1932694/1932694]
-# 解压汉化包
-[root@MuYu portainer]# unzip public.zip
-</code></pre>
-<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><pre class=" language-shell"><code class="language-shell">[root@MuYu portainer]# docker pull portainer/portainer
-Using default tag: latest
-latest: Pulling from portainer/portainer
-94cfa856b2b1: Pull complete 
-49d59ee0881a: Pull complete 
-a2300fd28637: Pull complete 
-Digest: sha256:fb45b43738646048a0a0cc74fcee2865b69efde857e710126084ee5de9be0f3f
-Status: Downloaded newer image for portainer/portainer:latest
-docker.io/portainer/portainer:latest
-</code></pre>
-<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><pre class=" language-shell"><code class="language-shell"># 编写脚本
-[root@MuYu portainer]# vim startPortainer.sh
-# 编写脚本文件
-docker run -d \
- --restart=always \
- --name portainer \
- -p 9000:9000 \
- -v /var/run/docker.sock:/var/run/docker.sock \
- -v /usr/local/docker/portainer/data:/data \
- -v /usr/local/docker/portainer/public:/public \
- portainer/portainer:latest
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编写脚本</span></span><br><span class="line">[root@MuYu portainer]# vim startPortainer.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编写脚本文件</span></span><br><span class="line">docker run -d \</span><br><span class="line"> --restart=always \</span><br><span class="line"> --name portainer \</span><br><span class="line"> -p 9000:9000 \</span><br><span class="line"> -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line"> -v /usr/local/docker/portainer/data:/data \</span><br><span class="line"> -v /usr/local/docker/portainer/public:/public \</span><br><span class="line"> portainer/portainer:latest</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">赋值权限</span></span><br><span class="line">[root@MuYu portainer]# chmod -R 777 startPortainer.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行脚本</span></span><br><span class="line">[root@MuYu portainer]# ./startPortainer.sh </span><br><span class="line">312623fe0b0192c645250f11e3603fd5f73f91393b22db3988a44fb93fb4dc89</span><br></pre></td></tr></table></figure>
 
-# 赋值权限
-[root@MuYu portainer]# chmod -R 777 startPortainer.sh
-# 执行脚本
-[root@MuYu portainer]# ./startPortainer.sh 
-312623fe0b0192c645250f11e3603fd5f73f91393b22db3988a44fb93fb4dc89
-</code></pre>
 <h2 id="可视化页面"><a href="#可视化页面" class="headerlink" title="可视化页面"></a>可视化页面</h2><h3 id="启动页面"><a href="#启动页面" class="headerlink" title="启动页面"></a>启动页面</h3><p><img src="/posts/c1fb5e41/clip_image002.gif" alt="图片"></p>
 <h3 id="选择本地"><a href="#选择本地" class="headerlink" title="选择本地"></a>选择本地</h3><p><img src="/posts/c1fb5e41/clip_image004.gif" alt="图片"></p>
 <h3 id="管理页面"><a href="#管理页面" class="headerlink" title="管理页面"></a>管理页面</h3><p><img src="/posts/c1fb5e41/clip_image006.gif" alt="图片"></p>

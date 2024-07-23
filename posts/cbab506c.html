@@ -154,77 +154,28 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><pre class=" language-shell"><code class="language-shell">docker pull redis:6.2.6
-</code></pre>
+<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis:6.2.6</span><br></pre></td></tr></table></figure>
+
 <h2 id="docker配置redis"><a href="#docker配置redis" class="headerlink" title="docker配置redis"></a>docker配置redis</h2><p>使用前下载redis配置文件：<a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/GWTjtzHwGe3j3HD0.conf?fileGuid=rqhjpZwZC7Q4TzUJ">redis.conf</a></p>
-<h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><pre class=" language-shell"><code class="language-shell"># 打开目录
-[root@MuYu /]# cd /usr/local/
+<h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">打开目录</span></span><br><span class="line">[root@MuYu /]# cd /usr/local/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在其目录下创建 docker/redis</span></span><br><span class="line">[root@MuYu local]# mkdir -p docker/redis</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入 docker/redis目录</span></span><br><span class="line">[root@MuYu local]# cd docker/redis/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建 redis的config和redis的data</span></span><br><span class="line">[root@MuYu redis]# mkdir config</span><br><span class="line">[root@MuYu redis]# mkdir data</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">上传配置文件到 config目录下面</span></span><br><span class="line">[root@MuYu redis]# cd config/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用rz上传文件</span></span><br><span class="line">[root@MuYu config]# rz</span><br><span class="line">[root@MuYu config]# ll</span><br><span class="line">total 92</span><br><span class="line">-rw-r--r-- 1 root root 93724 Oct  4  2021 redis.conf</span><br></pre></td></tr></table></figure>
 
-# 在其目录下创建 docker/redis
-[root@MuYu local]# mkdir -p docker/redis
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><h4 id="数据存储目录"><a href="#数据存储目录" class="headerlink" title="数据存储目录"></a>数据存储目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改配置文件</span></span><br><span class="line">dir ./                -&gt;   dir /data</span><br></pre></td></tr></table></figure>
 
-# 进入 docker/redis目录
-[root@MuYu local]# cd docker/redis/
-
-# 创建 redis的config和redis的data
-[root@MuYu redis]# mkdir config
-[root@MuYu redis]# mkdir data
-
-# 上传配置文件到 config目录下面
-[root@MuYu redis]# cd config/
-
-# 使用rz上传文件
-[root@MuYu config]# rz
-[root@MuYu config]# ll
-total 92
--rw-r--r-- 1 root root 93724 Oct  4  2021 redis.conf
-</code></pre>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><h4 id="数据存储目录"><a href="#数据存储目录" class="headerlink" title="数据存储目录"></a>数据存储目录</h4><pre class=" language-shell"><code class="language-shell"># 修改配置文件
-dir ./                ->   dir /data
-</code></pre>
 <p><img src="/posts/cbab506c/clip_image002.jpg" alt="图片"></p>
-<h4 id="IP访问"><a href="#IP访问" class="headerlink" title="IP访问"></a>IP访问</h4><pre class=" language-shell"><code class="language-shell">bind 127.0.0.1 -::1   ->   bind 0.0.0.0
-</code></pre>
+<h4 id="IP访问"><a href="#IP访问" class="headerlink" title="IP访问"></a>IP访问</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind 127.0.0.1 -::1   -&gt;   bind 0.0.0.0</span><br></pre></td></tr></table></figure>
+
 <p><img src="/posts/cbab506c/clip_image004.jpg" alt="图片"></p>
-<h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><pre class=" language-shell"><code class="language-shell"># 退出目录
-[root@MuYu config]# cd ..
+<h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出目录</span></span><br><span class="line">[root@MuYu config]# cd ..</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编辑sh脚本</span></span><br><span class="line">[root@MuYu redis]# vim startRedis.sh</span><br></pre></td></tr></table></figure>
 
-# 编辑sh脚本
-[root@MuYu redis]# vim startRedis.sh
-</code></pre>
-<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><pre class=" language-shell"><code class="language-shell">docker run  --privileged=true -p 6379:6379 --name redis --restart=always \
- -v /usr/local/docker/redis/config/redis.conf:/etc/redis/redis.conf \
- -v /usr/local/docker/redis/data:/data \
- -d redis:6.2.6 redis-server /etc/redis/redis.conf
-</code></pre>
+<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run  --privileged=true -p 6379:6379 --name redis --restart=always \</span><br><span class="line"> -v /usr/local/docker/redis/config/redis.conf:/etc/redis/redis.conf \</span><br><span class="line"> -v /usr/local/docker/redis/data:/data \</span><br><span class="line"> -d redis:6.2.6 redis-server /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
 <p><img src="/posts/cbab506c/clip_image006.jpg" alt="图片"></p>
-<pre class=" language-shell"><code class="language-shell">
-# 脚本设置可执行权限
-[root@MuYu redis]# chmod -R 777 startRedis.sh
-</code></pre>
-<h2 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h2><pre class=" language-shell"><code class="language-shell"># 运行脚本
-[root@MuYu redis]# ./startRedis.sh 
-46bc734d227e3a8a1dada5588a2683c1a433fa021488a07cbad510c5410edee3
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">脚本设置可执行权限</span></span><br><span class="line">[root@MuYu redis]# chmod -R 777 startRedis.sh</span><br></pre></td></tr></table></figure>
 
-# 查看docker当中运行的redis
-[root@MuYu redis]# docker ps
-CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-46bc734d227e   redis:6.2.6   "docker-entrypoint.s…"   3 seconds ago   Up 2 seconds   0.0.0.0:6379->6379/tcp, :::6379->6379/tcp   redis
-</code></pre>
+<h2 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行脚本</span></span><br><span class="line">[root@MuYu redis]# ./startRedis.sh </span><br><span class="line">46bc734d227e3a8a1dada5588a2683c1a433fa021488a07cbad510c5410edee3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看docker当中运行的redis</span></span><br><span class="line">[root@MuYu redis]# docker ps</span><br><span class="line">CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS         PORTS                                       NAMES</span><br><span class="line">46bc734d227e   redis:6.2.6   &quot;docker-entrypoint.s…&quot;   3 seconds ago   Up 2 seconds   0.0.0.0:6379-&gt;6379/tcp, :::6379-&gt;6379/tcp   redis</span><br></pre></td></tr></table></figure>
+
 <h2 id="测试redis"><a href="#测试redis" class="headerlink" title="测试redis"></a>测试redis</h2><p><img src="/posts/cbab506c/clip_image008.gif" alt="图片"></p>
-<h2 id="一键重置redis脚本"><a href="#一键重置redis脚本" class="headerlink" title="一键重置redis脚本"></a>一键重置redis脚本</h2><pre class=" language-shell"><code class="language-shell"># 创建sh脚本
-[root@MuYu redis]# vim resetRedis.sh
-# 编写sh脚本
-docker rm -f redis
-./startRedis.sh
-# 赋权
-[root@MuYu redis]# chmod -R 777 resetRedis.sh
-# 执行
-[root@MuYu redis]# ./resetRedis.sh 
-redis
-bbb4e496f5b9b98fd61ce21fa4133c401e2a069f326894594adfd472632e13e3
-</code></pre>
-
+<h2 id="一键重置redis脚本"><a href="#一键重置redis脚本" class="headerlink" title="一键重置redis脚本"></a>一键重置redis脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建sh脚本</span></span><br><span class="line">[root@MuYu redis]# vim resetRedis.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编写sh脚本</span></span><br><span class="line">docker rm -f redis</span><br><span class="line">./startRedis.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">赋权</span></span><br><span class="line">[root@MuYu redis]# chmod -R 777 resetRedis.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行</span></span><br><span class="line">[root@MuYu redis]# ./resetRedis.sh </span><br><span class="line">redis</span><br><span class="line">bbb4e496f5b9b98fd61ce21fa4133c401e2a069f326894594adfd472632e13e3</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 

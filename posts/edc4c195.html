@@ -153,11 +153,8 @@
 <p>windows编辑文件命令<code>:  notepad somefile.txt</code></p>
 <h2 id="Windows环境下合并zip文件"><a href="#Windows环境下合并zip文件" class="headerlink" title="Windows环境下合并zip文件"></a>Windows环境下合并zip文件</h2><p>copy /B 1.zip.001 + 1.zip.002 + 1.zip.003 1.zip</p>
 <h2 id="Windows环境下硬盘-u盘被谁占用了，查找罪魁祸首"><a href="#Windows环境下硬盘-u盘被谁占用了，查找罪魁祸首" class="headerlink" title="Windows环境下硬盘/u盘被谁占用了，查找罪魁祸首"></a>Windows环境下硬盘/u盘被谁占用了，查找罪魁祸首</h2><p>Win+R打开【运行】–&gt;输入eventvwr.msc回车打开【事件查看器】–&gt;事件查看器(本地)–&gt;Windows日志–&gt;系统–&gt;找到最近的【警告 来源Kernel-PnP】–&gt;双击打开–&gt;你会看到【进程 ID 为 **** 的应用程序已停止删除或弹出设备】，记住这个进程ID。</p>
-<pre><code>cmd 使用  
-taskkill /pid 进程ID -f 强制结束进程  
-也可以使用
-taskkill /pid 进程ID -t 结束进程(使用-t会判断有没有子进程，有子进程就不会结束)  
-</code></pre>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cmd</span> 使用  </span><br><span class="line"><span class="built_in">taskkill</span> /pid 进程ID -f 强制结束进程  </span><br><span class="line">也可以使用</span><br><span class="line"><span class="built_in">taskkill</span> /pid 进程ID -t 结束进程(使用-t会判断有没有子进程，有子进程就不会结束)  </span><br></pre></td></tr></table></figure>
+
 
   </div>
 </article>

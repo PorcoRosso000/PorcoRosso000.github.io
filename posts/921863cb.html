@@ -152,55 +152,24 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开目录</span>
-<span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># cd /usr/local/docker/</span>
-<span class="token comment" spellcheck="true"># 创建 es 目录</span>
-<span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># mkdir es</span>
-<span class="token comment" spellcheck="true"># 打开 es 目录</span>
-<span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># cd es/</span>
-</code></pre>
-<h2 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h2><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 创建 数据 挂载目录</span>
-<span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># mkdir data</span>
-<span class="token comment" spellcheck="true"># 创建 配置 挂载目录</span>
-<span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># mkdir config</span>
-<span class="token comment" spellcheck="true"># 创建 插件 挂载目录</span>
-<span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># mkdir plugins</span>
-<span class="token comment" spellcheck="true"># 权限赋值</span>
-<span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># chmod -R 777 /usr/local/docker/es/</span>
-</code></pre>
-<h3 id="编辑配置"><a href="#编辑配置" class="headerlink" title="编辑配置"></a>编辑配置</h3><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开 config 目录</span>
-<span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># cd config/</span>
-</code></pre>
-<h3 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h3><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 编写配置文件</span>
-<span class="token namespace">[root@MuYu config]</span><span class="token comment" spellcheck="true"># vim elasticsearch.yml</span>
-</code></pre>
-<h3 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h3><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 可访问IP</span>
-<span class="token key atrule">http.host</span><span class="token punctuation">:</span> 0.0.0.0
-<span class="token comment" spellcheck="true"># 跨域</span>
-<span class="token key atrule">http.cors.enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-<span class="token key atrule">http.cors.allow-origin</span><span class="token punctuation">:</span> <span class="token string">"*"</span>
-</code></pre>
-<h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开目录</span>
-<span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># cd /usr/local/docker/es</span>
-<span class="token comment" spellcheck="true"># 编辑脚本</span>
-<span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># vim startEs.sh</span>
-</code></pre>
-<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><pre class=" language-yaml"><code class="language-yaml">docker run <span class="token punctuation">-</span><span class="token punctuation">-</span>name es<span class="token punctuation">-</span>7.17.0 \
- <span class="token punctuation">-</span><span class="token punctuation">-</span>restart=always \
- <span class="token punctuation">-</span><span class="token punctuation">-</span>privileged=true \
- <span class="token punctuation">-</span>p 9200<span class="token punctuation">:</span>9200  <span class="token punctuation">-</span>p 9300<span class="token punctuation">:</span>9300 \
- <span class="token punctuation">-</span>e "discovery.type=single<span class="token punctuation">-</span>node" \
- <span class="token punctuation">-</span>e ES_JAVA_OPTS="<span class="token punctuation">-</span>Xms84m <span class="token punctuation">-</span>Xmx256m" \
- <span class="token punctuation">-</span>v /usr/local/docker/es/config/elasticsearch.yml<span class="token punctuation">:</span>/usr/share/elasticsearch/config/elasticsearch.yml \
- <span class="token punctuation">-</span>v /usr/local/docker/es/data<span class="token punctuation">:</span>/usr/share/elasticsearch/data \
- <span class="token punctuation">-</span>v /usr/local/docker/es/plugins<span class="token punctuation">:</span>/usr/share/elasticsearch/plugins \
- <span class="token punctuation">-</span>d elasticsearch<span class="token punctuation">:</span>7.17.0
-</code></pre>
-<h3 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h3><pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># chmod -R 700 startEs.sh</span>
-</code></pre>
-<h2 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h2><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 执行脚本</span>
-<span class="token namespace">[root@MuYu es]</span><span class="token comment" spellcheck="true"># ./startEs.sh</span>
-</code></pre>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># cd /usr/local/docker/</span></span><br><span class="line"><span class="comment"># 创建 es 目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># mkdir es</span></span><br><span class="line"><span class="comment"># 打开 es 目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># cd es/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 数据 挂载目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># mkdir data</span></span><br><span class="line"><span class="comment"># 创建 配置 挂载目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># mkdir config</span></span><br><span class="line"><span class="comment"># 创建 插件 挂载目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># mkdir plugins</span></span><br><span class="line"><span class="comment"># 权限赋值</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># chmod -R 777 /usr/local/docker/es/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编辑配置"><a href="#编辑配置" class="headerlink" title="编辑配置"></a>编辑配置</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开 config 目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># cd config/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编写配置文件</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">config</span>]<span class="comment"># vim elasticsearch.yml</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可访问IP</span></span><br><span class="line"><span class="attr">http.host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="comment"># 跨域</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># cd /usr/local/docker/es</span></span><br><span class="line"><span class="comment"># 编辑脚本</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># vim startEs.sh</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">--name</span> <span class="string">es-7.17.0</span> <span class="string">\</span></span><br><span class="line"> <span class="string">--restart=always</span> <span class="string">\</span></span><br><span class="line"> <span class="string">--privileged=true</span> <span class="string">\</span></span><br><span class="line"> <span class="string">-p</span> <span class="number">9200</span><span class="string">:9200</span>  <span class="string">-p</span> <span class="number">9300</span><span class="string">:9300</span> <span class="string">\</span></span><br><span class="line"> <span class="string">-e</span> <span class="string">&quot;discovery.type=single-node&quot;</span> <span class="string">\</span></span><br><span class="line"> <span class="string">-e</span> <span class="string">ES_JAVA_OPTS=&quot;-Xms84m</span> <span class="string">-Xmx256m&quot;</span> <span class="string">\</span></span><br><span class="line"> <span class="string">-v</span> <span class="string">/usr/local/docker/es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml</span> <span class="string">\</span></span><br><span class="line"> <span class="string">-v</span> <span class="string">/usr/local/docker/es/data:/usr/share/elasticsearch/data</span> <span class="string">\</span></span><br><span class="line"> <span class="string">-v</span> <span class="string">/usr/local/docker/es/plugins:/usr/share/elasticsearch/plugins</span> <span class="string">\</span></span><br><span class="line"> <span class="string">-d</span> <span class="string">elasticsearch:7.17.0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># chmod -R 700 startEs.sh</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行脚本</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">es</span>]<span class="comment"># ./startEs.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><p><img src="/posts/921863cb/clip_image002.gif" alt="图片"></p>
 <p>网址请求ip：9200 获得如下信息</p>
 <p><img src="/posts/921863cb/clip_image004.gif" alt="图片"></p>

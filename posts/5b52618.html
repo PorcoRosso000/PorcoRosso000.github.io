@@ -168,19 +168,19 @@
 <p>检查带VM的服务是否都开启了<br>打开后重启</p>
 <p>（3）:</p>
 <p>第一步：</p>
-<pre><code>命令：systemctl stop NetworkManager
-</code></pre>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令：systemctl stop NetworkManager</span><br></pre></td></tr></table></figure>
+
 <p>第二步：</p>
-<pre><code>命令：systemctl disable NetworkManager
-</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令：systemctl <span class="built_in">disable</span> NetworkManager</span><br></pre></td></tr></table></figure>
+
 <p>第三步：</p>
-<pre><code>命令：service network start
-</code></pre>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令：service network <span class="literal">start</span></span><br></pre></td></tr></table></figure>
+
 <p>先执行这三步，等网卡重新启动。</p>
 <p><img src="/posts/5b52618/20210318225907899.png" alt="20210318225907899"></p>
 <p>再执行：</p>
-<pre><code>命令：ifup ens33
-</code></pre>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令：ifup e<span class="symbol">ns33</span></span><br></pre></td></tr></table></figure>
+
 <p>然后重新启动再去查看ip地址，问题解决</p>
 <p>版权声明：</p>
 <p>本文为CSDN博主「原味Java」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_49466168/article/details/114993569">https://blog.csdn.net/qq_49466168/article/details/114993569</a></p>

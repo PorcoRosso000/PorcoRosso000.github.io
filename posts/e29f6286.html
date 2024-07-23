@@ -369,131 +369,19 @@
 <h5 id="NEVER"><a href="#NEVER" class="headerlink" title="NEVER"></a>NEVER</h5><p> 不使用事务，如果当前事务存在，则抛出异常</p>
 <h5 id="NESTED"><a href="#NESTED" class="headerlink" title="NESTED"></a>NESTED</h5><p>如果当前事务存在，则在嵌套事务中执行，否则REQUIRED的操作一样（开启一个事务）</p>
 <h4 id="Transactional注解事务失效的七种原因分析"><a href="#Transactional注解事务失效的七种原因分析" class="headerlink" title="@Transactional注解事务失效的七种原因分析"></a>@Transactional注解事务失效的七种原因分析</h4><p>1、异常被捕获后没有抛出<br> 当异常被捕获后，并且没有再抛出，那么deleteUserA是不会回滚的。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">   userMapper.deleteUserA();</span><br><span class="line"></span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">       userMapper.deleteUserB();</span><br><span class="line"></span><br><span class="line">   &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line"></span><br><span class="line">       e.printStackTrace();</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-   userMapper<span class="token punctuation">.</span><span class="token function">deleteUserA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-       <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-       userMapper<span class="token punctuation">.</span><span class="token function">deleteUserB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-       e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
 <p> 2、抛出非运行时异常<br> 异步虽然抛出了，但是抛出的是非RuntimeException类型的异常，依旧不会生效。</p>
 <p> 2、抛出非运行时异常<br> 异步虽然抛出了，但是抛出的是非RuntimeException类型的异常，依旧不会生效。</p>
-<pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Transactional</span>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Transactional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser</span><span class="params">()</span> <span class="keyword">throws</span> MyException&#123;</span><br><span class="line"></span><br><span class="line">   userMapper.deleteUserA();</span><br><span class="line"></span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">       userMapper.deleteUserB();</span><br><span class="line"></span><br><span class="line">   &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">MyException</span>();</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MyException<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-   userMapper<span class="token punctuation">.</span><span class="token function">deleteUserA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-       <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-       userMapper<span class="token punctuation">.</span><span class="token function">deleteUserB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-       <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MyException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
 <p> 如果指定了回滚异常类型为Exception，那么就可以回滚非RuntimeException类型异常了。<br> @Transactional(rollbackFor = Exception.class)<br> 3、方法内部直接调用<br> 如果先调用deleteUser()，那么deleteUserA()是不会回滚的，其原因就是@Transactional根本没生成代理，如果直接调用deleteUser2()那么没问题，deleteUserA()会回滚。</p>
 <p> 如果指定了回滚异常类型为Exception，那么就可以回滚非RuntimeException类型异常了。<br> @Transactional(rollbackFor = Exception.class)<br> 3、方法内部直接调用<br> 如果先调用deleteUser()，那么deleteUserA()是不会回滚的，其原因就是@Transactional根本没生成代理，如果直接调用deleteUser2()那么没问题，deleteUserA()会回滚。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MyException<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser</span><span class="params">()</span> <span class="keyword">throws</span> MyException&#123;</span><br><span class="line"></span><br><span class="line">   deleteUser2();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser2</span><span class="params">()</span> <span class="keyword">throws</span> MyException&#123;</span><br><span class="line"></span><br><span class="line">   userMapper.deleteUserA();</span><br><span class="line"></span><br><span class="line">   <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   userMapper.deleteUserB();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"> 修改方式，把当前类自己注入一下调用即可。</span><br><span class="line"> <span class="meta">@Service</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//自己注入自己</span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line"></span><br><span class="line">   UserService userService;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser</span><span class="params">()</span> <span class="keyword">throws</span> MyException&#123;</span><br><span class="line"></span><br><span class="line">	    userService.deleteUser2();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Transactional</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser2</span><span class="params">()</span> <span class="keyword">throws</span> MyException&#123;</span><br><span class="line"></span><br><span class="line">	    userMapper.deleteUserA();</span><br><span class="line"></span><br><span class="line">	    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	    userMapper.deleteUserB();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-   <span class="token function">deleteUser2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Transactional</span>
-
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteUser2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MyException<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-   userMapper<span class="token punctuation">.</span><span class="token function">deleteUserA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-   userMapper<span class="token punctuation">.</span><span class="token function">deleteUserB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
- 修改方式，把当前类自己注入一下调用即可。
- <span class="token annotation punctuation">@Service</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserService</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-   <span class="token annotation punctuation">@Autowired</span>
-
-   <span class="token keyword">private</span> UserMapper userMapper<span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">//自己注入自己</span>
-
-   <span class="token annotation punctuation">@Autowired</span>
-
-   UserService userService<span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MyException<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-        userService<span class="token punctuation">.</span><span class="token function">deleteUser2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-    <span class="token annotation punctuation">@Transactional</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteUser2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MyException<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-        userMapper<span class="token punctuation">.</span><span class="token function">deleteUserA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-        userMapper<span class="token punctuation">.</span><span class="token function">deleteUserB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
 <p> 4、新开启一个线程<br> 如下的方式deleteUserA()也不会回滚，因为spring实现事务的原理是通过ThreadLocal把数据库连接绑定到当前线程中，新开启一个线程获取到的连接就不是同一个了。</p>
-<pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Transactional</span>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Transactional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteUser</span><span class="params">()</span> <span class="keyword">throws</span> MyException&#123;</span><br><span class="line"></span><br><span class="line">   userMapper.deleteUserA();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//休眠1秒，保证deleteUserA先执行</span></span><br><span class="line"></span><br><span class="line">       Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">   &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line">       e.printStackTrace();</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">       userMapper.deleteUserB();</span><br><span class="line"></span><br><span class="line">   &#125;).start();     </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MyException<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-   userMapper<span class="token punctuation">.</span><span class="token function">deleteUserA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//休眠1秒，保证deleteUserA先执行</span>
-
-       Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-       e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-   <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-       <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">;</span>
-
-       userMapper<span class="token punctuation">.</span><span class="token function">deleteUserB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
-
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
 <p> 5、注解到private方法上<br> idea直接会给出提示Methods annotated with ‘@Transactional’ must be overridable ，原理很简单，private修饰的方式，spring无法生成动态代理。</p>
 <p> 5、注解到private方法上<br> idea直接会给出提示Methods annotated with ‘@Transactional’ must be overridable ，原理很简单，private修饰的方式，spring无法生成动态代理。</p>
 <p> 6、数据库本身不支持<br> mysql数据库，必须设置数据库引擎为InnoDB。</p>
@@ -948,28 +836,10 @@
 <p> 6.SpringCoud-Feign：声明式HTTP客户端（调用远程服务）</p>
 <p> 7.SpringCoud-Gateway：API网关（webflux编程模式）</p>
 <p> 8.SpringCoud-Sleuth：调用链监控</p>
-<h4 id="Spring-Cloud-Alibaba的依赖"><a href="#Spring-Cloud-Alibaba的依赖" class="headerlink" title="Spring Cloud Alibaba的依赖"></a>Spring Cloud Alibaba的依赖</h4><pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span>dependencyManagement<span class="token operator">></span>
+<h4 id="Spring-Cloud-Alibaba的依赖"><a href="#Spring-Cloud-Alibaba的依赖" class="headerlink" title="Spring Cloud Alibaba的依赖"></a>Spring Cloud Alibaba的依赖</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line"></span><br><span class="line">            &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line"></span><br><span class="line">            &lt;artifactId&gt;spring-cloud-alibaba-dependencies&lt;/artifactId&gt;</span><br><span class="line"></span><br><span class="line">            &lt;version&gt;<span class="number">2.1</span><span class="number">.0</span>.RELEASE&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">            &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line"></span><br><span class="line">            &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line"> &lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
 
-    <span class="token operator">&lt;</span>dependencies<span class="token operator">></span>
 
-        <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
 
-            <span class="token operator">&lt;</span>groupId<span class="token operator">></span>com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>cloud<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-
-            <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>spring<span class="token operator">-</span>cloud<span class="token operator">-</span>alibaba<span class="token operator">-</span>dependencies<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-
-            <span class="token operator">&lt;</span>version<span class="token operator">></span><span class="token number">2.1</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">.</span>RELEASE<span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-
-            <span class="token operator">&lt;</span>type<span class="token operator">></span>pom<span class="token operator">&lt;</span><span class="token operator">/</span>type<span class="token operator">></span>
-
-            <span class="token operator">&lt;</span>scope<span class="token operator">></span><span class="token keyword">import</span><span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">></span>
-
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-
-    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">></span>
-
- <span class="token operator">&lt;</span><span class="token operator">/</span>dependencyManagement<span class="token operator">></span>
-</code></pre>
 <h4 id="注册中心、配置中心、网关的架构图"><a href="#注册中心、配置中心、网关的架构图" class="headerlink" title="注册中心、配置中心、网关的架构图"></a>注册中心、配置中心、网关的架构图</h4><p> <img src="/posts/e29f6286/lu152441l02jn_tmp_bbdf83293a7c1d06.jpg" alt="img"> </p>
 <h3 id="ribbon的负载均衡策略"><a href="#ribbon的负载均衡策略" class="headerlink" title="ribbon的负载均衡策略"></a>ribbon的负载均衡策略</h3><p>8种负载均衡策略</p>
 <p>随机 (Random)</p>
@@ -1021,40 +891,10 @@
 <h3 id="break-continue-return-的区别"><a href="#break-continue-return-的区别" class="headerlink" title="break  continue return  的区别"></a>break  continue return  的区别</h3><p> return的功能是结束一个方法。 一旦在循环体内执行到一个return语句，return语句将会结束该方法，循环自然也随之结束。  </p>
 <p> continue的功能和break有点类似，区别是continue只是中止本次循环，接着开始下一次循环。而break则是完全中止循环。  </p>
 <p> break用于完全结束一个循环，跳出循环体。不管是哪种循环，一旦在循环体中遇到break，系统将完全结束循环，开始执行循环之后的代码。 break不仅可以结束其所在的循环，还可结束其外层循环。此时需要在break后紧跟一个标签，这个标签用于标识一个外层循环。Java中的标签就是一个紧跟着英文冒号（:）的标识符。且它必须放在循环语句之前才有作用。  </p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BreakTest</span>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BreakTest</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">　　　　<span class="comment">// 外层循环，outer作为标识符</span></span><br><span class="line"></span><br><span class="line">　　　　outer:</span><br><span class="line"></span><br><span class="line">　　　　<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; <span class="number">5</span> ; i++ )&#123;</span><br><span class="line"></span><br><span class="line">　　　　　　<span class="comment">// 内层循环</span></span><br><span class="line"></span><br><span class="line">　　　　　　<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">3</span> ; j++ )&#123;</span><br><span class="line"></span><br><span class="line">　　　　　　　　System.out.println(<span class="string">&quot;i的值为:&quot;</span> + i + <span class="string">&quot; j的值为:&quot;</span> + j);</span><br><span class="line"></span><br><span class="line">　　　　　　　　<span class="keyword">if</span> (j == <span class="number">1</span>)&#123;</span><br><span class="line"></span><br><span class="line">　　　　　　　　　　<span class="comment">// 跳出outer标签所标识的循环。</span></span><br><span class="line"></span><br><span class="line">　　　　　　　　　　　<span class="keyword">break</span> outer;</span><br><span class="line"></span><br><span class="line">　　　　　　　　&#125;</span><br><span class="line"></span><br><span class="line">　　　　　　&#125;</span><br><span class="line"></span><br><span class="line">　　　　&#125;</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
-　　<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
-　　　　<span class="token comment" spellcheck="true">// 外层循环，outer作为标识符</span>
-
-　　　　outer<span class="token operator">:</span>
-
-　　　　<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span> <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-　　　　　　<span class="token comment" spellcheck="true">// 内层循环</span>
-
-　　　　　　<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">3</span> <span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-　　　　　　　　System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"i的值为:"</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">" j的值为:"</span> <span class="token operator">+</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-　　　　　　　　<span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-　　　　　　　　　　<span class="token comment" spellcheck="true">// 跳出outer标签所标识的循环。</span>
-
-　　　　　　　　　　　<span class="token keyword">break</span> outer<span class="token punctuation">;</span>
-
-　　　　　　　　<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-　　　　　　<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-　　　　<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-　　<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
 <h3 id="RT"><a href="#RT" class="headerlink" title="RT"></a>RT</h3><p>响应时间:</p>
 <p>执行一个请求从开始到最后收到响应数据所花费的总体时间,</p>
 <p>即从客户端发起请求到收到服务器响应结果的时间.</p>
