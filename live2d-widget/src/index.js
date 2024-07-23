@@ -38,7 +38,12 @@ function loadWidget(config) {
                 const now = new Date(),
                     after = hour.split("-")[0],
                     before = hour.split("-")[1] || after;
-                if (after <= now.gethours() && <="before)" { return text; } const text="`欢迎阅读<span">「${document.title.split(" - ")[0]}」`;
+                if (after <= now.getHours() && now.getHours() <= before) {
+                    return text;
+                }
+            }
+        }
+        const text = `欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
         let from;
         if (document.referrer !== "") {
             const referrer = new URL(document.referrer),
@@ -101,7 +106,14 @@ function loadWidget(config) {
             const now = new Date(),
                 after = date.split("-")[0],
                 before = date.split("-")[1] || after;
-            if ((after.split("/")[0] <= 1 now.getmonth() + && <="before.split("/")[0])" (after.split(" ")[1] now.getdate() { text="randomSelection(text);" now.getfullyear()); messagearray.push(text); } }); const devtools="()" => { };
+            if ((after.split("/")[0] <= now.getMonth() + 1 && now.getMonth() + 1 <= before.split("/")[0]) && (after.split("/")[1] <= now.getDate() && now.getDate() <= before.split("/")[1])) {
+                text = randomSelection(text);
+                text = text.replace("{year}", now.getFullYear());
+                messageArray.push(text);
+            }
+        });
+
+        const devtools = () => { };
         console.log("%c", devtools);
         devtools.toString = () => {
             showMessage(result.message.console, 6000, 9);
@@ -153,7 +165,9 @@ function initWidget(config, apiPath) {
             }, 0);
         }
     });
-    if (localStorage.getItem("waifu-display") && Date.now() - localStorage.getItem("waifu-display") <= 86400000) { toggle.setattribute("first-time", true); settimeout(()> {
+    if (localStorage.getItem("waifu-display") && Date.now() - localStorage.getItem("waifu-display") <= 86400000) {
+        toggle.setAttribute("first-time", true);
+        setTimeout(() => {
             toggle.classList.add("waifu-toggle-active");
         }, 0);
     } else {
@@ -162,4 +176,3 @@ function initWidget(config, apiPath) {
 }
 
 export default initWidget;
-</=></=></=>
