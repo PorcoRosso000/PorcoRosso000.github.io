@@ -145,17 +145,17 @@
 <hr>
 <p>查看所有的端口占用情况cmd </p>
 <p>输入命令：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">netstat -ano</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>netstat -ano
+</code></pre>
 <p>查看指定端口的占用情况</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon<span class="string">|findstr &quot;</span><span class="number">8080</span><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>netstat -aon|findstr &quot;8080&quot;
+</code></pre>
 <p>查看PID对应的进程</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist<span class="string">|findstr &quot;</span><span class="number">9524</span><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>tasklist|findstr &quot;9524&quot;
+</code></pre>
 <p>结束该进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill /f /t /im java.exe</span><br></pre></td></tr></table></figure>
-
+<pre><code>taskkill /f /t /im java.exe
+</code></pre>
 
   </div>
 </article>

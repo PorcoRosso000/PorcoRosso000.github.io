@@ -208,8 +208,8 @@
 <p> 3.由于是单机演示，需要更改nacos/的conf目录下application.properties中server.port，防止端口冲突。<br> 如果服务器有多个ip也要指定具体的ip地址，如：nacos.inetutils.ip-address=127.0.0.1  </p>
 <p> 4.进入nacos的conf目录，编辑application.properties文件，增加数据库配置  </p>
 <p> 5.集群模式启动<br> 分别执行nacos目录的bin目录下的startup：</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">startup.<span class="built_in">cmd</span> -m cluster</span><br></pre></td></tr></table></figure>
-
+<pre><code>startup.cmd -m cluster
+</code></pre>
 <p> 6.启动后登录nacos三个节点都启动</p>
 <h5 id="Nacos-集群中-Leader-节点是如何产生的？"><a href="#Nacos-集群中-Leader-节点是如何产生的？" class="headerlink" title="Nacos 集群中 Leader 节点是如何产生的？"></a>Nacos 集群中 Leader 节点是如何产生的？</h5><p> Nacos 集群采用 Raft 算法实现。它是一种比较简单的选举算法，用于选举出 Nacos 集群中最重要的 Leader（领导）节点。</p>
 <p> 在 Nacos 集群中，每个节点都拥有以下三种角色中的一种。</p>

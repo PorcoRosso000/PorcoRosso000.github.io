@@ -176,8 +176,12 @@
 <p>​     这个是不应该发生的事情，但也是代码中常见的问题。分配的内存用完之后，就一定要回收，避免造成内存泄漏。</p>
 <p> 2、程序代码有问题，造成系统没有办法回收；</p>
 <p>​    </p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Temp1</span> = new BYTE[<span class="number">100</span>]<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">   <span class="attr">Temp2</span> = new BYTE[<span class="number">100</span>]<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">   <span class="attr">Temp2</span> = Temp1<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<pre><code> Temp1 = new BYTE[100];
 
+    Temp2 = new BYTE[100];
+
+    Temp2 = Temp1;
+</code></pre>
 <p>​     这样，Temp2的内存地址就丢掉了，而且永远都找不回了，这个时候Temp2的内存空间想回收都 没有办法。</p>
 <p> 3、某些API函数操作不正确，造成内存泄漏；</p>
 <p> 3、内存泄漏的危害</p>

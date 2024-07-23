@@ -305,10 +305,18 @@
 <p> StringBuilder和StringBuffer是可变的</p>
 <p> StringBuilder和StringBuffer的区别：StringBuilder的效率高，所以说是线程不安全的，而StringBuffer的效率低，因此是安全的，在一般情况下我们会去使用StringBuilder因为效率较高，但是如果要求要线程的话要使用StringBuffer。StringBuffer底层是通过锁来保证安全的。</p>
 <h3 id="StringBuilder为什么是线程不安全的-1"><a href="#StringBuilder为什么是线程不安全的-1" class="headerlink" title="StringBuilder为什么是线程不安全的"></a>StringBuilder为什么是线程不安全的</h3><p> 首先两个全部都继承了AbstractStringBuilder，如果创.0建的话变量是存在AbstractStringBuilder中的，有一个char和count，第一个不安全就是，他底层的append方法是没有加锁的，没有保证了原子性，如果说创建线程同时去执行的话，谁先获取到就谁先执行，很有可能出现两个人同时获取到，那么同时进行操作，就会出现所得结果小于真实结果，第二个就是在添加的时候会出现数组下标越界，每次添加的时候都回去判断下标和数组长度，如果长度够就可以添加，在这里又没有保证原子性，如果两个线程同时进来操作，其中一个因为cpu满了，有一个添加进去了，那么就会出现第二个添加的时候已经达到最大长度了，这时候就会出现下标越界</p>
-<h2 id="switch-case-语句语法格式"><a href="#switch-case-语句语法格式" class="headerlink" title="switch case 语句语法格式"></a>switch case 语句语法格式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(expression)&#123;</span><br><span class="line">    <span class="keyword">case</span> value :</span><br><span class="line">       <span class="comment">//语句</span></span><br><span class="line">       <span class="keyword">break</span>; <span class="comment">//可选</span></span><br><span class="line">    <span class="keyword">case</span> value :</span><br><span class="line">       <span class="comment">//语句</span></span><br><span class="line">       <span class="keyword">break</span>; <span class="comment">//可选</span></span><br><span class="line">    <span class="comment">//你可以有任意数量的case语句</span></span><br><span class="line">    <span class="keyword">default</span> : <span class="comment">//可选</span></span><br><span class="line">       <span class="comment">//语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<h2 id="switch-case-语句语法格式"><a href="#switch-case-语句语法格式" class="headerlink" title="switch case 语句语法格式"></a>switch case 语句语法格式</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">switch</span><span class="token punctuation">(</span>expression<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> value <span class="token operator">:</span>
+       <span class="token comment" spellcheck="true">//语句</span>
+       <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//可选</span>
+    <span class="token keyword">case</span> value <span class="token operator">:</span>
+       <span class="token comment" spellcheck="true">//语句</span>
+       <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//可选</span>
+    <span class="token comment" spellcheck="true">//你可以有任意数量的case语句</span>
+    <span class="token keyword">default</span> <span class="token operator">:</span> <span class="token comment" spellcheck="true">//可选</span>
+       <span class="token comment" spellcheck="true">//语句</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="抽象类和接口的区别-1"><a href="#抽象类和接口的区别-1" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h2><ul>
 <li>抽象类要被子类继承，接口要被类实现。</li>
 <li>接口只能做方法声明，抽象类中可以作方法声明，也可以做方法实现。</li>
@@ -411,11 +419,13 @@
 </tr>
 </tbody></table>
 <p>​        </p>
-<h2 id="Git回退历史"><a href="#Git回退历史" class="headerlink" title="Git回退历史"></a>Git回退历史</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用git <span class="built_in">log</span>命令，查看分支提交历史，确认需要回退的版本</span><br><span class="line">使用git <span class="built_in">reset</span> --hard commit_id命令，进行版本回退</span><br><span class="line">使用git <span class="built_in">push</span> <span class="built_in">origin</span>命令，推送至远程分支</span><br></pre></td></tr></table></figure>
-
+<h2 id="Git回退历史"><a href="#Git回退历史" class="headerlink" title="Git回退历史"></a>Git回退历史</h2><pre><code>使用git log命令，查看分支提交历史，确认需要回退的版本
+使用git reset --hard commit_id命令，进行版本回退
+使用git push origin命令，推送至远程分支
+</code></pre>
 <p> 快捷命令：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回退上个版本：git <span class="keyword">reset</span> <span class="comment">--hard HEAD^ </span></span><br></pre></td></tr></table></figure>
-
+<pre><code>回退上个版本：git reset --hard HEAD^ 
+</code></pre>
 <p> 【注：HEAD是指向当前版本的指针，HEAD^表示上个版本,HEAD^^表示上上个版本】</p>
 <p> 如果修改到的文件比较少，我们可以不通过命令回滚的方式，手动删除之前的修改，再进行提交。</p>
 <p>撤销修改</p>
@@ -427,22 +437,32 @@
 <p> reset和revert都可以用来回滚代码。但他们是有区别的，准确来说，reset是用来”回退”版本，而revert是用来”还原”某次或者某几次提交。</p>
 <p> 听起来有点绕，怎么去理解他们呢？</p>
 <p> 举个例子，比如在master分支，有以下提交历史:</p>
-<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">42</span><span class="function"><span class="title">eae13</span> (HEAD -&gt;</span> master) 第四次修改</span><br><span class="line"><span class="number">97</span>ea0f9 第三次修改</span><br><span class="line">e50b7c2 第二次修改</span><br><span class="line"><span class="number">3</span>a52650 第一次修改</span><br></pre></td></tr></table></figure>
-
+<pre><code>42eae13 (HEAD -&gt; master) 第四次修改
+97ea0f9 第三次修改
+e50b7c2 第二次修改
+3a52650 第一次修改
+</code></pre>
 <p> 可以看到，master最新版本为第四次修改。</p>
 <p> 如果发现，在第四次修改有错误，需要回滚到第三次修改，就可以用reset命令来回退。</p>
 <p> 执行 git reset –hard 97ea0f9,这个时候，git的提交历史变为:</p>
-<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">97</span><span class="function"><span class="title">ea0f9</span> (HEAD -&gt;</span> master) 第三次修改</span><br><span class="line">e50b7c2 第二次修改</span><br><span class="line"><span class="number">3</span>a52650 第一次修改</span><br></pre></td></tr></table></figure>
-
+<pre><code>97ea0f9 (HEAD -&gt; master) 第三次修改
+e50b7c2 第二次修改
+3a52650 第一次修改
+</code></pre>
 <p> 可以看到master当前指向97ea0f9这个版本，我们回到了第三次修改。</p>
 <p> 使用reset命令，Git会把要回退版本之后提交的修改都删除掉。要从第四次修改回退到第一次修改，那么会删除第二、三、四次的修改。【注：这里并不是真正的物理删除】</p>
 <p> 那如果发现第三次修改有错误，想要恢复第三次修改，却要保留第四次修改呢？</p>
 <p> 这个时候就可以用revert命令：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> revert -n <span class="number">97</span>ea0f9</span><br><span class="line"><span class="attribute">git</span> commit -m <span class="string">&quot;恢复第三次修改&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>git revert -n 97ea0f9
+git commit -m &quot;恢复第三次修改&quot;
+</code></pre>
 <p> Git提交历史会变成：</p>
-<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">33</span><span class="function"><span class="title">b8b30</span> (HEAD -&gt;</span> master) Revert <span class="string">&quot;恢复第三次修改&quot;</span></span><br><span class="line"><span class="number">42</span>eae13 第四次修改</span><br><span class="line"><span class="number">97</span>ea0f9 第三次修改</span><br><span class="line">e50b7c2 第二次修改</span><br><span class="line"><span class="number">3</span>a52650 第一次修改</span><br></pre></td></tr></table></figure>
-
+<pre><code>33b8b30 (HEAD -&gt; master) Revert &quot;恢复第三次修改&quot;
+42eae13 第四次修改
+97ea0f9 第三次修改
+e50b7c2 第二次修改
+3a52650 第一次修改
+</code></pre>
 <p> 实际上，Git把第三次修改从提交中剔除(还原)了，还保留了第四次修改，并且产生了新的commit_id。</p>
 <p> 在实际生产环境中，代码是基于master分支发布到线上的，会有多人进行提交。可能会碰到自己或团队其他成员开发的某个功能在上线之后有Bug,需要及时做代码回滚的操作。</p>
 <p> 在确认要回滚的版本之后，如果别人没有最新提交，那么就可以直接用reset命令进行版本回退，否则，就可以考虑使用revert命令进行还原修改，不能影响到别人的提交。</p>
@@ -454,8 +474,40 @@
 <p>简单选择排序</p>
 <p>堆排序</p>
 <p>冒泡排序</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// int a[] = &#123;12, 23, 34, 45, 12, 23, 43, 56&#125;;</span></span><br><span class="line"></span><br><span class="line">       <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> a.length;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; length - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">if</span> (a[j] &gt; a[j+<span class="number">1</span>]) &#123;        <span class="comment">// 相邻元素两两对比</span></span><br><span class="line"></span><br><span class="line">                   <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a[j+<span class="number">1</span>];        <span class="comment">// 元素交换</span></span><br><span class="line"></span><br><span class="line">                   a[j+<span class="number">1</span>] = a[j];</span><br><span class="line"></span><br><span class="line">                   a[j] = temp;</span><br><span class="line"></span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;a.length ; i++) &#123;</span><br><span class="line"></span><br><span class="line">           System.out.println(<span class="string">&quot;-----&quot;</span>+a[i]);</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
+      <span class="token comment" spellcheck="true">// int a[] = &amp;#123;12, 23, 34, 45, 12, 23, 43, 56&amp;#125;;</span>
+
+       <span class="token keyword">int</span> length <span class="token operator">=</span> a<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+
+        
+
+       <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+           <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> length <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+               <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 相邻元素两两对比</span>
+
+                   <span class="token keyword">int</span> temp <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 元素交换</span>
+
+                   a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+                   a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+
+               <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+           <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+       <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span>a<span class="token punctuation">.</span>length <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+           System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----"</span><span class="token operator">+</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>快速排序</p>
 <p>归还排序</p>
 <p>基数排序</p>
@@ -465,39 +517,139 @@
 <h2 id="类之间转换"><a href="#类之间转换" class="headerlink" title="类之间转换"></a>类之间转换</h2><p>BeanUtils.copyProperties(“转换前的类”, “转换后的类”);<br>有几点我们需要注意：<br>BeanUtils.copyProperties(a, b);<br>b中的存在的属性，a中一定要有，但是a中可以有多余的属性；<br>a中与b中相同的属性都会被替换，不管是否有值；<br>a、 b中的属性要名字相同，才能被赋值，不然的话需要手动赋值；<br>Spring的BeanUtils的CopyProperties方法需要对应的属性有getter和setter方法；<br>如果存在属性完全相同的内部类，但是不是同一个内部类，即分别属于各自的内部类，则spring会认为属性不同，不会copy；<br>spring和apache的copy属性的方法源和目的参数的位置正好相反，所以导包和调用的时候都要注意一下。</p>
 <h2 id="java类"><a href="#java类" class="headerlink" title="java类"></a>java类</h2><h3 id="BigDecimal-包装类"><a href="#BigDecimal-包装类" class="headerlink" title="BigDecimal(包装类)"></a>BigDecimal(包装类)</h3><p>包名: java.math.BigDecimal</p>
 <p>计算方式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BigDecimal</span> <span class="variable">num1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;0.005&quot;</span>);</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">num2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1000000&quot;</span>);</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">num3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(-<span class="string">&quot;1000000&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//尽量用字符串的形式初始化</span></span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">num12</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;0.005&quot;</span>);</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">num22</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;1000000&quot;</span>);</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">num32</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;-1000000&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//加法</span></span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result1</span> <span class="operator">=</span> num1.add(num2);</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result12</span> <span class="operator">=</span> num12.add(num22);</span><br><span class="line"></span><br><span class="line"><span class="comment">//减法</span></span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result2</span> <span class="operator">=</span> num1.subtract(num2);</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result22</span> <span class="operator">=</span> num12.subtract(num22);</span><br><span class="line"></span><br><span class="line"><span class="comment">//乘法</span></span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result3</span> <span class="operator">=</span> num1.multiply(num2);</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result32</span> <span class="operator">=</span> num12.multiply(num22);</span><br><span class="line"></span><br><span class="line"><span class="comment">//绝对值</span></span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result4</span> <span class="operator">=</span> num3.abs();</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result42</span> <span class="operator">=</span> num32.abs();</span><br><span class="line"></span><br><span class="line"><span class="comment">//除法</span></span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result5</span> <span class="operator">=</span> num2.divide(num1,<span class="string">&quot;20&quot;</span>,BigDecimal.ROUND_HALF_UP);</span><br><span class="line"><span class="type">BigDecimal</span> <span class="variable">result52</span> <span class="operator">=</span> num22.divide(num12,<span class="string">&quot;20&quot;</span>,BigDecimal.ROUND_HALF_UP);</span><br><span class="line"></span><br><span class="line">BigDecimal 多参自定义除法</span><br><span class="line"><span class="keyword">public</span> BigDecimal <span class="title function_">divide</span><span class="params">(BigDecimal divisor, <span class="type">int</span> scale, <span class="type">int</span> roundingMode)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">BigDecimal</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="number">10.005</span>);</span><br><span class="line">        <span class="type">BigDecimal</span> <span class="variable">b2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//参数1 为除数</span></span><br><span class="line">        <span class="comment">//scale 为计算所得商的位数</span></span><br><span class="line">        <span class="comment">//roundingMode 共8种0，1，2 ，3，4，5，6，7</span></span><br><span class="line">        System.out.println(b1.divide(b2, <span class="number">3</span>, BigDecimal.ROUND_UNNECESSARY));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">其中，第三位参数为除法模式，分以下<span class="number">8</span>种，可自传值，也可使用BigDecimal的枚举，都一样的，如下：</span><br><span class="line"><span class="number">0</span> - ROUND_UP 远离<span class="number">0</span>的方向</span><br><span class="line">例：<span class="number">1.1</span>-&gt;<span class="number">2</span> <span class="number">1.5</span>-&gt;<span class="number">2</span> <span class="number">1.8</span>-&gt;<span class="number">2</span> -<span class="number">1.1</span>-&gt;-<span class="number">2</span> -<span class="number">1.5</span>-&gt;-<span class="number">2</span> -<span class="number">1.8</span>-&gt;-<span class="number">2</span></span><br><span class="line"><span class="number">1</span> - ROUND_DOWN 向<span class="number">0</span>的方向移动</span><br><span class="line">例：<span class="number">1.1</span>-&gt;<span class="number">1</span> <span class="number">1.5</span>-&gt;<span class="number">1</span> <span class="number">1.8</span>-&gt;<span class="number">1</span> -<span class="number">1.1</span>-&gt;-<span class="number">1</span> -<span class="number">1.5</span>-&gt;-<span class="number">1</span> -<span class="number">1.8</span>&gt;-<span class="number">1</span></span><br><span class="line"><span class="number">2</span> - ROUND_CEILING 舍位时往正无穷方向移动</span><br><span class="line">例：<span class="number">1.1</span>-&gt;<span class="number">2</span> <span class="number">1.5</span>-&gt;<span class="number">2</span> <span class="number">1.8</span>-&gt;<span class="number">2</span> -<span class="number">1.1</span>-&gt;-<span class="number">1</span> -<span class="number">1.5</span>-&gt;-<span class="number">1</span> -<span class="number">1.8</span>-&gt;-<span class="number">1</span></span><br><span class="line"><span class="number">3</span> - ROUND_FLOOR 与CEILING相反，往负无穷</span><br><span class="line">例：<span class="number">1.1</span>-&gt;<span class="number">1</span> <span class="number">1.5</span>-&gt;<span class="number">1</span> <span class="number">1.8</span>-&gt;<span class="number">1</span> -<span class="number">1.1</span>-&gt;-<span class="number">2</span> -<span class="number">1.5</span>-&gt;-<span class="number">2</span> -<span class="number">1.8</span>-&gt;-<span class="number">2</span></span><br><span class="line"><span class="number">4</span> - ROUND_HALF_UP 最常见的四舍五入</span><br><span class="line"><span class="number">5</span> - ROUND_HALF_DOWN 以<span class="number">5</span>为分界线，或曰五舍六入</span><br><span class="line"><span class="number">6</span> - ROUND_HALF_EVEN 同样以<span class="number">5</span>为分界线，如果是<span class="number">5</span>，则前一位变偶数<span class="number">1.15</span>-&gt;<span class="number">1.2</span> <span class="number">1.16</span>-&gt;<span class="number">1.2</span> <span class="number">1.25</span>-&gt;<span class="number">1.2</span> <span class="number">1.26</span>-&gt;<span class="number">1.3</span></span><br><span class="line"><span class="number">7</span> - ROUND_UNNECESSARY 舍入模式可以断言所请求的操作具有精确的结果，因此不需要舍入。如果在产生不精确结果的操作上指定了这种舍入模式，则会抛出 &#123;<span class="meta">@code</span> ArithmeticException&#125;。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>BigDecimal num1 = new BigDecimal(&quot;0.005&quot;);
+BigDecimal num2 = new BigDecimal(&quot;1000000&quot;);
+BigDecimal num3 = new BigDecimal(-&quot;1000000&quot;);
 
-<h2 id="时间问题"><a href="#时间问题" class="headerlink" title="时间问题"></a>时间问题</h2><h3 id="String类型转Date类型"><a href="#String类型转Date类型" class="headerlink" title="String类型转Date类型"></a>String类型转Date类型</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DateUtil.getDate(req.getStartTime())</span><br></pre></td></tr></table></figure>
+//尽量用字符串的形式初始化
+BigDecimal num12 = new BigDecimal(&quot;0.005&quot;);
+BigDecimal num22 = new BigDecimal(&quot;1000000&quot;);
+BigDecimal num32 = new BigDecimal(&quot;-1000000&quot;);
 
-<h3 id="获取几个月以后的时间"><a href="#获取几个月以后的时间" class="headerlink" title="获取几个月以后的时间"></a>获取几个月以后的时间</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DateUtil.getAfterMonths(DateUtil.getDate(req.getStartTime()), 3)</span><br></pre></td></tr></table></figure>
+//加法
+BigDecimal result1 = num1.add(num2);
+BigDecimal result12 = num12.add(num22);
 
-<h3 id="比较两个字符串的时间类型大小"><a href="#比较两个字符串的时间类型大小" class="headerlink" title="比较两个字符串的时间类型大小"></a>比较两个字符串的时间类型大小</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String endTime;</span><br><span class="line">String startTime;</span><br><span class="line">//endTime - startTime;</span><br><span class="line">int endCompare = req.getEndTime().compareTo(req.getStartTime());</span><br><span class="line">int&lt;0 : endTime小于startTime</span><br></pre></td></tr></table></figure>
+//减法
+BigDecimal result2 = num1.subtract(num2);
+BigDecimal result22 = num12.subtract(num22);
 
-<h2 id="List集合去重的5种方式"><a href="#List集合去重的5种方式" class="headerlink" title="List集合去重的5种方式"></a>List集合去重的5种方式</h2><h3 id="1、双重for循环"><a href="#1、双重for循环" class="headerlink" title="1、双重for循环"></a>1、双重for循环</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (int i = 0; i &lt; list.size(); i++) &#123; </span><br><span class="line">	<span class="keyword">for</span> (int j = 0; j &lt; list.size(); j++) &#123; </span><br><span class="line">		<span class="keyword">if</span>(i!=j&amp;&amp;list.<span class="built_in">get</span>(i)==list.<span class="built_in">get</span>(j)) &#123; </span><br><span class="line">			list.<span class="built_in">remove</span>(list.<span class="built_in">get</span>(j)); </span><br><span class="line"> 		&#125; </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+//乘法
+BigDecimal result3 = num1.multiply(num2);
+BigDecimal result32 = num12.multiply(num22);
 
+//绝对值
+BigDecimal result4 = num3.abs();
+BigDecimal result42 = num32.abs();
 
+//除法
+BigDecimal result5 = num2.divide(num1,&quot;20&quot;,BigDecimal.ROUND_HALF_UP);
+BigDecimal result52 = num22.divide(num12,&quot;20&quot;,BigDecimal.ROUND_HALF_UP);
 
-<h3 id="2、利用List集合的contains方法循环遍历，清空，重新添加"><a href="#2、利用List集合的contains方法循环遍历，清空，重新添加" class="headerlink" title="2、利用List集合的contains方法循环遍历，清空，重新添加"></a>2、利用List集合的contains方法循环遍历，清空，重新添加</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">removeDuplicate</span>(List&lt;<span class="built_in">String</span>&gt; list) &#123;</span><br><span class="line">    List&lt;<span class="built_in">String</span>&gt; result = <span class="keyword">new </span><span class="class title_">ArrayList</span>&lt;<span class="built_in">String</span>&gt;(list.<span class="property">size</span>());</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">String</span> <span class="built_in">str</span> : list) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!result.<span class="property">contains</span>(<span class="built_in">str</span>)) &#123;</span><br><span class="line">            result.<span class="property">add</span>(<span class="built_in">str</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    list.<span class="property">clear</span>();</span><br><span class="line">    list.<span class="property">addAll</span>(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+BigDecimal 多参自定义除法
+public BigDecimal divide(BigDecimal divisor, int scale, int roundingMode)
 
+    public static void main(String[] args)&#123;
+        BigDecimal b1 = new BigDecimal(10.005);
+        BigDecimal b2 = new BigDecimal(2);
+        //参数1 为除数
+        //scale 为计算所得商的位数
+        //roundingMode 共8种0，1，2 ，3，4，5，6，7
+        System.out.println(b1.divide(b2, 3, BigDecimal.ROUND_UNNECESSARY));
+    &#125;
 
+其中，第三位参数为除法模式，分以下8种，可自传值，也可使用BigDecimal的枚举，都一样的，如下：
+0 - ROUND_UP 远离0的方向
+例：1.1-&gt;2 1.5-&gt;2 1.8-&gt;2 -1.1-&gt;-2 -1.5-&gt;-2 -1.8-&gt;-2
+1 - ROUND_DOWN 向0的方向移动
+例：1.1-&gt;1 1.5-&gt;1 1.8-&gt;1 -1.1-&gt;-1 -1.5-&gt;-1 -1.8&gt;-1
+2 - ROUND_CEILING 舍位时往正无穷方向移动
+例：1.1-&gt;2 1.5-&gt;2 1.8-&gt;2 -1.1-&gt;-1 -1.5-&gt;-1 -1.8-&gt;-1
+3 - ROUND_FLOOR 与CEILING相反，往负无穷
+例：1.1-&gt;1 1.5-&gt;1 1.8-&gt;1 -1.1-&gt;-2 -1.5-&gt;-2 -1.8-&gt;-2
+4 - ROUND_HALF_UP 最常见的四舍五入
+5 - ROUND_HALF_DOWN 以5为分界线，或曰五舍六入
+6 - ROUND_HALF_EVEN 同样以5为分界线，如果是5，则前一位变偶数1.15-&gt;1.2 1.16-&gt;1.2 1.25-&gt;1.2 1.26-&gt;1.3
+7 - ROUND_UNNECESSARY 舍入模式可以断言所请求的操作具有精确的结果，因此不需要舍入。如果在产生不精确结果的操作上指定了这种舍入模式，则会抛出 &#123;@code ArithmeticException&#125;。
+</code></pre>
+<h2 id="时间问题"><a href="#时间问题" class="headerlink" title="时间问题"></a>时间问题</h2><h3 id="String类型转Date类型"><a href="#String类型转Date类型" class="headerlink" title="String类型转Date类型"></a>String类型转Date类型</h3><pre class="line-numbers language-plain"><code class="language-plain">DateUtil.getDate(req.getStartTime())
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="获取几个月以后的时间"><a href="#获取几个月以后的时间" class="headerlink" title="获取几个月以后的时间"></a>获取几个月以后的时间</h3><pre class="line-numbers language-plain"><code class="language-plain">DateUtil.getAfterMonths(DateUtil.getDate(req.getStartTime()), 3)
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="比较两个字符串的时间类型大小"><a href="#比较两个字符串的时间类型大小" class="headerlink" title="比较两个字符串的时间类型大小"></a>比较两个字符串的时间类型大小</h3><pre class="line-numbers language-plain"><code class="language-plain">String endTime;
+String startTime;
+//endTime - startTime;
+int endCompare = req.getEndTime().compareTo(req.getStartTime());
+int<0 : endTime小于startTime
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="List集合去重的5种方式"><a href="#List集合去重的5种方式" class="headerlink" title="List集合去重的5种方式"></a>List集合去重的5种方式</h2><h3 id="1、双重for循环"><a href="#1、双重for循环" class="headerlink" title="1、双重for循环"></a>1、双重for循环</h3><pre><code>for (int i = 0; i &lt; list.size(); i++) &#123; 
+    for (int j = 0; j &lt; list.size(); j++) &#123; 
+        if(i!=j&amp;&amp;list.get(i)==list.get(j)) &#123; 
+            list.remove(list.get(j)); 
+         &#125; 
+    &#125; 
+&#125;
+</code></pre>
+<h3 id="2、利用List集合的contains方法循环遍历，清空，重新添加"><a href="#2、利用List集合的contains方法循环遍历，清空，重新添加" class="headerlink" title="2、利用List集合的contains方法循环遍历，清空，重新添加"></a>2、利用List集合的contains方法循环遍历，清空，重新添加</h3><pre><code>private static void removeDuplicate(List&lt;String&gt; list) &#123;
+    List&lt;String&gt; result = new ArrayList&lt;String&gt;(list.size());
+    for (String str : list) &#123;
+        if (!result.contains(str)) &#123;
+            result.add(str);
+        &#125;
+    &#125;
+    list.clear();
+    list.addAll(result);
+&#125;
+</code></pre>
+<h3 id="3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序"><a href="#3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序" class="headerlink" title="3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序"></a>3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序</h3><pre><code>private static void removeDuplicate(List&lt;String&gt; list) &#123;
+    HashSet&lt;String&gt; set = new HashSet&lt;String&gt;(list.size());
+    List&lt;String&gt; result = new ArrayList&lt;String&gt;(list.size());
+    for (String str : list) &#123;
+        if (set.add(str)) &#123;
+            result.add(str);
+        &#125;
+    &#125;
+    list.clear();
+    list.addAll(result);
+&#125;
 
-<h3 id="3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序"><a href="#3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序" class="headerlink" title="3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序"></a>3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">removeDuplicate</span>(List&lt;<span class="built_in">String</span>&gt; list) &#123;</span><br><span class="line">    HashSet&lt;<span class="built_in">String</span>&gt; <span class="built_in">set</span> = <span class="keyword">new </span><span class="class title_">HashSet</span>&lt;<span class="built_in">String</span>&gt;(list.<span class="property">size</span>());</span><br><span class="line">    List&lt;<span class="built_in">String</span>&gt; result = <span class="keyword">new </span><span class="class title_">ArrayList</span>&lt;<span class="built_in">String</span>&gt;(list.<span class="property">size</span>());</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">String</span> <span class="built_in">str</span> : list) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">set</span>.<span class="property">add</span>(<span class="built_in">str</span>)) &#123;</span><br><span class="line">            result.<span class="property">add</span>(<span class="built_in">str</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    list.<span class="property">clear</span>();</span><br><span class="line">    list.<span class="property">addAll</span>(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+</code></pre>
 <h3 id="4、使用java8特性的stream进行List去重"><a href="#4、使用java8特性的stream进行List去重" class="headerlink" title="4、使用java8特性的stream进行List去重"></a>4、使用java8特性的stream进行List去重</h3><p>要从arraylist中删除重复项，我们也可以使用java 8 stream api。</p>
 <p>使用steam的distinct()方法返回一个由不同数据组成的流，通过对象的equals（）方法进行比较。收集所有区域数据List使用Collectors.toList()。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayListExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; numbersList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(Arrays.asList(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>));</span><br><span class="line">        System.out.println(numbersList);</span><br><span class="line">        List&lt;Integer&gt; listWithoutDuplicates = numbersList.stream().distinct().collect(Collectors.toList());</span><br><span class="line">        System.out.println(listWithoutDuplicates);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-
-
+public class ArrayListExample &#123;
+    public static void main(String[] args) &#123;
+        ArrayList&lt;Integer&gt; numbersList = new ArrayList&lt;&gt;(Arrays.asList(1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 7, 8));
+        System.out.println(numbersList);
+        List&lt;Integer&gt; listWithoutDuplicates = numbersList.stream().distinct().collect(Collectors.toList());
+        System.out.println(listWithoutDuplicates);
+    &#125;
+&#125;
+</code></pre>
 <h3 id="5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据"><a href="#5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据" class="headerlink" title="5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据"></a>5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据</h3><p>LinkedHashSet是在一个ArrayList删除重复数据的最佳方法。</p>
 <p>LinkedHashSet在内部完成两件事：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">删除重复数据</span><br><span class="line">保持添加到其中的数据的顺序</span><br></pre></td></tr></table></figure>
-
+<pre><code>删除重复数据
+保持添加到其中的数据的顺序
+</code></pre>
 <p>Java示例使用LinkedHashSet删除arraylist中的重复项。在给定的示例中，numbersList是包含整数的arraylist，其中一些是重复的数字。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedHashSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayListExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; numbersList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(Arrays.asList(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>));</span><br><span class="line">        System.out.println(numbersList);</span><br><span class="line">        LinkedHashSet&lt;Integer&gt; hashSet = <span class="keyword">new</span> <span class="title class_">LinkedHashSet</span>&lt;&gt;(numbersList);</span><br><span class="line">        ArrayList&lt;Integer&gt; listWithoutDuplicates = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(hashSet);</span><br><span class="line">        System.out.println(listWithoutDuplicates);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 
-
-
+public class ArrayListExample &#123;
+    public static void main(String[] args) &#123;
+        ArrayList&lt;Integer&gt; numbersList = new ArrayList&lt;&gt;(Arrays.asList(1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 7, 8));
+        System.out.println(numbersList);
+        LinkedHashSet&lt;Integer&gt; hashSet = new LinkedHashSet&lt;&gt;(numbersList);
+        ArrayList&lt;Integer&gt; listWithoutDuplicates = new ArrayList&lt;&gt;(hashSet);
+        System.out.println(listWithoutDuplicates);
+    &#125;
+&#125;
+</code></pre>
 <h2 id><a href="#" class="headerlink" title></a></h2><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>CSDN博主「了迹奇有没」的原创文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/w_monster/article/details/112008308">https://blog.csdn.net/w_monster/article/details/112008308</a></p>
 
   </div>

@@ -152,18 +152,47 @@
 <span id="more"></span>
 
 <hr>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># cd /usr/local/docker/</span></span><br><span class="line"><span class="comment"># 创建 mongodb 文件夹</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># mkdir mongodb</span></span><br><span class="line"><span class="comment"># 打开 mongodb 文件夹</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">docker</span>]<span class="comment"># cd mongodb/</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据挂在目录</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">mongodb</span>]<span class="comment"># mkdir data</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编写脚本</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">mongodb</span>]<span class="comment"># vim startMongodb.sh</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name mongodb-4.0.28 \</span><br><span class="line">--restart=always \</span><br><span class="line">-v /usr/local/docker/mongodb/data:/data/db \</span><br><span class="line">-p 27017:27017 mongo:4.0.28</span><br></pre></td></tr></table></figure>
-
-<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">mongodb</span>]<span class="comment"># chmod -R 700 startMongodb.sh</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">MuYu</span> <span class="type">mongodb</span>]<span class="comment"># ./startMongodb.sh </span></span><br><span class="line">Unable to find image <span class="string">&#x27;mongo:4.0.28&#x27;</span> locally</span><br><span class="line"><span class="number">4.0</span>.<span class="number">28</span>: Pulling from library/mongo</span><br><span class="line"><span class="number">58690</span>f9b18<span class="built_in">fc</span>: Pull complete </span><br><span class="line">b51569e7c507: Pull complete </span><br><span class="line">da8ef40b9eca: Pull complete </span><br><span class="line">fb15d46c38dc: Pull complete </span><br><span class="line"><span class="number">8</span>c5b4403b3cc: Pull complete </span><br><span class="line">a336ecd37208: Pull complete </span><br><span class="line"><span class="number">12</span>c733cd45a4: Pull complete </span><br><span class="line"><span class="number">0500</span>d06255ed: Pull complete </span><br><span class="line"><span class="number">94973</span>a063374: Pull complete </span><br><span class="line"><span class="number">6311</span>dd69caf7: Pull complete </span><br><span class="line">b40f828abab8: Pull complete </span><br><span class="line"><span class="number">8379</span>d13e9da6: Pull complete </span><br><span class="line"><span class="number">12</span>fa2eef4452: Pull complete </span><br><span class="line">Digest: sha256:d22f53e7aa6851a62f28bff4061176ceaa90ca8dfd025067dfb5db84a60eb0cc</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> mongo:<span class="number">4.0</span>.<span class="number">28</span></span><br><span class="line">e557fd76e2b1dcada82ad2f63ed29bcddb5e748d56d5e98e5379f4d8384109<span class="built_in">ac</span></span><br></pre></td></tr></table></figure>
-
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开目录</span>
+<span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># cd /usr/local/docker/</span>
+<span class="token comment" spellcheck="true"># 创建 mongodb 文件夹</span>
+<span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># mkdir mongodb</span>
+<span class="token comment" spellcheck="true"># 打开 mongodb 文件夹</span>
+<span class="token namespace">[root@MuYu docker]</span><span class="token comment" spellcheck="true"># cd mongodb/</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 数据挂在目录</span>
+<span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># mkdir data</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 编写脚本</span>
+<span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># vim startMongodb.sh</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class="line-numbers language-shell"><code class="language-shell">docker run -d \
+--name mongodb-4.0.28 \
+--restart=always \
+-v /usr/local/docker/mongodb/data:/data/db \
+-p 27017:27017 mongo:4.0.28
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># chmod -R 700 startMongodb.sh</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mongodb]</span><span class="token comment" spellcheck="true"># ./startMongodb.sh </span>
+Unable to find image <span class="token string">'mongo:4.0.28'</span> locally
+4<span class="token punctuation">.</span>0<span class="token punctuation">.</span>28: Pulling <span class="token keyword">from</span> library<span class="token operator">/</span>mongo
+58690f9b18fc: Pull complete 
+b51569e7c507: Pull complete 
+da8ef40b9eca: Pull complete 
+fb15d46c38dc: Pull complete 
+8c5b4403b3cc: Pull complete 
+a336ecd37208: Pull complete 
+12c733cd45a4: Pull complete 
+0500d06255ed: Pull complete 
+94973a063374: Pull complete 
+6311dd69caf7: Pull complete 
+b40f828abab8: Pull complete 
+8379d13e9da6: Pull complete 
+12fa2eef4452: Pull complete 
+Digest: sha256:d22f53e7aa6851a62f28bff4061176ceaa90ca8dfd025067dfb5db84a60eb0cc
+Status: Downloaded newer image <span class="token keyword">for</span> mongo:4<span class="token punctuation">.</span>0<span class="token punctuation">.</span>28
+e557fd76e2b1dcada82ad2f63ed29bcddb5e748d56d5e98e5379f4d8384109ac
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h1><p><img src="/posts/afdec5ed/clip_image002.gif" alt="图片"></p>
 <p><img src="/posts/afdec5ed/clip_image004.gif" alt="图片"></p>
 

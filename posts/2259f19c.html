@@ -149,25 +149,51 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="配置yum国内镜像加速"><a href="#配置yum国内镜像加速" class="headerlink" title="配置yum国内镜像加速"></a>配置yum国内镜像加速</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、备份</span></span><br><span class="line"><span class="built_in">mv</span> /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo.backup</span><br><span class="line"><span class="comment"># 2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/</span></span><br><span class="line"><span class="built_in">wget</span> <span class="literal">-O</span> /etc/yum.repos.d/CentOS<span class="literal">-Base</span>.repo http://mirrors.aliyun.com/repo/Centos<span class="literal">-7</span>.repo</span><br><span class="line"><span class="comment"># 3、生成缓存</span></span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装docker运行环境"><a href="#安装docker运行环境" class="headerlink" title="安装docker运行环境"></a>安装docker运行环境</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 由于 Docker 是基于 C 和 C++ 开发的，所以需要先安装相关环境。</span></span><br><span class="line">yum <span class="literal">-y</span> install gcc</span><br><span class="line">yum <span class="literal">-y</span> install gcc<span class="literal">-c</span>++</span><br></pre></td></tr></table></figure>
-
+<h2 id="配置yum国内镜像加速"><a href="#配置yum国内镜像加速" class="headerlink" title="配置yum国内镜像加速"></a>配置yum国内镜像加速</h2><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 1、备份</span>
+<span class="token function">mv</span> <span class="token operator">/</span>etc<span class="token operator">/</span>yum<span class="token punctuation">.</span>repos<span class="token punctuation">.</span>d<span class="token operator">/</span>CentOS<span class="token operator">-</span>Base<span class="token punctuation">.</span>repo <span class="token operator">/</span>etc<span class="token operator">/</span>yum<span class="token punctuation">.</span>repos<span class="token punctuation">.</span>d<span class="token operator">/</span>CentOS<span class="token operator">-</span>Base<span class="token punctuation">.</span>repo<span class="token punctuation">.</span>backup
+<span class="token comment" spellcheck="true"># 2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/</span>
+wget <span class="token operator">-</span>O <span class="token operator">/</span>etc<span class="token operator">/</span>yum<span class="token punctuation">.</span>repos<span class="token punctuation">.</span>d<span class="token operator">/</span>CentOS<span class="token operator">-</span>Base<span class="token punctuation">.</span>repo http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com<span class="token operator">/</span>repo<span class="token operator">/</span>Centos<span class="token operator">-</span>7<span class="token punctuation">.</span>repo
+<span class="token comment" spellcheck="true"># 3、生成缓存</span>
+yum makecache
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="安装docker运行环境"><a href="#安装docker运行环境" class="headerlink" title="安装docker运行环境"></a>安装docker运行环境</h2><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 由于 Docker 是基于 C 和 C++ 开发的，所以需要先安装相关环境。</span>
+yum <span class="token operator">-</span>y install gcc
+yum <span class="token operator">-</span>y install gcc<span class="token operator">-</span>c+<span class="token operator">+</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="卸载docker"><a href="#卸载docker" class="headerlink" title="卸载docker"></a>卸载docker</h2><p>如果之前安装过docker先卸载之前的docker，如果没安装过请忽略这一步</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="literal">-y</span> remove docker docker<span class="literal">-common</span> docker<span class="literal">-selinux</span> docker<span class="literal">-engine</span></span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-powershell"><code class="language-powershell">yum <span class="token operator">-</span>y remove docker docker<span class="token operator">-</span>common docker<span class="token operator">-</span>selinux docker<span class="token operator">-</span>engine
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>根据docker官方的建议，需要先安装一些环境</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install <span class="literal">-y</span> yum<span class="literal">-utils</span> device<span class="literal">-mapper-persistent-data</span> lvm2</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-powershell"><code class="language-powershell">yum install <span class="token operator">-</span>y yum<span class="token operator">-</span>utils device<span class="token operator">-</span>mapper<span class="token operator">-</span>persistent<span class="token operator">-</span><span class="token keyword">data</span> lvm2
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="设置镜像仓库"><a href="#设置镜像仓库" class="headerlink" title="设置镜像仓库"></a>设置镜像仓库</h2><pre class="line-numbers language-powershell"><code class="language-powershell">yum<span class="token operator">-</span>config<span class="token operator">-</span>manager <span class="token operator">--</span>add<span class="token operator">-</span>repo http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com<span class="token operator">/</span>docker<span class="token operator">-</span>ce<span class="token operator">/</span>linux<span class="token operator">/</span>centos<span class="token operator">/</span>docker<span class="token operator">-</span>ce<span class="token punctuation">.</span>repo
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="更新yum软件包索引"><a href="#更新yum软件包索引" class="headerlink" title="更新yum软件包索引"></a>更新yum软件包索引</h2><pre class="line-numbers language-powershell"><code class="language-powershell">yum makecache fast
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 这里的 docker-ce 社区版，docker-ee 企业版</span>
+yum <span class="token operator">-</span>y install docker<span class="token operator">-</span>ce docker<span class="token operator">-</span>ce<span class="token operator">-</span><span class="token function">cli</span> containerd<span class="token punctuation">.</span>io
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h2><pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 查看docker状态</span>
+systemctl status docker
 
-<h2 id="设置镜像仓库"><a href="#设置镜像仓库" class="headerlink" title="设置镜像仓库"></a>设置镜像仓库</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum<span class="literal">-config-manager</span> <span class="literal">--add-repo</span> http://mirrors.aliyun.com/docker<span class="literal">-ce</span>/linux/centos/docker<span class="literal">-ce</span>.repo</span><br></pre></td></tr></table></figure>
+<span class="token comment" spellcheck="true"># 启动docker</span>
+systemctl <span class="token function">start</span> docker
 
-<h2 id="更新yum软件包索引"><a href="#更新yum软件包索引" class="headerlink" title="更新yum软件包索引"></a>更新yum软件包索引</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure>
+<span class="token comment" spellcheck="true"># 停止docker</span>
+systemctl stop docker
 
-<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里的 docker-ce 社区版，docker-ee 企业版</span></span><br><span class="line">yum <span class="literal">-y</span> install docker<span class="literal">-ce</span> docker<span class="literal">-ce-cli</span> containerd.io</span><br></pre></td></tr></table></figure>
+<span class="token comment" spellcheck="true"># 查看docker版本信息</span>
+docker version
 
-<h2 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看docker状态</span></span><br><span class="line">systemctl status docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动docker</span></span><br><span class="line">systemctl <span class="built_in">start</span> docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止docker</span></span><br><span class="line">systemctl stop docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看docker版本信息</span></span><br><span class="line">docker version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置docker容器开机自启</span></span><br><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+<span class="token comment" spellcheck="true"># 设置docker容器开机自启</span>
+systemctl enable docker
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="创建docker的工作目录"><a href="#创建docker的工作目录" class="headerlink" title="创建docker的工作目录"></a>创建docker的工作目录</h2><pre class="line-numbers language-xml"><code class="language-xml"># 打开目录
+[root@localhost ~]# cd /usr/local/
+# docker的工作空间
+[root@localhost local]# mkdir docker
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="创建docker的工作目录"><a href="#创建docker的工作目录" class="headerlink" title="创建docker的工作目录"></a>创建docker的工作目录</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 打开目录</span><br><span class="line">[root@localhost ~]# cd /usr/local/</span><br><span class="line"># docker的工作空间</span><br><span class="line">[root@localhost local]# mkdir docker</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 

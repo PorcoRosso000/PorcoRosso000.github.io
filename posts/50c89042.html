@@ -149,12 +149,98 @@
 <span id="more"></span>
 
 <hr>
-<h3 id="校验："><a href="#校验：" class="headerlink" title="校验："></a>校验：</h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">车牌校验</span><br><span class="line"><span class="keyword">var</span> re = <span class="regexp">/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/</span>;</span><br><span class="line">手机号校验</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^((\+?86)|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d&#123;8&#125;$/</span>;</span><br><span class="line">身份证校验</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\d&#123;15&#125;(\d&#123;2&#125;(\d|[A-Z]))?$/</span>;</span><br><span class="line">必须为大于等于<span class="number">0</span>的数字,且只能保留两位小数</span><br><span class="line">theregex = <span class="regexp">/^(\d+)([.]\d&#123;1,2&#125;)?$/</span>;</span><br><span class="line">去掉空格</span><br><span class="line">value = value.<span class="built_in">replace</span>(<span class="regexp">/(^\s*)|(\s*$)/g</span>, <span class="string">&#x27;&#x27;</span>);  <span class="comment">//去掉空格;</span></span><br><span class="line">必须为数字,且只能保留两位小数</span><br><span class="line">theregex = <span class="regexp">/^(-)?(\d+)([.]\d&#123;1,2&#125;)?$/</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="校验："><a href="#校验：" class="headerlink" title="校验："></a>校验：</h3><pre><code>
+车牌校验
+var re = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/;
+手机号校验
+var reg = /^((\+?86)|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d&#123;8&#125;$/;
+身份证校验
+var reg = /^\d&#123;15&#125;(\d&#123;2&#125;(\d|[A-Z]))?$/;
+必须为大于等于0的数字,且只能保留两位小数
+theregex = /^(\d+)([.]\d&#123;1,2&#125;)?$/;
+去掉空格
+value = value.replace(/(^\s*)|(\s*$)/g, &#39;&#39;);  //去掉空格;
+必须为数字,且只能保留两位小数
+theregex = /^(-)?(\d+)([.]\d&#123;1,2&#125;)?$/;
+</code></pre>
+<h3 id="全选"><a href="#全选" class="headerlink" title="全选"></a>全选</h3><pre><code>/**
+ * 全选
+ */
+function check_all()&#123;
+   var checked = $(&quot;#check_all&quot;).attr(&quot;checked&quot;);
+   var items = $(&quot;input[name=check_item][type=checkbox]&quot;);
+   $.each(items ,function()&#123;
+      this.checked = checked;
+   &#125;);
+&#125;
+</code></pre>
+<h3 id="js数组循环"><a href="#js数组循环" class="headerlink" title="js数组循环"></a>js数组循环</h3><pre><code>var arr = [1, 2, 3, 4, 5, 6];
 
-<h3 id="全选"><a href="#全选" class="headerlink" title="全选"></a>全选</h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 全选</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">check_all</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="keyword">var</span> checked = $(<span class="string">&quot;#check_all&quot;</span>).attr(<span class="string">&quot;checked&quot;</span>);</span><br><span class="line">   <span class="keyword">var</span> items = $(<span class="string">&quot;input[name=check_item][type=checkbox]&quot;</span>);</span><br><span class="line">   $.each(items ,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">      this.checked = checked;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    // 第一种   for循环遍历
+    var newArr = [];
+    for(var i = 0; i &lt; arr.length; i++)&#123;
+      newArr.push(arr[i])
+      console.log(newArr)
+    &#125;
 
-<h3 id="js数组循环"><a href="#js数组循环" class="headerlink" title="js数组循环"></a>js数组循环</h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第一种   for循环遍历</span></span><br><span class="line">    <span class="keyword">var</span> newArr = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.<span class="built_in">length</span>; i++)&#123;</span><br><span class="line">      newArr.<span class="built_in">push</span>(arr[i])</span><br><span class="line">      <span class="built_in">console</span>.<span class="built_in">log</span>(newArr)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第二种 es6语法  arr.forEach()遍历</span></span><br><span class="line">    <span class="keyword">var</span> newArr = [];</span><br><span class="line">    arr.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      newArr.<span class="built_in">push</span>(arr[item])</span><br><span class="line">      <span class="built_in">console</span>.<span class="built_in">log</span>(newArr)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第三种   Object.keys()遍历</span></span><br><span class="line">    <span class="comment">// (个人推荐比较好用：枚举方法)   (返回一个数组,包括对象自身的(不含继承的)所有可枚举属性(不含Symbol属性).)</span></span><br><span class="line">    <span class="keyword">var</span> newArr = [];</span><br><span class="line">    Object.keys(arr).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      newArr.<span class="built_in">push</span>(arr[item])</span><br><span class="line">      <span class="built_in">console</span>.<span class="built_in">log</span>(newArr)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="comment">// 第四种   arr.map(function callback(currentValue[, index[, array]]) 或者这样 array.map(item,index,arr) </span></span><br><span class="line">    <span class="comment">// currentValue: callback一系列中正在处理的当前元素 index: callback一系列中正在处理的当前元素的索引。array:  map 调用方法的目录</span></span><br><span class="line">    <span class="keyword">var</span> newArr = []</span><br><span class="line">    arr.<span class="built_in">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      newArr.<span class="built_in">push</span>(arr[item])</span><br><span class="line">      <span class="built_in">console</span>.<span class="built_in">log</span>(newArr)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第五种   for...in...遍历</span></span><br><span class="line">    <span class="comment">//  循环遍历对象自身的和继承的可枚举属性(循环遍历对象自身的和继承的可枚举属性(不含Symbol属性).).</span></span><br><span class="line">    <span class="keyword">var</span> newArr = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i in arr ) &#123;</span><br><span class="line">      newArr.<span class="built_in">push</span>(arr[i])</span><br><span class="line">      <span class="built_in">console</span>.<span class="built_in">log</span>(newArr,<span class="string">&#x27;1111111&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第六种   for-of遍历</span></span><br><span class="line">    <span class="comment">//不仅支持数组,还支持大多数类数组对象,例如DOM NodeList对象.</span></span><br><span class="line">    <span class="comment">//也支持字符串遍历,它将字符串视为一系列的Unicode字符来进行遍历.</span></span><br><span class="line">    <span class="keyword">var</span> newArr = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i of arr)&#123;</span><br><span class="line">      newArr.<span class="built_in">push</span>(arr[i])</span><br><span class="line">      <span class="built_in">console</span>.<span class="built_in">log</span>(newArr)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第七种   Object.getOwnPropertyNames(obj) 遍历</span></span><br><span class="line">    <span class="comment">//  返回一个数组,包含对象自身的所有属性(不含Symbol属性,但是包括不可枚举属性).</span></span><br><span class="line">    <span class="keyword">var</span> newArr = [];</span><br><span class="line">    Object.getOwnPropertyNames(arr).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      newArr.<span class="built_in">push</span>(arr[item])</span><br><span class="line">      <span class="built_in">console</span>.<span class="built_in">log</span>(newArr,<span class="string">&#x27;!!!!&#x27;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第八种   Reflect.ownKeys(obj)遍历  </span></span><br><span class="line">    <span class="comment">// 返回一个数组,包含对象自身的所有属性,不管属性名是Symbol或字符串,也不管是否可枚举.</span></span><br><span class="line">    <span class="keyword">var</span> newArr = [];</span><br><span class="line">    Reflect.ownKeys(arr).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      newArr.<span class="built_in">push</span>(arr[item])</span><br><span class="line">      <span class="built_in">console</span>.<span class="built_in">log</span>(newArr) </span><br><span class="line">      <span class="comment">//  数组可以全部打印出来特别！！！！</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    // 第二种 es6语法  arr.forEach()遍历
+    var newArr = [];
+    arr.forEach((item) =&gt; &#123;
+      newArr.push(arr[item])
+      console.log(newArr)
+    &#125;)
 
+    // 第三种   Object.keys()遍历
+    // (个人推荐比较好用：枚举方法)   (返回一个数组,包括对象自身的(不含继承的)所有可枚举属性(不含Symbol属性).)
+    var newArr = [];
+    Object.keys(arr).forEach((item) =&gt; &#123;
+      newArr.push(arr[item])
+      console.log(newArr)
+    &#125;)
+
+
+     // 第四种   arr.map(function callback(currentValue[, index[, array]]) 或者这样 array.map(item,index,arr) 
+    // currentValue: callback一系列中正在处理的当前元素 index: callback一系列中正在处理的当前元素的索引。array:  map 调用方法的目录
+    var newArr = []
+    arr.map((item) =&gt; &#123;
+      newArr.push(arr[item])
+      console.log(newArr)
+    &#125;)
+
+    // 第五种   for...in...遍历
+    //  循环遍历对象自身的和继承的可枚举属性(循环遍历对象自身的和继承的可枚举属性(不含Symbol属性).).
+    var newArr = []
+    for(var i in arr ) &#123;
+      newArr.push(arr[i])
+      console.log(newArr,&#39;1111111&#39;)
+    &#125;
+
+    // 第六种   for-of遍历
+    //不仅支持数组,还支持大多数类数组对象,例如DOM NodeList对象.
+    //也支持字符串遍历,它将字符串视为一系列的Unicode字符来进行遍历.
+    var newArr = []
+    for(var i of arr)&#123;
+      newArr.push(arr[i])
+      console.log(newArr)
+    &#125;
+
+    // 第七种   Object.getOwnPropertyNames(obj) 遍历
+    //  返回一个数组,包含对象自身的所有属性(不含Symbol属性,但是包括不可枚举属性).
+    var newArr = [];
+    Object.getOwnPropertyNames(arr).forEach((item) =&gt; &#123;
+      newArr.push(arr[item])
+      console.log(newArr,&#39;!!!!&#39;)
+    &#125;)
+
+    // 第八种   Reflect.ownKeys(obj)遍历  
+    // 返回一个数组,包含对象自身的所有属性,不管属性名是Symbol或字符串,也不管是否可枚举.
+    var newArr = [];
+    Reflect.ownKeys(arr).forEach((item) =&gt; &#123;
+      newArr.push(arr[item])
+      console.log(newArr) 
+      //  数组可以全部打印出来特别！！！！
+    &#125;)
+</code></pre>
 <h3 id="模版引擎Velocity"><a href="#模版引擎Velocity" class="headerlink" title="模版引擎Velocity"></a>模版引擎Velocity</h3><h4 id="Velocity-1-——注释"><a href="#Velocity-1-——注释" class="headerlink" title="Velocity(1)——注释"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/22/1884840.html">Velocity(1)——注释</a></h4><p>Velocity的单行注释，使用##</p>
 <p>多行注释使用#* cooments *#</p>
 <h4 id="Velocity-2-——引用"><a href="#Velocity-2-——引用" class="headerlink" title="Velocity(2)——引用"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/22/1884901.html">Velocity(2)——引用</a></h4><p>在Velocity Template Language（VTL）中，有三种类型的引用：变量，属性，方法。所有的引用都被看作是字符串，如果某个引用是一个整型值，velocity会调用它的toString()方法，将它转换为String。</p>
@@ -180,46 +266,63 @@
 <p>$是美元的符号，在文本中出现的”$2.5”这样的字符串，是不会被Velocity解释为一个变量或者一个属性的，因为2.5或者2或者5都不是一个VTL标识符。</p>
 <p><strong>转义：</strong></p>
 <p>假如需要在文本中最后显示”$foo”这四个字符组成的字符串本身，而非变量$foo的值，可以使用转义字符()。假定$foo已经定义过了，那么：</p>
-<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">set</span>(<span class="built_in">$foo</span>=<span class="string">&quot;bar&quot;</span>)</span><br><span class="line"><span class="built_in">$foo</span>                            输出             bar</span><br><span class="line">\<span class="built_in">$foo</span>                           输出             <span class="built_in">$foo</span></span><br><span class="line">\\<span class="built_in">$foo</span>                          输出             \bar</span><br><span class="line">\\\<span class="built_in">$foo</span>                         输出             \<span class="built_in">$foo</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>#set($foo=&quot;bar&quot;)
+$foo                            输出             bar
+\$foo                           输出             $foo
+\\$foo                          输出             \bar
+\\\$foo                         输出             \$foo
+</code></pre>
 <p>假如$foo没有定义，那么：</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$foo</span>                            输出              <span class="symbol">$foo</span></span><br><span class="line">\<span class="symbol">$foo</span>                           输出              \<span class="symbol">$foo</span></span><br><span class="line">\\<span class="symbol">$foo</span>                          输出              \\<span class="symbol">$foo</span></span><br><span class="line">\\\<span class="symbol">$foo</span>                         输出              \\\<span class="symbol">$foo</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>$foo                            输出              $foo
+\$foo                           输出              \$foo
+\\$foo                          输出              \\$foo
+\\\$foo                         输出              \\\$foo
+</code></pre>
 <h4 id="Velocity-4-——大小写"><a href="#Velocity-4-——大小写" class="headerlink" title="Velocity(4)——大小写"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/23/1885159.html">Velocity(4)——大小写</a></h4><p>Velocity是大小写敏感的。但是为了减少使用者的错误，某些地方存在特殊情况。比如$foo.bar，首先会被检查是否能匹配$foo.getbar()，再被检查是否能匹配$foo.getBar()。而$foo.Bar，首先会被检查是否能匹配$foo.getBar()，再被检查是否能匹配$foo.getbar()。正如在《<a target="_blank" rel="noopener" href="http://www.cnblogs.com/yuepeng/archive/2010/11/22/1884901.html">Velocity(2)——引用</a>》所提到的那样，属性不会被解析为对象的实例变量，即$foo.bar不表示foo这个java对象的bar属性。</p>
 <h4 id="Velocity-5-——-set指令"><a href="#Velocity-5-——-set指令" class="headerlink" title="Velocity(5)——#set指令"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/23/1885257.html">Velocity(5)——#set指令</a></h4><p>引用可以让模板设计者生成动态内容，而指令允许设计者真正的负责页面的展现和内容。</p>
 <p>指令是以#开头，后面紧跟一个关键字，比如if，else，foreach等。而这个关键字，是可以被放在{}中间的。这是规范的写法，但是可能不好看。</p>
 <p><strong>#set</strong></p>
 <p>#set指令用于向一个变量或者属性赋值。其格式为 #set($foo=”bar”)或者#set($foo.bar=$test) 。</p>
 <p>LHS必须是一个变量或者属性，RHS必须是以下7种类型之一：变量、属性、字符串字面值、数字字面值、方法、ArrayList、Map。比如：</p>
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">#</span><span class="title">set</span><span class="params">( $<span class="variable">test</span> = $<span class="variable">test2</span> + 3)</span></span></span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">set</span><span class="params">( $<span class="variable">test</span>.<span class="variable">a</span> = <span class="string">&quot;abc&quot;</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">set</span><span class="params">( $<span class="variable">test</span>.<span class="variable">b</span> = 1)</span></span></span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">set</span><span class="params">( $<span class="variable">test</span>.<span class="variable">c</span> = $<span class="variable">test</span>.<span class="variable">a</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">set</span><span class="params">( $<span class="variable">test</span>.<span class="variable">d</span> = $<span class="variable">test</span>.<span class="variable">calc</span>(<span class="string">&quot;1+1&quot;</span>)</span></span>)</span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">set</span><span class="params">( $<span class="variable">test</span>.<span class="variable">e</span> = [<span class="string">&quot;123&quot;</span>, <span class="string">&quot;abc&quot;</span>, $<span class="variable">test</span>.<span class="variable">c</span>])</span></span>          访问时使用$test.e.get(0)就可以获得值&quot;123&quot;</span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">set</span><span class="params">( $<span class="variable">test</span>.<span class="variable">f</span> = &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;car&quot;</span>, <span class="string">&quot;color&quot;</span>:<span class="string">&quot;red&quot;</span>&#125;)</span></span>   访问时使用$test.f.get(&quot;color&quot;)就可以获得值&quot;red&quot;</span><br></pre></td></tr></table></figure>
-
+<pre><code>#set( $test = $test2 + 3)
+#set( $test.a = &quot;abc&quot;)
+#set( $test.b = 1)
+#set( $test.c = $test.a)
+#set( $test.d = $test.calc(&quot;1+1&quot;))
+#set( $test.e = [&quot;123&quot;, &quot;abc&quot;, $test.c])          访问时使用$test.e.get(0)就可以获得值&quot;123&quot;
+#set( $test.f = &#123;&quot;name&quot;:&quot;car&quot;, &quot;color&quot;:&quot;red&quot;&#125;)   访问时使用$test.f.get(&quot;color&quot;)就可以获得值&quot;red&quot;
+</code></pre>
 <p>默认情况下，RHS是null的话，将不会对LHS进行赋值，LHS会保持原来的值。所以一个引用一旦被创建，一般是无法移除的。但是可以修改Velocity的某个配置，改变这一现象。在#foreach里进行判断时，要特别注意。</p>
 <p>在使用#set时，字符串的字面值如果放在双引号里，将会被解析。比如#set( $test.a = “abc”), 那么$test.a的值就是abc。而#set( $test.b = “$test.a”)等价于#set( $test.b=$test.a )。但是#set( $test.b = ‘$test.a’) 的结果却是把$test.a这个字符串字面值赋值给$test.b。</p>
 <p>当遇到需要输出大量的字符串字面值，而不是输出它们的实际值的情况时，可以使用#literal() … #end来包围VTL Code。</p>
 <h4 id="Velocity-6-——-if指令"><a href="#Velocity-6-——-if指令" class="headerlink" title="Velocity(6)——#if指令"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/23/1885282.html">Velocity(6)——#if指令</a></h4><p>下面是#If指令的一个简单而完整的示例：</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#if ($foo &lt; <span class="number">10</span>)    Go North#elseif ($foo == <span class="number">10</span>)    Go East#else    Go West#end                   不能漏掉</span><br></pre></td></tr></table></figure>
-
+<pre><code>#if ($foo &lt; 10)    Go North#elseif ($foo == 10)    Go East#else    Go West#end                   不能漏掉
+</code></pre>
 <p>#if指令用于判断某个条件是否为true。以上面的代码为例，当$foo &lt; 10为true时，将会显示”Go North”。</p>
 <p>有时会看到这样一种写法：#if($foo) … #end。这里充当判断条件的是一个变量$foo，它在两种情况下是true:一是$foo作为布尔值(Boolean)并且其值为true，二是$foo是一个非布尔值并且值不为null。</p>
 <p><strong>关系运算</strong></p>
 <p>Velocity的关系运算中有一个==。它和Java中的==不太一样。java中==严格判断两个对象是否是同一个对象(内存地址是否是同一个，是否是同一个类的对象)，而不是判断它们的值是否相同(两个String的字面值是否相同要使用equals()方法)。而Velocity中的==可以直接比较数值，字符串以及其他对象，如果==两侧的对象是不同的类的对象，在比较前会用toString()转换后再比较。</p>
 <p><strong>逻辑运算</strong></p>
 <p>Velocity的逻辑运算有AND、OR、NOT三个。表现在语法上是&amp;&amp;、||、!这三个符号。下面是几个示例：</p>
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">($<span class="variable">foo</span> &amp;&amp; $<span class="variable">bar</span>&lt;10)</span></span>...#end<span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">($<span class="variable">foo</span> || $<span class="variable">bar</span>)</span></span>...#end<span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">(! $<span class="variable">foo</span> )</span></span>...#end</span><br></pre></td></tr></table></figure>
-
+<pre><code>#if($foo &amp;&amp; $bar&lt;10)...#end#if($foo || $bar)...#end#if(! $foo )...#end
+</code></pre>
 <p>需要注意的是，&amp;&amp;和||是有短路效应的。一旦前一个就可以判断真假，后面的条件不再进行判断。另外，要特别注意$!foo和!$foo的区别。</p>
 <h4 id="Velocity-7-——-foreach指令"><a href="#Velocity-7-——-foreach指令" class="headerlink" title="Velocity(7)——#foreach指令"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/23/1885524.html">Velocity(7)——#foreach指令</a></h4><p>首先是#foreach的简单示例：</p>
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">#</span><span class="title">foreach</span><span class="params">( $<span class="variable">elem</span> <span class="variable">in</span> $<span class="variable">allElems</span>)</span></span>    $elem&lt;/br&gt;#end</span><br></pre></td></tr></table></figure>
-
+<pre><code>#foreach( $elem in $allElems)    $elem&lt;/br&gt;#end
+</code></pre>
 <p>上面这个例子中，$allElems可以是一个Vector，一个HashTable，一个数组。</p>
 <p>在Velocity中，有一个变量$velocityCount用作循环计数，初始值是1。这个变量的名字和初始值是在velocity.properties文件里配置的。</p>
 <p>下面是更多的几个例子：</p>
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">#</span><span class="title">set</span><span class="params">($<span class="variable">nums</span>=[-2 .. 2])</span></span></span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">foreach</span><span class="params">($<span class="variable">i</span> <span class="variable">in</span> $<span class="variable">nums</span>)</span></span>    </span><br><span class="line">$i</span><br><span class="line">#end</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#foreach</span>(<span class="variable">$key</span> <span class="keyword">in</span> <span class="variable">$allElems</span><span class="selector-class">.keySet</span>())    </span><br><span class="line">Key:<span class="variable">$key</span> ---&gt; Value:<span class="variable">$allElems</span><span class="selector-class">.get</span>(<span class="variable">$key</span>)&lt;br&gt;</span><br><span class="line"><span class="selector-id">#end</span></span><br><span class="line">其中，allElems是一个HashTable</span><br></pre></td></tr></table></figure>
-
+<pre><code>#set($nums=[-2 .. 2])
+#foreach($i in $nums)    
+$i
+#end
+</code></pre>
+<pre><code>#foreach($key in $allElems.keySet())    
+Key:$key ---&gt; Value:$allElems.get($key)&lt;br&gt;
+#end
+其中，allElems是一个HashTable
+</code></pre>
 <h4 id="Velocity-8-——引入指令和-Stop指令"><a href="#Velocity-8-——引入指令和-Stop指令" class="headerlink" title="Velocity(8)——引入指令和#Stop指令"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/23/1885622.html">Velocity(8)——引入指令和#Stop指令</a></h4><p>#Include和#Parse都是用于将本地文件引入当前文件的指令，而且被引入的文件必须位于TEMPLATE_ROOT。这两者之间有一些区别。</p>
 <p><strong>#Include</strong></p>
 <p>被#Include引入的文件，其内容不会被Velocity引擎解析，所以这些文件应该是静态模板，即不含有VTL的模板。使用#Include()指令时，参数是被双引号括起来的文件名或者是表示文件名的变量。如果有多个文件，以逗号隔开即可。比如#Include(“a.gif”, “b.html”, $file)。</p>
@@ -231,22 +334,29 @@
 <p>#Stop指令会停止模板引擎的执行，并返回。这在debug中比较有用。</p>
 <h4 id="Velocity-9-——宏"><a href="#Velocity-9-——宏" class="headerlink" title="Velocity(9)——宏"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/23/1885700.html">Velocity(9)——宏</a></h4><p><strong>定义宏和使用宏</strong></p>
 <p>#macro指令用于定义一个VTL模板的重复代码块——宏。下面是一个简单的定义宏的例子：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#macro( d )</span></span><br><span class="line"><span class="section">&lt;tr&gt;</span><span class="section">&lt;td&gt;</span><span class="section">&lt;/td&gt;</span><span class="section">&lt;tr&gt;</span></span><br><span class="line"><span class="comment">#end</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>#macro( d )
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;tr&gt;
+#end
+</code></pre>
 <p>这段代码定义了一个宏，名字为d，没有参数。下面是使用这个宏的代码：</p>
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">#</span><span class="title">d</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-
+<pre><code>#d()
+</code></pre>
 <p>Velocity在遇到#d()的时候，会用”<tr><td></td></tr>“替代上面的#d()这一行。</p>
 <p><strong>宏的参数：</strong></p>
 <p>宏也可以带参数，而且是任意多个参数。不过，宏定义时有几个参数，宏调用时就要提供同样数目的参数。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#macro( d $name)    </span></span><br><span class="line">&lt;<span class="built_in">tr</span>&gt;&lt;td&gt;<span class="variable">$name</span>&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line"><span class="comment">#end</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">#</span><span class="title">d</span><span class="params">(<span class="string">&quot;name1&quot;</span>)</span></span></span><br></pre></td></tr></table></figure>
-
+<pre><code>#macro( d $name)    
+&lt;tr&gt;&lt;td&gt;$name&lt;/td&gt;&lt;/tr&gt;
+#end
+</code></pre>
+<pre><code>#d(&quot;name1&quot;)
+</code></pre>
 <p>宏的参数可以是以下VTL元素中的任意一种：引用、字符串字面值、数值字面值、整数范围(比如[1 .. 10]、[$start .. $end])、数组、布尔值true或者false。</p>
 <p>宏的参数可以是方法，那么下面这个例子，需要特别注意：</p>
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">#</span><span class="title">macro</span><span class="params">(<span class="variable">test</span> $<span class="variable">a</span>)</span></span>    </span><br><span class="line">$a $a $a</span><br><span class="line">#end</span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">test</span><span class="params">($<span class="variable">foo</span>.<span class="variable">bar</span>()</span></span>)</span><br></pre></td></tr></table></figure>
-
+<pre><code>#macro(test $a)    
+$a $a $a
+#end
+#test($foo.bar())
+</code></pre>
 <p>上面这个例子中，$foo.bar()将会被调用3次，而不是一次。</p>
 <p><strong>内联的宏</strong></p>
 <p>当宏是在一个Velocity模板中定义时，这个宏(是inline的)只能被该模板使用，同一个网站下的其他模板是不能用的。如果是在一个Velocity宏模板库中定义的宏，就可以被任何同一网站下的模板使用。</p>
@@ -260,19 +370,30 @@
 <p><strong>其他一些注意点</strong></p>
 <p>宏必须在第一次使用它之前定义。当#Parse()一个模板文件时，尤其要注意这一点。</p>
 <h4 id="Velocity-10-——指令的转义"><a href="#Velocity-10-——指令的转义" class="headerlink" title="Velocity(10)——指令的转义"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/archive/2010/11/23/1885861.html">Velocity(10)——指令的转义</a></h4><p>引用的转义使用”&quot;,指令的转义也是使用”&quot;。但是，指令的转义要比引用的转义复杂很多。例如：</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#if($foo)    </span><br><span class="line">Go!</span><br><span class="line">#end</span><br><span class="line">$foo为<span class="literal">true</span>,输出Go!；否则不输出任何内容。</span><br></pre></td></tr></table></figure>
-
+<pre><code>#if($foo)    
+Go!
+#end
+$foo为true,输出Go!；否则不输出任何内容。
+</code></pre>
 <p>使用转义：</p>
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\<span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">( $<span class="variable">foo</span> )</span></span>    </span><br><span class="line">Go!\</span><br><span class="line">#end此时，&quot;\&quot;和&quot;#&quot;结合，从而破坏了原本的<span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">()</span></span>，而$foo作为判断条件，也不会被解析。所以上面这段代码，无论$foo是true还是false，结果都是</span><br><span class="line"><span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">( $<span class="variable">foo</span> )</span></span>    </span><br><span class="line">Go!</span><br><span class="line">#end这类似于使用了<span class="function"><span class="keyword">#</span><span class="title">literal</span><span class="params">()</span></span> ... #end指令。</span><br></pre></td></tr></table></figure>
-
+<pre><code>\#if( $foo )    
+Go!\
+#end此时，&quot;\&quot;和&quot;#&quot;结合，从而破坏了原本的#if()，而$foo作为判断条件，也不会被解析。所以上面这段代码，无论$foo是true还是false，结果都是
+#if( $foo )    
+Go!
+#end这类似于使用了#literal() ... #end指令。
+</code></pre>
 <p> 如果使用两个”&quot;：</p>
-<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\\<span class="symbol">#if</span>( <span class="string">$f</span>oo )   </span><br><span class="line"><span class="type">Go</span>!\\</span><br><span class="line"><span class="symbol">#end</span>首先，<span class="symbol">#if</span>前面的两个假定<span class="string">$f</span>oo是<span class="keyword">true</span>，那么会输出<span class="comment">&quot;Go!&quot;</span>，并且是紧跟在刚才的<span class="comment">&quot;\&quot;</span>后面(因为没有换号符)。<span class="symbol">#if</span>(<span class="string">$f</span>oo)和<span class="symbol">#end</span>之间的内容，都会输出，包括<span class="symbol">#end</span>前面的两个<span class="comment">&quot;\&quot;</span>，它们会被解析为一个<span class="comment">&quot;\&quot;</span>。如果<span class="string">$f</span>oo是<span class="keyword">false</span>，仅仅输出一个<span class="comment">&quot;\&quot;</span>，而<span class="comment">&quot;Go!&quot;</span>以及后面下一行的<span class="comment">&quot;\&quot;</span>不会输出。<span class="comment">&quot;\&quot;</span>结合，变为一个<span class="comment">&quot;\&quot;</span>输出。然后<span class="symbol">#if</span>(<span class="string">$f</span>oo)正常处理。</span><br></pre></td></tr></table></figure>
-
+<pre><code>\\#if( $foo )   
+Go!\\
+#end首先，#if前面的两个假定$foo是true，那么会输出&quot;Go!&quot;，并且是紧跟在刚才的&quot;\&quot;后面(因为没有换号符)。#if($foo)和#end之间的内容，都会输出，包括#end前面的两个&quot;\&quot;，它们会被解析为一个&quot;\&quot;。如果$foo是false，仅仅输出一个&quot;\&quot;，而&quot;Go!&quot;以及后面下一行的&quot;\&quot;不会输出。&quot;\&quot;结合，变为一个&quot;\&quot;输出。然后#if($foo)正常处理。
+</code></pre>
 <p>还有一种情况需要说明：</p>
-<figure class="highlight leaf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\\\<span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">($<span class="variable">foo</span>)</span></span>    </span><br><span class="line">Go!\\</span><br><span class="line">#end</span><br><span class="line">前两个&quot;\&quot;被解析为&quot;\&quot;，第三个&quot;\&quot;和后面的&quot;#&quot;解析为&quot;#&quot;，<span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">()</span></span>被破坏。所以输出就是 \<span class="function"><span class="keyword">#</span><span class="title">if</span><span class="params">($<span class="variable">foo</span>)</span></span>   Go!\......注意最后那里，有一个合法的#end，但是它是多余的，所以这一段代码是会报错的。</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code>\\\#if($foo)    
+Go!\\
+#end
+前两个&quot;\&quot;被解析为&quot;\&quot;，第三个&quot;\&quot;和后面的&quot;#&quot;解析为&quot;#&quot;，#if()被破坏。所以输出就是 \#if($foo)   Go!\......注意最后那里，有一个合法的#end，但是它是多余的，所以这一段代码是会报错的。
+</code></pre>
 <p>参考文献:</p>
 <p>博客园  [月光疾风]:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuepeng/category/271243.html">https://www.cnblogs.com/yuepeng/category/271243.html</a></p>
 
