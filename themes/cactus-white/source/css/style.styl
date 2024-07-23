@@ -170,3 +170,25 @@ pre code
     text-align: right
   .line
   	height: 22px
+
+pre {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 0px; /* 调整按钮距上边缘的距离 */
+  right: 10px; /* 调整按钮距右边缘的距离 */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;
+  z-index: 10; /* 确保按钮位于前面 */
+}
+
+.copy-button:hover {
+  background-color: #0056b3;
+}
