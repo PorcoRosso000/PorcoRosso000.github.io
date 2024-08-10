@@ -153,7 +153,7 @@ class Solution {
 
 ## 如何判断一个字符串中某个字符出现的次数？
 
-```
+``` java
 //1.使用循环
 public static void main(String[] args) {
     String str = "ABC123ABC";
@@ -187,7 +187,7 @@ public static void main(String[] args) {
 
 ## 如何反转一个字符串？
 
-```
+``` java
 //1.使用 stringBuilder的reverse()方法
 public static void main(String[] args) {
     String str = "ABC123ABC";
@@ -225,7 +225,7 @@ public static void main(String[] args) {
 
 通过Map 类实现，通过键值对的方式，可以将输入的字符串的每一个字符，作为键，每个字符出现的次数作为值，如下：
 
-```
+``` java
 
     public static void main(String[] args) {
         System.out.println("请输入字符串：");
@@ -266,7 +266,7 @@ public static void main(String[] args) {
 Java求字符串中出现次数最多的字符，如String Str = "aaabbcddddee";那么输出：d 4 ;若String Str = "aaabbcddddeexxxxxx";那么输出：x 6
     【 思路 】：首先将字符串拆分为字符数组，然后转存到HashMap集合中，该集合的key为字符串中出现的字符，value对应该字符出现的次数。最后只需要在HashMap集合中找到Value值最大的key即可。
 
-```
+``` java
 //1.
 import java.util.HashMap;
 import java.util.Iterator;
@@ -329,7 +329,7 @@ public class JavaTest {
 
 上面的FindMapMaxValue方法，还可以使用Map.Entry提高效率，进一步优化为：
 
-```
+``` java
 	public static char FindMapMaxValue(Map<Character, Integer> map) {
  
 		Iterator iter = map.entrySet().iterator();
@@ -353,7 +353,7 @@ public class JavaTest {
 
 
 
-```
+``` java
 //2.
 import java.util.HashMap;
 import java.util.Map;
@@ -386,6 +386,34 @@ public class JavaTest {
 }
 ```
 
-————————————————
-版权声明：本文为CSDN博主「AI吃大瓜」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/guyuealian/article/details/51933611
+## 时间问题
+
+### String类型转Date类型
+
+```plain
+DateUtil.getDate(req.getStartTime())
+```
+
+### 获取几个月以后的时间
+
+```plain
+DateUtil.getAfterMonths(DateUtil.getDate(req.getStartTime()), 3)
+```
+
+### 比较两个字符串的时间类型大小
+
+```plain
+String endTime;
+String startTime;
+//endTime - startTime;
+int endCompare = req.getEndTime().compareTo(req.getStartTime());
+int<0 : endTime小于startTime
+```
+
+
+
+
+
+## 参考文献：
+
+CSDN博主「AI吃大瓜」的原创文章：https://blog.csdn.net/guyuealian/article/details/51933611

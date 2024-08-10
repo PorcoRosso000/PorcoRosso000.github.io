@@ -15,8 +15,6 @@ hexo指令
 
 ------
 
-
-
 ### hexo基础命令
 
 ```
@@ -27,6 +25,7 @@ hexo deploy ：部署文章，可以用hexo d缩写
 hexo s -p 8000 : 搜索启动
 hexo server :运行服务
 hexo algolia ：搜集更新博文数据
+hexo cl && hexo g && hexo d && hexo s ：一条命令部属
 ```
 
 ### 多台电脑都可以使用个人博客
@@ -128,9 +127,7 @@ git stash pop     :取出之前储藏的修改
 之后就可以继续提交
 ```
 
-### 新建文章
-
-新建文章:  hexo new post xxx
+### 文章配置
 
 Front-matter
 Front-matter 是 markdown 文件最上方以---分隔的区域，用于指定个别档案的变数。
