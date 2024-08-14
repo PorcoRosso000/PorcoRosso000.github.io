@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="sql日期格式转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql日期格式转换">
+<meta property="og:url" content="http://porcorosso.top/posts/598bc4eb.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="sql日期格式转换">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-17T16:01:49.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:26:07.980Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="sql">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>sql日期格式转换</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/43387b37.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/a8e4d798.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/598bc4eb.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/598bc4eb.html&text=sql日期格式转换"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/598bc4eb.html&is_video=false&description=sql日期格式转换"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=sql日期格式转换&body=Check out this article: http://porcorosso.top/posts/598bc4eb.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/598bc4eb.html&name=sql日期格式转换&description=&lt;p&gt;sql日期格式转换&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Oracle%E6%97%A5%E6%9C%9F%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">Oracle日期和字符串互相转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%97%A5%E6%9C%9F%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.1.</span> <span class="toc-text">1 日期转字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%97%A5%E6%9C%9F"><span class="toc-number">1.2.</span> <span class="toc-text">2 字符串转日期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql%E6%97%A5%E6%9C%9F%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">Mysql日期和字符串互相转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%97%A5%E6%9C%9F%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-1"><span class="toc-number">2.1.</span> <span class="toc-text">1 日期转字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%97%A5%E6%9C%9F-1"><span class="toc-number">2.2.</span> <span class="toc-text">2 字符串转日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E5%88%A4%E7%A9%BA%E5%B9%B6%E8%BF%9B%E8%A1%8C%E6%97%A5%E6%9C%9F%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">3.数据判空并进行日期转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">版权声明：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        sql日期格式转换
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-04-17T16:01:49.000Z" itemprop="datePublished">2023-04-18</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/sql/" rel="tag">sql</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>sql日期格式转换</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="Oracle日期和字符串互相转换"><a href="#Oracle日期和字符串互相转换" class="headerlink" title="Oracle日期和字符串互相转换"></a>Oracle日期和字符串互相转换</h2><h3 id="1-日期转字符串"><a href="#1-日期转字符串" class="headerlink" title="1 日期转字符串"></a>1 日期转字符串</h3><p>1.1 yyyy年mm月dd日hh24時mi分ss秒</p>
+<p>手动拼接年月日</p>
+<p>select<br>      to_char(sysdate, ‘yyyy’) || ‘年’<br>   || to_char(sysdate, ‘mm’) || ‘月’<br>   || to_char(sysdate, ‘dd’) || ‘日’<br>   || ‘ ‘<br>   || to_char(sysdate, ‘hh24’) || ‘時’<br>   || to_char(sysdate, ‘mi’) || ‘分’<br>   || to_char(sysdate, ‘ss’) || ‘秒’<br>from<br>  dual</p>
+<p>⏹结果<br>2021年09月08日</p>
+<p>1.2 yyyy-mm-dd hh24:mi:ss</p>
+<p>日期不去掉0,并且以24小时制显示</p>
+<p>select<br>  to_char(sysdate, ‘yyyy-mm-dd hh24:mi:ss’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021-09-08 11:12:02</p>
+<p>1.3 yyyyfm-mm-dd hh24:mi:ss<br>日期去掉0,并且以24小时制显示</p>
+<p>select<br>  to_char(sysdate, ‘yyyyfm-mm-dd hh24:mi:ss’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021-9-8 11:21:55</p>
+<p>1.4 yyyy/mm/dd<br>只显示年月日,并且有分隔符</p>
+<p>select<br>  to_char(sysdate, ‘yyyy/mm/dd’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021/09/08</p>
+<p>1.5 yyyymmdd<br>只显示年月日,没有分隔符</p>
+<p>select<br>  to_char(sysdate, ‘yyyymmdd’)<br>from<br>  dual</p>
+<p>⏹结果<br>20210908</p>
+<h3 id="2-字符串转日期"><a href="#2-字符串转日期" class="headerlink" title="2 字符串转日期"></a>2 字符串转日期</h3><p>使用to_date(‘日期’, ‘格式’)函数,具体格式和to_char()中的格式相同</p>
+<p>select<br>  to_date(‘20210908’, ‘yyyymmdd’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021/09/08 0:00:00</p>
+<p>select<br>  to_date(‘2021-9-8 11:21:55’, ‘yyyyfm-mm-dd hh24:mi:ss’)<br>from<br>  dual</p>
+<p>⏹结果<br>2021/09/08 11:21:55</p>
+<h2 id="Mysql日期和字符串互相转换"><a href="#Mysql日期和字符串互相转换" class="headerlink" title="Mysql日期和字符串互相转换"></a>Mysql日期和字符串互相转换</h2><p>参考资料: MySQL中日期时间类型与格式化</p>
+<h3 id="1-日期转字符串-1"><a href="#1-日期转字符串-1" class="headerlink" title="1 日期转字符串"></a>1 日期转字符串</h3><p>DATE_FORMAT( )函数</p>
+<p>1.1 yyyy年mm月dd日 hh时ii分ss秒<br>SELECT<br>    DATE_FORMAT(NOW(), ‘%Y年%m月%d日 %H时%i分%s秒’ );<br>⏹结果<br>2021年09月08日 21时04分59秒</p>
+<p>1.2 yyyy-mm-dd hh:ii:ss<br>SELECT<br>    DATE_FORMAT(NOW(), ‘%Y-%m-%d %H:%i:%s’)</p>
+<h3 id="2-字符串转日期-1"><a href="#2-字符串转日期-1" class="headerlink" title="2 字符串转日期"></a>2 字符串转日期</h3><p>STR_TO_DATE函数</p>
+<p>SELECT<br>    STR_TO_DATE(‘2019年01月17日 19时05分05秒’, ‘%Y年%m月%d日 %H时%i分%s秒’);</p>
+<p>⏹结果<br>2019-01-17 19:05:05</p>
+<h3 id="3-数据判空并进行日期转换"><a href="#3-数据判空并进行日期转换" class="headerlink" title="3.数据判空并进行日期转换"></a>3.数据判空并进行日期转换</h3><p>xxxx年xx月xx日 格式或者其他格式转换成  xxxx-xx-xx</p>
+<p>SELECT IF(‘2019年01月17日’ = ‘NULL’,NULL<br>,IF(‘2019年01月17日’ like ‘%日%’,STR_TO_DATE(‘2019年01月17日’,’%Y年%m月%d日’),DATE_FORMAT(‘2019年01月17日’,’%Y-%m-%d’)))</p>
+<p>xxxx年xx月xx日 xx时xx分xx秒 格式或者其他格式转换成  xxxx-xx-xx xx:xx:xx</p>
+<p>IF ( st_approve_start_time = ‘NULL’, NULL,IF(st_approve_start_time like ‘%日%’,STR_TO_DATE(st_approve_start_time,’%Y年%m月%d日 %H时%i分%s秒’),DATE_FORMAT(st_approve_start_time,’%Y-%m-%d %H:%i:%s’))) as st_approve_start_time</p>
+<h2 id="版权声明："><a href="#版权声明：" class="headerlink" title="版权声明："></a>版权声明：</h2><p>本文为CSDN博主「fengyehongWorld」的原创文章<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/feyehong/article/details/120177756">https://blog.csdn.net/feyehong/article/details/120177756</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Oracle%E6%97%A5%E6%9C%9F%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">Oracle日期和字符串互相转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%97%A5%E6%9C%9F%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.1.</span> <span class="toc-text">1 日期转字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%97%A5%E6%9C%9F"><span class="toc-number">1.2.</span> <span class="toc-text">2 字符串转日期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql%E6%97%A5%E6%9C%9F%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">Mysql日期和字符串互相转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%97%A5%E6%9C%9F%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-1"><span class="toc-number">2.1.</span> <span class="toc-text">1 日期转字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%97%A5%E6%9C%9F-1"><span class="toc-number">2.2.</span> <span class="toc-text">2 字符串转日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E5%88%A4%E7%A9%BA%E5%B9%B6%E8%BF%9B%E8%A1%8C%E6%97%A5%E6%9C%9F%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">3.数据判空并进行日期转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">版权声明：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/598bc4eb.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/598bc4eb.html&text=sql日期格式转换"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/598bc4eb.html&is_video=false&description=sql日期格式转换"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=sql日期格式转换&body=Check out this article: http://porcorosso.top/posts/598bc4eb.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/598bc4eb.html&title=sql日期格式转换"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/598bc4eb.html&name=sql日期格式转换&description=&lt;p&gt;sql日期格式转换&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

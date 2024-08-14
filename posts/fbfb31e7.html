@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OOM内存溢出">
+<meta property="og:url" content="http://porcorosso.top/posts/fbfb31e7.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="内存">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-26T08:39:24.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:26:07.756Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="内存">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>OOM内存溢出</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/f64d8ae3.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/7b25d017.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/fbfb31e7.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/fbfb31e7.html&text=OOM内存溢出"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/fbfb31e7.html&is_video=false&description=OOM内存溢出"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=OOM内存溢出&body=Check out this article: http://porcorosso.top/posts/fbfb31e7.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/fbfb31e7.html&name=OOM内存溢出&description=&lt;p&gt;内存&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OOM"><span class="toc-number">1.</span> <span class="toc-text">OOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA"><span class="toc-number">1.1.</span> <span class="toc-text">内存溢出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">内存泄漏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm%E4%B8%AD%E4%BB%80%E4%B9%88%E5%9C%B0%E6%96%B9%E4%BC%9A%E5%8F%91%E7%94%9F%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">jvm中什么地方会发生内存溢出？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E4%BC%9A%E5%8F%91%E7%94%9F%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E7%9A%84%E6%98%AF"><span class="toc-number">1.4.</span> <span class="toc-text">不会发生内存溢出的是</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%EF%BC%9F%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.5.</span> <span class="toc-text">内存溢出如何排查？使用工具</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        OOM内存溢出
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2022-11-26T08:39:24.000Z" itemprop="datePublished">2022-11-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%86%85%E5%AD%98/" rel="tag">内存</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>内存</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="OOM"><a href="#OOM" class="headerlink" title="OOM"></a>OOM</h2><h3 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h3><p> 程序在申请内存时，没有足够的内存空间供其使用，出现out of memory；比如申请了一个integer,但给它存了long才能存下的数，那就是内存溢出。</p>
+<p> 内存溢出就是       你要求分配的内存超出了系统能给你的，系统不能满足需求，于是产生溢出。</p>
+<p> 比方说栈，栈满时再做进栈必定产生空间溢出，叫上溢，栈空时再做退栈也产生空间溢出，称为下溢。就是分配的内存不足以放下数据项序列,称为内存溢出.</p>
+<p> 从用户使用程序的角度来看，内存泄漏本身不会产生什么危害，作为一般的用户，根本感觉不到内存泄漏的存在。真正有危害的是内存泄漏的堆积，这会耗尽系统所有的内存。从这个角度来说，一次性内存泄漏并没有什么危害，因为它不会堆积，而隐式内存泄漏危害性则非常大，因为较之于常发性和偶发性内存泄漏它更难被检测到</p>
+<p> 内存溢出的原因以及解决方法</p>
+<p> 引起内存溢出的原因有很多种，小编列举一下常见的有以下几种：</p>
+<p> 1.内存中加载的数据量过于庞大，如一次从数据库取出过多数据；</p>
+<p> 2.集合类中有对    对象的引用，使用完后未清空，使得JVM不能回收；</p>
+<p> 3.代码中存在死循环或循环产生过多重复的对象实体；</p>
+<p> 4.使用的第三方软件中的BUG；</p>
+<p> 5.启动参数内存值设定的过小</p>
+<p> 内存溢出的解决方案：</p>
+<p> 第一步，修改JVM启动参数，直接增加内存。(-Xms，-Xmx参数一定不要忘记加。)</p>
+<p> 第二步，检查错误日志，查看“OutOfMemory”错误前是否有其它异常或错误。</p>
+<p> 第三步，对代码进行走查和分析，找出可能发生内存溢出的位置。</p>
+<h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p> 是指你向系统申请分配内存进行使用(new)，可是使用完了以后却不归还(delete)，结果你申请到的那块内存你自己也不能再访问（也许你把它的地址给弄丢了），而系统也不能再次将它分配给需要的程序。一个盘子用尽各种方法只能装4个果子，你装了5个，结果掉倒地上不能吃了。</p>
+<p> 内存泄露 memory leak，是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄露危害可以忽略，但内存泄露堆积后果很严重，无论多少内存,迟早会被占光。</p>
+<p> 以发生的方式来分类，内存泄漏可以分为4类：</p>
+<p> \1. 常发性内存泄漏。发生内存泄漏的代码会被多次执行到，每次被执行的时候都会导致一块内存泄漏。</p>
+<p> \2. 偶发性内存泄漏。发生内存泄漏的代码只有在某些特定环境或操作过程下才会发生。常发性和偶发性是相对的。对于特定的环境，偶发性的也许就变成了常发性的。所以测试环境和测试方法对检测内存泄漏至关重要。</p>
+<p> \3. 一次性内存泄漏。发生内存泄漏的代码只会被执行一次，或者由于算法上的缺陷，导致总会有一块仅且一块内存发生泄漏。比如，在类的构造函数中分配内存，在析构函数中却没有释放该内存，所以内存泄漏只会发生一次。</p>
+<p> \4. 隐式内存泄漏。程序在运行过程中不停的分配内存，但是直到结束的时候才释放内存。严格的说这里并没有发生内存泄漏，因为最终程序释放了所有申请的内存。但是对于一个服务器程序，需要运行几天，几周甚至几个月，不及时释放内存也可能导致最终耗尽系统的所有内存。所以，我们称这类内存泄漏为隐式内存泄漏。</p>
+<p> 引起内存泄漏的原因</p>
+<p> 1、分配给程序的内存忘记回收；</p>
+<p>​     这个是不应该发生的事情，但也是代码中常见的问题。分配的内存用完之后，就一定要回收，避免造成内存泄漏。</p>
+<p> 2、程序代码有问题，造成系统没有办法回收；</p>
+<p>​    </p>
+<pre><code> Temp1 = new BYTE[100];
+
+    Temp2 = new BYTE[100];
+
+    Temp2 = Temp1;
+</code></pre>
+<p>​     这样，Temp2的内存地址就丢掉了，而且永远都找不回了，这个时候Temp2的内存空间想回收都 没有办法。</p>
+<p> 3、某些API函数操作不正确，造成内存泄漏；</p>
+<p> 3、内存泄漏的危害</p>
+<p>​       1、频繁GC：系统分配给每个应用的内存资源都是有限的，内存泄漏导致其他组件可用的内存变少后，一方面会使得GC的频率加剧，再发生GC的时候，所有进程都必须等待，GC的频率越高，用户越容易感应到卡顿。另一方面内存变少，可能使得系统额外分配给该对象一些内存，而影响整个系统的运行情况。</p>
+<p> 2、导致程序运行崩溃：一旦内存不足以为某些对象分配所需要的空间，将会导致程序崩溃，造成体验差。</p>
+<p> Java的垃圾回收机制GC</p>
+<p> GC回收的只是堆中的内存,而没有栈中的内存</p>
+<p> 这是因为栈中已分配的内存会随着方法执行结束的时候释放掉，所以不用担心栈内存中会存在内存泄漏的.</p>
+<p> PS：定义变量的时候，慎用static，例如   静态的集合中的数据都不会被回收</p>
+<h3 id="jvm中什么地方会发生内存溢出？"><a href="#jvm中什么地方会发生内存溢出？" class="headerlink" title="jvm中什么地方会发生内存溢出？"></a>jvm中什么地方会发生内存溢出？</h3><p> 方法区、堆、栈、本地方法栈  </p>
+<h3 id="不会发生内存溢出的是"><a href="#不会发生内存溢出的是" class="headerlink" title="不会发生内存溢出的是"></a>不会发生内存溢出的是</h3><p> 程序计数器</p>
+<h3 id="内存溢出如何排查？使用工具"><a href="#内存溢出如何排查？使用工具" class="headerlink" title="内存溢出如何排查？使用工具"></a>内存溢出如何排查？使用工具</h3><p>使用工具Eclipse Memory Analyzer 存储分析器</p>
+<p>1.查看内存过大的对象有哪些</p>
+<p>2.这个对象被谁引用</p>
+<p>3.定位到具体代码</p>
+<p> OutOfMemoryError异常  </p>
+<p> 除了程序计数器外，虚拟机内存的其他几个运行时区域都有发生OutOfMemoryError(OOM)异常的  </p>
+<p> 可能。  </p>
+<p> Java Heap 溢出：  </p>
+<p> 一般的异常信息：java.lang.OutOfMemoryError:Java heap spacess。  </p>
+<p> java堆用于存储对象实例，我们只要不断的创建对象，并且保证GC Roots到对象之间有可达路径来  </p>
+<p> 避免垃圾回收机制清除这些对象，就会在对象数量达到最大堆容量限制后产生内存溢出异常。  </p>
+<p> 出现这种异常，一般手段是先通过内存映像分析工具(如Eclipse Memory Analyzer)对dump出来的  </p>
+<p> 堆转存快照进行分析，重点是确认内存中的对象是否是必要的，先分清是因为内存泄漏(Memory  </p>
+<p> Leak)还是内存溢出(Memory Overflflow)。  </p>
+<p> 如果是内存泄漏，可进一步通过工具查看泄漏对象到GCRoots的引用链。于是就能找到泄漏对象是  </p>
+<p> 通过怎样的路径与GC Roots相关联并导致垃圾收集器无法自动回收。  </p>
+<p> 如果不存在泄漏，那就应该检查虚拟机的参数(-Xmx与-Xms)的设置是否适当。  </p>
+<p> 2，虚拟机栈和本地方法栈溢出  </p>
+<p> 如果线程请求的栈深度大于虚拟机所允许的最大深度，将抛出StackOverflflowError异常。  </p>
+<p> 如果虚拟机在扩展栈时无法申请到足够的内存空间，则抛出OutOfMemoryError异常  </p>
+<p> 这里需要注意当栈的大小越大可分配的线程数就越少。  </p>
+<p> 3，运行时常量池溢出  </p>
+<p> 异常信息：java.lang.OutOfMemoryError:PermGenspace  </p>
+<p> 如果要向运行时常量池中添加内容，最简单的做法就是使用String.intern()这个Native方法。该方法  </p>
+<p> 的作用是：如果池中已经包含一个等于此String的字符串，则返回代表池中这个字符串的String对  </p>
+<p> 象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。由于常量  </p>
+<p> 池分配在方法区内，我们可以通过-XX:PermSize和-XX:MaxPermSize限制方法区的大小，从而间接  </p>
+<p> 限制其中常量池的容量。  </p>
+<p> 4，方法区溢出  </p>
+<p> 方法区用于存放Class的相关信息，如类名、访问修饰符、常量池、字段描述、方法描述等。也有可  </p>
+<p> 能是方法区中保存的class对象没有被及时回收掉或者class信息占用的内存超过了我们配置。  </p>
+<p> 异常信息：java.lang.OutOfMemoryError:PermGenspace  </p>
+<p> 方法区溢出也是一种常见的内存溢出异常，一个类如果要被垃圾收集器回收，判定条件是很苛刻  </p>
+<p> 的。在经常动态生成大量Class的应用中，要特别注意这点。  </p>
+<p> SOF（堆栈溢出StackOverflflow）：  </p>
+<p> StackOverflflowError 的定义：当应用程序递归太深而发生堆栈溢出时，抛出该错误。  </p>
+<p> 因为栈一般默认为1-2m，一旦出现死循环或者是大量的递归调用，在不断的压栈过程中，造成栈容  </p>
+<p> 量超过1m而导致溢出。  </p>
+<p> 栈溢出的原因：递归调用，大量循环或死循环，全局变量是否过多，数组、List、map数据过大。  </p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OOM"><span class="toc-number">1.</span> <span class="toc-text">OOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA"><span class="toc-number">1.1.</span> <span class="toc-text">内存溢出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">内存泄漏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jvm%E4%B8%AD%E4%BB%80%E4%B9%88%E5%9C%B0%E6%96%B9%E4%BC%9A%E5%8F%91%E7%94%9F%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">jvm中什么地方会发生内存溢出？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E4%BC%9A%E5%8F%91%E7%94%9F%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E7%9A%84%E6%98%AF"><span class="toc-number">1.4.</span> <span class="toc-text">不会发生内存溢出的是</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%EF%BC%9F%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.5.</span> <span class="toc-text">内存溢出如何排查？使用工具</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/fbfb31e7.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/fbfb31e7.html&text=OOM内存溢出"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/fbfb31e7.html&is_video=false&description=OOM内存溢出"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=OOM内存溢出&body=Check out this article: http://porcorosso.top/posts/fbfb31e7.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/fbfb31e7.html&title=OOM内存溢出"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/fbfb31e7.html&name=OOM内存溢出&description=&lt;p&gt;内存&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="数据库连接池">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HikariCP数据库连接池组件">
+<meta property="og:url" content="http://porcorosso.top/posts/9435ccf8.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="数据库连接池">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-03T09:00:50.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:26:07.752Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="数据库连接池">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>HikariCP数据库连接池组件</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/9daa7c92.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/39230a67.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/9435ccf8.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/9435ccf8.html&text=HikariCP数据库连接池组件"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/9435ccf8.html&is_video=false&description=HikariCP数据库连接池组件"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HikariCP数据库连接池组件&body=Check out this article: http://porcorosso.top/posts/9435ccf8.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/9435ccf8.html&name=HikariCP数据库连接池组件&description=&lt;p&gt;数据库连接池&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HikariCP%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%BB%84%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">HikariCP数据库连接池组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">2.</span> <span class="toc-text">什么是连接池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHikariCP"><span class="toc-number">3.</span> <span class="toc-text">什么是HikariCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E8%BE%B9%E8%AF%B4%E5%88%B0%E6%98%AF%E5%9C%A8BoneCP%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%81%9A%E4%BA%86%E4%BC%98%E5%8C%96%EF%BC%8C%E9%82%A3%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8C%96%E5%91%A2%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">上边说到是在BoneCP基础上做了优化，那做了哪些优化呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HikariCP-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">HikariCP 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0"><span class="toc-number">3.2.1.</span> <span class="toc-text">重要参数</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number"></span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9B%B8%E5%85%B3-%E4%BD%BF%E7%94%A8-HikariCP-%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-number">0.0.1.</span> <span class="toc-text">配置数据源相关    使用 HikariCP 数据源</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-1"><span class="toc-number"></span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Maven%E4%BE%9D%E8%B5%96"><span class="toc-number">0.0.1.</span> <span class="toc-text">Maven依赖</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">0.1.</span> <span class="toc-text">支持数据库</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        HikariCP数据库连接池组件
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2022-12-03T09:00:50.000Z" itemprop="datePublished">2022-12-03</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="tag">数据库连接池</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>数据库连接池</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="HikariCP数据库连接池组件"><a href="#HikariCP数据库连接池组件" class="headerlink" title="HikariCP数据库连接池组件"></a>HikariCP数据库连接池组件</h2><h2 id="什么是连接池"><a href="#什么是连接池" class="headerlink" title="什么是连接池"></a>什么是连接池</h2><p>数据库连接池负责分配、管理和释放数据库的连接。</p>
+<p>数据库连接复用：重复使用现有的数据库长连接，可以避免连接频繁建立、关闭的开销。<br>统一的连接管理：释放空闲时间超过最大空闲时间的数据库连接，避免因为没有释放数据库连接而引起的数据库连接泄漏。</p>
+<h2 id="什么是HikariCP"><a href="#什么是HikariCP" class="headerlink" title="什么是HikariCP"></a>什么是HikariCP</h2><p>HikariCP 是一个高性能的 JDBC 连接池组件，号称<strong>性能最好</strong>的后起之秀，是一个基于BoneCP做了不少的改进和优化的高性能JDBC连接池。</p>
+<p>其作者还有产出了另外一个开源作品HikariJSON——高性能的JSON解析器。</p>
+<p>代码体积更是少的可怜，130kb。Spring Boot 2都已经宣布支持了该组件，由之前的Tomcat换成HikariCP。</p>
+<p>其性能远高于c3p0、tomcat等连接池，以致后来BoneCP作者都放弃了维护，在Github项目主页推荐大家使用HikariCP</p>
+<h3 id="上边说到是在BoneCP基础上做了优化，那做了哪些优化呢？"><a href="#上边说到是在BoneCP基础上做了优化，那做了哪些优化呢？" class="headerlink" title="上边说到是在BoneCP基础上做了优化，那做了哪些优化呢？"></a>上边说到是在BoneCP基础上做了优化，那做了哪些优化呢？</h3><p>字节码精简 ：优化代码（HikariCP利用了一个第三方的Java字节码修改类库Javassist来生成委托实现动态代理，动态代理的实现在ProxyFactory类），直到编译后的字节码最少，这样，CPU缓存可以加载更多的程序代码；<br>优化代理和拦截器：减少代码，例如HikariCP的Statement proxy只有100行代码，只有BoneCP的十分之一；<br>自定义数组类型（FastStatementList）代替ArrayList：避免每次get()调用都要进行range check，避免调用remove()时的从头到尾的扫描，相对与ArrayList极大地提升了性能，而其中的区别是，ArrayList在每次执行get(Index)方法时，都需要对List的范围进行检查，而FastStatementList不需要，在能确保范围的合法性的情况下，可以省去范围检查的开销。<br>自定义集合类型（ConcurrentBag）：支持快速插入和删除，特别是在同一线程既添加又删除项时，提高并发读写的效率；<br>针对CPU的时间片算法进行优化：尽可能在一个时间片里面完成各种操作（具体机制比较模糊）。<br>针对连接中断的情况：比其他CP响应时间上有了极好的优化，响应时间为5S，会抛出SqlException异常，并且后续的getConnection()可以正常进行<br>关于Connection的操作：另外在Java代码中，很多都是在使用完之后直接关闭连接，以前都是从头到尾遍历，来关闭对应的Connection，而HikariCP则是从尾部对Connection集合进行扫描，整体上来说，从尾部开始的性能更好一些。</p>
+<h3 id="HikariCP-的使用"><a href="#HikariCP-的使用" class="headerlink" title="HikariCP 的使用"></a>HikariCP 的使用</h3><h4 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h4><p>maximum-pool-size   池中最大连接数（包括空闲和正在使用的连接）<br>minimum-idle   池中最小空闲连接数量。默认值10<br>pool-name   连接池的名字<br>auto-commit   是否自动提交池中返回的连接。默认值为true。<br>idle-timeout    空闲时间。仅在minimum-idle小于maximum-poop-size的时候才会起作用。默认值10分钟。<br>max-lifetime   连接池中连接的最大生命周期。当连接一致处于闲置状态时，数据库可能会主动断开连接。<br>connection-timeout   连接超时时间。默认值为30s，可以接收的最小超时时间为250ms。但是连接池请求也可以自定义超时时间</p>
+<h1 id><a href="#" class="headerlink" title></a></h1><h4 id="配置数据源相关-使用-HikariCP-数据源"><a href="#配置数据源相关-使用-HikariCP-数据源" class="headerlink" title="配置数据源相关    使用 HikariCP 数据源"></a>配置数据源相关    使用 HikariCP 数据源</h4><h1 id="-1"><a href="#-1" class="headerlink" title></a></h1><p>############################################################</p>
+<p>#等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒</p>
+<p>spring.datasource.hikari.connection-timeout=30000</p>
+<p>#最小连接数</p>
+<p>spring.datasource.hikari.minimum-idle=5</p>
+<p>#最大连接数</p>
+<p>spring.datasource.hikari.maximum-pool-size=15</p>
+<p>#自动提交</p>
+<p>spring.datasource.hikari.auto-commit=true</p>
+<p>#一个连接idle状态的最大时长（毫秒），超时则被释放（retired），默认:10分钟</p>
+<p>spring.datasource.hikari.idle-timeout=600000</p>
+<p>#连接池名字</p>
+<p>spring.datasource.hikari.pool-name=DatebookHikariCP</p>
+<p>#一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms，建议设置比数据库超时时长少60秒，#参考MySQL wait_timeout参数（show variables like ‘%timeout%’;） –&gt;</p>
+<p>spring.datasource.hikari.max-lifetime=28740000<br>spring.datasource.hikari.connection-test-query=SELECT 1</p>
+<p>#注意：如果配置不当，数据库连接池也可能因影响到系统性能</p>
+<h4 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h4><pre class=" language-java"><code class="language-java">
+ <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>mysql<span class="token operator">--</span><span class="token operator">></span>
+            <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+                <span class="token operator">&lt;</span>groupId<span class="token operator">></span>com<span class="token punctuation">.</span>zaxxer<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+                <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>HikariCP<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+                <span class="token operator">&lt;</span>version<span class="token operator">></span>$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>hikaricp<span class="token punctuation">.</span>version<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
+            <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+                <span class="token operator">&lt;</span>groupId<span class="token operator">></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+                <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>jdbc<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+                <span class="token operator">&lt;</span>exclusions<span class="token operator">></span>
+                    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 排除 tomcat<span class="token operator">-</span>jdbc 以使用 HikariCP <span class="token operator">--</span><span class="token operator">></span>
+                    <span class="token operator">&lt;</span>exclusion<span class="token operator">></span>
+                        <span class="token operator">&lt;</span>groupId<span class="token operator">></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>tomcat<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+                        <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>tomcat<span class="token operator">-</span>jdbc<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>exclusion<span class="token operator">></span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>exclusions<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
+            <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+                <span class="token operator">&lt;</span>groupId<span class="token operator">></span>mysql<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+                <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>mysql<span class="token operator">-</span>connector<span class="token operator">-</span>java<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+                <span class="token operator">&lt;</span>version<span class="token operator">></span>$<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>mysql<span class="token punctuation">.</span>version<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
+</code></pre>
+<h3 id="支持数据库"><a href="#支持数据库" class="headerlink" title="支持数据库"></a>支持数据库</h3><p>支持多种常见的数据库（包含但不限于）：</p>
+<p>Oracle、MS SQL Server、MySQL、PostgreSQL</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HikariCP%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%BB%84%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">HikariCP数据库连接池组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">2.</span> <span class="toc-text">什么是连接池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHikariCP"><span class="toc-number">3.</span> <span class="toc-text">什么是HikariCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E8%BE%B9%E8%AF%B4%E5%88%B0%E6%98%AF%E5%9C%A8BoneCP%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%81%9A%E4%BA%86%E4%BC%98%E5%8C%96%EF%BC%8C%E9%82%A3%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8C%96%E5%91%A2%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">上边说到是在BoneCP基础上做了优化，那做了哪些优化呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HikariCP-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">HikariCP 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0"><span class="toc-number">3.2.1.</span> <span class="toc-text">重要参数</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number"></span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9B%B8%E5%85%B3-%E4%BD%BF%E7%94%A8-HikariCP-%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-number">0.0.1.</span> <span class="toc-text">配置数据源相关    使用 HikariCP 数据源</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-1"><span class="toc-number"></span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Maven%E4%BE%9D%E8%B5%96"><span class="toc-number">0.0.1.</span> <span class="toc-text">Maven依赖</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">0.1.</span> <span class="toc-text">支持数据库</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/9435ccf8.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/9435ccf8.html&text=HikariCP数据库连接池组件"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/9435ccf8.html&is_video=false&description=HikariCP数据库连接池组件"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HikariCP数据库连接池组件&body=Check out this article: http://porcorosso.top/posts/9435ccf8.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/9435ccf8.html&title=HikariCP数据库连接池组件"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/9435ccf8.html&name=HikariCP数据库连接池组件&description=&lt;p&gt;数据库连接池&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

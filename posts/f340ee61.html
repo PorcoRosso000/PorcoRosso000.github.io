@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Linux命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux命令">
+<meta property="og:url" content="http://porcorosso.top/posts/f340ee61.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="Linux命令">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-26T07:33:58.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:26:07.754Z">
+<meta property="article:author" content="菊子酒">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Linux命令</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/8332e50c.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/122009e3.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/f340ee61.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/f340ee61.html&text=Linux命令"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/f340ee61.html&is_video=false&description=Linux命令"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux命令&body=Check out this article: http://porcorosso.top/posts/f340ee61.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/f340ee61.html&name=Linux命令&description=&lt;p&gt;Linux命令&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">Linux指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.</span> <span class="toc-text">删除文件中的所有内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">删除当前目录下的所有文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.3.</span> <span class="toc-text">删除当前目录下的所有文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">删除当前目录下所有类型的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">删除指定目录下的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.6.</span> <span class="toc-text">删除指定目录下所有类型的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">1.7.</span> <span class="toc-text">Linux  查看端口使用情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E8%A7%A3%E5%8E%8Bwar%E5%8C%85"><span class="toc-number">1.8.</span> <span class="toc-text">Linux  解压war包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.9.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98"><span class="toc-number">1.10.</span> <span class="toc-text">虚拟机查看内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Btomcat%E8%BF%90%E8%A1%8C%E6%83%85%E5%86%B5"><span class="toc-number">1.11.</span> <span class="toc-text">查看tomcat运行情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.12.</span> <span class="toc-text">查看所有服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97"><span class="toc-number">1.13.</span> <span class="toc-text">查看日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%80%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.14.</span> <span class="toc-text">杀进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.15.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="toc-number">1.16.</span> <span class="toc-text">删除镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">1.17.</span> <span class="toc-text">创建目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-number">1.18.</span> <span class="toc-text">创建文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE"><span class="toc-number">1.19.</span> <span class="toc-text">防火墙配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.19.1.</span> <span class="toc-text">开启防火墙</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%E6%98%AF%E5%90%A6%E5%B7%B2%E5%BC%80"><span class="toc-number">1.19.2.</span> <span class="toc-text">查询指定端口是否已开</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%B7%BB%E5%8A%A0%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.19.3.</span> <span class="toc-text">防火墙添加端口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E7%AB%AF%E5%8F%A3-%E7%A7%BB%E9%99%A4%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%EF%BC%9A"><span class="toc-number">1.19.4.</span> <span class="toc-text">移除端口-移除指定端口：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%BC%80%E6%94%BE%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99%E5%88%97%E8%A1%A8"><span class="toc-number">1.19.5.</span> <span class="toc-text">查询开放的防火墙列表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">docker指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8Bdocker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97"><span class="toc-number">2.1.</span> <span class="toc-text">实时查看docker容器日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bdocker-%E7%89%88%E6%9C%AC"><span class="toc-number">2.2.</span> <span class="toc-text">查看docker 版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6docker-compose"><span class="toc-number">2.3.</span> <span class="toc-text">将可执行权限应用于二进制文件docker-compose</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-number">2.4.</span> <span class="toc-text">删除容器的命令：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%B3%BB%E7%BB%9FDocker%E4%BF%A1%E6%81%AF"><span class="toc-number">2.5.</span> <span class="toc-text">查看当前系统Docker信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8EDocker-hub%E4%B8%8A%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%B8%AA%E9%95%9C%E5%83%8F"><span class="toc-number">2.6.</span> <span class="toc-text">从Docker hub上下载某个镜像:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BEDocker-Hub%E4%B8%8A%E7%9A%84nginx%E9%95%9C%E5%83%8F"><span class="toc-number">2.7.</span> <span class="toc-text">查找Docker Hub上的nginx镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="toc-number">2.8.</span> <span class="toc-text">查看所有正在运行容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%AE%B9%E5%99%A8id%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8"><span class="toc-number">2.9.</span> <span class="toc-text">根据容器id停止容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-number">2.10.</span> <span class="toc-text">查看所有容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8ID"><span class="toc-number">2.11.</span> <span class="toc-text">查看所有容器ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#start%E5%90%AF%E5%8A%A8%E6%89%80%E6%9C%89%E5%81%9C%E6%AD%A2%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">2.12.</span> <span class="toc-text">start启动所有停止的容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stop%E5%81%9C%E6%AD%A2%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-number">2.13.</span> <span class="toc-text">stop停止所有容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#remove%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-number">2.14.</span> <span class="toc-text">remove删除所有容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-number">2.15.</span> <span class="toc-text">删除所有的镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8-1"><span class="toc-number">2.16.</span> <span class="toc-text">查看所有容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87ID%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">2.17.</span> <span class="toc-text">通过ID删除指定的容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WARNING-Published-ports-are-discarded-when-using-host-network-mode-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.18.</span> <span class="toc-text">WARNING: Published ports are discarded when using host network mode 解决方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-compose-%E5%90%AF%E5%8A%A8%E5%BD%93%E5%89%8Dyml%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">2.19.</span> <span class="toc-text">docker-compose 启动当前yml对应的容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-compose-%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E5%BC%BA%E5%88%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA"><span class="toc-number">2.20.</span> <span class="toc-text">docker-compose 如果需要强制重新构建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">参考文章:</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Linux命令
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-05-26T07:33:58.000Z" itemprop="datePublished">2023-05-26</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Linux命令</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="Linux指令"><a href="#Linux指令" class="headerlink" title="Linux指令"></a>Linux指令</h3><h4 id="删除文件中的所有内容"><a href="#删除文件中的所有内容" class="headerlink" title="删除文件中的所有内容"></a>删除文件中的所有内容</h4><pre><code>第一种方式:按esc后，然后使用:1,.d即可删除所有内容
+第二种方式:进入文件后直接输入100dd，可以删除100行的数据
+</code></pre>
+<h4 id="删除当前目录下的所有文件"><a href="#删除当前目录下的所有文件" class="headerlink" title="删除当前目录下的所有文件"></a>删除当前目录下的所有文件</h4><pre><code>rm -f *
+</code></pre>
+<h4 id="删除当前目录下的所有文件夹"><a href="#删除当前目录下的所有文件夹" class="headerlink" title="删除当前目录下的所有文件夹"></a>删除当前目录下的所有文件夹</h4><pre><code>rm -rf *
+</code></pre>
+<h4 id="删除当前目录下所有类型的文件"><a href="#删除当前目录下所有类型的文件" class="headerlink" title="删除当前目录下所有类型的文件"></a>删除当前目录下所有类型的文件</h4><pre><code>find . -type f -delete
+</code></pre>
+<h4 id="删除指定目录下的文件"><a href="#删除指定目录下的文件" class="headerlink" title="删除指定目录下的文件"></a>删除指定目录下的文件</h4><pre><code>rm -f &lt;指定目录&gt;
+</code></pre>
+<h4 id="删除指定目录下所有类型的文件"><a href="#删除指定目录下所有类型的文件" class="headerlink" title="删除指定目录下所有类型的文件"></a>删除指定目录下所有类型的文件</h4><pre><code>find &lt;指定目录&gt; -type f -delete
+</code></pre>
+<h4 id="Linux-查看端口使用情况"><a href="#Linux-查看端口使用情况" class="headerlink" title="Linux  查看端口使用情况"></a>Linux  查看端口使用情况</h4><pre><code>netstat -tunlp | grep 8030 
+</code></pre>
+<h4 id="Linux-解压war包"><a href="#Linux-解压war包" class="headerlink" title="Linux  解压war包"></a>Linux  解压war包</h4><p>可以用unzip命令</p>
+<pre><code>unzip project.war -d project 
+</code></pre>
+<h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><pre><code>rz 上传文件
+</code></pre>
+<h4 id="虚拟机查看内存"><a href="#虚拟机查看内存" class="headerlink" title="虚拟机查看内存"></a>虚拟机查看内存</h4><pre><code>free -m  
+</code></pre>
+<h4 id="查看tomcat运行情况"><a href="#查看tomcat运行情况" class="headerlink" title="查看tomcat运行情况"></a>查看tomcat运行情况</h4><pre><code>ps -ef|grep tomcat   
+</code></pre>
+<h4 id="查看所有服务"><a href="#查看所有服务" class="headerlink" title="查看所有服务"></a>查看所有服务</h4><pre><code>ps x   
+</code></pre>
+<h4 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h4><pre><code>tail -f logs /日志   
+</code></pre>
+<h4 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h4><pre><code>kill -9 pid  
+</code></pre>
+<h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><pre><code>sh tomcats/tomcat-ywh-ms-8010/bin/startup.sh 
+</code></pre>
+<h4 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h4><p>1.执行 <strong>docker stop $(docker ps -a -q)</strong> 用来中止中止全部的container</p>
+<p>2.<strong>docker images</strong> 查看镜像列表</p>
+<p>3.<strong>docker rmi 147051a21fd9</strong> 删除IMAGE_ID = 147051a21fd9 的镜像<br>4.<strong>docker images</strong>再次查看镜像列表，发现被删除</p>
+<p>5.查看一下全部的镜像文件，<strong>docker images -a</strong></p>
+<p>6.删除失败的情况下执行</p>
+<pre><code>报错: Error response fro daemon: conflict: unable to delete c218b729bf73 (must be forced) - image is being used by stoped container 945acebbca0f
+
+docker ps -a | grep &quot;Exited&quot; | awk &#39;&#123;print $1 &#125;&#39;|xargs docker stop
+docker ps -a | grep &quot;Exited&quot; | awk &#39;&#123;print $1 &#125;&#39;|xargs docker rm
+docker images|grep none|awk &#39;&#123;print $3 &#125;&#39;|xargs docker rmi
+
+上述命令 还解决了我在删除镜像文件时的一个报错：Error response from daemon: conflict: unable to delete 0138793f7e1f (cannot be forced) - image has dependent child images
+</code></pre>
+<h4 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h4><p>创建多级目录</p>
+<pre><code>mkdir -p &lt;目录路径&gt;
+</code></pre>
+<pre><code>例如 mkdir -p mysql/config   就会创建mysql 目录及 config目录
+</code></pre>
+<p>创建单级目录</p>
+<pre><code>mkdir &lt;目录名&gt;
+</code></pre>
+<h4 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h4><pre class=" language-cobol"><code class="language-cobol">touch a.txt
+</code></pre>
+<p>如果a.txt文件存在，那么修改文件的时间属性为当前时间；<br>如果a.txt文件不存在，那么新建一个a.txt空白文件。</p>
+<pre class=" language-less"><code class="language-less">touch <span class="token operator">-</span>t <span class="token number">202001010101</span> a<span class="token number">.</span>txt
+</code></pre>
+<p>如果a.txt文件存在，那么修改文件的时间属性为指定的时间，这里是2020年1月1日1时1分；<br>如果a.txt文件不存在，那么新建一个a.txt空白文件。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">touch</span> catkin_ws/a.txt
+</code></pre>
+<p>如果catkin_ws路径下存在a.txt文件，那么修改文件的时间属性为当前时间；<br>如果catkin_ws路径下不存在a.txt文件，那么新建一个a.txt空白文件。</p>
+<pre class=" language-cobol"><code class="language-cobol">touch c.txt d.txt
+</code></pre>
+<p>如果c.txt文件和d.txt都存在，那么修改这两个文件的时间属性为当前时间；<br>如果c.txt文件和d.txt都不存在，那么新建c.txt和d.txt两个空白文件；</p>
+<p>如果只存在一个，那么修改存在的文件的时间属性，并新建另外一个空白文件。</p>
+<pre class=" language-cobol"><code class="language-cobol">touch a&#123;1..4&#125;
+</code></pre>
+<p>表示在当前路径下新建a1、a2、a3和a4这4个文件。</p>
+<pre class=" language-cobol"><code class="language-cobol">touch a&#123;1..4&#125;.txt
+</code></pre>
+<p>表示在当前路径下新建a1.txt、a2.txt、a3.txt和a4.txt这4个文件。</p>
+<h4 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h4><h5 id="开启防火墙"><a href="#开启防火墙" class="headerlink" title="开启防火墙"></a>开启防火墙</h5><pre><code>查看防火墙状态 
+systemctl status firewalld 
+开启防火墙 
+systemctl start firewalld   
+关闭防火墙 
+systemctl stop firewalld
+重启防火墙 
+service firewalld start  
+
+
+若遇到无法开启 先用：
+systemctl unmask firewalld.service  
+然后：
+systemctl start firewalld.service
+</code></pre>
+<h5 id="查询指定端口是否已开"><a href="#查询指定端口是否已开" class="headerlink" title="查询指定端口是否已开"></a>查询指定端口是否已开</h5><pre><code>firewall-cmd --query-port=666/tcp
+</code></pre>
+<h5 id="防火墙添加端口"><a href="#防火墙添加端口" class="headerlink" title="防火墙添加端口"></a>防火墙添加端口</h5><pre><code>开放端口保存-添加指定需要开放的端口： 
+firewall-cmd --add-port=123/tcp --permanent 
+重载入添加的端口： 
+firewall-cmd --reload 
+查询指定端口是否开启成功： 
+firewall-cmd --query-port=123/tcp
+</code></pre>
+<h5 id="移除端口-移除指定端口："><a href="#移除端口-移除指定端口：" class="headerlink" title="移除端口-移除指定端口："></a>移除端口-移除指定端口：</h5><pre><code>firewall-cmd --permanent --remove-port=123/tcp
+</code></pre>
+<h5 id="查询开放的防火墙列表"><a href="#查询开放的防火墙列表" class="headerlink" title="查询开放的防火墙列表"></a>查询开放的防火墙列表</h5><pre><code>firewall-cmd --zone=public --list-ports
+若开放了端口还是连接不上你想要的端口，
+注意：有可能是你阿里云自带安全组策略限制的原因，这种情况需要在阿里云官方云服务器管理控制台手动开放。
+</code></pre>
+<h3 id="docker指令"><a href="#docker指令" class="headerlink" title="docker指令"></a>docker指令</h3><h4 id="实时查看docker容器日志"><a href="#实时查看docker容器日志" class="headerlink" title="实时查看docker容器日志"></a>实时查看docker容器日志</h4><pre><code>sudo docker logs -f -t --tail 行数 容器名
+</code></pre>
+<h4 id="查看docker-版本"><a href="#查看docker-版本" class="headerlink" title="查看docker 版本"></a>查看docker 版本</h4><pre><code>docker version
+</code></pre>
+<h4 id="将可执行权限应用于二进制文件docker-compose"><a href="#将可执行权限应用于二进制文件docker-compose" class="headerlink" title="将可执行权限应用于二进制文件docker-compose"></a>将可执行权限应用于二进制文件docker-compose</h4><pre><code>sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>拉取docker镜像</p>
+<pre><code>docker pull image_name
+</code></pre>
+<p>查看宿主机上的镜像，Docker镜像保存在/var/lib/docker目录下:</p>
+<pre><code>docker images
+</code></pre>
+<p>删除镜像</p>
+<pre><code>docker rmi docker.io/tomcat:7.0.77-jre7 或者 docker rmi b39c68b7af30
+</code></pre>
+<p>启动、停止、重启容器命令：</p>
+<pre><code>docker start container_name/container_id docker stop container_name/container_id docker restart container_name/container_id
+</code></pre>
+<p>后台启动一个容器后，如果想进入到这个容器，可以使用attach命令：</p>
+<pre><code>docker attach container_name/container_id
+</code></pre>
+<h4 id="删除容器的命令："><a href="#删除容器的命令：" class="headerlink" title="删除容器的命令："></a>删除容器的命令：</h4><pre><code>docker rm container_name/container_id
+</code></pre>
+<h4 id="查看当前系统Docker信息"><a href="#查看当前系统Docker信息" class="headerlink" title="查看当前系统Docker信息"></a>查看当前系统Docker信息</h4><pre><code>docker info
+</code></pre>
+<h4 id="从Docker-hub上下载某个镜像"><a href="#从Docker-hub上下载某个镜像" class="headerlink" title="从Docker hub上下载某个镜像:"></a>从Docker hub上下载某个镜像:</h4><pre><code>docker pull centos:latest docker pull centos:latest
+</code></pre>
+<h4 id="查找Docker-Hub上的nginx镜像"><a href="#查找Docker-Hub上的nginx镜像" class="headerlink" title="查找Docker Hub上的nginx镜像"></a>查找Docker Hub上的nginx镜像</h4><pre><code>docker search nginx
+</code></pre>
+<p>执行docker pull centos会将Centos这个仓库下面的所有镜像下载到本地repository。</p>
+<h4 id="查看所有正在运行容器"><a href="#查看所有正在运行容器" class="headerlink" title="查看所有正在运行容器"></a>查看所有正在运行容器</h4><pre><code>docker ps 
+</code></pre>
+<h4 id="根据容器id停止容器"><a href="#根据容器id停止容器" class="headerlink" title="根据容器id停止容器"></a>根据容器id停止容器</h4><pre><code>docker stop containerId // containerId 是容器的ID
+</code></pre>
+<h4 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h4><pre><code>docker ps -a 
+</code></pre>
+<h4 id="查看所有容器ID"><a href="#查看所有容器ID" class="headerlink" title="查看所有容器ID"></a>查看所有容器ID</h4><pre><code>docker ps -a -q 
+</code></pre>
+<h4 id="start启动所有停止的容器"><a href="#start启动所有停止的容器" class="headerlink" title="start启动所有停止的容器"></a>start启动所有停止的容器</h4><pre><code>docker start $(docker ps -a -q) 
+</code></pre>
+<h4 id="stop停止所有容器"><a href="#stop停止所有容器" class="headerlink" title="stop停止所有容器"></a>stop停止所有容器</h4><pre><code>docker stop $(docker ps -a -q) 
+</code></pre>
+<h4 id="remove删除所有容器"><a href="#remove删除所有容器" class="headerlink" title="remove删除所有容器"></a>remove删除所有容器</h4><pre><code>docker rm $(docker ps -a -q) 
+</code></pre>
+<h4 id="删除所有的镜像"><a href="#删除所有的镜像" class="headerlink" title="删除所有的镜像"></a>删除所有的镜像</h4><pre><code>docker rmi $(docker images -q)
+</code></pre>
+<h4 id="查看所有容器-1"><a href="#查看所有容器-1" class="headerlink" title="查看所有容器"></a>查看所有容器</h4><pre><code>docker ps -a
+</code></pre>
+<h4 id="通过ID删除指定的容器"><a href="#通过ID删除指定的容器" class="headerlink" title="通过ID删除指定的容器"></a>通过ID删除指定的容器</h4><pre><code>docker rm -f  CONTAINER ID
+</code></pre>
+<h4 id="WARNING-Published-ports-are-discarded-when-using-host-network-mode-解决方法"><a href="#WARNING-Published-ports-are-discarded-when-using-host-network-mode-解决方法" class="headerlink" title="WARNING: Published ports are discarded when using host network mode 解决方法"></a>WARNING: Published ports are discarded when using host network mode 解决方法</h4><p>问题：</p>
+<pre><code> docke启动时总是遇见标题中的警告，-p 8889:8888的设置也不起任何作用。
+</code></pre>
+<p>原因：</p>
+<pre><code>docker启动时指定--network=host或-net=host，如果还指定了-p或-P，那这个时候就会有此警告，并且通过-p或-P设置的参数将不会起到任何作用，端口号会以主机端口号为主，重复时则递增。
+</code></pre>
+<p>解决:</p>
+<pre><code>解决的办法就是使用docker的其他网络模式，例如--network=bridge，这样就可以解决问题，
+</code></pre>
+<p>docker的网络模式：</p>
+<p>   **bridge模式(默认)**：它的作用是扩展网络和通信手段，在各种传输介质中转发数据信号，扩展网络的距离，同时又有选择地将有地址的信号从一个传输介质发送到另一个传输介质，并能有效地限制两个介质系统中无关紧要的通信。</p>
+<p>   <strong>host模式</strong>: 使Docker 容器内的程序看起来像是在主机本身上运行。 它允许容器比它通常可以获得的更大的网络访问权限。</p>
+<p>   <strong>none模式</strong>: 一般应用于对安全性要求高并且不需要联网的封闭环境 下的场景，比如某个容器的唯 用途是生成随机密码，就可以放到 none 网络中避免密码被窃取。</p>
+<p>   <strong>container模式</strong>：使用时要指定容器名，这种模式可以节约一定的网络资源，并能降低容器间的通信的难度。container网络模式使多个容器共享网络环境，在这种模式下容器可以通过访问localhost来访问 namespace下的其他容器,网络性能高。</p>
+<p>   <strong>overlay模式</strong>: 可以按照需求建立不同的虚拟拓扑组网，无需对底层网络作出修改。 通过加密手段可以解决保护私密流量在互联网上的通信。 支持网络切片与网络分段。 将不同的业务分割开来，可以实现网络资源的最优分配。 支持多路径转发。 在Overlay网络中，流量从源传输到目的可通过多条路径，从而实现负载分担，最大化利用线路的带宽。</p>
+<h4 id="docker-compose-启动当前yml对应的容器"><a href="#docker-compose-启动当前yml对应的容器" class="headerlink" title="docker-compose 启动当前yml对应的容器"></a>docker-compose 启动当前yml对应的容器</h4><p>docker-compose up -d</p>
+<h4 id="docker-compose-如果需要强制重新构建"><a href="#docker-compose-如果需要强制重新构建" class="headerlink" title="docker-compose 如果需要强制重新构建"></a>docker-compose 如果需要强制重新构建</h4><p>docker-compose up –force-recreate -d</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章:"></a>参考文章:</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Tilyp">csdn Tilyp</a> 原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/tilyp/article/details/103371360">https://blog.csdn.net/tilyp/article/details/103371360</a></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45517017/article/details/123618933">https://blog.csdn.net/weixin_45517017/article/details/123618933</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">Linux指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.</span> <span class="toc-text">删除文件中的所有内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">删除当前目录下的所有文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.3.</span> <span class="toc-text">删除当前目录下的所有文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">删除当前目录下所有类型的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">删除指定目录下的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.6.</span> <span class="toc-text">删除指定目录下所有类型的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">1.7.</span> <span class="toc-text">Linux  查看端口使用情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E8%A7%A3%E5%8E%8Bwar%E5%8C%85"><span class="toc-number">1.8.</span> <span class="toc-text">Linux  解压war包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.9.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98"><span class="toc-number">1.10.</span> <span class="toc-text">虚拟机查看内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Btomcat%E8%BF%90%E8%A1%8C%E6%83%85%E5%86%B5"><span class="toc-number">1.11.</span> <span class="toc-text">查看tomcat运行情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.12.</span> <span class="toc-text">查看所有服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97"><span class="toc-number">1.13.</span> <span class="toc-text">查看日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%80%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.14.</span> <span class="toc-text">杀进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.15.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="toc-number">1.16.</span> <span class="toc-text">删除镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">1.17.</span> <span class="toc-text">创建目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-number">1.18.</span> <span class="toc-text">创建文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE"><span class="toc-number">1.19.</span> <span class="toc-text">防火墙配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.19.1.</span> <span class="toc-text">开启防火墙</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%E6%98%AF%E5%90%A6%E5%B7%B2%E5%BC%80"><span class="toc-number">1.19.2.</span> <span class="toc-text">查询指定端口是否已开</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%B7%BB%E5%8A%A0%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.19.3.</span> <span class="toc-text">防火墙添加端口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E7%AB%AF%E5%8F%A3-%E7%A7%BB%E9%99%A4%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%EF%BC%9A"><span class="toc-number">1.19.4.</span> <span class="toc-text">移除端口-移除指定端口：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%BC%80%E6%94%BE%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99%E5%88%97%E8%A1%A8"><span class="toc-number">1.19.5.</span> <span class="toc-text">查询开放的防火墙列表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E6%8C%87%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">docker指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8Bdocker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97"><span class="toc-number">2.1.</span> <span class="toc-text">实时查看docker容器日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bdocker-%E7%89%88%E6%9C%AC"><span class="toc-number">2.2.</span> <span class="toc-text">查看docker 版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6docker-compose"><span class="toc-number">2.3.</span> <span class="toc-text">将可执行权限应用于二进制文件docker-compose</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-number">2.4.</span> <span class="toc-text">删除容器的命令：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%B3%BB%E7%BB%9FDocker%E4%BF%A1%E6%81%AF"><span class="toc-number">2.5.</span> <span class="toc-text">查看当前系统Docker信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8EDocker-hub%E4%B8%8A%E4%B8%8B%E8%BD%BD%E6%9F%90%E4%B8%AA%E9%95%9C%E5%83%8F"><span class="toc-number">2.6.</span> <span class="toc-text">从Docker hub上下载某个镜像:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BEDocker-Hub%E4%B8%8A%E7%9A%84nginx%E9%95%9C%E5%83%8F"><span class="toc-number">2.7.</span> <span class="toc-text">查找Docker Hub上的nginx镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="toc-number">2.8.</span> <span class="toc-text">查看所有正在运行容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%AE%B9%E5%99%A8id%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8"><span class="toc-number">2.9.</span> <span class="toc-text">根据容器id停止容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-number">2.10.</span> <span class="toc-text">查看所有容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8ID"><span class="toc-number">2.11.</span> <span class="toc-text">查看所有容器ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#start%E5%90%AF%E5%8A%A8%E6%89%80%E6%9C%89%E5%81%9C%E6%AD%A2%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">2.12.</span> <span class="toc-text">start启动所有停止的容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stop%E5%81%9C%E6%AD%A2%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-number">2.13.</span> <span class="toc-text">stop停止所有容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#remove%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-number">2.14.</span> <span class="toc-text">remove删除所有容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-number">2.15.</span> <span class="toc-text">删除所有的镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8-1"><span class="toc-number">2.16.</span> <span class="toc-text">查看所有容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87ID%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">2.17.</span> <span class="toc-text">通过ID删除指定的容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WARNING-Published-ports-are-discarded-when-using-host-network-mode-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.18.</span> <span class="toc-text">WARNING: Published ports are discarded when using host network mode 解决方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-compose-%E5%90%AF%E5%8A%A8%E5%BD%93%E5%89%8Dyml%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">2.19.</span> <span class="toc-text">docker-compose 启动当前yml对应的容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-compose-%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E5%BC%BA%E5%88%B6%E9%87%8D%E6%96%B0%E6%9E%84%E5%BB%BA"><span class="toc-number">2.20.</span> <span class="toc-text">docker-compose 如果需要强制重新构建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">参考文章:</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/f340ee61.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/f340ee61.html&text=Linux命令"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/f340ee61.html&is_video=false&description=Linux命令"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux命令&body=Check out this article: http://porcorosso.top/posts/f340ee61.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/f340ee61.html&title=Linux命令"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/f340ee61.html&name=Linux命令&description=&lt;p&gt;Linux命令&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

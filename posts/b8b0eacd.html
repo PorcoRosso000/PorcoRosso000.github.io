@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础">
+<meta property="og:url" content="http://porcorosso.top/posts/b8b0eacd.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="java基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-26T06:38:26.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:26:07.902Z">
+<meta property="article:author" content="菊子酒">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>java基础</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/df4b4949.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/3d614825.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/b8b0eacd.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/b8b0eacd.html&text=java基础"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/b8b0eacd.html&is_video=false&description=java基础"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=java基础&body=Check out this article: http://porcorosso.top/posts/b8b0eacd.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/b8b0eacd.html&name=java基础&description=&lt;p&gt;java基础&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">java基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NIO%E5%92%8CBIO%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.1.</span> <span class="toc-text">NIO和BIO的主要区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-BIO%E5%92%8CNIO%E4%B9%8B%E9%97%B4%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">Java BIO和NIO之间的主要区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6-%E5%8E%9F%E7%90%86-%EF%BC%9A"><span class="toc-number">1.0.3.</span> <span class="toc-text">类加载机制(原理)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.0.4.</span> <span class="toc-text">docker 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http%E5%92%8Chttps%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.5.</span> <span class="toc-text">http和https区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%845%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.6.</span> <span class="toc-text">Java中创建对象的5种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.7.</span> <span class="toc-text">Object方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.8.</span> <span class="toc-text">equals和&#x3D;&#x3D;的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.9.</span> <span class="toc-text">#{}和${}的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E3%80%81StringBuilder%E5%92%8CStringBuffer%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.10.</span> <span class="toc-text">String、StringBuilder和StringBuffer的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#StringBuilder%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84"><span class="toc-number">1.0.10.1.</span> <span class="toc-text">StringBuilder为什么是线程不安全的</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.11.</span> <span class="toc-text">抽象类和接口的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.12.</span> <span class="toc-text">栈和堆的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E5%92%8Chashcode%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.13.</span> <span class="toc-text">equals和hashcode的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk-1-7-1-8-%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.14.</span> <span class="toc-text">jdk 1.7 1.8 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#class%E6%96%87%E4%BB%B6%E7%9A%84%E7%94%9F%E6%88%90%E5%92%8C%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.15.</span> <span class="toc-text">.class文件的生成和加载过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis%E5%88%86%E9%A1%B5%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.0.16.</span> <span class="toc-text">mybatis分页实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-number">1.0.17.</span> <span class="toc-text">对称加密和非对称加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jwt-%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.0.18.</span> <span class="toc-text">jwt  参数设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#object%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">object方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equals%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.2.</span> <span class="toc-text">equals和&#x3D;&#x3D;的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.3.</span> <span class="toc-text">#{}和${}的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String%E3%80%81StringBuilder%E5%92%8CStringBuffer%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.4.</span> <span class="toc-text">String、StringBuilder和StringBuffer的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StringBuilder%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">StringBuilder为什么是线程不安全的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch-case-%E8%AF%AD%E5%8F%A5%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">switch case 语句语法格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.6.</span> <span class="toc-text">抽象类和接口的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.7.</span> <span class="toc-text">栈和堆的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equals%E5%92%8Chashcode%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.8.</span> <span class="toc-text">equals和hashcode的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie-%E5%92%8Csession%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.9.</span> <span class="toc-text">cookie 和session的区别:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie-%E5%92%8ClocalStorage-%E5%8C%BA%E5%88%AB"><span class="toc-number">1.10.</span> <span class="toc-text">cookie 和localStorage 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.</span> <span class="toc-text">常用的设计模式:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.1.</span> <span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.2.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.3.</span> <span class="toc-text">装饰者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.4.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.5.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%EF%BC%88proxy%EF%BC%89"><span class="toc-number">1.11.0.6.</span> <span class="toc-text">代理模式（proxy）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%9B%9E%E9%80%80%E5%8E%86%E5%8F%B2"><span class="toc-number">1.12.</span> <span class="toc-text">Git回退历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-8%E7%A7%8D%E6%8E%92%E5%BA%8F%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.13.</span> <span class="toc-text">Java 8种排序方式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E8%AF%B7%E6%B1%82%E6%98%AF%E9%95%BF%E8%BF%9E%E6%8E%A5%E8%BF%98%E6%98%AF%E7%9F%AD%E8%BF%9E%E6%8E%A5%EF%BC%9F"><span class="toc-number">1.14.</span> <span class="toc-text">http请求是长连接还是短连接？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E4%B9%8B%E9%97%B4%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.15.</span> <span class="toc-text">类之间转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E7%B1%BB"><span class="toc-number">1.16.</span> <span class="toc-text">java类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BigDecimal-%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="toc-number">1.16.1.</span> <span class="toc-text">BigDecimal(包装类)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98"><span class="toc-number">1.17.</span> <span class="toc-text">时间问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E7%B1%BB%E5%9E%8B%E8%BD%ACDate%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.17.1.</span> <span class="toc-text">String类型转Date类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%87%A0%E4%B8%AA%E6%9C%88%E4%BB%A5%E5%90%8E%E7%9A%84%E6%97%B6%E9%97%B4"><span class="toc-number">1.17.2.</span> <span class="toc-text">获取几个月以后的时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.17.3.</span> <span class="toc-text">比较两个字符串的时间类型大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List%E9%9B%86%E5%90%88%E5%8E%BB%E9%87%8D%E7%9A%845%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.18.</span> <span class="toc-text">List集合去重的5种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%8F%8C%E9%87%8Dfor%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.18.1.</span> <span class="toc-text">1、双重for循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8List%E9%9B%86%E5%90%88%E7%9A%84contains%E6%96%B9%E6%B3%95%E5%BE%AA%E7%8E%AF%E9%81%8D%E5%8E%86%EF%BC%8C%E6%B8%85%E7%A9%BA%EF%BC%8C%E9%87%8D%E6%96%B0%E6%B7%BB%E5%8A%A0"><span class="toc-number">1.18.2.</span> <span class="toc-text">2、利用List集合的contains方法循环遍历，清空，重新添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%A9%E7%94%A8HashSet%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D%E7%9A%84%E7%89%B9%E6%80%A7%EF%BC%8C%E4%BD%86%E7%94%B1%E4%BA%8EHashSet%E4%B8%8D%E8%83%BD%E4%BF%9D%E8%AF%81%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E4%BB%A5%E5%8F%AA%E8%83%BD%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6%E4%BF%9D%E8%AF%81%E9%A1%BA%E5%BA%8F"><span class="toc-number">1.18.3.</span> <span class="toc-text">3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%BD%BF%E7%94%A8java8%E7%89%B9%E6%80%A7%E7%9A%84stream%E8%BF%9B%E8%A1%8CList%E5%8E%BB%E9%87%8D"><span class="toc-number">1.18.4.</span> <span class="toc-text">4、使用java8特性的stream进行List去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%EF%BC%88%E6%9C%80%E4%BD%B3%EF%BC%89%E4%BD%BF%E7%94%A8LinkedHashSet%E5%88%A0%E9%99%A4ArrayList%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE"><span class="toc-number">1.18.5.</span> <span class="toc-text">5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.19.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">1.20.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        java基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2022-11-26T06:38:26.000Z" itemprop="datePublished">2022-11-26</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>java基础</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h3 id="NIO和BIO的主要区别"><a href="#NIO和BIO的主要区别" class="headerlink" title="NIO和BIO的主要区别"></a>NIO和BIO的主要区别</h3><h3 id="Java-BIO和NIO之间的主要区别："><a href="#Java-BIO和NIO之间的主要区别：" class="headerlink" title="Java BIO和NIO之间的主要区别："></a>Java BIO和NIO之间的主要区别：</h3><table>
+<thead>
+<tr>
+<th>BIO</th>
+<th>NIO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>面向流</td>
+<td>面向缓冲</td>
+</tr>
+<tr>
+<td>阻塞IO</td>
+<td>非阻塞IO</td>
+</tr>
+<tr>
+<td>无</td>
+<td>选择器</td>
+</tr>
+</tbody></table>
+<p>BIO：同步阻塞IO。服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器需要启动一个线程进行处理，如果这个链接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。</p>
+<p> NIO：同步非阻塞IO，服务器实现模式为一个请求一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有IO请求时才启动一个线程进行处理。用户进程也需要时不时的询问IO操作是否就绪，这需要用户进行不停的去询问。NIO的包括三个核心概念:缓冲区(Buffer)、通道(Channel)、选择器(Selector)。</p>
+<p> AIO：Asynchronous IO，异步非阻塞AIO。最大的特性时具有异步能力，这种能力对socket与文件I/O都起作用。AIO其实是一种在读写操作结束之前允许进行其他操作的I/O处理。</p>
+<h3 id="类加载机制-原理-："><a href="#类加载机制-原理-：" class="headerlink" title="类加载机制(原理)："></a>类加载机制(原理)：</h3><p>加载，验证，准备，解析，初始化</p>
+<p>加载:这个阶段会在内存中生成一个代表这个类的 java.lang.Class 对象，作为方法区这个类的各种数据的入口 </p>
+<p>验证：确保 Class 文件的字节流中包含的信息是否符合当前虚拟机的要求 </p>
+<p>准备：即在方法区中分配这些变量所使用的内存空间 </p>
+<p>解析：虚拟机将常量池中的符号引用替换为直接引用的过程 </p>
+<p>初始化：初始化阶段是执行类构造器<client>方法的过程 如果一个类中没有对静态变量赋值也没有静态语句块，那么编译 器可以不为这个类生成<client>()方法  </client></client></p>
+<h3 id="docker-常用命令"><a href="#docker-常用命令" class="headerlink" title="docker 常用命令"></a>docker 常用命令</h3><p>Docker ps  查看正在运行的容器</p>
+<p>docker ps -a 查看全部容器</p>
+<p>–name 指定容器名字</p>
+<p>-p 指定容器暴露的端口</p>
+<p>docker stop ID关闭正在运行的容器</p>
+<p>docker start ID启动一个容器</p>
+<p>docker restart ID 重启一个容器</p>
+<p>docker images 查看本地镜像</p>
+<p>docker exet 进入一个容器</p>
+<p>docker cp ID全称:容器文件路径 本地路径   拷贝文件到本地</p>
+<p>git 常用命令，</p>
+<p>如：clone ，checkout，add,commit，push ，pull，merge ，冲突解决，误删除历史找回 （客户端操作和idea插件操作）</p>
+<h3 id="http和https区别"><a href="#http和https区别" class="headerlink" title="http和https区别"></a>http和https区别</h3><p>http攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息  </p>
+<p>https为了解决HTTP协议的这一缺陷，需要使用另一种协议：安全套接字层超文本传输协议HTTPS，为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL/TLS协议，SSL/TLS依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。  </p>
+<p>为什么需要 HTTPS ? 因为HTTP是明文传输数据的, 不安全, 而 HTTPS 是会对内容加密的<br> HTTPS 的加密策略是什么 ?(SSL/TLS依靠证书来验证服务器的身份)<br> 先用 非对称加密, 传递对称加密的密钥 (保证了密钥传输的安全)<br> 后续 使用对称加密, 进行交流 (保证了传输数据安全)<br> 问题: 就算是第一次交流用非对称加密, 公钥也是要在网络中传输的!<br> 如何证明公钥是可靠的? 如何证明网站是可靠的 ? (CA机构认证, 网站需要申请 数字证书 )<br> 请求时, 网站就会将数字证书给到浏览器, 浏览器默认就会检测证书的可靠性!<br> (1) 是否是权威机构发布的!<br> (2) 看证书中记录的地址 和 当前访问的网站的地址, 是否一致, 只有一致, 才可靠!<br> (3) 看证书是否过期<br> …<br> 如何保证证书不被篡改 =&gt; 数字签名, 可以根据证书的所有的内容, 生成一个唯一标识!!! (Hash加密算法)<br> 一旦内容如果被修改了, 再次生成唯一标识时, 和之前生成的唯一标识就不一样! 检测是否被修改!</p>
+<p>Https是传输过程加密</p>
+<p>https是传输过程加密，而并非是数据加密传输，使用https对其他国家来说是安全的，但对美国而言，依然是不安全的 因为美国开发的</p>
+<p>SSL/TLS原理</p>
+<p>服务器a用服务器b生成的公钥来加密对称加密的秘钥，这样服务器b可以用对应私钥解开密文，拿到服务器a的对称加密的秘钥。<br> 后续服务器a就用对称加密的秘钥，进行加密数据，发到服务器b，服务器b也可以正常解密麻烦数据了。<br> 理论上看起来很完美，但是这里仍然可能存在中间人攻击，中间人可以监听获取到服务器b发给服务器a的公钥，然后加以伪装篡改后再转发给服务器a。<br> 然后中间人也可以监听获取到服务器a用伪造的公钥加密秘钥的数据，这样秘钥也被中间人拿到了，后面通信数据也就被窃取了。<br> 那怎么办?引入第三方认证机构，CA。<br> 服务器a拿到公钥后，用公钥去ca求证下，与他通信的服务器b是不是真正的在ca认证的服务器b，而不是中间人伪装的。</p>
+<h3 id="Java中创建对象的5种方式"><a href="#Java中创建对象的5种方式" class="headerlink" title="Java中创建对象的5种方式"></a>Java中创建对象的5种方式</h3><p>​    使用new 关键字</p>
+<p>​    使用Class类的newInstance的方法</p>
+<p>​    使用Constructor 的newInstance的方法</p>
+<p>​    使用clone方法</p>
+<p>​    使用反序列化</p>
+<h3 id="Object方法"><a href="#Object方法" class="headerlink" title="Object方法"></a>Object方法</h3><p> 1、hashcode 2、equals 3、wait()(三个) 4、object 5、tostring 6、getclass 7、notify 8、notifyAll  9、clone 10、finalize  </p>
+<h3 id="equals和-的区别"><a href="#equals和-的区别" class="headerlink" title="equals和==的区别"></a>equals和==的区别</h3><p> 1、==：比较的是值是否相等</p>
+<ul>
+<li>基本数据类型，比较的是值</li>
+<li>引用数据类型     ，比较的是对象的的地址</li>
+</ul>
+<p> 2、equals：一般为比较内容是否相同</p>
+<ul>
+<li>如果没有对equals方法进行重写，比较的是引用类型的变量所指向的对象的地址</li>
+<li>如果对equals进行了重写，比较的就是对象的内容</li>
+</ul>
+<h3 id="和-的区别"><a href="#和-的区别" class="headerlink" title="#{}和${}的区别"></a>#{}和${}的区别</h3><p> #{}是预编译处理 是一个占位符 默认会加上单引号，${}字符串的替换 不会加上单引号</p>
+<p> #{}是防止sql注入</p>
+<p> 能少用${}就尽量少使用，但是表名作参数，或者order by 排序时用 ${}</p>
+<p> 在mybatis中 #{}默认值是age0，age1 ${}默认值是param1、param2</p>
+<p> sql注入就是说传过来的参数2改变了原本的意思就是sql注入  </p>
+<p> 比如说传一个 name=”富贵 or name = 狗蛋”  </p>
+<p> 如果使用${}那么就改变了意思，查询的就是名字是富贵或者狗蛋的，如果是#{}的话就没有改变意思，因为#{}是一个占位符</p>
+<h3 id="String、StringBuilder和StringBuffer的区别"><a href="#String、StringBuilder和StringBuffer的区别" class="headerlink" title="String、StringBuilder和StringBuffer的区别"></a>String、StringBuilder和StringBuffer的区别</h3><p> String是不可变的，由String创建的对象需要更改的时候要重新在堆内存中进行分配，所以说消耗资源大，String是由final修饰的，不能被重写。</p>
+<p> StringBuilder和StringBuffer是可变的</p>
+<p> StringBuilder和StringBuffer的区别：StringBuilder的效率高，所以说是线程不安全的，而StringBuffer的效率低，因此是安全的，在一般情况下我们会去使用StringBuilder因为效率较高，但是如果要求要线程安全的话要使用StringBuffer。StringBuffer底层是通过锁来保证安全的（synchronized）。</p>
+<h4 id="StringBuilder为什么是线程不安全的"><a href="#StringBuilder为什么是线程不安全的" class="headerlink" title="StringBuilder为什么是线程不安全的"></a>StringBuilder为什么是线程不安全的</h4><p> 继承了AbstractStringBuilder，如果创建的话变量是存在AbstractStringBuilder中的，有一个char和count，第一个不安全就是，他底层的append方法是没有加锁的，没有保证了原子性，如果说创建线程同时去执行的话，谁先获取到就谁先执行，很有可能出现两个人同时获取到，那么同时进行操作，就会出现所得结果小于真实结果，第二个就是在添加的时候会出现数组下标越界，每次添加的时候都回去判断下标和数组长度，如果长度够就可以添加，在这里又没有保证原子性，如果两个线程同时进来操作，因为cpu差一个满了，第一个添加进去了，那么就会出现第二个添加的时候已经达到最大长度了，这时候就会出现下标越界</p>
+<h3 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h3><ul>
+<li>抽象类要被子类继承，接口要被类实现。</li>
+<li>接口只能做方法声明，抽象类中可以作方法声明，也可以做方法实现。</li>
+<li>接口里定义的变量只能是公共的静态的常量，抽象类中的变量是普通变量。</li>
+<li>抽象类和接口都是用来抽象具体对象的，但是接口的抽象级别最高</li>
+<li>抽象类可以有具体的方法和属性，接口只能有抽象方法和不可变常量。</li>
+<li>抽象类主要用来抽象类别，接口主要用来抽象功能。</li>
+</ul>
+<h3 id="栈和堆的区别"><a href="#栈和堆的区别" class="headerlink" title="栈和堆的区别"></a>栈和堆的区别</h3><p> 1、内存分配方式不同：</p>
+<ul>
+<li>栈是由系统自动分配的，主要存储的是局部变量和函数的参数</li>
+<li>堆是由程序员自己分配的，如果说有没有释放的程序     ，系统会自动在一定时间内通过OS进行回收</li>
+</ul>
+<p> 2、申请方式不同：</p>
+<ul>
+<li>栈是系统     自动分配的</li>
+<li>堆是程序员自己分配的</li>
+</ul>
+<p> 3、申请后系统响应不同：</p>
+<ul>
+<li>栈要保证剩余空间比申请空间大，将内存分配给程序，否则会造成栈溢出</li>
+<li>堆系统自动是由链表的形式去分配内存的，当程序提交申请的时候，会循环链表，为了找出链表的内存大于申请空间，将程序分配在此节点上，使用的结点要从空闲链表中移除，正常情况下是没有办法保证链表内存刚好能分配申请空间的，所以说，要把使用链表的空闲内存，分布在空闲链表中</li>
+</ul>
+<p> 4、申请的效率不同：</p>
+<ul>
+<li>栈是由系统分配的，所以说栈的效率高</li>
+<li>堆是由程序员自己分配的，效率低</li>
+</ul>
+<p> 5、申请的大小限制不同:</p>
+<ul>
+<li>栈是由低地址扩张的，有一片连续的内存，但是是由系统分配到的所以说分配空间较小。</li>
+<li>堆是由高地址扩张的，因为是链表，所以没有连续的内存，分配的空间较大</li>
+</ul>
+<p> 6、存储的内容不同：</p>
+<ul>
+<li>栈保证的是先进后出的理念，先去存放的是局部变量，随后存放是的是函数参数</li>
+<li>堆是由程序员自己决定存放内容的。</li>
+</ul>
+<h3 id="equals和hashcode的区别"><a href="#equals和hashcode的区别" class="headerlink" title="equals和hashcode的区别"></a>equals和hashcode的区别</h3><p> 在添加数据的时候，通常会采用对比equals和hashcode的方式去添加到链表中</p>
+<ul>
+<li>equals相同那么hashcode一定相同</li>
+<li>hashcode相同equals不一定相同</li>
+</ul>
+<h3 id="jdk-1-7-1-8-区别"><a href="#jdk-1-7-1-8-区别" class="headerlink" title="jdk 1.7 1.8 区别"></a>jdk 1.7 1.8 区别</h3><p> 1.8中新增了</p>
+<p>1.接口的默认方法<br> 2.lambda表达式<br> 3.函数式接口<br> 4.方法与构造函数引用<br> 5.访问局部变量</p>
+<p>6.Stream的使用  例如 allList.stream().filter</p>
+<h3 id="class文件的生成和加载过程"><a href="#class文件的生成和加载过程" class="headerlink" title=".class文件的生成和加载过程"></a>.class文件的生成和加载过程</h3><p> 生成：使用javac命令可以编译该文件—–生成.class文件</p>
+<p> 加载过程：当运行Java程序时，首先运行JVM（Java虚拟机），然后再把class文件加载到JVM的方法区里，然后在堆区创建一个java.lang.Class对象，用来封装类在方法区内的数据结构，并向程序员提供访问方法区内的数据结构的接口。</p>
+<p> 在加载class文件的时候，JVM会先加载类中的所有静态成员( 方法，变量，静态代码块 )都加载到方法区class文件的所处静态区中<br> 当把所有的静态成员加载完成之后，开始给类中的所有静态成员变量进行默认初始化<br> 当类中的所有静态成员变量默认初始化之后，接着开始给所有静态成员变量显示赋值。<br> 当类中所有的静态成员变量显示赋值结束之后，静态代码块才会运行。<br> 当静态代码块执行结束之后，才表示class文件加载完成</p>
+<h3 id="mybatis分页实现"><a href="#mybatis分页实现" class="headerlink" title="mybatis分页实现"></a>mybatis分页实现</h3><p>我们使用pagehelper来实现分页的<br> public Pager<User> findByPager(int page,int size){<br>     Pager<User> pager = new Pager<User>();<br>     Page<User> res = PageHelper.startPage(page,size);<br>     userDao.findAll();<br>     pager.setRows(res.getResult());<br>     pager.setTotal(res.getTotal());<br>     return pager;<br> }</User></User></User></User></p>
+<p>在 startPage 中将我们传入的page，size交给new Page处理生成page  然后将page传入setLocalPage中 setlocalPage又将参数传递给ThreadLocal<page>  (在ThreadLocal中线程之间不互相影响 ) 最后通过excutor.query查询数据 进入Plugin类的invoke 唤醒拦截器，通过传入page参数进行拦截，返回  当前页，每页条数，总页数，总记录数  给业务代码</page></p>
+<p>MD5是一种加密方式不能解密</p>
+<h3 id="对称加密和非对称加密"><a href="#对称加密和非对称加密" class="headerlink" title="对称加密和非对称加密"></a>对称加密和非对称加密</h3><p> 大数据量进行加密时候使用对称加密 小数据量的时候非对称加密  进行加密  </p>
+<p>使用AES完成对称加密  密钥默认长度128</p>
+<p>实现方式 1.使用盐值去生成密钥 2. 然后通过原始数据和密钥通过加密方法进行加密 使用加密后的数据和密钥通过解密方法对数据进行解密</p>
+<p>使用RSA完成非对称加密  密钥默认长度是1024</p>
+<p>实现方式1.先获取根据盐值获取密匙对 2.根据密匙对获取公钥和密钥 3.根据公钥和加密的字符串进行加密  4.使用密文和私钥进行解密</p>
+<h3 id="jwt-参数设置"><a href="#jwt-参数设置" class="headerlink" title="jwt  参数设置"></a>jwt  参数设置</h3><p> 盐值 过期时间  还有键，值，角色名称</p>
+<p>跨域</p>
+<p>@CrossOrigin 注解原理</p>
+<p>利用spring的拦截器实现往response里添加 Access-Control-Allow-Origin等响应头信息</p>
+<p>spring 在记录mapper映射时会记录对应跨域请求映射 将结果返回到了AbstractHandlerMethodMapping#register  </p>
+<p>当一个跨域请求过来时，spring在获取handler时会判断这个请求是否是一个跨域请求，如果是，则会返回一个可以处理跨域的handler</p>
+<p>gateway网关跨域原理</p>
+<p>后端配置一个支持的域名集合，或者支持域名的正则表达式集合，如果前端请求的header里面的origin的值和后端的配置相匹配，那么就在repsonse里面添加 Access-Control-Allow-Origin 为request重的origin的值</p>
+<h2 id="object方法"><a href="#object方法" class="headerlink" title="object方法"></a>object方法</h2><p>1、hashcode 2、equals 3、wait()(三个) 4、object 5、tostring 6、getclass 7、notify 8、notifyAll 9、registernative 10、clone 11、finalize  </p>
+<h2 id="equals和-的区别-1"><a href="#equals和-的区别-1" class="headerlink" title="equals和==的区别"></a>equals和==的区别</h2><p> 1、==：比较的是值是否相等</p>
+<ul>
+<li>基本数据类型，比较的是值</li>
+<li>引用数据类型     ，比较的是对象的的地址</li>
+</ul>
+<p> 2、equals：一般为比较内容是否相同</p>
+<ul>
+<li>如果没有equals方法进行重写，比较的是引用     类型的变量所指向的对象的地址</li>
+<li>比如string     date对equals进行了重写，比较的就是对象的内容</li>
+</ul>
+<h2 id="和-的区别-1"><a href="#和-的区别-1" class="headerlink" title="#{}和${}的区别"></a>#{}和${}的区别</h2><p> #{}是预编译处理 是一个占位符 默认会加上单引号，${}字符串的替换 不会加上单引号</p>
+<p> #{}是防止sql注入</p>
+<p> 能少用${}就尽量少使用，但是表名作参数，或者order by 排序时用 ${}</p>
+<p> 在mybatis中 #{}默认值是age0，age1 ${}默认值是param1、param2</p>
+<p> sql注入就是说传过来的参数2改变了原本的意思就是sql注入  </p>
+<p> 比如说传一个 name=”富贵 or name = 狗蛋”  </p>
+<p> 如果使用${}那么就改变了意思，查询的就是名字是富贵或者狗蛋的，如果是#{}的话就没有改变意思，因为#{}是一个占位符</p>
+<h2 id="String、StringBuilder和StringBuffer的区别-1"><a href="#String、StringBuilder和StringBuffer的区别-1" class="headerlink" title="String、StringBuilder和StringBuffer的区别"></a>String、StringBuilder和StringBuffer的区别</h2><p> String是不可变的，由String创建的对象需要更改的时候要重新在堆内存中进行分配，所以说消耗资源大，String是由final修饰的，不能被重写。</p>
+<p> StringBuilder和StringBuffer是可变的</p>
+<p> StringBuilder和StringBuffer的区别：StringBuilder的效率高，所以说是线程不安全的，而StringBuffer的效率低，因此是安全的，在一般情况下我们会去使用StringBuilder因为效率较高，但是如果要求要线程的话要使用StringBuffer。StringBuffer底层是通过锁来保证安全的。</p>
+<h3 id="StringBuilder为什么是线程不安全的-1"><a href="#StringBuilder为什么是线程不安全的-1" class="headerlink" title="StringBuilder为什么是线程不安全的"></a>StringBuilder为什么是线程不安全的</h3><p> 首先两个全部都继承了AbstractStringBuilder，如果创.0建的话变量是存在AbstractStringBuilder中的，有一个char和count，第一个不安全就是，他底层的append方法是没有加锁的，没有保证了原子性，如果说创建线程同时去执行的话，谁先获取到就谁先执行，很有可能出现两个人同时获取到，那么同时进行操作，就会出现所得结果小于真实结果，第二个就是在添加的时候会出现数组下标越界，每次添加的时候都回去判断下标和数组长度，如果长度够就可以添加，在这里又没有保证原子性，如果两个线程同时进来操作，其中一个因为cpu满了，有一个添加进去了，那么就会出现第二个添加的时候已经达到最大长度了，这时候就会出现下标越界</p>
+<h2 id="switch-case-语句语法格式"><a href="#switch-case-语句语法格式" class="headerlink" title="switch case 语句语法格式"></a>switch case 语句语法格式</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">switch</span><span class="token punctuation">(</span>expression<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> value <span class="token operator">:</span>
+       <span class="token comment" spellcheck="true">//语句</span>
+       <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//可选</span>
+    <span class="token keyword">case</span> value <span class="token operator">:</span>
+       <span class="token comment" spellcheck="true">//语句</span>
+       <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//可选</span>
+    <span class="token comment" spellcheck="true">//你可以有任意数量的case语句</span>
+    <span class="token keyword">default</span> <span class="token operator">:</span> <span class="token comment" spellcheck="true">//可选</span>
+       <span class="token comment" spellcheck="true">//语句</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="抽象类和接口的区别-1"><a href="#抽象类和接口的区别-1" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h2><ul>
+<li>抽象类要被子类继承，接口要被类实现。</li>
+<li>接口只能做方法声明，抽象类中可以作方法声明，也可以做方法实现。</li>
+<li>接口里定义的变量只能是公共的静态的常量，抽象类中的变量是普通变量。</li>
+<li>抽象类和接口都是用来抽象具体对象的，但是接口的抽象级别最高</li>
+<li>抽象类可以有具体的方法和属性，接口只能有抽象方法和不可变常量。</li>
+<li>抽象类主要用来抽象类别，接口主要用来抽象功能。</li>
+</ul>
+<h2 id="栈和堆的区别-1"><a href="#栈和堆的区别-1" class="headerlink" title="栈和堆的区别"></a>栈和堆的区别</h2><p> 1、内存分配方式不同：</p>
+<ul>
+<li>栈是由系统自动分配的，主要存储的是局部变量和函数的参数</li>
+<li>堆是由程序员自己分配的，如果说有没有释放的程序     ，系统会自动在一定时间内通过OS进行回收</li>
+</ul>
+<p> 2、申请方式不同：</p>
+<ul>
+<li>栈是系统     自动分配的</li>
+<li>堆是程序员自己分配的</li>
+</ul>
+<p> 3、申请后系统响应不同：</p>
+<ul>
+<li>栈要保证剩余空间比申请空间大，将内存分配给程序，否则会造成栈溢出</li>
+<li>堆系统自动是由链表的形式去分配内存的，当程序提交申请的时候，会循环链表，为了找出链表的内存大于申请空间，将程序分配在此节点上，使用的结点要从空闲链表中移除，正常情况下是没有办法保证链表内存刚好能分配申请空间的，所以说，要把使用链表的空闲内存，分布在空闲链表中</li>
+</ul>
+<p> 4、申请的效率不同：</p>
+<ul>
+<li>栈是由系统分配的，所以说栈的效率高</li>
+<li>堆是由程序员自己分配的，效率低</li>
+</ul>
+<p> 5、申请的大小限制不同:</p>
+<ul>
+<li>栈是由低地址扩张的，有一片连续的内存，但是是由系统分配到的所以说分配空间较小。</li>
+<li>堆是由高地址扩张的，因为是链表，所以没有连续的内存，分配的空间较大</li>
+</ul>
+<p> 6、存储的内容不同：</p>
+<ul>
+<li>栈保证的是先进后出的理念，先去存放的是局部变量，随后存放是的是函数参数</li>
+<li>堆是由程序员自己决定存放内容的。</li>
+</ul>
+<h2 id="equals和hashcode的区别-1"><a href="#equals和hashcode的区别-1" class="headerlink" title="equals和hashcode的区别"></a>equals和hashcode的区别</h2><p> 在添加数据的时候，通常会采用对比equals和hashcode的方式去添加到链表中</p>
+<ul>
+<li>equals相同那么hashcode一定相同</li>
+<li>hashcode相同equals不一定相同</li>
+</ul>
+<p>相同点</p>
+<p> equals和hashcode方法都是用来判断两个对象的值是否相同的，在这里仅仅判断的是两个对象的值并不是引用。</p>
+<p>区别</p>
+<ul>
+<li>他们判断对象相同的方式不一样<ul>
+<li>equals判断的是如果字符完全相同，那么值就相同了</li>
+<li>hashcode是根据hash来计算对象实例的，返回值是一个hashcode，通过比较hashcode是否相等来判断两个对象是否相同的         -         jvm每创建一个object对象，都会将这个对象放入hash表中去，方便下次做对象比较或者取对象的时候使用，只要用就可以从hash表中拿出来，提高了对象的效率         -         jvm创建对象的时候，会根据hashcode放到对应的key上去，如果不同的对象产生了相同的hash值那么就产生了冲突，解决此冲突的方法是链地址法，此时就要在hash         key上会产生单链表的形式，会将值放在单链表上         -         比较两个对象是否相同，首先要去做的是根据hashcode去hash表中查询他们的对象，如果相同则说名他们在hash表中的同一个key中，此时就需要用equals去做比较了。</li>
+<li>判断对象是否相同的准确率不一样</li>
+</ul>
+</li>
+</ul>
+<h2 id="cookie-和session的区别"><a href="#cookie-和session的区别" class="headerlink" title="cookie 和session的区别:"></a>cookie 和session的区别:</h2><p>1.存储位置：cookie数据存放在客户的浏览器上，session数据放在服务器上。</p>
+<p>2.安全性：cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗,   考虑到安全应当使用session。  </p>
+<p>3.性能：session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能考虑到减轻服务器性能方面，应当使用COOKIE。</p>
+<p>4.限制：单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。  (超过  拆出一部分数据,把数据存在LocalStorage )</p>
+<p>5.过期时间:</p>
+<p> cookie</p>
+<p>​    cookie是没有过期的。</p>
+<p>只是它的保存时间是一个会话周期(session), 临时性Cookie，不会被持久化，也就是当你关闭你的浏览器后，这个cookie就会消失。</p>
+<p> Session:</p>
+<p>​    30分钟</p>
+<h2 id="cookie-和localStorage-区别"><a href="#cookie-和localStorage-区别" class="headerlink" title="cookie 和localStorage 区别"></a>cookie 和localStorage 区别</h2><p> 作用不同:</p>
+<p> localStorage是用于本地大容量存储数据(web storage的存储量大到5MB);   </p>
+<p> cookie是用于客户端和服务端间的信息传递；  </p>
+<p> 过期时间:</p>
+<p> localStorage是持久化的本地存储，除非是通过js删除，或者清除浏览器缓存，否则数据是永远不会过期的。  </p>
+<p> Cookie 会话结束后就会过期</p>
+<h2 id="常用的设计模式"><a href="#常用的设计模式" class="headerlink" title="常用的设计模式:"></a>常用的设计模式:</h2><p> 单例模式   观察者模式   装饰者模式   适配器模式  工厂模式   代理模式（proxy）</p>
+<h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>简单点说，就是一个应用程序中，某个类的实例对象只有一个，你没有办法去new，因为构造器是被private修饰的，一般通过getInstance()的方法来获取它们的实例。</p>
+<p>getInstance()的返回值是一个对象的引用，并不是一个新的实例</p>
+<p> 几种单例模式的写法  </p>
+<p> 懒汉式（线程安全）  饿汉式   静态内部类  枚举</p>
+<h4 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h4><p> 对象间一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。</p>
+<h4 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h4><p>对已有的业务逻辑进一步的封装，使其增加额外的功能，如Java中的IO流就使用了装饰者模式，用户在使用的时候，可以任意组装，达到自己想要的效果。</p>
+<h4 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h4><p> 将两种完全不同的事物联系到一起，就像现实生活中的变压器。</p>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p> 简单工厂模式：一个抽象的接口，多个抽象接口的实现类，一个工厂类，用来实例化抽象的接口</p>
+<p>工厂方法模式：有四个角色，抽象工厂模式，具体工厂模式，抽象产品模式，具体产品模式。不再是由一个工厂类去实例化具体的产品，而是由抽象工厂的子类去实例化产品<br> 抽象工厂模式：与工厂方法模式不同的是，工厂方法模式中的工厂只生产单一的产品，而抽象工厂模式中的工厂生产多个产品  </p>
+<h4 id="代理模式（proxy）"><a href="#代理模式（proxy）" class="headerlink" title="代理模式（proxy）"></a>代理模式（proxy）</h4><p> 有两种，静态代理和动态代理</p>
+<table>
+<thead>
+<tr>
+<th>java代码三大作用域</th>
+<th>jsp的四大作用域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>request</td>
+<td>page(pageContext)</td>
+</tr>
+<tr>
+<td>session</td>
+<td>Request                    session</td>
+</tr>
+<tr>
+<td>ServletContext(上下文)(占用tomcat内存,一般使用redis代替)</td>
+<td>application</td>
+</tr>
+</tbody></table>
+<p>​        </p>
+<h2 id="Git回退历史"><a href="#Git回退历史" class="headerlink" title="Git回退历史"></a>Git回退历史</h2><pre><code>使用git log命令，查看分支提交历史，确认需要回退的版本
+使用git reset --hard commit_id命令，进行版本回退
+使用git push origin命令，推送至远程分支
+</code></pre>
+<p> 快捷命令：</p>
+<pre><code>回退上个版本：git reset --hard HEAD^ 
+</code></pre>
+<p> 【注：HEAD是指向当前版本的指针，HEAD^表示上个版本,HEAD^^表示上上个版本】</p>
+<p> 如果修改到的文件比较少，我们可以不通过命令回滚的方式，手动删除之前的修改，再进行提交。</p>
+<p>撤销修改</p>
+<p> 一些时候，为了验证Bug，我们可能会直接在测试服务器上打断点调试。如果忘记去掉调试内容，在执行git pull更新时，Git会提示你提交修改。</p>
+<p> 此时，你可能已经不记得修改什么了，这个时候，我们可以用git checkout – file命令，来清空工作区的修改。是的，git checkout命令不仅可以用来切换分支，还能撤销文件修改。</p>
+<p> 如果想要撤销提交到暂存区后的文件内容怎么办呢(即执行git add之后)，我们可以使用git reset HEAD file命令撤销提交到暂存区的内容,再使用git checkout – file命令来撤销工作区的修改，需要分两步进行操作。</p>
+<p>reset还是revert?</p>
+<p> 针对评论区提出的，回滚是使用reset还是revert的疑问，这边做下补充说明。</p>
+<p> reset和revert都可以用来回滚代码。但他们是有区别的，准确来说，reset是用来”回退”版本，而revert是用来”还原”某次或者某几次提交。</p>
+<p> 听起来有点绕，怎么去理解他们呢？</p>
+<p> 举个例子，比如在master分支，有以下提交历史:</p>
+<pre><code>42eae13 (HEAD -&gt; master) 第四次修改
+97ea0f9 第三次修改
+e50b7c2 第二次修改
+3a52650 第一次修改
+</code></pre>
+<p> 可以看到，master最新版本为第四次修改。</p>
+<p> 如果发现，在第四次修改有错误，需要回滚到第三次修改，就可以用reset命令来回退。</p>
+<p> 执行 git reset –hard 97ea0f9,这个时候，git的提交历史变为:</p>
+<pre><code>97ea0f9 (HEAD -&gt; master) 第三次修改
+e50b7c2 第二次修改
+3a52650 第一次修改
+</code></pre>
+<p> 可以看到master当前指向97ea0f9这个版本，我们回到了第三次修改。</p>
+<p> 使用reset命令，Git会把要回退版本之后提交的修改都删除掉。要从第四次修改回退到第一次修改，那么会删除第二、三、四次的修改。【注：这里并不是真正的物理删除】</p>
+<p> 那如果发现第三次修改有错误，想要恢复第三次修改，却要保留第四次修改呢？</p>
+<p> 这个时候就可以用revert命令：</p>
+<pre><code>git revert -n 97ea0f9
+git commit -m &quot;恢复第三次修改&quot;
+</code></pre>
+<p> Git提交历史会变成：</p>
+<pre><code>33b8b30 (HEAD -&gt; master) Revert &quot;恢复第三次修改&quot;
+42eae13 第四次修改
+97ea0f9 第三次修改
+e50b7c2 第二次修改
+3a52650 第一次修改
+</code></pre>
+<p> 实际上，Git把第三次修改从提交中剔除(还原)了，还保留了第四次修改，并且产生了新的commit_id。</p>
+<p> 在实际生产环境中，代码是基于master分支发布到线上的，会有多人进行提交。可能会碰到自己或团队其他成员开发的某个功能在上线之后有Bug,需要及时做代码回滚的操作。</p>
+<p> 在确认要回滚的版本之后，如果别人没有最新提交，那么就可以直接用reset命令进行版本回退，否则，就可以考虑使用revert命令进行还原修改，不能影响到别人的提交。</p>
+<p> 使用reset还是revert，需要考虑实际的适用场景，没有绝对化。</p>
+<p> 上面提的并不是真正的物理删除，是因为Git会把分支的每次修改记录都会保留下来，比如有某次的commit,某次的reset等。而使用git reflog show命令,可以查看完整的提交历史，</p>
+<p> 只要有commit_id，我们就能恢复任意版本的代码，在各版本之间来回穿梭。    </p>
+<h2 id="Java-8种排序方式："><a href="#Java-8种排序方式：" class="headerlink" title="Java 8种排序方式："></a>Java 8种排序方式：</h2><p>直接插入排序</p>
+<p>希尔排序</p>
+<p>简单选择排序</p>
+<p>堆排序</p>
+<p>冒泡排序</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">// int a[] = &amp;#123;12, 23, 34, 45, 12, 23, 43, 56&amp;#125;;</span>
+
+       <span class="token keyword">int</span> length <span class="token operator">=</span> a<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+
+        
+
+       <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+           <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> length <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+               <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 相邻元素两两对比</span>
+
+                   <span class="token keyword">int</span> temp <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 元素交换</span>
+
+                   a<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+                   a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+
+               <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+           <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+       <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span>a<span class="token punctuation">.</span>length <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+           System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----"</span><span class="token operator">+</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>快速排序</p>
+<p>归还排序</p>
+<p>基数排序</p>
+<h2 id="http请求是长连接还是短连接？"><a href="#http请求是长连接还是短连接？" class="headerlink" title="http请求是长连接还是短连接？"></a>http请求是长连接还是短连接？</h2><p> 在HTTP/1.0中，默认使用的是短连接。也就是说，浏览器和服务器每进行一次HTTP操作，就建立一次连接，但任务结束就<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%B8%AD%E6%96%AD&spm=1001.2101.3001.7020">中断</a>连接。如果客户端浏览器访问的某个HTML或其他类型的 Web页中包含有其他的Web资源，如<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/javascript">JavaScript</a>文件、图像文件、CSS文件等；当浏览器每遇到这样一个Web资源，就会建立一个HTTP会话。</p>
+<p> 但从 HTTP/1.1起，默认使用长连接，用以保持连接特性。</p>
+<p> HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。  </p>
+<h2 id="类之间转换"><a href="#类之间转换" class="headerlink" title="类之间转换"></a>类之间转换</h2><p>BeanUtils.copyProperties(“转换前的类”, “转换后的类”);<br>有几点我们需要注意：<br>BeanUtils.copyProperties(a, b);<br>b中的存在的属性，a中一定要有，但是a中可以有多余的属性；<br>a中与b中相同的属性都会被替换，不管是否有值；<br>a、 b中的属性要名字相同，才能被赋值，不然的话需要手动赋值；<br>Spring的BeanUtils的CopyProperties方法需要对应的属性有getter和setter方法；<br>如果存在属性完全相同的内部类，但是不是同一个内部类，即分别属于各自的内部类，则spring会认为属性不同，不会copy；<br>spring和apache的copy属性的方法源和目的参数的位置正好相反，所以导包和调用的时候都要注意一下。</p>
+<h2 id="java类"><a href="#java类" class="headerlink" title="java类"></a>java类</h2><h3 id="BigDecimal-包装类"><a href="#BigDecimal-包装类" class="headerlink" title="BigDecimal(包装类)"></a>BigDecimal(包装类)</h3><p>包名: java.math.BigDecimal</p>
+<p>计算方式</p>
+<pre><code>BigDecimal num1 = new BigDecimal(&quot;0.005&quot;);
+BigDecimal num2 = new BigDecimal(&quot;1000000&quot;);
+BigDecimal num3 = new BigDecimal(-&quot;1000000&quot;);
+
+//尽量用字符串的形式初始化
+BigDecimal num12 = new BigDecimal(&quot;0.005&quot;);
+BigDecimal num22 = new BigDecimal(&quot;1000000&quot;);
+BigDecimal num32 = new BigDecimal(&quot;-1000000&quot;);
+
+//加法
+BigDecimal result1 = num1.add(num2);
+BigDecimal result12 = num12.add(num22);
+
+//减法
+BigDecimal result2 = num1.subtract(num2);
+BigDecimal result22 = num12.subtract(num22);
+
+//乘法
+BigDecimal result3 = num1.multiply(num2);
+BigDecimal result32 = num12.multiply(num22);
+
+//绝对值
+BigDecimal result4 = num3.abs();
+BigDecimal result42 = num32.abs();
+
+//除法
+BigDecimal result5 = num2.divide(num1,&quot;20&quot;,BigDecimal.ROUND_HALF_UP);
+BigDecimal result52 = num22.divide(num12,&quot;20&quot;,BigDecimal.ROUND_HALF_UP);
+
+BigDecimal 多参自定义除法
+public BigDecimal divide(BigDecimal divisor, int scale, int roundingMode)
+
+    public static void main(String[] args)&#123;
+        BigDecimal b1 = new BigDecimal(10.005);
+        BigDecimal b2 = new BigDecimal(2);
+        //参数1 为除数
+        //scale 为计算所得商的位数
+        //roundingMode 共8种0，1，2 ，3，4，5，6，7
+        System.out.println(b1.divide(b2, 3, BigDecimal.ROUND_UNNECESSARY));
+    &#125;
+
+其中，第三位参数为除法模式，分以下8种，可自传值，也可使用BigDecimal的枚举，都一样的，如下：
+0 - ROUND_UP 远离0的方向
+例：1.1-&gt;2 1.5-&gt;2 1.8-&gt;2 -1.1-&gt;-2 -1.5-&gt;-2 -1.8-&gt;-2
+1 - ROUND_DOWN 向0的方向移动
+例：1.1-&gt;1 1.5-&gt;1 1.8-&gt;1 -1.1-&gt;-1 -1.5-&gt;-1 -1.8&gt;-1
+2 - ROUND_CEILING 舍位时往正无穷方向移动
+例：1.1-&gt;2 1.5-&gt;2 1.8-&gt;2 -1.1-&gt;-1 -1.5-&gt;-1 -1.8-&gt;-1
+3 - ROUND_FLOOR 与CEILING相反，往负无穷
+例：1.1-&gt;1 1.5-&gt;1 1.8-&gt;1 -1.1-&gt;-2 -1.5-&gt;-2 -1.8-&gt;-2
+4 - ROUND_HALF_UP 最常见的四舍五入
+5 - ROUND_HALF_DOWN 以5为分界线，或曰五舍六入
+6 - ROUND_HALF_EVEN 同样以5为分界线，如果是5，则前一位变偶数1.15-&gt;1.2 1.16-&gt;1.2 1.25-&gt;1.2 1.26-&gt;1.3
+7 - ROUND_UNNECESSARY 舍入模式可以断言所请求的操作具有精确的结果，因此不需要舍入。如果在产生不精确结果的操作上指定了这种舍入模式，则会抛出 &#123;@code ArithmeticException&#125;。
+</code></pre>
+<h2 id="时间问题"><a href="#时间问题" class="headerlink" title="时间问题"></a>时间问题</h2><h3 id="String类型转Date类型"><a href="#String类型转Date类型" class="headerlink" title="String类型转Date类型"></a>String类型转Date类型</h3><pre class=" language-plain"><code class="language-plain">DateUtil.getDate(req.getStartTime())
+</code></pre>
+<h3 id="获取几个月以后的时间"><a href="#获取几个月以后的时间" class="headerlink" title="获取几个月以后的时间"></a>获取几个月以后的时间</h3><pre class=" language-plain"><code class="language-plain">DateUtil.getAfterMonths(DateUtil.getDate(req.getStartTime()), 3)
+</code></pre>
+<h3 id="比较两个字符串的时间类型大小"><a href="#比较两个字符串的时间类型大小" class="headerlink" title="比较两个字符串的时间类型大小"></a>比较两个字符串的时间类型大小</h3><pre class=" language-plain"><code class="language-plain">String endTime;
+String startTime;
+//endTime - startTime;
+int endCompare = req.getEndTime().compareTo(req.getStartTime());
+int<0 : endTime小于startTime
+</code></pre>
+<h2 id="List集合去重的5种方式"><a href="#List集合去重的5种方式" class="headerlink" title="List集合去重的5种方式"></a>List集合去重的5种方式</h2><h3 id="1、双重for循环"><a href="#1、双重for循环" class="headerlink" title="1、双重for循环"></a>1、双重for循环</h3><pre><code>for (int i = 0; i &lt; list.size(); i++) &#123; 
+    for (int j = 0; j &lt; list.size(); j++) &#123; 
+        if(i!=j&amp;&amp;list.get(i)==list.get(j)) &#123; 
+            list.remove(list.get(j)); 
+         &#125; 
+    &#125; 
+&#125;
+</code></pre>
+<h3 id="2、利用List集合的contains方法循环遍历，清空，重新添加"><a href="#2、利用List集合的contains方法循环遍历，清空，重新添加" class="headerlink" title="2、利用List集合的contains方法循环遍历，清空，重新添加"></a>2、利用List集合的contains方法循环遍历，清空，重新添加</h3><pre><code>private static void removeDuplicate(List&lt;String&gt; list) &#123;
+    List&lt;String&gt; result = new ArrayList&lt;String&gt;(list.size());
+    for (String str : list) &#123;
+        if (!result.contains(str)) &#123;
+            result.add(str);
+        &#125;
+    &#125;
+    list.clear();
+    list.addAll(result);
+&#125;
+</code></pre>
+<h3 id="3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序"><a href="#3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序" class="headerlink" title="3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序"></a>3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序</h3><pre><code>private static void removeDuplicate(List&lt;String&gt; list) &#123;
+    HashSet&lt;String&gt; set = new HashSet&lt;String&gt;(list.size());
+    List&lt;String&gt; result = new ArrayList&lt;String&gt;(list.size());
+    for (String str : list) &#123;
+        if (set.add(str)) &#123;
+            result.add(str);
+        &#125;
+    &#125;
+    list.clear();
+    list.addAll(result);
+&#125;
+
+</code></pre>
+<h3 id="4、使用java8特性的stream进行List去重"><a href="#4、使用java8特性的stream进行List去重" class="headerlink" title="4、使用java8特性的stream进行List去重"></a>4、使用java8特性的stream进行List去重</h3><p>要从arraylist中删除重复项，我们也可以使用java 8 stream api。</p>
+<p>使用steam的distinct()方法返回一个由不同数据组成的流，通过对象的equals（）方法进行比较。收集所有区域数据List使用Collectors.toList()。</p>
+<pre><code>import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ArrayListExample &#123;
+    public static void main(String[] args) &#123;
+        ArrayList&lt;Integer&gt; numbersList = new ArrayList&lt;&gt;(Arrays.asList(1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 7, 8));
+        System.out.println(numbersList);
+        List&lt;Integer&gt; listWithoutDuplicates = numbersList.stream().distinct().collect(Collectors.toList());
+        System.out.println(listWithoutDuplicates);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据"><a href="#5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据" class="headerlink" title="5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据"></a>5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据</h3><p>LinkedHashSet是在一个ArrayList删除重复数据的最佳方法。</p>
+<p>LinkedHashSet在内部完成两件事：</p>
+<pre><code>删除重复数据
+保持添加到其中的数据的顺序
+</code></pre>
+<p>Java示例使用LinkedHashSet删除arraylist中的重复项。在给定的示例中，numbersList是包含整数的arraylist，其中一些是重复的数字。</p>
+<pre><code>import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+
+public class ArrayListExample &#123;
+    public static void main(String[] args) &#123;
+        ArrayList&lt;Integer&gt; numbersList = new ArrayList&lt;&gt;(Arrays.asList(1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 7, 8));
+        System.out.println(numbersList);
+        LinkedHashSet&lt;Integer&gt; hashSet = new LinkedHashSet&lt;&gt;(numbersList);
+        ArrayList&lt;Integer&gt; listWithoutDuplicates = new ArrayList&lt;&gt;(hashSet);
+        System.out.println(listWithoutDuplicates);
+    &#125;
+&#125;
+</code></pre>
+<h2 id><a href="#" class="headerlink" title></a></h2><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>CSDN博主「了迹奇有没」的原创文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/w_monster/article/details/112008308">https://blog.csdn.net/w_monster/article/details/112008308</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">java基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NIO%E5%92%8CBIO%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.1.</span> <span class="toc-text">NIO和BIO的主要区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-BIO%E5%92%8CNIO%E4%B9%8B%E9%97%B4%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">Java BIO和NIO之间的主要区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6-%E5%8E%9F%E7%90%86-%EF%BC%9A"><span class="toc-number">1.0.3.</span> <span class="toc-text">类加载机制(原理)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.0.4.</span> <span class="toc-text">docker 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http%E5%92%8Chttps%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.5.</span> <span class="toc-text">http和https区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%845%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.6.</span> <span class="toc-text">Java中创建对象的5种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.7.</span> <span class="toc-text">Object方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.8.</span> <span class="toc-text">equals和&#x3D;&#x3D;的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.9.</span> <span class="toc-text">#{}和${}的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E3%80%81StringBuilder%E5%92%8CStringBuffer%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.10.</span> <span class="toc-text">String、StringBuilder和StringBuffer的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#StringBuilder%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84"><span class="toc-number">1.0.10.1.</span> <span class="toc-text">StringBuilder为什么是线程不安全的</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.11.</span> <span class="toc-text">抽象类和接口的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.12.</span> <span class="toc-text">栈和堆的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E5%92%8Chashcode%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.13.</span> <span class="toc-text">equals和hashcode的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk-1-7-1-8-%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.14.</span> <span class="toc-text">jdk 1.7 1.8 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#class%E6%96%87%E4%BB%B6%E7%9A%84%E7%94%9F%E6%88%90%E5%92%8C%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.15.</span> <span class="toc-text">.class文件的生成和加载过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis%E5%88%86%E9%A1%B5%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.0.16.</span> <span class="toc-text">mybatis分页实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-number">1.0.17.</span> <span class="toc-text">对称加密和非对称加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jwt-%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.0.18.</span> <span class="toc-text">jwt  参数设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#object%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">object方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equals%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.2.</span> <span class="toc-text">equals和&#x3D;&#x3D;的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.3.</span> <span class="toc-text">#{}和${}的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String%E3%80%81StringBuilder%E5%92%8CStringBuffer%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.4.</span> <span class="toc-text">String、StringBuilder和StringBuffer的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StringBuilder%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">StringBuilder为什么是线程不安全的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch-case-%E8%AF%AD%E5%8F%A5%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">switch case 语句语法格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.6.</span> <span class="toc-text">抽象类和接口的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.7.</span> <span class="toc-text">栈和堆的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equals%E5%92%8Chashcode%E7%9A%84%E5%8C%BA%E5%88%AB-1"><span class="toc-number">1.8.</span> <span class="toc-text">equals和hashcode的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie-%E5%92%8Csession%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.9.</span> <span class="toc-text">cookie 和session的区别:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie-%E5%92%8ClocalStorage-%E5%8C%BA%E5%88%AB"><span class="toc-number">1.10.</span> <span class="toc-text">cookie 和localStorage 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.</span> <span class="toc-text">常用的设计模式:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.1.</span> <span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.2.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.3.</span> <span class="toc-text">装饰者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.4.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.11.0.5.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%EF%BC%88proxy%EF%BC%89"><span class="toc-number">1.11.0.6.</span> <span class="toc-text">代理模式（proxy）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%9B%9E%E9%80%80%E5%8E%86%E5%8F%B2"><span class="toc-number">1.12.</span> <span class="toc-text">Git回退历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-8%E7%A7%8D%E6%8E%92%E5%BA%8F%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.13.</span> <span class="toc-text">Java 8种排序方式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E8%AF%B7%E6%B1%82%E6%98%AF%E9%95%BF%E8%BF%9E%E6%8E%A5%E8%BF%98%E6%98%AF%E7%9F%AD%E8%BF%9E%E6%8E%A5%EF%BC%9F"><span class="toc-number">1.14.</span> <span class="toc-text">http请求是长连接还是短连接？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E4%B9%8B%E9%97%B4%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.15.</span> <span class="toc-text">类之间转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E7%B1%BB"><span class="toc-number">1.16.</span> <span class="toc-text">java类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BigDecimal-%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="toc-number">1.16.1.</span> <span class="toc-text">BigDecimal(包装类)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98"><span class="toc-number">1.17.</span> <span class="toc-text">时间问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E7%B1%BB%E5%9E%8B%E8%BD%ACDate%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.17.1.</span> <span class="toc-text">String类型转Date类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%87%A0%E4%B8%AA%E6%9C%88%E4%BB%A5%E5%90%8E%E7%9A%84%E6%97%B6%E9%97%B4"><span class="toc-number">1.17.2.</span> <span class="toc-text">获取几个月以后的时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.17.3.</span> <span class="toc-text">比较两个字符串的时间类型大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List%E9%9B%86%E5%90%88%E5%8E%BB%E9%87%8D%E7%9A%845%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.18.</span> <span class="toc-text">List集合去重的5种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%8F%8C%E9%87%8Dfor%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.18.1.</span> <span class="toc-text">1、双重for循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8List%E9%9B%86%E5%90%88%E7%9A%84contains%E6%96%B9%E6%B3%95%E5%BE%AA%E7%8E%AF%E9%81%8D%E5%8E%86%EF%BC%8C%E6%B8%85%E7%A9%BA%EF%BC%8C%E9%87%8D%E6%96%B0%E6%B7%BB%E5%8A%A0"><span class="toc-number">1.18.2.</span> <span class="toc-text">2、利用List集合的contains方法循环遍历，清空，重新添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%A9%E7%94%A8HashSet%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D%E7%9A%84%E7%89%B9%E6%80%A7%EF%BC%8C%E4%BD%86%E7%94%B1%E4%BA%8EHashSet%E4%B8%8D%E8%83%BD%E4%BF%9D%E8%AF%81%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E4%BB%A5%E5%8F%AA%E8%83%BD%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6%E4%BF%9D%E8%AF%81%E9%A1%BA%E5%BA%8F"><span class="toc-number">1.18.3.</span> <span class="toc-text">3、利用HashSet不能重复的特性，但由于HashSet不能保证顺序，所以只能判断条件保证顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%BD%BF%E7%94%A8java8%E7%89%B9%E6%80%A7%E7%9A%84stream%E8%BF%9B%E8%A1%8CList%E5%8E%BB%E9%87%8D"><span class="toc-number">1.18.4.</span> <span class="toc-text">4、使用java8特性的stream进行List去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%EF%BC%88%E6%9C%80%E4%BD%B3%EF%BC%89%E4%BD%BF%E7%94%A8LinkedHashSet%E5%88%A0%E9%99%A4ArrayList%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE"><span class="toc-number">1.18.5.</span> <span class="toc-text">5、（最佳）使用LinkedHashSet删除ArrayList中的重复数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.19.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">1.20.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/b8b0eacd.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/b8b0eacd.html&text=java基础"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/b8b0eacd.html&is_video=false&description=java基础"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=java基础&body=Check out this article: http://porcorosso.top/posts/b8b0eacd.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/b8b0eacd.html&title=java基础"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/b8b0eacd.html&name=java基础&description=&lt;p&gt;java基础&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

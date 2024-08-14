@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="持久层框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="持久层框架">
+<meta property="og:url" content="http://porcorosso.top/posts/122009e3.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="持久层框架">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-26T07:29:20.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:26:08.029Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="持久层框架">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>持久层框架</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/f340ee61.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/3d21d1a7.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/122009e3.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/122009e3.html&text=持久层框架"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/122009e3.html&is_video=false&description=持久层框架"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=持久层框架&body=Check out this article: http://porcorosso.top/posts/122009e3.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/122009e3.html&name=持久层框架&description=&lt;p&gt;持久层框架&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ibatis"><span class="toc-number">1.</span> <span class="toc-text">ibatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ibatis%E4%B8%AD%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.1.</span> <span class="toc-text">ibatis中符号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis"><span class="toc-number">2.</span> <span class="toc-text">mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis%E4%B8%AD%E7%9A%84Criteria%E5%8F%8A%E5%AF%B9%E5%BA%94xml%E7%9A%84%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">mybatis中的Criteria及对应xml的解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.2.</span> <span class="toc-text">参考文献:</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        持久层框架
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-05-26T07:29:20.000Z" itemprop="datePublished">2023-05-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6/" rel="tag">持久层框架</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>持久层框架</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="ibatis"><a href="#ibatis" class="headerlink" title="ibatis"></a>ibatis</h2><h3 id="ibatis中符号"><a href="#ibatis中符号" class="headerlink" title="ibatis中符号"></a>ibatis中符号</h3><pre class=" language-java"><code class="language-java">
+          特殊字符           替代符号
+             <span class="token operator">&amp;</span>               <span class="token operator">&amp;</span>amp<span class="token punctuation">;</span>
+             <span class="token operator">&lt;</span>               <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span>
+             <span class="token operator">></span>               <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span>
+             "               <span class="token operator">&amp;</span>quot<span class="token punctuation">;</span>
+             '               <span class="token operator">&amp;</span>apos<span class="token punctuation">;</span>
+小于等于     a<span class="token operator">&lt;=</span>b             a <span class="token operator">&amp;</span>lt<span class="token punctuation">;</span><span class="token operator">=</span> b              a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">&lt;=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
+大于等于     a<span class="token operator">>=</span>b             a <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span><span class="token operator">=</span> b              a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">>=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
+不等于       a<span class="token operator">!=</span>b             a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span> <span class="token operator">&lt;</span><span class="token operator">></span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b    a <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span>CDATA<span class="token punctuation">[</span><span class="token operator">!=</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>b
+</code></pre>
+<h2 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h2><h3 id="mybatis中的Criteria及对应xml的解析"><a href="#mybatis中的Criteria及对应xml的解析" class="headerlink" title="mybatis中的Criteria及对应xml的解析"></a>mybatis中的Criteria及对应xml的解析</h3><p>Criteria的and和or进行联合查询<br>DemoExample example=new DemoExample ();<br>DemoExample.Criteria criteria=example.createCriteria();<br>criteria.andidEqualTo(id);<br>criteria.andStatusEqualTo(“0”);</p>
+<p>DemoExample.Criteria criteria2=example.createCriteria();<br>criteria2.andidEqualTo(id);<br>criteria2.andstatusEqualTo(“1”);<br>example.or(criteria2);<br>dao.countByExample(example);</p>
+<p>sql：select count(*) from demo WHERE ( ID = ? and STATUS = ? ) or( ID = ? and STATUS = ? )</p>
+<p>xml中关于criteria的一些解读：</p>
+<!-- 查询条件 方法名 -->
+<sql id="Example_Where_Clause">
+<!-- 条件 -->
+<where>
+<!-- 条件集合 -->
+<!-- 传入集合类型是oredCriteria 循环变量是criteria 关系是或者-->
+<foreach collection="oredCriteria" item="criteria" separator="or">
+<!-- 如果传入的条件有效 单词的意思标准（相当于条件）.有效 -->
+<if test="criteria.valid">
+<!-- <修剪前缀= "("后缀= ")"前缀覆盖 = "和" > -->
+<trim prefix="(" suffix=")" prefixoverrides="and">
+<!-- 条件集合 -->
+<!-- 集合类型是oredCriteria 循环变量是criteria -->
+<foreach collection="criteria.criteria" item="criterion">
+<!-- 通过判断选择查询条件条件-->
+<choose>
+<!-- 通过判断标准来执行对应的查询条件 -->
+<!-- 当条件不符合标准的时候 -->
+<when test="criterion.noValue">
+and ${criterion.condition}
+</when>
+<!-- 条件是一个值的时候 调用此条件 相当与id查询 name查询-->
+<when test="criterion.singleValue">
+and ${criterion.condition} #{criterion.value}
+</when>
+<!-- 条件是两个值的时候 调用此条件 -->
+<when test="criterion.betweenValue">
+and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+</when>
+<!-- 如果条件是一个集合的话调用此条件 -->
+<when test="criterion.listValue">
+and ${criterion.condition}
+<foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+#{listItem}
+</foreach>
+</when>
+</choose>
+</foreach>
+</trim>
+</if>
+</foreach>
+</where>
+</sql>
+<!-- 批量更新 -->
+<sql id="Update_By_Example_Where_Clause">
+<where>
+<!-- 传入集合类型是example.oredCriteria 循环变量是criteria -->
+<foreach collection="example.oredCriteria" item="criteria" separator="or">
+<if test="criteria.valid">
+<trim prefix="(" suffix=")" prefixoverrides="and">
+<foreach collection="criteria.criteria" item="criterion">
+<!-- 结构是条件判断如果满足就追加 -->
+<choose>
+<when test="criterion.noValue">
+and ${criterion.condition}
+</when>
+<when test="criterion.singleValue">
+and ${criterion.condition} #{criterion.value}
+</when>
+<when test="criterion.betweenValue">
+and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+</when>
+<when test="criterion.listValue">
+and ${criterion.condition}
+<foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+#{listItem}
+</foreach>
+</when>
+</choose>
+</foreach>
+</trim>
+</if>
+</foreach>
+</where>
+</sql>
+<!-- 表中的字段值 -->
+<sql id="Base_Column_List">
+id, name, price, color, cima, imgPath
+</sql>
+<!-- 查询的方法 -->
+<!-- 方法名 返回值类型 参数类型 -->
+
+<pre><code>&lt;select id=&quot;selectByExample&quot; resultMap=&quot;BaseResultMap&quot; parameterType=&quot;com.baidu.bean.GGoodExample&quot; &gt;
+&lt;!-- 查询 --&gt;
+select
+&lt;!-- 条件满足 这个字段在exa实体类中 是一个布尔值 --&gt;
+&lt;if test=&quot;distinct&quot; &gt;
+distinct
+&lt;/if&gt;
+&lt;!-- 正常查询 --&gt;
+&lt;include refid=&quot;Base_Column_List&quot; /&gt;
+from g_good
+&lt;!-- 如果参数列表不为空 调用下面的方法 这个方法返回的是参数列表 也可以是条件查询--&gt;
+&lt;if test=&quot;_parameter != null&quot; &gt;
+&lt;include refid=&quot;Example_Where_Clause&quot; /&gt;
+&lt;/if&gt;
+&lt;!-- 如果有分组字段 根据该字段进行分组查询 --&gt;
+&lt;if test=&quot;orderByClause != null&quot; &gt;
+order by $&#123;orderByClause&#125;
+&lt;/if&gt;
+&lt;!-- 这个是分页查询要在exa实体类中添加两个字段 offset limit --&gt;
+&lt;if test=&quot;offset != null &amp;&amp; limit != null&quot;&gt;
+limit $&#123;offset&#125;,$&#123;limit&#125;
+&lt;/if&gt;
+&lt;/select&gt;
+</code></pre>
+<!-- 通过id查询 -->
+
+<pre><code>&lt;select id=&quot;selectByPrimaryKey&quot; resultMap=&quot;BaseResultMap&quot; parameterType=&quot;java.lang.Integer&quot; &gt;
+select
+&lt;!-- 要查询的字段 --&gt;
+&lt;include refid=&quot;Base_Column_List&quot; /&gt;
+from g_good
+where id = #&#123;id,jdbcType=INTEGER&#125;
+&lt;/select&gt;
+</code></pre>
+<!-- 通过id删除 -->
+<delete id="deleteByPrimaryKey" parametertype="java.lang.Integer">
+delete from g_good
+where id = #{id,jdbcType=INTEGER}
+</delete>
+<!-- 条件删除 -->
+<delete id="deleteByExample" parametertype="com.baidu.bean.GGoodExample">
+delete from g_good
+<if test="_parameter != null">
+<include refid="Example_Where_Clause">
+</include></if>
+</delete>
+<!-- 插入数据 -->
+<insert id="insert" parametertype="com.baidu.bean.GGood">
+insert into g_good (id, name, price,
+color, cima, imgPath
+)
+values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER},
+#{color,jdbcType=VARCHAR}, #{cima,jdbcType=VARCHAR}, #{imgpath,jdbcType=VARCHAR}
+)
+</insert>
+<!-- 插入方法自动判断有没有参数 没有参数也不会报错 -->
+<insert id="insertSelective" parametertype="com.baidu.bean.GGood">
+insert into g_good
+<trim prefix="(" suffix=")" suffixoverrides=",">
+<if test="id != null">
+id,
+</if>
+<if test="name != null">
+name,
+</if>
+<if test="price != null">
+price,
+</if>
+<if test="color != null">
+color,
+</if>
+<if test="cima != null">
+cima,
+</if>
+<if test="imgpath != null">
+imgPath,
+</if>
+</trim>
+<trim prefix="values (" suffix=")" suffixoverrides=",">
+<if test="id != null">
+#{id,jdbcType=INTEGER},
+</if>
+<if test="name != null">
+#{name,jdbcType=VARCHAR},
+</if>
+<if test="price != null">
+#{price,jdbcType=INTEGER},
+</if>
+<if test="color != null">
+#{color,jdbcType=VARCHAR},
+</if>
+<if test="cima != null">
+#{cima,jdbcType=VARCHAR},
+</if>
+<if test="imgpath != null">
+#{imgpath,jdbcType=VARCHAR},
+</if>
+</trim>
+</insert>
+<!-- 查询表中的记录数 -->
+
+<select id="countByExample" parametertype="com.baidu.bean.GGoodExample" resulttype="java.lang.Integer">
+select count(*) from g_good
+<if test="_parameter != null">
+<include refid="Example_Where_Clause">
+</include></if>
+</select>
+
+<!-- 普通修改 -->
+<update id="updateByExampleSelective" parametertype="map">
+update g_good
+<set>
+<if test="record.id != null">
+id = #{record.id,jdbcType=INTEGER},
+</if>
+<if test="record.name != null">
+name = #{record.name,jdbcType=VARCHAR},
+</if>
+<if test="record.price != null">
+price = #{record.price,jdbcType=INTEGER},
+</if>
+<if test="record.color != null">
+color = #{record.color,jdbcType=VARCHAR},
+</if>
+<if test="record.cima != null">
+cima = #{record.cima,jdbcType=VARCHAR},
+</if>
+<if test="record.imgpath != null">
+imgPath = #{record.imgpath,jdbcType=VARCHAR},
+</if>
+</set>
+<if test="_parameter != null">
+<include refid="Update_By_Example_Where_Clause">
+</include></if>
+</update>
+<!-- 高级修改 带条件修改 -->
+<update id="updateByExample" parametertype="map">
+update g_good
+set id = #{record.id,jdbcType=INTEGER},
+name = #{record.name,jdbcType=VARCHAR},
+price = #{record.price,jdbcType=INTEGER},
+color = #{record.color,jdbcType=VARCHAR},
+cima = #{record.cima,jdbcType=VARCHAR},
+imgPath = #{record.imgpath,jdbcType=VARCHAR}
+<if test="_parameter != null">
+<include refid="Update_By_Example_Where_Clause">
+</include></if>
+</update>
+<!-- 通过id修改 允许非空修改 -->
+<update id="updateByPrimaryKeySelective" parametertype="com.baidu.bean.GGood">
+update g_good
+<set>
+<if test="name != null">
+name = #{name,jdbcType=VARCHAR},
+</if>
+<if test="price != null">
+price = #{price,jdbcType=INTEGER},
+</if>
+<if test="color != null">
+color = #{color,jdbcType=VARCHAR},
+</if>
+<if test="cima != null">
+cima = #{cima,jdbcType=VARCHAR},
+</if>
+<if test="imgpath != null">
+imgPath = #{imgpath,jdbcType=VARCHAR},
+</if>
+</set>
+where id = #{id,jdbcType=INTEGER}
+</update>
+<!-- 通过id修改不允许有空值 -->
+<update id="updateByPrimaryKey" parametertype="com.baidu.bean.GGood">
+update g_good
+set name = #{name,jdbcType=VARCHAR},
+price = #{price,jdbcType=INTEGER},
+color = #{color,jdbcType=VARCHAR},
+cima = #{cima,jdbcType=VARCHAR},
+imgPath = #{imgpath,jdbcType=VARCHAR}
+where id = #{id,jdbcType=INTEGER}
+</update>
+
+
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h3><p>版权声明：本文为CSDN博主「Andrew_Yuan」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Andrew_Yuan/article/details/89236484">https://blog.csdn.net/Andrew_Yuan/article/details/89236484</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ibatis"><span class="toc-number">1.</span> <span class="toc-text">ibatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ibatis%E4%B8%AD%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.1.</span> <span class="toc-text">ibatis中符号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis"><span class="toc-number">2.</span> <span class="toc-text">mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis%E4%B8%AD%E7%9A%84Criteria%E5%8F%8A%E5%AF%B9%E5%BA%94xml%E7%9A%84%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">mybatis中的Criteria及对应xml的解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.2.</span> <span class="toc-text">参考文献:</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/122009e3.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/122009e3.html&text=持久层框架"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/122009e3.html&is_video=false&description=持久层框架"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=持久层框架&body=Check out this article: http://porcorosso.top/posts/122009e3.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/122009e3.html&title=持久层框架"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/122009e3.html&name=持久层框架&description=&lt;p&gt;持久层框架&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

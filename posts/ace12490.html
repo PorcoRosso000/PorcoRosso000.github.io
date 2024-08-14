@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="并发编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并发编程">
+<meta property="og:url" content="http://porcorosso.top/posts/ace12490.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="并发编程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/ace12490/1.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/ace12490/2.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/ace12490/3.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/ace12490/4.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/ace12490/20200715115622174-1669457548712.png">
+<meta property="og:image" content="http://porcorosso.top/posts/ace12490/20211131903.png">
+<meta property="og:image" content="http://porcorosso.top/posts/ace12490/20240711132440.png">
+<meta property="article:published_time" content="2022-11-26T09:06:32.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:26:08.017Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="并发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/ace12490/1.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>并发编程</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/39230a67.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/148a0112.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/ace12490.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/ace12490.html&text=并发编程"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/ace12490.html&is_video=false&description=并发编程"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=并发编程&body=Check out this article: http://porcorosso.top/posts/ace12490.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/ace12490.html&name=并发编程&description=&lt;p&gt;并发编程&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">并发量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%86%85%E8%81%9A%EF%BC%8C%E4%BD%8E%E8%80%A6%E5%90%88"><span class="toc-number">2.</span> <span class="toc-text">高内聚，低耦合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%90%E6%B5%81"><span class="toc-number">3.</span> <span class="toc-text">限流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sentinel"><span class="toc-number">3.1.</span> <span class="toc-text">Sentinel</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">3.1.1.</span> <span class="toc-text">实现原理:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.</span> <span class="toc-text">四种限流算法:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E7%AA%97%E5%8F%A3%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">固定窗口算法:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%AE%97%E6%B3%95-%E9%BB%98%E8%AE%A4"><span class="toc-number">3.1.2.2.</span> <span class="toc-text">滑动窗口算法(默认):</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%BC%8F%E6%A1%B6%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.3.</span> <span class="toc-text">漏桶算法:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A4%E7%89%8C%E6%A1%B6%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.4.</span> <span class="toc-text">令牌桶算法:</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%A4%E7%89%8C%E6%A1%B6%E5%92%8C%E6%BC%8F%E6%A1%B6%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">3.1.2.4.1.</span> <span class="toc-text">令牌桶和漏桶区别：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ERedis%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%A4%E7%89%8C%E6%A1%B6%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.2.</span> <span class="toc-text">基于Redis的分布式令牌桶实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Volatitle-%E5%85%B3%E9%94%AE%E5%AD%97-%EF%BC%88%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">Volatitle 关键字 （并发编程相关）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">作用:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">4.2.</span> <span class="toc-text">关于原子性:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="toc-number">4.3.</span> <span class="toc-text">关于有序性:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F"><span class="toc-number">4.4.</span> <span class="toc-text">指令重排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F"><span class="toc-number">4.4.1.</span> <span class="toc-text">什么是指令重排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E5%8F%AF%E8%83%BD%E4%BC%9A%E9%80%A0%E6%88%90%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F%E5%91%A2"><span class="toc-number">4.4.2.</span> <span class="toc-text">什么情况可能会造成指令重排序呢</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">4.4.3.</span> <span class="toc-text">指令重排序带来的影响</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.5.</span> <span class="toc-text">volatile底层实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">4.6.</span> <span class="toc-text">volatile的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-number">4.7.</span> <span class="toc-text">案例:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">4.8.</span> <span class="toc-text">不保证原子性的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">4.9.</span> <span class="toc-text">为什么不能保证原子性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">4.10.</span> <span class="toc-text">如何保证原子性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">SpringBoot并发编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot%E9%9B%86%E6%88%90%E4%B8%80%E6%AC%BE%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E2%80%94%E2%80%94Undertow"><span class="toc-number">5.1.</span> <span class="toc-text">SpringBoot集成一款轻量级高并发服务器——Undertow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-number">5.2.</span> <span class="toc-text">快速开始</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        并发编程
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2022-11-26T09:06:32.000Z" itemprop="datePublished">2022-11-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>并发编程</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="并发量"><a href="#并发量" class="headerlink" title="并发量"></a>并发量</h2><p>//———————————————</p>
+<p>Tomcat 并发量：500qps  </p>
+<p>Mysql：3000qps  </p>
+<p>Redis：5万-8万</p>
+<p>Nginx：5万-10万</p>
+<p> 网站并发量：3000,5000,8000, 在线用户，电商x50 ，其它互联网项目x80 ， 注册用户，在在线用户的基础上x50.(3000的并发:服务器一台tomcat支持500 所以要六台以上可以加两台 说8台)</p>
+<p> Tomcat (web应用服务器)</p>
+<p> nginx /apache(web服务),为文件服务器nginx性能是tomcat的10倍以上</p>
+<p>内存标记 :消耗tomcat内存 可以支持的并发量也比较低   所以使用redis redis存储数据存储在本地  并且redis的并发量会高很多</p>
+<p>电商项目开发时间:一年以上开发  迭代一直在持续</p>
+<p>7个人开发    </p>
+<p>几千的并发  并发 乘以50 就是在线人数  再乘以50  就是总注册人数</p>
+<p>3000的并发服务器设置的刀片机（或者我们搭建的集群服务）是8台服务器左右抢购微服务</p>
+<p>在添加订单之前通过redis集群方式加mq进行</p>
+<h2 id="高内聚，低耦合"><a href="#高内聚，低耦合" class="headerlink" title="高内聚，低耦合"></a>高内聚，低耦合</h2><p> 内聚就是指程序内的各个模块之间关系的紧密程度,</p>
+<p> 耦合是指各个外部程序(子程序)之间关系的紧密程度.</p>
+<p> 为什么要高内聚? 模块之间的关系越紧密,出错就越少!</p>
+<p> 低耦合? 子程序间的关系越复杂,就会产生更多的意想不到的错误!会给以后的维护工作带来很多麻烦</p>
+<p> // 注释：“内紧而外松”</p>
+<p> 内紧：程序内的模块之间要紧密相关，形成一个高效的功能单元；（旨在—创建高效的代码）</p>
+<p> 外松：程序之间呢，要尽可能的不关联，各自实现各自的功能。（旨在—实现分工）</p>
+<p> 秒杀订单多少   </p>
+<p> 每天多少订单30000 3000并发量   </p>
+<p> 秒杀订单的服务有几台   </p>
+<p> 每天部署的有多少机器 平时秒杀并发量500-600  六台</p>
+<p> redis的锁过期时间  500ms  过期时间  看门狗锁过期续命原理  </p>
+<h2 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h2><h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><p>Sentinel是阿里巴巴开发的一个流量控制、熔断和流量管理框架，它可以帮助我们在微服务架构中实现服务调用的容错、限流和流控。Sentinel的核心功能包括：</p>
+<ul>
+<li>流控：限制请求数量，防止服务被过多的请求所击败。</li>
+<li>熔断：当服务调用出现故障时，自动切换到备用方法，防止故障传播。</li>
+<li>降级：在服务调用出现故障时，自动切换到备用方法，防止用户请求受影响。</li>
+<li>系统负载保护：监控系统负载，当负载超过阈值时，自动进行流控或熔断。</li>
+</ul>
+<p>Sentinel的核心思想是“限流”和“流控”，即在服务调用出现故障时，限制请求数量，防止服务被过多的请求所击败。同时，Sentinel还提供了一些规则配置，如流控规则、熔断规则等，可以根据具体情况进行调整。 </p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理:"></a>实现原理:</h4><p><strong>原理</strong>是在访问web应用时，在web引用内部会有一个拦截器，这个拦截器会对请求的url进行拦截，并将拦截到的请求读取到sentinel控制台，从而对web应用设置相应的流控规则和需要的流控效果，之后基于这个流控规则和流控效果对流量进行限流操作。</p>
+<p>Sentinel的<strong>核心算法原理</strong>是基于“限流”和“流控”的。当服务调用出现故障时，Sentinel会限制请求数量，防止服务被过多的请求所击败。同时，Sentinel还提供了一些规则配置，如流控规则、熔断规则等，可以根据具体情况进行调整。</p>
+<p><strong>具体操作步骤如下：</strong></p>
+<p>1.创建一个Sentinel流控规则，指定资源名称、流控条件、流控策略等。</p>
+<p>2.在调用服务时，使用Sentinel流控规则进行控制。</p>
+<p>3.当服务调用出现故障时，Sentinel会触发熔断器，切换到备用方法。</p>
+<p>4.可以通过SentinelDashboard监控Sentinel流控规则的状态和统计信息。</p>
+<h4 id="四种限流算法"><a href="#四种限流算法" class="headerlink" title="四种限流算法:"></a>四种限流算法:</h4><p><strong>对应三种流控效果:</strong></p>
+<p>   <strong>滑动窗口算法(默认):对应快速失败</strong></p>
+<p>   <strong>漏桶算法: 对应排队等待</strong></p>
+<p>   <strong>令牌桶算法: 对应预热</strong> </p>
+<h5 id="固定窗口算法"><a href="#固定窗口算法" class="headerlink" title="固定窗口算法:"></a>固定窗口算法:</h5><p><strong>固定窗口计数器算法</strong>是限流算法中最简单也最容易实现的算法。它使用计数器在周期内累加访问次数，当达到设定的限流值时，触发限流策略。下一周期开始，清零重新计数。</p>
+<p>举个例子，一个接口在1s内的负载限值为100，开始时设定一个计数器count=0，来一个请求count+1，1min内count&lt;=100就能正常访问，count&gt;100的请求就会被拒绝。</p>
+<p>计数器算法的弊端在于只有最开始的100个请求能被访问，其余在限制时间内都不能访问。也就是突刺现象。这时就可以用滑动窗口算法解决这个问题。</p>
+<p>突刺现象是指在一定时间内的一小段时间内就用完了所有资源，后大部分时间中无资源可用。</p>
+<p><strong>优点</strong>：分布式中实现难度低</p>
+<p><strong>缺点：</strong>不能平滑限流，存在临界问题，前一个周期的最后几秒和下一个周期的开始几秒时间段内访问量很大但没超过周期量计数量时，但短时间请求量依旧很高。</p>
+<p><img src="/posts/ace12490/1.jpg" alt="img"></p>
+<h5 id="滑动窗口算法-默认"><a href="#滑动窗口算法-默认" class="headerlink" title="滑动窗口算法(默认):"></a>滑动窗口算法(默认):</h5><p><strong>滑动窗口计数器算法</strong>也是Sentinel的默认算法。滑动窗口算法是<strong>将时间周期分为n个小周期，分别记录每个小周期内的访问次数 ，并且根据时间滑动删除过期的小周期</strong>。</p>
+<p>假设时间周期为1min，将1min再分割成2个小周期，统计每个小周期的访问数量，则可以看到，第一个时间周期内访问数量为75，第二个时间周期内访问数量为100，超过100的数量被限流掉了。</p>
+<p>当滑动窗口格子划分得越多，那么滑动窗口的滚动就越平滑，限流的统计就越精确。可以很好的解决固定窗口的流动问题。</p>
+<p><img src="/posts/ace12490/2.jpg" alt="img"></p>
+<h5 id="漏桶算法"><a href="#漏桶算法" class="headerlink" title="漏桶算法:"></a>漏桶算法:</h5><p><strong>漏桶算法是将访问请求放入漏桶中，当请求达到限流值，则进行丢弃（触发限流策略）</strong>。无论有多少请求，请求的速率有多大，都按照固定的速率流出，对应到系统中就是按照固定的速率处理请求。超过漏桶容量的直接抛弃。</p>
+<p><img src="/posts/ace12490/3.jpg" alt="img"></p>
+<h5 id="令牌桶算法"><a href="#令牌桶算法" class="headerlink" title="令牌桶算法:"></a>令牌桶算法:</h5><p>令牌桶其实和漏桶的原理类似，令牌桶按固定的速率往桶里放入令牌，并且只要能从桶里取出令牌就能通过，令牌桶支持突发流量的快速处理。</p>
+<p><img src="/posts/ace12490/4.jpg" alt="img"></p>
+<h6 id="令牌桶和漏桶区别："><a href="#令牌桶和漏桶区别：" class="headerlink" title="令牌桶和漏桶区别："></a>令牌桶和漏桶区别：</h6><p>主要区别在于<strong>“漏桶算法”能够强行限制数据的传输速率</strong>，而<strong>“令牌桶算法”在能够限制数据的平均传输速率外，还允许某种程度的突发传输</strong>。在“令牌桶算法”中，只要令牌桶中存在令牌，那么就允许突发地传输数据直到达到用户配置的门限，因此它适合于具有突发特性的流量。</p>
+<h3 id="基于Redis的分布式令牌桶实现"><a href="#基于Redis的分布式令牌桶实现" class="headerlink" title="基于Redis的分布式令牌桶实现"></a>基于Redis的分布式令牌桶实现</h3><p>Redis中有incr命令实现原子自增、如果每个调用appKey请求一次，我们对其自增1，如果一秒内超过500，就拒绝当前请求能够实现我们的需求。如何统计1秒内呢，我们可以利用过期机制，设定当前请求计数的key过期时间为1s，但是incr没有提供原子操作的incr过期时间，该如何实现呢？</p>
+<pre class=" language-java"><code class="language-java">local key <span class="token operator">=</span>KEYS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+local expire_time <span class="token operator">=</span>ARGV<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+local count <span class="token operator">=</span>redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">"INCR"</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> count <span class="token operator">==</span> <span class="token number">1</span> then
+
+    redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">"EXPIRE"</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> expire_time<span class="token punctuation">)</span>
+
+end
+
+<span class="token keyword">return</span> count
+</code></pre>
+<p>其中KEYS[1]为计数的appKey、ARGV[1]为一个计时时间间隔，单位为s。 最后利用redis的eval命令执行lua脚本，实现incr与expire的原子操作：</p>
+<pre class=" language-java"><code class="language-java">Long current <span class="token operator">=</span> <span class="token punctuation">(</span>Long<span class="token punctuation">)</span> jedis<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span>INCR_LUA_SCRIPT<span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span> “<span class="token number">1</span>”<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">></span> <span class="token number">500</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token boolean">true</span>
+</code></pre>
+<h2 id="Volatitle-关键字-（并发编程相关）"><a href="#Volatitle-关键字-（并发编程相关）" class="headerlink" title="Volatitle 关键字 （并发编程相关）"></a>Volatitle 关键字 （并发编程相关）</h2><p>一旦一个共享变量（类的成员变量、类的静态成员变量）被volatile修饰之后，那么就具备了两层语义：</p>
+<p>1）保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。</p>
+<p>2）禁止进行指令重排序。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h3><p>用volatile修饰之后就变得不一样了：</p>
+<p>第一：使用volatile关键字会强制将修改的值立即写入主存；</p>
+<p>第二：使用volatile关键字的话，当线程2进行修改时，会导致线程1的工作内存中缓存变量stop的缓存行无效（反映到硬件层的话，就是CPU的L1或者L2缓存中对应的缓存行无效）</p>
+<p>第三：由于线程1的工作内存中缓存变量stop的缓存行无效，所以线程1再次读取变量stop的值时会去主存读取。</p>
+<h3 id="关于原子性"><a href="#关于原子性" class="headerlink" title="关于原子性:"></a>关于原子性:</h3><p>volatile关键字能保证可见性没有错，但是上面的程序错在没能保证原子性。可见性只能保证每次读取的是最新的值，但是volatile没办法保证对变量的操作的原子性。</p>
+<h3 id="关于有序性"><a href="#关于有序性" class="headerlink" title="关于有序性:"></a>关于有序性:</h3><p>volatile关键字能禁止指令重排序，所以volatile能在一定程度上保证有序性。</p>
+<p>使用volatile必须具备以下2个条件：<br> 1）对变量的写操作不依赖于当前值<br> 2）该变量没有包含在具有其他变量的不变式中</p>
+<p>有序性是指对于单线程的执行代码，执行是按顺序依次进行的。但在多线程环境中，则可能出现乱序现象，因为在编译过程会出现“指令重排”，重排后的指令与原指令的顺序未必一致。因此，前半句指的是线程内保证串行语义执行，后半句则指指“令重排现”象和“工作内存与主内存同步延迟”现象。</p>
+<h3 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序"></a>指令重排序</h3><p>重排序分为编译重排序和运行重排序两种。下面主要记录编译重排序！</p>
+<p><strong>编译期重排：</strong> 编译源代码时，编译器依据对上下文的分析，对指令进行重排序，以之更适合于CPU的并行执行。</p>
+<p><strong>运行期重排：</strong> CPU在执行过程中，动态分析依赖部件的效能，对指令做重排序优化</p>
+<h4 id="什么是指令重排序"><a href="#什么是指令重排序" class="headerlink" title="什么是指令重排序"></a>什么是指令重排序</h4><p>JVM为了尽可能的使CPU得到最大的利用率，Java虚拟机在不影响单线程程序执行结果的前提下，尽可能的提高并行度，所以JVM会按照自己的一些规则将程序编写的顺序打乱，比如：写在后面的代码在时间顺序上可能先执行，写在前面的代码在时间顺序上可能会后执行。</p>
+<p>举例说明：</p>
+<pre><code>double r = 2.1; //(1) 
+double pi = 3.14;//(2) 
+double area = pi*r*r;//(3)
+</code></pre>
+<p>在我们程序中编写了如下代码，代码中定义的执行顺序为(1)—&gt;(2)—&gt;(3)，在单线程环境中顺序(1)—&gt;(2)—&gt;(3)和顺序(2)—&gt;(1)—&gt;(3)对执行结果并无影响。(1)和（2）中并不存在着 <strong>数据依赖关系。</strong>所以JVM可能会对(1)、（2）两步打乱顺序执行来优化程序效率。</p>
+<p>所以，编译时指令重排序可以理解为JVM为了提高程序效率而可能会将不存在数据依赖关系的代码进行执行顺序的调整的过程。</p>
+<h4 id="什么情况可能会造成指令重排序呢"><a href="#什么情况可能会造成指令重排序呢" class="headerlink" title="什么情况可能会造成指令重排序呢"></a>什么情况可能会造成指令重排序呢</h4><p>1、一个不是原子的操作，可能会给JVM留下重排序的可能。</p>
+<p>2、不存在数据依赖关系的代码语句可能会给JVM留下重排序的可能。</p>
+<h4 id="指令重排序带来的影响"><a href="#指令重排序带来的影响" class="headerlink" title="指令重排序带来的影响"></a>指令重排序带来的影响</h4><p>指令重排序在单个线程中不会引发问题，但是到了多线程中由于指令重排序的原因可能就会引发一系列的异常。 在Java内存模型（JMM）中有这么一句话很好的描述了重排序的影响：如果在本线程内观察，所有操作都是有序的，如果在一个线程中观察另一个线程，所有操作都是无序的。</p>
+<h3 id="volatile底层实现"><a href="#volatile底层实现" class="headerlink" title="volatile底层实现"></a>volatile底层实现</h3><p>volatile是如何来保证可见性的呢？让我们在X86处理器下通过工具获取JIT编译器生成的汇编指令来查看对volatile进行写操作时，CPU会做什么事情呢？</p>
+<p>当有volatile变量修饰时会出现汇编指令lock addl $0×0,(%esp),Lock前缀的指令在多核处理器下会引发了两件事情</p>
+<p>1）将当前处理器缓存行的数据写回到系统内存。<br>2）这个写回内存的操作会使在其他CPU里缓存了该内存地址的数据无效。</p>
+<p>为了提高处理速度，处理器不直接和内存进行通信，而是先将系统内存的数据读到内部缓存（L1，L2或其他）后再进行操作，但操作完不知道何时会写到内存。如果对声明了volatile的变量进行写操作，JVM就会向处理器发送一条Lock前缀的指令，将这个变量所在缓存行的数据写回到系统内存。但是，就算写回到内存，如果其他处理器缓存的值还是旧的，再执行计算操作就会有问题。所以，在多处理器下，为了保证各个处理器的缓存是一致的，就会实现缓存一致性协议，每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是不是过期了，当处理器发现自己缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置成无效状态，当处理器对这个数据进行修改操作的时候，会重新从系统内存中把数据读到处理器缓存里。</p>
+<h3 id="volatile的优缺点"><a href="#volatile的优缺点" class="headerlink" title="volatile的优缺点"></a>volatile的优缺点</h3><p>优点： volatile是轻量级同步机制。在访问volatile变量时不会执行加锁操作，因此也就不会使执行线程阻塞，是一种比synchronized关键字更轻量级的同步机制。<br>缺点：volatile只能保证变量的可见性，无法保证原子性。除此之外，由于volatile屏蔽掉了VM中必要的代码优化，所以在效率上会稍微低点。这是两个缺点。volatile禁止了JVM底层的指令重排序优化，造成了一定的性能损耗，但是在多线程环境中提高了安全性。</p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例:"></a>案例:</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingleTon</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> SingleTon singleTon<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token function">SingleTon</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> SingleTon <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>singleTon <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>SingleTon<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>singleTon <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">//非原子操作</span>
+                    singleTon <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SingleTon</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> singleTon<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>上面是一个双重检查的单例模式，由于使用了双重检查保证了整个上下文环境中只有一个 SingleTon对象，但是在多线程环境中，由于 singleTon = new SingleTon();不是一个原子操作，所以经过JVM的指令重排序以后仍然会引发问题。</p>
+<p>singleTon = new SingleTon();语句分为三步：</p>
+<p>(1)、在堆内存开辟一块空间</p>
+<p>(2)、SingleTon对象初始化</p>
+<p>(3)、栈中的 singleTon指向刚刚分配的内存地址</p>
+<p>在上面三步中（2）依赖于（1），但是（3）不依赖于（2），所以JVM就可以将这三个步骤进行重排序。假如经过JVM一番重排序后，上面的顺序变成了（1）—&gt;（3）—&gt;（2）。此时有两个线程，线程A和线程B需要获取该单例对象， A线程抢到锁执行同步块中的语句，A线程正在执行（1）—&gt;（3）—&gt;（2）中的（3），此时B线程开始执行了，B线程在锁外面开始做第一次判断 if (singleTon == null)，判断结果为false，然后直接返回singleTon进行使用，但是这时候singleTon还没有初始化，导致出错。</p>
+<p>解决办法：<br>如果使用volatile关键字修饰singleTon变量，禁止JVM进行重排序，使得singleTon在读、写操作前后都会插入内存屏障，避免重排序。</p>
+<p>总结:</p>
+<p>1.当使用了volatile关键字修饰共享变量以后。每一个线程对共享变量做的更改操作都会被重新刷写到主存中，并且当主存中共享变量的值改变以后，其他线程中的共享变量副本就失效了，需重新从主存中读取值。<br>2.用volatile关键字的变量的值只要一经改变就会自动刷写到主存中，而不会等待改变该值的线程执行完毕再刷写。<br>3.当要访问的变量已在synchronized代码块中，或者为常量时，没必要使用volatile；</p>
+<h3 id="不保证原子性的例子"><a href="#不保证原子性的例子" class="headerlink" title="不保证原子性的例子"></a>不保证原子性的例子</h3><pre><code>public class Test &#123;
+    public static volatile int data = 0;
+public static void main(String[] args) throws InterruptedException &#123;
+    Thread thread1 = new Thread(() -&gt; &#123;
+        for (int i = 0; i &lt; 10; i++) &#123;
+            Test.data++;
+            System.out.println(data);
+        &#125;
+    &#125;);
+    Thread thread2 = new Thread(() -&gt; &#123;
+        for (int i = 0; i &lt; 10; i++) &#123;
+            Test.data++;
+            System.out.println(data);
+        &#125;
+    &#125;);
+    thread1.start();
+    thread2.start();
+    thread1.join();
+    thread2.join();
+    System.out.println(&quot;最终的data为：&quot; + Test.data);
+&#125;
+&#125;
+...
+最终的data为：20
+</code></pre>
+<p>多线程同时工作去修改一个被volatile关键字修饰的共享变量的时候，比如两个线程对同一个变量volatile int i;进行i++操作，可能会导致运行结果跟预期不一致。这是因为volatile只能保证可见性和有序性，而不能保证原子性。</p>
+<h3 id="为什么不能保证原子性"><a href="#为什么不能保证原子性" class="headerlink" title="为什么不能保证原子性"></a>为什么不能保证原子性</h3><p>首先看一下上面这张图，分析是这样子的：</p>
+<p><img src="/posts/ace12490/20200715115622174-1669457548712.png" alt="Java内存模型"></p>
+<p>1、每个线程都有自己的一块工作内存，将主存里的数据缓存到自己的工作内存中。<br>此时，Threa1跟Thread2都通过read+load将 data = 0 缓存到自己的工作内存中去了。<br>2、cpu切换到Thread1时，Thread1就会将data = 0 use 进cpu里面计算data++的操作，但是没来得及将计算结果data = 1, assign回Thread1的工作内存中。cpu此时切换到了Thread2，然后在Thread2线程也做了同样的操作（将data = 0 use进cpu并执行data++），继续assign回Thread2的工作内存，并store+write将data = 1写回主存。<br>因为data是用volatile修饰的，根据缓存一致性协议，其他的线程（这里指的是Thread1）就会立即知道自己工作内存中的数据（data = 0）已经失效了。然而，并没有用！因为Thread1之前已经将data = 0 use 进cpu进行计算去了，cpu切换回Thread1时，Thread1将之前计算好的data = 1 assign 到自己的工作内存中，并store+write写回主存。通过以上的执行顺序，两个线程分别对data做了一次data++操作之后，得到的data = 1 而不是我们预期中的data = 2。<br>3、总结：多线程同时修改一个被volatile修饰的共享变量时，不能保证原子性，只能保证可见性和顺序性。</p>
+<h3 id="如何保证原子性"><a href="#如何保证原子性" class="headerlink" title="如何保证原子性"></a>如何保证原子性</h3><p>就是用synchronized…只有加了锁，让别的线程连读的机会都没有，才能够安安心心的搞完 read-load-use-assign-store-write全套而不被中途打扰。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">volatile</span> <span class="token keyword">int</span> data <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    Thread thread1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>Test<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                Test<span class="token punctuation">.</span>data<span class="token operator">++</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Thread thread2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>Test<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                Test<span class="token punctuation">.</span>data<span class="token operator">++</span><span class="token punctuation">;</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    thread1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    thread2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    thread1<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    thread2<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最终的data为："</span> <span class="token operator">+</span> Test<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<p>原子类的原子性是通过 volatile +cas 实现的</p>
+<h2 id="SpringBoot并发编程"><a href="#SpringBoot并发编程" class="headerlink" title="SpringBoot并发编程"></a>SpringBoot并发编程</h2><h3 id="SpringBoot集成一款轻量级高并发服务器——Undertow"><a href="#SpringBoot集成一款轻量级高并发服务器——Undertow" class="headerlink" title="SpringBoot集成一款轻量级高并发服务器——Undertow"></a>SpringBoot集成一款轻量级高并发服务器——Undertow</h3><p>Undertow 是红帽公司开发的一款基于 NIO 的高性能 Web嵌入式服务器，它是一个轻量级web服务器，不像我们经常使用的tomcat，它由两个核心 Jar 包组成，加载一个 Web 应用可以小于 10MB 内存。它提供了对Servlet3.1 以及 Web Socket 的支持，undertow底层就是基于netty开发的web服务器</p>
+<p>在开始集成之前我先把jetty、tomcat以及undertow的压力测试的数据放在下面，给大家一个直观的感受。</p>
+<p><img src="/posts/ace12490/20211131903.png" alt="undertow"></p>
+<p>从中可以看出在<strong>高负载</strong>下Undertow的吞吐量高于Jetty而且随着<strong>压力增大</strong>Jetty和Undertow成功率差距会拉大。而在负载<strong>不是太大</strong>情况下服务器处理能力差不多，jetty还略微高于Undertow。而tomcat的负载能力似乎和Undertow很接近。</p>
+<p>　　对比三个服务器发现在Undertow在负载过重情况下比Jetty和Tocmat更加顽强，实践证明在负载继续加大情况下Undertow的成功率高于其它两者，但是在并发不是太大情况下三款服务器整体来看差别不大。</p>
+<h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><p>说了这么多，到底怎么集成undertow？和tomcat一样，SpringBoot是天然集成undertow的，我们只需要把默认的tomcat排除掉，然后引入underundertow的依赖就可以了。</p>
+<p><img src="/posts/ace12490/20240711132440.png" alt="undertow"></p>
+<p><strong>application.yml配置 :</strong></p>
+<p>与原来使用Tomcat时配置无太大差别 , 将tomcat字段改为undertow即可</p>
+<pre><code># Undertow 日志存放目录
+server.undertow.accesslog.dir=
+# 是否启动日志
+server.undertow.accesslog.enabled=false 
+# 日志格式
+server.undertow.accesslog.pattern=common
+# 日志文件名前缀
+server.undertow.accesslog.prefix=access_log
+# 日志文件名后缀
+server.undertow.accesslog.suffix=log
+# HTTP POST请求最大的大小
+server.undertow.max-http-post-size=0 
+# 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+server.undertow.io-threads=4
+# 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+server.undertow.worker-threads=20
+# 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+# 每块buffer的空间大小,越小的空间被利用越充分
+server.undertow.buffer-size=1024
+# 每个区分配的buffer数量 , 所以pool的大小是buffer-size * buffers-per-region
+server.undertow.buffers-per-region=1024
+# 是否分配的直接内存
+server.undertow.direct-buffers=true
+</code></pre>
+<p>综上，当我们系统负载比较高的时候我们可以考虑切换成undertow服务器，或者我们的微服务系统需要一个轻量级的容器的话我们也可以选择undertow。</p>
+<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><p>作者：garychenqin </p>
+<p>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/08aa952e8bc2">https://www.jianshu.com/p/08aa952e8bc2</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">并发量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%86%85%E8%81%9A%EF%BC%8C%E4%BD%8E%E8%80%A6%E5%90%88"><span class="toc-number">2.</span> <span class="toc-text">高内聚，低耦合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%90%E6%B5%81"><span class="toc-number">3.</span> <span class="toc-text">限流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sentinel"><span class="toc-number">3.1.</span> <span class="toc-text">Sentinel</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">3.1.1.</span> <span class="toc-text">实现原理:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.</span> <span class="toc-text">四种限流算法:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E7%AA%97%E5%8F%A3%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">固定窗口算法:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%AE%97%E6%B3%95-%E9%BB%98%E8%AE%A4"><span class="toc-number">3.1.2.2.</span> <span class="toc-text">滑动窗口算法(默认):</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%BC%8F%E6%A1%B6%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.3.</span> <span class="toc-text">漏桶算法:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A4%E7%89%8C%E6%A1%B6%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.4.</span> <span class="toc-text">令牌桶算法:</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%A4%E7%89%8C%E6%A1%B6%E5%92%8C%E6%BC%8F%E6%A1%B6%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">3.1.2.4.1.</span> <span class="toc-text">令牌桶和漏桶区别：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ERedis%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%A4%E7%89%8C%E6%A1%B6%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.2.</span> <span class="toc-text">基于Redis的分布式令牌桶实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Volatitle-%E5%85%B3%E9%94%AE%E5%AD%97-%EF%BC%88%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">Volatitle 关键字 （并发编程相关）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">作用:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">4.2.</span> <span class="toc-text">关于原子性:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="toc-number">4.3.</span> <span class="toc-text">关于有序性:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F"><span class="toc-number">4.4.</span> <span class="toc-text">指令重排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F"><span class="toc-number">4.4.1.</span> <span class="toc-text">什么是指令重排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E5%8F%AF%E8%83%BD%E4%BC%9A%E9%80%A0%E6%88%90%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F%E5%91%A2"><span class="toc-number">4.4.2.</span> <span class="toc-text">什么情况可能会造成指令重排序呢</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">4.4.3.</span> <span class="toc-text">指令重排序带来的影响</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.5.</span> <span class="toc-text">volatile底层实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">4.6.</span> <span class="toc-text">volatile的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-number">4.7.</span> <span class="toc-text">案例:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">4.8.</span> <span class="toc-text">不保证原子性的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">4.9.</span> <span class="toc-text">为什么不能保证原子性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">4.10.</span> <span class="toc-text">如何保证原子性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">SpringBoot并发编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot%E9%9B%86%E6%88%90%E4%B8%80%E6%AC%BE%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E2%80%94%E2%80%94Undertow"><span class="toc-number">5.1.</span> <span class="toc-text">SpringBoot集成一款轻量级高并发服务器——Undertow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-number">5.2.</span> <span class="toc-text">快速开始</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/ace12490.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/ace12490.html&text=并发编程"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/ace12490.html&is_video=false&description=并发编程"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=并发编程&body=Check out this article: http://porcorosso.top/posts/ace12490.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/ace12490.html&title=并发编程"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/ace12490.html&name=并发编程&description=&lt;p&gt;并发编程&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
