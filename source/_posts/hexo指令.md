@@ -17,7 +17,7 @@ hexo指令
 
 ### hexo基础命令
 
-```
+```markdown
 hexo new post "文章名" :创建文章
 hexo clean ：删除之前生成的文件，若未生成过静态文件，可忽略此命令。
 hexo generate ：生成静态文章，可以用hexo g缩写 (尽量使用 hexo g -c 8 可以防止内存溢出)
@@ -34,35 +34,33 @@ hexo cl && hexo g && hexo d && hexo s ：一条命令部属
 
 创建一个叫hexo（或者blog，名字随意）的分支，并切换到这个分支
 
-```
+```markdown
 git checkout -b hexo
 ```
 
 添加所有文件到暂存区
 
-```
+```markdown
 git add –all
 ```
 
 进行提交
 
-```
+```markdown
 git commit -m “提交信息xxx”
 ```
 
 推送hexo分支的文件到github仓库
 
-```
+```markdown
 git push –set-upstream origin hexo
 ```
-
-
 
 #### 下次要写博客从仓库里把代码拉下来
 
 执行
 
-```
+```markdown
 npm install hexo
 
 npm install hexo-cli -g
@@ -72,18 +70,25 @@ npm install
 npm install hexo-deployer-git
 
 //执行完这四条命令 然后创建文章
+```
 
+#### 刚拉下来博客
+
+```markdown
+//需要执行下面命令安装依赖启动hexo服务
+npm install
+hexo server
 ```
 
 ### 替换md文件空行
 
-```
+```markdown
 ^\s*(?=\r?$)\n  :在vscode中替换空行的正则
 ```
 
 ### 更新giuhub仓库hexo分支
 
-```
+```markdown
 //如果本地代码没有写新的东西 第四条命令可以放到第一步去执行
 git status  :查看修改的文件
 git add .  :放入缓存区
@@ -94,7 +99,7 @@ git push -u origin hexo    :将项目上传到远程仓库的hexo分支
 
 ### 提交出错回滚到上个版本
 
-```
+```markdown
 git reset HEAD~1
 ```
 
@@ -107,12 +112,12 @@ git reset HEAD~1
 
 <<<<<<< HEAD
 
-```
+```markdown
 git pull --rebase origin hexo 
 ```
 #### error: cannot pull with rebase: Your index contains uncommitted changes.
 
-```
+```markdown
 error: cannot pull with rebase: Your index contains uncommitted changes.
 error: please commit or stash them.
 
