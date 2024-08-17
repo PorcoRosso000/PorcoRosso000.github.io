@@ -1,6 +1,9 @@
 <section id="about">
+  <% if (config.subtitle) { %>
+    <h2 class="subtitle"><%= config.subtitle %></h2>
+  <% } %>
   <% if (config.description) { %>
-    <%- markdown(config.description) %>
+    <h3 class="description"><%- markdown(config.description) %>
   <% } %>
   <p style="display: inline">
     <% if (theme.customize.social_links) { %>
