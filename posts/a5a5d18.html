@@ -24,8 +24,16 @@
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/%E7%BB%84%E7%BB%87%E5%9D%97.png">
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/%E4%BD%8D%E9%80%BB%E8%BE%91%E6%8C%87%E4%BB%A4.png">
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/SR%E7%BD%AE%E4%BD%8D_%E5%A4%8D%E4%BD%8D%E8%A7%A6%E5%8F%91%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/RS%E5%A4%8D%E4%BD%8D_%E7%BD%AE%E4%BD%8D%E8%A7%A6%E5%8F%91%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/R_TRIG%E6%A3%80%E6%9F%A5%E4%BF%A1%E5%8F%B7%E4%B8%8A%E5%8D%87%E6%B2%BF.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/F_TRIG%EF%BC%9A%E6%A3%80%E6%9F%A5%E4%BF%A1%E5%8F%B7%E4%B8%8B%E9%99%8D%E6%B2%BF.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/1.20.1.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/1.20.2.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/1.20.3&4.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A41.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A42.png">
 <meta property="article:published_time" content="2024-08-17T04:42:44.000Z">
-<meta property="article:modified_time" content="2024-08-18T11:17:05.462Z">
+<meta property="article:modified_time" content="2024-08-18T13:15:47.973Z">
 <meta property="article:author" content="菊子酒">
 <meta property="article:tag" content="西门子PLC">
 <meta name="twitter:card" content="summary">
@@ -119,7 +127,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">基本数据类型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">寄存器分类：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">寻址方式:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%BD%8D%E5%AF%BB%E5%9D%80"><span class="toc-number">3.1.</span> <span class="toc-text">按位寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E8%8A%82%E5%AF%BB%E5%9D%80"><span class="toc-number">3.2.</span> <span class="toc-text">按字节寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E5%AF%BB%E5%9D%80"><span class="toc-number">3.3.</span> <span class="toc-text">按字寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%8F%8C%E5%AD%97%E5%AF%BB%E5%9D%80"><span class="toc-number">3.4.</span> <span class="toc-text">按双字寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="toc-number">3.5.</span> <span class="toc-text">寻址案例：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E5%8F%8A%E7%B1%BB%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">程序块及类别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%9D%97%EF%BC%88FB%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">函数块（FB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%EF%BC%88FC%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">函数（FC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%9D%97%EF%BC%88DB%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">数据块（DB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E7%BB%87%E5%9D%97%EF%BC%88OB%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">组织块（OB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-number">4.5.</span> <span class="toc-text">程序块作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%9A"><span class="toc-number">4.6.</span> <span class="toc-text">程序块的选择：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-number">5.</span> <span class="toc-text">指令集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%8D%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C"><span class="toc-number">5.1.</span> <span class="toc-text">1 位逻辑运算操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9A%E6%97%B6%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">5.2.</span> <span class="toc-text">2 定时器指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">基本数据类型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">寄存器分类：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">寻址方式:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%BD%8D%E5%AF%BB%E5%9D%80"><span class="toc-number">3.1.</span> <span class="toc-text">按位寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E8%8A%82%E5%AF%BB%E5%9D%80"><span class="toc-number">3.2.</span> <span class="toc-text">按字节寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E5%AF%BB%E5%9D%80"><span class="toc-number">3.3.</span> <span class="toc-text">按字寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%8F%8C%E5%AD%97%E5%AF%BB%E5%9D%80"><span class="toc-number">3.4.</span> <span class="toc-text">按双字寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="toc-number">3.5.</span> <span class="toc-text">寻址案例：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E5%8F%8A%E7%B1%BB%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">程序块及类别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%9D%97%EF%BC%88FB%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">函数块（FB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%EF%BC%88FC%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">函数（FC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%9D%97%EF%BC%88DB%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">数据块（DB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E7%BB%87%E5%9D%97%EF%BC%88OB%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">组织块（OB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-number">4.5.</span> <span class="toc-text">程序块作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%9A"><span class="toc-number">4.6.</span> <span class="toc-text">程序块的选择：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-number">5.</span> <span class="toc-text">指令集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%8D%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C"><span class="toc-number">5.1.</span> <span class="toc-text">1 位逻辑运算操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9A%E6%97%B6%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">5.2.</span> <span class="toc-text">2 定时器指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%A1%E6%95%B0%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">5.3.</span> <span class="toc-text">3 计数器指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-number">5.4.</span> <span class="toc-text">4 比较指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="toc-number">5.5.</span> <span class="toc-text">5 数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%A7%BB%E5%8A%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">5.6.</span> <span class="toc-text">6 移动操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E8%BD%AC%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">5.7.</span> <span class="toc-text">7 转换操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4"><span class="toc-number">5.8.</span> <span class="toc-text">8 程序控制指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%AD%97%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C"><span class="toc-number">5.9.</span> <span class="toc-text">9 字逻辑运算操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E7%A7%BB%E4%BD%8D%E5%92%8C%E5%BE%AA%E7%8E%AF"><span class="toc-number">5.10.</span> <span class="toc-text">10 移位和循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -439,13 +447,13 @@
 <p>通过在I偏移量后加入“:P”，可指定立即读取物理输入（例如：“%I3.4:P”）</p>
 <p>通过在Q偏移量后加入“:P”，可指定立即写入物理输出。对于立即写入，将位数据值写入过程映像输出寄存器并直接写入物理输出。</p>
 <h3 id="1-位逻辑运算操作"><a href="#1-位逻辑运算操作" class="headerlink" title="1 位逻辑运算操作"></a>1 位逻辑运算操作</h3><p><img src="/posts/a5a5d18/%E4%BD%8D%E9%80%BB%E8%BE%91%E6%8C%87%E4%BB%A4.png"></p>
-<p>1.1 常开触点<br>—| |—</p>
+<p>1.1 常开触点<br><strong>—| |—</strong></p>
 <p>1为OFF，0为ON。</p>
-<p>1.2 常闭触点<br>—| / |—</p>
+<p>1.2 常闭触点<br><strong>—|/|—</strong></p>
 <p>1为ON，0为OFF。</p>
-<p>1.3 取反触点<br>—|NOT|—<br>输入为0，输出为1，输入为1输出为0；</p>
-<p>1.4 线圈<br>—( )—<br>1.5 赋值取反<br>—( / )—<br>将逻辑运算的结果进行取反，然后将其赋值给这个线圈的操作数。</p>
-<p>1.6 复位输出<br>—( R )—<br>1.7 置位输出<br>—( S )—<br>1.8 置位位域<br>—( SET_BF )—<br>1.9 复位位域<br>—( RESET_BF )—<br>2.10 SR置位/复位触发器</p>
+<p>1.3 取反触点<br><strong>—|NOT|—</strong><br>输入为0，输出为1，输入为1输出为0；</p>
+<p>1.4 线圈<br><strong>—( )—</strong><br>1.5 赋值取反<br><strong>—( / )—</strong><br>将逻辑运算的结果进行取反，然后将其赋值给这个线圈的操作数。</p>
+<p>1.6 复位输出<br><strong>—( R )—</strong><br>1.7 置位输出<br><strong>—( S )—</strong><br>1.8 置位位域<br><strong>—( SET_BF )—</strong><br>1.9 复位位域<br><strong>—( RESET_BF )—</strong><br>1.10 SR置位/复位触发器</p>
 <p><img src="/posts/a5a5d18/SR%E7%BD%AE%E4%BD%8D_%E5%A4%8D%E4%BD%8D%E8%A7%A6%E5%8F%91%E5%99%A8.png"></p>
 <table>
 <thead>
@@ -472,53 +480,687 @@
 </tr>
 </tbody></table>
 <p>SR置位/复位触发器-信号真值表</p>
-<p>S    RI    Q<br>0    0    保持<br>0    1    复位<br>1    0    置位<br>1    1    复位<br>1.11 RS复位/置位触发器</p>
-<p>参数    说明<br>R    使能复位<br>SI    使能置位，置位优先<br>SR    待使能操作数<br>Q    操作数信号状态<br>RS复位/置位触发器-信号真值表</p>
-<p>SI    R    Q<br>0    0    保持<br>0    1    复位<br>1    0    置位<br>1    1    置位<br>1.12 扫描操作数的信号上升沿<br>—| P |—<br>检测到信号上升沿时，操作数 1 的信号状态将在一个程序周期内保持置位为“1”。在其它任何情况下，操作数的信号状态均为“0”。</p>
-<p>|参数|说明|<br>|–|–|–|<br>|操作数1|要扫描的信号 |<br>|操作数2|保存上一次查询的信号状态的边沿存储位|</p>
-<p>1.13 扫描操作数的信号下降沿<br>—| N |—<br>检测到信号下降沿时，操作数 1 的信号状态将在一个程序周期内保持置位为“1”。在其它任何情况下，操作数的信号状态均为“0</p>
-<p>|参数|说明|<br>|–|–|–|<br>|操作数1|要扫描的信号 |<br>|操作数2|保存上一次查询的信号状态的边沿存储位|</p>
-<p>1.14 在信号上升沿置位操作数<br>—( P )—<br>当输入查询到上升沿时，操作数置位为1一个程序周期，然后其它时间全为0；</p>
-<p>|参数|说明|<br>|–|–|–|<br>|操作数1|上升沿置位的操作数|<br>|操作数2|边沿存储位|</p>
-<p>1.15 在信号下降沿置位操作数<br>—( N )—<br>当输入查询到下降沿时，操作数置位为1一个程序周期，然后其它时间全为0；</p>
-<p>|参数|说明|<br>|–|–|–|<br>|操作数1|下降沿置位的操作数|<br>|操作数2|边沿存储位|</p>
+<table>
+<thead>
+<tr>
+<th>S</th>
+<th>RI</th>
+<th>Q</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>保持</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>复位</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>置位</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>复位</td>
+</tr>
+</tbody></table>
+<p>​        </p>
+<p>1.11 RS复位/置位触发器</p>
+<p><img src="/posts/a5a5d18/RS%E5%A4%8D%E4%BD%8D_%E7%BD%AE%E4%BD%8D%E8%A7%A6%E5%8F%91%E5%99%A8.png"></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>R</td>
+<td>使能复位</td>
+</tr>
+<tr>
+<td>SI</td>
+<td>使能置位，置位优先</td>
+</tr>
+<tr>
+<td>SR</td>
+<td>待使能操作数</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>操作数信号状态</td>
+</tr>
+</tbody></table>
+<p>RS复位/置位触发器-信号真值表</p>
+<table>
+<thead>
+<tr>
+<th>SI</th>
+<th>R</th>
+<th>Q</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>保持</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>复位</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>置位</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>置位</td>
+</tr>
+</tbody></table>
+<p>1.12 扫描操作数的信号上升沿<br><strong>—| P |—</strong><br>检测到信号上升沿时，操作数 1 的信号状态将在一个程序周期内保持置位为“1”。在其它任何情况下，操作数的信号状态均为“0”。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作数1</td>
+<td>要扫描的信号</td>
+</tr>
+<tr>
+<td>操作数2</td>
+<td>保存上一次查询的信号状态的边沿存储位</td>
+</tr>
+</tbody></table>
+<p>1.13 扫描操作数的信号下降沿<br><strong>—| N |—</strong><br>检测到信号下降沿时，操作数 1 的信号状态将在一个程序周期内保持置位为“1”。在其它任何情况下，操作数的信号状态均为“0</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作数1</td>
+<td>要扫描的信号</td>
+</tr>
+<tr>
+<td>操作数2</td>
+<td>保存上一次查询的信号状态的边沿存储位</td>
+</tr>
+</tbody></table>
+<p>1.14 在信号上升沿置位操作数<br><strong>—( P )—</strong><br>当输入查询到上升沿时，操作数置位为1一个程序周期，然后其它时间全为0；</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作数1</td>
+<td>上升沿置位的操作数</td>
+</tr>
+<tr>
+<td>操作数2</td>
+<td>边沿存储位</td>
+</tr>
+</tbody></table>
+<p>1.15 在信号下降沿置位操作数<br><strong>—( N )—</strong><br>当输入查询到下降沿时，操作数置位为1一个程序周期，然后其它时间全为0；</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作数1</td>
+<td>下降沿置位的操作数</td>
+</tr>
+<tr>
+<td>操作数2</td>
+<td>边沿存储位</td>
+</tr>
+</tbody></table>
 <p>1.16 P_TRIG扫描 RLO 的信号上升沿</p>
+<p>![]( P_TRIG扫描 RLO 的信号上升沿.png)</p>
 <p>检测到信号上升沿时，该指令输出 Q 将立即返回程序代码长度的信号状态“1”。在其它任何情况下，该输出返回的信号状态均为“0”。</p>
-<p>|参数|说明|<br>|–|–|–|<br>|CLK|沿信号输入端，当前RLO|<br>|操作数|保存上一次查询的信号状态的边沿存储位|<br>|Q|边沿检测结果|</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLK</td>
+<td>沿信号输入端，当前RLO</td>
+</tr>
+<tr>
+<td>操作数</td>
+<td>保存上一次查询的信号状态的边沿存储位</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>边沿检测结果</td>
+</tr>
+</tbody></table>
 <p>1.17 N_TRIG扫描 RLO 的信号下降沿</p>
+<p>![](N_TRIG扫描 RLO 的信号下降沿.png)</p>
 <p>检测到信号下降沿时，该指令输出 Q 将立即返回程序代码长度的信号状态“1”。在其它任何情况下，该输出返回的信号状态均为“0”。</p>
-<p>|参数|说明|<br>|–|–|–|<br>|CLK|沿信号输入端，当前RLO|<br>|操作数|保存上一次查询的信号状态的边沿存储位|<br>|Q|边沿检测结果|</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLK</td>
+<td>沿信号输入端，当前RLO</td>
+</tr>
+<tr>
+<td>操作数</td>
+<td>保存上一次查询的信号状态的边沿存储位</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>边沿检测结果</td>
+</tr>
+</tbody></table>
 <p>1.18 R_TRIG检查信号上升沿</p>
+<p><img src="/posts/a5a5d18/R_TRIG%E6%A3%80%E6%9F%A5%E4%BF%A1%E5%8F%B7%E4%B8%8A%E5%8D%87%E6%B2%BF.png"></p>
 <p>该指令将输入 CLK 的当前值与保存在指定实例中的上次查询（边沿存储位）的状态进行比较。如果该指令检测到输入 CLK 的状态从“0”变成了“1”，就会在输出 Q 中生成一个信号上升沿，输出的值将在一个循环周期内为 TRUE 或“1”。</p>
-<p>|参数|说明|<br>|–|–|–|<br>|EN|使能输入|<br>|ENO|使能输出|<br>|CLK|达到信号，将查询该信号的边沿<br>|Q|边沿检测的结果|</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EN</td>
+<td>使能输入</td>
+</tr>
+<tr>
+<td>ENO</td>
+<td>使能输出</td>
+</tr>
+<tr>
+<td>CLK</td>
+<td>达到信号，将查询该信号的边沿</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>边沿检测的结果</td>
+</tr>
+</tbody></table>
 <p>1.19 F_TRIG：检查信号下降沿</p>
+<p><img src="/posts/a5a5d18/F_TRIG%EF%BC%9A%E6%A3%80%E6%9F%A5%E4%BF%A1%E5%8F%B7%E4%B8%8B%E9%99%8D%E6%B2%BF.png"></p>
 <p>该指令将输入 CLK 的当前值与保存在指定实例中的上次查询（边沿存储位）的状态进行比较。如果该指令检测到输入 CLK 的状态从“1”变成了“0”，就会在输出 Q 中生成一个信号下降沿，输出的值将在一个循环周期内为 TRUE 或“1”。</p>
-<p>|参数|说明|<br>|–|–|–|<br>|EN|使能输入|<br>|ENO|使能输出|<br>|CLK|达到信号，将查询该信号的边沿<br>|Q|边沿检测的结果|</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EN</td>
+<td>使能输入</td>
+</tr>
+<tr>
+<td>ENO</td>
+<td>使能输出</td>
+</tr>
+<tr>
+<td>CLK</td>
+<td>达到信号，将查询该信号的边沿</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>边沿检测的结果</td>
+</tr>
+</tbody></table>
 <p>1.20 四种沿信号的区别<br>1.20.1</p>
+<p><img src="/posts/a5a5d18/1.20.1.png"></p>
 <p>在P触点上面的I0.0的上升沿，该触点接通一个扫描周期。因此P触点用于检测触点上面的地址的上升沿，并且直接输出上升沿脉冲。其他3种指令都是用来检测逻辑运算结果RLO（即流入指令输入端的能流）的上升沿。</p>
 <p>1.20.2</p>
+<p><img src="/posts/a5a5d18/1.20.2.png"></p>
 <p>在流过P线圈的能流的上升沿，线圈上面的地址Q0.1在一个扫描周期为1状态。因此P线圈用于检测能流的上升沿，并用线圈上面M2.2的触点来输出上升沿脉冲。其他3种指令都是直接输出检测结果。</p>
 <p>1.20.3&amp;4</p>
+<p><img src="/posts/a5a5d18/1.20.3&4.png"></p>
 <p>R_TRIG指令与P_TRIG指令都是用于检测流入它们的CLK端的能流的上升沿，并用Q端直接输出检测结果。其区别在于R_TRIG是函数块，用它的背景数据块DB3保存上一次扫描循环CLK端信号的状态，<br>而P_TRIG指令用边沿存储位M10.3来保存它。P 触点和P线圈分别用边沿存储位M10.0和M10.1来保存它们的输入信号的状态。</p>
-<p>对比项目    P触点    P线圈    P_TRIG    R_TRIG<br>沿信号来源    靠自己    靠别人    靠别人    靠别人<br>输出脉冲    给别人    给自己    给别人    给别人<br>边沿存储    自己的位    自己的位    自己的位    背景数据块</p>
+<table>
+<thead>
+<tr>
+<th>对比项目</th>
+<th>P触点</th>
+<th>P线圈</th>
+<th>P_TRIG</th>
+<th>R_TRIG</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>沿信号来源</td>
+<td>靠自己</td>
+<td>靠别人</td>
+<td>靠别人</td>
+<td>靠别人</td>
+</tr>
+<tr>
+<td>输出脉冲</td>
+<td>给别人</td>
+<td>给自己</td>
+<td>给别人</td>
+<td>给别人</td>
+</tr>
+<tr>
+<td>边沿存储</td>
+<td>自己的位</td>
+<td>自己的位</td>
+<td>自己的位</td>
+<td>背景数据块</td>
+</tr>
+</tbody></table>
 <h3 id="2-定时器指令"><a href="#2-定时器指令" class="headerlink" title="2 定时器指令"></a>2 定时器指令</h3><p>IEC：国际电工委员会缩写，IEC定时器表示国际标准定时器。</p>
 <p>2.1 TP 脉冲定时器</p>
+<p>![](TP 脉冲定时器.png)</p>
 <p>当 IN 端收到一个上升沿信号，Q开始输出能流并开始计时，当计时时间达到PT设定时间后，Q不再有能流输出，知道下有一个上升沿信号输入到IN端口。</p>
-<p>参数    说明<br>IN    启动输入<br>PT    脉冲持续时间<br>Q    脉冲输出<br>ET    当前时间值<br>2.2 TON 接通延时定时器</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN</td>
+<td>启动输入</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>脉冲持续时间</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>脉冲输出</td>
+</tr>
+<tr>
+<td>ET</td>
+<td>当前时间值</td>
+</tr>
+</tbody></table>
+<p>2.2 TON 接通延时定时器</p>
+<p>![](TON 接通延时定时器.png)</p>
 <p>【延时接通，瞬时关断】当IN有能流输入时，且保持一直有，则TON 开始计时，当计时时间达到PT设定时间后，Q输出能流，且只要IN有能流输入，Q便一直有能流输出。</p>
-<p>参数    说明<br>IN    启动输入<br>PT    接通延时持续时间<br>Q    超过时间PT后置位的输出<br>ET    当前时间值<br>2.3 TOF 关断延时定时器</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN</td>
+<td>启动输入</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>接通延时持续时间</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>超过时间PT后置位的输出</td>
+</tr>
+<tr>
+<td>ET</td>
+<td>当前时间值</td>
+</tr>
+</tbody></table>
+<p>2.3 TOF 关断延时定时器</p>
+<p>![](TOF 关断延时定时器.png)</p>
 <p>【瞬时接通，延时关断】当IN有能流输入时，Q输出能流，且只要IN有能流输入，Q便一直有能流输出；当IN从接通改为断开后，则TON 开始计时，此时Q仍有能流输出，当计时时间达到PT设定时间后，Q被复位。</p>
-<p>参数    说明<br>IN    启动输入<br>PT    关断延时的持续时间<br>Q    超过时间PT后复位的输出<br>ET    当前时间值<br>2.5 TONR 时间累加器定时器</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN</td>
+<td>启动输入</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>关断延时的持续时间</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>超过时间PT后复位的输出</td>
+</tr>
+<tr>
+<td>ET</td>
+<td>当前时间值</td>
+</tr>
+</tbody></table>
+<p>2.5 TONR 时间累加器定时器</p>
+<p>![](TONR 时间累加器定时器.png)</p>
 <p>描述： 当IN端接通时，TNOR开始计时，当IN断开时，TNOR停止计时，但当前计时时间不清零，下次IN再接通时计时时间累加，当累加计时时间达到PT设定值后，Q输出能流，此时无论IN 是否接通都不在影响Q输出能流。<br>当R收到一个上升沿信号时，TONR累计时间清零，Q被复位。</p>
-<p>参数    说明<br>IN    启动输入<br>R    复位输入<br>PT    时间记录最长持续时间<br>Q    超过时间PT后要置位的输出<br>ET    累计时间值<br>3 计数器指令<br>3.1 CTU 加计数器</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN</td>
+<td>启动输入</td>
+</tr>
+<tr>
+<td>R</td>
+<td>复位输入</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>时间记录最长持续时间</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>超过时间PT后要置位的输出</td>
+</tr>
+<tr>
+<td>ET</td>
+<td>累计时间值</td>
+</tr>
+</tbody></table>
+<h3 id="3-计数器指令"><a href="#3-计数器指令" class="headerlink" title="3 计数器指令"></a>3 计数器指令</h3><p>3.1 CTU 加计数器</p>
+<p>![](CTU 加计数器.png)</p>
 <p>描述： CU端每收到一个上升沿信号，CTU便做加一计数，当计数值累加到PV设定值后，Q有能力输出；当R端接收到一个上升沿信号后，Q输出复位，CTU计数清零。</p>
-<p>参数    说明<br>CU    计数输入<br>R    复位输入<br>PV    置位输出Q的值<br>Q    计数器状态<br>CV    当前计数器的值<br>3.2 CTD 减计数器</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CU</td>
+<td>计数输入</td>
+</tr>
+<tr>
+<td>R</td>
+<td>复位输入</td>
+</tr>
+<tr>
+<td>PV</td>
+<td>置位输出Q的值</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>计数器状态</td>
+</tr>
+<tr>
+<td>CV</td>
+<td>当前计数器的值</td>
+</tr>
+</tbody></table>
+<p>3.2 CTD 减计数器</p>
+<p>![](CTD 减计数器.png)</p>
 <p>描述： 程序刚启动时，当CD和LD都没有产生上升沿信号时，Q有能流输出；当LD收到一个上升沿信号，便将PV设定值装载到CTD计数器中，并且复位Q；每当CD收到一个上升沿信号时，CTD自减一，当减到0时，置位Q输出能流。</p>
-<p>参数    说明<br>CD    计数输入<br>LD    转载输入<br>PV    装载的计数值<br>Q    计数器状态<br>CV    当前计数器的值<br>3.3 CTUD 加减计数器</p>
-<p>参数    说明<br>CU    加计数输入<br>CD    减计数输入<br>R    复位输入<br>LD    转载输入<br>PV    装载的计数值<br>QU    加计数器状态<br>QD    减计数器状态<br>CV    当前计数器的值<br>描述： cu让计数器自加一，CD让计数器自减一，R给计数器计数值清零，LD将PV的设定值装载到计数器；<br>计数器值对应的输出状态</p>
-<p>数值范围    QU    QD<br>(+∞,0 ]    0    1<br>(0,PV)    0    0<br>[PV,+∞)    1    0<br>4 比较指令<br>指令    描述<br>CMP==    等于<br>CMP&lt;&gt;    不等于<br>CMP&gt;=    大于等于<br>CMP&lt;=    小于等于<br>CMP&gt;    大于<br>CMP&lt;    小于<br>IN_Range    值在范围内<br>OUT_Range    值不在范围内<br>—| OK |—    检查有效性<br>—| NOT_OK |—    检查无效性<br>检查有效性指令和检查无效性指令只针对浮点数数据类型进行查验。</p>
-<p>5 数学函数<br>指令    描述<br>CALCULATE    计算函数<br>ADD    加<br>SUB    减<br>MUL    乘<br>DIN    除法<br>MOD    取余<br>NEG    求二进制补码<br>INC    递增<br>DEC    递减<br>ABS    计算的绝对值<br>MIN    获取最小值<br>MAX    获取最大值<br>LIMIT    设置限值<br>SQR    计算平方<br>SQRT    计算平方根<br>LN    计算自然数对数<br>EXP    计算指数值<br>SIN    计算正弦值<br>COS    计算余弦值<br>TAN    计算正切值<br>ASIN    计算反正弦值<br>ACOS    计算反余弦值<br>ATAN    计算反正切值<br>FRAC    返回小数<br>EXPT    取幂</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>工业互联网：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45586124/article/details/136580828">https://blog.csdn.net/weixin_45586124/article/details/136580828</a></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CD</td>
+<td>计数输入</td>
+</tr>
+<tr>
+<td>LD</td>
+<td>转载输入</td>
+</tr>
+<tr>
+<td>PV</td>
+<td>装载的计数值</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>计数器状态</td>
+</tr>
+<tr>
+<td>CV</td>
+<td>当前计数器的值</td>
+</tr>
+</tbody></table>
+<p>3.3 CTUD 加减计数器</p>
+<p>![](CTUD 加减计数器.png)</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CU</td>
+<td>加计数输入</td>
+</tr>
+<tr>
+<td>CD</td>
+<td>减计数输入</td>
+</tr>
+<tr>
+<td>R</td>
+<td>复位输入</td>
+</tr>
+<tr>
+<td>LD</td>
+<td>转载输入</td>
+</tr>
+<tr>
+<td>PV</td>
+<td>装载的计数值</td>
+</tr>
+<tr>
+<td>QU</td>
+<td>加计数器状态</td>
+</tr>
+<tr>
+<td>QD</td>
+<td>减计数器状态</td>
+</tr>
+<tr>
+<td>CV</td>
+<td>当前计数器的值</td>
+</tr>
+</tbody></table>
+<p>描述： cu让计数器自加一，CD让计数器自减一，R给计数器计数值清零，LD将PV的设定值装载到计数器；<br>计数器值对应的输出状态</p>
+<table>
+<thead>
+<tr>
+<th>数值范围</th>
+<th>QU</th>
+<th>QD</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(+∞,0]</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>(0,PV)</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>[PV,+∞)</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h3 id="4-比较指令"><a href="#4-比较指令" class="headerlink" title="4 比较指令"></a>4 比较指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMP==</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>CMP&lt;&gt;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>CMP&gt;=</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>CMP&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>CMP&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>CMP&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>IN_Range</td>
+<td>值在范围内</td>
+</tr>
+<tr>
+<td>OUT_Range</td>
+<td>值不在范围内</td>
+</tr>
+<tr>
+<td>—| OK |—</td>
+<td>检查有效性</td>
+</tr>
+<tr>
+<td>—| NOT OK |—</td>
+<td>检查无效性</td>
+</tr>
+</tbody></table>
+<p>检查有效性指令和检查无效性指令只针对浮点数数据类型进行查验。</p>
+<p><img src="/posts/a5a5d18/%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A41.png"></p>
+<p><img src="/posts/a5a5d18/%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A42.png"></p>
+<h3 id="5-数学函数"><a href="#5-数学函数" class="headerlink" title="5 数学函数"></a>5 数学函数</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CALCULATE</td>
+<td>计算函数</td>
+<td>LIMIT</td>
+<td>设置限值</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>加</td>
+<td>SQR</td>
+<td>计算平方</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>减</td>
+<td>SQRT</td>
+<td>计算平方根</td>
+</tr>
+<tr>
+<td>MUL</td>
+<td>乘</td>
+<td>LN</td>
+<td>计算自然数对数</td>
+</tr>
+<tr>
+<td>DIN</td>
+<td>除法</td>
+<td>EXP</td>
+<td>计算指数值</td>
+</tr>
+<tr>
+<td>MOD</td>
+<td>取余</td>
+<td>SIN</td>
+<td>计算正弦值</td>
+</tr>
+<tr>
+<td>NEG</td>
+<td>求二进制补码</td>
+<td>COS</td>
+<td>计算余弦值</td>
+</tr>
+<tr>
+<td>INC</td>
+<td>递增</td>
+<td>TAN</td>
+<td>计算正切值</td>
+</tr>
+<tr>
+<td>DEC</td>
+<td>递减</td>
+<td>ASIN</td>
+<td>计算反正弦值</td>
+</tr>
+<tr>
+<td>ABS</td>
+<td>计算的绝对值</td>
+<td>ACOS</td>
+<td>计算反余弦值</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>获取最小值</td>
+<td>ATAN</td>
+<td>计算反正切值</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>获取最大值</td>
+<td>FRAC</td>
+<td>返回小数</td>
+</tr>
+<tr>
+<td>EXPT</td>
+<td>取幂</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="6-移动操作"><a href="#6-移动操作" class="headerlink" title="6 移动操作"></a>6 移动操作</h3><p>&lt;略&gt;学习中……</p>
+<h3 id="7-转换操作"><a href="#7-转换操作" class="headerlink" title="7 转换操作"></a>7 转换操作</h3><p>&lt;略&gt;学习中……</p>
+<h3 id="8-程序控制指令"><a href="#8-程序控制指令" class="headerlink" title="8 程序控制指令"></a>8 程序控制指令</h3><p>&lt;略&gt;学习中……</p>
+<h3 id="9-字逻辑运算操作"><a href="#9-字逻辑运算操作" class="headerlink" title="9 字逻辑运算操作"></a>9 字逻辑运算操作</h3><p>&lt;略&gt;学习中……</p>
+<h3 id="10-移位和循环"><a href="#10-移位和循环" class="headerlink" title="10 移位和循环"></a>10 移位和循环</h3><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>工业互联网：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45586124/article/details/136580828">https://blog.csdn.net/weixin_45586124/article/details/136580828</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37424623">驽马同学</a>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37424623/article/details/116642032">https://blog.csdn.net/qq_37424623/article/details/116642032</a></p>
 
   </div>
@@ -550,7 +1192,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">基本数据类型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">寄存器分类：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">寻址方式:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%BD%8D%E5%AF%BB%E5%9D%80"><span class="toc-number">3.1.</span> <span class="toc-text">按位寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E8%8A%82%E5%AF%BB%E5%9D%80"><span class="toc-number">3.2.</span> <span class="toc-text">按字节寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E5%AF%BB%E5%9D%80"><span class="toc-number">3.3.</span> <span class="toc-text">按字寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%8F%8C%E5%AD%97%E5%AF%BB%E5%9D%80"><span class="toc-number">3.4.</span> <span class="toc-text">按双字寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="toc-number">3.5.</span> <span class="toc-text">寻址案例：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E5%8F%8A%E7%B1%BB%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">程序块及类别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%9D%97%EF%BC%88FB%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">函数块（FB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%EF%BC%88FC%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">函数（FC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%9D%97%EF%BC%88DB%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">数据块（DB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E7%BB%87%E5%9D%97%EF%BC%88OB%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">组织块（OB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-number">4.5.</span> <span class="toc-text">程序块作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%9A"><span class="toc-number">4.6.</span> <span class="toc-text">程序块的选择：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-number">5.</span> <span class="toc-text">指令集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%8D%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C"><span class="toc-number">5.1.</span> <span class="toc-text">1 位逻辑运算操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9A%E6%97%B6%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">5.2.</span> <span class="toc-text">2 定时器指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">基本数据类型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">寄存器分类：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">寻址方式:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E4%BD%8D%E5%AF%BB%E5%9D%80"><span class="toc-number">3.1.</span> <span class="toc-text">按位寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E8%8A%82%E5%AF%BB%E5%9D%80"><span class="toc-number">3.2.</span> <span class="toc-text">按字节寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E5%AF%BB%E5%9D%80"><span class="toc-number">3.3.</span> <span class="toc-text">按字寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%8F%8C%E5%AD%97%E5%AF%BB%E5%9D%80"><span class="toc-number">3.4.</span> <span class="toc-text">按双字寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="toc-number">3.5.</span> <span class="toc-text">寻址案例：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E5%8F%8A%E7%B1%BB%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">程序块及类别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%9D%97%EF%BC%88FB%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">函数块（FB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%EF%BC%88FC%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">函数（FC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%9D%97%EF%BC%88DB%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">数据块（DB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E7%BB%87%E5%9D%97%EF%BC%88OB%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">组织块（OB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-number">4.5.</span> <span class="toc-text">程序块作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%9D%97%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%9A"><span class="toc-number">4.6.</span> <span class="toc-text">程序块的选择：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-number">5.</span> <span class="toc-text">指令集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%8D%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C"><span class="toc-number">5.1.</span> <span class="toc-text">1 位逻辑运算操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9A%E6%97%B6%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">5.2.</span> <span class="toc-text">2 定时器指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%A1%E6%95%B0%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">5.3.</span> <span class="toc-text">3 计数器指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-number">5.4.</span> <span class="toc-text">4 比较指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="toc-number">5.5.</span> <span class="toc-text">5 数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%A7%BB%E5%8A%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">5.6.</span> <span class="toc-text">6 移动操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E8%BD%AC%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">5.7.</span> <span class="toc-text">7 转换操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4"><span class="toc-number">5.8.</span> <span class="toc-text">8 程序控制指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%AD%97%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C"><span class="toc-number">5.9.</span> <span class="toc-text">9 字逻辑运算操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E7%A7%BB%E4%BD%8D%E5%92%8C%E5%BE%AA%E7%8E%AF"><span class="toc-number">5.10.</span> <span class="toc-text">10 移位和循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
