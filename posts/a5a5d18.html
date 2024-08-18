@@ -30,10 +30,17 @@
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/1.20.1.png">
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/1.20.2.png">
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/1.20.3&4.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/TP_%E8%84%89%E5%86%B2%E5%AE%9A%E6%97%B6%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/TON_%E6%8E%A5%E9%80%9A%E5%BB%B6%E6%97%B6%E5%AE%9A%E6%97%B6%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/TOF_%E5%85%B3%E6%96%AD%E5%BB%B6%E6%97%B6%E5%AE%9A%E6%97%B6%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/TONR_%E6%97%B6%E9%97%B4%E7%B4%AF%E5%8A%A0%E5%99%A8%E5%AE%9A%E6%97%B6%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/CTU_%E5%8A%A0%E8%AE%A1%E6%95%B0%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/CTD_%E5%87%8F%E8%AE%A1%E6%95%B0%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/CTUD_%E5%8A%A0%E5%87%8F%E8%AE%A1%E6%95%B0%E5%99%A8.png">
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A41.png">
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A42.png">
 <meta property="article:published_time" content="2024-08-17T04:42:44.000Z">
-<meta property="article:modified_time" content="2024-08-18T13:15:47.973Z">
+<meta property="article:modified_time" content="2024-08-18T13:23:31.084Z">
 <meta property="article:author" content="菊子酒">
 <meta property="article:tag" content="西门子PLC">
 <meta name="twitter:card" content="summary">
@@ -777,7 +784,7 @@
 </tbody></table>
 <h3 id="2-定时器指令"><a href="#2-定时器指令" class="headerlink" title="2 定时器指令"></a>2 定时器指令</h3><p>IEC：国际电工委员会缩写，IEC定时器表示国际标准定时器。</p>
 <p>2.1 TP 脉冲定时器</p>
-<p>![](TP 脉冲定时器.png)</p>
+<p><img src="/posts/a5a5d18/TP_%E8%84%89%E5%86%B2%E5%AE%9A%E6%97%B6%E5%99%A8.png"></p>
 <p>当 IN 端收到一个上升沿信号，Q开始输出能流并开始计时，当计时时间达到PT设定时间后，Q不再有能流输出，知道下有一个上升沿信号输入到IN端口。</p>
 <table>
 <thead>
@@ -804,7 +811,7 @@
 </tr>
 </tbody></table>
 <p>2.2 TON 接通延时定时器</p>
-<p>![](TON 接通延时定时器.png)</p>
+<p><img src="/posts/a5a5d18/TON_%E6%8E%A5%E9%80%9A%E5%BB%B6%E6%97%B6%E5%AE%9A%E6%97%B6%E5%99%A8.png"></p>
 <p>【延时接通，瞬时关断】当IN有能流输入时，且保持一直有，则TON 开始计时，当计时时间达到PT设定时间后，Q输出能流，且只要IN有能流输入，Q便一直有能流输出。</p>
 <table>
 <thead>
@@ -831,7 +838,7 @@
 </tr>
 </tbody></table>
 <p>2.3 TOF 关断延时定时器</p>
-<p>![](TOF 关断延时定时器.png)</p>
+<p><img src="/posts/a5a5d18/TOF_%E5%85%B3%E6%96%AD%E5%BB%B6%E6%97%B6%E5%AE%9A%E6%97%B6%E5%99%A8.png"></p>
 <p>【瞬时接通，延时关断】当IN有能流输入时，Q输出能流，且只要IN有能流输入，Q便一直有能流输出；当IN从接通改为断开后，则TON 开始计时，此时Q仍有能流输出，当计时时间达到PT设定时间后，Q被复位。</p>
 <table>
 <thead>
@@ -857,8 +864,8 @@
 <td>当前时间值</td>
 </tr>
 </tbody></table>
-<p>2.5 TONR 时间累加器定时器</p>
-<p>![](TONR 时间累加器定时器.png)</p>
+<p>2.5 TONR时间累加器定时器</p>
+<p><img src="/posts/a5a5d18/TONR_%E6%97%B6%E9%97%B4%E7%B4%AF%E5%8A%A0%E5%99%A8%E5%AE%9A%E6%97%B6%E5%99%A8.png"></p>
 <p>描述： 当IN端接通时，TNOR开始计时，当IN断开时，TNOR停止计时，但当前计时时间不清零，下次IN再接通时计时时间累加，当累加计时时间达到PT设定值后，Q输出能流，此时无论IN 是否接通都不在影响Q输出能流。<br>当R收到一个上升沿信号时，TONR累计时间清零，Q被复位。</p>
 <table>
 <thead>
@@ -889,7 +896,7 @@
 </tr>
 </tbody></table>
 <h3 id="3-计数器指令"><a href="#3-计数器指令" class="headerlink" title="3 计数器指令"></a>3 计数器指令</h3><p>3.1 CTU 加计数器</p>
-<p>![](CTU 加计数器.png)</p>
+<p><img src="/posts/a5a5d18/CTU_%E5%8A%A0%E8%AE%A1%E6%95%B0%E5%99%A8.png"></p>
 <p>描述： CU端每收到一个上升沿信号，CTU便做加一计数，当计数值累加到PV设定值后，Q有能力输出；当R端接收到一个上升沿信号后，Q输出复位，CTU计数清零。</p>
 <table>
 <thead>
@@ -920,7 +927,7 @@
 </tr>
 </tbody></table>
 <p>3.2 CTD 减计数器</p>
-<p>![](CTD 减计数器.png)</p>
+<p><img src="/posts/a5a5d18/CTD_%E5%87%8F%E8%AE%A1%E6%95%B0%E5%99%A8.png"></p>
 <p>描述： 程序刚启动时，当CD和LD都没有产生上升沿信号时，Q有能流输出；当LD收到一个上升沿信号，便将PV设定值装载到CTD计数器中，并且复位Q；每当CD收到一个上升沿信号时，CTD自减一，当减到0时，置位Q输出能流。</p>
 <table>
 <thead>
@@ -951,7 +958,7 @@
 </tr>
 </tbody></table>
 <p>3.3 CTUD 加减计数器</p>
-<p>![](CTUD 加减计数器.png)</p>
+<p><img src="/posts/a5a5d18/CTUD_%E5%8A%A0%E5%87%8F%E8%AE%A1%E6%95%B0%E5%99%A8.png"></p>
 <table>
 <thead>
 <tr>
