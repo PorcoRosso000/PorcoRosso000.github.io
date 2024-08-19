@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>进制转换</title>
+      <link href="/posts/7dc91154.html"/>
+      <url>/posts/7dc91154.html</url>
+      
+        <content type="html"><![CDATA[<p>进制转换</p><span id="more"></span><hr><h2 id="进制特点"><a href="#进制特点" class="headerlink" title="进制特点"></a>进制特点</h2><p>在学习四种进制转换之前先了解一下四种进制的特点</p><pre class=" language-markdown"><code class="language-markdown">十进制：十进制是Decimal，简写为D都是以0-9这九个数字组成。二进制：二进制是Binary，简写为B由0和1两个数字组成。八进制：八进制是Octal，简写为O由0-7数字组成，为了区分与其他进制的数字区别，开头都是以0开始。十六进制：十六进制为Hexadecimal，简写为H表示方式为0x开头计数到F后，再增加1个，就进位。由0-9和A-F组成，英文字母A，B，C，D，E，F分别表示数字10～15。1    2    3    4    5    6    7    8    9    A    B    C    D    E    F</code></pre><h2 id="相互转换："><a href="#相互转换：" class="headerlink" title="相互转换："></a>相互转换：</h2><p>接下来开始讲解二进制、八进制、十进制、十六进制之间的相互转换（包括整数和小数）</p><h3 id="一、整数转换"><a href="#一、整数转换" class="headerlink" title="一、整数转换"></a>一、整数转换</h3><h4 id="1、十进制转二进制"><a href="#1、十进制转二进制" class="headerlink" title="1、十进制转二进制"></a>1、十进制转二进制</h4><p>（1）十进制转二进制的原理：十进制数除以2，余数为权位上的数，得到商继续除以2，直到商为0终止，然后反向取余数。</p><p>具体实现：</p><p>例如(67)10 → (1000011)2</p><p>将67除以2得商33，余数1。将商（33）作为第二次的被除数一次类推，直到商为0.</p><p><img src="/posts/7dc91154/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6.png"></p><p>（2）十进制转八、十六进制的原理：跟十转二原理一样，十进制数除以8/16，余数为权位上的数，得到商继续除以8/16，直到商为0终止，然后反向取余数。</p><p>具体实现：</p><p>例758（十进制）→ 1366（八进制）     951（十进制）→   3B7（十六进制） </p><p>步骤跟十进制转二进制一样。</p><p> <img src="/posts/7dc91154/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB_%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6.png"></p><h4 id="2、二进制转十进制"><a href="#2、二进制转十进制" class="headerlink" title="2、二进制转十进制"></a>2、二进制转十进制</h4><p>方法：把二进制数按权展开、相加即得十进制数。 </p><p> <img src="/posts/7dc91154/%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.png"></p><p>例题： 1001 0110B = ______ D</p><p>如下图所示，答案为150D</p><p><img src="/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%8D%81.png"></p><p>例题： 26Q = ______ D</p><p>如下图所示，答案为22D</p><p><img src="/posts/7dc91154/%E5%85%AB%E8%BD%AC%E5%8D%81.png"></p><p>例题： 23daH = ______ D</p><p>如下图所示，答案为9178D</p><p><img src="/posts/7dc91154/%E5%8D%81%E5%85%AD%E8%BD%AC%E5%8D%81.png"></p><h4 id="3、二进制转八进制、十六进制"><a href="#3、二进制转八进制、十六进制" class="headerlink" title="3、二进制转八进制、十六进制"></a>3、二进制转八进制、十六进制</h4><p> 方法：3位二进制数按权展开相加得到1位八进制数。（注意事项，3位二进制转成八进制是从右到左开始转换，不足时补0）。</p><p> <img src="/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%85%AB.png"></p><p>同理，二进制转十六进制时， 4位二进制数按权展开相加得到1位十六进制数，不足四位补0。</p><p><img src="/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%8D%81%E5%85%AD.png"></p><h4 id="4、八进制转二进制"><a href="#4、八进制转二进制" class="headerlink" title="4、八进制转二进制"></a>4、八进制转二进制</h4><p>方法：八进制数通过除2取余法，得到二进制数，对每个八进制为3个二进制，不足时在最左边补零。 </p><p> <img src="/posts/7dc91154/%E5%85%AB%E8%BD%AC%E4%BA%8C.png"></p><p>同理，十六进制转二进制也是一样的方法 </p><h3 id="二、小数转换"><a href="#二、小数转换" class="headerlink" title="二、小数转换"></a>二、小数转换</h3><h4 id="1、十进制转二进制-1"><a href="#1、十进制转二进制-1" class="headerlink" title="1、十进制转二进制"></a>1、十进制转二进制</h4><p>方法：十进制小数转换成二进制小数采用“乘二取整，顺序输出”</p><p>例题： 0.618D = ______ B（精确到小数点后3位）</p><p>如下所示，0.68乘以2，取整，然后再将小数乘以2，取整，直到达到题目要求精度。</p><p>得到结果：0.101B.</p><p><img src="/posts/7dc91154/%E5%B0%8F%E6%95%B0%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6.png"></p><p>同理十进制转八进制、十六进制也是一样的做法，大家可以尝试做一下例题，熟悉掌握计算流程</p><p>例题：10.68D = ______ Q（精确到小数点后3位）</p><pre><code>       25.68D = ______ H（精确到小数点后3位）</code></pre><p>答案：12.534Q.     19.ae1H</p><p>注意：小数进制转换有误差，并不是任何一个十进制小数都能转成有限为的二进制数</p><h4 id="2、二进制转十进制-1"><a href="#2、二进制转十进制-1" class="headerlink" title="2、二进制转十进制"></a>2、二进制转十进制</h4><p>方法：把二进制数按权展开、相加即得十进制数。（具体操作如下）</p><p><img src="/posts/7dc91154/%E5%B0%8F%E6%95%B0%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.png"></p><p>小数转换跟普通转换类似，小数点后幂次就变成了负的。 </p><h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><p><a href="https://blog.csdn.net/weixin_53564801">爱躺平的威威</a>：<a href="https://blog.csdn.net/weixin_53564801/article/details/123665194">https://blog.csdn.net/weixin_53564801/article/details/123665194</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 进制转换 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 进制转换 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>西门子PLC基础</title>
       <link href="/posts/a5a5d18.html"/>
       <url>/posts/a5a5d18.html</url>
