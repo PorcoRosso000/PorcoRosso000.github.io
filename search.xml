@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>批量歌词下载</title>
-      <link href="/posts/3e46f35c.html"/>
-      <url>/posts/3e46f35c.html</url>
+      <title>音乐相关软件及常用配置方式</title>
+      <link href="/posts/fa2afadb.html"/>
+      <url>/posts/fa2afadb.html</url>
       
-        <content type="html"><![CDATA[<p>批量歌词下载</p><span id="more"></span><hr><p>github项目地址：<a href="https://github.com/real-zony/ZonyLrcToolsX/releases">https://github.com/real-zony/ZonyLrcToolsX/releases</a></p><p>软件命令：<br>1、CD到软件目录<br>2、ZonyLrcTools.Cli.exe download -d “音乐目录” -l -n 线程数</p>]]></content>
+        <content type="html"><![CDATA[<p>音乐相关软件及常用配置方式</p><span id="more"></span><hr><h2 id="批量歌词下载"><a href="#批量歌词下载" class="headerlink" title="批量歌词下载"></a>批量歌词下载</h2><p>github项目地址：<a href="https://github.com/real-zony/ZonyLrcToolsX/releases">https://github.com/real-zony/ZonyLrcToolsX/releases</a></p><p>软件命令：<br>1、CD到软件目录<br>2、ZonyLrcTools.Cli.exe download -d “音乐目录” -l -n 线程数</p><h2 id="使用音乐标签软件批量下载（推荐）"><a href="#使用音乐标签软件批量下载（推荐）" class="headerlink" title="使用音乐标签软件批量下载（推荐）"></a>使用音乐标签软件批量下载（推荐）</h2><p>MusicTag</p>]]></content>
       
       
       <categories>
