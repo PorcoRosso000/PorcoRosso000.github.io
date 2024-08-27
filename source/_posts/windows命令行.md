@@ -22,9 +22,9 @@ windows 查看文件列表 :  dir
 
 windows编辑文件命令`:  notepad somefile.txt`
 
-## Windows环境下合并zip文件
+## Windows环境下压缩包合并
 
-copy /B 1.zip.001 + 1.zip.002 + 1.zip.003 1.zip
+copy /B 1.zip.001 + 1.zip.002 + 1.zip.003 wuming.zip
 
 ## Windows环境下硬盘/u盘被谁占用了，查找罪魁祸首
 
