@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>西门子Wincc基础使用</title>
+      <link href="/posts/efdc187b.html"/>
+      <url>/posts/efdc187b.html</url>
+      
+        <content type="html"><![CDATA[<p>西门子Wincc基础使用</p><span id="more"></span><hr><h2 id="创建精致面版"><a href="#创建精致面版" class="headerlink" title="创建精致面版"></a>创建精致面版</h2><p>1.根据plc触摸屏版本创建对应的触摸屏（HML精致面版）</p><p>2.打开HML块查看连接选项的情况</p><p>3.打开设备与网络查看HML与plc连接情况</p><p>4.打开画面，根画面，绘制图像</p><p>5.检查ip的端口</p><h2 id="仿真："><a href="#仿真：" class="headerlink" title="仿真："></a>仿真：</h2><p>如果是需要仿真就编译后点击仿真就好</p><p>plc也是编译后直接点击仿真</p><h2 id="网口连接实体设备："><a href="#网口连接实体设备：" class="headerlink" title="网口连接实体设备："></a>网口连接实体设备：</h2><p>1.电脑 Wincc image 的插件有没有安装</p><p>2.要看plc的端口还有HML端口有没有和实体机器对应，在不在同一个网段</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 西门子 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 西门子 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>视频压缩神器</title>
+      <link href="/posts/41b56158.html"/>
+      <url>/posts/41b56158.html</url>
+      
+        <content type="html"><![CDATA[<p>视频压缩神器</p><span id="more"></span><hr><h2 id="视频压缩可以从三个方面入手"><a href="#视频压缩可以从三个方面入手" class="headerlink" title="视频压缩可以从三个方面入手"></a>视频压缩可以从三个方面入手</h2><p>分辨率  帧率  码率</p><p>分辨率改小视频直接变糢糊不符合需求<br>帧率改小视频就会出现明显的卡顿<br>码率改小可以实现不怎么损失清晰度又能大大减小文件体积</p><h2 id="码率压缩视频原理"><a href="#码率压缩视频原理" class="headerlink" title="码率压缩视频原理"></a>码率压缩视频原理</h2><p>码率也叫数据速率或者比特率</p><p>一般码率对画质影响的曲线图</p><p><img src="/posts/41b56158/%E7%A0%81%E7%8E%87%E5%AF%B9%E7%94%BB%E8%B4%A8%E5%BD%B1%E5%93%8D%E6%9B%B2%E7%BA%BF.png"></p><p>码率提高到一定程度对画质的提升就没那么大了</p><h2 id="如何计算一个视频的码率"><a href="#如何计算一个视频的码率" class="headerlink" title="如何计算一个视频的码率"></a>如何计算一个视频的码率</h2><p><img src="/posts/41b56158/%E8%AE%A1%E7%AE%97%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91%E7%9A%84%E7%A0%81%E7%8E%87.png"></p><h2 id="根据想要的文件大小计算码率"><a href="#根据想要的文件大小计算码率" class="headerlink" title="根据想要的文件大小计算码率"></a>根据想要的文件大小计算码率</h2><p><img src="/posts/41b56158/%E6%A0%B9%E6%8D%AE%E6%83%B3%E8%A6%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E8%AE%A1%E7%AE%97%E7%A0%81%E7%8E%87.png"></p><h2 id="码率选择"><a href="#码率选择" class="headerlink" title="码率选择"></a>码率选择</h2><p>一般视频网站码率</p><p><img src="/posts/41b56158/%E4%B8%80%E8%88%AC%E8%A7%86%E9%A2%91%E7%BD%91%E7%AB%99%E7%A0%81%E7%8E%87.png"></p><p>一般都在3Mbps-6Mbps之间</p><p>选6Mbps就可以</p><h2 id="软件推荐"><a href="#软件推荐" class="headerlink" title="软件推荐"></a>软件推荐</h2><p>HandBrake</p><p><img src="/posts/41b56158/HandBrake.png"></p><p>拖进视频后选视频</p><p><img src="/posts/41b56158/%E7%A0%81%E7%8E%87%E5%88%87%E6%8D%A2%E4%BD%8D%E7%BD%AE.png"></p><p>就可以调整码率</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 视频压缩 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 视频压缩 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>三菱PLC基础</title>
+      <link href="/posts/4e3bb898.html"/>
+      <url>/posts/4e3bb898.html</url>
+      
+        <content type="html"><![CDATA[<p>三菱PLC基础</p><span id="more"></span><hr><h2 id="软件安装："><a href="#软件安装：" class="headerlink" title="软件安装："></a>软件安装：</h2><p>GX Work2</p><p>GX Work3</p><h3 id="软件安装错误解决"><a href="#软件安装错误解决" class="headerlink" title="软件安装错误解决"></a>软件安装错误解决</h3><h4 id="GX-Works2-存储器空间或桌面堆栈不足或安装GX-Works3显示没有文件夹权限-解决方案"><a href="#GX-Works2-存储器空间或桌面堆栈不足或安装GX-Works3显示没有文件夹权限-解决方案" class="headerlink" title="GX Works2 存储器空间或桌面堆栈不足或安装GX Works3显示没有文件夹权限 解决方案"></a>GX Works2 存储器空间或桌面堆栈不足或安装GX Works3显示没有文件夹权限 解决方案</h4><p>安装好GX Work2之后  继续安装GX Work3 安装好就可以解决 </p><p>原因：之前安装GX Work3卸载过</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PLC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PLC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>音乐相关软件及常用配置方式</title>
       <link href="/posts/fa2afadb.html"/>
       <url>/posts/fa2afadb.html</url>
