@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>西门子设备学习</title>
+      <link href="/posts/d09e7b42.html"/>
+      <url>/posts/d09e7b42.html</url>
+      
+        <content type="html"><![CDATA[<p>西门子设备学习</p><span id="more"></span><hr><h2 id="1214C-DC-DC-DC"><a href="#1214C-DC-DC-DC" class="headerlink" title="1214C DC-DC-DC"></a>1214C DC-DC-DC</h2><p><img src="/posts/d09e7b42/1214c%E6%AD%A3%E9%9D%A2%E4%BF%A1%E6%81%AF.jpg"></p><p><img src="/posts/d09e7b42/1214c%E4%BE%A7%E9%9D%A2%E4%BF%A1%E6%81%AF.jpg"></p><p><img src="/posts/d09e7b42/1214c%E8%BE%93%E5%85%A5%E6%8E%A5%E7%BA%BF.jpg"></p><p><img src="/posts/d09e7b42/1214c%E8%BE%93%E5%87%BA%E6%8E%A5%E7%BA%BF.jpg"></p><p><img src="/posts/d09e7b42/1214c%E8%BE%93%E5%85%A5%E7%AB%AF%E5%AD%90%E5%90%8D%E7%A7%B0.jpg"></p><p><img src="/posts/d09e7b42/1214c%E8%BE%93%E5%87%BA%E7%AB%AF%E5%AD%90%E5%90%8D%E7%A7%B0.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 西门子设备 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 西门子设备 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>西门子Wincc基础使用</title>
       <link href="/posts/efdc187b.html"/>
       <url>/posts/efdc187b.html</url>
       
-        <content type="html"><![CDATA[<p>西门子Wincc基础使用</p><span id="more"></span><hr><h2 id="创建精致面版"><a href="#创建精致面版" class="headerlink" title="创建精致面版"></a>创建精致面版</h2><p>1.根据plc触摸屏版本创建对应的触摸屏（HML精致面版）</p><p>2.打开HML块查看连接选项的情况</p><p>3.打开设备与网络查看HML与plc连接情况</p><p>4.打开画面，根画面，绘制图像</p><p>5.检查ip的端口</p><h2 id="仿真："><a href="#仿真：" class="headerlink" title="仿真："></a>仿真：</h2><p>如果是需要仿真就编译后点击仿真就好</p><p>plc也是编译后直接点击仿真</p><h2 id="网口连接实体设备："><a href="#网口连接实体设备：" class="headerlink" title="网口连接实体设备："></a>网口连接实体设备：</h2><p>1.电脑 Wincc image 的插件有没有安装</p><p>2.要看plc的端口还有HML端口有没有和实体机器对应，在不在同一个网段</p>]]></content>
+        <content type="html"><![CDATA[<p>西门子Wincc基础使用</p><span id="more"></span><hr><h2 id="创建精致面版"><a href="#创建精致面版" class="headerlink" title="创建精致面版"></a>创建精致面版</h2><p>1.根据plc触摸屏版本创建对应的触摸屏（HML精致面版）</p><p>2.打开HML块查看连接选项的情况</p><p>3.打开设备与网络查看HML与plc连接情况</p><p>4.打开画面，根画面，绘制图像</p><p>5.检查ip的端口</p><h2 id="仿真："><a href="#仿真：" class="headerlink" title="仿真："></a>仿真：</h2><p>如果是需要仿真就编译后点击仿真就好</p><p>plc也是编译后直接点击仿真</p><h2 id="网口连接实体设备："><a href="#网口连接实体设备：" class="headerlink" title="网口连接实体设备："></a>网口连接实体设备：</h2><p>1.电脑 Wincc image 的插件有没有安装</p><p>2.要看plc的端口还有HML端口有没有和实体机器对应，在不在同一个网段</p><h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><h3 id="灯："><a href="#灯：" class="headerlink" title="灯："></a>灯：</h3><p>需要画一个圆–&gt;属性–&gt;显示–&gt;添加新动画–&gt;选择外观</p><p>关联属性设置范围</p><p><img src="/posts/efdc187b/%E7%81%AF.png"></p><h3 id="按一次1，再按一次0"><a href="#按一次1，再按一次0" class="headerlink" title="按一次1，再按一次0"></a>按一次1，再按一次0</h3><p>事件中选择按下属性 –&gt;函数选择取反位</p><h3 id="按下一直运行，抬起就停止"><a href="#按下一直运行，抬起就停止" class="headerlink" title="按下一直运行，抬起就停止"></a>按下一直运行，抬起就停止</h3><p>针对只需要执行一次的事件</p><p>事件中选择按下和抬起属性  –&gt;按下函数选择置位位，抬起函数选择复位位</p><h3 id="需要输入或者显示数据"><a href="#需要输入或者显示数据" class="headerlink" title="需要输入或者显示数据"></a>需要输入或者显示数据</h3><p>选择工具栏元素的io域 </p><h2 id="模板修改："><a href="#模板修改：" class="headerlink" title="模板修改："></a>模板修改：</h2><p>在画面管理模板中进行修改</p>]]></content>
       
       
       <categories>
@@ -108,7 +133,7 @@
       <link href="/posts/2a5c9db5.html"/>
       <url>/posts/2a5c9db5.html</url>
       
-        <content type="html"><![CDATA[<p>昆仑通态使用基础</p><span id="more"></span><hr><h2 id="McgsPro-3-3-2-6187版本软件使用介绍"><a href="#McgsPro-3-3-2-6187版本软件使用介绍" class="headerlink" title="McgsPro 3.3.2.6187版本软件使用介绍"></a>McgsPro 3.3.2.6187版本软件使用介绍</h2><h3 id="1-软件选择"><a href="#1-软件选择" class="headerlink" title="1.软件选择"></a>1.软件选择</h3><p>先看昆仑通态背部机型，确定可以使用的软件版本</p><h3 id="2-设置ip地址"><a href="#2-设置ip地址" class="headerlink" title="2.设置ip地址"></a>2.设置ip地址</h3><p>触摸屏启动时一直点击屏幕会出现系统设置界面找到设置ip的地方设置触摸屏ip为192.168.0.15</p><p>电脑上打开昆仑通态软件，先配置设备组态</p><p><img src="/posts/2a5c9db5/%E6%98%86%E4%BB%91%E9%80%9A%E6%80%81%E8%AE%BE%E5%A4%87%E7%BB%84%E6%80%81%E8%AE%BE%E7%BD%AE.png"></p><p>点击设备组态后选择</p><p><img src="/posts/2a5c9db5/%E8%AE%BE%E5%A4%87%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%93%8D%E4%BD%9C.png"></p><p>选好之后会出现下面的界面</p><p><img src="/posts/2a5c9db5/%E8%AE%BE%E5%A4%87%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%93%8D%E4%BD%9C%E5%AE%8C%E6%88%90.png"></p><p>双击通用TCPIP父设备0</p><p><img src="/posts/2a5c9db5/%E7%88%B6%E8%AE%BE%E5%A4%87ip%E8%AE%BE%E7%BD%AE.png"></p><p>本地ip地址：触摸屏ip</p><p>远程ip地址：plc的ip地址（对应自己电脑软件plc的）</p><p><img src="/posts/2a5c9db5/plc%E7%9A%84ip%E8%AE%BE%E7%BD%AE.png"></p><p>还有一个自己电脑ip地址，可以设置成192.168.0.25，以太网设置好自动匹配后可以不用设置，总之必须在同一个网段才能算配置成功</p><h3 id="3-页面绘制"><a href="#3-页面绘制" class="headerlink" title="3.页面绘制"></a>3.页面绘制</h3><p><strong>新建页面</strong></p><p><img src="/posts/2a5c9db5/%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2.png"></p><p>然后进行页面绘制</p><p>圆形可以表示灯泡</p><p>按钮可以表示开关</p><p>标签可以做简单的图形说明</p><p><strong>地址绑定</strong></p><p>地址绑定方式有两种</p><p>一种是db数据块绑定</p><p><img src="/posts/2a5c9db5/%E6%95%B0%E6%8D%AEDB%E7%BB%91%E5%AE%9A.png"></p><p>比如</p><p>绑定DB2，偏移量是2.1的数据  通道地址就是2.2，数据类型就是通道的第01位</p><p>绑定DB2，偏移量是0.2的数据 通道地址就是2，数据类型就是通道的第02位</p><p>一种是直接绑定</p><p><img src="/posts/2a5c9db5/%E6%95%B0%E6%8D%AE%E7%9B%B4%E6%8E%A5%E7%BB%91%E5%AE%9A.png"></p><p>比如</p><p>绑定%M2.0 通道地址就是2，数据类型就是通道的第00位</p><h3 id="4-下载"><a href="#4-下载" class="headerlink" title="4.下载"></a>4.下载</h3><p><strong>确定PUTGET通信访问已经开启</strong></p><p>plc属性–&gt;连接机制–&gt;勾选PUTGET通信访问</p><p>下载按钮位置</p><p><img src="/posts/2a5c9db5/%E4%B8%8B%E8%BD%BD%E6%8C%89%E9%92%AE.png"></p><p>连接网线plc下载好项目，然后进行昆仑通态下载配置</p><p><img src="/posts/2a5c9db5/%E4%B8%8B%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B.png"></p>]]></content>
+        <content type="html"><![CDATA[<p>昆仑通态使用基础</p><span id="more"></span><hr><h2 id="McgsPro-3-3-2-6187版本软件使用介绍"><a href="#McgsPro-3-3-2-6187版本软件使用介绍" class="headerlink" title="McgsPro 3.3.2.6187版本软件使用介绍"></a>McgsPro 3.3.2.6187版本软件使用介绍</h2><h3 id="1-软件选择"><a href="#1-软件选择" class="headerlink" title="1.软件选择"></a>1.软件选择</h3><p>先看昆仑通态背部机型，确定可以使用的软件版本</p><h3 id="2-设置ip地址"><a href="#2-设置ip地址" class="headerlink" title="2.设置ip地址"></a>2.设置ip地址</h3><p>触摸屏启动时一直点击屏幕会出现系统设置界面找到设置ip的地方设置触摸屏ip为192.168.0.15</p><p>电脑上打开昆仑通态软件，先配置设备组态</p><p><img src="/posts/2a5c9db5/%E6%98%86%E4%BB%91%E9%80%9A%E6%80%81%E8%AE%BE%E5%A4%87%E7%BB%84%E6%80%81%E8%AE%BE%E7%BD%AE.png"></p><p>点击设备组态后选择</p><p><img src="/posts/2a5c9db5/%E8%AE%BE%E5%A4%87%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%93%8D%E4%BD%9C.png"></p><p>选好之后会出现下面的界面</p><p><img src="/posts/2a5c9db5/%E8%AE%BE%E5%A4%87%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%93%8D%E4%BD%9C%E5%AE%8C%E6%88%90.png"></p><p>双击通用TCPIP父设备0</p><p><img src="/posts/2a5c9db5/%E7%88%B6%E8%AE%BE%E5%A4%87ip%E8%AE%BE%E7%BD%AE.png"></p><p>本地ip地址：触摸屏ip</p><p>远程ip地址：plc的ip地址（对应自己电脑软件plc的）</p><p><img src="/posts/2a5c9db5/plc%E7%9A%84ip%E8%AE%BE%E7%BD%AE.png"></p><p>还有一个自己电脑ip地址，可以设置成192.168.0.25，以太网设置好自动匹配后可以不用设置，总之必须在同一个网段才能算配置成功</p><h3 id="3-页面绘制"><a href="#3-页面绘制" class="headerlink" title="3.页面绘制"></a>3.页面绘制</h3><p><strong>新建页面</strong></p><p><img src="/posts/2a5c9db5/%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2.png"></p><p>然后进行页面绘制</p><p>圆形可以表示灯泡</p><p>按钮可以表示开关</p><p>标签可以做简单的图形说明</p><p><strong>地址绑定</strong></p><p>地址绑定方式有两种</p><p>一种是db数据块绑定</p><p><img src="/posts/2a5c9db5/%E6%95%B0%E6%8D%AEDB%E7%BB%91%E5%AE%9A.png"></p><p>比如</p><p>绑定DB2，偏移量是2.1的数据  通道地址就是2.2，数据类型就是通道的第01位</p><p>绑定DB2，偏移量是0.2的数据 通道地址就是2，数据类型就是通道的第02位</p><p>一种是直接绑定</p><p><img src="/posts/2a5c9db5/%E6%95%B0%E6%8D%AE%E7%9B%B4%E6%8E%A5%E7%BB%91%E5%AE%9A.png"></p><p>比如</p><p>绑定%M2.0 通道地址就是2，数据类型就是通道的第00位</p><h3 id="4-下载"><a href="#4-下载" class="headerlink" title="4.下载"></a>4.下载</h3><p><strong>确定PUTGET通信访问已经开启</strong></p><p>plc属性–&gt;连接机制–&gt;勾选PUTGET通信访问</p><p>下载按钮位置</p><p><img src="/posts/2a5c9db5/%E4%B8%8B%E8%BD%BD%E6%8C%89%E9%92%AE.png"></p><p>连接网线plc下载好项目，然后进行昆仑通态下载配置，目标机名注意要使用 触摸屏ip</p><p><img src="/posts/2a5c9db5/%E4%B8%8B%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B.png"></p><h2 id="功能实现："><a href="#功能实现：" class="headerlink" title="功能实现："></a>功能实现：</h2><h3 id="灯："><a href="#灯：" class="headerlink" title="灯："></a>灯：</h3><p>使用椭圆画一个圆–&gt;基本属性勾选填充颜色–&gt;设置属性和分段点</p><p><img src="/posts/2a5c9db5/%E7%81%AF.png"></p><h3 id="一个按钮实现开关"><a href="#一个按钮实现开关" class="headerlink" title="一个按钮实现开关"></a>一个按钮实现开关</h3><p>操作属性–&gt;数据对象值操作–&gt;选择取反</p><h3 id="按钮按下一直运行，抬起就停止"><a href="#按钮按下一直运行，抬起就停止" class="headerlink" title="按钮按下一直运行，抬起就停止"></a>按钮按下一直运行，抬起就停止</h3><p>操作属性–&gt;数据对象值操作–&gt;按下选择置1，抬起选择清0</p>]]></content>
       
       
       <categories>
