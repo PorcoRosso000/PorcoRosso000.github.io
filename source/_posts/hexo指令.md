@@ -105,6 +105,13 @@ git reset HEAD~1
 
 ###  报错 :
 
+#### 'hexo' 不是内部或外部命令，也不是可运行的程序或批处理文件
+
+重新安装一下hexo 
+
+npm install -g hexo-cli
+npm install hexo-server --save
+
 #### failed to push some refs to 'github.com:PorcoRosso000/PorcoRosso000.github.io.git' 
 
 远程库和本地库不一致 

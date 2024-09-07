@@ -32,3 +32,18 @@ GX Work3
 
 
 
+### 电脑COM口被占用的超简单解决方法
+
+打开注册表 win+r 再输入regedit 即可打开注册表
+
+在注册表中打开
+HKEY_LOCAL_MACHINE
+/SYSTEM
+/CurrentControlSet
+/Control
+/COM Name Arbiter
+
+点开就可以看到com db删掉就好
+
+
+
