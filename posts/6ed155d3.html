@@ -58,7 +58,7 @@
 <meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%B8%83%E5%B1%80%E5%AE%89%E8%A3%85%E5%9B%BE.png">
 <meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E8%A7%A6%E7%82%B9%E6%98%A0%E8%B1%A1.png">
 <meta property="article:published_time" content="2024-08-06T05:49:54.000Z">
-<meta property="article:modified_time" content="2024-08-28T02:04:42.581Z">
+<meta property="article:modified_time" content="2024-09-06T02:53:45.496Z">
 <meta property="article:author" content="菊子酒">
 <meta property="article:tag" content="电气基础">
 <meta name="twitter:card" content="summary">
@@ -307,7 +307,12 @@
 <p>1.工作方式不同：两线制传感器相当于开关，没有NPN和PNP之分，三线制相当于有NPN和PNP。</p>
 <p>2.接线方式不同：两线制传感器为两根线，一根接正极，一根接输出信号。三线制传感器两根接电源线（一般是棕正蓝负），另外一根接输出信号（黑色线常开或者白色线常闭）</p>
 <p>注意：两线制传感器比三线制压降大得多，因此使用是要注意负载的最小电压是多少，两线制必须要经过负载才能使用，比如PLC的IO模块，继电器线圈等。不然直接接24V电源两端就会烧掉。</p>
-<h5 id="高低电平传感器接线方式："><a href="#高低电平传感器接线方式：" class="headerlink" title="高低电平传感器接线方式："></a>高低电平传感器接线方式：</h5><p><strong>NPN型传感器</strong>：输出低电平，低电平有效</p>
+<h5 id="高低电平传感器接线方式："><a href="#高低电平传感器接线方式：" class="headerlink" title="高低电平传感器接线方式："></a>高低电平传感器接线方式：</h5><p>传感器位点的高低电平怎么判断？</p>
+<p>传感器都是开关信号，通过触发传感器的信号</p>
+<p><strong>传感器接在plc上的情况</strong></p>
+<p>plc对应点位灯亮的话就是高电平</p>
+<p>plc对应点位灯不亮就是低电平</p>
+<p><strong>NPN型传感器</strong>：输出低电平，低电平有效</p>
 <p>电路连接方式；<img src="/posts/6ed155d3/NPN%E5%9E%8B%E4%BC%A0%E6%84%9F%E5%99%A8%E7%94%B5%E8%B7%AF%E8%BF%9E%E6%8E%A5.png" alt="img"></p>
 <p><strong>PNP型传感器</strong>：输出高电平，高电平有效</p>
 <p>电路连接方式；<img src="/posts/6ed155d3/PNP%E5%9E%8B%E4%BC%A0%E6%84%9F%E5%99%A8%E7%94%B5%E8%B7%AF%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F.png" alt="img"></p>
