@@ -109,8 +109,12 @@ git reset HEAD~1
 
 重新安装一下hexo 
 
+```markdown
 npm install -g hexo-cli
 npm install hexo-server --save
+```
+
+
 
 #### failed to push some refs to 'github.com:PorcoRosso000/PorcoRosso000.github.io.git' 
 
