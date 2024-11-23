@@ -92,7 +92,8 @@ future: true
 index_generator:
   path: ''
   per_page: 4
-  order_by: -date
+  order_by: -updated
+  #-date
 
 # Category & Tag
 default_category: uncategorized
