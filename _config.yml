@@ -111,7 +111,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: mtime
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -264,4 +264,53 @@ CDN:
   prismjs_autoloader: https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js
 
 
+# 自动生成front-matter字段的hexo插件
+# https://github.com/RayKr/hexo-auto-front-matter
+auto_front_matter:
+  enable: false
+  # 是否保留原来的front-matter顺序
+  # 'order'是一个列表，默认为空。在这种情况下，更新的front-matter字段将顺序保持在原始文本中。
+  # 当'order'不为空时，front-matter将按以下顺序排序，支持少于或多于原文front-matter的真实数量。
+  order:
+     - title
+     - date
+     #- updated
+     - typora-root-url
+     - keywords
+     - photos
+     - tags
+     - categories
+    # - cover
+     - description
 
+
+  # 从文件名自动添加标题
+  auto_title:
+    enable: true
+    # 两种模式：仅当标题为空时使用“模式”控制写入，或始终覆盖。
+    # 1: 仅当标题为空自动添加（默认）
+    # 2: 始终使用文件名覆盖标题
+    mode: 1
+
+  # 如果为空，则自动添加现在的日期
+  auto_date:
+    enable: true
+  
+  # 逻辑与 auto_category 相同
+  # https://github.com/xu-song/hexo-auto-category
+  auto_categories:
+    enable: true
+    multiple: false
+    depth:
+
+  # 当标签为空时自动将类别列表附加到标签
+  auto_tags:
+    enable: true
+
+  # 从"per_category"列表中自动添加封面图片路径
+  auto_cover:
+    enable: false
+    # 定义每个类别的封面图片路径
+    # 当存在嵌套类别时，它会选择最深的类别匹配。
+    per_category:
+      # - Hexo: /img/xxxx.png
