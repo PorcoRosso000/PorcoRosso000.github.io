@@ -274,14 +274,14 @@ auto_front_matter:
   order:
      - title
      - date
-     #- updated
      - typora-root-url
      - keywords
      - photos
      - tags
      - categories
-    # - cover
      - description
+      #- updated
+      # - cover
 
 
   # 从文件名自动添加标题
