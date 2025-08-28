@@ -21,7 +21,7 @@
       <link href="/posts/750cedb1.html"/>
       <url>/posts/750cedb1.html</url>
       
-        <content type="html"><![CDATA[<p>变频器控制</p><span id="more"></span><hr><h1 id="变频器参数设置"><a href="#变频器参数设置" class="headerlink" title="变频器参数设置"></a>变频器参数设置</h1><h2 id="变频器参数设置-1"><a href="#变频器参数设置-1" class="headerlink" title="变频器参数设置"></a>变频器参数设置</h2><p>HONWIN TECH 和为盛泰  V20-4T 0.75GB  变频器</p><pre class=" language-markdown"><code class="language-markdown">P01.00  运行命令给定方式  设1  端子命令方式P10.00  X1 端子功能选择   设1  正转运行（FWD）P10.01  X2 端子功能选择   设2  反转运行（REV）P10.02  X3 端子功能选择   设12 故障复位（RESET）以下根据电机铭牌设置P63.00 电机额定功率 设0.4/0.2P63.01 电机额定电压 设380P63.02 电机额定电流 设0.9/0.8P63.03 P63.03 设50P63.04 电机额定转速 设1355/1340P63.05 电机极数 设4</code></pre><h2 id="变频器控制方式"><a href="#变频器控制方式" class="headerlink" title="变频器控制方式"></a>变频器控制方式</h2><pre><code>串口通讯</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>变频器控制</p><span id="more"></span><hr><h1 id="变频器参数设置"><a href="#变频器参数设置" class="headerlink" title="变频器参数设置"></a>变频器参数设置</h1><h2 id="变频器参数设置-1"><a href="#变频器参数设置-1" class="headerlink" title="变频器参数设置"></a>变频器参数设置</h2><p>HONWIN TECH 和为盛泰  V20-4T 0.75GB  变频器</p><pre class=" language-markdown"><code class="language-markdown">P01.00  运行命令给定方式  设1  端子命令方式P10.00  X1 端子功能选择   设1  正转运行（FWD）P10.01  X2 端子功能选择   设2  反转运行（REV）P10.02  X3 端子功能选择   设12 故障复位（RESET）以下根据电机铭牌设置P63.00 电机额定功率 设0.4/0.2P63.01 电机额定电压 设380P63.02 电机额定电流 设0.9/0.8P63.03 P63.03 设50P63.04 电机额定转速 设1355/1340P63.05 电机极数 设4</code></pre><h2 id="变频器控制方式"><a href="#变频器控制方式" class="headerlink" title="变频器控制方式"></a>变频器控制方式</h2><pre class=" language-markdown"><code class="language-markdown">串口通讯</code></pre>]]></content>
       
       
       <categories>
