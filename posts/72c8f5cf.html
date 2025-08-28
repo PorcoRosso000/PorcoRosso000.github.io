@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="docker安装MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker安装MySQL">
+<meta property="og:url" content="http://porcorosso.top/posts/72c8f5cf.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="docker安装MySQL">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/72c8f5cf/clip_image002.gif">
+<meta property="og:image" content="http://porcorosso.top/posts/72c8f5cf/clip_image004.gif">
+<meta property="article:published_time" content="2023-10-16T08:46:16.000Z">
+<meta property="article:modified_time" content="2025-08-28T12:18:50.420Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/72c8f5cf/clip_image002.gif">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>docker安装MySQL</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/afdec5ed.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/8dbcf254.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/72c8f5cf.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/72c8f5cf.html&text=docker安装MySQL"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/72c8f5cf.html&is_video=false&description=docker安装MySQL"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=docker安装MySQL&body=Check out this article: http://porcorosso.top/posts/72c8f5cf.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/72c8f5cf.html&name=docker安装MySQL&description=&lt;p&gt;docker安装MySQL&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%8C%82%E8%BD%BD%E7%9B%AE%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">创建挂载目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">3.</span> <span class="toc-text">配置文件内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">5.</span> <span class="toc-text">启动脚本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BB%93%E6%9E%9C"><span class="toc-number">6.</span> <span class="toc-text">查看结果</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        docker安装MySQL
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-10-16T08:46:16.000Z" itemprop="datePublished">2023-10-16</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MySQL/" rel="tag">MySQL</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>docker安装MySQL</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class=" language-json"><code class="language-json"># 打开目录
+<span class="token punctuation">[</span>root@MuYu ~<span class="token punctuation">]</span># cd /usr/local/docker/
+# 创建文件夹
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># mkdir mysql
+# 打开文件夹
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># cd mysql/
+</code></pre>
+<h1 id="创建挂载目录"><a href="#创建挂载目录" class="headerlink" title="创建挂载目录"></a>创建挂载目录</h1><pre class=" language-json"><code class="language-json"># 创建数据挂在目录
+<span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># 
+# 创建配置文件目录
+<span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># mkdir config
+# 打开config
+<span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># cd config/
+# 编写配置文件
+<span class="token punctuation">[</span>root@MuYu config<span class="token punctuation">]</span># vim my.cnf
+</code></pre>
+<h1 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h1><pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>client<span class="token punctuation">]</span>
+# 端口号
+port=<span class="token number">3306</span>
+
+<span class="token punctuation">[</span>mysql<span class="token punctuation">]</span>
+no-beep
+default-character-set=utf8mb4
+
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+# 端口号
+port=<span class="token number">3306</span>
+# 数据目录
+datadir=/var/lib/mysql
+# 新模式或表时将使用的默认字符集
+character-set-server=utf8mb4
+# 默认存储引擎
+default-storage-engine=INNODB
+# 将 SQL 模式设置为严格
+sql-mode=<span class="token string">"STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"</span>
+#  最大连接数
+max_connections=<span class="token number">1024</span>
+# 表缓存
+table_open_cache=<span class="token number">2000</span>
+# 表内存
+tmp_table_size=16M
+# 线程缓存
+thread_cache_size=<span class="token number">10</span>
+
+# myisam设置
+myisam_max_sort_file_size=100G
+myisam_sort_buffer_size=8M
+key_buffer_size=8M
+read_buffer_size=<span class="token number">0</span>
+read_rnd_buffer_size=<span class="token number">0</span>
+
+# innodb设置
+innodb_flush_log_at_trx_commit=<span class="token number">1</span>
+innodb_log_buffer_size=1M
+innodb_buffer_pool_size=8M
+innodb_log_file_size=48M
+innodb_thread_concurrency=<span class="token number">33</span>
+innodb_autoextend_increment=<span class="token number">64</span>
+innodb_buffer_pool_instances=<span class="token number">8</span>
+innodb_concurrency_tickets=<span class="token number">5000</span>
+innodb_old_blocks_time=<span class="token number">1000</span>
+innodb_open_files=<span class="token number">300</span>
+innodb_stats_on_metadata=<span class="token number">0</span>
+innodb_file_per_table=<span class="token number">1</span>
+innodb_checksum_algorithm=<span class="token number">0</span>
+# 其他设置
+back_log=<span class="token number">80</span>
+flush_time=<span class="token number">0</span>
+join_buffer_size=256K
+max_allowed_packet=4M
+max_connect_errors=<span class="token number">100</span>
+open_files_limit=<span class="token number">4161</span>
+sort_buffer_size=256K
+table_definition_cache=<span class="token number">1400</span>
+binlog_row_event_max_size=8K
+sync_master_info=<span class="token number">10000</span>
+sync_relay_log=<span class="token number">10000</span>
+sync_relay_log_info=<span class="token number">10000</span>
+</code></pre>
+<p>下载镜像</p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mysql]</span><span class="token comment" spellcheck="true"># docker pull mysql:5.7</span>
+</code></pre>
+<h1 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h1><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 打开目录</span>
+<span class="token namespace">[root@MuYu config]</span><span class="token comment" spellcheck="true"># cd /usr/local/docker/mysql/</span>
+
+<span class="token comment" spellcheck="true"># 编写脚本</span>
+<span class="token namespace">[root@MuYu mysql]</span><span class="token comment" spellcheck="true"># vim startMysql.sh</span>
+
+<span class="token comment" spellcheck="true"># 脚本内容</span>
+docker run <span class="token operator">-</span>d \
+<span class="token operator">--</span>privileged=true \
+<span class="token operator">--</span>name mysql57<span class="token operator">-</span>3306 \
+<span class="token operator">-</span>p 3306:3306 \
+<span class="token operator">--</span>restart=always \
+<span class="token operator">-</span>v <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>docker<span class="token operator">/</span>mysql<span class="token operator">/</span><span class="token keyword">data</span>:<span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>lib<span class="token operator">/</span>mysql \
+<span class="token operator">-</span>v <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>docker<span class="token operator">/</span>mysql<span class="token operator">/</span>config<span class="token operator">/</span>my<span class="token punctuation">.</span>cnf:<span class="token operator">/</span>etc<span class="token operator">/</span>mysql<span class="token operator">/</span>my<span class="token punctuation">.</span>cnf \
+<span class="token operator">-</span>e MYSQL_ROOT_PASSWORD=Dongzl828<span class="token punctuation">.</span><span class="token punctuation">.</span> mysql:5<span class="token punctuation">.</span>7 \
+
+
+
+<span class="token comment" spellcheck="true"># 权限赋予</span>
+<span class="token namespace">[root@MuYu mysql]</span><span class="token comment" spellcheck="true"># chmod -R 777 startMysql.sh</span>
+</code></pre>
+<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class=" language-json"><code class="language-json"># 执行脚本
+<span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># ./startMysql.sh
+</code></pre>
+<h1 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h1><p><img src="/posts/72c8f5cf/clip_image002.gif" alt="图片"></p>
+<pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 进入容器</span>
+<span class="token namespace">[root@MuYu mysql]</span><span class="token comment" spellcheck="true"># docker exec -it mysql57-3306 /bin/bash</span>
+<span class="token comment" spellcheck="true"># 连接MySQL</span>
+root@4ff92e46f363:<span class="token operator">/</span><span class="token comment" spellcheck="true"># mysql -uroot -pDongzl828..</span>
+mysql: <span class="token namespace">[Warning]</span> <span class="token keyword">Using</span> a password on the command line interface can be insecure<span class="token punctuation">.</span>
+Welcome to the MySQL monitor<span class="token punctuation">.</span>  Commands <span class="token keyword">end</span> with <span class="token punctuation">;</span> or \g<span class="token punctuation">.</span>
+Your MySQL connection id is 2
+Server version: 5<span class="token punctuation">.</span>7<span class="token punctuation">.</span>38 MySQL Community Server <span class="token punctuation">(</span>GPL<span class="token punctuation">)</span>
+
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000<span class="token punctuation">,</span> 2022<span class="token punctuation">,</span> Oracle and<span class="token operator">/</span>or its affiliates<span class="token punctuation">.</span>
+
+Oracle is a registered trademark of Oracle Corporation and<span class="token operator">/</span>or its
+affiliates<span class="token punctuation">.</span> Other names may be trademarks of their respective
+owners<span class="token punctuation">.</span>
+
+<span class="token function">Type</span> <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help<span class="token punctuation">.</span> <span class="token function">Type</span> <span class="token string">'\c'</span> to clear the current input statement<span class="token punctuation">.</span>
+
+<span class="token comment" spellcheck="true"># 查询数据库</span>
+mysql> show databases<span class="token punctuation">;</span>
+<span class="token operator">+</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">-</span><span class="token operator">+</span>
+<span class="token punctuation">|</span> Database           <span class="token punctuation">|</span>
+<span class="token operator">+</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">-</span><span class="token operator">+</span>
+<span class="token punctuation">|</span> information_schema <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> mysql              <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> performance_schema <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> sys                <span class="token punctuation">|</span>
+<span class="token operator">+</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">-</span><span class="token operator">+</span>
+4 rows in <span class="token function">set</span> <span class="token punctuation">(</span>0<span class="token punctuation">.</span>01 sec<span class="token punctuation">)</span>
+</code></pre>
+<p><img src="/posts/72c8f5cf/clip_image004.gif" alt="图片"></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%8C%82%E8%BD%BD%E7%9B%AE%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">创建挂载目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">3.</span> <span class="toc-text">配置文件内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">5.</span> <span class="toc-text">启动脚本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BB%93%E6%9E%9C"><span class="toc-number">6.</span> <span class="toc-text">查看结果</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/72c8f5cf.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/72c8f5cf.html&text=docker安装MySQL"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/72c8f5cf.html&is_video=false&description=docker安装MySQL"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=docker安装MySQL&body=Check out this article: http://porcorosso.top/posts/72c8f5cf.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/72c8f5cf.html&title=docker安装MySQL"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/72c8f5cf.html&name=docker安装MySQL&description=&lt;p&gt;docker安装MySQL&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2025 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

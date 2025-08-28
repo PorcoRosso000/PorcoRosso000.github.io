@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="电气基本原理，关于元器件 工具，还有电路图基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电气基本原理">
+<meta property="og:url" content="http://porcorosso.top/posts/6ed155d3.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="电气基本原理，关于元器件 工具，还有电路图基础知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E4%BA%8C%E6%9E%81%E7%AE%A1.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%86%B7%E5%8E%8B%E7%AB%AF%E5%AD%90.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%8E%8B%E7%BA%BF%E5%B8%BD.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%88%80%E5%BC%80%E5%85%B3.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E7%A9%BA%E6%B0%94%E5%BC%80%E5%85%B3.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E7%86%94%E6%96%AD%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%8C%89%E9%92%AE.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E4%B8%AD%E9%97%B4%E7%BB%A7%E7%94%B5%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%97%B6%E9%97%B4%E7%BB%A7%E7%94%B5%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E7%83%AD%E7%BB%A7%E7%94%B5%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/NPN%E5%9E%8B%E4%BC%A0%E6%84%9F%E5%99%A8%E7%94%B5%E8%B7%AF%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/PNP%E5%9E%8B%E4%BC%A0%E6%84%9F%E5%99%A8%E7%94%B5%E8%B7%AF%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%8F%98%E9%A2%91%E5%99%A8%E6%8E%A5%E7%BA%BF%E5%9B%BE1.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%8F%98%E9%A2%91%E5%99%A8%E6%8E%A5%E7%BA%BF%E5%9B%BE2.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%8F%98%E9%A2%91%E5%99%A8%E6%8E%A5%E7%BA%BF%E5%9B%BE3.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%8F%98%E9%A2%91%E5%99%A8%E6%8E%A5%E7%BA%BF%E5%9B%BE4.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E9%93%AD%E7%89%8C%E8%AF%B4%E6%98%8E.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%9E%8B%E5%8F%B7%E8%AF%B4%E6%98%8E.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%BA%8F%E5%8F%B7%E8%AF%B4%E6%98%8E.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%A1%86.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E9%9D%A2%E6%9D%BF%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E7%94%BB%E9%9D%A2%E9%80%89%E6%8B%A9.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%8F%82%E6%95%B0%E8%AE%BE%E5%AE%9A.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/npn%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BA%BF.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/pnp%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BA%BF.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%AD%A3%E5%8F%8D%E8%BD%AC%E5%8F%98%E9%80%9F%E8%AE%BE%E7%BD%AE%E6%96%B9%E5%BC%8F.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA%E5%9E%8B%E5%8F%B7%E5%92%8C%E9%A2%9D%E5%AE%9A%E7%94%B5%E6%B5%81.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%AD%A5%E8%BF%9B%E9%A9%B1%E5%8A%A8%E5%99%A8%E7%BB%86%E5%88%86%E6%8B%A8%E7%89%87%E6%8E%A7%E5%88%B6%E5%8F%82%E8%80%83%E8%A1%A8.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%8E%A5%E8%A7%A6%E5%99%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%AD%A3%E5%8F%8D%E8%BD%AC.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E7%94%B5%E5%8A%A8%E6%9C%BA%E6%AD%A3%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/IT%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/TT%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/TN-C-S%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/TN-S%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%95%85%E9%9A%9C%E7%81%AF%E6%A8%A1%E6%8B%9F.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E4%BA%92%E9%94%81.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E9%A1%BA%E5%90%AF%E9%80%86%E5%81%9C.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E7%BA%A2%E7%BB%BF%E7%81%AF%E6%A8%A1%E6%8B%9F.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8%E4%B8%BB%E7%94%B5%E8%B7%AF+%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E7%82%B9%E4%BD%8D%E5%9B%BE.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E5%B8%83%E5%B1%80%E5%AE%89%E8%A3%85%E5%9B%BE.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E8%A7%A6%E7%82%B9%E6%98%A0%E8%B1%A1.png">
+<meta property="og:image" content="http://porcorosso.top/posts/6ed155d3/%E4%B8%87%E7%94%A8%E8%A1%A8.jpg">
+<meta property="article:published_time" content="2024-08-06T05:49:54.000Z">
+<meta property="article:modified_time" content="2025-08-28T12:18:50.466Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="电气基本原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/6ed155d3/%E4%BA%8C%E6%9E%81%E7%AE%A1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>电气基本原理</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/ca8ec864.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/3bdc281c.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/6ed155d3.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/6ed155d3.html&text=电气基本原理"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/6ed155d3.html&is_video=false&description=电气基本原理"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=电气基本原理&body=Check out this article: http://porcorosso.top/posts/6ed155d3.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/6ed155d3.html&name=电气基本原理&description=&lt;p&gt;电气基本原理&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%94%B5%E6%B0%94%E5%93%81%E7%89%8C"><span class="toc-number">1.</span> <span class="toc-text">常见的电气品牌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%94%B5%E6%B0%94%E7%AC%A6%E5%8F%B7%E8%AE%A4%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">常用电气符号认识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%AD%90"><span class="toc-number">3.</span> <span class="toc-text">端子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%B7%E5%8E%8B%E7%AB%AF%E5%AD%90"><span class="toc-number">3.1.</span> <span class="toc-text">冷压端子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B7%E5%8E%8B%E7%AB%AF%E5%AD%90%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">3.1.1.</span> <span class="toc-text">冷压端子的特点：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BA%BF%E5%B8%BD"><span class="toc-number">3.2.</span> <span class="toc-text">压线帽</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E7%BA%BF%E5%B8%BD%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">3.2.1.</span> <span class="toc-text">压线帽的特点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E6%B0%94%E5%85%83%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">电气元件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%85%B3%E7%B1%BB%E5%85%83%E5%99%A8%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text">开关类元器件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%80%E5%BC%80%E5%85%B3"><span class="toc-number">4.1.1.</span> <span class="toc-text">刀开关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8E%E5%8E%8B%E7%86%94%E6%96%AD%E5%99%A8-%E7%A9%BA%E5%BC%80%EF%BC%88%E7%A9%BA%E6%B0%94%E5%BC%80%E5%85%B3%EF%BC%8C%E7%A9%BA%E6%B0%94%E6%96%AD%E8%B7%AF%E5%99%A8%EF%BC%89"><span class="toc-number">4.1.2.</span> <span class="toc-text">低压熔断器 空开（空气开关，空气断路器）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E5%99%A8"><span class="toc-number">4.1.3.</span> <span class="toc-text">熔断器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="toc-number">4.1.4.</span> <span class="toc-text">开关电源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E9%92%AE"><span class="toc-number">4.1.5.</span> <span class="toc-text">按钮</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E8%BF%91%E5%BC%80%E5%85%B3"><span class="toc-number">4.1.6.</span> <span class="toc-text">接近开关</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E5%9C%88%E7%B1%BB%E5%85%83%E5%99%A8%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">线圈类元器件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E7%BB%A7%E7%94%B5%E5%99%A8"><span class="toc-number">4.2.1.</span> <span class="toc-text">中间继电器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%A7%E7%94%B5%E5%99%A8%E9%9A%94%E7%A6%BB"><span class="toc-number">4.2.1.1.</span> <span class="toc-text">继电器隔离</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%BB%A7%E7%94%B5%E5%99%A8"><span class="toc-number">4.2.2.</span> <span class="toc-text">时间继电器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%83%AD%E7%BB%A7%E7%94%B5%E5%99%A8"><span class="toc-number">4.2.3.</span> <span class="toc-text">热继电器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E7%8E%87%E7%BB%A7%E7%94%B5%E5%99%A8"><span class="toc-number">4.2.4.</span> <span class="toc-text">功率继电器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E7%A3%81%E9%98%80"><span class="toc-number">4.3.</span> <span class="toc-text">电磁阀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">传感器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">4.4.1.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E4%BF%A1%E5%8F%B7%E7%89%B9%E7%82%B9%E5%88%86%E7%B1%BB"><span class="toc-number">4.4.1.1.</span> <span class="toc-text">按照信号特点分类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E5%91%BD%E5%90%8D%E5%88%86%E7%B1%BB"><span class="toc-number">4.4.1.2.</span> <span class="toc-text">按照命名分类</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%8E%A5%E7%BA%BF%E6%96%B9%E5%BC%8F"><span class="toc-number">4.4.2.</span> <span class="toc-text">传感器类型和接线方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%E7%BA%BF%E5%88%B6%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">4.4.2.1.</span> <span class="toc-text">传感器线制类型：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%AB%98%E4%BD%8E%E7%94%B5%E5%B9%B3%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A5%E7%BA%BF%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">4.4.2.2.</span> <span class="toc-text">高低电平传感器接线方式：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%A2%91%E5%99%A8%EF%BC%9A"><span class="toc-number">4.5.</span> <span class="toc-text">变频器：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">4.5.1.</span> <span class="toc-text">工作原理：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%EF%BC%9A"><span class="toc-number">4.5.2.</span> <span class="toc-text">符号：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%B0%E8%BE%BE%E5%8F%98%E9%A2%91%E5%99%A8"><span class="toc-number">4.5.3.</span> <span class="toc-text">台达变频器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF%E5%9B%BE%E7%89%87%EF%BC%9A"><span class="toc-number">4.5.3.1.</span> <span class="toc-text">接线图片：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%93%AD%E7%89%8C%E8%AF%B4%E6%98%8E"><span class="toc-number">4.5.3.2.</span> <span class="toc-text">铭牌说明:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9E%8B%E5%8F%B7%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">4.5.3.3.</span> <span class="toc-text">型号说明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%8F%E5%8F%B7%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">4.5.3.4.</span> <span class="toc-text">序号说明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%EF%BC%9A"><span class="toc-number">4.5.3.5.</span> <span class="toc-text">框架：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%A2%E7%89%88%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">4.5.3.6.</span> <span class="toc-text">面版按钮说明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AE%BE%E5%AE%9A%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">4.5.3.7.</span> <span class="toc-text">参数设定操作方式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BA%BF%EF%BC%9A"><span class="toc-number">4.5.3.8.</span> <span class="toc-text">配线：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#plc%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E5%92%8C%E5%8F%98%E9%80%9F%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.5.3.9.</span> <span class="toc-text">plc电机正反转和变速怎么实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%BA%E6%9C%8D%E9%A9%B1%E5%8A%A8%E5%99%A8%EF%BC%9A"><span class="toc-number">4.6.</span> <span class="toc-text">伺服驱动器：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E8%AD%A6%EF%BC%9A"><span class="toc-number">4.6.1.</span> <span class="toc-text">报警：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%BA%E6%9C%8D%E9%A9%B1%E5%8A%A8%E5%99%A8%E5%9B%9E%E5%8E%9F%E7%82%B9%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">4.6.2.</span> <span class="toc-text">伺服驱动器回原点的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%BA%E6%9C%8D%E8%83%BD%E8%AE%B0%E4%BD%8F%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">4.6.3.</span> <span class="toc-text">伺服能记住位置的原因：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E8%BF%9B%E9%A9%B1%E5%8A%A8%E5%99%A8%EF%BC%9A"><span class="toc-number">4.7.</span> <span class="toc-text">步进驱动器：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-number">4.7.1.</span> <span class="toc-text">基础信息介绍：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E8%A7%A6%E5%99%A8%EF%BC%9A"><span class="toc-number">4.8.</span> <span class="toc-text">接触器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%9A"><span class="toc-number">4.9.</span> <span class="toc-text">控制器：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%89%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">4.9.1.</span> <span class="toc-text">光源控制器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E8%89%B2%E7%81%AF"><span class="toc-number">4.10.</span> <span class="toc-text">三色灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BA%BF"><span class="toc-number">4.11.</span> <span class="toc-text">网线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E8%B7%AF%E5%99%A8"><span class="toc-number">4.12.</span> <span class="toc-text">断路器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8Bio"><span class="toc-number">4.13.</span> <span class="toc-text">远程io</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E7%94%B5%E8%B7%AF"><span class="toc-number">5.</span> <span class="toc-text">主电路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%9B%B8%E4%BA%94%E7%BA%BF%E5%88%B6"><span class="toc-number">5.1.</span> <span class="toc-text">三相五线制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">控制电路：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BD%91%E7%BA%BF"><span class="toc-number">7.</span> <span class="toc-text">压网线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E5%8E%8B%E9%85%8D%E7%94%B5%E7%B3%BB%E7%BB%9F%EF%BC%9ATN%E3%80%81TT%E3%80%81IT"><span class="toc-number">8.</span> <span class="toc-text">低压配电系统：TN、TT、IT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81IT%E3%80%81TT%E3%80%81TN%E5%AD%97%E6%AF%8D%E5%90%AB%E4%B9%89"><span class="toc-number">8.1.</span> <span class="toc-text">一、IT、TT、TN字母含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81IT%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-number">8.2.</span> <span class="toc-text">二、IT系统：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81TT%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.3.</span> <span class="toc-text">三、TT系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81TT%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BC%98%E7%82%B9"><span class="toc-number">8.4.</span> <span class="toc-text">四、TT系统的主要优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81TT%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BC%BA%E7%82%B9"><span class="toc-number">8.5.</span> <span class="toc-text">五、TT系统的主要缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81TT%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">8.6.</span> <span class="toc-text">六、TT系统的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81TN%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.7.</span> <span class="toc-text">七、TN系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E6%B0%94%E5%9B%BE%E7%BA%B8%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">电气图纸：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF%E5%8E%9F%E7%90%86%E5%9B%BE%EF%BC%9A"><span class="toc-number">9.1.</span> <span class="toc-text">控制电路原理图：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E7%81%AF%E6%A8%A1%E6%8B%9F%EF%BC%9A"><span class="toc-number">9.1.1.</span> <span class="toc-text">故障灯模拟：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E9%94%81%EF%BC%9A"><span class="toc-number">9.1.2.</span> <span class="toc-text">互锁：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%BA%E5%90%AF%E9%80%86%E5%81%9C%EF%BC%9A"><span class="toc-number">9.1.3.</span> <span class="toc-text">顺启逆停：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%A2%E7%BB%BF%E7%81%AF%E6%A8%A1%E6%8B%9F%EF%BC%9A"><span class="toc-number">9.1.4.</span> <span class="toc-text">红绿灯模拟：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C%EF%BC%9A"><span class="toc-number">9.1.5.</span> <span class="toc-text">一键启停：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8%EF%BC%9A"><span class="toc-number">9.1.6.</span> <span class="toc-text">星三角电机正转降压启动：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8%EF%BC%9A"><span class="toc-number">9.1.7.</span> <span class="toc-text">星三角电机正反转降压启动：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8%E4%B8%BB%E7%94%B5%E8%B7%AF-%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF%EF%BC%9A"><span class="toc-number">9.1.8.</span> <span class="toc-text">星三角电机正反转降压启动主电路+控制电路：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E4%BD%8D%E5%9B%BE%EF%BC%9A"><span class="toc-number">9.2.</span> <span class="toc-text">点位图：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E5%AE%89%E8%A3%85%E5%9B%BE%EF%BC%9A"><span class="toc-number">9.3.</span> <span class="toc-text">布局安装图：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EPLAN%E7%94%B5%E6%B0%94%E7%94%BB%E5%9B%BE%E8%BD%AF%E4%BB%B6%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">10.</span> <span class="toc-text">EPLAN电气画图软件相关问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">常用快捷键：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">常见问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%98%BE%E7%A4%BA%E7%B1%BB%EF%BC%9A"><span class="toc-number">10.2.1.</span> <span class="toc-text">文本显示类：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%B5%E6%B0%94%E5%9B%BE%E5%BD%A2%E6%97%81%E8%BE%B9%E6%98%BE%E7%A4%BA-%E6%96%87%E5%AD%97-%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%89%EF%BC%9F"><span class="toc-number">10.2.1.1.</span> <span class="toc-text">电气图形旁边显示&#x2F;文字..怎么去掉？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%A7%E7%94%B5%E5%99%A8%E8%BF%99%E7%A7%8D%E5%85%83%E5%99%A8%E4%BB%B6%E4%B8%8B%E9%9D%A2%E4%B8%80%E5%A0%86%E6%9D%82%E4%B9%B1%E7%9A%84%E7%9A%84%E5%85%B3%E8%81%94%E6%8F%8F%E8%BF%B0%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%89%EF%BC%9F"><span class="toc-number">10.2.1.2.</span> <span class="toc-text">继电器这种元器件下面一堆杂乱的的关联描述怎么去掉？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%87%E7%94%A8%E8%A1%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">11.</span> <span class="toc-text">万用表的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%8E%A5%E7%BA%BF%E6%9F%B1"><span class="toc-number">11.1.</span> <span class="toc-text">功能接线柱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="toc-number">12.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        电气基本原理
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-08-06T05:49:54.000Z" itemprop="datePublished">2024-08-06</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E7%94%B5%E6%B0%94%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" rel="tag">电气基本原理</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>电气基本原理</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="常见的电气品牌"><a href="#常见的电气品牌" class="headerlink" title="常见的电气品牌"></a>常见的电气品牌</h2><p>schneider  施耐德</p>
+<p>omron 欧姆龙</p>
+<p>Beckhoff 倍福</p>
+<p>Chint 正泰</p>
+<p>INOVANCE 汇川</p>
+<p>SIEMENS 西门子</p>
+<p>三菱</p>
+<p>Delta 台达</p>
+<h2 id="常用电气符号认识"><a href="#常用电气符号认识" class="headerlink" title="常用电气符号认识"></a>常用电气符号认识</h2><p>N 表示零线（将多余的电导入地面，零线不能接保险丝）</p>
+<p>L 表示火线</p>
+<p>交流 AC  </p>
+<p>直流 DC </p>
+<p>灯泡 HL</p>
+<p>二极管  单向通电 下面这种二极管是电流只能是从左到右</p>
+<p>电气图形： <img src="/posts/6ed155d3/%E4%BA%8C%E6%9E%81%E7%AE%A1.png" alt="img"></p>
+<p>交流接触器：电工符号：KM</p>
+<h2 id="端子"><a href="#端子" class="headerlink" title="端子"></a>端子</h2><h3 id="冷压端子"><a href="#冷压端子" class="headerlink" title="冷压端子"></a>冷压端子</h3><p>冷压端子是一种通过冷压（即不加热）将电线与金属端子连接的连接器件。其主要特点是通过机械压力将导线的铜芯或其他导体固定在端子内部，达到紧密连接的效果。</p>
+<p><img src="/posts/6ed155d3/%E5%86%B7%E5%8E%8B%E7%AB%AF%E5%AD%90.png" alt="img"></p>
+<h4 id="冷压端子的特点："><a href="#冷压端子的特点：" class="headerlink" title="冷压端子的特点："></a>冷压端子的特点：</h4><ul>
+<li><strong>简单可靠</strong>：冷压端子通过压接工具进行压接操作，不需要焊接或加热，连接稳固可靠。</li>
+<li><strong>适应性强</strong>：适用于各种不同的电线规格，常见的如裸线、PVC绝缘线等。</li>
+<li><strong>抗振动性好</strong>：由于是通过压接而非焊接连接，因此在振动环境中也能保持较好的稳定性。</li>
+<li><strong>耐用性高</strong>：冷压端子通常采用铜、镍或镀锡铜等材料，具有较好的导电性和耐腐蚀性。</li>
+</ul>
+<p><strong>不同类型的冷压端子能承受的电流大小</strong></p>
+<table>
+<thead>
+<tr>
+<th>冷压端子类型</th>
+<th>小型（0.5mm² 到 1mm²）</th>
+<th>中型（1.5mm² 到 2.5mm²）</th>
+<th>大型（4mm² 到 6mm²）</th>
+<th>特大型（10mm² 以上）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>圆形冷压端子</strong></td>
+<td><strong>6A 到 10A</strong></td>
+<td><strong>15A 到 20A</strong></td>
+<td><strong>25A 到 30A</strong></td>
+<td><strong>40A 以上</strong></td>
+</tr>
+<tr>
+<td><strong>插片冷压端子</strong></td>
+<td>6A 到 10A</td>
+<td>10A 到 20A</td>
+<td>20A 到 30A</td>
+<td>40A 以上</td>
+</tr>
+<tr>
+<td><strong>插接冷压端子</strong></td>
+<td>6A 到 10A</td>
+<td>10A 到 20A</td>
+<td>20A 到 30A</td>
+<td>40A 到 50A</td>
+</tr>
+<tr>
+<td><strong>母头冷压端子</strong></td>
+<td>6A 到 10A</td>
+<td>10A 到 20A</td>
+<td>20A 到 30A</td>
+<td>40A 以上</td>
+</tr>
+<tr>
+<td><strong>公头冷压端子</strong></td>
+<td>6A 到 10A</td>
+<td>10A 到 20A</td>
+<td>20A 到 30A</td>
+<td>40A 以上</td>
+</tr>
+<tr>
+<td><strong>T型冷压端子</strong></td>
+<td>6A 到 10A</td>
+<td>10A 到 20A</td>
+<td>20A 到 30A</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>带绝缘外壳冷压端子</strong></td>
+<td><strong>6A 到 10A</strong></td>
+<td><strong>10A 到 20A</strong></td>
+<td><strong>20A 到 30A</strong></td>
+<td><strong>40A 到 50A</strong></td>
+</tr>
+<tr>
+<td><strong>封闭式冷压端子</strong></td>
+<td><strong>6A 到 10A</strong></td>
+<td>10A 到 20A</td>
+<td>20A 到 30A</td>
+<td>40A 到 50A</td>
+</tr>
+</tbody></table>
+<h3 id="压线帽"><a href="#压线帽" class="headerlink" title="压线帽"></a>压线帽</h3><p>压线帽是一种用于连接两根或多根电线的连接器。它通过螺旋形的设计，简单地将多根导线扭在一起，确保电气连接安全稳定。</p>
+<p><img src="/posts/6ed155d3/%E5%8E%8B%E7%BA%BF%E5%B8%BD.png" alt="img"></p>
+<h4 id="压线帽的特点："><a href="#压线帽的特点：" class="headerlink" title="压线帽的特点："></a>压线帽的特点：</h4><ul>
+<li><strong>安装简单</strong>：无需工具，只需将电线插入压线帽内并旋紧即可完成连接。</li>
+<li><strong>适用于多线连接</strong>：压线帽常用于多根电线连接，尤其在住宅电气安装中非常普遍。</li>
+<li><strong>绝缘性强</strong>：压线帽通常有良好的绝缘性能，可以防止电线接触引起短路或触电。</li>
+<li><strong>维护简便</strong>：如果需要更换或修理，只需拆下压线帽，重新连接电线即可。</li>
+</ul>
+<h2 id="电气元件"><a href="#电气元件" class="headerlink" title="电气元件"></a>电气元件</h2><h3 id="开关类元器件"><a href="#开关类元器件" class="headerlink" title="开关类元器件"></a>开关类元器件</h3><h4 id="刀开关"><a href="#刀开关" class="headerlink" title="刀开关"></a>刀开关</h4><p>熔断器式刀开关</p>
+<p>也叫隔离开关、应急开关、隔离开关</p>
+<p>符号QS 三组常开 启动开关</p>
+<p>电气图形：<img src="/posts/6ed155d3/%E5%88%80%E5%BC%80%E5%85%B3.png" alt="img"></p>
+<p>作用：接通和分断</p>
+<p>注意：刀开关只能竖着放，其他方式容易发生危险</p>
+<h4 id="低压熔断器-空开（空气开关，空气断路器）"><a href="#低压熔断器-空开（空气开关，空气断路器）" class="headerlink" title="低压熔断器 空开（空气开关，空气断路器）"></a>低压熔断器 空开（空气开关，空气断路器）</h4><p>主要作用：接通和分断电源  还能在短路、严重过负载、欠压的情况下保护电路</p>
+<p>分为 c型（家用型）和d型 （电机保护型）</p>
+<p>电气符号：QF    </p>
+<p>有的空开还有漏电保护器，一般情况下作为设备的不频繁转换启动</p>
+<p>有2p（NL）和3p（LLL）两种类型</p>
+<p>电气图形：<img src="/posts/6ed155d3/%E7%A9%BA%E6%B0%94%E5%BC%80%E5%85%B3.png" alt="img"></p>
+<h4 id="熔断器"><a href="#熔断器" class="headerlink" title="熔断器"></a>熔断器</h4><p>串接在电路中，主要起短路保护的作用</p>
+<p>选型：小于等于空开的额定电流</p>
+<p>电气符号：FU</p>
+<p>电气图形：<img src="/posts/6ed155d3/%E7%86%94%E6%96%AD%E5%99%A8.png" alt="img"></p>
+<h4 id="开关电源"><a href="#开关电源" class="headerlink" title="开关电源"></a>开关电源</h4><p>作用：交流转直流</p>
+<p>有12v、24v、36v</p>
+<p>电压可以在小范围内调节</p>
+<p>电气符号：UR</p>
+<p>内有电容：在直接通过空气开关断电的情况下，灯泡不会立刻熄灭，就是因为电容内还留有部分电流</p>
+<p>开关电源  </p>
+<p>EDR-120-12 表示 EDR系列 输出功率为 120W、输出电压为 12V </p>
+<p>NDR-240-24 表示NDR系列 输出功率为 240W、输出电压为 24V </p>
+<h4 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h4><p>电气图形：<img src="/posts/6ed155d3/%E6%8C%89%E9%92%AE.jpg" alt="img"></p>
+<p>电气符号：SB</p>
+<h4 id="接近开关"><a href="#接近开关" class="headerlink" title="接近开关"></a>接近开关</h4><p>接线：两线制的接近开关，蓝线接N24V，棕线接I点</p>
+<h3 id="线圈类元器件"><a href="#线圈类元器件" class="headerlink" title="线圈类元器件"></a>线圈类元器件</h3><h4 id="中间继电器"><a href="#中间继电器" class="headerlink" title="中间继电器"></a>中间继电器</h4><p>符号：</p>
+<p>作用：传递信号同时控制多个电路，小电流控制大电流，小电压控制大电压，直接控制小容量电机和电气执行元件</p>
+<p>电气图形：<img src="/posts/6ed155d3/%E4%B8%AD%E9%97%B4%E7%BB%A7%E7%94%B5%E5%99%A8.png" alt="img"></p>
+<p>线圈先得电，常开才能闭合，常闭才能断开</p>
+<p>小电流控制大电流就是通过常开触电吸合让接触器a1和a2得电，通过这种方式来实现</p>
+<h5 id="继电器隔离"><a href="#继电器隔离" class="headerlink" title="继电器隔离"></a>继电器隔离</h5><p>继电器隔离就是plc的输出端例如Q0.0接24v继电器，继电器常开触点上端接220v正，下端接接触器A1,A2接220v负通过这种方式来控制接触器，即使控制电路有问题，烧坏了继电器，也可以保证plc是安全的</p>
+<h4 id="时间继电器"><a href="#时间继电器" class="headerlink" title="时间继电器"></a>时间继电器</h4><p>符号：KT</p>
+<p>作用：延时断电，延时得电</p>
+<p>延时得电的状态是：电存在电容内，有电压，无电流</p>
+<p>例如：空调，微波炉</p>
+<p>电气图形：<img src="/posts/6ed155d3/%E6%97%B6%E9%97%B4%E7%BB%A7%E7%94%B5%E5%99%A8.png" alt="img"></p>
+<h4 id="热继电器"><a href="#热继电器" class="headerlink" title="热继电器"></a>热继电器</h4><p>电气图形：<img src="/posts/6ed155d3/%E7%83%AD%E7%BB%A7%E7%94%B5%E5%99%A8.png" alt="img"></p>
+<p>电气符号：FR(国内)/KH(国际)</p>
+<p>作用：电动机的过载保护、断相及电流不平衡运行的保护及其他电气设备发热状态的控制</p>
+<h4 id="功率继电器"><a href="#功率继电器" class="headerlink" title="功率继电器"></a>功率继电器</h4><h3 id="电磁阀"><a href="#电磁阀" class="headerlink" title="电磁阀"></a>电磁阀</h3><p>两线制的电磁阀，红线接P24V，黑线接Q点</p>
+<h3 id="传感器"><a href="#传感器" class="headerlink" title="传感器"></a>传感器</h3><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><h5 id="按照信号特点分类"><a href="#按照信号特点分类" class="headerlink" title="按照信号特点分类"></a>按照信号特点分类</h5><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">数字信号</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">开关量</td>
+<td align="center">二进制信号</td>
+<td align="center">它只有两种状态，即0和1，在数字电路中使用，例如晶体管开关等</td>
+</tr>
+<tr>
+<td align="center">数字量</td>
+<td align="center">离散信号</td>
+<td align="center">它可以取多个离散值，通常由数字量传感器提供，例如温度计湿度计、压力传感器等。</td>
+</tr>
+<tr>
+<td align="center">模拟量</td>
+<td align="center">连续信号</td>
+<td align="center">它可以取连续的数值，例如电压、电流、温度等，通常由模拟量传感器提供。</td>
+</tr>
+<tr>
+<td align="center">离散量</td>
+<td align="center">离散信号</td>
+<td align="center">它与数字量类似，但通常是指一组离散的状态，例如开/关、启/停、上/下、左/右等。</td>
+</tr>
+<tr>
+<td align="center">脉冲量</td>
+<td align="center">方波信号</td>
+<td align="center">它通常用于测量速度、频率和角度，例如编码器、霍尔传感器</td>
+</tr>
+</tbody></table>
+<ul>
+<li>开关量（Switching Quantity）</li>
+</ul>
+<p>开关量是一种只有两种状态的数据类型，通常表示设备的开或关、高或低等状态。这种数据类型通常用于表示设备的状态，例如一个开关是否被按下，或者一个灯是否亮着。开关量的优点在于其简单、可靠，并且容易进行信号处理。例如，你可以通过逻辑运算（AND、OR、NOT等）来处理开关量的数据。例子：一个房间里有多个灯，每个灯都可以通过一个开关控制。开关量的数据类型可以用来表示每个灯的状态，例如灯是否亮着。</p>
+<ul>
+<li>数字量（Digital Quantity）</li>
+</ul>
+<p>数字量是一种离散的数据类型，可以表示整数或实数。数字量的取值范围是有限的，并且每个值都对应一个二进制代码。数字量的精度取决于其编码方式和位数。数字量的优点在于其精度高、抗干扰能力强，并且可以进行复杂的运算和处理。例子：一个数字温度计可以测量温度并将温度值以数字量的形式显示出来。数字量的数据类型可以用来表示这个温度值，例如30摄氏度。</p>
+<ul>
+<li>模拟量（Analog Quantity）</li>
+</ul>
+<p>模拟量是一种连续的数据类型，可以表示任何实数。模拟量的取值范围是无限的，并且每个值都对应一个电压或电流信号。模拟量的优点在于其能够表示真实世界的连续变化，但在数字处理方面比较困难。例子：一个模拟水位传感器可以检测水位并将水位值以模拟量的形式输出。模拟量的数据类型可以用来表示这个水位值，例如1.5米。</p>
+<ul>
+<li>离散量（Discrete quantity）</li>
+</ul>
+<p>在物联网（Internet of Things, IoT）中是指一种在时间或空间上离散取值的数据。离散量通常用于表示只有特定几个取值状态的现象或事物，如开关状态、分类数据等。与连续量（如温度、湿度等模拟量）不同，离散量是分散的、不连续的。例子：工业自动化：在工业自动化领域，机器的状态（如运行状态、故障状态等）通常用离散量表示。例如，一台机器的运行状态可以用离散量表示，取值可以为“运行中”、“停机”、“故障”等。智能家居系统：在智能家居系统中，各种设备（如灯光、空调、电视等）的状态通常用离散量表示。例如，灯光的开关状态可以用离散量表示，取值可以为“开”或“关”。</p>
+<ul>
+<li>脉冲量（Pulse Quantity）</li>
+</ul>
+<p>脉冲量是一种特殊的数据类型，它通常用于表示一段时间内的脉冲数量或时间间隔。这种数据类型可以用于测量频率、周期、时间间隔等。与开关量类似，脉冲量的取值范围也是有限的，通常是一个整数。脉冲量的优点在于其能够表示一段时间内的变化，并且可以进行高精度的测量。例子：一个速度传感器可以检测车速并将车速值以脉冲量的形式输出。脉冲量的数据类型可以用来表示这个车速值，例如每分钟60转。</p>
+<h5 id="按照命名分类"><a href="#按照命名分类" class="headerlink" title="按照命名分类"></a>按照命名分类</h5><p>​    以用途命名</p>
+<p>​    以原理命名</p>
+<h4 id="传感器类型和接线方式"><a href="#传感器类型和接线方式" class="headerlink" title="传感器类型和接线方式"></a>传感器类型和接线方式</h4><p>一般由传感器控制中间继电器再控制用电设备</p>
+<h5 id="传感器线制类型："><a href="#传感器线制类型：" class="headerlink" title="传感器线制类型："></a>传感器线制类型：</h5><p>一般是三线制：</p>
+<p>​    棕：连接开关电源正极 </p>
+<p>​    蓝：连接开关电源负极</p>
+<p>​    黑：是传感器的信号线</p>
+<p>​    也有四线的传感器为了区分常开和常闭</p>
+<p>​    四线会多一根白色信号线，一般为常闭，黑色线为常开</p>
+<p>也会有两线制传感器，和三线制传感器的区别是</p>
+<p>1.工作方式不同：两线制传感器相当于开关，没有NPN和PNP之分，三线制相当于有NPN和PNP。</p>
+<p>2.接线方式不同：两线制传感器为两根线，一根接正极，一根接输出信号。三线制传感器两根接电源线（一般是棕正蓝负），另外一根接输出信号（黑色线常开或者白色线常闭）</p>
+<p>注意：两线制传感器比三线制压降大得多，因此使用是要注意负载的最小电压是多少，两线制必须要经过负载才能使用，比如PLC的IO模块，继电器线圈等。不然直接接24V电源两端就会烧掉。</p>
+<h5 id="高低电平传感器接线方式："><a href="#高低电平传感器接线方式：" class="headerlink" title="高低电平传感器接线方式："></a>高低电平传感器接线方式：</h5><p>传感器都是开关信号，通过触发传感器的信号可以判断传感器位点的高低电平</p>
+<p><strong>传感器接在plc上的情况</strong></p>
+<p>plc对应点位灯亮的话就是高电平</p>
+<p>plc对应点位灯不亮就是低电平</p>
+<p><strong>NPN型传感器</strong>：输出低电平，低电平有效</p>
+<p>电路连接方式；<img src="/posts/6ed155d3/NPN%E5%9E%8B%E4%BC%A0%E6%84%9F%E5%99%A8%E7%94%B5%E8%B7%AF%E8%BF%9E%E6%8E%A5.png" alt="img"></p>
+<p><strong>PNP型传感器</strong>：输出高电平，高电平有效</p>
+<p>电路连接方式；<img src="/posts/6ed155d3/PNP%E5%9E%8B%E4%BC%A0%E6%84%9F%E5%99%A8%E7%94%B5%E8%B7%AF%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F.png" alt="img"></p>
+<h3 id="变频器："><a href="#变频器：" class="headerlink" title="变频器："></a>变频器：</h3><h4 id="工作原理："><a href="#工作原理：" class="headerlink" title="工作原理："></a>工作原理：</h4><p>变频器的工作原理是基于交流电动机的转速与供电频率之间的关系。当供电频率不变时，电动机的转速也保持不变；而当供电频率增加时，电动机的转速会相应降低。这是因为电动机的<a target="_blank" rel="noopener" href="https://www.eeworld.com.cn/zhuanti/HO0qP4">电磁转矩</a>与供电频率成正比，电动机的最大功率是不会变的，功率=转矩✘转速，转矩大，转速就会变小 即：</p>
+<p>T = Kf × f</p>
+<p>其中，T为电磁转矩；Kf为比例常数；f为供电频率。</p>
+<p>为了使电动机在不同转速下都能获得最佳效率，需要通过变频器对供电频率进行调整。变频器通过内部电路对供电频率进行精确控制，从而实现对电动机转速的精确调节。同时，变频器还可以实现对电动机输出功率的调节</p>
+<h4 id="符号："><a href="#符号：" class="headerlink" title="符号："></a>符号：</h4><p>电气符号：U</p>
+<p>1、输入和输出的相关符号</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vin</td>
+<td>输入电压</td>
+</tr>
+<tr>
+<td>Vout</td>
+<td>输出电压</td>
+</tr>
+<tr>
+<td>VLL</td>
+<td>线电压</td>
+</tr>
+<tr>
+<td>VLN</td>
+<td>相电压</td>
+</tr>
+<tr>
+<td>Iin</td>
+<td>输入电流</td>
+</tr>
+<tr>
+<td>Iout</td>
+<td>输出电流</td>
+</tr>
+<tr>
+<td>Io</td>
+<td>无功电流</td>
+</tr>
+<tr>
+<td>fin</td>
+<td>输入频率</td>
+</tr>
+<tr>
+<td>fout</td>
+<td>输出频率</td>
+</tr>
+</tbody></table>
+<p>2、显示与指示符号</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RUN</td>
+<td>运行指示灯</td>
+</tr>
+<tr>
+<td>STOP</td>
+<td>停止指示灯</td>
+</tr>
+<tr>
+<td>ALM</td>
+<td>报警指示灯</td>
+</tr>
+<tr>
+<td>FLT</td>
+<td>故障指示灯</td>
+</tr>
+</tbody></table>
+<h4 id="台达变频器"><a href="#台达变频器" class="headerlink" title="台达变频器"></a>台达变频器</h4><h5 id="接线图片："><a href="#接线图片：" class="headerlink" title="接线图片："></a>接线图片：</h5><p><img src="/posts/6ed155d3/%E5%8F%98%E9%A2%91%E5%99%A8%E6%8E%A5%E7%BA%BF%E5%9B%BE1.jpg"></p>
+<p><img src="/posts/6ed155d3/%E5%8F%98%E9%A2%91%E5%99%A8%E6%8E%A5%E7%BA%BF%E5%9B%BE2.jpg"></p>
+<p><img src="/posts/6ed155d3/%E5%8F%98%E9%A2%91%E5%99%A8%E6%8E%A5%E7%BA%BF%E5%9B%BE3.jpg"></p>
+<p><img src="/posts/6ed155d3/%E5%8F%98%E9%A2%91%E5%99%A8%E6%8E%A5%E7%BA%BF%E5%9B%BE4.jpg"></p>
+<h5 id="铭牌说明"><a href="#铭牌说明" class="headerlink" title="铭牌说明:"></a>铭牌说明:</h5><p><img src="/posts/6ed155d3/%E9%93%AD%E7%89%8C%E8%AF%B4%E6%98%8E.png"></p>
+<h5 id="型号说明："><a href="#型号说明：" class="headerlink" title="型号说明："></a>型号说明：</h5><p><img src="/posts/6ed155d3/%E5%9E%8B%E5%8F%B7%E8%AF%B4%E6%98%8E.png"></p>
+<h5 id="序号说明："><a href="#序号说明：" class="headerlink" title="序号说明："></a>序号说明：</h5><p><img src="/posts/6ed155d3/%E5%BA%8F%E5%8F%B7%E8%AF%B4%E6%98%8E.png"></p>
+<h5 id="框架："><a href="#框架：" class="headerlink" title="框架："></a>框架：</h5><p><img src="/posts/6ed155d3/%E6%A1%86.png"></p>
+<h5 id="面版按钮说明："><a href="#面版按钮说明：" class="headerlink" title="面版按钮说明："></a>面版按钮说明：</h5><p><img src="/posts/6ed155d3/%E9%9D%A2%E6%9D%BF%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E.png"></p>
+<p>1：状态显示区<br>分别可显示驱动器的运转状态运转、停止、寸动、正转、反转等</p>
+<p>2：主显示区<br>可显示频率、电流、电压、转向、使用者定义单位、异常等</p>
+<p>3：频率设定旋钮<br>可设定此旋钮作为主频率输入</p>
+<p>4：数值变更键<br>设定值及参数变更使用</p>
+<h5 id="参数设定操作方式："><a href="#参数设定操作方式：" class="headerlink" title="参数设定操作方式："></a>参数设定操作方式：</h5><p>选择自己要看的画面：</p>
+<p><img src="/posts/6ed155d3/%E7%94%BB%E9%9D%A2%E9%80%89%E6%8B%A9.png"></p>
+<p>参数设定/修改：</p>
+<p><img src="/posts/6ed155d3/%E5%8F%82%E6%95%B0%E8%AE%BE%E5%AE%9A.png"></p>
+<h5 id="配线："><a href="#配线：" class="headerlink" title="配线："></a>配线：</h5><p><strong>NPN模式：</strong></p>
+<p><img src="/posts/6ed155d3/npn%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BA%BF.png"></p>
+<p><strong>PNP模式：</strong></p>
+<p><img src="/posts/6ed155d3/pnp%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BA%BF.png"></p>
+<h5 id="plc电机正反转和变速怎么实现"><a href="#plc电机正反转和变速怎么实现" class="headerlink" title="plc电机正反转和变速怎么实现"></a>plc电机正反转和变速怎么实现</h5><p><img src="/posts/6ed155d3/%E6%AD%A3%E5%8F%8D%E8%BD%AC%E5%8F%98%E9%80%9F%E8%AE%BE%E7%BD%AE%E6%96%B9%E5%BC%8F.png"></p>
+<p>确定正反转地址，通过plc上连接的正转触点的地址来控制变频器电机的正反转，全局频率通过F来调整，如果要实现变速就要加speed1，也是在plc上找到触点添加，具体的速度控制要通过设置参数5.00-&gt; 之后修改频率，就可以调整速度</p>
+<h3 id="伺服驱动器："><a href="#伺服驱动器：" class="headerlink" title="伺服驱动器："></a>伺服驱动器：</h3><h4 id="报警："><a href="#报警：" class="headerlink" title="报警："></a>报警：</h4><p>​    汇川伺服驱动器报警E731.0怎么解除报警？</p>
+<p>​    设置H0D-20=1可清除故障</p>
+<h4 id="伺服驱动器回原点的方法："><a href="#伺服驱动器回原点的方法：" class="headerlink" title="伺服驱动器回原点的方法："></a>伺服驱动器回原点的方法：</h4><p>​    1.通过回原点指令</p>
+<p>​    2.控制电机的话可以直接转动电机转盘</p>
+<h4 id="伺服能记住位置的原因："><a href="#伺服能记住位置的原因：" class="headerlink" title="伺服能记住位置的原因："></a>伺服能记住位置的原因：</h4><p>编码器电池</p>
+<h3 id="步进驱动器："><a href="#步进驱动器：" class="headerlink" title="步进驱动器："></a>步进驱动器：</h3><h4 id="基础信息介绍："><a href="#基础信息介绍：" class="headerlink" title="基础信息介绍："></a>基础信息介绍：</h4><p>步进电机型号</p>
+<p><img src="/posts/6ed155d3/%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA%E5%9E%8B%E5%8F%B7%E5%92%8C%E9%A2%9D%E5%AE%9A%E7%94%B5%E6%B5%81.jpg"></p>
+<p>步进驱动器细分设置参考表：</p>
+<p><img src="/posts/6ed155d3/%E6%AD%A5%E8%BF%9B%E9%A9%B1%E5%8A%A8%E5%99%A8%E7%BB%86%E5%88%86%E6%8B%A8%E7%89%87%E6%8E%A7%E5%88%B6%E5%8F%82%E8%80%83%E8%A1%A8.jpg"></p>
+<p><strong>原理</strong>：通过plc发出脉冲控制步进电机驱动轴运动</p>
+<p><strong>1.8度：</strong></p>
+<p>当驱动器工作在不细分的整步状态时， 控制系统每发一个步进脉冲，电机转动1.8</p>
+<p><strong>1.5A:</strong></p>
+<p>步进电机的额定电流</p>
+<p>无细分，PLC发出200脉冲电机转一圈； 10细分下,PLC 发出2000脉冲电机转一圈；</p>
+<p>无细分：360°（1圈）=1.8°*200 （脉冲）</p>
+<p>10细分：360° （1圈） =0.18°<em>2000（脉冲：10</em>200）</p>
+<p><strong>细分的作用</strong>：步进电机细分数越高，电机运转越平稳；步进电机细分数越小，电机运转时振动越大。因为细分数高时，电流曲线光滑，所以电机输出力矩也就波动小连续、电机运行就 平稳；电机细分数小，电机电流脉动就大，其输出力矩脉动就大，因而造成电机较大的振动， 该振动并产生噪音乃至其它部件的谐振噪音。</p>
+<p>建议在运动控制器输出的脉冲频率允许的情况下，尽可能将步进电机驱动器的细分数设大些， 以提高运动平台的运动平稳性。</p>
+<p><strong>动态电流</strong>：一般根据电动机实际工作需要设定（一般参考电动机额定电流）。</p>
+<p><strong>静态电流</strong>：一般选择半流：步进电机在脉冲停止以后，会有锁定力矩，一般电流越大，锁定力矩越大。</p>
+<p>表11-1 DIP开关功能</p>
+<table>
+<thead>
+<tr>
+<th>开关序号</th>
+<th>ON功能</th>
+<th>OFF功能</th>
+<th>特别说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DIP1-DIP4</td>
+<td>细分设置用</td>
+<td>细分设置用</td>
+<td></td>
+</tr>
+<tr>
+<td>DIP5</td>
+<td>静态电流半流（水平负载）</td>
+<td>静态电流全流（提升类负载）</td>
+<td></td>
+</tr>
+<tr>
+<td>DIP6-DIP8</td>
+<td>输出电流设置用</td>
+<td>输出电流设置用</td>
+<td>根据负载</td>
+</tr>
+</tbody></table>
+<p>表11-2 细分设置表 表11-3 驱动器输出电流设置</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>DIP1为ON</th>
+<th>DIP1为OFF</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DIP2</td>
+<td>DIP3</td>
+<td>DIP4</td>
+<td>细分</td>
+<td>细分</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>ON</td>
+<td>ON</td>
+<td>N/A</td>
+<td>2</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>ON</td>
+<td>ON</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>OFF</td>
+<td>ON</td>
+<td>8</td>
+<td>5</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>OFF</td>
+<td>ON</td>
+<td>16</td>
+<td>10</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>ON</td>
+<td>OFF</td>
+<td>32</td>
+<td>25</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>ON</td>
+<td>OFF</td>
+<td>64</td>
+<td>50</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>128</td>
+<td>100</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>256</td>
+<td>200</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>DIP6</th>
+<th>DIP7</th>
+<th>DIP8</th>
+<th>输出电流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ON</td>
+<td>ON</td>
+<td>ON</td>
+<td>1.2A</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>ON</td>
+<td>OFF</td>
+<td>1.5A</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>OFF</td>
+<td>ON</td>
+<td>1.8A</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>2.0A</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>ON</td>
+<td>ON</td>
+<td>2.5A</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>ON</td>
+<td>OFF</td>
+<td>2.8A</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>OFF</td>
+<td>ON</td>
+<td>3.0A</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.5A</td>
+</tr>
+</tbody></table>
+<p>举例∶选择10细分，输出电流2.5A，静态半流。DIP1~~-DIP8的状态是</p>
+<p>表11-4 10细分DIP设置</p>
+<table>
+<thead>
+<tr>
+<th>DIP1</th>
+<th>DIP2</th>
+<th>DIP3</th>
+<th>DIP4</th>
+<th>DIP5</th>
+<th>DIP6</th>
+<th>DIP7</th>
+<th>DIP8</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>ON</td>
+<td>ON</td>
+<td>OFF</td>
+<td>ON</td>
+<td>ON</td>
+</tr>
+</tbody></table>
+<h3 id="接触器："><a href="#接触器：" class="headerlink" title="接触器："></a>接触器：</h3><p>作用：</p>
+<p>​    1.<strong>启动和停止电动机</strong></p>
+<p>​    2.<strong>反转电动机方向</strong></p>
+<p>​    3.<strong>电动机保护：防止过载，短路，地震对电动机的影响</strong></p>
+<p>​    4.<strong>通过辅助触点进行信号传输</strong></p>
+<p>电气符号：KM</p>
+<p>电气图形：<img src="/posts/6ed155d3/%E6%8E%A5%E8%A7%A6%E5%99%A8.png" alt="img"></p>
+<p>原理：</p>
+<p>​    接触器是由一个触点系统和一个激励系统组成的。触点系统包括主触点和辅助触点，而激励系统则通过线圈来产生磁场，从而控制触点的开闭状态。</p>
+<p>当线圈通电时，产生的磁场吸引主触点闭合，使电路闭合。这允许电流通过接触器，并驱动被控制设备，比如电动机。当线圈失去电流时，磁场消失，主触点弹簧力将触点分离，电路打开，电流停止流动。</p>
+<p>除了主触点外，接触器还包括辅助触点。辅助触点可以用于反馈信号或控制其他<a target="_blank" rel="noopener" href="https://www.eefocus.com/baike/1654314.html">电气元件</a>的操作。例如，当接触器关闭时，辅助触点可以发送信号给控制系统，表示设备已经启动。</p>
+<p>接触器的工作原理是基于电磁吸合的原理，通过控制线圈电流的开闭状态来实现触点的闭合和断开。这种设计使得接触器能够承受较大的电流负载，同时保持可靠性和耐久性。</p>
+<p>分类：</p>
+<p>​    交流接触器（电压AC）</p>
+<p>​    直流接触器（电压DC）</p>
+<h3 id="控制器："><a href="#控制器：" class="headerlink" title="控制器："></a>控制器：</h3><h4 id="光源控制器"><a href="#光源控制器" class="headerlink" title="光源控制器"></a>光源控制器</h4><h3 id="三色灯"><a href="#三色灯" class="headerlink" title="三色灯"></a>三色灯</h3><p>三色灯的顺序是黄绿红和蜂鸣器</p>
+<h3 id="网线"><a href="#网线" class="headerlink" title="网线"></a>网线</h3><p>568B线序标准：橙白 橙 绿白 蓝 蓝白 绿 棕白 棕</p>
+<h3 id="断路器"><a href="#断路器" class="headerlink" title="断路器"></a>断路器</h3><p><strong>马达断路器</strong></p>
+<p>过载，过电流，欠压时，进行主电路断路</p>
+<p>通过旋钮来开启和关闭电动机</p>
+<h3 id="远程io"><a href="#远程io" class="headerlink" title="远程io"></a>远程io</h3><p>华杰HJ5203 16DI 16DO</p>
+<p>零点io</p>
+<h2 id="主电路"><a href="#主电路" class="headerlink" title="主电路"></a>主电路</h2><p>主电路流程：</p>
+<p>空开QF–&gt;熔断FU–&gt;交流接触器KM–&gt;热继电器FR–&gt;电机</p>
+<p>正反转：通过交换电路中的两根电源线</p>
+<p>电气原理图：</p>
+<p><img src="/posts/6ed155d3/%E6%AD%A3%E5%8F%8D%E8%BD%AC.png" alt="img"></p>
+<h3 id="三相五线制"><a href="#三相五线制" class="headerlink" title="三相五线制"></a>三相五线制</h3><p>家用电: L（火线）N（零线） PE（地线） 的形式来供电</p>
+<p>工业用电一般采用三相五线制:  L L L N PE</p>
+<p>国家标准中三相五线制标准导线颜色为：A线黄色，B线绿色，C线红色，N线蓝色，PE线黄绿双色。</p>
+<p>三个相线（A、B、C线）、零线（N线）以及地线（PE线）。</p>
+<p>两根火线之间的电压是线电压是380V</p>
+<p>火线和零线之间的电压是相电压</p>
+<h2 id="控制电路："><a href="#控制电路：" class="headerlink" title="控制电路："></a>控制电路：</h2><p>通过控制电路控制主电路触点闭合，电路运行</p>
+<p>设计控制电路要考虑电气元件损坏可能会引发问题</p>
+<p>电动机正转降压启动：</p>
+<p><img src="/posts/6ed155d3/%E7%94%B5%E5%8A%A8%E6%9C%BA%E6%AD%A3%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8.png" alt="img"></p>
+<h2 id="压网线"><a href="#压网线" class="headerlink" title="压网线"></a>压网线</h2><p>网线顺序  橙白/橙/绿白/蓝/蓝白/绿/棕白/棕</p>
+<p>然后插进水晶头，通过网线测试盒（终端测试盒）</p>
+<h2 id="低压配电系统：TN、TT、IT"><a href="#低压配电系统：TN、TT、IT" class="headerlink" title="低压配电系统：TN、TT、IT"></a>低压配电系统：TN、TT、IT</h2><h3 id="一、IT、TT、TN字母含义"><a href="#一、IT、TT、TN字母含义" class="headerlink" title="一、IT、TT、TN字母含义"></a>一、IT、TT、TN字母含义</h3><p>（1）第一个字母表示电源端与地的关系：  T-电源端有一点直接接地，I-电源端所有带电部分不接地或有一点通过阻抗接地。</p>
+<p>（2）第二个字母表示电气装置的外露可导电部分与地的关系：T-电气装置的外露可导电部分直接接地，此接地点在电气上独立于电源端的接地点；N-电气装置的外露可导电部分与电源端接地点有直接电气连接。</p>
+<h3 id="二、IT系统："><a href="#二、IT系统：" class="headerlink" title="二、IT系统："></a>二、IT系统：</h3><p>IT系统就是电源中性点不接地，用电设备外露可导电部分直接接地的系统。IT系统可以有中性线，但IEC强烈建议不设置中性线。因为如果设置中性线，在IT系统中N线任何一点发生接地故障，该系统将不再是IT系统。 </p>
+<p><img src="/posts/6ed155d3/IT%E7%B3%BB%E7%BB%9F.png" alt="img"></p>
+<p>（1）电源变压器不引出中性点或中性点经高阻抗接地；为避免与其他系统混淆，IEC强烈建议不引出中性点。</p>
+<p>（2）用电设备外壳就地接地,短距离供电漏电时外壳电压低，较安全；干线不允许安装漏电保护断电装置，可安装漏电报警装置；本系统电路的绝缘性能要求高，应安装绝缘监测装置。</p>
+<p>（3）因无中性线引出，本系统只提供380伏民用电，220伏电器需经变压或单独引入专用电源。</p>
+<p>（4）因供电连续性较好，本系统适用于短距离的电力炼钢、高等级手术室、矿井通风等场所，但不适用于需长距离供电及操作者可接触的设备距离较近的民用、建筑场所。</p>
+<p>注：</p>
+<p>​    中性点：中性点又称“零点” 。是指三相或多相交流系统中星形接线的公共点。按运行需要它有接地或不接地等工作方式一般用N表示</p>
+<h3 id="三、TT系统"><a href="#三、TT系统" class="headerlink" title="三、TT系统"></a>三、TT系统</h3><p>TT系统就是电源中性点直接接地，用电设备外露可导电部分也直接接地的系统。通常将电源中性点的接地叫做工作接地，而设备外露可导电部分的接地叫做保护接地。</p>
+<p>TT系统中，这两个接地必须是相互独立的。设备接地可以是每一设备都有各自独立的接地装置，也可以若干设备共用一个接地装置。 </p>
+<p><img src="/posts/6ed155d3/TT%E7%B3%BB%E7%BB%9F.png" alt="img"></p>
+<p>（1）电源变压器中性点及设备外壳均接地，有中性线引出，可提供220及380两种电压电源；</p>
+<p>（2）相线漏电时电压较低，对操作者相对比较安全，但电流较小，不易使熔断器熔断，接地不良时可能造成高压带电。主电路可安装漏电保护断电装置以增强防护能力。</p>
+<p>（3）有一定的防雷击过电压泄放的能力；耗用接地用的钢材较多，浪费资源；以前的建筑工地常用此系统，现在的新标准主要针对这类落后应用进行改造。</p>
+<p>（4）因设备就地接地，单台设备漏电故障不会沿保护线波及整个系统的设备，所以本系统主要应用于对电压敏感的精密电子或数据处理设备；也适用于无专用变压器的外接低压电源的用户。 </p>
+<h3 id="四、TT系统的主要优点"><a href="#四、TT系统的主要优点" class="headerlink" title="四、TT系统的主要优点"></a>四、TT系统的主要优点</h3><p>（1）能抑制高压线与低压线搭连或配变高低压绕组间绝缘击穿时低压电网出现的过电压。</p>
+<p>（2）对低压电网的雷击过电压有一定的泄漏能力。</p>
+<p>（3）与低压电器外壳不接地相比，在电器发生碰壳事故时，可降低外壳的对地电压，因而可减轻人身触电危害程度。</p>
+<p>（4）由于单相接地时接地电流比较大，可使保护装置（漏电保护器）可靠动作，及时切除故障。</p>
+<h3 id="五、TT系统的主要缺点"><a href="#五、TT系统的主要缺点" class="headerlink" title="五、TT系统的主要缺点"></a>五、TT系统的主要缺点</h3><p>（1）低、高压线路雷击时，配变可能发生正、逆变换过电压。</p>
+<p>（2）低压电器外壳接地的保护效果不及IT系统。</p>
+<p>（3）当电气设备的金属外壳带电（相线碰壳或设备绝缘损坏而漏电）时，由于有接地保护，可以大大减少触电的危险性。但是，低压断路器（自动开关）不一定能跳闸，造成漏电设备的外壳对地电压高于安全电压，属于危险电压。</p>
+<p>（4）当漏电电流比较小时，即使有熔断器也不一定能熔断，所以还需要漏电保护器作保护，因此TT系统难以推广。</p>
+<p>（5）TT系统接地装置耗用钢材多，而且难以回收、费工时、费料。</p>
+<h3 id="六、TT系统的应用"><a href="#六、TT系统的应用" class="headerlink" title="六、TT系统的应用"></a>六、TT系统的应用</h3><p>TT系统由于接地装置就在设备附近，因此PE线断线的几率小，且容易被发现。</p>
+<p>TT系统设备在正常运行时外壳不带电，故障时外壳高电位不会沿PE线传递至全系统。因此，TT系统适用于对电压敏感的数据处理设备及精密电子设备进行供电，在存在爆炸与火灾隐患等危险性场所应用有优势。</p>
+<p>TT系统能大幅降低漏电设备上的故障电压，但一般不能降低到安全范围内。因此，采用TT系统必须装设漏电保护装置或过电流保护装置，并优先采用前者。</p>
+<p>TT系统主要用于低压用户，即用于未装备配电变压器，从外面引进低压电源的小型用户。</p>
+<h3 id="七、TN系统"><a href="#七、TN系统" class="headerlink" title="七、TN系统"></a>七、TN系统</h3><p>TN系统通常是一个中性点接地的三相电网系统。其特点是电气设备的外露可导电部分直接与系统接地点相连，当发生碰壳短路时，短路电流即经金属导线构成闭合回路。形成金属性单相短路，从而产生足够大的短路电流，使保护装置能可靠动作，将故障切除。</p>
+<p>如果将工作零线N重复接地，碰壳短路时，一部分电流就可能分流于重复接地点，会使保护装置不能可靠动作或拒动，使故障扩大化。</p>
+<p>（1）电源变压器中性点接地，设备外壳通过PE线（专用保护线）与中性点联结，根据联结位置又分为TN-C、TN-S、TN-C-S三种形式；</p>
+<p>（2）TN-C：设备外壳直接接工作保护零线（PEN），三相负载平衡时，PEN线无电流电压，但如果不平衡，则该线对地有电压，外壳带电较危险；</p>
+<p>（TN-C系统）</p>
+<p>（3）TN-C-S系统：PEN线在区域总配电箱处永久分为工作零线N和专用保护线PE，设备外壳接PE线，此时PE线不得断开，N线可接入漏电保护器提高安全性；主要应用于分散居民用电； </p>
+<p><img src="/posts/6ed155d3/TN-C-S%E7%B3%BB%E7%BB%9F.png" alt="img"></p>
+<p>（4）TN-S系统：PEN线在电源变压器处永久分为工作零线N和专用保护线PE,PE线不得断开，主线路可安装漏电保护器提高安全性能；此系统节约材料，布设简单，供电安全性高，是国家强制要求建筑工地必须采用的供电形式。 </p>
+<p><img src="/posts/6ed155d3/TN-S%E7%B3%BB%E7%BB%9F.png" alt="img"></p>
+<p>（5）实际上，TN-C-S系统是在TN-C系统上变通的作法。当三相电力变压器工作接地情况良好，三相负载比较平衡时，TN-C-S系统在施工用电实践中效果还是不错的。但是，在三相负载不平衡，建筑施工工地有专用的电力变压器时，必须采用TN-S方式供电系统。 </p>
+<h2 id="电气图纸："><a href="#电气图纸：" class="headerlink" title="电气图纸："></a>电气图纸：</h2><h3 id="控制电路原理图："><a href="#控制电路原理图：" class="headerlink" title="控制电路原理图："></a>控制电路原理图：</h3><h4 id="故障灯模拟："><a href="#故障灯模拟：" class="headerlink" title="故障灯模拟："></a>故障灯模拟：</h4><p>用红绿两种指示灯模拟设备运行故障状态通电时，绿灯常亮，即设备正常运行状态按下启动按钮，绿灯灭红灯亮，即设备由正常变为故障状态，按下停止复位。(停止按钮、启动按钮、中间继电器、红、绿灯)</p>
+<p><img src="/posts/6ed155d3/%E6%95%85%E9%9A%9C%E7%81%AF%E6%A8%A1%E6%8B%9F.png" alt="img"></p>
+<h4 id="互锁："><a href="#互锁：" class="headerlink" title="互锁："></a>互锁：</h4><p>按下SB1绿灯长亮，按下SB2红灯长亮:绿灯亮时，红灯灭(即按下SB1时绿灯亮，再按下SB2无任何反应);<br>红灯亮时，绿灯灭(即按下SB2时红灯亮，再按下SB1无任何反应);<br>按下SB3电路断电</p>
+<p><img src="/posts/6ed155d3/%E4%BA%92%E9%94%81.png" alt="img"></p>
+<h4 id="顺启逆停："><a href="#顺启逆停：" class="headerlink" title="顺启逆停："></a>顺启逆停：</h4><p>按下 SB1 第一个灯常亮(绿灯)，按下 SB3 第二个灯常亮(红灯)，按下 SB4 第二个灯灭，按下 SB2 第一个灯灭注:只能先按下 SB1使绿灯亮;在按下SB1之前，先按 SB3 红灯没有任何反应;只能先按下 SB4 使红灯灭;在按下 SB4 之前,先按 SB2是没有任何反应。</p>
+<p><img src="/posts/6ed155d3/%E9%A1%BA%E5%90%AF%E9%80%86%E5%81%9C.png" alt="img"></p>
+<h4 id="红绿灯模拟："><a href="#红绿灯模拟：" class="headerlink" title="红绿灯模拟："></a>红绿灯模拟：</h4><p>按下 SB1启动按钮，红灯亮;三秒后，红灯熄灭，黄灯亮;再三秒后，黄灯灭，绿灯亮;再三秒后，绿灯灭，红灯亮……依此循环不断，按下 SB2 停止按钮，电路断电，复位。</p>
+<p><img src="/posts/6ed155d3/%E7%BA%A2%E7%BB%BF%E7%81%AF%E6%A8%A1%E6%8B%9F.png" alt="img"></p>
+<h4 id="一键启停："><a href="#一键启停：" class="headerlink" title="一键启停："></a>一键启停：</h4><p>一个启动按钮，控制一盏灯亮和灭<br>第一次按下按钮灯亮，第二次按下按钮灯灭</p>
+<p><img src="/posts/6ed155d3/%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C.png" alt="img"></p>
+<h4 id="星三角电机正转降压启动："><a href="#星三角电机正转降压启动：" class="headerlink" title="星三角电机正转降压启动："></a>星三角电机正转降压启动：</h4><p><img src="/posts/6ed155d3/%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8.png" alt="img"></p>
+<h4 id="星三角电机正反转降压启动："><a href="#星三角电机正反转降压启动：" class="headerlink" title="星三角电机正反转降压启动："></a>星三角电机正反转降压启动：</h4><p><img src="/posts/6ed155d3/%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8.png" alt="img"></p>
+<h4 id="星三角电机正反转降压启动主电路-控制电路："><a href="#星三角电机正反转降压启动主电路-控制电路：" class="headerlink" title="星三角电机正反转降压启动主电路+控制电路："></a>星三角电机正反转降压启动主电路+控制电路：</h4><p><img src="/posts/6ed155d3/%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8%E4%B8%BB%E7%94%B5%E8%B7%AF+%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF.png" alt="img"></p>
+<h3 id="点位图："><a href="#点位图：" class="headerlink" title="点位图："></a>点位图：</h3><p><img src="/posts/6ed155d3/%E7%82%B9%E4%BD%8D%E5%9B%BE.png" alt="img"></p>
+<h3 id="布局安装图："><a href="#布局安装图：" class="headerlink" title="布局安装图："></a>布局安装图：</h3><p><img src="/posts/6ed155d3/%E5%B8%83%E5%B1%80%E5%AE%89%E8%A3%85%E5%9B%BE.png" alt="img"></p>
+<h2 id="EPLAN电气画图软件相关问题："><a href="#EPLAN电气画图软件相关问题：" class="headerlink" title="EPLAN电气画图软件相关问题："></a>EPLAN电气画图软件相关问题：</h2><h3 id="常用快捷键："><a href="#常用快捷键：" class="headerlink" title="常用快捷键："></a>常用快捷键：</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>画直线</td>
+<td>CTRL+F2</td>
+</tr>
+<tr>
+<td>添加文本</td>
+<td>大写T</td>
+</tr>
+<tr>
+<td>插入电气图形</td>
+<td>insert</td>
+</tr>
+<tr>
+<td>¶</td>
+<td>CTRL+ENTER</td>
+</tr>
+</tbody></table>
+<h3 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h3><h4 id="文本显示类："><a href="#文本显示类：" class="headerlink" title="文本显示类："></a>文本显示类：</h4><h5 id="电气图形旁边显示-文字-怎么去掉？"><a href="#电气图形旁边显示-文字-怎么去掉？" class="headerlink" title="电气图形旁边显示/文字..怎么去掉？"></a>电气图形旁边显示/文字..怎么去掉？</h5><p>方案： 双击对应的电气图形 显示-元件-关联参考-层-改成EPLAN320, 图形.隐藏 文字就去掉了</p>
+<h5 id="继电器这种元器件下面一堆杂乱的的关联描述怎么去掉？"><a href="#继电器这种元器件下面一堆杂乱的的关联描述怎么去掉？" class="headerlink" title="继电器这种元器件下面一堆杂乱的的关联描述怎么去掉？"></a>继电器这种元器件下面一堆杂乱的的关联描述怎么去掉？</h5><p>方案： 双击对应的电气图形 显示-触点映象-关联参考-点左边的✘</p>
+<p><img src="/posts/6ed155d3/%E8%A7%A6%E7%82%B9%E6%98%A0%E8%B1%A1.png" alt="img"></p>
+<p>然后 显示-元件-关联参考-层-改成EPLAN320, 图形.隐藏 就可以完全去除了</p>
+<h2 id="万用表的使用"><a href="#万用表的使用" class="headerlink" title="万用表的使用"></a>万用表的使用</h2><p>万用表示例</p>
+<p><img src="/posts/6ed155d3/%E4%B8%87%E7%94%A8%E8%A1%A8.jpg" alt="img"></p>
+<h3 id="功能接线柱"><a href="#功能接线柱" class="headerlink" title="功能接线柱"></a>功能接线柱</h3><p><strong>20A</strong></p>
+<p>测量电流 直流 交流</p>
+<p><strong>mA/uA</strong></p>
+<p>可以测量毫安（电流） 微安（电流） 毫法 （测量电容）</p>
+<p><strong>COM</strong></p>
+<p>公共接线柱接黑线</p>
+<p><strong>V/Ω/二极管/蜂鸣档</strong></p>
+<p>测量电压 直流 交流，测量 欧姆（电阻） 二极管 蜂鸣档（测量线路是否通电）</p>
+<p><strong>AUTO POWER OFF</strong></p>
+<p>一直闪烁有可能是万用表的电池没电了</p>
+<p><strong>HOLD</strong></p>
+<p>临时锁住当前数值</p>
+<p>测量不同的数据要根据情况更换不同的接线柱</p>
+<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><p>电气设计狄老师：<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv5528364/">https://www.bilibili.com/read/cv5528364/</a> </p>
+<p>工业互联网：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45586124/article/details/139971537">https://blog.csdn.net/weixin_45586124/article/details/139971537</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%94%B5%E6%B0%94%E5%93%81%E7%89%8C"><span class="toc-number">1.</span> <span class="toc-text">常见的电气品牌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%94%B5%E6%B0%94%E7%AC%A6%E5%8F%B7%E8%AE%A4%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">常用电气符号认识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%AD%90"><span class="toc-number">3.</span> <span class="toc-text">端子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%B7%E5%8E%8B%E7%AB%AF%E5%AD%90"><span class="toc-number">3.1.</span> <span class="toc-text">冷压端子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B7%E5%8E%8B%E7%AB%AF%E5%AD%90%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">3.1.1.</span> <span class="toc-text">冷压端子的特点：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BA%BF%E5%B8%BD"><span class="toc-number">3.2.</span> <span class="toc-text">压线帽</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E7%BA%BF%E5%B8%BD%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">3.2.1.</span> <span class="toc-text">压线帽的特点：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E6%B0%94%E5%85%83%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">电气元件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%85%B3%E7%B1%BB%E5%85%83%E5%99%A8%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text">开关类元器件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%80%E5%BC%80%E5%85%B3"><span class="toc-number">4.1.1.</span> <span class="toc-text">刀开关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8E%E5%8E%8B%E7%86%94%E6%96%AD%E5%99%A8-%E7%A9%BA%E5%BC%80%EF%BC%88%E7%A9%BA%E6%B0%94%E5%BC%80%E5%85%B3%EF%BC%8C%E7%A9%BA%E6%B0%94%E6%96%AD%E8%B7%AF%E5%99%A8%EF%BC%89"><span class="toc-number">4.1.2.</span> <span class="toc-text">低压熔断器 空开（空气开关，空气断路器）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E5%99%A8"><span class="toc-number">4.1.3.</span> <span class="toc-text">熔断器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="toc-number">4.1.4.</span> <span class="toc-text">开关电源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E9%92%AE"><span class="toc-number">4.1.5.</span> <span class="toc-text">按钮</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E8%BF%91%E5%BC%80%E5%85%B3"><span class="toc-number">4.1.6.</span> <span class="toc-text">接近开关</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E5%9C%88%E7%B1%BB%E5%85%83%E5%99%A8%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">线圈类元器件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E7%BB%A7%E7%94%B5%E5%99%A8"><span class="toc-number">4.2.1.</span> <span class="toc-text">中间继电器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%A7%E7%94%B5%E5%99%A8%E9%9A%94%E7%A6%BB"><span class="toc-number">4.2.1.1.</span> <span class="toc-text">继电器隔离</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%BB%A7%E7%94%B5%E5%99%A8"><span class="toc-number">4.2.2.</span> <span class="toc-text">时间继电器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%83%AD%E7%BB%A7%E7%94%B5%E5%99%A8"><span class="toc-number">4.2.3.</span> <span class="toc-text">热继电器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E7%8E%87%E7%BB%A7%E7%94%B5%E5%99%A8"><span class="toc-number">4.2.4.</span> <span class="toc-text">功率继电器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E7%A3%81%E9%98%80"><span class="toc-number">4.3.</span> <span class="toc-text">电磁阀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">传感器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">4.4.1.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E4%BF%A1%E5%8F%B7%E7%89%B9%E7%82%B9%E5%88%86%E7%B1%BB"><span class="toc-number">4.4.1.1.</span> <span class="toc-text">按照信号特点分类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E5%91%BD%E5%90%8D%E5%88%86%E7%B1%BB"><span class="toc-number">4.4.1.2.</span> <span class="toc-text">按照命名分类</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%8E%A5%E7%BA%BF%E6%96%B9%E5%BC%8F"><span class="toc-number">4.4.2.</span> <span class="toc-text">传感器类型和接线方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%E7%BA%BF%E5%88%B6%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-number">4.4.2.1.</span> <span class="toc-text">传感器线制类型：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%AB%98%E4%BD%8E%E7%94%B5%E5%B9%B3%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A5%E7%BA%BF%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">4.4.2.2.</span> <span class="toc-text">高低电平传感器接线方式：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%A2%91%E5%99%A8%EF%BC%9A"><span class="toc-number">4.5.</span> <span class="toc-text">变频器：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">4.5.1.</span> <span class="toc-text">工作原理：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%EF%BC%9A"><span class="toc-number">4.5.2.</span> <span class="toc-text">符号：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%B0%E8%BE%BE%E5%8F%98%E9%A2%91%E5%99%A8"><span class="toc-number">4.5.3.</span> <span class="toc-text">台达变频器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF%E5%9B%BE%E7%89%87%EF%BC%9A"><span class="toc-number">4.5.3.1.</span> <span class="toc-text">接线图片：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%93%AD%E7%89%8C%E8%AF%B4%E6%98%8E"><span class="toc-number">4.5.3.2.</span> <span class="toc-text">铭牌说明:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9E%8B%E5%8F%B7%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">4.5.3.3.</span> <span class="toc-text">型号说明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%8F%E5%8F%B7%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">4.5.3.4.</span> <span class="toc-text">序号说明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%EF%BC%9A"><span class="toc-number">4.5.3.5.</span> <span class="toc-text">框架：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%A2%E7%89%88%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">4.5.3.6.</span> <span class="toc-text">面版按钮说明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AE%BE%E5%AE%9A%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">4.5.3.7.</span> <span class="toc-text">参数设定操作方式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BA%BF%EF%BC%9A"><span class="toc-number">4.5.3.8.</span> <span class="toc-text">配线：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#plc%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E5%92%8C%E5%8F%98%E9%80%9F%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.5.3.9.</span> <span class="toc-text">plc电机正反转和变速怎么实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%BA%E6%9C%8D%E9%A9%B1%E5%8A%A8%E5%99%A8%EF%BC%9A"><span class="toc-number">4.6.</span> <span class="toc-text">伺服驱动器：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E8%AD%A6%EF%BC%9A"><span class="toc-number">4.6.1.</span> <span class="toc-text">报警：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%BA%E6%9C%8D%E9%A9%B1%E5%8A%A8%E5%99%A8%E5%9B%9E%E5%8E%9F%E7%82%B9%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">4.6.2.</span> <span class="toc-text">伺服驱动器回原点的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%BA%E6%9C%8D%E8%83%BD%E8%AE%B0%E4%BD%8F%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">4.6.3.</span> <span class="toc-text">伺服能记住位置的原因：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E8%BF%9B%E9%A9%B1%E5%8A%A8%E5%99%A8%EF%BC%9A"><span class="toc-number">4.7.</span> <span class="toc-text">步进驱动器：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-number">4.7.1.</span> <span class="toc-text">基础信息介绍：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E8%A7%A6%E5%99%A8%EF%BC%9A"><span class="toc-number">4.8.</span> <span class="toc-text">接触器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%9A"><span class="toc-number">4.9.</span> <span class="toc-text">控制器：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%89%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">4.9.1.</span> <span class="toc-text">光源控制器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E8%89%B2%E7%81%AF"><span class="toc-number">4.10.</span> <span class="toc-text">三色灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BA%BF"><span class="toc-number">4.11.</span> <span class="toc-text">网线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E8%B7%AF%E5%99%A8"><span class="toc-number">4.12.</span> <span class="toc-text">断路器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8Bio"><span class="toc-number">4.13.</span> <span class="toc-text">远程io</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E7%94%B5%E8%B7%AF"><span class="toc-number">5.</span> <span class="toc-text">主电路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%9B%B8%E4%BA%94%E7%BA%BF%E5%88%B6"><span class="toc-number">5.1.</span> <span class="toc-text">三相五线制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">控制电路：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BD%91%E7%BA%BF"><span class="toc-number">7.</span> <span class="toc-text">压网线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E5%8E%8B%E9%85%8D%E7%94%B5%E7%B3%BB%E7%BB%9F%EF%BC%9ATN%E3%80%81TT%E3%80%81IT"><span class="toc-number">8.</span> <span class="toc-text">低压配电系统：TN、TT、IT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81IT%E3%80%81TT%E3%80%81TN%E5%AD%97%E6%AF%8D%E5%90%AB%E4%B9%89"><span class="toc-number">8.1.</span> <span class="toc-text">一、IT、TT、TN字母含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81IT%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-number">8.2.</span> <span class="toc-text">二、IT系统：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81TT%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.3.</span> <span class="toc-text">三、TT系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81TT%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BC%98%E7%82%B9"><span class="toc-number">8.4.</span> <span class="toc-text">四、TT系统的主要优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81TT%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BC%BA%E7%82%B9"><span class="toc-number">8.5.</span> <span class="toc-text">五、TT系统的主要缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81TT%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">8.6.</span> <span class="toc-text">六、TT系统的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81TN%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.7.</span> <span class="toc-text">七、TN系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E6%B0%94%E5%9B%BE%E7%BA%B8%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">电气图纸：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF%E5%8E%9F%E7%90%86%E5%9B%BE%EF%BC%9A"><span class="toc-number">9.1.</span> <span class="toc-text">控制电路原理图：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E7%81%AF%E6%A8%A1%E6%8B%9F%EF%BC%9A"><span class="toc-number">9.1.1.</span> <span class="toc-text">故障灯模拟：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E9%94%81%EF%BC%9A"><span class="toc-number">9.1.2.</span> <span class="toc-text">互锁：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%BA%E5%90%AF%E9%80%86%E5%81%9C%EF%BC%9A"><span class="toc-number">9.1.3.</span> <span class="toc-text">顺启逆停：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%A2%E7%BB%BF%E7%81%AF%E6%A8%A1%E6%8B%9F%EF%BC%9A"><span class="toc-number">9.1.4.</span> <span class="toc-text">红绿灯模拟：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C%EF%BC%9A"><span class="toc-number">9.1.5.</span> <span class="toc-text">一键启停：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8%EF%BC%9A"><span class="toc-number">9.1.6.</span> <span class="toc-text">星三角电机正转降压启动：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8%EF%BC%9A"><span class="toc-number">9.1.7.</span> <span class="toc-text">星三角电机正反转降压启动：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%9F%E4%B8%89%E8%A7%92%E7%94%B5%E6%9C%BA%E6%AD%A3%E5%8F%8D%E8%BD%AC%E9%99%8D%E5%8E%8B%E5%90%AF%E5%8A%A8%E4%B8%BB%E7%94%B5%E8%B7%AF-%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF%EF%BC%9A"><span class="toc-number">9.1.8.</span> <span class="toc-text">星三角电机正反转降压启动主电路+控制电路：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E4%BD%8D%E5%9B%BE%EF%BC%9A"><span class="toc-number">9.2.</span> <span class="toc-text">点位图：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E5%AE%89%E8%A3%85%E5%9B%BE%EF%BC%9A"><span class="toc-number">9.3.</span> <span class="toc-text">布局安装图：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EPLAN%E7%94%B5%E6%B0%94%E7%94%BB%E5%9B%BE%E8%BD%AF%E4%BB%B6%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">10.</span> <span class="toc-text">EPLAN电气画图软件相关问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">常用快捷键：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">常见问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%98%BE%E7%A4%BA%E7%B1%BB%EF%BC%9A"><span class="toc-number">10.2.1.</span> <span class="toc-text">文本显示类：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%B5%E6%B0%94%E5%9B%BE%E5%BD%A2%E6%97%81%E8%BE%B9%E6%98%BE%E7%A4%BA-%E6%96%87%E5%AD%97-%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%89%EF%BC%9F"><span class="toc-number">10.2.1.1.</span> <span class="toc-text">电气图形旁边显示&#x2F;文字..怎么去掉？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%A7%E7%94%B5%E5%99%A8%E8%BF%99%E7%A7%8D%E5%85%83%E5%99%A8%E4%BB%B6%E4%B8%8B%E9%9D%A2%E4%B8%80%E5%A0%86%E6%9D%82%E4%B9%B1%E7%9A%84%E7%9A%84%E5%85%B3%E8%81%94%E6%8F%8F%E8%BF%B0%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%89%EF%BC%9F"><span class="toc-number">10.2.1.2.</span> <span class="toc-text">继电器这种元器件下面一堆杂乱的的关联描述怎么去掉？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%87%E7%94%A8%E8%A1%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">11.</span> <span class="toc-text">万用表的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%8E%A5%E7%BA%BF%E6%9F%B1"><span class="toc-number">11.1.</span> <span class="toc-text">功能接线柱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="toc-number">12.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/6ed155d3.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/6ed155d3.html&text=电气基本原理"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/6ed155d3.html&is_video=false&description=电气基本原理"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=电气基本原理&body=Check out this article: http://porcorosso.top/posts/6ed155d3.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/6ed155d3.html&title=电气基本原理"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/6ed155d3.html&name=电气基本原理&description=&lt;p&gt;电气基本原理&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2025 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

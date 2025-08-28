@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="进制转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进制转换">
+<meta property="og:url" content="http://porcorosso.top/posts/7dc91154.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="进制转换">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB_%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%8D%81.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E5%85%AB%E8%BD%AC%E5%8D%81.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E5%8D%81%E5%85%AD%E8%BD%AC%E5%8D%81.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%85%AB.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%8D%81%E5%85%AD.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E5%85%AB%E8%BD%AC%E4%BA%8C.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E5%B0%8F%E6%95%B0%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6.png">
+<meta property="og:image" content="http://porcorosso.top/posts/7dc91154/%E5%B0%8F%E6%95%B0%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.png">
+<meta property="article:published_time" content="2024-08-19T08:03:49.000Z">
+<meta property="article:modified_time" content="2025-08-28T12:18:50.560Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="进制转换">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/7dc91154/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>进制转换</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/523d37c0.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/a5a5d18.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/7dc91154.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/7dc91154.html&text=进制转换"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/7dc91154.html&is_video=false&description=进制转换"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=进制转换&body=Check out this article: http://porcorosso.top/posts/7dc91154.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/7dc91154.html&name=进制转换&description=&lt;p&gt;进制转换&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">进制特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">相互转换：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B4%E6%95%B0%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">一、整数转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="toc-number">2.1.1.</span> <span class="toc-text">1、十进制转二进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6"><span class="toc-number">2.1.2.</span> <span class="toc-text">2、二进制转十进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6"><span class="toc-number">2.1.3.</span> <span class="toc-text">3、二进制转八进制、十六进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="toc-number">2.1.4.</span> <span class="toc-text">4、八进制转二进制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B0%8F%E6%95%B0%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.2.</span> <span class="toc-text">二、小数转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">1、十进制转二进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">2、二进制转十进制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        进制转换
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-08-19T08:03:49.000Z" itemprop="datePublished">2024-08-19</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" rel="tag">进制转换</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>进制转换</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="进制特点"><a href="#进制特点" class="headerlink" title="进制特点"></a>进制特点</h2><p>在学习四种进制转换之前先了解一下四种进制的特点</p>
+<pre class=" language-markdown"><code class="language-markdown">十进制：
+
+十进制是Decimal，简写为D
+都是以0-9这九个数字组成。
+
+二进制：
+
+二进制是Binary，简写为B
+由0和1两个数字组成。
+
+八进制：
+
+八进制是Octal，简写为O
+由0-7数字组成，为了区分与其他进制的数字区别，开头都是以0开始。
+
+十六进制：
+
+十六进制为Hexadecimal，简写为H
+表示方式为0x开头
+计数到F后，再增加1个，就进位。
+由0-9和A-F组成，英文字母A，B，C，D，E，F分别表示数字10～15。
+1    2    3    4    5    6    7    8    9    A    B    C    D    E    F
+</code></pre>
+<h2 id="相互转换："><a href="#相互转换：" class="headerlink" title="相互转换："></a>相互转换：</h2><p>接下来开始讲解二进制、八进制、十进制、十六进制之间的相互转换（包括整数和小数）</p>
+<h3 id="一、整数转换"><a href="#一、整数转换" class="headerlink" title="一、整数转换"></a>一、整数转换</h3><h4 id="1、十进制转二进制"><a href="#1、十进制转二进制" class="headerlink" title="1、十进制转二进制"></a>1、十进制转二进制</h4><p>（1）十进制转二进制的原理：十进制数除以2，余数为权位上的数，得到商继续除以2，直到商为0终止，然后反向取余数。</p>
+<p>具体实现：</p>
+<p>例如(67)10 → (1000011)2</p>
+<p>将67除以2得商33，余数1。将商（33）作为第二次的被除数一次类推，直到商为0.</p>
+<p><img src="/posts/7dc91154/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6.png"></p>
+<p>（2）十进制转八、十六进制的原理：跟十转二原理一样，十进制数除以8/16，余数为权位上的数，得到商继续除以8/16，直到商为0终止，然后反向取余数。</p>
+<p>具体实现：</p>
+<p>例758（十进制）→ 1366（八进制）     951（十进制）→   3B7（十六进制） </p>
+<p>步骤跟十进制转二进制一样。</p>
+<p> <img src="/posts/7dc91154/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB_%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6.png"></p>
+<h4 id="2、二进制转十进制"><a href="#2、二进制转十进制" class="headerlink" title="2、二进制转十进制"></a>2、二进制转十进制</h4><p>方法：把二进制数按权展开、相加即得十进制数。 </p>
+<p> <img src="/posts/7dc91154/%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.png"></p>
+<p>例题： 1001 0110B = ______ D</p>
+<p>如下图所示，答案为150D</p>
+<p><img src="/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%8D%81.png"></p>
+<p>例题： 26Q = ______ D</p>
+<p>如下图所示，答案为22D</p>
+<p><img src="/posts/7dc91154/%E5%85%AB%E8%BD%AC%E5%8D%81.png"></p>
+<p>例题： 23daH = ______ D</p>
+<p>如下图所示，答案为9178D</p>
+<p><img src="/posts/7dc91154/%E5%8D%81%E5%85%AD%E8%BD%AC%E5%8D%81.png"></p>
+<h4 id="3、二进制转八进制、十六进制"><a href="#3、二进制转八进制、十六进制" class="headerlink" title="3、二进制转八进制、十六进制"></a>3、二进制转八进制、十六进制</h4><p> 方法：3位二进制数按权展开相加得到1位八进制数。（注意事项，3位二进制转成八进制是从右到左开始转换，不足时补0）。</p>
+<p> <img src="/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%85%AB.png"></p>
+<p>同理，二进制转十六进制时， 4位二进制数按权展开相加得到1位十六进制数，不足四位补0。</p>
+<p><img src="/posts/7dc91154/%E4%BA%8C%E8%BD%AC%E5%8D%81%E5%85%AD.png"></p>
+<h4 id="4、八进制转二进制"><a href="#4、八进制转二进制" class="headerlink" title="4、八进制转二进制"></a>4、八进制转二进制</h4><p>方法：八进制数通过除2取余法，得到二进制数，对每个八进制为3个二进制，不足时在最左边补零。 </p>
+<p> <img src="/posts/7dc91154/%E5%85%AB%E8%BD%AC%E4%BA%8C.png"></p>
+<p>同理，十六进制转二进制也是一样的方法 </p>
+<h3 id="二、小数转换"><a href="#二、小数转换" class="headerlink" title="二、小数转换"></a>二、小数转换</h3><h4 id="1、十进制转二进制-1"><a href="#1、十进制转二进制-1" class="headerlink" title="1、十进制转二进制"></a>1、十进制转二进制</h4><p>方法：十进制小数转换成二进制小数采用“乘二取整，顺序输出”</p>
+<p>例题： 0.618D = ______ B（精确到小数点后3位）</p>
+<p>如下所示，0.68乘以2，取整，然后再将小数乘以2，取整，直到达到题目要求精度。</p>
+<p>得到结果：0.101B.</p>
+<p><img src="/posts/7dc91154/%E5%B0%8F%E6%95%B0%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6.png"></p>
+<p>同理十进制转八进制、十六进制也是一样的做法，大家可以尝试做一下例题，熟悉掌握计算流程</p>
+<p>例题：10.68D = ______ Q（精确到小数点后3位）</p>
+<p>25.68D = ______ H（精确到小数点后3位）</p>
+<p>答案：12.534Q.     19.ae1H</p>
+<p>注意：小数进制转换有误差，并不是任何一个十进制小数都能转成有限为的二进制数</p>
+<h4 id="2、二进制转十进制-1"><a href="#2、二进制转十进制-1" class="headerlink" title="2、二进制转十进制"></a>2、二进制转十进制</h4><p>方法：把二进制数按权展开、相加即得十进制数。（具体操作如下）</p>
+<p><img src="/posts/7dc91154/%E5%B0%8F%E6%95%B0%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.png"></p>
+<p>小数转换跟普通转换类似，小数点后幂次就变成了负的。 </p>
+<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53564801">爱躺平的威威</a>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53564801/article/details/123665194">https://blog.csdn.net/weixin_53564801/article/details/123665194</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">进制特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">相互转换：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B4%E6%95%B0%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">一、整数转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="toc-number">2.1.1.</span> <span class="toc-text">1、十进制转二进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6"><span class="toc-number">2.1.2.</span> <span class="toc-text">2、二进制转十进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6"><span class="toc-number">2.1.3.</span> <span class="toc-text">3、二进制转八进制、十六进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="toc-number">2.1.4.</span> <span class="toc-text">4、八进制转二进制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B0%8F%E6%95%B0%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.2.</span> <span class="toc-text">二、小数转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">1、十进制转二进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">2、二进制转十进制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/7dc91154.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/7dc91154.html&text=进制转换"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/7dc91154.html&is_video=false&description=进制转换"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=进制转换&body=Check out this article: http://porcorosso.top/posts/7dc91154.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/7dc91154.html&title=进制转换"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/7dc91154.html&name=进制转换&description=&lt;p&gt;进制转换&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2025 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

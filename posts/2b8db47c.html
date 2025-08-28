@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="liunx基础安装命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="liunx基础安装命令">
+<meta property="og:url" content="http://porcorosso.top/posts/2b8db47c.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="liunx基础安装命令">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/2b8db47c/clip_image002.jpg">
+<meta property="article:published_time" content="2023-10-17T08:37:17.000Z">
+<meta property="article:modified_time" content="2025-08-28T12:18:50.451Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="liunx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/2b8db47c/clip_image002.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>liunx基础安装命令</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/a55fa9fa.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/4b56a127.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/2b8db47c.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/2b8db47c.html&text=liunx基础安装命令"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/2b8db47c.html&is_video=false&description=liunx基础安装命令"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=liunx基础安装命令&body=Check out this article: http://porcorosso.top/posts/2b8db47c.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/2b8db47c.html&name=liunx基础安装命令&description=&lt;p&gt;liunx基础安装命令&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.</span> <span class="toc-text">关闭防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ll"><span class="toc-number">2.</span> <span class="toc-text">安装ll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85wget"><span class="toc-number">3.</span> <span class="toc-text">安装wget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ifconfig"><span class="toc-number">4.</span> <span class="toc-text">安装ifconfig</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85xinetd"><span class="toc-number">5.</span> <span class="toc-text">安装xinetd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85rzrs"><span class="toc-number">6.</span> <span class="toc-text">安装rzrs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85unzip"><span class="toc-number">7.</span> <span class="toc-text">安装unzip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85service"><span class="toc-number">8.</span> <span class="toc-text">安装service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85sudo"><span class="toc-number">9.</span> <span class="toc-text">安装sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85libaio"><span class="toc-number">10.</span> <span class="toc-text">安装libaio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85GCC-C"><span class="toc-number">11.</span> <span class="toc-text">安装GCC-C++</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85GCC"><span class="toc-number">12.</span> <span class="toc-text">安装GCC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85vim"><span class="toc-number">13.</span> <span class="toc-text">安装vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85rz"><span class="toc-number">14.</span> <span class="toc-text">安装rz</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        liunx基础安装命令
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-10-17T08:37:17.000Z" itemprop="datePublished">2023-10-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/liunx/" rel="tag">liunx</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>liunx基础安装命令</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><pre class=" language-xml"><code class="language-xml">[root@localhost ~]# systemctl disable firewalld
+</code></pre>
+<h2 id="安装ll"><a href="#安装ll" class="headerlink" title="安装ll"></a>安装ll</h2><p>按照顺序输入</p>
+<pre class=" language-plain"><code class="language-plain"># 编写
+[root@localhost ~]# vi ~/.bashrc
+</code></pre>
+<p><img src="/posts/2b8db47c/clip_image002.jpg" alt="图片"></p>
+<pre class=" language-plain"><code class="language-plain"># 刷新
+[root@localhost ~]# source ~/.bashrc
+</code></pre>
+<h2 id="安装wget"><a href="#安装wget" class="headerlink" title="安装wget"></a>安装wget</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y wget
+</code></pre>
+<h2 id="安装ifconfig"><a href="#安装ifconfig" class="headerlink" title="安装ifconfig"></a>安装ifconfig</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y net-tools
+</code></pre>
+<h2 id="安装xinetd"><a href="#安装xinetd" class="headerlink" title="安装xinetd"></a>安装xinetd</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y gcc automake autoconf libtool make
+</code></pre>
+<h2 id="安装rzrs"><a href="#安装rzrs" class="headerlink" title="安装rzrs"></a>安装rzrs</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y xinetd
+</code></pre>
+<h2 id="安装unzip"><a href="#安装unzip" class="headerlink" title="安装unzip"></a>安装unzip</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y unzip
+</code></pre>
+<h2 id="安装service"><a href="#安装service" class="headerlink" title="安装service"></a>安装service</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y initscripts
+</code></pre>
+<h2 id="安装sudo"><a href="#安装sudo" class="headerlink" title="安装sudo"></a>安装sudo</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y sudo
+</code></pre>
+<h2 id="安装libaio"><a href="#安装libaio" class="headerlink" title="安装libaio"></a>安装libaio</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y libaio-devel.x86_64
+</code></pre>
+<h2 id="安装GCC-C"><a href="#安装GCC-C" class="headerlink" title="安装GCC-C++"></a>安装GCC-C++</h2><pre class=" language-powershell"><code class="language-powershell">yum <span class="token operator">-</span>y install gcc
+yum <span class="token operator">-</span>y install gcc<span class="token operator">-</span>c+<span class="token operator">+</span>
+</code></pre>
+<h2 id="安装GCC"><a href="#安装GCC" class="headerlink" title="安装GCC"></a>安装GCC</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y centos-release-scl
+[root@localhost ~]# yum install -y devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils
+[root@localhost ~]# scl enable devtoolset-9 bash
+#如果要长期生效的话，执行如下：
+[root@localhost ~]# echo "source /opt/rh/devtoolset-9/enable" >>/etc/profile
+</code></pre>
+<h2 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install -y vim*
+</code></pre>
+<h2 id="安装rz"><a href="#安装rz" class="headerlink" title="安装rz"></a>安装rz</h2><pre class=" language-plain"><code class="language-plain">[root@localhost ~]# yum install lrzsz -y
+</code></pre>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.</span> <span class="toc-text">关闭防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ll"><span class="toc-number">2.</span> <span class="toc-text">安装ll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85wget"><span class="toc-number">3.</span> <span class="toc-text">安装wget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ifconfig"><span class="toc-number">4.</span> <span class="toc-text">安装ifconfig</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85xinetd"><span class="toc-number">5.</span> <span class="toc-text">安装xinetd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85rzrs"><span class="toc-number">6.</span> <span class="toc-text">安装rzrs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85unzip"><span class="toc-number">7.</span> <span class="toc-text">安装unzip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85service"><span class="toc-number">8.</span> <span class="toc-text">安装service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85sudo"><span class="toc-number">9.</span> <span class="toc-text">安装sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85libaio"><span class="toc-number">10.</span> <span class="toc-text">安装libaio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85GCC-C"><span class="toc-number">11.</span> <span class="toc-text">安装GCC-C++</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85GCC"><span class="toc-number">12.</span> <span class="toc-text">安装GCC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85vim"><span class="toc-number">13.</span> <span class="toc-text">安装vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85rz"><span class="toc-number">14.</span> <span class="toc-text">安装rz</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/2b8db47c.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/2b8db47c.html&text=liunx基础安装命令"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/2b8db47c.html&is_video=false&description=liunx基础安装命令"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=liunx基础安装命令&body=Check out this article: http://porcorosso.top/posts/2b8db47c.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/2b8db47c.html&title=liunx基础安装命令"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/2b8db47c.html&name=liunx基础安装命令&description=&lt;p&gt;liunx基础安装命令&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2025 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="计算机底层原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机底层原理">
+<meta property="og:url" content="http://porcorosso.top/posts/3bdc281c.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="计算机底层原理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/3bdc281c/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%9B%BE.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3bdc281c/%E5%AD%98%E5%82%A8%E7%9A%84%E5%B1%82%E6%AD%A4%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3bdc281c/%E9%80%9F%E5%BA%A6%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="http://porcorosso.top/posts/3bdc281c/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E7%BB%93%E6%9E%84.png">
+<meta property="article:published_time" content="2024-01-12T06:18:46.000Z">
+<meta property="article:modified_time" content="2025-08-28T12:18:50.544Z">
+<meta property="article:author" content="菊子酒">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/3bdc281c/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%9B%BE.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>计算机底层原理</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/6ed155d3.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/4356f0fa.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/3bdc281c.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/3bdc281c.html&text=计算机底层原理"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/3bdc281c.html&is_video=false&description=计算机底层原理"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=计算机底层原理&body=Check out this article: http://porcorosso.top/posts/3bdc281c.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/3bdc281c.html&name=计算机底层原理&description=&lt;p&gt;计算机底层原理&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">计算机底层原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cpu%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E7%9A%84%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">cpu是如何制作的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%BB%84%E6%88%90%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">计算机的组成：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">存储的层次结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">线程:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">超线程:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cpu%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text">cpu读取数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bug%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-number">1.4.</span> <span class="toc-text">bug的由来</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        计算机底层原理
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-01-12T06:18:46.000Z" itemprop="datePublished">2024-01-12</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>计算机底层原理</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="计算机底层原理"><a href="#计算机底层原理" class="headerlink" title="计算机底层原理"></a>计算机底层原理</h2><h3 id="cpu是如何制作的？"><a href="#cpu是如何制作的？" class="headerlink" title="cpu是如何制作的？"></a>cpu是如何制作的？</h3><p>一堆沙子 +一堆铜 + 一堆胶水 + 特定金属添加+ 特殊工艺</p>
+<p>沙子脱氧 -&gt; 石英 -&gt;二氧化硅-&gt; 提纯 -&gt; 硅-&gt; 切割 -&gt; 晶圆-&gt; 涂抹光刻胶 -&gt; 光刻 -&gt; 蚀刻 &gt; 清除光刻胶 -&gt; 电镀 -&gt; 抛光 -&gt; 铜层 -&gt; 测试 -&gt; 切片 -&gt;封装</p>
+<p><strong>cpu的核心是晶体管</strong></p>
+<p>计算机的核心是找到一种方式可以代表数字，有进行运算的方式</p>
+<p>发展史： 机械摇把式计算机 -&gt; 真空管计算机（不稳定，笨重） -&gt; 晶体管计算机</p>
+<p>晶体管通一次电可以进行一次单次的计算</p>
+<p>硅-&gt; 加入特殊元素-&gt; P半导体 N半导体 -&gt; PN结 -&gt; 二极管 -&gt; 场效应晶体管 -&gt; 逻辑开关</p>
+<p>与门 或门 非门 或非门 已非门 异或非门 -&gt; 基础逻辑电路加法器 累加器 锁存器<br>实现手动计算(通电一次，运行一次位运算)<br>加入内存 实现自动运算 (每次读取内存指令（高电低电）)</p>
+<h3 id="计算机的组成："><a href="#计算机的组成：" class="headerlink" title="计算机的组成："></a>计算机的组成：</h3><p><img src="/posts/3bdc281c/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%9B%BE.png" alt="img"></p>
+<p>cpu 内部组成：</p>
+<p>cpu通过总线读取内存中的数据</p>
+<p>内存中存取的一条一条的指令</p>
+<p><strong>程序计数器（指令计数器pc）</strong>：用于存放指令的地址，指向当前需要取出的指令，当CPU从内存中取出一个指令以后，EIP/IP就自动增加，指向下一个指令的地址。这样看来上下文切换实际就是寄存器的切换。</p>
+<p>cpu要做计算的时候，通过pc中指令的地址从内存中拿到对应的数据，读到<strong>寄存器(Registers)<strong>中，然后通过cpu的</strong>运算单元（ALU）</strong>运算，之后再写到内存中去</p>
+<h3 id="存储的层次结构"><a href="#存储的层次结构" class="headerlink" title="存储的层次结构"></a>存储的层次结构</h3><p><img src="/posts/3bdc281c/%E5%AD%98%E5%82%A8%E7%9A%84%E5%B1%82%E6%AD%A4%E7%BB%93%E6%9E%84.png" alt="img"></p>
+<p>主存的中取数据的速度大概是寄存器的100分之一</p>
+<p><img src="/posts/3bdc281c/%E9%80%9F%E5%BA%A6%E5%AF%B9%E6%AF%94.png" alt="img"></p>
+<p>多级缓存的结构</p>
+<p><img src="/posts/3bdc281c/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E7%BB%93%E6%9E%84.png" alt="img"></p>
+<p>为了取数据更快，内存会将数据存储在L3,L2,L1中，然后cpu去取数据的时候，先从L1中查找数据,找不到数据的情况下，会从L2,L3中依次查找数据，最后再在内存中去查找数据</p>
+<p>每个核中有L1,L2 ,多个核共享三级缓存L3，多块cpu共享内存</p>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程:"></a>线程:</h4><p>线程中的指令放程序计数器中,线程中的数据放到寄存器中</p>
+<p>线程的切换: 多线程执行的时候,要将线程的数据存到内存中,线程执行一半中止了,其它线程执行完之后,要从内存中拿到之前线程执行的数据恢复到程序计数器和寄存器中继续执行线程</p>
+<h4 id="超线程"><a href="#超线程" class="headerlink" title="超线程:"></a>超线程:</h4><p>一个ALU对应多个PC/寄存器</p>
+<p>四核八线程就是  四个ALU(计算单元)对应两组寄存器和PC</p>
+<h4 id="cpu读取数据"><a href="#cpu读取数据" class="headerlink" title="cpu读取数据"></a>cpu读取数据</h4><p>cpu读取数据的时候是很多个数据一起读取的,数据是0还是1其实就是线有没有通电,总线是很多根线</p>
+<p>找数据是从L1-&gt;L2-&gt;L3-&gt;内存 </p>
+<p>cpu从内存中读取数据的时候是一块一块的读取的(假如只需要数据a,它会读取含a的一块数据,不是只读取a),一块数据叫一个缓存行(cache line,64个字节),读取到数据之后缓存到L3-&gt;L2-&gt;L1下次需要数据直接从L1中取数据</p>
+<p><strong>为什么只读取64字节数据?</strong></p>
+<p>缓存行缓存行越大，局部性空间效率越高，但读取时间慢缓存行越小，局部性空间效率越低，但读取时间快取一个折中值，目前多用:64字节</p>
+<p>为了避免相邻的数据在不同cpu中反复修改,可以让这俩数据不在同一个缓存行,比如数据设置成long类型,前面或者后面加七个long 类型数据,一个long类型是8字节</p>
+<p><strong>缓存一致性协议:</strong> </p>
+<p>MESI Cache 一致性协议 四种状态</p>
+<p>Modified 被修改</p>
+<p>Exclusive 独享</p>
+<p>Shared 分享</p>
+<p>Lnvalid 失效</p>
+<p>使用缓存一致性协议保证cpu中的数据一致</p>
+<p>在一个核中缓存行修改了,修改完的数据会强制写道内存中,相同的缓存行在另一个核中就会失效(使用缓存锁实现),必须从内存中去读取最新的</p>
+<p>缓存一致性协议是<strong>缓存锁</strong>实现之一有些无法被缓存的数据或者跨越多个缓存行的数据依然必须使用<strong>总线锁</strong></p>
+<h3 id="bug的由来"><a href="#bug的由来" class="headerlink" title="bug的由来"></a>bug的由来</h3><p>原始的纸带算计需要给纸带上打眼进行计算，小飞虫把眼堵住了，然后程序一直有问题，英语的小飞虫叫bug</p>
+<p>0101010 太繁琐，之后就出现 助记符 （起别名）</p>
+<p>给0101010起一个别名，这种语言叫做<strong>汇编语言</strong>（就是机器语言）</p>
+<p>高级语言 -&gt; 编译器（将高级语言翻译成计算机可以识别的语言） -&gt; 机器语言</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">计算机底层原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cpu%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E7%9A%84%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">cpu是如何制作的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%BB%84%E6%88%90%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">计算机的组成：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">存储的层次结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">线程:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">超线程:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cpu%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text">cpu读取数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bug%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-number">1.4.</span> <span class="toc-text">bug的由来</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/3bdc281c.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/3bdc281c.html&text=计算机底层原理"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/3bdc281c.html&is_video=false&description=计算机底层原理"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=计算机底层原理&body=Check out this article: http://porcorosso.top/posts/3bdc281c.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/3bdc281c.html&title=计算机底层原理"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/3bdc281c.html&name=计算机底层原理&description=&lt;p&gt;计算机底层原理&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2025 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

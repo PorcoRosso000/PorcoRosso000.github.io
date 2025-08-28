@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="docker安装rabbitmq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker安装rabbitmq">
+<meta property="og:url" content="http://porcorosso.top/posts/8bf81981.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="docker安装rabbitmq">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/8bf81981/clip_image002.gif">
+<meta property="og:image" content="http://porcorosso.top/posts/8bf81981/clip_image004.jpg">
+<meta property="og:image" content="http://porcorosso.top/posts/8bf81981/clip_image006.gif">
+<meta property="article:published_time" content="2023-10-16T09:08:53.000Z">
+<meta property="article:modified_time" content="2025-08-28T12:18:50.435Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="rabbitmq">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/8bf81981/clip_image002.gif">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>docker安装rabbitmq</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+	<script src="/js/copy-code.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/c1fb5e41.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/afdec5ed.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/8bf81981.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/8bf81981.html&text=docker安装rabbitmq"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/8bf81981.html&is_video=false&description=docker安装rabbitmq"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=docker安装rabbitmq&body=Check out this article: http://porcorosso.top/posts/8bf81981.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/8bf81981.html&name=docker安装rabbitmq&description=&lt;p&gt;docker安装rabbitmq&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E7%9B%AE%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">挂载目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">启动脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">3.1.</span> <span class="toc-text">脚本内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%B5%8B%E6%9D%83"><span class="toc-number">3.2.</span> <span class="toc-text">脚本赋权</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC-1"><span class="toc-number">4.</span> <span class="toc-text">启动脚本</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        docker安装rabbitmq
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">红猪的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-10-16T09:08:53.000Z" itemprop="datePublished">2023-10-16</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>docker安装rabbitmq</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 打开docker目录</span>
+<span class="token punctuation">[</span>root@MuYu ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd /usr/local/docker/</span>
+<span class="token comment" spellcheck="true"># 创建rabbitmq文件夹</span>
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir rabbitmq</span>
+<span class="token comment" spellcheck="true"># 打开rabbitmq文件夹</span>
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd rabbitmq/</span>
+</code></pre>
+<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 创建挂载目录</span>
+<span class="token punctuation">[</span>root@MuYu rabbitmq<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mkdir data</span>
+</code></pre>
+<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 编写脚本</span>
+<span class="token punctuation">[</span>root@MuYu rabbitmq<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim startRabbitMq.sh</span>
+</code></pre>
+<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class=" language-shell"><code class="language-shell">docker run -d \
+-v /usr/local/docker/rabbitmq/data:/var/lib/rabbitmq \
+-p 5672:5672 -p 15672:15672 \
+--name rabbitmq \
+--privileged=true \
+--restart=always \
+--hostname host rabbitmq:3.9.13-management
+</code></pre>
+<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><pre class=" language-yaml"><code class="language-yaml"><span class="token punctuation">[</span>root@MuYu rabbitmq<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># chmod -R 700 startRabbitMq.sh</span>
+</code></pre>
+<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu rabbitmq]</span><span class="token comment" spellcheck="true"># ./startRabbitMq.sh</span>
+Unable to find image <span class="token string">'rabbitmq:3.9.13-management'</span> locally
+3<span class="token punctuation">.</span>9<span class="token punctuation">.</span>13: Pulling <span class="token keyword">from</span> library<span class="token operator">/</span>rabbitmq
+4d32b49e2995: Pull complete 
+2108a18330ce: Pull complete 
+5c6af9d52173: Pull complete 
+0f88690b6c7c: Pull complete 
+9531e199a7d9: Pull complete 
+efaba55aede6: Pull complete 
+41502a4f43bc: Pull complete 
+11b60d9df2ff: Pull complete 
+ac0763dc13e5: Pull complete 
+Digest: sha256:f5c8c7fd99e4c88527276df319556fdcb56e4d289614c5fefda5ee8d17c5ea89
+Status: Downloaded newer image <span class="token keyword">for</span> rabbitmq:3<span class="token punctuation">.</span>9<span class="token punctuation">.</span>13<span class="token operator">-</span>management
+ee7636e3d0baa7df4d5490c99616fef006bceedb08c46d7a2fea5650a6f01429
+</code></pre>
+<p><img src="/posts/8bf81981/clip_image002.gif" alt="图片"></p>
+<p>查看结果</p>
+<p><img src="/posts/8bf81981/clip_image004.jpg" alt="图片"></p>
+<p>用户名：guest 密码：guest</p>
+<p><img src="/posts/8bf81981/clip_image006.gif" alt="图片"></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E7%9B%AE%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">挂载目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">启动脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">3.1.</span> <span class="toc-text">脚本内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%B5%8B%E6%9D%83"><span class="toc-number">3.2.</span> <span class="toc-text">脚本赋权</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC-1"><span class="toc-number">4.</span> <span class="toc-text">启动脚本</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/8bf81981.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/8bf81981.html&text=docker安装rabbitmq"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/8bf81981.html&is_video=false&description=docker安装rabbitmq"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=docker安装rabbitmq&body=Check out this article: http://porcorosso.top/posts/8bf81981.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/8bf81981.html&title=docker安装rabbitmq"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/8bf81981.html&name=docker安装rabbitmq&description=&lt;p&gt;docker安装rabbitmq&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2025 菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
