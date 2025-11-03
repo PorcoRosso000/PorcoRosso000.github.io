@@ -92,7 +92,7 @@ future: true
 index_generator:
   path: ''
   per_page: 4
-  order_by: -updated
+  order_by: updated
   #-date
 
 # Category & Tag
@@ -272,15 +272,16 @@ auto_front_matter:
   # 'order'是一个列表，默认为空。在这种情况下，更新的front-matter字段将顺序保持在原始文本中。
   # 当'order'不为空时，front-matter将按以下顺序排序，支持少于或多于原文front-matter的真实数量。
   order:
-     - title
-     - date
+     - updated
+     - title 
+     # - date
      - typora-root-url
      - keywords
      - photos
      - tags
      - categories
      - description
-      #- updated
+     
       # - cover
 
 
