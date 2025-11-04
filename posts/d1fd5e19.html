@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="视觉学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视觉学习">
+<meta property="og:url" content="http://porcorosso.top/posts/d1fd5e19.html">
+<meta property="og:site_name" content="红猪的博客">
+<meta property="og:description" content="视觉学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/通信管理设置.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/海康视觉创建通信变量.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/plc海康S7通信设置.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/接收事件.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/接收事件设置.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/解析配置设置.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/事件触发设置.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/海康modbus通信添加.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/海康通讯数据配置d.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/tcon_ip_v4.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/配置modbus服务端.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/plc数据块定义modbus发送和接收数据.png">
+<meta property="og:image" content="http://porcorosso.top/posts/d1fd5e19/海康开放式用户通信建立.png">
+<meta property="article:published_time" content="2025-11-04T05:41:33.000Z">
+<meta property="article:modified_time" content="2025-11-04T09:32:28.652Z">
+<meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="海康">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://porcorosso.top/posts/d1fd5e19/通信管理设置.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>视觉学习</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="红猪的博客" type="application/atom+xml">
+</head>
+
+<body class="max-width mx-auto px3 LTR">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/Search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/posts/eecff6c8.html"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/posts/263403d4.html"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/d1fd5e19.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/d1fd5e19.html&text=视觉学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/d1fd5e19.html&is_video=false&description=视觉学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=视觉学习&body=Check out this article: http://porcorosso.top/posts/d1fd5e19.html"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/d1fd5e19.html&name=视觉学习&description=&lt;p&gt; 视觉学习&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://porcorosso.top/posts/d1fd5e19.html&t=视觉学习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1"><span class="toc-number">1.</span> <span class="toc-text">通信</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%B7%E5%BA%B7"><span class="toc-number">1.1.</span> <span class="toc-text">海康</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PLC%E4%B8%8E%E6%B5%B7%E5%BA%B7VisionMaster-S7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.1.</span> <span class="toc-text">PLC与海康VisionMaster S7通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E6%B7%BB%E5%8A%A0S7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">通信管理界面添加S7通信</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%AE%BE%E5%A4%87%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">新建设备列表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#plc%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%AF%84%E5%AD%98%E5%99%A8%E5%9C%B0%E5%9D%80%E4%B8%AD%E8%A6%81%E9%80%9A%E8%AE%AF%E7%9A%84%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">plc中创建寄存器地址中要通讯的数据块</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E4%BA%8B%E4%BB%B6%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">接收事件创建</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%8E%A5%E6%94%B6%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">创建接收事件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E4%BA%8B%E4%BB%B6%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">接收事件设置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.1.2.2.1.</span> <span class="toc-text">解析设置</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.1.2.3.</span> <span class="toc-text">事件触发设置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLC%E4%B8%8E%E6%B5%B7%E5%BA%B7VisionMaster-Modbus%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.2.</span> <span class="toc-text">PLC与海康VisionMaster Modbus通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%B7%E5%BA%B7%E9%80%9A%E4%BF%A1%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E6%B7%BB%E5%8A%A0Modbus%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">海康通信管理界面添加Modbus通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plc%E7%AB%AFmodbus%E9%80%9A%E4%BF%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">plc端modbus通信配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLC%E4%B8%8E%E6%B5%B7%E5%BA%B7VisionMaster-%E5%BC%80%E6%94%BE%E5%BC%8F%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.3.</span> <span class="toc-text">PLC与海康VisionMaster 开放式用户通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#plc%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">plc配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%B7%E5%BA%B7%E5%BC%80%E6%94%BE%E5%BC%8F%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">海康开放式用户通信配置</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        视觉学习
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">菊子酒</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-11-04T05:41:33.000Z" class="dt-published" itemprop="datePublished">2025-11-04</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E8%A7%86%E8%A7%89/">视觉</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E6%B5%B7%E5%BA%B7/" rel="tag">海康</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p> 视觉学习</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h1><h2 id="海康"><a href="#海康" class="headerlink" title="海康"></a>海康</h2><h3 id="PLC与海康VisionMaster-S7通信"><a href="#PLC与海康VisionMaster-S7通信" class="headerlink" title="PLC与海康VisionMaster S7通信"></a>PLC与海康VisionMaster S7通信</h3><p>视觉VisionMaster 设置使用S7通信后plc中只需要建立对应数据块既可实现实时通信</p>
+<h4 id="通信管理界面添加S7通信"><a href="#通信管理界面添加S7通信" class="headerlink" title="通信管理界面添加S7通信"></a>通信管理界面添加S7通信</h4><img src="/posts/d1fd5e19/通信管理设置.png" style="zoom:75%;">
+
+<h5 id="新建设备列表"><a href="#新建设备列表" class="headerlink" title="新建设备列表"></a>新建设备列表</h5><p>修改</p>
+<p>协议类型：西门子S7</p>
+<p>目标ip：plc的ip</p>
+<p>寄存器地址：创建要通信的变量</p>
+<p>修改</p>
+<p>设备名称：变量名称</p>
+<p>偏移量</p>
+<p>整型数据类型</p>
+<p>DB</p>
+<p>字节长度</p>
+<p>轮训读取</p>
+<h5 id="plc中创建寄存器地址中要通讯的数据块"><a href="#plc中创建寄存器地址中要通讯的数据块" class="headerlink" title="plc中创建寄存器地址中要通讯的数据块"></a>plc中创建寄存器地址中要通讯的数据块</h5><img src="/posts/d1fd5e19/海康视觉创建通信变量.png" style="zoom:75%;">
+
+<p>DB10对应的就是plc中的DB10</p>
+<img src="/posts/d1fd5e19/plc海康S7通信设置.png" style="zoom:75%;">
+
+<h4 id="接收事件创建"><a href="#接收事件创建" class="headerlink" title="接收事件创建"></a>接收事件创建</h4><h5 id="创建接收事件"><a href="#创建接收事件" class="headerlink" title="创建接收事件"></a>创建接收事件</h5><img src="/posts/d1fd5e19/接收事件.png" style="zoom:75%;">
+
+<h5 id="接收事件设置"><a href="#接收事件设置" class="headerlink" title="接收事件设置"></a>接收事件设置</h5><img src="/posts/d1fd5e19/接收事件设置.png" style="zoom:75%;">
+
+<h6 id="解析设置"><a href="#解析设置" class="headerlink" title="解析设置"></a>解析设置</h6><img src="/posts/d1fd5e19/解析配置设置.png" style="zoom:75%;">
+
+<h5 id="事件触发设置"><a href="#事件触发设置" class="headerlink" title="事件触发设置"></a>事件触发设置</h5><img src="/posts/d1fd5e19/事件触发设置.png" style="zoom:75%;">
+
+<h3 id="PLC与海康VisionMaster-Modbus通信"><a href="#PLC与海康VisionMaster-Modbus通信" class="headerlink" title="PLC与海康VisionMaster Modbus通信"></a>PLC与海康VisionMaster Modbus通信</h3><h4 id="海康通信管理界面添加Modbus通信"><a href="#海康通信管理界面添加Modbus通信" class="headerlink" title="海康通信管理界面添加Modbus通信"></a>海康通信管理界面添加Modbus通信</h4><img src="/posts/d1fd5e19/海康modbus通信添加.png" style="zoom:75%;">
+
+<p>海康定义通讯数据</p>
+<img src="/posts/d1fd5e19/海康通讯数据配置d.png" style="zoom:75%;">
+
+<h4 id="plc端modbus通信配置"><a href="#plc端modbus通信配置" class="headerlink" title="plc端modbus通信配置"></a>plc端modbus通信配置</h4><p><strong>创建含有Tcan_ip_v4的数据块</strong></p>
+<img src="/posts/d1fd5e19/tcon_ip_v4.png" style="zoom:75%;">
+
+<p><strong>添加modbus服务端</strong></p>
+<p>通信–&gt;其他–&gt;modbus_tcp–&gt;MB_SERVER</p>
+<img src="/posts/d1fd5e19/配置modbus服务端.png" style="zoom:75%;">
+
+<p><strong>定义发送和接收数据</strong></p>
+<img src="/posts/d1fd5e19/plc数据块定义modbus发送和接收数据.png" style="zoom:75%;">
+
+<h3 id="PLC与海康VisionMaster-开放式用户通信"><a href="#PLC与海康VisionMaster-开放式用户通信" class="headerlink" title="PLC与海康VisionMaster 开放式用户通信"></a>PLC与海康VisionMaster 开放式用户通信</h3><h4 id="plc配置"><a href="#plc配置" class="headerlink" title="plc配置"></a>plc配置</h4><p>开放式用户通信小蓝盒中的伙伴端口是海康的目标端口</p>
+<p>plc配置设置开放式用户通信为接收端</p>
+<h4 id="海康开放式用户通信配置"><a href="#海康开放式用户通信配置" class="headerlink" title="海康开放式用户通信配置"></a>海康开放式用户通信配置</h4><img src="/posts/d1fd5e19/海康开放式用户通信建立.png" style="zoom:75%;">
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1"><span class="toc-number">1.</span> <span class="toc-text">通信</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%B7%E5%BA%B7"><span class="toc-number">1.1.</span> <span class="toc-text">海康</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PLC%E4%B8%8E%E6%B5%B7%E5%BA%B7VisionMaster-S7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.1.</span> <span class="toc-text">PLC与海康VisionMaster S7通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E6%B7%BB%E5%8A%A0S7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">通信管理界面添加S7通信</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%AE%BE%E5%A4%87%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">新建设备列表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#plc%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%AF%84%E5%AD%98%E5%99%A8%E5%9C%B0%E5%9D%80%E4%B8%AD%E8%A6%81%E9%80%9A%E8%AE%AF%E7%9A%84%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">plc中创建寄存器地址中要通讯的数据块</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E4%BA%8B%E4%BB%B6%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">接收事件创建</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%8E%A5%E6%94%B6%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">创建接收事件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E4%BA%8B%E4%BB%B6%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">接收事件设置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.1.2.2.1.</span> <span class="toc-text">解析设置</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.1.2.3.</span> <span class="toc-text">事件触发设置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLC%E4%B8%8E%E6%B5%B7%E5%BA%B7VisionMaster-Modbus%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.2.</span> <span class="toc-text">PLC与海康VisionMaster Modbus通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%B7%E5%BA%B7%E9%80%9A%E4%BF%A1%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E6%B7%BB%E5%8A%A0Modbus%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">海康通信管理界面添加Modbus通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plc%E7%AB%AFmodbus%E9%80%9A%E4%BF%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">plc端modbus通信配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLC%E4%B8%8E%E6%B5%B7%E5%BA%B7VisionMaster-%E5%BC%80%E6%94%BE%E5%BC%8F%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.3.</span> <span class="toc-text">PLC与海康VisionMaster 开放式用户通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#plc%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">plc配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%B7%E5%BA%B7%E5%BC%80%E6%94%BE%E5%BC%8F%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">海康开放式用户通信配置</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/d1fd5e19.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/d1fd5e19.html&text=视觉学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/d1fd5e19.html&is_video=false&description=视觉学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=视觉学习&body=Check out this article: http://porcorosso.top/posts/d1fd5e19.html"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/d1fd5e19.html&title=视觉学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/d1fd5e19.html&name=视觉学习&description=&lt;p&gt; 视觉学习&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://porcorosso.top/posts/d1fd5e19.html&t=视觉学习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    菊子酒
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/Search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
