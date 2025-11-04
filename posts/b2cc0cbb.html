@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="docker安装nacos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker安装nacos">
@@ -26,126 +26,146 @@
 <meta name="twitter:image" content="http://porcorosso.top/posts/b2cc0cbb/clip_image002.jpg">
     
     
+      
         
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
+      
+      
         
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
+      
+      
         
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
         
+      
     
     <!-- title -->
     <title>docker安装nacos</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
     <!-- rss -->
     
     
-	<script src="/js/copy-code.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="红猪的博客" type="application/atom+xml">
+</head>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
-
-<body>
+<body class="max-width mx-auto px3 RTL">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/">categories</a></li>
-         
-          <li><a href="/Search/">Search</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     --><!--
+       --><li><a href="/URL">LINK_NAME</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/posts/cbab506c.html"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/posts/cbab506c.html"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/posts/c1fb5e41.html"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/posts/c1fb5e41.html"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
     </span>
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/b2cc0cbb.html"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/b2cc0cbb.html&text=docker安装nacos"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/b2cc0cbb.html&is_video=false&description=docker安装nacos"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=docker安装nacos&body=Check out this article: http://porcorosso.top/posts/b2cc0cbb.html"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/b2cc0cbb.html&name=docker安装nacos&description=&lt;p&gt;docker安装nacos&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/b2cc0cbb.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/b2cc0cbb.html&text=docker安装nacos"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/b2cc0cbb.html&is_video=false&description=docker安装nacos"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=docker安装nacos&body=Check out this article: http://porcorosso.top/posts/b2cc0cbb.html"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/b2cc0cbb.html&name=docker安装nacos&description=&lt;p&gt;docker安装nacos&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://porcorosso.top/posts/b2cc0cbb.html&t=docker安装nacos"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">上传配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">修改配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">初始化数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%84%9A%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5SQL%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">导入SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%AE%8C%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">导入完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDnacos%E9%95%9C%E5%83%8F"><span class="toc-number">6.</span> <span class="toc-text">下载nacos镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">7.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">8.</span> <span class="toc-text">脚本内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos-nacos-server-v2-0-4%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">9.</span> <span class="toc-text">nacos&#x2F;nacos-server:v2.0.4启动脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-number">10.</span> <span class="toc-text">验证</span></a></li></ol>
-    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">上传配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">修改配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">初始化数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%84%9A%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5SQL%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">导入SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%AE%8C%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">导入完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDnacos%E9%95%9C%E5%83%8F"><span class="toc-number">6.</span> <span class="toc-text">下载nacos镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">7.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">8.</span> <span class="toc-text">脚本内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos-nacos-server-v2-0-4%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">9.</span> <span class="toc-text">nacos&#x2F;nacos-server:v2.0.4启动脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-number">10.</span> <span class="toc-text">验证</span></a></li></ol>
+      </div>
+    
   </span>
 </div>
 
     
-    <div class="content index width mx-auto px2 my4">
+    <div class="content index py4 ">
         
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
-    <h1 class="posttitle" itemprop="name headline">
+    <h1 class="posttitle p-name" itemprop="name headline">
         docker安装nacos
     </h1>
 
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">红猪的博客</span>
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">菊子酒</span>
       </span>
       
     <div class="postdate">
-        <time datetime="2023-10-17T07:04:42.000Z" itemprop="datePublished">2023-10-17</time>
+      
+        <time datetime="2023-10-17T07:04:42.000Z" class="dt-published" itemprop="datePublished">2023-10-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/nacos/">nacos</a>
     </div>
 
 
       
     <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/nacos/" rel="tag">nacos</a>
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/nacos/" rel="tag">nacos</a>
     </div>
 
 
@@ -153,69 +173,69 @@
   </header>
   
 
-  <div class="content" itemprop="articleBody">
+  <div class="content e-content" itemprop="articleBody">
     <p>docker安装nacos</p>
 <span id="more"></span>
 
 <hr>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><pre class=" language-json"><code class="language-json"># 打开目录 
-<span class="token punctuation">[</span>root@MuYu ~<span class="token punctuation">]</span># cd /usr/local/docker/
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"># 打开目录 
+[root@MuYu ~]# cd &#x2F;usr&#x2F;local&#x2F;docker&#x2F;
 # 创建nacos文件夹
-<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># mkdir nacos
+[root@MuYu docker]# mkdir nacos
 # 打开目录
-<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># cd nacos/
+[root@MuYu docker]# cd nacos&#x2F;
 # 创建文件夹 config
-<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># mkdir config
+[root@MuYu docker]# mkdir config
 # 打开文件夹
-<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># cd config/
-</code></pre>
-<h3 id="上传配置文件"><a href="#上传配置文件" class="headerlink" title="上传配置文件"></a>上传配置文件</h3><pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># 
-</code></pre>
+[root@MuYu docker]# cd config&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="上传配置文件"><a href="#上传配置文件" class="headerlink" title="上传配置文件"></a>上传配置文件</h3><pre class="line-numbers language-json" data-language="json"><code class="language-json">[root@MuYu docker]# <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/RWKJhIXk8JB444Hi.properties?fileGuid=lL9WvLiIYusV3jIJ">application.properties</a></p>
-<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre class=" language-powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu config]</span><span class="token comment" spellcheck="true"># vim application.properties</span>
-</code></pre>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">[root@MuYu config]# vim application.properties<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p><img src="/posts/b2cc0cbb/clip_image002.jpg" alt="图片"></p>
-<pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 连接类型</span>
-spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>platform=mysql
-db<span class="token punctuation">.</span>num=1
-<span class="token comment" spellcheck="true"># 连接地址</span>
-db<span class="token punctuation">.</span>url<span class="token punctuation">.</span>0=jdbc:mysql:<span class="token operator">/</span><span class="token operator">/</span>IP:端口<span class="token operator">/</span>数据库名称?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;serverTimezone=UTC
-<span class="token comment" spellcheck="true"># 数据库用户名</span>
-db<span class="token punctuation">.</span>user=root
-<span class="token comment" spellcheck="true"># 数据库密码</span>
-db<span class="token punctuation">.</span>password=Dongzl828<span class="token punctuation">.</span><span class="token punctuation">.</span>
-</code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 连接类型
+spring.datasource.platform&#x3D;mysql
+db.num&#x3D;1
+# 连接地址
+db.url.0&#x3D;jdbc:mysql:&#x2F;&#x2F;IP:端口&#x2F;数据库名称?characterEncoding&#x3D;utf8&amp;connectTimeout&#x3D;1000&amp;socketTimeout&#x3D;3000&amp;autoReconnect&#x3D;true&amp;serverTimezone&#x3D;UTC
+# 数据库用户名
+db.user&#x3D;root
+# 数据库密码
+db.password&#x3D;Dongzl828..<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h2><p>在nacos需要连接的数据库当中，创建数据库 nacos_config 字符集类型为 utf8mb4</p>
 <p><img src="/posts/b2cc0cbb/clip_image004.gif" alt="图片"></p>
 <h2 id="SQL脚本"><a href="#SQL脚本" class="headerlink" title="SQL脚本"></a>SQL脚本</h2><p><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/GAM432RosXNTiQcB.sql?fileGuid=ZzkLM4NQv4CyoeAQ">nacos-mysql.sql</a></p>
 <h2 id="导入SQL脚本"><a href="#导入SQL脚本" class="headerlink" title="导入SQL脚本"></a>导入SQL脚本</h2><p><img src="/posts/b2cc0cbb/clip_image006.gif" alt="图片"></p>
 <h2 id="导入完成"><a href="#导入完成" class="headerlink" title="导入完成"></a>导入完成</h2><p><img src="/posts/b2cc0cbb/clip_image008.gif" alt="图片"></p>
-<h2 id="下载nacos镜像"><a href="#下载nacos镜像" class="headerlink" title="下载nacos镜像"></a>下载nacos镜像</h2><pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span>root@MuYu nacos<span class="token punctuation">]</span># docker pull nacos/nacos-server<span class="token operator">:</span>v2<span class="token number">.0</span>.<span class="token number">4</span>
-</code></pre>
-<h2 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h2><pre class=" language-json"><code class="language-json"># 根目录
-<span class="token punctuation">[</span>root@MuYu config<span class="token punctuation">]</span># cd ../
+<h2 id="下载nacos镜像"><a href="#下载nacos镜像" class="headerlink" title="下载nacos镜像"></a>下载nacos镜像</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json">[root@MuYu nacos]# docker pull nacos&#x2F;nacos-server:v2.0.4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"># 根目录
+[root@MuYu config]# cd ..&#x2F;
 # 编写脚本
-<span class="token punctuation">[</span>root@MuYu nacos<span class="token punctuation">]</span># vim startNacos.sh
-</code></pre>
-<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class=" language-json"><code class="language-json">docker run -d \
---privileged=<span class="token boolean">true</span> \
---restart=always \
---name nacos<span class="token number">-8848</span> \
+[root@MuYu nacos]# vim startNacos.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json">docker run -d \
+--privileged&#x3D;true \
+--restart&#x3D;always \
+--name nacos-8848 \
 --network host \
--e MODE=standalone \
--e JVM_XMS=256m \
--e JVM_XMX=256m \
--e JVM_XMN=256m \
--p <span class="token number">8848</span><span class="token operator">:</span><span class="token number">8848</span> \
--p <span class="token number">9848</span><span class="token operator">:</span><span class="token number">9848</span> \
--v /usr/local/docker/nacos/config/application.properties<span class="token operator">:</span>/home/nacos/conf/application.properties \
-nacos/nacos-server<span class="token operator">:</span>v2<span class="token number">.0</span>.<span class="token number">4</span>
-</code></pre>
-<h2 id="nacos-nacos-server-v2-0-4启动脚本"><a href="#nacos-nacos-server-v2-0-4启动脚本" class="headerlink" title="nacos/nacos-server:v2.0.4启动脚本"></a>nacos/nacos-server:v2.0.4启动脚本</h2><pre class=" language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 权限</span>
-<span class="token namespace">[root@MuYu nacos]</span><span class="token comment" spellcheck="true"># chmod -R 777 startNacos.sh</span>
-<span class="token comment" spellcheck="true"># 启动</span>
-<span class="token namespace">[root@MuYu nacos]</span><span class="token comment" spellcheck="true"># ./startNacos.sh</span>
-</code></pre>
+-e MODE&#x3D;standalone \
+-e JVM_XMS&#x3D;256m \
+-e JVM_XMX&#x3D;256m \
+-e JVM_XMN&#x3D;256m \
+-p 8848:8848 \
+-p 9848:9848 \
+-v &#x2F;usr&#x2F;local&#x2F;docker&#x2F;nacos&#x2F;config&#x2F;application.properties:&#x2F;home&#x2F;nacos&#x2F;conf&#x2F;application.properties \
+nacos&#x2F;nacos-server:v2.0.4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="nacos-nacos-server-v2-0-4启动脚本"><a href="#nacos-nacos-server-v2-0-4启动脚本" class="headerlink" title="nacos/nacos-server:v2.0.4启动脚本"></a>nacos/nacos-server:v2.0.4启动脚本</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 权限
+[root@MuYu nacos]# chmod -R 777 startNacos.sh
+# 启动
+[root@MuYu nacos]# .&#x2F;startNacos.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p><img src="/posts/b2cc0cbb/clip_image010.gif" alt="图片"></p>
 <p>查看容器日志命令：</p>
 <p>docker logs -f -t –tail -f 容器名|id</p>
@@ -225,111 +245,142 @@ nacos/nacos-server<span class="token operator">:</span>v2<span class="token numb
 
 
 
-    </div>
-    
-      <div id="footer-post-container">
+        
+          <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/">categories</a></li>
-         
-          <li><a href="/Search/">Search</a></li>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
         
       </ul>
     </div>
 
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">上传配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">修改配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">初始化数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%84%9A%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5SQL%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">导入SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%AE%8C%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">导入完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDnacos%E9%95%9C%E5%83%8F"><span class="toc-number">6.</span> <span class="toc-text">下载nacos镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">7.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">8.</span> <span class="toc-text">脚本内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos-nacos-server-v2-0-4%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">9.</span> <span class="toc-text">nacos&#x2F;nacos-server:v2.0.4启动脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-number">10.</span> <span class="toc-text">验证</span></a></li></ol>
-    </div>
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">上传配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">修改配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">初始化数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%84%9A%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5SQL%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">导入SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%AE%8C%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">导入完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDnacos%E9%95%9C%E5%83%8F"><span class="toc-number">6.</span> <span class="toc-text">下载nacos镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">7.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">8.</span> <span class="toc-text">脚本内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos-nacos-server-v2-0-4%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">9.</span> <span class="toc-text">nacos&#x2F;nacos-server:v2.0.4启动脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-number">10.</span> <span class="toc-text">验证</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/b2cc0cbb.html"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/b2cc0cbb.html&text=docker安装nacos"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/b2cc0cbb.html&is_video=false&description=docker安装nacos"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=docker安装nacos&body=Check out this article: http://porcorosso.top/posts/b2cc0cbb.html"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/b2cc0cbb.html&name=docker安装nacos&description=&lt;p&gt;docker安装nacos&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://porcorosso.top/posts/b2cc0cbb.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://porcorosso.top/posts/b2cc0cbb.html&text=docker安装nacos"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://porcorosso.top/posts/b2cc0cbb.html&is_video=false&description=docker安装nacos"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=docker安装nacos&body=Check out this article: http://porcorosso.top/posts/b2cc0cbb.html"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://porcorosso.top/posts/b2cc0cbb.html&title=docker安装nacos"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://porcorosso.top/posts/b2cc0cbb.html&name=docker安装nacos&description=&lt;p&gt;docker安装nacos&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://porcorosso.top/posts/b2cc0cbb.html&t=docker安装nacos"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
 
     <div id="actions-footer">
-      <ul>
-        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
-        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
-        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
-        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
-      </ul>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
 </div>
 
-    
-    <footer id="footer">
+        
+        <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2025 菊子酒
+    Copyright &copy;
+    
+    
+    2016-2025
+    菊子酒
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">tags</a></li>
-         
-          <li><a href="/categories/">categories</a></li>
-         
-          <li><a href="/Search/">Search</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     --><!--
+       --><li><a href="/URL">LINK_NAME</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
 </footer>
 
-</body>
-</html>
-<!-- styles -->
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    </div>
+    <!-- styles -->
 
 
-<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
-<!-- jquery -->
-
-<script src="/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
 <script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
+<!-- utterances Comments -->
+
+</body>
+</html>
