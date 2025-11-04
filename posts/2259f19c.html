@@ -59,7 +59,7 @@
 <meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="红猪的博客" type="application/atom+xml">
 </head>
 
-<body class="max-width mx-auto px3 RTL">
+<body class="max-width mx-auto px3 LTR">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -73,11 +73,7 @@
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </span>
@@ -172,43 +168,43 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="配置yum国内镜像加速"><a href="#配置yum国内镜像加速" class="headerlink" title="配置yum国内镜像加速"></a>配置yum国内镜像加速</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 1、备份
-mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.backup
-# 2、下载新的CentOS-Base.repo 到&#x2F;etc&#x2F;yum.repos.d&#x2F;
-wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo
-# 3、生成缓存
+<h2 id="配置yum国内镜像加速"><a href="#配置yum国内镜像加速" class="headerlink" title="配置yum国内镜像加速"></a>配置yum国内镜像加速</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 1、备份</span>
+<span class="token function">mv</span> <span class="token operator">/</span>etc/yum<span class="token punctuation">.</span>repos<span class="token punctuation">.</span>d/CentOS-Base<span class="token punctuation">.</span>repo <span class="token operator">/</span>etc/yum<span class="token punctuation">.</span>repos<span class="token punctuation">.</span>d/CentOS-Base<span class="token punctuation">.</span>repo<span class="token punctuation">.</span>backup
+<span class="token comment"># 2、下载新的CentOS-Base.repo 到/etc/yum.repos.d/</span>
+wget <span class="token operator">-</span>O <span class="token operator">/</span>etc/yum<span class="token punctuation">.</span>repos<span class="token punctuation">.</span>d/CentOS-Base<span class="token punctuation">.</span>repo http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com/repo/Centos-7<span class="token punctuation">.</span>repo
+<span class="token comment"># 3、生成缓存</span>
 yum makecache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="安装docker运行环境"><a href="#安装docker运行环境" class="headerlink" title="安装docker运行环境"></a>安装docker运行环境</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 由于 Docker 是基于 C 和 C++ 开发的，所以需要先安装相关环境。
-yum -y install gcc
-yum -y install gcc-c++<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="安装docker运行环境"><a href="#安装docker运行环境" class="headerlink" title="安装docker运行环境"></a>安装docker运行环境</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 由于 Docker 是基于 C 和 C++ 开发的，所以需要先安装相关环境。</span>
+yum <span class="token operator">-</span>y install gcc
+yum <span class="token operator">-</span>y install gcc-c+<span class="token operator">+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="卸载docker"><a href="#卸载docker" class="headerlink" title="卸载docker"></a>卸载docker</h2><p>如果之前安装过docker先卸载之前的docker，如果没安装过请忽略这一步</p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">yum -y remove docker docker-common docker-selinux docker-engine<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">yum <span class="token operator">-</span>y remove docker docker-common docker-selinux docker-engine<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>根据docker官方的建议，需要先安装一些环境</p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">yum install -y yum-utils device-mapper-persistent-data lvm2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">yum install <span class="token operator">-</span>y yum-utils device-mapper-persistent-<span class="token keyword">data</span> lvm2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="设置镜像仓库"><a href="#设置镜像仓库" class="headerlink" title="设置镜像仓库"></a>设置镜像仓库</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">yum-config-manager --add-repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;docker-ce&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="设置镜像仓库"><a href="#设置镜像仓库" class="headerlink" title="设置镜像仓库"></a>设置镜像仓库</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">yum-config-manager <span class="token operator">--</span><span class="token function">add-repo</span> http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com/docker-ce/linux/centos/docker-ce<span class="token punctuation">.</span>repo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="更新yum软件包索引"><a href="#更新yum软件包索引" class="headerlink" title="更新yum软件包索引"></a>更新yum软件包索引</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">yum makecache fast<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 这里的 docker-ce 社区版，docker-ee 企业版
-yum -y install docker-ce docker-ce-cli containerd.io<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 这里的 docker-ce 社区版，docker-ee 企业版</span>
+yum <span class="token operator">-</span>y install docker-ce docker-ce-<span class="token function">cli</span> containerd<span class="token punctuation">.</span>io<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h2 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 查看docker状态
+<h2 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 查看docker状态</span>
 systemctl status docker
 
-# 启动docker
-systemctl start docker
+<span class="token comment"># 启动docker</span>
+systemctl <span class="token function">start</span> docker
 
-# 停止docker
+<span class="token comment"># 停止docker</span>
 systemctl stop docker
 
-# 查看docker版本信息
+<span class="token comment"># 查看docker版本信息</span>
 docker version
 
-# 设置docker容器开机自启
+<span class="token comment"># 设置docker容器开机自启</span>
 systemctl enable docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="创建docker的工作目录"><a href="#创建docker的工作目录" class="headerlink" title="创建docker的工作目录"></a>创建docker的工作目录</h2><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"># 打开目录
@@ -231,11 +227,7 @@ systemctl enable docker<span aria-hidden="true" class="line-numbers-rows"><span>
         
           <li><a href="/about/">关于</a></li>
         
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
-        
-          <li><a href="/URL">LINK_NAME</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -293,11 +285,7 @@ systemctl enable docker<span aria-hidden="true" class="line-numbers-rows"><span>
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </nav>

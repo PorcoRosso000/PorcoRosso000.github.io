@@ -90,7 +90,7 @@
 <meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="红猪的博客" type="application/atom+xml">
 </head>
 
-<body class="max-width mx-auto px3 RTL">
+<body class="max-width mx-auto px3 LTR">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -104,11 +104,7 @@
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </span>
@@ -999,14 +995,14 @@ $ git pull origin backend-log #再次拉取代码<span aria-hidden="true" class=
 
 
 
-<h3 id="新建了一个git仓库，本地代码上传gitlab"><a href="#新建了一个git仓库，本地代码上传gitlab" class="headerlink" title="新建了一个git仓库，本地代码上传gitlab"></a>新建了一个git仓库，本地代码上传gitlab</h3><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp">$ git init  &#x2F;&#x2F;建立一个新的git链接
-$ git remote add origin https:&#x2F;&#x2F;gitee.com&#x2F;xxx&#x2F;XXX.git  &#x2F;&#x2F;https：自己的仓库地址
-$ git config --global user.email &quot;you@example.com&quot;   &#x2F;&#x2F;自己的邮箱
-$ git config --global user.name &quot;Your Name&quot;  &#x2F;&#x2F;用户名
-$ git add .  &#x2F;&#x2F;. 是添加所有文件到git仓库
-$ git commit -m &quot;提交的内容名称&quot;
-$ git pull origin master  &#x2F;&#x2F;先拉取下后提交不容易错
-$ git push -u origin master  &#x2F;&#x2F;提交到master分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="新建了一个git仓库，本地代码上传gitlab"><a href="#新建了一个git仓库，本地代码上传gitlab" class="headerlink" title="新建了一个git仓库，本地代码上传gitlab"></a>新建了一个git仓库，本地代码上传gitlab</h3><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp">$ git init  <span class="token comment">//建立一个新的git链接</span>
+$ git remote <span class="token keyword">add</span> <span class="token class-name">origin</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>gitee<span class="token punctuation">.</span>com<span class="token operator">/</span>xxx<span class="token operator">/</span>XXX<span class="token punctuation">.</span>git  <span class="token comment">//https：自己的仓库地址</span>
+$ git config <span class="token operator">--</span><span class="token keyword">global</span> user<span class="token punctuation">.</span>email <span class="token string">"you@example.com"</span>   <span class="token comment">//自己的邮箱</span>
+$ git config <span class="token operator">--</span><span class="token keyword">global</span> user<span class="token punctuation">.</span>name <span class="token string">"Your Name"</span>  <span class="token comment">//用户名</span>
+$ git <span class="token keyword">add</span> <span class="token punctuation">.</span>  <span class="token comment">//. 是添加所有文件到git仓库</span>
+$ git commit <span class="token operator">-</span>m <span class="token string">"提交的内容名称"</span>
+$ git pull origin master  <span class="token comment">//先拉取下后提交不容易错</span>
+$ git push <span class="token operator">-</span>u origin master  <span class="token comment">//提交到master分支</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="git-status-出错-interactive-rebase-in-progress；-onto-796e78f"><a href="#git-status-出错-interactive-rebase-in-progress；-onto-796e78f" class="headerlink" title="git status 出错 interactive rebase in progress； onto 796e78f"></a>git status 出错 interactive rebase in progress； onto 796e78f</h3><pre class="line-numbers language-none"><code class="language-none">使用 git commit --amend 命令修订当前的提交
 使用 git rebase --continue 命令继续代码的提交(推荐),执行之后,需要重新提交,解决一下当前的代码冲突之后重新提交直至没有rebase提示,就可以正常提交了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -1095,10 +1091,10 @@ f88b2e6 Initial commit
 <ul>
 <li>输入命令：</li>
 </ul>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">git rebase -i 073ea5e &#x2F;&#x2F;第三次提交ID
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">git rebase <span class="token operator">-</span>i <span class="token number">073</span>ea5e <span class="token comment">//第三次提交ID</span>
 
-&#x2F;&#x2F;上面等同如下命令
-git rebase -i HEAD~3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">//上面等同如下命令</span>
+git rebase <span class="token operator">-</span>i HEAD<span class="token operator">~</span><span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在交互界面使用下面命令对提交进行操作</p>
 <p><img src="/posts/d9283bc6/20230805141202.png" alt="20230805141202"></p>
@@ -1120,7 +1116,7 @@ git rebase -i HEAD~3<span aria-hidden="true" class="line-numbers-rows"><span></s
 <li>deps: 升级依赖</li>
 </ul>
 <p><strong>例如</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git commit -m &#39;fix:修复xxxbug&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">'fix:修复xxxbug'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <hr>
 <p>抛弃本地的 commit，采用远程的 commit。慎用：因为你本地的修改都会失去。</p>
@@ -1177,7 +1173,7 @@ git revert 76sdeb<span aria-hidden="true" class="line-numbers-rows"><span></span
 <p><img src="/posts/d9283bc6/12665637-fec52bf232159982.png" alt="12665637-fec52bf232159982"></p>
 <h3 id="Git如何做到同一个分支只上线部分功能-Cherry-Pick"><a href="#Git如何做到同一个分支只上线部分功能-Cherry-Pick" class="headerlink" title="Git如何做到同一个分支只上线部分功能 Cherry-Pick"></a>Git如何做到同一个分支只上线部分功能 Cherry-Pick</h3><p>在开发的时候，我们通常会在同一个开发分支(B)上，同时开发多个功能，但最终可能只需要上线(合并到master分支)部分功能。显然这时直接将B分支合并（pull request）到master分支，是会将所有提交都合并到master，所以这里我们无法直接使用pull requst。直接将B分支推送到master分支是同一个结果。</p>
 <p>这时我们可以使用到cherry-pick命令拉取代码，cherry-pick可以做到commit维度的代码拉取，也就是只拉取某次commit中的所有代码变更。我们想要上线部分功能可以从这个命令入手。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">git cherry-pick &lt;commit id&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>commit id<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <blockquote>
 <p>cherry-pick:选出自己喜欢的</p>
@@ -1218,11 +1214,11 @@ git revert 76sdeb<span aria-hidden="true" class="line-numbers-rows"><span></span
 </tr>
 </tbody></table>
 <p>想要达到第五天的效果，我们可以使用cherry-pick，来选出自己想要的commit，来合并到D分支上。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#需要先切换到D分支后，再执行cherry-pick命令，可以将别的分支的commit选取拉到当前分支。
-# 切换到 D 分支
-git checkout D
-git cherry-pick commit1编号
-git cherry-pick commit3编号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#需要先切换到D分支后，再执行cherry-pick命令，可以将别的分支的commit选取拉到当前分支。</span>
+<span class="token comment"># 切换到 D 分支</span>
+<span class="token function">git</span> checkout D
+<span class="token function">git</span> cherry-pick commit1编号
+<span class="token function">git</span> cherry-pick commit3编号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>在拉取多个提交时应按照先后提交顺序拉取，并将某个功能的所有commit都拉取到以免代码丢失。</p>
 <p>假如，只拉取commit3，但是commit3与commit1是在同一个文件中做修改，这是会有冲突出现。但是只拉取commit1而忘记了commit3，这时不会有冲突，但是后续便丢失了commit3的代码。</p>
@@ -1233,41 +1229,41 @@ git cherry-pick commit3编号<span aria-hidden="true" class="line-numbers-rows">
 <li>cherry-pick时可以用idea将某个功能的所有提交，全选出来，一次性都pick出来。或者，按照先后顺序将commit依次pick过来，直接pick多次修改后的commit会存在冲突。</li>
 </ol>
 <h3 id="cherry-pick-详细用法"><a href="#cherry-pick-详细用法" class="headerlink" title="cherry-pick 详细用法"></a>cherry-pick 详细用法</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p><code>git cherry-pick</code>命令的作用，就是将指定的提交（commit）应用于其他分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git cherry-pick &lt;commitHash&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>commitHash<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上面命令就会将指定的提交<code>commitHash</code>，应用于当前分支。这会在当前分支产生一个新的提交，当然它们的哈希值会不一样。</p>
 <p>举例来说，代码仓库有<code>master</code>和<code>feature</code>两个分支。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">a - b - c - d   Master
-     \
+     <span class="token punctuation">\</span>
        e - f - g Feature<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>现在将提交<code>f</code>应用到<code>master</code>分支。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 切换到 master 分支
-$ git checkout master
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 切换到 master 分支</span>
+$ <span class="token function">git</span> checkout master
 
-# Cherry pick 操作
-$ git cherry-pick f<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># Cherry pick 操作</span>
+$ <span class="token function">git</span> cherry-pick f<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>上面的操作完成以后，代码库就变成了下面的样子。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">a - b - c - d - f   Master
-     \
+     <span class="token punctuation">\</span>
        e - f - g Feature<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>从上面可以看到，<code>master</code>分支的末尾增加了一个提交<code>f</code>。</p>
 <p><code>git cherry-pick</code>命令的参数，不一定是提交的哈希值，分支名也是可以的，表示转移该分支的最新提交。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git cherry-pick feature<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick feature<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上面代码表示将<code>feature</code>分支的最近一次提交，转移到当前分支。</p>
 <h4 id="转移多个提交"><a href="#转移多个提交" class="headerlink" title="转移多个提交"></a>转移多个提交</h4><p>Cherry pick 支持一次转移多个提交。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git cherry-pick &lt;HashA&gt; &lt;HashB&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>HashA<span class="token operator">></span> <span class="token operator">&lt;</span>HashB<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上面的命令将 A 和 B 两个提交应用到当前分支。这会在当前分支生成两个对应的新提交。</p>
 <p>如果想要转移一系列的连续提交，可以使用下面的简便语法。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git cherry-pick A..B <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick A<span class="token punctuation">..</span>B <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上面的命令可以转移从 A 到 B 的所有提交。它们必须按照正确的顺序放置：提交 A 必须早于提交 B，否则命令将失败，但不会报错。</p>
 <p>注意，使用上面的命令，提交 A 将不会包含在 Cherry pick 中。如果要包含提交 A，可以使用下面的语法。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git cherry-pick A^..B <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick A^<span class="token punctuation">..</span>B <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h4><p><code>git cherry-pick</code>命令的常用配置项如下。</p>
 <p><strong>（1）-e，–edit</strong></p>
@@ -1281,32 +1277,32 @@ $ git cherry-pick f<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <p><strong>（5）-m parent-number，–mainline parent-number</strong></p>
 <p>如果原始提交是一个合并节点，来自于两个分支的合并，那么 Cherry pick 默认将失败，因为它不知道应该采用哪个分支的代码变动。</p>
 <p><code>-m</code>配置项告诉 Git，应该采用哪个分支的变动。它的参数<code>parent-number</code>是一个从<code>1</code>开始的整数，代表原始提交的父分支编号。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git cherry-pick -m 1 &lt;commitHash&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token parameter variable">-m</span> <span class="token number">1</span> <span class="token operator">&lt;</span>commitHash<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上面命令表示，Cherry pick 采用提交<code>commitHash</code>来自编号1的父分支的变动。</p>
 <p>一般来说，1号父分支是接受变动的分支（the branch being merged into），2号父分支是作为变动来源的分支（the branch being merged from）。</p>
 <h4 id="代码冲突"><a href="#代码冲突" class="headerlink" title="代码冲突"></a>代码冲突</h4><p>如果操作过程中发生代码冲突，Cherry pick 会停下来，让用户决定如何继续操作。</p>
 <p><strong>（1）–continue</strong></p>
 <p>用户解决代码冲突后，第一步将修改的文件重新加入暂存区（<code>git add .</code>），第二步使用下面的命令，让 Cherry pick 过程继续执行。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git cherry-pick --continue<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token parameter variable">--continue</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><strong>（2）–abort</strong></p>
 <p>发生代码冲突后，放弃合并，回到操作前的样子。</p>
 <p><strong>（3）–quit</strong></p>
 <p>发生代码冲突后，退出 Cherry pick，但是不回到操作前的样子。</p>
 <h4 id="转移到另一个代码库"><a href="#转移到另一个代码库" class="headerlink" title="转移到另一个代码库"></a>转移到另一个代码库</h4><p>Cherry pick 也支持转移另一个代码库的提交，方法是先将该库加为远程仓库。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git remote add target git:&#x2F;&#x2F;gitUrl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> remote <span class="token function">add</span> target git://gitUrl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上面命令添加了一个远程仓库<code>target</code>。</p>
 <p>然后，将远程代码抓取到本地。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git fetch target<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> fetch target<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上面命令将远程代码仓库抓取到本地。</p>
 <p>接着，检查一下要从远程仓库转移的提交，获取它的哈希值。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git log target&#x2F;master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> log target/master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>最后，使用<code>git cherry-pick</code>命令转移提交。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ git cherry-pick &lt;commitHash&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>commitHash<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 合并分支（多人开发中，经常一人一个分支，各自在自己分支开发，开发完成以后合并到某一个指定分支，没有问题后最后合并到master主分支，我们的流程是各自在自己的develop开发，开发完成以后合并到lastest分支，没有问题后提交合并申请到master分支，由leader审批是否统一合并到master，因为很多新人不太清楚代码的具体用途，所以讲的稍微详细点，明白命令的实现目的能更好的掌握使用，后面会有具体的操作流程）
 1.本地代码依次
@@ -1344,11 +1340,7 @@ git push （develop-author分支，即自己的开发分支）
         
           <li><a href="/about/">关于</a></li>
         
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
-        
-          <li><a href="/URL">LINK_NAME</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -1406,11 +1398,7 @@ git push （develop-author分支，即自己的开发分支）
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </nav>

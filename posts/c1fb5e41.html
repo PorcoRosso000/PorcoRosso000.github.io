@@ -64,7 +64,7 @@
 <meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="红猪的博客" type="application/atom+xml">
 </head>
 
-<body class="max-width mx-auto px3 RTL">
+<body class="max-width mx-auto px3 LTR">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -78,11 +78,7 @@
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </span>
@@ -177,55 +173,55 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 进入目录
-[root@MuYu docker]# cd &#x2F;usr&#x2F;local&#x2F;docker
-# 创建文件夹
-[root@MuYu docker]# mkdir -p portainer&#x2F;data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 进入目录</span>
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span><span class="token comment"># cd /usr/local/docker</span>
+<span class="token comment"># 创建文件夹</span>
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span><span class="token comment"># mkdir -p portainer/data</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="汉化包"><a href="#汉化包" class="headerlink" title="汉化包"></a>汉化包</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 打开目录portainer
-[root@localhost docker]# cd portainer&#x2F;
+<h2 id="汉化包"><a href="#汉化包" class="headerlink" title="汉化包"></a>汉化包</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 打开目录portainer</span>
+<span class="token punctuation">[</span>root@localhost docker<span class="token punctuation">]</span><span class="token comment"># cd portainer/</span>
 
-# 下载汉化包(汉化包已失效,重新找汉化包)
-[root@MuYu portainer]# wget https:&#x2F;&#x2F;labx.me&#x2F;dl&#x2F;4nat&#x2F;public.zip
---2022-05-01 23:09:00--  https:&#x2F;&#x2F;labx.me&#x2F;dl&#x2F;4nat&#x2F;public.zip
-Resolving labx.me (labx.me)... 43.134.207.90
-Connecting to labx.me (labx.me)|43.134.207.90|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1932694 (1.8M) [application&#x2F;zip]
+<span class="token comment"># 下载汉化包(汉化包已失效,重新找汉化包)</span>
+<span class="token punctuation">[</span>root@MuYu portainer<span class="token punctuation">]</span><span class="token comment"># wget https://labx.me/dl/4nat/public.zip</span>
+--2022-05-01 <span class="token number">23</span>:09:00--  https://labx.me/dl/4nat/public.zip
+Resolving labx.me <span class="token punctuation">(</span>labx.me<span class="token punctuation">)</span><span class="token punctuation">..</span>. <span class="token number">43.134</span>.207.90
+Connecting to labx.me <span class="token punctuation">(</span>labx.me<span class="token punctuation">)</span><span class="token operator">|</span><span class="token number">43.134</span>.207.90<span class="token operator">|</span>:443<span class="token punctuation">..</span>. connected.
+HTTP request sent, awaiting response<span class="token punctuation">..</span>. <span class="token number">200</span> OK
+Length: <span class="token number">1932694</span> <span class="token punctuation">(</span><span class="token number">1</span>.8M<span class="token punctuation">)</span> <span class="token punctuation">[</span>application/zip<span class="token punctuation">]</span>
 Saving to: ‘public.zip’
 
-100%[&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;] 1,932,694   1.72MB&#x2F;s   in 1.1s   
+<span class="token number">100</span>%<span class="token punctuation">[</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">]</span> <span class="token number">1,932</span>,694   <span class="token number">1</span>.72MB/s   <span class="token keyword">in</span> <span class="token number">1</span>.1s   
 
-2022-05-01 23:09:03 (1.72 MB&#x2F;s) - ‘public.zip’ saved [1932694&#x2F;1932694]
-# 解压汉化包
-[root@MuYu portainer]# unzip public.zip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token number">2022</span>-05-01 <span class="token number">23</span>:09:03 <span class="token punctuation">(</span><span class="token number">1.72</span> MB/s<span class="token punctuation">)</span> - ‘public.zip’ saved <span class="token punctuation">[</span><span class="token number">1932694</span>/1932694<span class="token punctuation">]</span>
+<span class="token comment"># 解压汉化包</span>
+<span class="token punctuation">[</span>root@MuYu portainer<span class="token punctuation">]</span><span class="token comment"># unzip public.zip</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@MuYu portainer]# docker pull portainer&#x2F;portainer
+<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@MuYu portainer<span class="token punctuation">]</span><span class="token comment"># docker pull portainer/portainer</span>
 Using default tag: latest
-latest: Pulling from portainer&#x2F;portainer
-94cfa856b2b1: Pull complete 
-49d59ee0881a: Pull complete 
-a2300fd28637: Pull complete 
+latest: Pulling from portainer/portainer
+94cfa856b2b1: Pull complete 
+49d59ee0881a: Pull complete 
+a2300fd28637: Pull complete 
 Digest: sha256:fb45b43738646048a0a0cc74fcee2865b69efde857e710126084ee5de9be0f3f
-Status: Downloaded newer image for portainer&#x2F;portainer:latest
-docker.io&#x2F;portainer&#x2F;portainer:latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Status: Downloaded newer image <span class="token keyword">for</span> portainer/portainer:latest
+docker.io/portainer/portainer:latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 编写脚本
-[root@MuYu portainer]# vim startPortainer.sh
-# 编写脚本文件
-docker run -d \
- --restart&#x3D;always \
- --name portainer \
- -p 9000:9000 \
- -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock \
- -v &#x2F;usr&#x2F;local&#x2F;docker&#x2F;portainer&#x2F;data:&#x2F;data \
- -v &#x2F;usr&#x2F;local&#x2F;docker&#x2F;portainer&#x2F;public:&#x2F;public \
- portainer&#x2F;portainer:latest
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 编写脚本</span>
+<span class="token punctuation">[</span>root@MuYu portainer<span class="token punctuation">]</span><span class="token comment"># vim startPortainer.sh</span>
+<span class="token comment"># 编写脚本文件</span>
+<span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token punctuation">\</span>
+ <span class="token parameter variable">--restart</span><span class="token operator">=</span>always <span class="token punctuation">\</span>
+ <span class="token parameter variable">--name</span> portainer <span class="token punctuation">\</span>
+ <span class="token parameter variable">-p</span> <span class="token number">9000</span>:9000 <span class="token punctuation">\</span>
+ <span class="token parameter variable">-v</span> /var/run/docker.sock:/var/run/docker.sock <span class="token punctuation">\</span>
+ <span class="token parameter variable">-v</span> /usr/local/docker/portainer/data:/data <span class="token punctuation">\</span>
+ <span class="token parameter variable">-v</span> /usr/local/docker/portainer/public:/public <span class="token punctuation">\</span>
+ portainer/portainer:latest
 
-# 赋值权限
-[root@MuYu portainer]# chmod -R 777 startPortainer.sh
-# 执行脚本
-[root@MuYu portainer]# .&#x2F;startPortainer.sh 
+<span class="token comment"># 赋值权限</span>
+<span class="token punctuation">[</span>root@MuYu portainer<span class="token punctuation">]</span><span class="token comment"># chmod -R 777 startPortainer.sh</span>
+<span class="token comment"># 执行脚本</span>
+<span class="token punctuation">[</span>root@MuYu portainer<span class="token punctuation">]</span><span class="token comment"># ./startPortainer.sh </span>
 312623fe0b0192c645250f11e3603fd5f73f91393b22db3988a44fb93fb4dc89<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="可视化页面"><a href="#可视化页面" class="headerlink" title="可视化页面"></a>可视化页面</h2><h3 id="启动页面"><a href="#启动页面" class="headerlink" title="启动页面"></a>启动页面</h3><p><img src="/posts/c1fb5e41/clip_image002.gif" alt="图片"></p>
@@ -249,11 +245,7 @@ docker run -d \
         
           <li><a href="/about/">关于</a></li>
         
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
-        
-          <li><a href="/URL">LINK_NAME</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -311,11 +303,7 @@ docker run -d \
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </nav>

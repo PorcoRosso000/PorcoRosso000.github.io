@@ -62,7 +62,7 @@
 <meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="红猪的博客" type="application/atom+xml">
 </head>
 
-<body class="max-width mx-auto px3 RTL">
+<body class="max-width mx-auto px3 LTR">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -76,11 +76,7 @@
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </span>
@@ -175,45 +171,45 @@
 <span id="more"></span>
 
 <hr>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 打开目录
-[root@MuYu docker]# cd &#x2F;usr&#x2F;local&#x2F;docker&#x2F;
-# 创建 mongodb 文件夹
-[root@MuYu docker]# mkdir mongodb
-# 打开 mongodb 文件夹
-[root@MuYu docker]# cd mongodb&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 打开目录</span>
+<span class="token namespace">[root@MuYu docker]</span><span class="token comment"># cd /usr/local/docker/</span>
+<span class="token comment"># 创建 mongodb 文件夹</span>
+<span class="token namespace">[root@MuYu docker]</span><span class="token comment"># mkdir mongodb</span>
+<span class="token comment"># 打开 mongodb 文件夹</span>
+<span class="token namespace">[root@MuYu docker]</span><span class="token comment"># cd mongodb/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 数据挂在目录
-[root@MuYu mongodb]# mkdir data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 数据挂在目录</span>
+<span class="token namespace">[root@MuYu mongodb]</span><span class="token comment"># mkdir data</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 编写脚本
-[root@MuYu mongodb]# vim startMongodb.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 编写脚本</span>
+<span class="token namespace">[root@MuYu mongodb]</span><span class="token comment"># vim startMongodb.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docker run -d \
---name mongodb-4.0.28 \
---restart&#x3D;always \
--v &#x2F;usr&#x2F;local&#x2F;docker&#x2F;mongodb&#x2F;data:&#x2F;data&#x2F;db \
--p 27017:27017 mongo:4.0.28<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token punctuation">\</span>
+<span class="token parameter variable">--name</span> mongodb-4.0.28 <span class="token punctuation">\</span>
+<span class="token parameter variable">--restart</span><span class="token operator">=</span>always <span class="token punctuation">\</span>
+<span class="token parameter variable">-v</span> /usr/local/docker/mongodb/data:/data/db <span class="token punctuation">\</span>
+<span class="token parameter variable">-p</span> <span class="token number">27017</span>:27017 mongo:4.0.28<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">[root@MuYu mongodb]# chmod -R 700 startMongodb.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="脚本赋权"><a href="#脚本赋权" class="headerlink" title="脚本赋权"></a>脚本赋权</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mongodb]</span><span class="token comment"># chmod -R 700 startMongodb.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">[root@MuYu mongodb]# .&#x2F;startMongodb.sh 
-Unable to find image &#39;mongo:4.0.28&#39; locally
-4.0.28: Pulling from library&#x2F;mongo
-58690f9b18fc: Pull complete 
-b51569e7c507: Pull complete 
-da8ef40b9eca: Pull complete 
-fb15d46c38dc: Pull complete 
-8c5b4403b3cc: Pull complete 
-a336ecd37208: Pull complete 
-12c733cd45a4: Pull complete 
-0500d06255ed: Pull complete 
-94973a063374: Pull complete 
-6311dd69caf7: Pull complete 
-b40f828abab8: Pull complete 
-8379d13e9da6: Pull complete 
-12fa2eef4452: Pull complete 
+<h1 id="启动脚本-1"><a href="#启动脚本-1" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mongodb]</span><span class="token comment"># ./startMongodb.sh </span>
+Unable to find image <span class="token string">'mongo:4.0.28'</span> locally
+4<span class="token punctuation">.</span>0<span class="token punctuation">.</span>28: Pulling <span class="token keyword">from</span> library/mongo
+58690f9b18fc: Pull complete 
+b51569e7c507: Pull complete 
+da8ef40b9eca: Pull complete 
+fb15d46c38dc: Pull complete 
+8c5b4403b3cc: Pull complete 
+a336ecd37208: Pull complete 
+12c733cd45a4: Pull complete 
+0500d06255ed: Pull complete 
+94973a063374: Pull complete 
+6311dd69caf7: Pull complete 
+b40f828abab8: Pull complete 
+8379d13e9da6: Pull complete 
+12fa2eef4452: Pull complete 
 Digest: sha256:d22f53e7aa6851a62f28bff4061176ceaa90ca8dfd025067dfb5db84a60eb0cc
-Status: Downloaded newer image for mongo:4.0.28
+Status: Downloaded newer image <span class="token keyword">for</span> mongo:4<span class="token punctuation">.</span>0<span class="token punctuation">.</span>28
 e557fd76e2b1dcada82ad2f63ed29bcddb5e748d56d5e98e5379f4d8384109ac<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h1><p><img src="/posts/afdec5ed/clip_image002.gif" alt="图片"></p>
@@ -235,11 +231,7 @@ e557fd76e2b1dcada82ad2f63ed29bcddb5e748d56d5e98e5379f4d8384109ac<span aria-hidde
         
           <li><a href="/about/">关于</a></li>
         
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
-        
-          <li><a href="/URL">LINK_NAME</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -297,11 +289,7 @@ e557fd76e2b1dcada82ad2f63ed29bcddb5e748d56d5e98e5379f4d8384109ac<span aria-hidde
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </nav>

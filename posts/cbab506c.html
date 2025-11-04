@@ -64,7 +64,7 @@
 <meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="红猪的博客" type="application/atom+xml">
 </head>
 
-<body class="max-width mx-auto px3 RTL">
+<body class="max-width mx-auto px3 LTR">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -78,11 +78,7 @@
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </span>
@@ -177,73 +173,73 @@
 <span id="more"></span>
 
 <hr>
-<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docker pull redis:6.2.6<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> pull redis:6.2.6<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="docker配置redis"><a href="#docker配置redis" class="headerlink" title="docker配置redis"></a>docker配置redis</h2><p>使用前下载redis配置文件：<a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/GWTjtzHwGe3j3HD0.conf?fileGuid=rqhjpZwZC7Q4TzUJ">redis.conf</a></p>
-<h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 打开目录
-[root@MuYu &#x2F;]# cd &#x2F;usr&#x2F;local&#x2F;
+<h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 打开目录</span>
+<span class="token punctuation">[</span>root@MuYu /<span class="token punctuation">]</span><span class="token comment"># cd /usr/local/</span>
 
-# 在其目录下创建 docker&#x2F;redis
-[root@MuYu local]# mkdir -p docker&#x2F;redis
+<span class="token comment"># 在其目录下创建 docker/redis</span>
+<span class="token punctuation">[</span>root@MuYu local<span class="token punctuation">]</span><span class="token comment"># mkdir -p docker/redis</span>
 
-# 进入 docker&#x2F;redis目录
-[root@MuYu local]# cd docker&#x2F;redis&#x2F;
+<span class="token comment"># 进入 docker/redis目录</span>
+<span class="token punctuation">[</span>root@MuYu local<span class="token punctuation">]</span><span class="token comment"># cd docker/redis/</span>
 
-# 创建 redis的config和redis的data
-[root@MuYu redis]# mkdir config
-[root@MuYu redis]# mkdir data
+<span class="token comment"># 创建 redis的config和redis的data</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># mkdir config</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># mkdir data</span>
 
-# 上传配置文件到 config目录下面
-[root@MuYu redis]# cd config&#x2F;
+<span class="token comment"># 上传配置文件到 config目录下面</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># cd config/</span>
 
-# 使用rz上传文件
-[root@MuYu config]# rz
-[root@MuYu config]# ll
-total 92
--rw-r--r-- 1 root root 93724 Oct  4  2021 redis.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 使用rz上传文件</span>
+<span class="token punctuation">[</span>root@MuYu config<span class="token punctuation">]</span><span class="token comment"># rz</span>
+<span class="token punctuation">[</span>root@MuYu config<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">92</span>
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">93724</span> Oct  <span class="token number">4</span>  <span class="token number">2021</span> redis.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><h4 id="数据存储目录"><a href="#数据存储目录" class="headerlink" title="数据存储目录"></a>数据存储目录</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 修改配置文件
-dir .&#x2F;                -&gt;   dir &#x2F;data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><h4 id="数据存储目录"><a href="#数据存储目录" class="headerlink" title="数据存储目录"></a>数据存储目录</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 修改配置文件</span>
+<span class="token function">dir</span> ./                -<span class="token operator">></span>   <span class="token function">dir</span> /data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><img src="/posts/cbab506c/clip_image002.jpg" alt="图片"></p>
-<h4 id="IP访问"><a href="#IP访问" class="headerlink" title="IP访问"></a>IP访问</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bind 127.0.0.1 -::1   -&gt;   bind 0.0.0.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="IP访问"><a href="#IP访问" class="headerlink" title="IP访问"></a>IP访问</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">bind</span> <span class="token number">127.0</span>.0.1 -::1   -<span class="token operator">></span>   <span class="token builtin class-name">bind</span> <span class="token number">0.0</span>.0.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><img src="/posts/cbab506c/clip_image004.jpg" alt="图片"></p>
-<h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 退出目录
-[root@MuYu config]# cd ..
+<h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 退出目录</span>
+<span class="token punctuation">[</span>root@MuYu config<span class="token punctuation">]</span><span class="token comment"># cd ..</span>
 
-# 编辑sh脚本
-[root@MuYu redis]# vim startRedis.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 编辑sh脚本</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># vim startRedis.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docker run  --privileged&#x3D;true -p 6379:6379 --name redis --restart&#x3D;always \
- -v &#x2F;usr&#x2F;local&#x2F;docker&#x2F;redis&#x2F;config&#x2F;redis.conf:&#x2F;etc&#x2F;redis&#x2F;redis.conf \
- -v &#x2F;usr&#x2F;local&#x2F;docker&#x2F;redis&#x2F;data:&#x2F;data \
- -d redis:6.2.6 redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run  <span class="token parameter variable">--privileged</span><span class="token operator">=</span>true <span class="token parameter variable">-p</span> <span class="token number">6379</span>:6379 <span class="token parameter variable">--name</span> redis <span class="token parameter variable">--restart</span><span class="token operator">=</span>always <span class="token punctuation">\</span>
+ <span class="token parameter variable">-v</span> /usr/local/docker/redis/config/redis.conf:/etc/redis/redis.conf <span class="token punctuation">\</span>
+ <span class="token parameter variable">-v</span> /usr/local/docker/redis/data:/data <span class="token punctuation">\</span>
+ <span class="token parameter variable">-d</span> redis:6.2.6 redis-server /etc/redis/redis.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><img src="/posts/cbab506c/clip_image006.jpg" alt="图片"></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
-# 脚本设置可执行权限
-[root@MuYu redis]# chmod -R 777 startRedis.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 脚本设置可执行权限</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># chmod -R 777 startRedis.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 运行脚本
-[root@MuYu redis]# .&#x2F;startRedis.sh 
+<h2 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 运行脚本</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># ./startRedis.sh </span>
 46bc734d227e3a8a1dada5588a2683c1a433fa021488a07cbad510c5410edee3
 
-# 查看docker当中运行的redis
-[root@MuYu redis]# docker ps
-CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-46bc734d227e   redis:6.2.6   &quot;docker-entrypoint.s…&quot;   3 seconds ago   Up 2 seconds   0.0.0.0:6379-&gt;6379&#x2F;tcp, :::6379-&gt;6379&#x2F;tcp   redis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 查看docker当中运行的redis</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># docker ps</span>
+CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+46bc734d227e   redis:6.2.6   <span class="token string">"docker-entrypoint.s…"</span>   <span class="token number">3</span> seconds ago   Up <span class="token number">2</span> seconds   <span class="token number">0.0</span>.0.0:6379-<span class="token operator">></span><span class="token number">6379</span>/tcp, :::6379-<span class="token operator">></span><span class="token number">6379</span>/tcp   redis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="测试redis"><a href="#测试redis" class="headerlink" title="测试redis"></a>测试redis</h2><p><img src="/posts/cbab506c/clip_image008.gif" alt="图片"></p>
-<h2 id="一键重置redis脚本"><a href="#一键重置redis脚本" class="headerlink" title="一键重置redis脚本"></a>一键重置redis脚本</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"># 创建sh脚本
-[root@MuYu redis]# vim resetRedis.sh
-# 编写sh脚本
-docker rm -f redis
-.&#x2F;startRedis.sh
-# 赋权
-[root@MuYu redis]# chmod -R 777 resetRedis.sh
-# 执行
-[root@MuYu redis]# .&#x2F;resetRedis.sh 
+<h2 id="一键重置redis脚本"><a href="#一键重置redis脚本" class="headerlink" title="一键重置redis脚本"></a>一键重置redis脚本</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建sh脚本</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># vim resetRedis.sh</span>
+<span class="token comment"># 编写sh脚本</span>
+<span class="token function">docker</span> <span class="token function">rm</span> <span class="token parameter variable">-f</span> redis
+./startRedis.sh
+<span class="token comment"># 赋权</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># chmod -R 777 resetRedis.sh</span>
+<span class="token comment"># 执行</span>
+<span class="token punctuation">[</span>root@MuYu redis<span class="token punctuation">]</span><span class="token comment"># ./resetRedis.sh </span>
 redis
 bbb4e496f5b9b98fd61ce21fa4133c401e2a069f326894594adfd472632e13e3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
   </div>
@@ -262,11 +258,7 @@ bbb4e496f5b9b98fd61ce21fa4133c401e2a069f326894594adfd472632e13e3<span aria-hidde
         
           <li><a href="/about/">关于</a></li>
         
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
-        
-          <li><a href="/URL">LINK_NAME</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -324,11 +316,7 @@ bbb4e496f5b9b98fd61ce21fa4133c401e2a069f326894594adfd472632e13e3<span aria-hidde
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </nav>

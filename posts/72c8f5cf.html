@@ -62,7 +62,7 @@
 <meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="红猪的博客" type="application/atom+xml">
 </head>
 
-<body class="max-width mx-auto px3 RTL">
+<body class="max-width mx-auto px3 LTR">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -76,11 +76,7 @@
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </span>
@@ -176,140 +172,140 @@
 
 <hr>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><pre class="line-numbers language-json" data-language="json"><code class="language-json"># 打开目录
-[root@MuYu ~]# cd &#x2F;usr&#x2F;local&#x2F;docker&#x2F;
+<span class="token punctuation">[</span>root@MuYu ~<span class="token punctuation">]</span># cd /usr/local/docker/
 # 创建文件夹
-[root@MuYu docker]# mkdir mysql
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># mkdir mysql
 # 打开文件夹
-[root@MuYu docker]# cd mysql&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@MuYu docker<span class="token punctuation">]</span># cd mysql/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="创建挂载目录"><a href="#创建挂载目录" class="headerlink" title="创建挂载目录"></a>创建挂载目录</h1><pre class="line-numbers language-json" data-language="json"><code class="language-json"># 创建数据挂在目录
-[root@MuYu mysql]# 
+<span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># 
 # 创建配置文件目录
-[root@MuYu mysql]# mkdir config
+<span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># mkdir config
 # 打开config
-[root@MuYu mysql]# cd config&#x2F;
+<span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># cd config/
 # 编写配置文件
-[root@MuYu config]# vim my.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@MuYu config<span class="token punctuation">]</span># vim my.cnf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h1><pre class="line-numbers language-json" data-language="json"><code class="language-json">[client]
+<h1 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h1><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">[</span>client<span class="token punctuation">]</span>
 # 端口号
-port&#x3D;3306
+port=<span class="token number">3306</span>
 
-[mysql]
+<span class="token punctuation">[</span>mysql<span class="token punctuation">]</span>
 no-beep
-default-character-set&#x3D;utf8mb4
+default-character-set=utf8mb4
 
-[mysqld]
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
 # 端口号
-port&#x3D;3306
+port=<span class="token number">3306</span>
 # 数据目录
-datadir&#x3D;&#x2F;var&#x2F;lib&#x2F;mysql
+datadir=/var/lib/mysql
 # 新模式或表时将使用的默认字符集
-character-set-server&#x3D;utf8mb4
+character-set-server=utf8mb4
 # 默认存储引擎
-default-storage-engine&#x3D;INNODB
+default-storage-engine=INNODB
 # 将 SQL 模式设置为严格
-sql-mode&#x3D;&quot;STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&quot;
-#  最大连接数
-max_connections&#x3D;1024
+sql-mode=<span class="token string">"STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"</span>
+#  最大连接数
+max_connections=<span class="token number">1024</span>
 # 表缓存
-table_open_cache&#x3D;2000
+table_open_cache=<span class="token number">2000</span>
 # 表内存
-tmp_table_size&#x3D;16M
+tmp_table_size=16M
 # 线程缓存
-thread_cache_size&#x3D;10
+thread_cache_size=<span class="token number">10</span>
 
 # myisam设置
-myisam_max_sort_file_size&#x3D;100G
-myisam_sort_buffer_size&#x3D;8M
-key_buffer_size&#x3D;8M
-read_buffer_size&#x3D;0
-read_rnd_buffer_size&#x3D;0
+myisam_max_sort_file_size=100G
+myisam_sort_buffer_size=8M
+key_buffer_size=8M
+read_buffer_size=<span class="token number">0</span>
+read_rnd_buffer_size=<span class="token number">0</span>
 
 # innodb设置
-innodb_flush_log_at_trx_commit&#x3D;1
-innodb_log_buffer_size&#x3D;1M
-innodb_buffer_pool_size&#x3D;8M
-innodb_log_file_size&#x3D;48M
-innodb_thread_concurrency&#x3D;33
-innodb_autoextend_increment&#x3D;64
-innodb_buffer_pool_instances&#x3D;8
-innodb_concurrency_tickets&#x3D;5000
-innodb_old_blocks_time&#x3D;1000
-innodb_open_files&#x3D;300
-innodb_stats_on_metadata&#x3D;0
-innodb_file_per_table&#x3D;1
-innodb_checksum_algorithm&#x3D;0
+innodb_flush_log_at_trx_commit=<span class="token number">1</span>
+innodb_log_buffer_size=1M
+innodb_buffer_pool_size=8M
+innodb_log_file_size=48M
+innodb_thread_concurrency=<span class="token number">33</span>
+innodb_autoextend_increment=<span class="token number">64</span>
+innodb_buffer_pool_instances=<span class="token number">8</span>
+innodb_concurrency_tickets=<span class="token number">5000</span>
+innodb_old_blocks_time=<span class="token number">1000</span>
+innodb_open_files=<span class="token number">300</span>
+innodb_stats_on_metadata=<span class="token number">0</span>
+innodb_file_per_table=<span class="token number">1</span>
+innodb_checksum_algorithm=<span class="token number">0</span>
 # 其他设置
-back_log&#x3D;80
-flush_time&#x3D;0
-join_buffer_size&#x3D;256K
-max_allowed_packet&#x3D;4M
-max_connect_errors&#x3D;100
-open_files_limit&#x3D;4161
-sort_buffer_size&#x3D;256K
-table_definition_cache&#x3D;1400
-binlog_row_event_max_size&#x3D;8K
-sync_master_info&#x3D;10000
-sync_relay_log&#x3D;10000
-sync_relay_log_info&#x3D;10000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+back_log=<span class="token number">80</span>
+flush_time=<span class="token number">0</span>
+join_buffer_size=256K
+max_allowed_packet=4M
+max_connect_errors=<span class="token number">100</span>
+open_files_limit=<span class="token number">4161</span>
+sort_buffer_size=256K
+table_definition_cache=<span class="token number">1400</span>
+binlog_row_event_max_size=8K
+sync_master_info=<span class="token number">10000</span>
+sync_relay_log=<span class="token number">10000</span>
+sync_relay_log_info=<span class="token number">10000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>下载镜像</p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">[root@MuYu mysql]# docker pull mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[root@MuYu mysql]</span><span class="token comment"># docker pull mysql:5.7</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h1 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 打开目录
-[root@MuYu config]# cd &#x2F;usr&#x2F;local&#x2F;docker&#x2F;mysql&#x2F;
+<h1 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h1><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 打开目录</span>
+<span class="token namespace">[root@MuYu config]</span><span class="token comment"># cd /usr/local/docker/mysql/</span>
 
-# 编写脚本
-[root@MuYu mysql]# vim startMysql.sh
+<span class="token comment"># 编写脚本</span>
+<span class="token namespace">[root@MuYu mysql]</span><span class="token comment"># vim startMysql.sh</span>
 
-# 脚本内容
-docker run -d \
---privileged&#x3D;true \
---name mysql57-3306 \
--p 3306:3306 \
---restart&#x3D;always \
--v &#x2F;usr&#x2F;local&#x2F;docker&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql \
--v &#x2F;usr&#x2F;local&#x2F;docker&#x2F;mysql&#x2F;config&#x2F;my.cnf:&#x2F;etc&#x2F;mysql&#x2F;my.cnf \
--e MYSQL_ROOT_PASSWORD&#x3D;Dongzl828.. mysql:5.7 \
+<span class="token comment"># 脚本内容</span>
+docker run <span class="token operator">-</span>d \
+<span class="token operator">--</span>privileged=true \
+<span class="token operator">--</span>name mysql57-3306 \
+<span class="token operator">-</span>p 3306:3306 \
+<span class="token operator">--</span>restart=always \
+<span class="token operator">-</span>v <span class="token operator">/</span>usr/local/docker/mysql/<span class="token keyword">data</span>:<span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>lib/mysql \
+<span class="token operator">-</span>v <span class="token operator">/</span>usr/local/docker/mysql/config/my<span class="token punctuation">.</span>cnf:<span class="token operator">/</span>etc/mysql/my<span class="token punctuation">.</span>cnf \
+<span class="token operator">-</span>e MYSQL_ROOT_PASSWORD=Dongzl828<span class="token punctuation">.</span><span class="token punctuation">.</span> mysql:5<span class="token punctuation">.</span>7 \
 
 
 
-# 权限赋予
-[root@MuYu mysql]# chmod -R 777 startMysql.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 权限赋予</span>
+<span class="token namespace">[root@MuYu mysql]</span><span class="token comment"># chmod -R 777 startMysql.sh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h1><pre class="line-numbers language-json" data-language="json"><code class="language-json"># 执行脚本
-[root@MuYu mysql]# .&#x2F;startMysql.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@MuYu mysql<span class="token punctuation">]</span># ./startMysql.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h1 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h1><p><img src="/posts/72c8f5cf/clip_image002.gif" alt="图片"></p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"># 进入容器
-[root@MuYu mysql]# docker exec -it mysql57-3306 &#x2F;bin&#x2F;bash
-# 连接MySQL
-root@4ff92e46f363:&#x2F;# mysql -uroot -pDongzl828..
-mysql: [Warning] Using a password on the command line interface can be insecure.
-Welcome to the MySQL monitor.  Commands end with ; or \g.
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 进入容器</span>
+<span class="token namespace">[root@MuYu mysql]</span><span class="token comment"># docker exec -it mysql57-3306 /bin/bash</span>
+<span class="token comment"># 连接MySQL</span>
+root@4ff92e46f363:<span class="token operator">/</span><span class="token comment"># mysql -uroot -pDongzl828..</span>
+mysql: <span class="token namespace">[Warning]</span> <span class="token keyword">Using</span> a password on the command line interface can be insecure<span class="token punctuation">.</span>
+Welcome to the MySQL monitor<span class="token punctuation">.</span>  Commands <span class="token keyword">end</span> with <span class="token punctuation">;</span> or \g<span class="token punctuation">.</span>
 Your MySQL connection id is 2
-Server version: 5.7.38 MySQL Community Server (GPL)
+Server version: 5<span class="token punctuation">.</span>7<span class="token punctuation">.</span>38 MySQL Community Server <span class="token punctuation">(</span>GPL<span class="token punctuation">)</span>
 
-Copyright (c) 2000, 2022, Oracle and&#x2F;or its affiliates.
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000<span class="token punctuation">,</span> 2022<span class="token punctuation">,</span> Oracle and/or its affiliates<span class="token punctuation">.</span>
 
-Oracle is a registered trademark of Oracle Corporation and&#x2F;or its
-affiliates. Other names may be trademarks of their respective
-owners.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates<span class="token punctuation">.</span> Other names may be trademarks of their respective
+owners<span class="token punctuation">.</span>
 
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+<span class="token function">Type</span> <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help<span class="token punctuation">.</span> <span class="token function">Type</span> <span class="token string">'\c'</span> to clear the current input statement<span class="token punctuation">.</span>
 
-# 查询数据库
-mysql&gt; show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-+--------------------+
-4 rows in set (0.01 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 查询数据库</span>
+mysql> show databases<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">+</span>
+<span class="token punctuation">|</span> Database           <span class="token punctuation">|</span>
+<span class="token operator">+</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">+</span>
+<span class="token punctuation">|</span> information_schema <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> mysql              <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> performance_schema <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> sys                <span class="token punctuation">|</span>
+<span class="token operator">+</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">+</span>
+4 rows in <span class="token function">set</span> <span class="token punctuation">(</span>0<span class="token punctuation">.</span>01 sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><img src="/posts/72c8f5cf/clip_image004.gif" alt="图片"></p>
 
@@ -329,11 +325,7 @@ mysql&gt; show databases;
         
           <li><a href="/about/">关于</a></li>
         
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
-        
-          <li><a href="/URL">LINK_NAME</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -391,11 +383,7 @@ mysql&gt; show databases;
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
-     --><!--
-       --><li><a href="/URL">LINK_NAME</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
       </ul>
     </nav>
