@@ -18,8 +18,15 @@
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/开放式用户通信数据发送接收数据块.png">
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/开放式用户通信8.11配置被动建立连接.png">
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/接收端数据块.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/拉取s7通讯块.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/s7检查连接模块.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/判断S7是否通讯成功.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/建立S7发送接收的通讯数据.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/建立S7通讯应用层模块.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/S7连接ID来源.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/另一个PLC建立对应的S7交互数据块.png">
 <meta property="article:published_time" content="2025-11-04T08:39:03.000Z">
-<meta property="article:modified_time" content="2025-11-04T09:37:34.763Z">
+<meta property="article:modified_time" content="2025-11-05T02:52:27.736Z">
 <meta property="article:author" content="菊子酒">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://porcorosso.top/posts/eecff6c8/plc开放式用户通信数据块.png">
@@ -119,7 +126,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%AE%AF"><span class="toc-number">1.</span> <span class="toc-text">通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#plc%E7%AB%AF%E5%BC%80%E6%94%BE%E5%BC%8F%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.</span> <span class="toc-text">plc端开放式用户通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MODBUS-TCP"><span class="toc-number">1.2.</span> <span class="toc-text">MODBUS TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RFID"><span class="toc-number">1.3.</span> <span class="toc-text">RFID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MODBUS-RTU"><span class="toc-number">1.4.</span> <span class="toc-text">MODBUS (RTU)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E8%89%BA-%E8%BD%B4%E6%8E%A7%E5%88%B6"><span class="toc-number">1.5.</span> <span class="toc-text">工艺-轴控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E4%BC%BA%E6%9C%8D%E6%8E%A7%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">硬件伺服控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RS422"><span class="toc-number">1.7.</span> <span class="toc-text">RS422</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RS485"><span class="toc-number">1.8.</span> <span class="toc-text">RS485</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E4%BA%86%E4%B8%8D%E5%90%8C%E7%9A%84%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%EF%BC%8C%E8%BF%99%E4%B8%A4%E8%80%85%E6%80%8E%E4%B9%88%E8%BF%9B%E8%A1%8C%E9%80%9A%E8%AE%AF%EF%BC%9F"><span class="toc-number">1.9.</span> <span class="toc-text">不同的设备使用了不同的通讯协议，这两者怎么进行通讯？</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%AE%AF"><span class="toc-number">1.</span> <span class="toc-text">通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#plc%E7%AB%AF%E5%BC%80%E6%94%BE%E5%BC%8F%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.</span> <span class="toc-text">plc端开放式用户通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MODBUS-TCP"><span class="toc-number">1.2.</span> <span class="toc-text">MODBUS TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RFID"><span class="toc-number">1.3.</span> <span class="toc-text">RFID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MODBUS-RTU"><span class="toc-number">1.4.</span> <span class="toc-text">MODBUS (RTU)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E8%89%BA-%E8%BD%B4%E6%8E%A7%E5%88%B6"><span class="toc-number">1.5.</span> <span class="toc-text">工艺-轴控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E4%BC%BA%E6%9C%8D%E6%8E%A7%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">硬件伺服控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RS422"><span class="toc-number">1.7.</span> <span class="toc-text">RS422</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RS485"><span class="toc-number">1.8.</span> <span class="toc-text">RS485</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E4%BA%86%E4%B8%8D%E5%90%8C%E7%9A%84%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%EF%BC%8C%E8%BF%99%E4%B8%A4%E8%80%85%E6%80%8E%E4%B9%88%E8%BF%9B%E8%A1%8C%E9%80%9A%E8%AE%AF%EF%BC%9F"><span class="toc-number">1.9.</span> <span class="toc-text">不同的设备使用了不同的通讯协议，这两者怎么进行通讯？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLC%E4%B9%8B%E9%97%B4%E8%BF%9B%E8%A1%8CGET-PUT%E9%80%9A%E8%AE%AF%EF%BC%88S7%E9%80%9A%E8%AE%AF%EF%BC%89"><span class="toc-number">1.10.</span> <span class="toc-text">PLC之间进行GET,PUT通讯（S7通讯）</span></a></li></ol></li></ol>
       </div>
     
   </span>
@@ -547,6 +554,26 @@
 <p>串口转Lora</p>
 <p>串口转RF(无线射频)</p>
 <p>串口转MQTT（MQTT可以连接到云平台，云平台可以连接不同类型的设备，方便远程监控和管理）</p>
+<h3 id="PLC之间进行GET-PUT通讯（S7通讯）"><a href="#PLC之间进行GET-PUT通讯（S7通讯）" class="headerlink" title="PLC之间进行GET,PUT通讯（S7通讯）"></a>PLC之间进行GET,PUT通讯（S7通讯）</h3><p>从右侧工具栏拖取  通信–&gt;S7通信–&gt;GET,PUT模块</p>
+<img src="/posts/eecff6c8/拉取s7通讯块.png" style="zoom:50%;">
+
+<p>从开放式用户通信–&gt;其他–&gt;拉取检查连接模块T_DIAG</p>
+<img src="/posts/eecff6c8/s7检查连接模块.png" style="zoom:75%;">
+
+<p>判断时候连接成功</p>
+<img src="/posts/eecff6c8/判断S7是否通讯成功.png" style="zoom:50%;">
+
+<p>建立S7通讯数据块</p>
+<img src="/posts/eecff6c8/建立S7发送接收的通讯数据.png" style="zoom:75%;">
+
+<p>建立S7通讯应用层模块</p>
+<img src="/posts/eecff6c8/建立S7通讯应用层模块.png" style="zoom:50%;">
+
+<p>ID：16#100来源</p>
+<img src="/posts/eecff6c8/S7连接ID来源.png" style="zoom:60%;">
+
+<p>另一个PLC建立对应的S7交互数据块</p>
+<img src="/posts/eecff6c8/另一个PLC建立对应的S7交互数据块.png" style="zoom:75%;">
 
   </div>
 </article>
@@ -574,7 +601,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%AE%AF"><span class="toc-number">1.</span> <span class="toc-text">通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#plc%E7%AB%AF%E5%BC%80%E6%94%BE%E5%BC%8F%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.</span> <span class="toc-text">plc端开放式用户通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MODBUS-TCP"><span class="toc-number">1.2.</span> <span class="toc-text">MODBUS TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RFID"><span class="toc-number">1.3.</span> <span class="toc-text">RFID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MODBUS-RTU"><span class="toc-number">1.4.</span> <span class="toc-text">MODBUS (RTU)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E8%89%BA-%E8%BD%B4%E6%8E%A7%E5%88%B6"><span class="toc-number">1.5.</span> <span class="toc-text">工艺-轴控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E4%BC%BA%E6%9C%8D%E6%8E%A7%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">硬件伺服控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RS422"><span class="toc-number">1.7.</span> <span class="toc-text">RS422</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RS485"><span class="toc-number">1.8.</span> <span class="toc-text">RS485</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E4%BA%86%E4%B8%8D%E5%90%8C%E7%9A%84%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%EF%BC%8C%E8%BF%99%E4%B8%A4%E8%80%85%E6%80%8E%E4%B9%88%E8%BF%9B%E8%A1%8C%E9%80%9A%E8%AE%AF%EF%BC%9F"><span class="toc-number">1.9.</span> <span class="toc-text">不同的设备使用了不同的通讯协议，这两者怎么进行通讯？</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%AE%AF"><span class="toc-number">1.</span> <span class="toc-text">通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#plc%E7%AB%AF%E5%BC%80%E6%94%BE%E5%BC%8F%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.</span> <span class="toc-text">plc端开放式用户通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MODBUS-TCP"><span class="toc-number">1.2.</span> <span class="toc-text">MODBUS TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RFID"><span class="toc-number">1.3.</span> <span class="toc-text">RFID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MODBUS-RTU"><span class="toc-number">1.4.</span> <span class="toc-text">MODBUS (RTU)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E8%89%BA-%E8%BD%B4%E6%8E%A7%E5%88%B6"><span class="toc-number">1.5.</span> <span class="toc-text">工艺-轴控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E4%BC%BA%E6%9C%8D%E6%8E%A7%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">硬件伺服控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RS422"><span class="toc-number">1.7.</span> <span class="toc-text">RS422</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RS485"><span class="toc-number">1.8.</span> <span class="toc-text">RS485</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E4%BA%86%E4%B8%8D%E5%90%8C%E7%9A%84%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%EF%BC%8C%E8%BF%99%E4%B8%A4%E8%80%85%E6%80%8E%E4%B9%88%E8%BF%9B%E8%A1%8C%E9%80%9A%E8%AE%AF%EF%BC%9F"><span class="toc-number">1.9.</span> <span class="toc-text">不同的设备使用了不同的通讯协议，这两者怎么进行通讯？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLC%E4%B9%8B%E9%97%B4%E8%BF%9B%E8%A1%8CGET-PUT%E9%80%9A%E8%AE%AF%EF%BC%88S7%E9%80%9A%E8%AE%AF%EF%BC%89"><span class="toc-number">1.10.</span> <span class="toc-text">PLC之间进行GET,PUT通讯（S7通讯）</span></a></li></ol></li></ol>
       </div>
     
 
