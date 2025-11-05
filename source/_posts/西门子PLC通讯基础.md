@@ -1,15 +1,14 @@
 ---
 title: 西门子PLC通讯基础
 typora-root-url: 西门子PLC通讯基础
-keywords: ''
+keywords: '通讯'
 abbrlink: eecff6c8
 date: 2025-11-04 16:39:03
-tags:
-categories:
+tags: 通讯
+categories: 通讯
 photos:
 description:
 top:
-updated:
 ---
 
 西门子PLC通讯基础
@@ -181,15 +180,19 @@ ip8.11plc 创建被动通信块
 						触发条件：
 							写：
 								REQ："AlwaysTRUE"或者做一个开关
-								MB_MODE：1
-								MB_DATA_ADDR：根据具体的读写器地址来决定，写和读，一致 例：40015
-								CONNECT ：写和读使用同一个协议
+								MB_MODE：1  模式为1表示写
+								MB_DATA_ADDR：根据具体的读写器寄存器地址和要使用什么模式来决定，写和读，一致 例：03模式下MB_DATA_ADDR的起始地址是40001，读写器寄存器地址是14 所以MB_DATA_ADDR地址是两者相加等于40015（03模式下MB_DATA_ADDR的起始地址是40001也可以是400001，当40001不够用的时候选择400001）
+								MB_DATA_LEN：RFID设备对应的写寄存器数量
+								MB_DATA_PTR：指向自定义的数据块的写数据起始位置和结束位置，例P#DB2.DBX14.0 INT 4
+								CONNECT ：写和读使用同一个协议（TCON_IP_V4）
 								
 							读：
 								REQ：做一个开关
-								MB_MODE：0
-								MB_DATA_ADDR：根据具体的读写器地址来决定，写和读，一致 例：40015
-								CONNECT ：写和读使用同一个协议
+								MB_MODE：0 模式为0表示读
+								MB_DATA_ADDR：根据具体的读写器寄存器地址和要使用什么模式来决定，写和读，一致 例：03模式下MB_DATA_ADDR的起始地址是40001，读写器寄存器地址是14 所以MB_DATA_ADDR地址是两者相加等于40015（03模式下MB_DATA_ADDR的起始地址是40001也可以是400001，当40001不够用的时候选择400001）
+								MB_DATA_LEN：RFID设备对应的读寄存器数量
+								MB_DATA_PTR：指向自定义的数据块的读数据起始位置和结束位置，例P#DB2.DBX22.0 INT 4
+								CONNECT ：写和读使用同一个协议（TCON_IP_V4）
 				
 				
 		报错：
@@ -242,16 +245,17 @@ ip8.11plc 创建被动通信块
 
  				通信-->通信处理器-->MODBUS(RTU)
 
- 				Modbus_Comm_Load：组态Modbus 的端口
+ 				Modbus_Comm_Load：组态Modbus 的端口（Modbus_Comm_Load模式改成4）
 
  						REQ："AlwaysTRUE"
+ 					    PORT：硬件CM1241的具体硬件标识符
  						BAUD：默认 ，数据传输速率
  						PARITY：默认，奇偶检验
  						FLOW_CTRL：默认，流控制
  						RTS_ON_DLY：50，接通延迟
  						RTS_OFF_DLY：50，关断延迟
  						RESP_TO：默认，响应超时时间
- 						MB_DB：Modbus_Master.DB 对 Modbus_Master 或 Modbus_Slave 指令的背景数据块的引用	
+ 						MB_DB：Modbus_Master.MB_DB 对 Modbus_Master 或 Modbus_Slave 指令的背景数据块的引用	
 
  				Modbus_Master：作为主站通讯，写入通讯
 
@@ -259,11 +263,11 @@ ip8.11plc 创建被动通信块
 
  								REQ：常闭的写入DONE，写入BUSY，读取DONE，读取BUSY串联，并联常开的写入ERROR+5HZ时钟,并联常开的读取ERROR+5HZ时钟作为使能条件
  								MB_ADDR：一般为1，Modbus RTU 站地址 
- 								MODE：1，读取
- 								DATA_ADDR：从站中的起始地址，要根据实际设备的写入起始地址决定
+ 								MODE：1，写入
+ 								DATA_ADDR：从站中的起始地址，要根据实际设备的写入起始地址决定，例如读取电能表2000H电压对应的数据时2000H对应的10进制数是8192，03模式下MB_DATA_ADDR的起始地址是40001，故起始地址是两者相加等于48193（03模式下MB_DATA_ADDR的起始地址是40001也可以是400001，当40001不够用的时候选择400001）
  								DATA_LEN：要根据实际设备的写入地址长度决定
  								COM_RST：进行Modbus RTU 的重置
- 								DATA_PTR：写入数据块，根据实际设备参数决定
+ 								DATA_PTR：写入数据块，根据实际设备参数决定（创建数据块，设备中的参数如果是32位的可以用real类型数组来接收/写入数据，使用P#DB100.DBX0.0 word 18这种形式定义数据的起始位置和结束位置）
 
  				Modbus_Master：作为主站通讯， 读取通讯
 
@@ -272,13 +276,35 @@ ip8.11plc 创建被动通信块
  								REQ：写入DONE作为使能条件，写入操作完成之后才能开始读取
  								MB_ADDR：一般为1，Modbus RTU 站地址 
  								MODE：0，读取
- 								DATA_ADDR：从站中的起始地址，要根据实际设备的读取起始地址决定
+ 								DATA_ADDR：从站中的起始地址，要根据实际设备的写入起始地址决定，例如读取电能表2000H电压对应的数据时2000H对应的10进制数是8192，03模式下MB_DATA_ADDR的起始地址是40001，故起始地址是两者相加等于48193（03模式下MB_DATA_ADDR的起始地址是40001也可以是400001，当40001不够用的时候选择400001）
  								DATA_LEN：要根据实际设备的读取地址长度决定
  								COM_RST：进行Modbus RTU 的重置
- 								DATA_PTR：读取数据块，根据实际设备参数决定
+ 								DATA_PTR：读取数据块，根据实际设备参数决定（创建数据块，设备中的参数如果是32位的可以用real类型数组来接收/写入数据，使用P#DB100.DBX0.0 word 18这种形式定义数据的起始位置和结束位置）
 
  		案例：变位机伺服控制
 ```
+
+DATA_LEN的值根据需要读取是数据长度来确定的，如下图
+
+<img src="rtu下电能表需要读取的数据.png" style="zoom:75%;" />
+
+总共需要读取九个数据，但是每个数据都是32位的数据，DATA_ADDR地址的数据48193是16位的，所以DATA_LEN的值是18
+
+
+
+Modbus_Comm_Load模式改成4，在系统块-->程序资源-->Modbus_Comm_Load数据块static中MODE改成4
+
+<img src="Modbus_Comm_Load操作模式修改.png" style="zoom:75%;" />
+
+原因是半双工模式在操作模式中是第四个
+
+<img src="1241RTU操作模式.png" style="zoom:75%;" />
+
+电能表中读取的数据除了2000H还有4000H的，由于不是连续的数据4000H的数据需要新建一个Modbus_Master的数据块进行读取
+
+<img src="电能表4000H参数.png" style="zoom:75%;" />
+
+4000H是16进制的转化成10进制是16384 ，不能用40001加40001的最大值是49999，会超范围，所以DATA_ADDR地址要用400001加16384等于416385
 
 
 
@@ -438,3 +464,32 @@ RS485总线，一条总线将各个节点串联起来，一般情况下可以接
 
 串口转MQTT（MQTT可以连接到云平台，云平台可以连接不同类型的设备，方便远程监控和管理）
 
+### PLC之间进行GET,PUT通讯（S7通讯）
+
+从右侧工具栏拖取  通信-->S7通信-->GET,PUT模块
+
+<img src="拉取s7通讯块.png" style="zoom:50%;" />
+
+从开放式用户通信-->其他-->拉取检查连接模块T_DIAG
+
+<img src="s7检查连接模块.png" style="zoom:75%;" />
+
+判断时候连接成功
+
+<img src="判断S7是否通讯成功.png" style="zoom:50%;" />
+
+建立S7通讯数据块
+
+<img src="建立S7发送接收的通讯数据.png" style="zoom:75%;" />
+
+建立S7通讯应用层模块
+
+<img src="建立S7通讯应用层模块.png" style="zoom:50%;" />
+
+ID：16#100来源
+
+<img src="/S7连接ID来源.png" style="zoom:60%;" />
+
+另一个PLC建立对应的S7交互数据块
+
+<img src="/另一个PLC建立对应的S7交互数据块.png" style="zoom:75%;" />
