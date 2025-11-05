@@ -18,6 +18,10 @@
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/开放式用户通信数据发送接收数据块.png">
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/开放式用户通信8.11配置被动建立连接.png">
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/接收端数据块.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/rtu下电能表需要读取的数据.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/Modbus_Comm_Load操作模式修改.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/1241RTU操作模式.png">
+<meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/电能表4000H参数.png">
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/拉取s7通讯块.png">
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/s7检查连接模块.png">
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/判断S7是否通讯成功.png">
@@ -26,8 +30,9 @@
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/S7连接ID来源.png">
 <meta property="og:image" content="http://porcorosso.top/posts/eecff6c8/另一个PLC建立对应的S7交互数据块.png">
 <meta property="article:published_time" content="2025-11-04T08:39:03.000Z">
-<meta property="article:modified_time" content="2025-11-05T02:52:27.736Z">
+<meta property="article:modified_time" content="2025-11-05T07:25:21.591Z">
 <meta property="article:author" content="菊子酒">
+<meta property="article:tag" content="通讯">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://porcorosso.top/posts/eecff6c8/plc开放式用户通信数据块.png">
     
@@ -158,8 +163,18 @@
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E9%80%9A%E8%AE%AF/">通讯</a>
+    </div>
+
 
       
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E9%80%9A%E8%AE%AF/" rel="tag">通讯</a>
+    </div>
+
 
     </div>
   </header>
@@ -310,21 +325,25 @@
 						触发条件：
 							写：
 								REQ："AlwaysTRUE"或者做一个开关
-								MB_MODE：1
-								MB_DATA_ADDR：根据具体的读写器地址来决定，写和读，一致 例：40015
-								CONNECT ：写和读使用同一个协议
+								MB_MODE：1  模式为1表示写
+								MB_DATA_ADDR：根据具体的读写器寄存器地址和要使用什么模式来决定，写和读，一致 例：03模式下MB_DATA_ADDR的起始地址是40001，读写器寄存器地址是14 所以MB_DATA_ADDR地址是两者相加等于40015（03模式下MB_DATA_ADDR的起始地址是40001也可以是400001，当40001不够用的时候选择400001）
+								MB_DATA_LEN：RFID设备对应的写寄存器数量
+								MB_DATA_PTR：指向自定义的数据块的写数据起始位置和结束位置，例P#DB2.DBX14.0 INT 4
+								CONNECT ：写和读使用同一个协议（TCON_IP_V4）
 								
 							读：
 								REQ：做一个开关
-								MB_MODE：0
-								MB_DATA_ADDR：根据具体的读写器地址来决定，写和读，一致 例：40015
-								CONNECT ：写和读使用同一个协议
+								MB_MODE：0 模式为0表示读
+								MB_DATA_ADDR：根据具体的读写器寄存器地址和要使用什么模式来决定，写和读，一致 例：03模式下MB_DATA_ADDR的起始地址是40001，读写器寄存器地址是14 所以MB_DATA_ADDR地址是两者相加等于40015（03模式下MB_DATA_ADDR的起始地址是40001也可以是400001，当40001不够用的时候选择400001）
+								MB_DATA_LEN：RFID设备对应的读寄存器数量
+								MB_DATA_PTR：指向自定义的数据块的读数据起始位置和结束位置，例P#DB2.DBX22.0 INT 4
+								CONNECT ：写和读使用同一个协议（TCON_IP_V4）
 				
 				
 		报错：
 		80A3:看读模式的块和写模式的块的名称是否不同，不同的db块会产生两个不同的通道，一个通讯协议不能在两个不同通道进行数据交换
 		8383:看数据的长度和类型，国产的一般可以用INT进行通讯，可以将读取/写入的array数组改成INT数据类型，一般常见最长的长度是112个BYTE，也就是56个INT
-		40011-40015 这四位是系统常数 总共是11位  前四位可以不读，所以可以写成40015 7位</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+		40011-40015 这四位是系统常数 总共是11位  前四位可以不读，所以可以写成40015 7位</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>Modbus协议的数据模型和地址模型</strong></p>
 <p><strong>数据模型</strong>是对从站设备可访问的数据进行抽象，Modbus协议的数据模型定义了四种可访问的数据，为了简化数据模型与设备存储区的对应关系，又引入了<strong>地址模型</strong>的概念，通过编号的方式对不同类型数据进行区分，也就是通过特定的编号作为前缀加到所讨论的数据地址中。如表中所示，通过0,1,3,4分别表示线圈，离散量输入，输入寄存器，和保持寄存器。</p>
@@ -391,16 +410,17 @@
 
 <span class="token code keyword">			通信-->通信处理器-->MODBUS(RTU)</span>
 
-<span class="token code keyword">			Modbus_Comm_Load：组态Modbus 的端口</span>
+<span class="token code keyword">			Modbus_Comm_Load：组态Modbus 的端口（Modbus_Comm_Load模式改成4）</span>
 
 <span class="token code keyword">					REQ："AlwaysTRUE"
+				    PORT：硬件CM1241的具体硬件标识符
 					BAUD：默认 ，数据传输速率
 					PARITY：默认，奇偶检验
 					FLOW_CTRL：默认，流控制
 					RTS_ON_DLY：50，接通延迟
 					RTS_OFF_DLY：50，关断延迟
 					RESP_TO：默认，响应超时时间
-					MB_DB：Modbus_Master.DB 对 Modbus_Master 或 Modbus_Slave 指令的背景数据块的引用	</span>
+					MB_DB：Modbus_Master.MB_DB 对 Modbus_Master 或 Modbus_Slave 指令的背景数据块的引用	</span>
 
 <span class="token code keyword">			Modbus_Master：作为主站通讯，写入通讯</span>
 
@@ -408,11 +428,11 @@
 
 <span class="token code keyword">							REQ：常闭的写入DONE，写入BUSY，读取DONE，读取BUSY串联，并联常开的写入ERROR+5HZ时钟,并联常开的读取ERROR+5HZ时钟作为使能条件
 							MB_ADDR：一般为1，Modbus RTU 站地址 
-							MODE：1，读取
-							DATA_ADDR：从站中的起始地址，要根据实际设备的写入起始地址决定
+							MODE：1，写入
+							DATA_ADDR：从站中的起始地址，要根据实际设备的写入起始地址决定，例如读取电能表2000H电压对应的数据时2000H对应的10进制数是8192，03模式下MB_DATA_ADDR的起始地址是40001，故起始地址是两者相加等于48193（03模式下MB_DATA_ADDR的起始地址是40001也可以是400001，当40001不够用的时候选择400001）
 							DATA_LEN：要根据实际设备的写入地址长度决定
 							COM_RST：进行Modbus RTU 的重置
-							DATA_PTR：写入数据块，根据实际设备参数决定</span>
+							DATA_PTR：写入数据块，根据实际设备参数决定（创建数据块，设备中的参数如果是32位的可以用real类型数组来接收/写入数据，使用P#DB100.DBX0.0 word 18这种形式定义数据的起始位置和结束位置）</span>
 
 <span class="token code keyword">			Modbus_Master：作为主站通讯， 读取通讯</span>
 
@@ -421,15 +441,27 @@
 <span class="token code keyword">							REQ：写入DONE作为使能条件，写入操作完成之后才能开始读取
 							MB_ADDR：一般为1，Modbus RTU 站地址 
 							MODE：0，读取
-							DATA_ADDR：从站中的起始地址，要根据实际设备的读取起始地址决定
+							DATA_ADDR：从站中的起始地址，要根据实际设备的写入起始地址决定，例如读取电能表2000H电压对应的数据时2000H对应的10进制数是8192，03模式下MB_DATA_ADDR的起始地址是40001，故起始地址是两者相加等于48193（03模式下MB_DATA_ADDR的起始地址是40001也可以是400001，当40001不够用的时候选择400001）
 							DATA_LEN：要根据实际设备的读取地址长度决定
 							COM_RST：进行Modbus RTU 的重置
-							DATA_PTR：读取数据块，根据实际设备参数决定</span>
+							DATA_PTR：读取数据块，根据实际设备参数决定（创建数据块，设备中的参数如果是32位的可以用real类型数组来接收/写入数据，使用P#DB100.DBX0.0 word 18这种形式定义数据的起始位置和结束位置）</span>
 
-<span class="token code keyword">	案例：变位机伺服控制</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token code keyword">	案例：变位机伺服控制</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>DATA_LEN的值根据需要读取是数据长度来确定的，如下图</p>
+<img src="/posts/eecff6c8/rtu下电能表需要读取的数据.png" style="zoom:75%;">
 
+<p>总共需要读取九个数据，但是每个数据都是32位的数据，DATA_ADDR地址的数据48193是16位的，所以DATA_LEN的值是18</p>
+<p>Modbus_Comm_Load模式改成4，在系统块–&gt;程序资源–&gt;Modbus_Comm_Load数据块static中MODE改成4</p>
+<img src="/posts/eecff6c8/Modbus_Comm_Load操作模式修改.png" style="zoom:75%;">
 
+<p>原因是半双工模式在操作模式中是第四个</p>
+<img src="/posts/eecff6c8/1241RTU操作模式.png" style="zoom:75%;">
+
+<p>电能表中读取的数据除了2000H还有4000H的，由于不是连续的数据4000H的数据需要新建一个Modbus_Master的数据块进行读取</p>
+<img src="/posts/eecff6c8/电能表4000H参数.png" style="zoom:75%;">
+
+<p>4000H是16进制的转化成10进制是16384 ，不能用40001加40001的最大值是49999，会超范围，所以DATA_ADDR地址要用400001加16384等于416385</p>
 <h3 id="工艺-轴控制"><a href="#工艺-轴控制" class="headerlink" title="工艺-轴控制"></a>工艺-轴控制</h3><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">组态软件：轴工艺对象
 
 <span class="token code keyword">	组态模块：</span>
