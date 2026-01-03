@@ -58,7 +58,7 @@
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/%E9%BB%98%E8%AE%A4uart%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE.png">
 <meta property="og:image" content="http://porcorosso.top/posts/a5a5d18/%E4%BB%8E%E7%AB%99%E5%9C%B0%E5%9D%80%E7%9A%84%E6%8A%A5%E6%96%87.png">
 <meta property="article:published_time" content="2024-08-17T04:42:44.000Z">
-<meta property="article:modified_time" content="2025-11-04T08:47:13.303Z">
+<meta property="article:modified_time" content="2025-11-08T08:39:38.680Z">
 <meta property="article:author" content="菊子酒">
 <meta property="article:tag" content="西门子PLC">
 <meta name="twitter:card" content="summary">
@@ -541,6 +541,7 @@
 <p>不关心数据FC</p>
 <p>全局数据块DB</p>
 <p>OB主程序不能被其他系统调用</p>
+<p>① FC运行是产生临时变量执行结束后数据就丢失—–不具有储存功能<br>② FB运行时需要调用各种参数，于是就产生了背景数据块DB。例如用FB41来作PID控制，则它的PID控制参数就要存在DB里面。FB具有储存功能<br>③ 系统功能块（SFB）和系统功能（SFC）也是相当于子程序，只不过SFB和SFC是集成在S7 CPU中的功能块，用户能直接调用不需自已写程序。<br>④ SFC与FC不具有储存功能,FB和SFB具有储存功能。<br>⑤ OB模块相当于子程序，负责调用其他模块。如果程序简单只需要OB就可以实现。</p>
 <h3 id="函数块（FB）"><a href="#函数块（FB）" class="headerlink" title="函数块（FB）"></a>函数块（FB）</h3><p><img src="/posts/a5a5d18/%E5%87%BD%E6%95%B0%E5%9D%97.png"></p>
 <p>描述：函数块是用户编写的包含经常使用的功能的子程序，其含有专用的背景数据块。<br>由于运行过程中需要调用各种参数，因此产生了背景数据块DB，所以需要用到的数据就存储在了DB中。即使结束调用，数据也不丢失。</p>
 <p>函数块（Function Block）是PLC编程中最常用的程序块类型。它类似于面向对象编程中的类，用于封装特定的控制逻辑，并将其作为一个整体进行调用和重复使用。函数块可以由多个输入和输出组成，它们的功能通常与具体的硬件设备相关。例如，一个函数块可以用来控制一个电机，另一个函数块可以用来实现温度控制。函数块通常由多个网络组成，每个网络包含了一个或多个指令，它们共同实现函数块的控制逻辑。一个函数块可以被多个程序或函数调用，这使得程序的编写变得更加高效和简单。</p>
@@ -1435,7 +1436,7 @@
     Copyright &copy;
     
     
-    2016-2025
+    2016-2026
     菊子酒
   </div>
   <div class="footer-right">
