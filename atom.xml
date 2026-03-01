@@ -6,7 +6,7 @@
   <link href="http://porcorosso.top/atom.xml" rel="self"/>
   
   <link href="http://porcorosso.top/"/>
-  <updated>2025-11-05T07:25:21.591Z</updated>
+  <updated>2026-03-01T03:27:45.817Z</updated>
   <id>http://porcorosso.top/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>摩米士充电宝操作说明书</title>
+    <link href="http://porcorosso.top/posts/2d5dd2dd.html"/>
+    <id>http://porcorosso.top/posts/2d5dd2dd.html</id>
+    <published>2026-03-01T03:23:22.000Z</published>
+    <updated>2026-03-01T03:27:45.817Z</updated>
+    
+    <content type="html"><![CDATA[<p> 操作说明</p><span id="more"></span><hr><h2 id="操作说明"><a href="#操作说明" class="headerlink" title="操作说明"></a>操作说明</h2><p><img src="/posts/2d5dd2dd/%E6%91%A9%E7%B1%B3%E5%A3%AB%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E%E4%B9%A6.jpg"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt; 操作说明&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>西门子PLC通讯基础</title>
@@ -409,27 +426,6 @@
     
     
     <category term="昆仑通态" scheme="http://porcorosso.top/tags/%E6%98%86%E4%BB%91%E9%80%9A%E6%80%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数字孪生基础</title>
-    <link href="http://porcorosso.top/posts/523d37c0.html"/>
-    <id>http://porcorosso.top/posts/523d37c0.html</id>
-    <published>2024-08-19T09:22:27.000Z</published>
-    <updated>2025-08-28T12:18:50.451Z</updated>
-    
-    <content type="html"><![CDATA[<p>数字孪生</p><span id="more"></span><hr><h2 id="数字孪生总体框架："><a href="#数字孪生总体框架：" class="headerlink" title="数字孪生总体框架："></a>数字孪生总体框架：</h2><p><img src="/posts/523d37c0/%E6%95%B0%E5%AD%97%E5%AD%AA%E7%94%9F%E6%80%BB%E4%BD%93%E6%A1%86%E6%9E%B6.png"></p>]]></content>
-    
-    
-    <summary type="html">数字孪生基础知识</summary>
-    
-    
-    
-    <category term="数字孪生" scheme="http://porcorosso.top/categories/%E6%95%B0%E5%AD%97%E5%AD%AA%E7%94%9F/"/>
-    
-    
-    <category term="数字孪生" scheme="http://porcorosso.top/tags/%E6%95%B0%E5%AD%97%E5%AD%AA%E7%94%9F/"/>
     
   </entry>
   
