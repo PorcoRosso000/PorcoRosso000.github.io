@@ -1024,7 +1024,34 @@ Modbus、PROFIBUS、CC-Link
 	通过程序号可以控制plc的程序分步执行
 ```
 
-## 
+## 博图快捷键
+
+```markdown
+（*     XXXXXX   *）注释掉你所选择的区域
+Ctrl+Shift+Y 注释掉你所选择的区域
+
+Ctrl+Shift+U 取消注释所选择的区域
+
+Ctrl+Shift+W 自动格式化所选择的区域
+
+Ctrl+Shift+E cpu切换到run
+
+Ctrl+Shift+Q cpu切换到stop
+
+Ctrl+B 编译
+
+Ctrl+R 插入梯形图程序块
+
+Ctrl+T 转至在线
+
+Ctrl+F2 修改为1
+
+Ctrl+F3 修改为0
+
+F1 查找模块对应资料
+```
+
+
 
 ## 参考文献
 

@@ -493,3 +493,51 @@ ID：16#100来源
 另一个PLC建立对应的S7交互数据块
 
 <img src="/另一个PLC建立对应的S7交互数据块.png" style="zoom:75%;" />
+
+
+
+### 功能块 SinaParaS
+
+**作用**：可以读取或写入驱动器参数
+
+```
+Start：启动参数读写
+ReadWrite：0 读取。1 写入。
+Parameter：设置成伺服的参数号+10000，举例
+parameter=10001 则对应于 P00.01;
+parameter=10002 则对应于 P00.02;
+parameter=10201 则对应于 P02.01;
+parameter=11001 则对应于 P10.01;
+ValueWrite1：需要写入的 16 位参数的值。
+ValueWrite2：需要写入的 32 位参数的值。
+ValueRead1：读取到的 16 位参数的值。
+ValueRead2：读取到的 32 位参数的值。
+AxisNo:固定是 1，不管多少个轴，都设置为 1，具体读写哪个轴，通过hardwareid 区分。Hardwareid：设置成报文的 3或者111 的硬件标识符。
+```
+
+#### 案例：
+
+##### 修改驱动器手动速度
+
+添加SinaParaS功能块
+
+<img src="SinaParaS_1_0.png" style="zoom:50%;" />
+
+查找伺服驱动器的硬件标识符
+
+<img src="SinaParaS_1_4.png" style="zoom:50%;" />
+
+写入手动速度
+
+<img src="SinaParaS_1_5.png" style="zoom:50%;" />
+
+<img src="SinaParaS_1_1.png" style="zoom:50%;" />
+
+读取手动速度
+
+<img src="SinaParaS_1_2.png" style="zoom:50%;" />
+
+<img src="SinaParaS_1_3.png" style="zoom:50%;" />
+
+不同驱动器的**写入和读取都不能同时进行**，同时进行**SinaParaS功能块**会报**16#0004_0000**的**报错**
+
