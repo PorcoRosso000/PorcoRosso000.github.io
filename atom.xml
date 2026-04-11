@@ -6,7 +6,7 @@
   <link href="http://porcorosso.top/atom.xml" rel="self"/>
   
   <link href="http://porcorosso.top/"/>
-  <updated>2026-03-17T02:34:20.356Z</updated>
+  <updated>2026-04-11T23:38:50.008Z</updated>
   <id>http://porcorosso.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>电脑问题</title>
+    <link href="http://porcorosso.top/posts/62e6cab6.html"/>
+    <id>http://porcorosso.top/posts/62e6cab6.html</id>
+    <published>2026-03-21T02:54:28.000Z</published>
+    <updated>2026-04-11T23:38:50.008Z</updated>
+    
+    <content type="html"><![CDATA[<p>电脑问题</p><span id="more"></span><hr><p>1.电脑黑屏就剩一个鼠标</p><p>ctrl + alt + . （ 或ctrl + shift + esc）呼出任务管理器</p><p>方法1:</p><pre class="line-numbers language-none"><code class="language-none">右上角 运行新任务 使用管理员运行 explorer.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>方法2:</p><p><img src="/posts/62e6cab6/%E7%94%B5%E8%84%91%E9%BB%91%E5%B1%8F%E5%B0%B1%E5%89%A9%E4%B8%80%E4%B8%AA%E9%BC%A0%E6%A0%87.png"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;电脑问题&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="电脑" scheme="http://porcorosso.top/tags/%E7%94%B5%E8%84%91/"/>
+    
+  </entry>
   
   <entry>
     <title>英语学习</title>
@@ -405,27 +424,6 @@
     
     
     <category term="PLC" scheme="http://porcorosso.top/tags/PLC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>音乐相关软件及常用配置方式</title>
-    <link href="http://porcorosso.top/posts/fa2afadb.html"/>
-    <id>http://porcorosso.top/posts/fa2afadb.html</id>
-    <published>2024-08-27T23:06:26.000Z</published>
-    <updated>2025-08-28T12:18:50.560Z</updated>
-    
-    <content type="html"><![CDATA[<p>音乐相关软件及常用配置方式</p><span id="more"></span><hr><h2 id="批量歌词下载"><a href="#批量歌词下载" class="headerlink" title="批量歌词下载"></a>批量歌词下载</h2><p>github项目地址：<a href="https://github.com/real-zony/ZonyLrcToolsX/releases">https://github.com/real-zony/ZonyLrcToolsX/releases</a></p><p>软件命令：<br>1、CD到软件目录<br>2、ZonyLrcTools.Cli.exe download -d “音乐目录” -l -n 线程数</p><h2 id="使用音乐标签软件批量下载（推荐）"><a href="#使用音乐标签软件批量下载（推荐）" class="headerlink" title="使用音乐标签软件批量下载（推荐）"></a>使用音乐标签软件批量下载（推荐）</h2><p>MusicTag</p>]]></content>
-    
-    
-    <summary type="html">音乐相关软件及常用配置方式</summary>
-    
-    
-    
-    <category term="音乐" scheme="http://porcorosso.top/categories/%E9%9F%B3%E4%B9%90/"/>
-    
-    
-    <category term="音乐" scheme="http://porcorosso.top/tags/%E9%9F%B3%E4%B9%90/"/>
     
   </entry>
   
