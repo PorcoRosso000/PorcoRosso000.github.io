@@ -1,6 +1,6 @@
 ---
 title: 西门子PLC基础
-typora-root-url: 西门子PLC基础
+typora-root-url: 西门子PLC基础 
 keywords: '西门子,PLC'
 tags: 西门子PLC
 categories: 西门子PLC
@@ -995,6 +995,14 @@ Modbus、PROFIBUS、CC-Link
 没有应用层，只使用物理层和数据链路层通讯只能起到传声筒作用，通讯双方必须编写业务逻辑，使用Modbus、PROFIBUS，主站就可以随意查询和修改从站内部变量，或者周期性同步从站数据，把从站视为主站一部分
 
 
+
+## 博图安装问题
+
+### 安装完博途v15后每次开机都会进入安装界面怎么解决？
+
+
+
+删除C:\ProgramFiles(x86)\CommonFiles\Siemens\Automation\SiemensInstallerAssistant\405文件下START程序后解决，v16删407
 
 
 
