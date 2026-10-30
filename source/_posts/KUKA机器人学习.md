@@ -270,7 +270,9 @@ ENDDAT
 
 全局方法可以被任何方法调用
 
-```
+#### 气缸控制
+
+```markdown
 &ACCESS RV
 DEF GRPS ( )
 ;FOLD INI;%{PE}
@@ -285,6 +287,16 @@ DEF GRPS ( )
   ;ENDFOLD (USER INI)
 ;ENDFOLD (INI)
 
+;气缸控制
+;$OUT[1] 托盘气缸回
+;$OUT[2] 托盘气缸出
+;$IN[1] 托盘气缸回到位
+;$IN[2] 托盘气缸出到位
+
+;$OUT[3] 电极气缸出
+;$OUT[4] 电极气缸回
+;$IN[3] 电极气缸回到位
+;$IN[4] 电极气缸出到位
 
 
 END
@@ -346,43 +358,4 @@ plc通过和机器人建立通讯以外部控制的方式来给机器人下达�
 ```
 
 更改完之后下载
-
-
-
-## 气缸控制
-
-```
-$OUT[1] 托盘气缸回
-$OUT[2] 托盘气缸出
-$IN[1] 托盘气缸回到位
-$IN[2] 托盘气缸出到位
-GLOBAL DEF GRPS_TUOPAN_OPEN ()
-WAIT SEC 0
-$TIMER[50]=-5000
-$TIMER_STOP[50]=FALSE
-
-$OUT[2]=FALSE
-$OUT[1]=TRUE
-WAIT SEC 0.1
-WAIT FOR (NOT $IN[2]) AND $IN[1]
-WAIT SEC 0.5
-$TIMER_STOP[50]=TRUE
-$TIMER[50]=-5000
-
-END
-GLOBAL DEF GRPS_TUOPAN_CLOSE ()
-WAIT SEC 0
-$TIMER[50]=-5000
-$TIMER_STOP[50]=FALSE
-$OUT[1]=FALSE
-$OUT[2]=TRUE
-WAIT SEC 0.1
-WAIT FOR (NOT $IN[1]) AND $IN[2]
-WAIT SEC 0.5
-$TIMER_STOP[50]=TRUE
-$TIMER[50]=-5000
-
-END
-
-```
 
