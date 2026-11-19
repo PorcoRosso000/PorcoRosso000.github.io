@@ -270,6 +270,151 @@ ENDDAT
 
 全局方法可以被任何方法调用
 
+## plc控制机器人动作的原理	
+
+plc通过和机器人建立通讯以外部控制的方式来给机器人下达指令，通过程序号控制机器人要执行的逻辑，通过确定好的点位和输入输出信号，控制机器人具体的动作
+
+## WorkVisual 6.0 项目配置
+
+### 下载
+
+库卡机器人使用WorkVisual 6.0  下载需要对应库卡机器人的kop文件
+包括EthernetKRL、 KUKA.PROFINET MS、UserTech等文件
+
+```
+EthernetKRL 负责通用的数据通信，PROFINET MS 负责工业以太网总线集成，而 UserTech 则用于定制操作界面。
+
+📡 EthernetKRL：通用的数据通信接口
+它的核心作用是让机器人控制器与外部系统（如视觉相机、PC、传感器）进行灵活的数据交换。
+
+通信方式：基于 TCP/IP 或 UDP 协议，进行异步通信，支持 XML 或二进制格式的数据。
+
+角色灵活：机器人控制器既可以作为服务器，也可以作为客户端，且最多支持同时建立 16 个独立连接。
+
+典型场景：发送启动指令给智能相机并接收检测结果，或与外部 PC 交换状态数据。
+
+🔗 KUKA.PROFINET MS：工业总线集成
+这是一个用于将机器人集成到 PROFINET 工业网络中的选件包。
+
+核心功能：它使机器人控制器能够作为 PROFINET 控制器、PROFINET 设备或 PROFIsafe 设备来运行。
+
+通信对象：主要用于与上级的 PROFINET PLC（如西门子 S7-1500）进行安全或非安全信号通信，也可以连接支持 PROFINET 的外围设备（如抓手）。
+
+🖥️ UserTech：可定制的操作界面
+它的作用是让用户无需深入编程，就能在示教器（smartPAD）上创建自定义的操作按钮和界面。
+
+核心价值：通过图形化编辑器（集成在 WorkVisual 中），用户可以通过拖拽的方式创建 Inline forms（内联表单） 和 Status keys（状态键），从而简化复杂 KRL 程序的使用。
+
+使用效果：例如，操作员可以配置一个实体按键，按一下就能自动执行打开或关闭夹爪的完整逻辑，而不需要在示教器上手动编写代码。
+
+简单总结：如果你需要让机器人与相机或 PC 自由对话，选 EthernetKRL；如果你需要把机器人接入西门子 PLC 的产线网络，用 PROFINET MS；如果你希望让现场操作员用起来更简单（比如做一个一键启动的按钮），那就用 UserTech。
+```
+
+
+
+### io名称修改
+
+```markdown
+编辑器-->长文本编辑器
+```
+
+更改完之后下载
+
+### 库卡配置倍福模块
+
+```
+配置说明
+
+	https://www.toutiao.com/article/7616718349292159540/
+
+接线说明
+
+硬件连接与电源接线
+
+首先将三个模块在导轨上依次卡装好，顺序通常为：EK1100 → EL1809 → EL2809。
+
+EK1100 耦合器上有两组电源端子，必须都接，且功能不同：
+
+上方端子（24V / 0V）：给 EK1100 耦合器自身及内部通信电路供电。
+
+下方端子（+ / -）：这是现场电源，专门用于给后续的 EL1809 和 EL2809 模块所连接的外部传感器、负载提供电源。
+
+接线时，用螺丝刀压住端子上的方孔，将导线插入圆孔后松开即可固定。
+
+EL1809 输入模块接线（接传感器/开关）
+
+EL1809 是 16 通道数字量输入模块，用于采集信号。它的公共端参考点是 0V，因此接法为源型输入（PNP） 逻辑。
+
+传感器/开关的一端：接入 EL1809 上任意一个输入端子（1-16）。
+
+传感器/开关的另一端：必须接到 EK1100 下方端子中的“+”（即 24V 正极）。
+
+这样当开关闭合时，24V 正信号才会进入 EL1809 的输入端，被识别为“1”。
+
+EL2809 输出模块接线（接负载/继电器）
+
+EL2809 是 16 通道数字量输出模块，用于驱动负载。它的输出端提供 24V 电压，因此负载的回路需要回到 0V。
+
+负载（如继电器线圈、指示灯）的一端：接入 EL2809 上对应的输出端子（1-16）。
+
+负载的另一端：必须接到 EK1100 下方端子中的“-”（即 0V 负极）。
+
+EL2809 单通道最大驱动电流通常为 0.5A，接线时请确认负载电流不超限。
+
+网络与组态提示
+EtherCAT 网线：将主站（如 PLC 或工控机）的网线接入 EK1100 上方的 EtherCAT IN 口。如果后续还有从站，从下方的 OUT 口引出即可。
+
+软件配置：接线完成后，需要在对应的工程软件（如 TwinCAT 或 KUKA WorkVisual）中扫描或添加 EK1100，并在其下挂载 EL1809 与 EL2809，最后进行 I/O 映射才能正常使用。
+```
+
+### IO映射
+
+PROFINET_IO映射
+
+PROFINET  IO点设置
+
+![](PROFINET_IO点设置 .png)
+
+PROFINET IO点映射
+
+![IO配置组件.png](IO配置组件.png)
+
+![输入](输入.png)
+
+两个绿色箭头点亮可以进行输入映射
+
+![输出](输出.png)
+
+两个红色箭头点亮可以进行输出映射
+
+![IO映射断开](IO映射断开.png)
+
+点击映射连接
+
+![IO映射连接](IO映射连接.png)
+
+点击映射断开
+
+
+
+倍福的IO映射
+
+左侧点击数字输入端右侧点击EL1809模块可以将倍福的输入模块映射给kuka内部变量
+
+![](IO数据映射.png)
+
+左侧点击数字输出端右侧点击EL2809模块可以将倍福的输出模块映射给kuka内部变量
+
+
+
+PROFINET的IO映射
+
+左侧点击数字输入端/输出端点击右侧的PROFINET可以进行plc的库卡的输入输出映射
+
+
+
+KUKA编程
+
 #### 气缸控制
 
 ```markdown
@@ -340,22 +485,130 @@ END
 
 ```
 
-## plc控制机器人动作的原理	
+## 主程序
 
-plc通过和机器人建立通讯以外部控制的方式来给机器人下达指令，通过程序号控制机器人要执行的逻辑，通过确定好的点位和输入输出信号，控制机器人具体的动作
+库卡主程序CELL
 
-## WorkVisual 6.0 项目配置
+;FOLD  
 
-### 下载
+;ENDFOLD (INIT)
 
-库卡机器人使用WorkVisual 6.0  下载需要对应库卡机器人的kop文件
-包括EthernetKRL、 KUKA.PROFINET MS、UserTech等文件
+KUKA折叠函数
 
-### io名称修改
+### 初始化
 
-```markdown
-编辑器-->长文本编辑器
 ```
 
-更改完之后下载
+;FOLD INIT
+  DECL CHAR DMY[3]
+  DECL INT i
+  DMY[]="---"
+  i=0
+$TIMER_STOP[50]=TRUE
+$TIMER[50]=-5000
+ 
+$OUT[127]=FALSE
+ FOR i= 141 TO 155
+   $OUT[i]=FALSE
+ ENDFOR
+
+;ENDFOLD (INIT)
+```
+
+### 手动回初始点
+
+```markdown
+   ;FOLD BASISTECH INI
+  GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+  INTERRUPT ON 3 
+  BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+  
+  ;FOLD CHECK HOME
+  $H_POS=XHOME
+  IF CHECK_HOME==TRUE THEN
+  P00 (#CHK_HOME,#PGNO_GET,DMY[],0 ) ;Testing Home-Position 
+  ENDIF
+  ;ENDFOLD (CHECK HOME)
+ 
+ 	WAIT FOR $T1
+    CHANGE_TOOL1()
+    GoWuliaoku()
+  	GRPS_DIANJI_OPEN ()
+  	GRPS_TUOPAN_OPEN ()
+  	WAIT FOR $EXT
+```
+
+### 自动程序（案例）
+
+```
+AUTOEXT INI
+  P00 (#INIT_EXT,#PGNO_GET,DMY[],0 ) ; Initialize extern mode
+  ;ENDFOLD (AUTOEXT INI)
+  LOOP
+    P00 (#EXT_PGNO,#PGNO_GET,DMY[],0 )
+    SWITCH  PGNO ; Select with Programnumber
+
+    CASE 1
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      WULIAOKU_PICK(WULIAOKUNUM)
+      DROP_LOAD()
+    CASE 2
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      PICK_LOAD()
+      WULIAOKU_DROP(WULIAOKUNUM)
+    CASE 11
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      WULIAOKU_PICK(WULIAOKUNUM)
+      DROP_TUOPAN1()
+    CASE 12
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      WULIAOKU_PICK(WULIAOKUNUM)
+      DROP_TUOPAN2()
+    CASE 13
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      DIANJIKU_PICK1()
+      DROP_DIANJI1()
+    CASE 14
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      DIANJIKU_PICK2()
+      DROP_DIANJI2()      
+    CASE 15
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      PICK_DIANJI1()
+      DIANJIKU_DROP1()
+    CASE 16
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      PICK_DIANJI2()
+      DIANJIKU_DROP2()      
+    CASE 21
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      PICK_TUOPAN1()
+      WULIAOKU_DROP(WULIAOKUNUM)      
+    CASE 22
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      PICK_TUOPAN2()
+      WULIAOKU_DROP(WULIAOKUNUM)            
+    CASE 31
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      WULIAOKU_PICK(WULIAOKUNUM)
+      DROP_UNLOAD()
+    CASE 32
+      P00 (#EXT_PGNO,#PGNO_ACKN,DMY[],0 ) ; Reset Progr.No.-Request
+      PICK_UNLOAD()
+      WULIAOKU_DROP(WULIAOKUNUM)
+    DEFAULT
+      P00 (#EXT_PGNO,#PGNO_FAULT,DMY[],0 )
+    ENDSWITCH
+
+;FOLD PULSE 127 '' State=True  Time=0.5 sec ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.logics.out.pulse; Kuka.Logics.Io=127; Kuka.Logics.IoName=; Kuka.Logics.State=True; Kuka.Logics.Cont=False; Kuka.Logics.Time=0.5
+;ENDFOLD
+PULSE($OUT[127], TRUE, 0.5)
+;ENDFOLD
+WAIT SEC 1
+  ENDLOOP
+END
+```
 
