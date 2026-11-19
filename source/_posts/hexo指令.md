@@ -1,4 +1,6 @@
 ---
+
+
 title: hexo指令
 abbrlink: 89e11d40
 date: 2022-11-11 22:30:29
@@ -142,6 +144,57 @@ git stash pop     :取出之前储藏的修改
 
 之后就可以继续提交
 ```
+
+### git push -u origin hexossh: connect to host github.com port 22: Connection refusedfatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+```markdown
+22端口被封需要把22端口修改成443,直接重新生成（复制整条执行）
+```
+
+```bash
+cat > ~/.ssh/config <<'EOF'
+Host github.com
+  HostName ssh.github.com
+  Port 443
+  User git
+EOF
+```
+
+给权限（WSL 必须做，不然 ssh 忽略配置）
+
+```bash
+chmod 600 ~/.ssh/config
+```
+
+测试
+
+```bash
+ssh -T git@github.com
+```
+
+如果出现
+
+```bash
+ssh -T git@github.com
+The authenticity of host '[ssh. github. com] :443 ([20.205.243. 160]:443)' can't be established.
+ED25519 key fingerprint is : SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvcOqU
+This host key is known by the following other names/addresses:
+~/.ssh/known_hosts:1: github.com
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+输入yes
+
+成功会输出
+
+```bash
+Hi PorcoRosso000! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+
 
 ### 文章配置
 
